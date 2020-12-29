@@ -12,7 +12,7 @@ const LandingContainer = styled.div`
     letter-spacing: 4px;
     word-spacing: -8px;
     color: #ffffff;
-    text-shadow: 4px 4px 2px ${props => props.theme.colors.title};
+    text-shadow: 4px 4px 2px ${props => props.theme.colors.titleColor};
   }
 
   .start-icon {
@@ -38,7 +38,7 @@ const LandingContainer = styled.div`
     filter: blur(0.4px);
     letter-spacing: 1px;
     color: #cbcaeb;
-    text-shadow: 2px 2px 2px #1c283b;
+    text-shadow: 2px 2px 2px ${props => props.theme.colors.namesakeText};
   }
 
   .press-start {
@@ -49,21 +49,20 @@ const LandingContainer = styled.div`
     justify-content: space-evenly;
     margin: auto;
     font: 700 16px 'Audiowide', sans-serif;
-    background-color: #1cc5b7;
+    background-color: ${props => props.theme.colors.mainColor};
     border-radius: 4px;
-    color: #08162f;
+    color: ${props => props.theme.colors.namesakeText};
     letter-spacing: 3px;
     transition: filter 1s ease, color 1s ease;
     cursor: pointer;
   }
 
   .press-start a {
-    color: #08162f;
+    color: ${props => props.theme.colors.namesakeText};
   }
 
   .press-start:hover {
-    color: rgba(3, 4, 71, 0.8);
-    filter: drop-shadow(1px 1px 4px #1cc5b7);
+    filter: drop-shadow(1px 1px 4px ${props => props.theme.colors.mainColor});
   }
 
   @media (min-width: 1100px) {
