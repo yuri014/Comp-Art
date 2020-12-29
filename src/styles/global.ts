@@ -17,11 +17,6 @@ export default createGlobalStyle`
     background-color: ${props => props.theme.colors.backgroundColor};
   }
 
-  .container {
-    width: 90vw;
-    max-width: 700px;
-  }
-
   a {
     text-decoration: none;
   }
