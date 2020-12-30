@@ -18,7 +18,7 @@ const Modal: React.FC<ModalProps> = props => (
         <div
           role="button"
           onClick={props.onHide}
-          onKeyDown={e => e.key === 'Esc' && props.onHide}
+          onKeyDown={props.onHide}
           className="close-modal"
           tabIndex={0}
         >
