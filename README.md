@@ -1,34 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Projeto Comp-Art
 
-## Getting Started
+## A Rede
 
-First, run the development server:
+O Comp-Art é uma rede social criada com o intuito de unir a comunidade artística. Acreditamos que arte é o que dá o sabor da vida, então nossa meta é fazer artistas criarem mais e serem mais reconhecidos, enquanto o público descobre coisas novas. O objetivo é fazer um ajudar ao outro para poder viver e ser reconhecido pelo que tanto amam fazer.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Como funciona
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Cada pessoa pode se cadastrar como Artista ou Apreciador. O Artista pode ser grupo, banda, solo e afins. Apreciador só pode ser um usuário. Artistas devem se cadastrar dizendo quais são os seus tipos de arte. O Apreciador deve se cadastrar dizendo quais são as suas preferências. Interagir curtindo, comentando ou compartilhando é livre para todos. Todos usuários poderão seguir e ser seguido e terão acesso a mensagens.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+**Para Artistas:**
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+>Cada artista tem a sua primeira postagem sem nenhuma restrição. Já a partir da segunda, para postar algo novo, o artista deve compartilhar um post de três artistas diferentes. Haverá uma página de perfil, onde poderá ser inserido um catálogo de suas artes. A página de perfil poderá ser bastante personalizada, mudando a cor e imagem de fundo, colocando uma música para tocar quando entrar na página, ter capa, foto de perfil e dados (a página de perfil muda dependendo do tipo de arte que o artista produz). A própria arte vai ficar separada da parte de posts compartilhados.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+**Para Apreciadores:**
 
-## Learn More
+>Apreciadores não poderão postar na rede. Poderão criar grupos ou fandom para um determinado artista. Também terão uma página própria. Podem personalizar como quiser também. Mas exceto pela foto de perfil e a capa, a música e a imagem precisa ser linkada com alguma arte da rede.
 
-To learn more about Next.js, take a look at the following resources:
+## Comp-Art e a influência de jogos
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Isso vai além de apenas a estética da rede, tem um grande impacto nos usuários também. Os Apreciadores terão grande papel aqui, os Artistas também irão ter, mas vai ser diferente. E é por isso que eu vou começar pelos Apreciadores.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+**Para Apreciadores:**
 
-## Deploy on Vercel
+>Cada apreciador terá quests diárias e algumas mensais. As quests irão dar XP que trarão selos de reconhecimento e influência. Os prêmios envolvem desde impulsionar publicações dos seus artistas favoritos até créditos para comprar produtos dos artistas favoritos.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Para Artistas:**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+>Artistas poderão criar bônus para promoções. Exemplo: o Artista divulga uma promoção em algum de seus produtos, o usuário paga menos porém o artista continua ganhando o preço total.
+
+## Grupos e Fandom
+
+Nos grupos e fandons, os apreciadores poderão postar. Ambos têm limitações de participantes.
+
+**Grupos:**
+
+>Um usuário qualquer pode criar e administrar um grupo. Ele que fará a privacidade do grupo. O grupo pode ser feito para fazer de uma cena musical local, dividir técnicas e pensamentos artísticos, falar de eventos sobre artes e afins.
+
+**Fandom:**
+
+>Cada artista terá um fandom. O fandom é diferente de seguidores. No fandom o apreciador pode postar fotos de shows desse artista, mostrar coisas que comprou dele ou sobre ele e afins. O próprio artista tem a missão de gerenciar o seu fandom.
+
+### Observações
+
+Muitas dessas coisas são apenas planos e eu não sei se vou ter ânimo ou tempo para desenvolver. No momento estou mais focado na minha carreira pessoal (sim, eu sei que o projeto pode ajudar mas a probabilidade de me sustentar é pouca).
+
+### Contribuições
+
+Sinta-se livre para abrir issues e fazer prs.
