@@ -48,6 +48,10 @@ const SingUpContainer = styled.div`
     color: #1cc5b7;
   }
 
+  .forms {
+    padding: 1rem;
+  }
+
   .form-start-button {
     width: 18rem;
     height: 4.6rem;
@@ -111,14 +115,6 @@ const SingUpContainer = styled.div`
       text-shadow: 2px 2px 2px #030447d3;
       letter-spacing: 1px;
       color: white;
-    }
-
-    .form-character input {
-      margin-top: 2.5%;
-      margin-bottom: 5%;
-      box-shadow: 0 0 2px inset #001413;
-      background-color: rgba(255, 255, 255, 0.39);
-      width: 98%;
     }
 
     .form-start-button {
