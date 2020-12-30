@@ -34,7 +34,7 @@ const LandingContainer = styled.div`
     margin: auto;
     text-align: justify;
     margin-bottom: 2rem;
-    font: 600 14px 'Proza Libre', sans-serif;
+    font: 600 14px 'Asap', sans-serif;
     filter: blur(0.4px);
     letter-spacing: 1px;
     color: #cbcaeb;
