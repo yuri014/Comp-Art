@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import {
@@ -20,6 +20,11 @@ import formTheme from '../../styles/themes/FormTheme';
 function SignUp(): JSX.Element {
   const [isArtist, setIsArtist] = useState(true);
   const [modalShow, setModalShow] = useState(false);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   return (
     <SingUpContainer>
@@ -66,6 +71,7 @@ function SignUp(): JSX.Element {
                 placeholder="Seu nome..."
                 label="Nome"
                 required
+                inputRef={inputRef}
               />
               <TextField
                 fullWidth

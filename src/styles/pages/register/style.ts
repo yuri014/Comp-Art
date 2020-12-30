@@ -96,17 +96,6 @@ const SingUpContainer = styled.div`
       width: 70%;
       margin-top: 13vh;
       box-shadow: 1px 1px 4px rgba(3, 4, 71, 0.6);
-      animation: form 1.6s ease-in-out forwards;
-      transform-origin: left;
-    }
-
-    @keyframes form {
-      from {
-        transform: scaleY(0);
-      }
-      to {
-        transform: scaleY(1);
-      }
     }
 
     .form-character-title {
