@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Head from 'next/head';
 import {
   FaArrowLeft,
   FaArrowRight,
@@ -20,6 +21,9 @@ function SignUp(): JSX.Element {
 
   return (
     <SingUpContainer>
+      <Head>
+        <title>Comp-Art</title>
+      </Head>
       <div className="form-content">
         <div className="character-selection">
           <div className="selection-title">
@@ -53,13 +57,44 @@ function SignUp(): JSX.Element {
             <h2>Faça seu cadastro!</h2>
             <hr />
           </div>
-          <div className="forms">
-            <input type="text" placeholder="Seu nome..." required />
-            <input type="text" placeholder="Seu sobrenome..." required />
-            <input type="text" placeholder="Seu user..." required />
-            <input type="email" placeholder="Seu email..." required />
-            <input type="password" placeholder="Sua senha" required />
-          </div>
+          <form className="forms">
+            <TextField
+              fullWidth
+              id="standard-basic"
+              placeholder="Seu nome..."
+              label="Standard"
+              required
+            />
+            <TextField
+              fullWidth
+              id="standard-basic"
+              placeholder="Seu sobrenome..."
+              label="Standard"
+              required
+            />
+            <TextField
+              fullWidth
+              id="standard-basic"
+              placeholder="Seu user..."
+              label="Standard"
+              required
+            />
+            <TextField
+              fullWidth
+              id="standard-basic"
+              placeholder="Seu email..."
+              label="Standard"
+              required
+            />
+            <TextField
+              fullWidth
+              id="standard-basic"
+              placeholder="Sua senha..."
+              label="Standard"
+              required
+              type="password"
+            />
+          </form>
           <div className="form-start-button desktop">
             <Link href="/home">
               <a>
