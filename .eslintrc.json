@@ -38,6 +38,7 @@
     "@typescript-eslint/no-use-before-define": ["error"],
     "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off",
+    "react/destructuring-assignment": "off",
     "arrow-parens": ["error", "as-needed"],
     "implicit-arrow-linebreak": "off",
     "import/extensions": [
@@ -48,6 +49,14 @@
         "jsx": "never",
         "ts": "never",
         "tsx": "never"
+      }
+    ],
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
       }
     ]
   }
