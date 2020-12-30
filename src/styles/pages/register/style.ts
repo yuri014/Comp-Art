@@ -7,7 +7,7 @@ const SingUpContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    font: 700 4rem 'Russo One', sans-serif;
+    font: 400 40px ${props => props.theme.fonts.display}, sans-serif;
     filter: blur(0.4px);
     transform: skewY(-5deg);
     letter-spacing: 4px;
@@ -59,7 +59,7 @@ const SingUpContainer = styled.div`
     align-items: center;
     justify-content: center;
     margin: auto;
-    font: 700 1.6rem 'Russo One', sans-serif;
+    font: 400 16px ${props => props.theme.fonts.display}, sans-serif;
     background-color: #1cc5b7;
     border-radius: 4px;
     color: #08162f;
@@ -110,7 +110,7 @@ const SingUpContainer = styled.div`
     }
 
     .form-character-title {
-      font: 2rem 'Asap', sans-serif;
+      font: 20px ${props => props.theme.fonts.primary}, sans-serif;
       padding: 2px 7px;
       text-shadow: 2px 2px 2px #030447d3;
       letter-spacing: 1px;

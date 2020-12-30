@@ -5,6 +5,10 @@ const theme = {
     backgroundColor: '#050211',
     namesakeText: '#08162f',
   },
+  fonts: {
+    display: '"Audiowide"',
+    primary: '"Jura"',
+  },
 };
 
 export default theme;

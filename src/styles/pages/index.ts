@@ -6,7 +6,7 @@ const LandingContainer = styled.div`
     margin-top: 8rem;
     display: flex;
     justify-content: center;
-    font: 400 6rem 'Audiowide', sans-serif;
+    font: 400 60px ${props => props.theme.fonts.display}, sans-serif;
     filter: blur(0.4px);
     transform: skewY(-5deg);
     letter-spacing: 4px;
@@ -34,7 +34,7 @@ const LandingContainer = styled.div`
     margin: auto;
     text-align: justify;
     margin-bottom: 2rem;
-    font: 600 14px 'Asap', sans-serif;
+    font: 600 16px ${props => props.theme.fonts.primary}, sans-serif;
     filter: blur(0.4px);
     letter-spacing: 1px;
     color: #cbcaeb;
@@ -48,7 +48,7 @@ const LandingContainer = styled.div`
     align-items: center;
     justify-content: space-evenly;
     margin: auto;
-    font: 700 16px 'Audiowide', sans-serif;
+    font: 400 16px ${props => props.theme.fonts.display}, sans-serif;
     background-color: ${props => props.theme.colors.mainColor};
     border-radius: 4px;
     color: ${props => props.theme.colors.namesakeText};

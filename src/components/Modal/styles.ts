@@ -57,7 +57,7 @@ const ModalContainer = styled.section`
 
   .modal-title {
     max-width: 90%;
-    font: 1.4rem 'Asap', sans-serif;
+    font: 16px ${props => props.theme.fonts.primary}, sans-serif;
     padding: 2px 7px;
     text-shadow: 2px 2px 2px #030447d3;
     letter-spacing: 1px;
@@ -65,7 +65,7 @@ const ModalContainer = styled.section`
 
   .modal-body {
     padding: 14px;
-    font: 1.4rem 'Asap', sans-serif;
+    font: 16px ${props => props.theme.fonts.primary}, sans-serif;
     color: gainsboro;
   }
 
@@ -96,7 +96,7 @@ const ModalContainer = styled.section`
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    font: 600 1.4rem 'Audiowide', sans-serif;
+    font: 400 16px ${props => props.theme.fonts.display}, sans-serif;
   }
 
   .link-buttons-block a:hover {
