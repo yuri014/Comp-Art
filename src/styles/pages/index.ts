@@ -37,7 +37,7 @@ const LandingContainer = styled.div`
     font: 600 16px ${props => props.theme.fonts.primary}, sans-serif;
     filter: blur(0.4px);
     letter-spacing: 1px;
-    color: #cbcaeb;
+    color: ${props => props.theme.colors.lightContrast};
     text-shadow: 2px 2px 2px ${props => props.theme.colors.namesakeText};
   }
 

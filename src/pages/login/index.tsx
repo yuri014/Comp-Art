@@ -38,8 +38,9 @@ const Login: React.FC = () => (
             />
             <div className="login-button">
               <Link href="/home">
-                <a>Start</a>
-                <FaGamepad />
+                <a>
+                  Start <FaGamepad />
+                </a>
               </Link>
             </div>
           </ThemeProvider>

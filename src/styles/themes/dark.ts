@@ -4,6 +4,7 @@ const theme = {
     titleColor: '#50c878',
     backgroundColor: '#050211',
     namesakeText: '#08162f',
+    lightContrast: '#cbcaeb',
   },
   fonts: {
     display: '"Audiowide"',

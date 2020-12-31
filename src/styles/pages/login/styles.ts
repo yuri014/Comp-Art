@@ -21,23 +21,23 @@ const SingUpContainer = styled.div`
   }
 
   .login-form-content label {
-    color: #08162f;
+    color: ${props => props.theme.colors.namesakeText};
   }
 
   .login-form-content input::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #08162f;
+    color: ${props => props.theme.colors.namesakeText};
     opacity: 1; /* Firefox */
   }
 
   .login-form-content input:-ms-input-placeholder {
     /* Internet Explorer 10-11 */
-    color: #08162f;
+    color: ${props => props.theme.colors.namesakeText};
   }
 
   .login-form-content input::-ms-input-placeholder {
     /* Microsoft Edge */
-    color: #08162f;
+    color: ${props => props.theme.colors.namesakeText};
   }
 
   .login-icon {
@@ -54,24 +54,25 @@ const SingUpContainer = styled.div`
   .login-button {
     width: 10rem;
     height: 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
     margin: auto;
-    font: 700 1.4rem 'Russo One', sans-serif;
+    margin-top: 0.8rem;
+    font: 700 12px ${props => props.theme.fonts.display}, sans-serif;
     border-radius: 4px;
-    color: #08162f;
+    color: ${props => props.theme.colors.namesakeText};
     letter-spacing: 3px;
     transition: background-color 0.8s ease-in-out;
     cursor: pointer;
   }
 
   .login-button a {
-    color: #08162f;
+    color: ${props => props.theme.colors.namesakeText};
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
   }
 
   .login-button:hover {
-    background-color: #1cc5b7;
+    background-color: ${props => props.theme.colors.mainColor};
   }
 
   @media (min-width: 1100px) {
@@ -105,7 +106,11 @@ const SingUpContainer = styled.div`
 
     .login-button {
       margin-top: 8rem;
-      border: 1px solid #08162f;
+      border: 1px solid ${props => props.theme.colors.namesakeText};
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      width: 12rem;
     }
 
     .login-icon img {
