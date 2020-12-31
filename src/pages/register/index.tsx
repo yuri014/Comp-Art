@@ -14,7 +14,7 @@ import { TextField } from '@material-ui/core';
 import ArtistIcon from '../../assets/form-artist-icon.svg';
 import UserIcon from '../../assets/form-user-icon.svg';
 import Modal from '../../components/Modal';
-import SingUpContainer from '../../styles/pages/register/style';
+import SingUpContainer from '../../styles/pages/register/styles';
 import formTheme from '../../styles/themes/FormTheme';
 
 function SignUp(): JSX.Element {
@@ -34,7 +34,7 @@ function SignUp(): JSX.Element {
       <ThemeProvider theme={formTheme}>
         <div className="form-content">
           <div className="character-selection">
-            <div className="selection-title">
+            <div className="main-title">
               Character <br /> Selection
             </div>
             <div className="form-image">

@@ -1,21 +1,6 @@
 import styled from 'styled-components';
 
 const SingUpContainer = styled.div`
-  .selection-title {
-    position: static;
-    margin-top: 8rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font: 400 40px ${props => props.theme.fonts.display}, sans-serif;
-    filter: blur(0.4px);
-    transform: skewY(-5deg);
-    letter-spacing: 4px;
-    word-spacing: -8px;
-    color: #ffffff;
-    text-shadow: 4px 4px 2px #50c878;
-  }
-
   .form-character {
     display: none;
   }
