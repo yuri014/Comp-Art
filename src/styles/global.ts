@@ -21,6 +21,21 @@ export default createGlobalStyle`
     text-decoration: none;
   }
 
+  .main-title {
+    position: static;
+    margin-top: 8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font: 400 40px ${props => props.theme.fonts.display}, sans-serif;
+    filter: blur(0.4px);
+    transform: skewY(-5deg);
+    letter-spacing: 4px;
+    word-spacing: -8px;
+    color: #ffffff;
+    text-shadow: 4px 4px 2px ${props => props.theme.colors.titleColor};
+  }
+
   @media (min-width: 768px) {
     :root {
       font-size: 62.5%;
