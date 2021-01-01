@@ -14,22 +14,22 @@ const MobileFooter: React.FC = () => {
   return (
     <MobileFooterContainer>
       <Link href="/home">
-        <a className={activeLink('/home')}>
+        <a className={activeLink('/home') || ''}>
           <FaHome />
         </a>
       </Link>
       <Link href="/search">
-        <a className={activeLink('/search')}>
+        <a className={activeLink('/search') || ''}>
           <FaSearch />
         </a>
       </Link>
       <Link href="/notifications">
-        <a className={activeLink('/notifications')}>
+        <a className={activeLink('/notifications') || ''}>
           <FaBell />
         </a>
       </Link>
       <Link href="/quests">
-        <a className={activeLink('/quests')}>
+        <a className={activeLink('/quests') || ''}>
           <FaScroll />
         </a>
       </Link>
