@@ -6,7 +6,6 @@ const MobileFooterContainer = styled.footer`
   font-size: 24px;
   width: 100%;
   display: flex;
-  align-items: stretch;
   justify-content: space-between;
   background-color: ${props => props.theme.colors.namesakeText};
   padding: 1rem 2rem;
