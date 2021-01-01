@@ -1,0 +1,4 @@
+Caso o usuário logado seja o artista, coloque o link do perfil no footer, caso o usuário logado
+seja o apreciador, coloque o link do perfil no header.
+Motivo: pressupondo que artistas vão ter mais preocupação em cuidar dos seus perfis, já o apreciador
+vai estar mais preocupado com achar coisas novas.
