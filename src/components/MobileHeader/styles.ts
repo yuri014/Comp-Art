@@ -10,7 +10,7 @@ const MobileHeaderContainer = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: ${props => props.theme.colors.namesakeText};
+  background-color: ${props => props.theme.colors.secondaryBackgroundColor};
   padding: 1rem 2rem;
 
   h1 {

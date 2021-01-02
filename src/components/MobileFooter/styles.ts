@@ -7,7 +7,7 @@ const MobileFooterContainer = styled.footer`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  background-color: ${props => props.theme.colors.namesakeText};
+  background-color: ${props => props.theme.colors.secondaryBackgroundColor};
   padding: 1rem 2rem;
 
   a {
