@@ -49,6 +49,7 @@ const HeaderContainer = styled.header`
       height: 24px;
       border-radius: 50%;
       cursor: pointer;
+      object-fit: fill;
     }
   }
 
