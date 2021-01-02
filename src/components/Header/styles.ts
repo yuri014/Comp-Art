@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const HeaderContainer = styled.header`
-  background-color: ${props => props.theme.colors.namesakeText};
-  color: white;
+  background: ${props => props.theme.colors.secondaryBackgroundColor};
+  color: ${props => props.theme.colors.lightContrast};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -36,6 +36,10 @@ const HeaderContainer = styled.header`
       align-items: center;
       justify-content: center;
       cursor: pointer;
+    }
+
+    & input {
+      color: ${props => props.theme.colors.lightContrast};
     }
   }
 
