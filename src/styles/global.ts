@@ -36,6 +36,23 @@ export default createGlobalStyle`
     text-shadow: 4px 4px 2px ${props => props.theme.colors.titleColor};
   }
 
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: ${props => props.theme.colors.secondaryBackgroundColor};
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: ${props => props.theme.colors.lightContrast};
+}
+
   @media (min-width: 768px) {
     :root {
       font-size: 62.5%;
