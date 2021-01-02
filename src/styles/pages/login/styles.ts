@@ -20,8 +20,11 @@ const SingUpContainer = styled.div`
     flex-direction: column;
   }
 
-  .login-form-content label {
-    color: ${props => props.theme.colors.namesakeText};
+  .login-form-content {
+    & label,
+    input {
+      color: ${props => props.theme.colors.namesakeText};
+    }
   }
 
   .login-form-content input::placeholder {
