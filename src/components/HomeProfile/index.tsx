@@ -1,8 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
 import { LinearProgress, ThemeProvider } from '@material-ui/core';
+import {
+  FaHashtag,
+  FaPlusCircle,
+  FaRegCompass,
+  FaUserAlt,
+  FaUserFriends,
+  FaUsers,
+} from 'react-icons/fa';
 
-import { FaPlusCircle, FaRegCompass, FaUserAlt, FaUsers } from 'react-icons/fa';
 import HomeProfileContainer from './styles';
 import formTheme from '../../styles/themes/FormTheme';
 
@@ -56,19 +63,25 @@ const HomeProfile: React.FC = () => (
         </Link>
         <Link href="/profile">
           <a>
+            <FaUserFriends />
+            <p>Fandom</p>
+          </a>
+        </Link>
+        <Link href="/profile">
+          <a>
             <FaPlusCircle className="post-icon" />
             <p>Publicar</p>
           </a>
         </Link>
       </div>
       <div className="profile-hashtags">
-        <h3>Hashtags Seguidas</h3>
+        <h3>
+          <FaHashtag />
+          &nbsp;Hashtags Seguidas
+        </h3>
         <div className="hashtags">
           <span>#samba</span>
           <span>#lo-fi</span>
-          <span>#fotografia</span>
-          <span>#instrumental</span>
-          <span>#curta-metragem</span>
           <span>#serie</span>
           <span>#folk</span>
           <span>#danca</span>

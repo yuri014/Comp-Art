@@ -2,11 +2,12 @@ import styled from 'styled-components';
 
 const HomeProfileContainer = styled.aside`
   position: sticky;
-  min-height: 80vh;
+  height: 80vh;
   padding: 2rem;
   border-radius: 4px;
+  overflow-y: auto;
   display: grid;
-  grid-template-rows: 15% 5% 35% 40%;
+  grid-template-rows: 15% 5% 40% 40%;
   align-items: flex-start;
   color: ${props => props.theme.colors.lightContrast};
   font-family: ${props => props.theme.fonts.primary};
@@ -75,6 +76,10 @@ const HomeProfileContainer = styled.aside`
       display: flex;
       align-items: center;
       color: ${props => props.theme.colors.lightContrast};
+      transition: text-shadow 0.2s ease-in;
+      &:hover {
+        text-shadow: 1px 1px 4px ${props => props.theme.colors.lightContrast};
+      }
       & p {
         margin-left: 1rem;
       }
@@ -86,8 +91,13 @@ const HomeProfileContainer = styled.aside`
   }
 
   .profile-hashtags {
-    margin-top: 2rem;
+    margin-top: 4rem;
+    padding-bottom: 2rem;
     font-size: 14px;
+    & h3 {
+      display: flex;
+      align-items: center;
+    }
     & .hashtags {
       display: flex;
       justify-content: flex-start;
@@ -103,6 +113,10 @@ const HomeProfileContainer = styled.aside`
         font-weight: 700;
         border-radius: 4px;
         text-shadow: 0 0 2px #00000050;
+        transition: all 0.4s ease;
+        &:hover {
+          filter: brightness(0.4);
+        }
       }
     }
   }
