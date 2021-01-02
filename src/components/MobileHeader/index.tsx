@@ -14,11 +14,9 @@ const MobileHeader: React.FC = () => (
         />
       </a>
     </Link>
-    <Link href="/profile">
+    <Link href="/home">
       <a>
-        <div className="logo">
-          <h1>COMP-ART</h1>
-        </div>
+        <h1>COMP-ART</h1>
       </a>
     </Link>
     <Link href="/config">
