@@ -20,7 +20,7 @@ const SingUpContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     margin: auto;
-    filter: drop-shadow(1px 1px 2px #1cc5b7);
+    filter: drop-shadow(1px 1px 2px ${props => props.theme.colors.mainColor});
   }
 
   .arrow-selection {
@@ -30,7 +30,7 @@ const SingUpContainer = styled.div`
   }
 
   .arrow-selection:hover {
-    color: #1cc5b7;
+    color: ${props => props.theme.colors.mainColor};
   }
 
   .forms {
@@ -45,16 +45,16 @@ const SingUpContainer = styled.div`
     justify-content: center;
     margin: auto;
     font: 400 16px ${props => props.theme.fonts.display}, sans-serif;
-    background-color: #1cc5b7;
+    background-color: ${props => props.theme.colors.mainColor};
     border-radius: 4px;
-    color: #08162f;
+    color: ${props => props.theme.colors.namesakeText};
     letter-spacing: 2px;
     transition: filter 1s ease, color 1s ease;
     cursor: pointer;
   }
 
   .form-start-button a {
-    color: #08162f;
+    color: ${props => props.theme.colors.namesakeText};
   }
 
   @media (min-width: 1100px) {
@@ -72,7 +72,7 @@ const SingUpContainer = styled.div`
     }
 
     .form-character {
-      background-color: #1c283b;
+      background-color: ${props => props.theme.colors.secondaryBackgroundColor};
       padding: 2.8rem;
       border-radius: 8px;
       grid-area: form;
@@ -98,7 +98,7 @@ const SingUpContainer = styled.div`
 
     .form-start-button:hover {
       color: rgba(3, 4, 71, 0.8);
-      filter: drop-shadow(1px 1px 4px #1cc5b7);
+      filter: drop-shadow(1px 1px 4px ${props => props.theme.colors.mainColor});
     }
 
     .desktop {
