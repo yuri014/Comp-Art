@@ -9,6 +9,12 @@ const HomeContainer = styled.main`
     width: 640px;
     margin-left: 340px;
   }
+
+  @media (max-width: 1100px) {
+    .home-desktop-content {
+      display: none;
+    }
+  }
 `;
 
 export default HomeContainer;
