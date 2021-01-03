@@ -13,8 +13,8 @@ const theme = {
     )`,
   },
   fonts: {
-    display: '"Audiowide"',
-    primary: '"Jura"',
+    display: '"Audiowide", sans-serif',
+    primary: '"Jura", sans-serif',
   },
 };
 
