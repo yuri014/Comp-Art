@@ -58,12 +58,6 @@ const HomeProfileContainer = styled.aside`
       display: grid;
       grid-template-columns: 20% 70%;
       align-items: center;
-      & div {
-        display: grid;
-        grid-template-columns: 80% 15%;
-        align-items: center;
-        justify-content: space-between;
-      }
     }
   }
 

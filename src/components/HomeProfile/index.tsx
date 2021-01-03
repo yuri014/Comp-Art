@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { LinearProgress, ThemeProvider } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/core';
 import {
   FaHashtag,
   FaPlusCircle,
@@ -12,6 +12,7 @@ import {
 
 import HomeProfileContainer from './styles';
 import formTheme from '../../styles/themes/FormTheme';
+import ProgressBar from '../ProgressBar';
 
 const HomeProfile: React.FC = () => (
   <HomeProfileContainer>
@@ -36,10 +37,7 @@ const HomeProfile: React.FC = () => (
         </div>
         <div className="xp">
           <p>XP:</p>
-          <div className="xp-progress">
-            <LinearProgress variant="determinate" value={90} />
-            <p>90%</p>
-          </div>
+          <ProgressBar value={90} />
         </div>
       </div>
       <div className="profile-buttons">
