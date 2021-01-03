@@ -5,6 +5,7 @@ const HomeProfileContainer = styled.aside`
   width: 320px;
   height: 80vh;
   padding: 2rem;
+  padding-left: 0;
   border-radius: 4px;
   overflow-y: auto;
   display: grid;
@@ -12,7 +13,6 @@ const HomeProfileContainer = styled.aside`
   align-items: flex-start;
   color: ${props => props.theme.colors.lightContrast};
   font-family: ${props => props.theme.fonts.primary};
-  background: ${props => props.theme.colors.mainGradient};
 
   .profile {
     display: flex;
