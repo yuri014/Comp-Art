@@ -7,6 +7,7 @@ import HomeProfile from '../../components/HomeProfile';
 import MobileHeader from '../../components/MobileHeader';
 import MobileFooter from '../../components/MobileFooter';
 import Post from '../../components/Post';
+import QuestsProgress from '../../components/QuestsProgress';
 
 const Home: React.FC = () => (
   <HomeContainer>
@@ -19,7 +20,9 @@ const Home: React.FC = () => (
       <div className="timeline">
         <Post />
       </div>
-      <div>BLANK</div>
+      <div className="quests">
+        <QuestsProgress />
+      </div>
     </div>
     <MobileHeader />
     <MobileFooter />
