@@ -18,10 +18,6 @@ const Home: React.FC = () => (
       <HomeProfile />
       <div className="timeline">
         <Post />
-        <br />
-        <Post />
-        <br />
-        <Post />
       </div>
       <div>BLANK</div>
     </div>
