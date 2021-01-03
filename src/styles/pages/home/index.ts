@@ -10,6 +10,10 @@ const HomeContainer = styled.main`
     margin-left: 340px;
   }
 
+  .quests {
+    margin-left: 1000px;
+  }
+
   @media (max-width: 1100px) {
     .home-desktop-content {
       display: none;
