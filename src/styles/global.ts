@@ -41,16 +41,16 @@ export default createGlobalStyle`
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: ${props => props.theme.colors.secondaryBackgroundColor};
 }
 
 ::-webkit-scrollbar-thumb {
-  background: ${props => props.theme.colors.secondaryBackgroundColor};
+  background: ${props => props.theme.colors.lightContrast};
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: ${props => props.theme.colors.lightContrast};
+  background: ${props => props.theme.colors.mainColor};
 }
 
   @media (min-width: 768px) {
