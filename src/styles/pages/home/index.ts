@@ -11,7 +11,7 @@ const HomeContainer = styled.main`
   }
 
   .quests {
-    margin-left: 1000px;
+    margin-left: 980px;
   }
 
   @media (max-width: 1100px) {

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const QuestsProgressContainer = styled.aside`
   position: fixed;
   top: 0;
-  width: calc(322px - 4rem);
+  width: 320px;
   margin-top: 8rem;
   padding: 2rem;
   border-radius: 4px;
