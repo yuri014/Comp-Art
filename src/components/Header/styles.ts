@@ -3,6 +3,8 @@ import styled from 'styled-components';
 const HeaderContainer = styled.header`
   background: ${props => props.theme.colors.secondaryBackgroundColor};
   color: ${props => props.theme.colors.lightContrast};
+  position: fixed;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;

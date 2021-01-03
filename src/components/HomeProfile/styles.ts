@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 const HomeProfileContainer = styled.aside`
-  position: sticky;
+  position: fixed;
+  width: 320px;
   height: 80vh;
   padding: 2rem;
   border-radius: 4px;

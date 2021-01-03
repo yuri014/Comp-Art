@@ -6,6 +6,7 @@ import HomeContainer from '../../styles/pages/home';
 import HomeProfile from '../../components/HomeProfile';
 import MobileHeader from '../../components/MobileHeader';
 import MobileFooter from '../../components/MobileFooter';
+import Post from '../../components/Post';
 
 const Home: React.FC = () => (
   <HomeContainer>
@@ -15,7 +16,13 @@ const Home: React.FC = () => (
     <Header />
     <div className="home-desktop-content">
       <HomeProfile />
-      <div>Timeline</div>
+      <div className="timeline">
+        <Post />
+        <br />
+        <Post />
+        <br />
+        <Post />
+      </div>
       <div>BLANK</div>
     </div>
     <MobileHeader />
