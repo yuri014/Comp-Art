@@ -6,12 +6,8 @@ const HomeContainer = styled.main`
   }
 
   .timeline {
-    width: 640px;
-    margin-left: 340px;
-  }
-
-  .quests {
-    margin-left: 980px;
+    width: 50%;
+    margin-left: 25%;
   }
 
   @media (max-width: 1100px) {

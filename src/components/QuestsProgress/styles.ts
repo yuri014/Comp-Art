@@ -3,9 +3,11 @@ import styled from 'styled-components';
 const QuestsProgressContainer = styled.aside`
   position: fixed;
   top: 0;
-  width: 320px;
+  right: 0;
+  width: 24%;
   margin-top: 8rem;
-  padding: 2rem;
+  padding: 2rem 0;
+  padding-right: 4rem;
   border-radius: 4px;
   color: ${props => props.theme.colors.lightContrast};
   font-size: 20px;
