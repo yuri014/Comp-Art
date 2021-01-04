@@ -126,7 +126,7 @@ const HomeProfileContainer = styled.aside`
     display: none;
   }
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1224px) {
     .profile-reputation {
       display: flex;
       flex-direction: column;
