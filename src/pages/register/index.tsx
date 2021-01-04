@@ -75,12 +75,6 @@ function SignUp(): JSX.Element {
               />
               <TextField
                 fullWidth
-                placeholder="Seu sobrenome..."
-                label="Sobrenome"
-                required
-              />
-              <TextField
-                fullWidth
                 placeholder="Seu user..."
                 label="User"
                 required
@@ -122,12 +116,6 @@ function SignUp(): JSX.Element {
                 fullWidth
                 placeholder="Seu nome..."
                 label="Nome"
-                required
-              />
-              <TextField
-                fullWidth
-                placeholder="Seu sobrenome..."
-                label="Sobrenome"
                 required
               />
               <TextField
