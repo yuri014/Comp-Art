@@ -41,30 +41,6 @@ const LandingContainer = styled.div`
     text-shadow: 2px 2px 2px ${props => props.theme.colors.namesakeText};
   }
 
-  .press-start {
-    width: 12rem;
-    height: 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    margin: auto;
-    font: 400 16px ${props => props.theme.fonts.display}, sans-serif;
-    background-color: ${props => props.theme.colors.mainColor};
-    border-radius: 4px;
-    color: ${props => props.theme.colors.namesakeText};
-    letter-spacing: 3px;
-    transition: filter 1s ease, color 1s ease;
-    cursor: pointer;
-  }
-
-  .press-start a {
-    color: ${props => props.theme.colors.namesakeText};
-  }
-
-  .press-start:hover {
-    filter: drop-shadow(1px 1px 4px ${props => props.theme.colors.mainColor});
-  }
-
   @media (min-width: 1100px) {
     .start {
       display: grid;

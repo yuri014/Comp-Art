@@ -16,6 +16,7 @@ import UserIcon from '../../assets/form-user-icon.svg';
 import Modal from '../../components/Modal';
 import SingUpContainer from '../../styles/pages/register/styles';
 import formTheme from '../../styles/themes/FormTheme';
+import PressStartButton from '../../components/PressStartButton';
 
 function SignUp(): JSX.Element {
   const [isArtist, setIsArtist] = useState(true);
@@ -68,15 +69,9 @@ function SignUp(): JSX.Element {
             <form className="forms">
               <TextField
                 fullWidth
-                placeholder="Seu nome..."
-                label="Nome"
-                required
-                inputRef={inputRef}
-              />
-              <TextField
-                fullWidth
                 placeholder="Seu user..."
                 label="User"
+                inputRef={inputRef}
                 required
               />
               <TextField
@@ -114,12 +109,6 @@ function SignUp(): JSX.Element {
             <form className="forms">
               <TextField
                 fullWidth
-                placeholder="Seu nome..."
-                label="Nome"
-                required
-              />
-              <TextField
-                fullWidth
                 placeholder="Seu user..."
                 label="User"
                 required
@@ -139,14 +128,14 @@ function SignUp(): JSX.Element {
               />
             </form>
           </div>
-          <div className="press-start">
+          <PressStartButton>
             <Link href="/home">
               <a>
                 Start
                 <FaGamepad />
               </a>
             </Link>
-          </div>
+          </PressStartButton>
         </Modal>
       </ThemeProvider>
     </SingUpContainer>

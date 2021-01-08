@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { FaGamepad } from 'react-icons/fa';
 
 import StartIcon from '../assets/start-artist-icon.svg';
 import LandingContainer from '../styles/pages';
 import Modal from '../components/Modal';
+import PressStartButton from '../components/PressStartButton';
 
 const Landing: React.FC = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -27,16 +27,9 @@ const Landing: React.FC = () => {
           Rede social que visa superar os metódos conhecidos de divulgação
           artística.
         </div>
-        <div
-          role="button"
-          tabIndex={0}
-          onClick={() => setModalShow(true)}
-          onKeyDown={() => setModalShow(true)}
-          className="press-start"
-        >
+        <PressStartButton changeState={() => setModalShow(true)}>
           Start
-          <FaGamepad />
-        </div>
+        </PressStartButton>
       </div>
       <Modal
         title="A princesa está em outro castelo!"
