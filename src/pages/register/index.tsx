@@ -1,13 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
-import {
-  FaArrowLeft,
-  FaArrowRight,
-  FaGamepad,
-  FaMobile,
-  FaPalette,
-} from 'react-icons/fa';
+import { FaArrowLeft, FaArrowRight, FaMobile, FaPalette } from 'react-icons/fa';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { TextField } from '@material-ui/core';
 
@@ -128,14 +122,11 @@ function SignUp(): JSX.Element {
               />
             </form>
           </div>
-          <PressStartButton>
-            <Link href="/home">
-              <a>
-                Start
-                <FaGamepad />
-              </a>
-            </Link>
-          </PressStartButton>
+          <Link href="/home">
+            <a>
+              <PressStartButton>Start</PressStartButton>
+            </a>
+          </Link>
         </Modal>
       </ThemeProvider>
     </SingUpContainer>

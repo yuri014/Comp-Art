@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const PressStartButtonContainer = styled.button`
+  border: none;
   width: 12rem;
   height: 4rem;
   display: flex;
