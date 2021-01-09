@@ -46,9 +46,19 @@ function SignUp(): JSX.Element {
                 role="button"
                 tabIndex={0}
               >
-                {isArtist ? 'Sou Artista!' : 'Sou Fã!'}
-                {'\u00A0'}
-                {isArtist ? <FaPalette /> : <FaMobile />}
+                {isArtist ? (
+                  <>
+                    Sou Artista!
+                    {'\u00A0'}
+                    <FaPalette />
+                  </>
+                ) : (
+                  <>
+                    Sou Fã!
+                    {'\u00A0'}
+                    <FaMobile />
+                  </>
+                )}
               </div>
               <span className="arrow-selection">
                 <FaArrowRight onClick={() => setIsArtist(!isArtist)} />
@@ -83,9 +93,19 @@ function SignUp(): JSX.Element {
               />
             </form>
             <button type="submit" className="form-start-button desktop">
-              {isArtist ? 'Cadastre me como Artista!' : 'Cadastre me como Fã!'}
-              {'\u00A0'}
-              {isArtist ? <FaPalette /> : <FaMobile />}
+              {isArtist ? (
+                <>
+                  Cadastre me como Artista!
+                  {'\u00A0'}
+                  <FaPalette />
+                </>
+              ) : (
+                <>
+                  Cadastre me como Fã!
+                  {'\u00A0'}
+                  <FaMobile />
+                </>
+              )}
             </button>
           </div>
         </div>
