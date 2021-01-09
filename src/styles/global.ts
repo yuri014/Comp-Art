@@ -15,6 +15,7 @@ export default createGlobalStyle`
   body,
   #root {
     background-color: ${props => props.theme.colors.backgroundColor};
+    font-family: ${props => props.theme.fonts.primary};
   }
 
   a {
