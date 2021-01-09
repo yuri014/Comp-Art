@@ -44,6 +44,7 @@ const SingUpContainer = styled.div`
     align-items: center;
     justify-content: center;
     margin: auto;
+    border: none;
     font: 400 16px ${props => props.theme.fonts.display}, sans-serif;
     background-color: ${props => props.theme.colors.mainColor};
     border-radius: 4px;
@@ -51,10 +52,6 @@ const SingUpContainer = styled.div`
     letter-spacing: 2px;
     transition: filter 1s ease, color 1s ease;
     cursor: pointer;
-  }
-
-  .form-start-button a {
-    color: ${props => props.theme.colors.namesakeText};
   }
 
   @media (min-width: 1100px) {

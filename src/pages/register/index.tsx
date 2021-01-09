@@ -82,16 +82,11 @@ function SignUp(): JSX.Element {
                 type="password"
               />
             </form>
-            <div className="form-start-button desktop">
-              <Link href="/home">
-                <a>
-                  {isArtist
-                    ? 'Cadastre me como Artista!'
-                    : 'Cadastre me como Fã!'}
-                  {'\u00A0'}
-                </a>
-              </Link>
-            </div>
+            <button type="submit" className="form-start-button desktop">
+              {isArtist ? 'Cadastre me como Artista!' : 'Cadastre me como Fã!'}
+              {'\u00A0'}
+              {isArtist ? <FaPalette /> : <FaMobile />}
+            </button>
           </div>
         </div>
         <Modal
