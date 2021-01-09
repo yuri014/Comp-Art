@@ -10,7 +10,7 @@ const formTheme = createMuiTheme({
   },
   typography: {
     fontFamily: ['-apple-system', 'BlinkMacSystemFont', '"Jura"'].join(','),
-    fontSize: 18,
+    fontSize: 22,
   },
   overrides: {
     MuiInput: {
