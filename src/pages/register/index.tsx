@@ -20,6 +20,7 @@ import ErrorMessage from '../../components/ErrorMessage';
 function SignUp(): JSX.Element {
   const [isArtist, setIsArtist] = useState(true);
   const [modalShow, setModalShow] = useState(false);
+  const [sucessModalShow, setSuccessModalShow] = useState(false);
   const [showError, setShowError] = useState('');
   const inputRef = useRef(null);
   const [registerUser] = useMutation(REGISTER_USER);
@@ -43,10 +44,12 @@ function SignUp(): JSX.Element {
   const onSubmit = (data: IUser) => {
     registerUser({
       variables: { registerInput: { ...data, isArtist } },
-    }).catch(err => {
-      const { graphQLErrors } = err;
-      setShowError(graphQLErrors[0].extensions.errors.duplicate);
-    });
+    })
+      .then(() => setSuccessModalShow(true))
+      .catch(err => {
+        const { graphQLErrors } = err;
+        setShowError(graphQLErrors[0].extensions.errors.duplicate);
+      });
   };
 
   return (
@@ -211,6 +214,20 @@ function SignUp(): JSX.Element {
             </form>
           </div>
           <Link href="/home">
+            <a>
+              <PressStartButton>Start</PressStartButton>
+            </a>
+          </Link>
+        </Modal>
+        <Modal
+          title="Quase lá!"
+          show={sucessModalShow}
+          onHide={() => setSuccessModalShow(false)}
+        >
+          <div className="modal-body">
+            <p>O email de verificação foi enviado para você</p>
+          </div>
+          <Link href="/login">
             <a>
               <PressStartButton>Start</PressStartButton>
             </a>
