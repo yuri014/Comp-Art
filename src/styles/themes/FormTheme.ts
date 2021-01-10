@@ -13,6 +13,17 @@ const formTheme = createMuiTheme({
     fontSize: 22,
   },
   overrides: {
+    MuiOutlinedInput: {
+      input: {
+        '&::placeholder': {
+          color: '#cbcaeb',
+        },
+        color: '#cbcaeb',
+      },
+      notchedOutline: {
+        borderColor: 'grey',
+      },
+    },
     MuiInput: {
       input: {
         '&::placeholder': {
