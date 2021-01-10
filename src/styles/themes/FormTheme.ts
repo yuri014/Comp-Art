@@ -16,9 +16,14 @@ const formTheme = createMuiTheme({
     MuiInput: {
       input: {
         '&::placeholder': {
-          color: 'gray',
+          color: '#cbcaeb',
         },
         color: '#cbcaeb',
+      },
+      underline: {
+        '&:before': {
+          borderBottom: '1px solid grey',
+        },
       },
     },
     MuiTextField: {
