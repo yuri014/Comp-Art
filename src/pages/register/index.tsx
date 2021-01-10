@@ -14,7 +14,7 @@ import SingUpContainer from '../../styles/pages/register/styles';
 import formTheme from '../../styles/themes/FormTheme';
 import PressStartButton from '../../components/PressStartButton';
 import { IUser } from '../../interfaces/User';
-import REGISTER_USER from '../../graphql/mutations/user';
+import { REGISTER_USER } from '../../graphql/mutations/user';
 import ErrorMessage from '../../components/ErrorMessage';
 
 function SignUp(): JSX.Element {
