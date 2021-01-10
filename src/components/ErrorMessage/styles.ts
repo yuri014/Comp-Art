@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const ErrorMessageContainer = styled.div`
-  color: #f50057;
+  color: ${props => props.theme.colors.danger};
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -10,7 +10,7 @@ const ErrorMessageContainer = styled.div`
   font-weight: 500;
   padding: 0.6rem;
   border-radius: 4px;
-  border: 1px solid #f50057;
+  border: 1px solid ${props => props.theme.colors.danger};
 `;
 
 export default ErrorMessageContainer;
