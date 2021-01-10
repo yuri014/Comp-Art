@@ -38,7 +38,7 @@ const ConfirmationEmail: React.FC = () => {
           <h1>OPS! Aconteceu algo de errado na confirmação do seu email!</h1>
           <h2>Refaça seu login para gerar um novo email</h2>
           <PressStartButton>
-            <Link href="/home">
+            <Link href="/login">
               <a>Login</a>
             </Link>
           </PressStartButton>
