@@ -4,4 +4,5 @@ export interface IUser {
   password: string;
   confirmPassword: string;
   isArtist: boolean;
+  token: string;
 }
