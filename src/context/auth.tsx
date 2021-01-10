@@ -16,7 +16,7 @@ const initialState = {
 
 const checkWindow = typeof window !== 'undefined';
 
-if (checkWindow && localStorage.getItem('jwtToken') !== 'undefined') {
+if (checkWindow && localStorage.getItem('jwtToken')) {
   const decodedToken = jwtDecode<JwtPayload>(localStorage.getItem('jwtToken'));
 
   if (decodedToken.exp * 1000 < Date.now()) {
@@ -55,20 +55,23 @@ const authReducer = (state: IState, action: IAction) => {
 };
 
 const AuthProvider: React.FC = props => {
-  const [state, dispatch] = useReducer(authReducer, { user: null });
+  const [state, dispatch] = useReducer(authReducer, initialState);
 
   const login = (data: IUser) => {
     if (checkWindow) {
       localStorage.setItem('jwtToken', data.token);
+      dispatch({
+        type: 'LOGIN',
+        payload: data,
+      });
     }
-    dispatch({
-      type: 'LOGIN',
-      payload: data,
-    });
   };
 
   const logout = () => {
-    dispatch({ type: 'LOGOUT' });
+    if (checkWindow) {
+      localStorage.removeItem('jwtToken');
+      dispatch({ type: 'LOGOUT' });
+    }
   };
 
   return (
