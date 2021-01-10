@@ -13,15 +13,54 @@ const RegisterProfileContainer = styled.main`
     word-wrap: break-word;
     margin: 0;
   }
+
+  & .inputs {
+    padding: 2rem;
+  }
+
   & form {
     width: 85%;
-    padding: 2rem;
     background: ${props => props.theme.colors.mainGradient};
     border-radius: 4px;
+    & .profile-image-upload,
+    .profile-image-cover {
+      & input {
+        display: none;
+      }
+    }
+
+    & .profile-image-cover {
+      border-radius: 4px 4px 0 0;
+      height: 10rem;
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      justify-content: flex-start;
+      & img {
+        width: 100%;
+        height: 100%;
+        border-radius: 4px 4px 0 0;
+        object-fit: cover;
+      }
+      & .holder {
+        background-color: ${props => props.theme.colors.lightContrast};
+        width: 100%;
+        height: 100%;
+      }
+      & label {
+        margin-top: -10rem;
+        & .upload-icon {
+          color: ${props => props.theme.colors.mainColor};
+        }
+      }
+    }
+
     & .profile-image-upload {
       width: 100px;
       height: 100px;
       margin: 0 auto;
+      margin-top: -5rem;
       display: flex;
       align-items: baseline;
       border-radius: 50%;
@@ -39,10 +78,16 @@ const RegisterProfileContainer = styled.main`
         & .upload-icon {
           color: #fff;
         }
-        & input {
-          display: none;
-        }
       }
+    }
+  }
+
+  @media (min-width: 1100px) {
+    display: grid;
+    grid-template-columns: 20% 40%;
+    justify-content: space-around;
+    & form {
+      width: 100%;
     }
   }
 `;
