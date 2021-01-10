@@ -12,6 +12,10 @@ export const REGISTER_USER = gql`
 
 export const CONFIRMATION_EMAIL = gql`
   mutation ConfirmationEmail($token: String!) {
-    confirmationEmail(token: $token)
+    confirmationEmail(token: $token) {
+      id
+      username
+      email
+    }
   }
 `;
