@@ -114,7 +114,7 @@ function SignUp(): JSX.Element {
                 }
                 inputRef={inputRef}
                 placeholder="Seu user..."
-                label="User"
+                label="Username"
                 required
               />
               <TextField
@@ -191,16 +191,35 @@ function SignUp(): JSX.Element {
           onHide={() => setModalShow(false)}
         >
           <div className="modal-body">
-            <form className="forms">
+            <form onSubmit={handleSubmit(onSubmit)} className="forms">
               <TextField
                 fullWidth
+                name="username"
+                error={!!errors.username}
+                helperText={
+                  // eslint-disable-next-line operator-linebreak
+                  errors.username &&
+                  'Utilize um username de no mínimo 6 letras e no máximo 24 letras'
+                }
+                inputRef={register({
+                  minLength: 6,
+                  maxLength: 24,
+                  required: true,
+                })}
                 placeholder="Seu user..."
-                label="User"
+                label="Username"
                 required
               />
               <TextField
                 fullWidth
+                name="email"
+                error={!!errors.email}
+                helperText={errors.email && 'Utilize um email válido'}
                 placeholder="Seu email..."
+                inputRef={register({
+                  pattern: /^\S+@\S+$/,
+                  required: true,
+                })}
                 label="Email"
                 required
               />
@@ -208,16 +227,43 @@ function SignUp(): JSX.Element {
                 fullWidth
                 placeholder="Sua senha..."
                 label="Senha"
+                name="password"
+                error={!!errors.password}
+                helperText={
+                  // eslint-disable-next-line operator-linebreak
+                  errors.password &&
+                  'Sua senha deve ter no mínimo 8 caracteres e conter uma letra maiúscula, uma letra minúscula, um número e um caracter especial.'
+                }
+                inputRef={register({
+                  minLength: 8,
+                  pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                  required: true,
+                })}
                 required
                 type="password"
               />
+              <TextField
+                fullWidth
+                placeholder="Confirme sua senha..."
+                label="Confirme sua senha"
+                required
+                error={!!errors.confirmPassword}
+                helperText={
+                  // eslint-disable-next-line operator-linebreak
+                  errors.confirmPassword && 'Senhas não conferem'
+                }
+                name="confirmPassword"
+                inputRef={register({
+                  validate: (value: string) => value === watch('password'),
+                  required: true,
+                })}
+                type="password"
+              />
+              <div style={{ marginTop: '2rem', marginBottom: '-2rem' }}>
+                <PressStartButton type="submit">Start</PressStartButton>
+              </div>
             </form>
           </div>
-          <Link href="/home">
-            <a>
-              <PressStartButton>Start</PressStartButton>
-            </a>
-          </Link>
         </Modal>
         <Modal
           title="Quase lá!"
