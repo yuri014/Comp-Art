@@ -7,6 +7,7 @@ const PressStartButtonContainer = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  margin: 0 auto;
   font: 400 16px ${props => props.theme.fonts.display}, sans-serif;
   background-color: ${props => props.theme.colors.mainColor};
   border-radius: 4px;
