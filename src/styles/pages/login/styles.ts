@@ -65,6 +65,11 @@ const SingUpContainer = styled.div`
       }
     }
 
+    .login-error {
+      position: absolute;
+      margin-top: 10rem;
+    }
+
     .login-icon {
       position: absolute;
       display: initial;
