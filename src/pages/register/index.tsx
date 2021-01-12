@@ -259,6 +259,7 @@ function SignUp(): JSX.Element {
                 })}
                 type="password"
               />
+              {showError && <ErrorMessage>{showError}</ErrorMessage>}
               <div style={{ marginTop: '2rem', marginBottom: '-2rem' }}>
                 <PressStartButton type="submit">Start</PressStartButton>
               </div>
