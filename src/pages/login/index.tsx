@@ -1,6 +1,6 @@
-import { Link, TextField, ThemeProvider } from '@material-ui/core';
-import Head from 'next/head';
 import React from 'react';
+import Head from 'next/head';
+import { TextField, ThemeProvider } from '@material-ui/core';
 import { FaGamepad } from 'react-icons/fa';
 
 import Monitor from '../../assets/monitor.svg';
@@ -36,13 +36,10 @@ const Login: React.FC = () => (
               required
               type="password"
             />
-            <div className="login-button">
-              <Link href="/home">
-                <a>
-                  Start <FaGamepad />
-                </a>
-              </Link>
-            </div>
+            <button type="submit" className="login-button">
+              Start&nbsp;
+              <FaGamepad />
+            </button>
           </ThemeProvider>
         </form>
       </div>
