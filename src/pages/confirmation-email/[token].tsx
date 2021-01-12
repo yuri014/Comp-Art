@@ -38,7 +38,7 @@ const ConfirmationEmail: React.FC = () => {
         <div className="confirm-email-message">
           <h1>Sua conta agora está ativa!</h1>
           <PressStartButton>
-            <Link href="/home">
+            <Link href="/register-profile">
               <a>Start</a>
             </Link>
           </PressStartButton>
