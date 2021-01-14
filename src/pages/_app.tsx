@@ -30,7 +30,7 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: (authLink.concat(httpLink as any) as unknown) as ApolloLink, // sad any :(
+  link: (authLink.concat(httpLink as never) as unknown) as ApolloLink,
 });
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => (
