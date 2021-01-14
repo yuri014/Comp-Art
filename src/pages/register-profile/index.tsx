@@ -1,19 +1,31 @@
 import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
 import { IconButton, NoSsr, TextField, ThemeProvider } from '@material-ui/core';
+import { useForm } from 'react-hook-form';
 import { FaCameraRetro } from 'react-icons/fa';
 
 import RegisterProfileContainer from '../../styles/pages/register-profile/styles';
 import formTheme from '../../styles/themes/FormTheme';
+import PressStartButton from '../../components/PressStartButton';
+import { IProfileInput } from '../../interfaces/Profile';
+import REGISTER_ARTIST_PROFILE from '../../graphql/mutations/profile';
 
 interface ImagePreview {
-  profile: string | ArrayBuffer;
-  cover: string | ArrayBuffer;
+  preview: string | ArrayBuffer;
+  file: string | File;
+}
+interface ImageState {
+  profile: ImagePreview;
+  cover: ImagePreview;
 }
 
 const RegisterProfile: React.FC = () => {
-  const [imagePreview, setImagePreview] = useState<ImagePreview>({
-    profile: '',
-    cover: '',
+  const [imagePreview, setImagePreview] = useState<ImageState>({
+    profile: {
+      preview: '',
+      file: '',
+    },
+    cover: { preview: '', file: '' },
   });
 
   const handleImage = (
@@ -21,17 +33,43 @@ const RegisterProfile: React.FC = () => {
     profile: boolean,
   ) => {
     const reader = new FileReader();
+
     const file = e.target.files[0];
     reader.onloadend = () => {
       if (profile) {
-        setImagePreview({ ...imagePreview, profile: reader.result });
+        setImagePreview({
+          ...imagePreview,
+          profile: { preview: reader.result, file },
+        });
       } else {
-        setImagePreview({ ...imagePreview, cover: reader.result });
+        setImagePreview({
+          ...imagePreview,
+          cover: { preview: reader.result, file },
+        });
       }
     };
     if (file) {
       reader.readAsDataURL(file);
     }
+  };
+
+  const [createProfile] = useMutation(REGISTER_ARTIST_PROFILE);
+
+  const { register, handleSubmit, errors } = useForm<IProfileInput>({
+    mode: 'onChange',
+    reValidateMode: 'onChange',
+  });
+
+  const onSubmit = (data: IProfileInput) => {
+    createProfile({
+      variables: {
+        artistProfile: {
+          ...data,
+          avatar: imagePreview.profile.file,
+          coverImage: imagePreview.cover.file,
+        },
+      },
+    });
   };
 
   return (
@@ -40,10 +78,10 @@ const RegisterProfile: React.FC = () => {
         <h1>Crie seu perfil!</h1>
       </div>
       <ThemeProvider theme={formTheme}>
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)} className="forms">
           <div className="profile-image-cover">
-            {imagePreview.cover ? (
-              <img src={imagePreview.cover as string} alt="cover" />
+            {imagePreview.cover.preview ? (
+              <img src={imagePreview.cover.preview as string} alt="cover" />
             ) : (
               <div className="holder" />
             )}
@@ -52,7 +90,7 @@ const RegisterProfile: React.FC = () => {
                 <FaCameraRetro className="upload-icon" />
                 <input
                   accept="image/*"
-                  name="uploadCoverButton"
+                  name="coverImage"
                   id="uploadCoverButton"
                   type="file"
                   onChange={e => handleImage(e, false)}
@@ -61,8 +99,8 @@ const RegisterProfile: React.FC = () => {
             </label>
           </div>
           <div className="profile-image-upload">
-            {imagePreview.profile ? (
-              <img src={imagePreview.profile as string} alt="profile" />
+            {imagePreview.profile.preview ? (
+              <img src={imagePreview.profile.preview as string} alt="profile" />
             ) : (
               <img
                 src="https://images.pexels.com/photos/3981624/pexels-photo-3981624.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
@@ -74,7 +112,7 @@ const RegisterProfile: React.FC = () => {
                 <FaCameraRetro className="upload-icon" />
                 <input
                   accept="image/*"
-                  name="uploadButton"
+                  name="avatar"
                   id="uploadButton"
                   type="file"
                   onChange={e => handleImage(e, true)}
@@ -86,6 +124,11 @@ const RegisterProfile: React.FC = () => {
             <TextField
               fullWidth
               name="name"
+              error={!!errors.name}
+              helperText={errors.name && 'Nome é obrigatório'}
+              inputRef={register({
+                required: true,
+              })}
               placeholder="Seu nome..."
               label="Nome"
               required
@@ -96,6 +139,7 @@ const RegisterProfile: React.FC = () => {
               <TextField
                 fullWidth
                 name="bio"
+                inputRef={register}
                 placeholder="Sua bio..."
                 label="Bio"
                 variant="outlined"
@@ -104,6 +148,7 @@ const RegisterProfile: React.FC = () => {
                 rowsMax={4}
               />
             </NoSsr>
+            <PressStartButton type="submit">Start</PressStartButton>
           </div>
         </form>
       </ThemeProvider>
