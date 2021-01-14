@@ -63,7 +63,7 @@ const RegisterProfile: React.FC = () => {
   const onSubmit = (data: IProfileInput) => {
     createProfile({
       variables: {
-        artistProfile: {
+        profile: {
           ...data,
           avatar: imagePreview.profile.file,
           coverImage: imagePreview.cover.file,
