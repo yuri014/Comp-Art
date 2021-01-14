@@ -7,14 +7,14 @@ import {
   ApolloProvider,
   InMemoryCache,
 } from '@apollo/client';
-import { createHttpLink } from 'apollo-link-http';
 import { setContext } from 'apollo-link-context';
+import { createUploadLink } from 'apollo-upload-client';
 
 import GlobalStyle from '../styles/global';
 import theme from '../styles/themes/dark';
 import { AuthProvider } from '../context/auth';
 
-const httpLink = createHttpLink({
+const httpLink = createUploadLink({
   uri: `${process.env.NEXT_PUBLIC_API_HOST}/graphql`,
 });
 
@@ -30,7 +30,7 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: (authLink.concat(httpLink) as unknown) as ApolloLink,
+  link: (authLink.concat(httpLink as any) as unknown) as ApolloLink, // sad any :(
 });
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => (
