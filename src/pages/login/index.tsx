@@ -20,7 +20,6 @@ interface ILogin {
 
 const Login: React.FC = () => {
   const inputRef = useRef(null);
-  const [loginUser] = useMutation(LOGIN_USER);
   const authContext = useContext(AuthContext);
   const [showError, setShowError] = useState('');
   const router = useRouter();
@@ -37,18 +36,19 @@ const Login: React.FC = () => {
     }
   }, []);
 
+  const [loginUser] = useMutation(LOGIN_USER, {
+    onCompleted: ({ data }) => {
+      authContext.login(data.login);
+      router.push('/home');
+    },
+    onError: ({ graphQLErrors }) =>
+      setShowError(graphQLErrors[0].extensions.errors.general),
+  });
+
   const onSubmit = (inputs: ILogin) => {
     loginUser({
       variables: { email: inputs.email, password: inputs.password },
-    })
-      .then(({ data }) => {
-        authContext.login(data.login);
-        router.push('/home');
-      })
-      .catch(err => {
-        const { graphQLErrors } = err;
-        setShowError(graphQLErrors[0].extensions.errors.general);
-      });
+    });
   };
 
   return (

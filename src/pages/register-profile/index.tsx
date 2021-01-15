@@ -4,11 +4,13 @@ import { IconButton, NoSsr, TextField, ThemeProvider } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import { FaCameraRetro } from 'react-icons/fa';
 
+import { useRouter } from 'next/dist/client/router';
 import RegisterProfileContainer from '../../styles/pages/register-profile/styles';
 import formTheme from '../../styles/themes/FormTheme';
 import PressStartButton from '../../components/PressStartButton';
 import { IProfileInput } from '../../interfaces/Profile';
 import REGISTER_ARTIST_PROFILE from '../../graphql/mutations/profile';
+import ErrorMessage from '../../components/ErrorMessage';
 
 interface ImagePreview {
   preview: string | ArrayBuffer;
@@ -20,6 +22,8 @@ interface ImageState {
 }
 
 const RegisterProfile: React.FC = () => {
+  const router = useRouter();
+  const [showError, setShowError] = useState('');
   const [imagePreview, setImagePreview] = useState<ImageState>({
     profile: {
       preview: '',
@@ -53,7 +57,11 @@ const RegisterProfile: React.FC = () => {
     }
   };
 
-  const [createProfile] = useMutation(REGISTER_ARTIST_PROFILE);
+  const [createProfile] = useMutation(REGISTER_ARTIST_PROFILE, {
+    onCompleted: () => router.push('/home'),
+    onError: ({ graphQLErrors }) =>
+      setShowError(graphQLErrors[0].extensions.errors),
+  });
 
   const { register, handleSubmit, errors } = useForm<IProfileInput>({
     mode: 'onChange',
@@ -148,6 +156,7 @@ const RegisterProfile: React.FC = () => {
                 rowsMax={4}
               />
             </NoSsr>
+            {showError && <ErrorMessage>{showError}</ErrorMessage>}
             <PressStartButton type="submit">Start</PressStartButton>
           </div>
         </form>

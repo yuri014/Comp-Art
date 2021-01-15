@@ -15,17 +15,17 @@ const ConfirmationEmail: React.FC = () => {
   const [hasError, setHasErrors] = useState(false);
   const authContext = useContext(AuthContext);
 
-  const [confirmEmail] = useMutation(CONFIRMATION_EMAIL);
+  const [confirmEmail] = useMutation(CONFIRMATION_EMAIL, {
+    onCompleted: ({ data }) =>
+      authContext.login({ ...data.confirmationEmail, token }),
+    onError: () => setHasErrors(true),
+  });
 
   useEffect(() => {
     if (token) {
       confirmEmail({
         variables: { token },
-      })
-        .then(({ data }) => {
-          authContext.login({ ...data.confirmationEmail, token });
-        })
-        .catch(() => setHasErrors(true));
+      });
     }
   }, [token]);
 

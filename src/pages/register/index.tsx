@@ -23,7 +23,11 @@ function SignUp(): JSX.Element {
   const [sucessModalShow, setSuccessModalShow] = useState(false);
   const [showError, setShowError] = useState('');
   const inputRef = useRef(null);
-  const [registerUser] = useMutation(REGISTER_USER);
+  const [registerUser] = useMutation(REGISTER_USER, {
+    onCompleted: () => setSuccessModalShow(true),
+    onError: ({ graphQLErrors }) =>
+      setShowError(graphQLErrors[0].extensions.errors.duplicate),
+  });
 
   const { register, handleSubmit, errors, watch } = useForm<IUser>({
     mode: 'onChange',
@@ -44,12 +48,7 @@ function SignUp(): JSX.Element {
   const onSubmit = (data: IUser) => {
     registerUser({
       variables: { registerInput: { ...data, isArtist } },
-    })
-      .then(() => setSuccessModalShow(true))
-      .catch(err => {
-        const { graphQLErrors } = err;
-        setShowError(graphQLErrors[0].extensions.errors.duplicate);
-      });
+    });
   };
 
   return (
