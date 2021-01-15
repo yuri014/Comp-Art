@@ -16,8 +16,8 @@ const ConfirmationEmail: React.FC = () => {
   const authContext = useContext(AuthContext);
 
   const [confirmEmail] = useMutation(CONFIRMATION_EMAIL, {
-    onCompleted: ({ data }) =>
-      authContext.login({ ...data.confirmationEmail, token }),
+    onCompleted: response =>
+      authContext.login({ ...response.confirmationEmail, token }),
     onError: () => setHasErrors(true),
   });
 

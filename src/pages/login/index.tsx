@@ -37,8 +37,8 @@ const Login: React.FC = () => {
   }, []);
 
   const [loginUser] = useMutation(LOGIN_USER, {
-    onCompleted: ({ data }) => {
-      authContext.login(data.login);
+    onCompleted: response => {
+      authContext.login(response.login);
       router.push('/home');
     },
     onError: ({ graphQLErrors }) =>
