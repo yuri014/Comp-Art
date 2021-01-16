@@ -11,6 +11,7 @@ import {
 } from 'react-icons/fa';
 import { useQuery } from '@apollo/client';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 import HomeProfileContainer from './styles';
 import formTheme from '../../styles/themes/FormTheme';
@@ -19,9 +20,17 @@ import GET_PROFILE from '../../graphql/queries/profile';
 import { IProfile } from '../../interfaces/Profile';
 
 const HomeProfile: React.FC = () => {
-  const { data, loading } = useQuery(GET_PROFILE);
+  const router = useRouter();
+  const { data, loading, error } = useQuery(GET_PROFILE, {
+    onError: () => router.push('/register'),
+  });
 
   if (loading) return <p>loading</p>;
+
+  if (error) {
+    router.push('/register');
+    return <p>error</p>;
+  }
 
   const { getProfile }: { getProfile: IProfile } = data;
 
