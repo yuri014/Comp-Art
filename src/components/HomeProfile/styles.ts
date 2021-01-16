@@ -21,7 +21,7 @@ const HomeProfileContainer = styled.aside`
       height: 48px;
       width: 48px;
       border-radius: 50%;
-      object-fit: fill;
+      object-fit: cover;
     }
 
     & .profile-info {
