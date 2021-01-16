@@ -25,7 +25,7 @@ const MobileHeaderContainer = styled.header`
     height: ${size};
     width: ${size};
     border-radius: 50%;
-    object-fit: fill;
+    object-fit: cover;
   }
 
   a {

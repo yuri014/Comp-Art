@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { FaCameraRetro } from 'react-icons/fa';
 
 import { useRouter } from 'next/dist/client/router';
+import Image from 'next/image';
 import RegisterProfileContainer from '../../styles/pages/register-profile/styles';
 import formTheme from '../../styles/themes/FormTheme';
 import PressStartButton from '../../components/PressStartButton';
@@ -89,7 +90,12 @@ const RegisterProfile: React.FC = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="forms">
           <div className="profile-image-cover">
             {imagePreview.cover.preview ? (
-              <img src={imagePreview.cover.preview as string} alt="cover" />
+              <Image
+                src={imagePreview.cover.preview as string}
+                alt="Capa do perfil"
+                width={1200}
+                height={600}
+              />
             ) : (
               <div className="holder" />
             )}
@@ -108,11 +114,18 @@ const RegisterProfile: React.FC = () => {
           </div>
           <div className="profile-image-upload">
             {imagePreview.profile.preview ? (
-              <img src={imagePreview.profile.preview as string} alt="profile" />
+              <Image
+                src={imagePreview.profile.preview as string}
+                alt="Imagem do perfil"
+                width={800}
+                height={800}
+              />
             ) : (
-              <img
-                src="https://images.pexels.com/photos/3981624/pexels-photo-3981624.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                alt="profile"
+              <Image
+                src="/profile.jpg"
+                alt="Imagem do perfil"
+                width={800}
+                height={800}
               />
             )}
             <label htmlFor="uploadButton">

@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import {
   FaCog,
   FaRegComment,
@@ -12,9 +13,11 @@ const Post: React.FC = () => (
   <PostContainer>
     <div className="post-author">
       <div className="author-info">
-        <img
-          src="https://images.pexels.com/photos/3981624/pexels-photo-3981624.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-          alt="Imagem de perfil"
+        <Image
+          src="/profile.jpg"
+          alt="Imagem do perfil"
+          width={500}
+          height={500}
         />
         <div>
           <h4>Nome do Perfil</h4>
@@ -29,10 +32,7 @@ const Post: React.FC = () => (
       <div className="post-description">
         <p>Lorem ipsum dolor sit amet.</p>
       </div>
-      <img
-        src="https://images.pexels.com/photos/3971983/pexels-photo-3971983.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-        alt="Publicação"
-      />
+      <Image src="/profile.jpg" alt="Publicação" width={1200} height={1200} />
       <div className="post-interaction">
         <div>
           <FaRegHeart />

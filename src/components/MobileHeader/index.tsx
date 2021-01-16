@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { FaCog } from 'react-icons/fa';
+import Image from 'next/image';
 
 import MobileHeaderContainer from './styles';
 
@@ -8,9 +9,11 @@ const MobileHeader: React.FC = () => (
   <MobileHeaderContainer>
     <Link href="/profile">
       <a>
-        <img
-          src="https://images.pexels.com/photos/3981624/pexels-photo-3981624.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-          alt="Imagem de perfil"
+        <Image
+          src="/profile.jpg"
+          alt="Imagem do perfil"
+          width={500}
+          height={500}
         />
       </a>
     </Link>

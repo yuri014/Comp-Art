@@ -10,14 +10,12 @@ import {
   FaUsers,
 } from 'react-icons/fa';
 import { useQuery } from '@apollo/client';
+import Image from 'next/image';
 
 import HomeProfileContainer from './styles';
 import formTheme from '../../styles/themes/FormTheme';
 import ProgressBar from '../ProgressBar';
 import GET_PROFILE from '../../graphql/queries/profile';
-
-// eslint-disable-next-line prettier/prettier
-const defaultImage = 'https://images.pexels.com/photos/3981624/pexels-photo-3981624.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940';
 
 const HomeProfile: React.FC = () => {
   const { data, loading } = useQuery(GET_PROFILE);
@@ -30,7 +28,12 @@ const HomeProfile: React.FC = () => {
     <HomeProfileContainer>
       <ThemeProvider theme={formTheme}>
         <div className="profile">
-          <img src={getProfile.avatar || defaultImage} alt="Imagem de perfil" />
+          <Image
+            src={getProfile.avatar || '/profile.jpg'}
+            alt="Imagem do perfil"
+            width={800}
+            height={800}
+          />
           <div className="profile-info">
             <h2>{getProfile.name}</h2>
             <div className="profile-connections">
