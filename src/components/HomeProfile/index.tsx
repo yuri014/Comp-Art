@@ -16,13 +16,14 @@ import HomeProfileContainer from './styles';
 import formTheme from '../../styles/themes/FormTheme';
 import ProgressBar from '../ProgressBar';
 import GET_PROFILE from '../../graphql/queries/profile';
+import { IProfile } from '../../interfaces/Profile';
 
 const HomeProfile: React.FC = () => {
   const { data, loading } = useQuery(GET_PROFILE);
 
   if (loading) return <p>loading</p>;
 
-  const { getProfile } = data;
+  const { getProfile }: { getProfile: IProfile } = data;
 
   return (
     <HomeProfileContainer>
