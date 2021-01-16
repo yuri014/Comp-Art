@@ -11,6 +11,10 @@ const HeaderContainer = styled.header`
   padding: 1rem 4rem;
   font-size: 18px;
 
+  & a:hover {
+    text-decoration: none;
+  }
+
   h1 {
     font: 400 18px ${props => props.theme.fonts.display}, sans-serif;
     filter: blur(0.4px);
