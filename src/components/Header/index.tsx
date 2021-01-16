@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, NoSsr, TextField, ThemeProvider } from '@material-ui/core';
+import Link from 'next/link';
+import { NoSsr, TextField, ThemeProvider } from '@material-ui/core';
 import { FaBell, FaCog, FaScroll, FaSearch } from 'react-icons/fa';
 
 import HeaderContainer from './styles';
