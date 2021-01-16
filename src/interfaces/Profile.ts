@@ -4,3 +4,14 @@ export interface IProfileInput {
   coverImage: File;
   bio: string;
 }
+
+export interface IProfile {
+  name: string;
+  avatar: string;
+  coverImage: string;
+  bio: string;
+  level: number;
+  xp: number;
+  followers: number;
+  following: number;
+}
