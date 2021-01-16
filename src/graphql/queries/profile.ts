@@ -4,12 +4,8 @@ const GET_PROFILE = gql`
   query GetProfile {
     getProfile {
       name
-      avatar {
-        url
-      }
-      coverImage {
-        url
-      }
+      avatar
+      coverImage
       bio
       xp
       level
