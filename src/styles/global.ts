@@ -22,6 +22,26 @@ export default createGlobalStyle`
     text-decoration: none;
   }
 
+  .soundcloud-icon {
+    color: #FF5500;
+  }
+
+  .twitter-icon {
+    color: #1DA1F2;
+  }
+
+  .wattpad-icon {
+    color: #FF6122;
+  }
+
+  .facebook-icon {
+    color: #4267B2;
+  }
+
+  .pinterest-icon {
+    color: #C8232C;
+  }
+
   .main-title {
     position: static;
     margin-top: 8rem;
