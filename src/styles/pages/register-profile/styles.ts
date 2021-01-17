@@ -6,7 +6,7 @@ const RegisterProfileContainer = styled.main`
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
-  min-height: 100vh;
+  height: 180vh;
   #register-profile-title {
     text-align: center;
     font-size: 20px;
@@ -31,7 +31,7 @@ const RegisterProfileContainer = styled.main`
 
     & .profile-image-cover {
       border-radius: 4px 4px 0 0;
-      height: 10rem;
+      height: 12rem;
       width: 100%;
       display: flex;
       align-items: flex-start;
@@ -50,7 +50,7 @@ const RegisterProfileContainer = styled.main`
         height: 100%;
       }
       & label {
-        margin-top: -10rem;
+        margin-top: -12rem;
         & .upload-icon {
           color: ${props => props.theme.colors.mainColor};
         }
@@ -61,10 +61,14 @@ const RegisterProfileContainer = styled.main`
       width: 100px;
       height: 100px;
       margin: 0 auto;
-      margin-top: -5rem;
+      margin-top: -6rem;
       display: flex;
       align-items: baseline;
       border-radius: 50%;
+      & a {
+        width: 100%;
+        height: 100%;
+      }
       & img {
         border-radius: 50%;
         width: 100%;
@@ -83,12 +87,36 @@ const RegisterProfileContainer = styled.main`
     }
   }
 
+  .link-label {
+    color: ${props => props.theme.colors.lightContrast};
+    margin-left: 1rem;
+    margin-right: -0.9rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .link-label-end {
+    color: ${props => props.theme.colors.lightContrast};
+    margin-bottom: 0.2rem;
+  }
+
   @media (min-width: 1100px) {
     display: grid;
-    grid-template-columns: 20% 40%;
+    grid-template-columns: 20% 50%;
     justify-content: space-around;
+    height: 120vh;
+    & h1 {
+      font-size: 54px;
+    }
+    .link-label {
+      margin-bottom: 0.1rem;
+    }
     & form {
       width: 100%;
+      & .profile-links {
+        display: grid;
+        grid-template-columns: 48% 48%;
+        justify-content: space-between;
+      }
     }
   }
 `;

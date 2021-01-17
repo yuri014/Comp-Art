@@ -89,10 +89,6 @@ const ProfileContainer = styled.div`
         & a {
           text-align: right;
         }
-
-        .additional-link {
-          color: ${props => props.theme.colors.mainColor};
-        }
       }
     }
   }
