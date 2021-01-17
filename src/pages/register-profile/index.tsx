@@ -1,9 +1,25 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { IconButton, NoSsr, TextField, ThemeProvider } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
-import { FaCameraRetro } from 'react-icons/fa';
 import { useRouter } from 'next/dist/client/router';
+import { SiWattpad } from 'react-icons/si';
+import {
+  IconButton,
+  InputAdornment,
+  NoSsr,
+  TextField,
+  ThemeProvider,
+} from '@material-ui/core';
+import {
+  FaBandcamp,
+  FaCameraRetro,
+  FaDeviantart,
+  FaFacebook,
+  FaLink,
+  FaPinterest,
+  FaSoundcloud,
+  FaTwitter,
+} from 'react-icons/fa';
 
 import RegisterProfileContainer from '../../styles/pages/register-profile/styles';
 import formTheme from '../../styles/themes/FormTheme';
@@ -11,6 +27,8 @@ import PressStartButton from '../../components/PressStartButton';
 import { IProfileInput } from '../../interfaces/Profile';
 import REGISTER_ARTIST_PROFILE from '../../graphql/mutations/profile';
 import ErrorMessage from '../../components/ErrorMessage';
+import withAuth from '../../hocs/withAuth';
+import TagsContainer from '../../styles';
 
 interface ImagePreview {
   preview: string | ArrayBuffer;
@@ -24,6 +42,8 @@ interface ImageState {
 const RegisterProfile: React.FC = () => {
   const router = useRouter();
   const [showError, setShowError] = useState('');
+  const [tags, setTags] = useState([]);
+  const [tagInput, setTagInput] = useState('');
   const [imagePreview, setImagePreview] = useState<ImageState>({
     profile: {
       preview: '',
@@ -116,7 +136,13 @@ const RegisterProfile: React.FC = () => {
                 alt="Imagem do perfil"
               />
             ) : (
-              <img src="/profile.jpg" alt="Imagem do perfil" />
+              <a
+                href="https://www.pexels.com/pt-br/foto/foto-de-silhueta-de-mulher-1446948/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src="/profile.jpg" alt="Imagem do perfil" />
+              </a>
             )}
             <label htmlFor="uploadButton">
               <IconButton aria-label="upload picture" component="span">
@@ -157,8 +183,138 @@ const RegisterProfile: React.FC = () => {
                 multiline
                 rows={2}
                 rowsMax={4}
+                style={{ marginBottom: '0' }}
               />
             </NoSsr>
+            <TagsContainer>
+              {tags.map(tag => (
+                <p style={{ marginBottom: '2rem' }} key={tag}>
+                  #{tag}
+                </p>
+              ))}
+            </TagsContainer>
+            <TextField
+              fullWidth
+              name="tags"
+              helperText="Aperte vírgula cadastrar uma tag"
+              placeholder="Coloque aqui seus gostos preferidos"
+              label="Tags"
+              value={tagInput}
+              onChange={e =>
+                e.target.value !== ',' && setTagInput(e.target.value)
+              }
+              onKeyDown={e => {
+                if (e.key === ',') {
+                  setTags([...tags, tagInput]);
+                  setTagInput('');
+                }
+              }}
+            />
+            <div className="profile-links">
+              <TextField
+                fullWidth
+                name="soundcloud"
+                label="Soundcloud"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <FaSoundcloud className="soundcloud-icon" />
+                      <p className="link-label">soundcloud.com/</p>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <TextField
+                fullWidth
+                name="bandcamp"
+                label="Bandcamp"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <FaBandcamp className="bandcamp-icon" />
+                    </InputAdornment>
+                  ),
+                  endAdornment: <p className="link-label-end">.bandcamp.com</p>,
+                }}
+              />
+              <TextField
+                fullWidth
+                name="wattpad"
+                label="Wattpad"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SiWattpad className="wattpad-icon" />
+                      <p className="link-label">wattpad.com/user/</p>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <TextField
+                fullWidth
+                name="pinterest"
+                label="Pinterest"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <FaPinterest className="pinterest-icon" />
+                      <p className="link-label">pinterest.com/</p>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <TextField
+                fullWidth
+                name="twitter"
+                label="Twitter"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <FaTwitter className="twitter-icon" />
+                      <p className="link-label">twitter.com/</p>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <TextField
+                fullWidth
+                name="facebook"
+                label="Facebook"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <FaFacebook className="facebook-icon" />
+                      <p className="link-label">facebook.com/</p>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <TextField
+                fullWidth
+                name="deviantart"
+                label="Deviantart"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <FaDeviantart className="deviantart-icon" />
+                      <p className="link-label">deviantart.com/</p>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <TextField
+                fullWidth
+                name="customLink"
+                label="Link Adicional"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <FaLink className="additional-link" />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </div>
             {showError && <ErrorMessage>{showError}</ErrorMessage>}
             <PressStartButton type="submit">Start</PressStartButton>
           </div>
@@ -168,4 +324,4 @@ const RegisterProfile: React.FC = () => {
   );
 };
 
-export default RegisterProfile;
+export default withAuth(RegisterProfile);
