@@ -10,6 +10,7 @@ const TagsContainer = styled.div`
     margin-right: 2rem;
     cursor: pointer;
     padding: 1rem;
+    border: none;
     background-color: ${props => props.theme.colors.lightContrast};
     color: ${props => props.theme.colors.backgroundColor};
     font-weight: 700;
