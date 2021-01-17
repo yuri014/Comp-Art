@@ -14,4 +14,15 @@ export interface IProfile {
   xp: number;
   followers: number;
   following: number;
+  hashtags: Array<number>;
+  links: {
+    soundcloud: string;
+    twitter: string;
+    facebook: string;
+    wattpad: string;
+    pinterest: string;
+    bandcamp: string;
+    deviantart: string;
+    customLink: string;
+  };
 }
