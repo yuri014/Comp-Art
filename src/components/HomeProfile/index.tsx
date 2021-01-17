@@ -11,24 +11,20 @@ import {
 } from 'react-icons/fa';
 import { useQuery } from '@apollo/client';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 
 import HomeProfileContainer from './styles';
 import formTheme from '../../styles/themes/FormTheme';
 import ProgressBar from '../ProgressBar';
 import GET_PROFILE from '../../graphql/queries/profile';
 import { IProfile } from '../../interfaces/Profile';
+import ErrorRequest from '../ErrorRequest';
 
 const HomeProfile: React.FC = () => {
-  const router = useRouter();
   const { data, loading, error } = useQuery(GET_PROFILE);
 
   if (loading) return <p>loading</p>;
 
-  if (error) {
-    router.push('/register');
-    return <p>error</p>;
-  }
+  if (error) return <ErrorRequest />;
 
   const { getProfile }: { getProfile: IProfile } = data;
 

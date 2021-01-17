@@ -8,6 +8,7 @@ import MobileHeader from '../../components/MobileHeader';
 import MobileFooter from '../../components/MobileFooter';
 import Post from '../../components/Post';
 import QuestsProgress from '../../components/QuestsProgress';
+import withAuth from '../../hocs/withAuth';
 
 const Home: React.FC = () => (
   <HomeContainer>
@@ -29,4 +30,4 @@ const Home: React.FC = () => (
   </HomeContainer>
 );
 
-export default Home;
+export default withAuth(Home);
