@@ -95,6 +95,7 @@ const RegisterProfile: React.FC = () => {
           ...data,
           avatar: imagePreview.profile.file,
           coverImage: imagePreview.cover.file,
+          hashtags: tags,
         },
       },
     });
@@ -188,15 +189,22 @@ const RegisterProfile: React.FC = () => {
             </NoSsr>
             <TagsContainer>
               {tags.map(tag => (
-                <p style={{ marginBottom: '2rem' }} key={tag}>
-                  #{tag}
-                </p>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setTags(tags.filter(tagToRemove => tagToRemove !== tag))
+                  }
+                  style={{ marginBottom: '2rem' }}
+                  key={tag}
+                >
+                  {tag}
+                </button>
               ))}
             </TagsContainer>
             <TextField
               fullWidth
               name="tags"
-              helperText="Aperte vírgula cadastrar uma tag"
+              helperText="Aperte vírgula cadastrar uma tag - clique nela para remover"
               placeholder="Coloque aqui seus gostos preferidos"
               label="Tags"
               value={tagInput}
@@ -205,15 +213,20 @@ const RegisterProfile: React.FC = () => {
               }
               onKeyDown={e => {
                 if (e.key === ',') {
-                  setTags([...tags, tagInput]);
-                  setTagInput('');
+                  if (tags.length <= 4 && !tags.includes(`#${tagInput}`)) {
+                    setTags([...tags, `#${tagInput}`]);
+                    setTagInput('');
+                  } else {
+                    setShowError('Limite de 5 hashtags sem repetição!');
+                  }
                 }
               }}
             />
             <div className="profile-links">
               <TextField
+                inputRef={register}
                 fullWidth
-                name="soundcloud"
+                name="links.soundcloud"
                 label="Soundcloud"
                 InputProps={{
                   startAdornment: (
@@ -225,8 +238,9 @@ const RegisterProfile: React.FC = () => {
                 }}
               />
               <TextField
+                inputRef={register}
                 fullWidth
-                name="bandcamp"
+                name="links.bandcamp"
                 label="Bandcamp"
                 InputProps={{
                   startAdornment: (
@@ -238,8 +252,9 @@ const RegisterProfile: React.FC = () => {
                 }}
               />
               <TextField
+                inputRef={register}
                 fullWidth
-                name="wattpad"
+                name="links.wattpad"
                 label="Wattpad"
                 InputProps={{
                   startAdornment: (
@@ -251,8 +266,9 @@ const RegisterProfile: React.FC = () => {
                 }}
               />
               <TextField
+                inputRef={register}
                 fullWidth
-                name="pinterest"
+                name="links.pinterest"
                 label="Pinterest"
                 InputProps={{
                   startAdornment: (
@@ -264,8 +280,9 @@ const RegisterProfile: React.FC = () => {
                 }}
               />
               <TextField
+                inputRef={register}
                 fullWidth
-                name="twitter"
+                name="links.twitter"
                 label="Twitter"
                 InputProps={{
                   startAdornment: (
@@ -277,8 +294,9 @@ const RegisterProfile: React.FC = () => {
                 }}
               />
               <TextField
+                inputRef={register}
                 fullWidth
-                name="facebook"
+                name="links.facebook"
                 label="Facebook"
                 InputProps={{
                   startAdornment: (
@@ -290,8 +308,9 @@ const RegisterProfile: React.FC = () => {
                 }}
               />
               <TextField
+                inputRef={register}
                 fullWidth
-                name="deviantart"
+                name="links.deviantart"
                 label="Deviantart"
                 InputProps={{
                   startAdornment: (
@@ -303,8 +322,9 @@ const RegisterProfile: React.FC = () => {
                 }}
               />
               <TextField
+                inputRef={register}
                 fullWidth
-                name="customLink"
+                name="links.customLink"
                 label="Link Adicional"
                 InputProps={{
                   startAdornment: (
