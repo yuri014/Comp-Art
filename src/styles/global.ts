@@ -42,6 +42,20 @@ export default createGlobalStyle`
     color: #C8232C;
   }
 
+  .bandcamp-icon {
+    color: white;
+    background-color: #629AA9;
+    border-radius: 50%;
+  }
+
+  .deviantart-icon {
+    color: #00E59B;
+  }
+
+  .additional-link {
+    color: ${props => props.theme.colors.mainColor};
+  }
+
   .main-title {
     position: static;
     margin-top: 8rem;
