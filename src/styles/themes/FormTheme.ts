@@ -50,6 +50,11 @@ const formTheme = createMuiTheme({
         color: '#cbcaeb',
       },
     },
+    MuiFormHelperText: {
+      root: {
+        color: '#cbcaeb',
+      },
+    },
   },
 });
 
