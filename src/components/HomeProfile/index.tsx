@@ -21,9 +21,7 @@ import { IProfile } from '../../interfaces/Profile';
 
 const HomeProfile: React.FC = () => {
   const router = useRouter();
-  const { data, loading, error } = useQuery(GET_PROFILE, {
-    onError: () => router.push('/register'),
-  });
+  const { data, loading, error } = useQuery(GET_PROFILE);
 
   if (loading) return <p>loading</p>;
 
