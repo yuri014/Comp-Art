@@ -4,6 +4,7 @@ const theme = {
     titleColor: '#50c878',
     backgroundColor: '#050211',
     secondaryBackgroundColor: '#0f0f28',
+    lightText: '#393B73',
     namesakeText: '#08162f',
     lightContrast: '#cbcaeb',
     mainGradient: `linear-gradient(
