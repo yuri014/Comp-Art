@@ -37,7 +37,7 @@ const ModalContainer = styled.section`
     flex-direction: column;
     background-color: #1e2939;
     border-radius: 8px;
-    border: 2px solid #1cc5b7;
+    border: 2px solid ${props => props.theme.colors.mainColor};
     color: white;
     text-align: left;
     padding: 2rem;
@@ -70,7 +70,7 @@ const ModalContainer = styled.section`
   }
 
   .close-modal {
-    color: #1cc5b7;
+    color: ${props => props.theme.colors.mainColor};
     font-size: 2rem;
     display: flex;
     position: absolute;
@@ -85,9 +85,9 @@ const ModalContainer = styled.section`
   }
 
   .link-buttons-block a {
-    color: #08162f;
+    color: ${props => props.theme.colors.namesakeText};
     padding: 15px 15px;
-    background: #1cc5b7;
+    background: ${props => props.theme.colors.mainColor};
     border-radius: 4px;
     width: 48%;
     letter-spacing: 1px;
@@ -100,8 +100,8 @@ const ModalContainer = styled.section`
   }
 
   .link-buttons-block a:hover {
-    filter: drop-shadow(1px 1px 4px #1cc5b7);
-    color: #223c68;
+    filter: drop-shadow(1px 1px 4px ${props => props.theme.colors.mainColor});
+    color: ${props => props.theme.colors.lightText};
   }
 
   @media (min-width: 1100px) {
