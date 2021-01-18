@@ -71,6 +71,12 @@ export default createGlobalStyle`
     text-shadow: 4px 4px 2px ${props => props.theme.colors.titleColor};
   }
 
+  .holder {
+    background: ${props => props.theme.colors.mainGradient};
+    width: 100%;
+    height: 100%;
+  }
+
   #nprogress .bar {
   background: ${props => props.theme.colors.mainColor};
   }

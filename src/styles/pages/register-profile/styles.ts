@@ -44,10 +44,8 @@ const RegisterProfileContainer = styled.main`
         object-fit: cover;
       }
       & .holder {
-        background-color: ${props => props.theme.colors.lightContrast};
+        background: ${props => props.theme.colors.lightContrast};
         border-radius: 4px 4px 0 0;
-        width: 100%;
-        height: 100%;
       }
       & label {
         margin-top: -12rem;
