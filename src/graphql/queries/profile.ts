@@ -11,6 +11,18 @@ const GET_PROFILE = gql`
       level
       followers
       following
+      hashtags
+      owner
+      links {
+        soundcloud
+        twitter
+        facebook
+        wattpad
+        pinterest
+        deviantart
+        bandcamp
+        customLink
+      }
     }
   }
 `;
