@@ -15,45 +15,45 @@ import Image from 'next/image';
 import HomeProfileContainer from './styles';
 import formTheme from '../../styles/themes/FormTheme';
 import ProgressBar from '../ProgressBar';
-import GET_PROFILE from '../../graphql/queries/profile';
+import { GET_LOGGED_PROFILE } from '../../graphql/queries/profile';
 import { IProfile } from '../../interfaces/Profile';
 import ErrorRequest from '../ErrorRequest';
 
 const HomeProfile: React.FC = () => {
-  const { data, loading, error } = useQuery(GET_PROFILE);
+  const { data, loading, error } = useQuery(GET_LOGGED_PROFILE);
 
   if (loading) return <p>loading</p>;
 
   if (error) return <ErrorRequest />;
 
-  const { getProfile }: { getProfile: IProfile } = data;
+  const { getLoggedProfile }: { getLoggedProfile: IProfile } = data;
 
   return (
     <HomeProfileContainer>
       <ThemeProvider theme={formTheme}>
         <div className="profile">
           <Image
-            src={getProfile.avatar || '/profile.jpg'}
+            src={getLoggedProfile.avatar || '/profile.jpg'}
             alt="Imagem do perfil"
             width={800}
             height={800}
           />
           <div className="profile-info">
-            <h2>{getProfile.name}</h2>
+            <h2>{getLoggedProfile.name}</h2>
             <div className="profile-connections">
-              <p>Seguidores: {getProfile.followers}</p>
-              <p>Seguindo: {getProfile.following}</p>
+              <p>Seguidores: {getLoggedProfile.followers}</p>
+              <p>Seguindo: {getLoggedProfile.following}</p>
             </div>
           </div>
         </div>
         <div className="profile-reputation">
           <div className="level">
             <p>Level:</p>
-            <span>{getProfile.level}</span>
+            <span>{getLoggedProfile.level}</span>
           </div>
           <div className="xp">
             <p>XP:</p>
-            <ProgressBar value={getProfile.xp} />
+            <ProgressBar value={getLoggedProfile.xp} />
           </div>
         </div>
         <div className="profile-buttons">

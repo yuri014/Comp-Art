@@ -5,25 +5,25 @@ import Image from 'next/image';
 import { useQuery } from '@apollo/client';
 
 import MobileHeaderContainer from './styles';
-import GET_PROFILE from '../../graphql/queries/profile';
+import { GET_LOGGED_PROFILE } from '../../graphql/queries/profile';
 import { IProfile } from '../../interfaces/Profile';
 import ErrorRequest from '../ErrorRequest';
 
 const MobileHeader: React.FC = () => {
-  const { data, loading, error } = useQuery(GET_PROFILE);
+  const { data, loading, error } = useQuery(GET_LOGGED_PROFILE);
 
   if (loading) return <p>loading</p>;
 
   if (error) return <ErrorRequest />;
 
-  const { getProfile }: { getProfile: IProfile } = data;
+  const { getLoggedProfile }: { getLoggedProfile: IProfile } = data;
 
   return (
     <MobileHeaderContainer>
       <Link href="/profile">
         <a>
           <Image
-            src={getProfile.avatar || '/profile.jpg'}
+            src={getLoggedProfile.avatar || '/profile.jpg'}
             alt="Imagem do perfil"
             width={500}
             height={500}
