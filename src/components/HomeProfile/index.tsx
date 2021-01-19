@@ -18,6 +18,7 @@ import ProgressBar from '../ProgressBar';
 import { GET_LOGGED_PROFILE } from '../../graphql/queries/profile';
 import { IProfile } from '../../interfaces/Profile';
 import ErrorRequest from '../ErrorRequest';
+import TagsContainer from '../../styles';
 
 const HomeProfile: React.FC = () => {
   const { data, loading, error } = useQuery(GET_LOGGED_PROFILE);
@@ -93,13 +94,11 @@ const HomeProfile: React.FC = () => {
             <FaHashtag />
             &nbsp;Hashtags Seguidas
           </h3>
-          <div className="hashtags">
-            <span>#samba</span>
-            <span>#lo-fi</span>
-            <span>#serie</span>
-            <span>#folk</span>
-            <span>#danca</span>
-          </div>
+          <TagsContainer>
+            {getLoggedProfile.hashtags.map(tag => (
+              <span>{tag}</span>
+            ))}
+          </TagsContainer>
         </div>
       </ThemeProvider>
     </HomeProfileContainer>
