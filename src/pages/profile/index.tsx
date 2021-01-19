@@ -2,6 +2,8 @@ import React from 'react';
 import Head from 'next/head';
 import { useQuery } from '@apollo/client';
 import {
+  FaBandcamp,
+  FaDeviantart,
   FaFacebook,
   FaLink,
   FaPinterest,
@@ -65,48 +67,78 @@ const Profile: React.FC = () => {
               <p>Seguidores: {getProfile.followers}</p>
             </div>
             <div className="profile-links">
-              <a
-                href={`http://soundcloud.com${getProfile.links.soundcloud}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaSoundcloud className="soundcloud-icon" />
-              </a>
-              <a
-                href={`http://twitter.com/${getProfile}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaTwitter className="twitter-icon" />
-              </a>
-              <a
-                href={`http://pinterest.com/${getProfile}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaPinterest className="pinterest-icon" />
-              </a>
-              <a
-                href={`http://wattpad.com/user/${getProfile}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <SiWattpad className="wattpad-icon" />
-              </a>
-              <a
-                href={`http://facebook.com/${getProfile}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaFacebook className="facebook-icon" />
-              </a>
-              <a
-                href={getProfile.links.customLink}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaLink className="additional-link" />
-              </a>
+              {getProfile.links.soundcloud && (
+                <a
+                  href={`http://soundcloud.com${getProfile.links.soundcloud}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaSoundcloud className="soundcloud-icon" />
+                </a>
+              )}
+              {getProfile.links.twitter && (
+                <a
+                  href={`http://twitter.com/${getProfile.links.twitter}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaTwitter className="twitter-icon" />
+                </a>
+              )}
+              {getProfile.links.deviantart && (
+                <a
+                  href={`http://deviantart.com/${getProfile.links.deviantart}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaDeviantart className="deviantart-icon" />
+                </a>
+              )}
+              {getProfile.links.bandcamp && (
+                <a
+                  href={`http://${getProfile.links.bandcamp}.bandcamp.com`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaBandcamp className="bandcamp-icon" />
+                </a>
+              )}
+              {getProfile.links.wattpad && (
+                <a
+                  href={`http://wattpad.com/user/${getProfile.links.wattpad}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <SiWattpad className="wattpad-icon" />
+                </a>
+              )}
+              {getProfile.links.facebook && (
+                <a
+                  href={`http://facebook.com/${getProfile.links.facebook}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaFacebook className="facebook-icon" />
+                </a>
+              )}
+              {getProfile.links.pinterest && (
+                <a
+                  href={`http://pinterest.com/${getProfile.links.pinterest}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaPinterest className="pinterest-icon" />
+                </a>
+              )}
+              {getProfile.links.customLink && (
+                <a
+                  href={getProfile.links.customLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaLink className="additional-link" />
+                </a>
+              )}
             </div>
           </div>
         </section>

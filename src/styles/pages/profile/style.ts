@@ -78,14 +78,20 @@ const ProfileContainer = styled.div`
       grid-template-columns: 45% 50%;
       align-items: center;
       justify-content: space-between;
-      font-size: 18px;
+      font-size: 16px;
+      & .profile-follows {
+        & p:first-child {
+          margin-bottom: 1rem;
+        }
+      }
       & .profile-links {
         font-size: 22px;
         display: grid;
-        grid-template-columns: 33% 33% 33%;
+        grid-template-columns: 24% 24% 24% 24%;
         grid-row: 100% 100%;
         align-items: center;
         justify-content: space-between;
+        grid-auto-columns: 22px;
         & a {
           text-align: right;
         }
