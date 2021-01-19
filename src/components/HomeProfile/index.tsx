@@ -58,7 +58,7 @@ const HomeProfile: React.FC = () => {
           </div>
         </div>
         <div className="profile-buttons">
-          <Link href="/profile">
+          <Link href={`/profile/${getLoggedProfile.owner}`}>
             <a>
               <FaUserAlt />
               <p>Meu Perfil</p>
