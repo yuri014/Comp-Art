@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/client';
 import {
   FaBandcamp,
@@ -18,14 +19,22 @@ import GET_PROFILE from '../../graphql/queries/profile';
 import { IProfile } from '../../interfaces/Profile';
 import ProfileContainer from '../../styles/pages/profile/style';
 import withAuth from '../../hocs/withAuth';
-import ErrorRequest from '../../components/ErrorRequest';
+import { AuthContext } from '../../context/auth';
 
 const Profile: React.FC = () => {
-  const { data, loading, error } = useQuery(GET_PROFILE);
+  const router = useRouter();
+  const { username } = router.query;
+  const auth = useContext(AuthContext);
+
+  const { data, loading, error } = useQuery(GET_PROFILE, {
+    variables: {
+      username,
+    },
+  });
 
   if (loading) return <p>loading</p>;
 
-  if (error) return <ErrorRequest />;
+  if (error) return <p>error</p>;
 
   const { getProfile }: { getProfile: IProfile } = data;
   return (
@@ -44,12 +53,16 @@ const Profile: React.FC = () => {
         </div>
         <div className="avatar-profile">
           <img
-            src={getProfile.avatar || './profile.jpg'}
+            src={getProfile.avatar || '../profile.jpg'}
             alt="Imagem do perfil"
           />
         </div>
         <div className="edit-profile">
-          <button type="button">Editar perfil</button>
+          {username === auth.user.username ? (
+            <button type="button">Editar perfil</button>
+          ) : (
+            <button type="button">Seguir</button>
+          )}
         </div>
         <section>
           <div className="profile">
