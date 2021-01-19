@@ -17,8 +17,8 @@ const ProfileContainer = styled.div`
   & .avatar-profile {
     width: 84px;
     height: 84px;
-    margin: 0 auto;
     z-index: 2;
+    margin-left: 2rem;
     margin-top: -4rem;
     border-radius: 50%;
     & img {
@@ -27,6 +27,29 @@ const ProfileContainer = styled.div`
       height: 100%;
       border-radius: 50%;
       object-fit: cover;
+    }
+  }
+
+  .edit-profile {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 3rem;
+    margin-top: -3rem;
+    margin-bottom: 1rem;
+    & button {
+      border: 1px solid ${props => props.theme.colors.mainColor};
+      color: ${props => props.theme.colors.lightContrast};
+      border-radius: 4px;
+      padding: 0.4rem 1rem;
+      background: none;
+      transition: 0.4s ease;
+      cursor: pointer;
+      font-size: 14px;
+      font-family: ${props => props.theme.fonts.display};
+      &:hover {
+        box-shadow: 0 0 4px 2px ${props => props.theme.colors.lightText};
+      }
     }
   }
 
@@ -51,8 +74,14 @@ const ProfileContainer = styled.div`
       }
 
       & p {
+        font-size: 14px;
+        color: ${props => props.theme.colors.lightText};
+      }
+
+      & p:first-child {
         font-size: 20px;
         font-weight: 600;
+        color: ${props => props.theme.colors.lightContrast};
         & .level {
           background-color: ${props => props.theme.colors.mainColor};
           color: ${props => props.theme.colors.backgroundColor};
@@ -71,27 +100,113 @@ const ProfileContainer = styled.div`
       padding: 1rem;
     }
 
-    .follows-and-links {
-      margin-top: 2rem;
+    .profile-follows {
       width: 100%;
-      display: grid;
-      grid-template-columns: 45% 50%;
+      margin-top: 2rem;
+      font-size: 16px;
+      display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 16px;
-      & .profile-follows {
+    }
+    .profile-links {
+      width: 100%;
+      margin-top: 2rem;
+      font-size: 22px;
+      display: grid;
+      grid-template-columns: 15% 15% 15% 15%;
+      align-items: flex-start;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    & main {
+      padding-top: 6rem;
+    }
+
+    .edit-profile {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0 3rem;
+      margin-top: -6rem;
+      margin-bottom: 4rem;
+      & button {
+        padding: 0.8rem 2rem;
+        font-size: 16px;
+      }
+    }
+
+    & .avatar-profile {
+      width: 124px;
+      height: 124px;
+      margin: 0;
+      margin-left: 4rem;
+      margin-top: -4rem;
+    }
+
+    & section {
+      padding: 1rem 4rem;
+      display: grid;
+      margin-top: -10.4rem;
+      grid-template-columns: 35% 45% 35%;
+      grid-template-areas:
+        'profile follows .'
+        'bio bio links';
+      align-items: baseline;
+
+      .profile {
+        margin-left: 16rem;
+        display: flex;
+        align-items: baseline;
+        justify-content: flex-start;
+        grid-area: profile;
+        & h1 {
+          font-size: 24px;
+        }
+
+        & h2 {
+          font-size: 16px;
+          color: ${props => props.theme.colors.lightText};
+          margin-top: 0.4rem;
+        }
+
         & p:first-child {
-          margin-bottom: 1rem;
+          font-size: 24px;
+          margin-top: 0;
+        }
+
+        & p {
+          font-size: 16px;
+          margin-left: 6rem;
+          margin-top: 0.4rem;
+          font-weight: 700;
+          & .level {
+            margin-left: 0.8rem;
+            padding: 0 1rem !important;
+          }
         }
       }
-      & .profile-links {
-        font-size: 22px;
-        display: grid;
-        grid-template-columns: 24% 24% 24% 24%;
-        grid-row: 100% 100%;
-        align-items: center;
-        justify-content: space-between;
-        grid-auto-columns: 22px;
+
+      .profile-follows {
+        grid-area: follows;
+        display: block;
+        font-size: 18px;
+        margin-left: 2rem;
+        & p:first-child {
+          margin-bottom: 0.4rem;
+        }
+      }
+
+      .bio {
+        font-size: 16px;
+        width: 80%;
+        grid-area: bio;
+      }
+
+      .profile-links {
+        font-size: 28px;
+        grid-area: links;
+        margin-top: 4rem;
         & a {
           text-align: right;
         }
