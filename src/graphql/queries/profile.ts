@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 const GET_PROFILE = gql`
-  query GetProfile {
-    getProfile {
+  query GetProfil($username: String!) {
+    getProfile(username: $username) {
       name
       avatar
       coverImage
