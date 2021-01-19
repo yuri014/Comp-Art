@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
-const GET_PROFILE = gql`
-  query GetProfil($username: String!) {
-    getProfile(username: $username) {
+export const GET_LOGGED_PROFILE = gql`
+  query GetLoggedProfile {
+    getLoggedProfile {
       name
       avatar
       coverImage
@@ -13,6 +13,7 @@ const GET_PROFILE = gql`
       following
       hashtags
       owner
+      isArtist
       links {
         soundcloud
         twitter
@@ -27,4 +28,30 @@ const GET_PROFILE = gql`
   }
 `;
 
-export default GET_PROFILE;
+export const GET_PROFILE = gql`
+  query GetProfile($username: String!) {
+    getProfile(username: $username) {
+      name
+      avatar
+      coverImage
+      bio
+      xp
+      level
+      followers
+      following
+      hashtags
+      owner
+      isArtist
+      links {
+        soundcloud
+        twitter
+        facebook
+        wattpad
+        pinterest
+        deviantart
+        bandcamp
+        customLink
+      }
+    }
+  }
+`;
