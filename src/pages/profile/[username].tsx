@@ -15,7 +15,7 @@ import { SiWattpad } from 'react-icons/si';
 
 import Header from '../../components/Header';
 import MobileFooter from '../../components/MobileFooter';
-import GET_PROFILE from '../../graphql/queries/profile';
+import { GET_PROFILE } from '../../graphql/queries/profile';
 import { IProfile } from '../../interfaces/Profile';
 import ProfileContainer from '../../styles/pages/profile/style';
 import withAuth from '../../hocs/withAuth';
