@@ -25,7 +25,7 @@ const Modal: React.FC<ModalProps> = props => (
           <FaTimesCircle />
         </div>
         <hr />
-        {props.children}
+        {props.show && props.children}
       </div>
     </div>
   </ModalContainer>
