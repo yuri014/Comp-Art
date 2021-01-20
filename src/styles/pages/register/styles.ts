@@ -90,7 +90,7 @@ const SingUpContainer = styled.div`
 
     .form-start-button {
       display: none;
-      width: 60%;
+      width: 65%;
     }
 
     .form-start-button:hover {

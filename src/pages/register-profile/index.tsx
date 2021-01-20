@@ -15,12 +15,14 @@ import {
   FaCameraRetro,
   FaDeviantart,
   FaFacebook,
+  FaHashtag,
   FaLink,
   FaPinterest,
   FaSoundcloud,
   FaTwitter,
 } from 'react-icons/fa';
 
+import Head from 'next/head';
 import RegisterProfileContainer from '../../styles/pages/register-profile/styles';
 import formTheme from '../../styles/themes/FormTheme';
 import PressStartButton from '../../components/PressStartButton';
@@ -103,6 +105,9 @@ const RegisterProfile: React.FC = () => {
 
   return (
     <RegisterProfileContainer>
+      <Head>
+        <title>Comp-Art</title>
+      </Head>
       <div id="register-profile-title" className="main-title">
         <h1>Crie seu perfil!</h1>
       </div>
@@ -208,6 +213,13 @@ const RegisterProfile: React.FC = () => {
               placeholder="Coloque aqui seus gostos preferidos"
               label="Tags"
               value={tagInput}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <FaHashtag className="secondary-icon" />
+                  </InputAdornment>
+                ),
+              }}
               onChange={e =>
                 e.target.value !== ',' && setTagInput(e.target.value)
               }
@@ -329,7 +341,7 @@ const RegisterProfile: React.FC = () => {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <FaLink className="additional-link" />
+                      <FaLink className="primary-icon" />
                     </InputAdornment>
                   ),
                 }}
