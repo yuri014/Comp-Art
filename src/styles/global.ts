@@ -52,8 +52,12 @@ export default createGlobalStyle`
     color: #00E59B;
   }
 
-  .additional-link {
+  .primary-icon {
     color: ${props => props.theme.colors.mainColor};
+  }
+
+  .secondary-icon {
+    color: ${props => props.theme.colors.lightContrast}
   }
 
   .main-title {

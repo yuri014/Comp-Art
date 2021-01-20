@@ -154,7 +154,7 @@ const Profile: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaLink className="additional-link" />
+                <FaLink className="primary-icon" />
               </a>
             )}
           </div>
