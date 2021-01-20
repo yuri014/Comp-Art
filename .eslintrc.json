@@ -60,6 +60,7 @@
         "aspects": ["invalidHref", "preferButton"]
       }
     ],
-    "object-curly-newline": "off"
+    "object-curly-newline": "off",
+    "no-plusplus": [2, { "allowForLoopAfterthoughts": true }]
   }
 }
