@@ -100,7 +100,7 @@ const ProfileContainer = styled.div`
       padding: 1rem;
     }
 
-    .profile-follows {
+    .mobile-profile-follows {
       width: 100%;
       margin-top: 2rem;
       font-size: 16px;
@@ -150,7 +150,7 @@ const ProfileContainer = styled.div`
       margin-top: -10.4rem;
       grid-template-columns: 35% 45% 35%;
       grid-template-areas:
-        'profile follows .'
+        'profile profile .'
         'bio bio links';
       align-items: baseline;
 
@@ -187,13 +187,22 @@ const ProfileContainer = styled.div`
         }
       }
 
+      .mobile-profile-follows {
+        display: none;
+      }
+
       .profile-follows {
-        grid-area: follows;
+        margin-top: 2rem;
         display: block;
         font-size: 18px;
-        margin-left: 2rem;
         & p:first-child {
           margin-bottom: 0.4rem;
+          font-size: 18px;
+        }
+
+        & p {
+          font-size: 18px;
+          color: ${props => props.theme.colors.lightContrast};
         }
       }
 

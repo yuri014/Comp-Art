@@ -76,14 +76,20 @@ const Profile: React.FC = () => {
               </p>
               <p>Publicações: 0</p>
             </div>
+            <div className="profile-follows">
+              <p>Seguindo: {getProfile.following}</p>
+              <p>Seguidores: {getProfile.followers}</p>
+            </div>
           </div>
-          <div className="profile-follows">
+          <div className="mobile-profile-follows">
             <p>Seguindo: {getProfile.following}</p>
             <p>Seguidores: {getProfile.followers}</p>
           </div>
-          <div className="bio">
-            <p>{getProfile.bio}</p>
-          </div>
+          {getProfile.bio && (
+            <div className="bio">
+              <p>{getProfile.bio}</p>
+            </div>
+          )}
           <div className="profile-links">
             {getProfile.links.soundcloud && (
               <a
