@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const REGISTER_ARTIST_PROFILE = gql`
+export const REGISTER_PROFILE = gql`
   mutation CreateProfile($profile: CreateProfileInput!) {
     createProfile(createProfileInput: $profile)
   }

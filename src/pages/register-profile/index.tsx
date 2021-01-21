@@ -27,7 +27,7 @@ import RegisterProfileContainer from '../../styles/pages/register-profile/styles
 import formTheme from '../../styles/themes/FormTheme';
 import PressStartButton from '../../components/PressStartButton';
 import { IProfileInput } from '../../interfaces/Profile';
-import { REGISTER_ARTIST_PROFILE } from '../../graphql/mutations/profile';
+import { REGISTER_PROFILE } from '../../graphql/mutations/profile';
 import ErrorMessage from '../../components/ErrorMessage';
 import withAuth from '../../hocs/withAuth';
 import TagsContainer from '../../styles';
@@ -79,7 +79,7 @@ const RegisterProfile: React.FC = () => {
     }
   };
 
-  const [createProfile] = useMutation(REGISTER_ARTIST_PROFILE, {
+  const [createProfile] = useMutation(REGISTER_PROFILE, {
     onCompleted: () => router.push('/home'),
     onError: ({ graphQLErrors }) =>
       setShowError(graphQLErrors[0].extensions.errors),
