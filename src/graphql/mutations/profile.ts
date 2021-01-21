@@ -1,9 +1,13 @@
 import { gql } from '@apollo/client';
 
-const REGISTER_ARTIST_PROFILE = gql`
+export const REGISTER_ARTIST_PROFILE = gql`
   mutation CreateProfile($profile: CreateProfileInput!) {
     createProfile(createProfileInput: $profile)
   }
 `;
 
-export default REGISTER_ARTIST_PROFILE;
+export const FOLLOW_PROFILE = gql`
+  mutation FollowProfile($username: String!) {
+    follow(username: $username)
+  }
+`;
