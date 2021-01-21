@@ -22,6 +22,10 @@ export default createGlobalStyle`
     text-decoration: none;
   }
 
+  figure {
+    position: relative;
+  }
+
   .soundcloud-icon {
     color: #FF5500;
   }
