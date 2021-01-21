@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import {
   FaBandcamp,
   FaDeviantart,
@@ -20,6 +20,7 @@ import { IProfile } from '../../interfaces/Profile';
 import ProfileContainer from '../../styles/pages/profile/style';
 import withAuth from '../../hocs/withAuth';
 import { AuthContext } from '../../context/auth';
+import { FOLLOW_PROFILE } from '../../graphql/mutations/profile';
 
 const Profile: React.FC = () => {
   const router = useRouter();
@@ -30,6 +31,11 @@ const Profile: React.FC = () => {
     variables: {
       username,
     },
+  });
+
+  const [follow] = useMutation(FOLLOW_PROFILE, {
+    onCompleted: response => console.log(response),
+    onError: err => console.log(err),
   });
 
   if (loading) return <p>loading</p>;
@@ -61,7 +67,16 @@ const Profile: React.FC = () => {
           {username === auth.user.username ? (
             <button type="button">Editar perfil</button>
           ) : (
-            <button type="button">Seguir</button>
+            <button
+              type="button"
+              onClick={() =>
+                follow({
+                  variables: { username },
+                })
+              }
+            >
+              Seguir
+            </button>
           )}
         </div>
         <section>
