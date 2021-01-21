@@ -21,11 +21,13 @@ const PostContainer = styled.section`
         margin-left: 2rem;
       }
     }
-    & img {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      object-fit: fill;
+    & figure {
+      width: 60px;
+      height: 60px;
+      & img {
+        border-radius: 50%;
+        object-fit: fill;
+      }
     }
   }
 
@@ -33,11 +35,14 @@ const PostContainer = styled.section`
     & .post-description {
       margin: 2rem 0 1rem 0;
     }
-    & img {
+
+    .post-image {
       width: 100%;
-      height: 360px;
-      border-radius: 4px;
-      object-fit: cover;
+      height: 432px;
+      & img {
+        border-radius: 4px;
+        object-fit: cover;
+      }
     }
 
     & .post-interaction {

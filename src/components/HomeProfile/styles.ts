@@ -17,11 +17,13 @@ const HomeProfileContainer = styled.aside`
   .profile {
     display: flex;
     align-items: center;
-    & img {
+    & figure {
       height: 48px;
       width: 48px;
-      border-radius: 50%;
-      object-fit: cover;
+      & img {
+        border-radius: 50%;
+        object-fit: cover;
+      }
     }
 
     & .profile-info {

@@ -33,12 +33,13 @@ const HomeProfile: React.FC = () => {
     <HomeProfileContainer>
       <ThemeProvider theme={formTheme}>
         <div className="profile">
-          <Image
-            src={getLoggedProfile.avatar || '/profile.jpg'}
-            alt="Imagem do perfil"
-            width={800}
-            height={800}
-          />
+          <figure>
+            <Image
+              src={getLoggedProfile.avatar || '/profile.jpg'}
+              alt="Imagem do perfil"
+              layout="fill"
+            />
+          </figure>
           <div className="profile-info">
             <h2>{getLoggedProfile.name}</h2>
             <div className="profile-connections">

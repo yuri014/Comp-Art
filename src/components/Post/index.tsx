@@ -13,12 +13,9 @@ const Post: React.FC = () => (
   <PostContainer>
     <div className="post-author">
       <div className="author-info">
-        <Image
-          src="/profile.jpg"
-          alt="Imagem do perfil"
-          width={500}
-          height={500}
-        />
+        <figure>
+          <Image src="/profile.jpg" alt="Imagem do perfil" layout="fill" />
+        </figure>
         <div>
           <h4>Nome do Perfil</h4>
           <p>01/01/2021</p>
@@ -32,7 +29,9 @@ const Post: React.FC = () => (
       <div className="post-description">
         <p>Lorem ipsum dolor sit amet.</p>
       </div>
-      <Image src="/profile.jpg" alt="Publicação" width={1200} height={1200} />
+      <figure className="post-image">
+        <Image src="/profile.jpg" alt="Publicação" layout="fill" />
+      </figure>
       <div className="post-interaction">
         <div>
           <FaRegHeart />
