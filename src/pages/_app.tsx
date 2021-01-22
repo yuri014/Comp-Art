@@ -18,14 +18,14 @@ Router.events.on('routeChangeError', () => NProgress.done());
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   const apolloClient = useApollo(pageProps.initialApolloState);
   return (
-    <ApolloProvider client={apolloClient}>
-      <AuthProvider>
+    <AuthProvider>
+      <ApolloProvider client={apolloClient}>
         <ThemeProvider theme={theme}>
           <Component {...pageProps} />
           <GlobalStyle />
         </ThemeProvider>
-      </AuthProvider>
-    </ApolloProvider>
+      </ApolloProvider>
+    </AuthProvider>
   );
 };
 
