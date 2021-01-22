@@ -11,14 +11,13 @@ import {
   FaTwitter,
 } from 'react-icons/fa';
 import { SiWattpad } from 'react-icons/si';
+import { GetServerSideProps } from 'next';
 
-import { GetStaticPaths, GetStaticProps } from 'next';
 import Header from '../../components/Header';
 import MobileFooter from '../../components/MobileFooter';
 import { GET_PROFILE } from '../../graphql/queries/profile';
 import { IProfile } from '../../interfaces/Profile';
 import ProfileContainer from '../../styles/pages/profile/style';
-import withAuth from '../../hocs/withAuth';
 import { AuthContext } from '../../context/auth';
 import { FOLLOW_PROFILE } from '../../graphql/mutations/profile';
 import { initializeApollo } from '../../graphql/apollo/config';
@@ -33,17 +32,12 @@ interface ProfileProps {
   >;
 }
 
-const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
-  if (!profile) return <p>loading</p>;
-
+const Profile: React.FC<ProfileProps> = ({ profile }) => {
   const auth = useContext(AuthContext);
 
   const { data, loading } = profile;
 
-  const [follow] = useMutation(FOLLOW_PROFILE, {
-    onCompleted: response => console.log(response),
-    onError: err => console.log(err),
-  });
+  const [follow] = useMutation(FOLLOW_PROFILE);
 
   if (loading) return <p>loading</p>;
 
@@ -69,14 +63,14 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
           />
         </div>
         <div className="edit-profile">
-          {username === auth.user.username ? (
+          {auth.user && getProfile.owner === auth.user.username ? (
             <button type="button">Editar perfil</button>
           ) : (
             <button
               type="button"
               onClick={() =>
                 follow({
-                  variables: { username },
+                  variables: { username: getProfile.owner },
                 })
               }
             >
@@ -191,26 +185,27 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => ({
-  paths: [{ params: { username: '' } }],
-  fallback: true,
-});
-
-export const getStaticProps: GetStaticProps = async context => {
+export const getServerSideProps: GetServerSideProps = async context => {
   const { username } = context.params;
+
   const client = initializeApollo();
 
   const profile = await client.query({
     query: GET_PROFILE,
     variables: { username },
+    errorPolicy: 'ignore',
   });
 
+  if (!profile.data.getProfile) {
+    return {
+      notFound: true,
+    };
+  }
   return {
     props: {
-      username,
       profile,
     },
   };
 };
 
-export default withAuth(Profile);
+export default Profile;
