@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { useMutation, useQuery } from '@apollo/client';
+import { QueryResult, useMutation } from '@apollo/client';
 import {
   FaBandcamp,
   FaDeviantart,
@@ -13,6 +12,7 @@ import {
 } from 'react-icons/fa';
 import { SiWattpad } from 'react-icons/si';
 
+import { GetStaticPaths, GetStaticProps } from 'next';
 import Header from '../../components/Header';
 import MobileFooter from '../../components/MobileFooter';
 import { GET_PROFILE } from '../../graphql/queries/profile';
@@ -21,17 +21,24 @@ import ProfileContainer from '../../styles/pages/profile/style';
 import withAuth from '../../hocs/withAuth';
 import { AuthContext } from '../../context/auth';
 import { FOLLOW_PROFILE } from '../../graphql/mutations/profile';
+import { initializeApollo } from '../../graphql/apollo/config';
 
-const Profile: React.FC = () => {
-  const router = useRouter();
-  const { username } = router.query;
+interface ProfileProps {
+  username: string;
+  profile: QueryResult<
+    { getProfile: IProfile },
+    {
+      username: string;
+    }
+  >;
+}
+
+const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
+  if (!profile) return <p>loading</p>;
+
   const auth = useContext(AuthContext);
 
-  const { data, loading, error } = useQuery(GET_PROFILE, {
-    variables: {
-      username,
-    },
-  });
+  const { data, loading } = profile;
 
   const [follow] = useMutation(FOLLOW_PROFILE, {
     onCompleted: response => console.log(response),
@@ -39,8 +46,6 @@ const Profile: React.FC = () => {
   });
 
   if (loading) return <p>loading</p>;
-
-  if (error) return <p>error</p>;
 
   const { getProfile }: { getProfile: IProfile } = data;
   return (
@@ -184,6 +189,28 @@ const Profile: React.FC = () => {
       <MobileFooter />
     </ProfileContainer>
   );
+};
+
+export const getStaticPaths: GetStaticPaths = async () => ({
+  paths: [{ params: { username: '' } }],
+  fallback: true,
+});
+
+export const getStaticProps: GetStaticProps = async context => {
+  const { username } = context.params;
+  const client = initializeApollo();
+
+  const profile = await client.query({
+    query: GET_PROFILE,
+    variables: { username },
+  });
+
+  return {
+    props: {
+      username,
+      profile,
+    },
+  };
 };
 
 export default withAuth(Profile);

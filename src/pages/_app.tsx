@@ -1,14 +1,7 @@
 import React from 'react';
 import { AppProps } from 'next/app';
 import { ThemeProvider } from 'styled-components';
-import {
-  ApolloClient,
-  ApolloLink,
-  ApolloProvider,
-  InMemoryCache,
-} from '@apollo/client';
-import { setContext } from 'apollo-link-context';
-import { createUploadLink } from 'apollo-upload-client';
+import { ApolloProvider } from '@apollo/client';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
@@ -16,56 +9,24 @@ import 'nprogress/nprogress.css';
 import GlobalStyle from '../styles/global';
 import theme from '../styles/themes/dark';
 import { AuthProvider } from '../context/auth';
-
-const httpLink = createUploadLink({
-  uri: `${process.env.NEXT_PUBLIC_API_HOST}/graphql`,
-});
-
-const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('jwtToken');
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : '',
-    },
-  };
-});
-
-const client = new ApolloClient({
-  cache: new InMemoryCache({
-    typePolicies: {
-      Query: {
-        fields: {
-          feed: {
-            keyArgs: false,
-            merge(existing, incoming, { args: { offset = 0 } }) {
-              const merged = existing ? existing.slice(0) : [];
-              for (let i = 0; i < incoming.length; ++i) {
-                merged[offset + i] = incoming[i];
-              }
-              return merged;
-            },
-          },
-        },
-      },
-    },
-  }),
-  link: (authLink.concat(httpLink as never) as unknown) as ApolloLink,
-});
+import { useApollo } from '../graphql/apollo/config';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
-const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => (
-  <ApolloProvider client={client}>
-    <AuthProvider>
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-        <GlobalStyle />
-      </ThemeProvider>
-    </AuthProvider>
-  </ApolloProvider>
-);
+const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
+  const apolloClient = useApollo(pageProps.initialApolloState);
+  return (
+    <ApolloProvider client={apolloClient}>
+      <AuthProvider>
+        <ThemeProvider theme={theme}>
+          <Component {...pageProps} />
+          <GlobalStyle />
+        </ThemeProvider>
+      </AuthProvider>
+    </ApolloProvider>
+  );
+};
 
 export default MyApp;
