@@ -31,53 +31,17 @@ import { REGISTER_PROFILE } from '../../graphql/mutations/profile';
 import ErrorMessage from '../../components/ErrorMessage';
 import withAuth from '../../hocs/withAuth';
 import TagsContainer from '../../styles';
-
-interface ImagePreview {
-  preview: string | ArrayBuffer;
-  file: string | File;
-}
-interface ImageState {
-  profile: ImagePreview;
-  cover: ImagePreview;
-}
+import useImagePreview from '../../hooks/imagePreview';
 
 const RegisterProfile: React.FC = () => {
   const router = useRouter();
   const [showError, setShowError] = useState('');
   const [tags, setTags] = useState([]);
   const [tagInput, setTagInput] = useState('');
-  const [imagePreview, setImagePreview] = useState<ImageState>({
-    profile: {
-      preview: '',
-      file: '',
-    },
-    cover: { preview: '', file: '' },
-  });
 
-  const handleImage = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    profile: boolean,
-  ) => {
-    const reader = new FileReader();
+  const [profileImage, setProfileImage] = useImagePreview();
 
-    const file = e.target.files[0];
-    reader.onloadend = () => {
-      if (profile) {
-        setImagePreview({
-          ...imagePreview,
-          profile: { preview: reader.result, file },
-        });
-      } else {
-        setImagePreview({
-          ...imagePreview,
-          cover: { preview: reader.result, file },
-        });
-      }
-    };
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  };
+  const [coverImage, setCoverImage] = useImagePreview();
 
   const [createProfile] = useMutation(REGISTER_PROFILE, {
     onCompleted: () => router.push('/home'),
@@ -95,8 +59,8 @@ const RegisterProfile: React.FC = () => {
       variables: {
         profile: {
           ...data,
-          avatar: imagePreview.profile.file,
-          coverImage: imagePreview.cover.file,
+          avatar: profileImage.file,
+          coverImage: coverImage.file,
           hashtags: tags,
         },
       },
@@ -114,11 +78,8 @@ const RegisterProfile: React.FC = () => {
       <ThemeProvider theme={formTheme}>
         <form onSubmit={handleSubmit(onSubmit)} className="forms">
           <div className="profile-image-cover">
-            {imagePreview.cover.preview ? (
-              <img
-                src={imagePreview.cover.preview as string}
-                alt="Capa do perfil"
-              />
+            {coverImage.preview ? (
+              <img src={coverImage.preview as string} alt="Capa do perfil" />
             ) : (
               <div className="holder" />
             )}
@@ -130,15 +91,15 @@ const RegisterProfile: React.FC = () => {
                   name="coverImage"
                   id="uploadCoverButton"
                   type="file"
-                  onChange={e => handleImage(e, false)}
+                  onChange={e => setCoverImage(e)}
                 />
               </IconButton>
             </label>
           </div>
           <div className="profile-image-upload">
-            {imagePreview.profile.preview ? (
+            {profileImage.preview ? (
               <img
-                src={imagePreview.profile.preview as string}
+                src={profileImage.preview as string}
                 alt="Imagem do perfil"
               />
             ) : (
@@ -158,7 +119,7 @@ const RegisterProfile: React.FC = () => {
                   name="avatar"
                   id="uploadButton"
                   type="file"
-                  onChange={e => handleImage(e, true)}
+                  onChange={e => setProfileImage(e)}
                 />
               </IconButton>
             </label>
