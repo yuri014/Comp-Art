@@ -10,6 +10,7 @@ const HeaderContainer = styled.header`
   justify-content: space-between;
   padding: 1rem 4rem;
   font-size: 18px;
+  z-index: 2;
 
   & a:hover {
     text-decoration: none;
