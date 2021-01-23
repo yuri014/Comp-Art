@@ -7,7 +7,7 @@ import {
   FaRegShareSquare,
 } from 'react-icons/fa';
 
-import PostContainer from './styles';
+import { PostContainer } from './styles';
 
 const Post: React.FC = () => (
   <PostContainer>
