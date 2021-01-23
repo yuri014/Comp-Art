@@ -80,6 +80,11 @@ export const CreatePostContainer = styled.div`
     border-radius: 4px;
     display: flex;
     flex-direction: column;
+    & h2 {
+      font-size: 24px;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
   }
 
   & svg {
@@ -90,8 +95,9 @@ export const CreatePostContainer = styled.div`
     margin-top: 1rem;
     width: 100%;
     height: 100%;
-    max-height: 420px;
+    max-height: 300px;
     border-radius: 2px;
+    cursor: pointer;
     border: 1px dashed ${props => props.theme.colors.lightContrast};
     & input {
       display: none;
@@ -100,6 +106,8 @@ export const CreatePostContainer = styled.div`
     & img {
       width: 100%;
       height: 100%;
+      max-height: 298px;
+      border-radius: 2px;
     }
 
     & .drop-image {
@@ -111,6 +119,27 @@ export const CreatePostContainer = styled.div`
       justify-content: center;
       & p {
         font-size: 14px;
+      }
+    }
+  }
+
+  & .publish {
+    margin-top: 2rem;
+    & button {
+      width: 16rem;
+      & svg {
+        color: ${props => props.theme.colors.namesakeText};
+      }
+    }
+  }
+
+  @media (min-width: 1100px) {
+    width: 50%;
+
+    & .image-label {
+      max-height: 432px;
+      & img {
+        max-height: 430px;
       }
     }
   }

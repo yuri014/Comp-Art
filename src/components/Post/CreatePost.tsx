@@ -37,11 +37,15 @@ const CreatePost: React.FC = () => {
             id="description"
             InputProps={{
               startAdornment: (
-                <InputAdornment position="start">
+                <InputAdornment
+                  position="start"
+                  style={{ alignSelf: 'stretch', marginTop: '9px' }}
+                >
                   <FiFileText />
                 </InputAdornment>
               ),
             }}
+            multiline
           />
           <label className="image-label" htmlFor="uploadImage">
             <input
