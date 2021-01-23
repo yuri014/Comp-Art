@@ -9,6 +9,7 @@ const PostContainer = styled.section`
   padding: 2rem;
   font-size: 18px;
   font-family: ${props => props.theme.fonts.primary};
+  box-shadow: 0 0 6px #000;
 
   .post-author {
     display: flex;
