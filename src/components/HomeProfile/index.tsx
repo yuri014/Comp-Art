@@ -83,7 +83,7 @@ const HomeProfile: React.FC = () => {
               <p>Fandom</p>
             </a>
           </Link>
-          <Link href="/profile">
+          <Link href="/new-post">
             <a>
               <FaPlusCircle className="post-icon" />
               <p>Publicar</p>
