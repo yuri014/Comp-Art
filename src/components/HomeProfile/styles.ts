@@ -108,6 +108,7 @@ const HomeProfileContainer = styled.aside`
   }
 
   @media (max-width: 1224px) {
+    grid-template-rows: 20% 10% 40% 40%;
     .profile-reputation {
       display: flex;
       flex-direction: column;
@@ -134,6 +135,10 @@ const HomeProfileContainer = styled.aside`
           }
         }
       }
+    }
+
+    .profile-hashtags {
+      display: none;
     }
   }
 `;
