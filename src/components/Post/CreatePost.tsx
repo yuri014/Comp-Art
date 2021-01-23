@@ -5,6 +5,7 @@ import { FiFileText } from 'react-icons/fi';
 import { CreatePostContainer } from './styles';
 import formTheme from '../../styles/themes/FormTheme';
 import useImagePreview from '../../hooks/imagePreview';
+import PressStartButtonContainer from '../PressStartButton/styles';
 
 const CreatePost: React.FC = () => {
   const [imagePreview, setImagePreview] = useImagePreview();
@@ -16,7 +17,7 @@ const CreatePost: React.FC = () => {
     const img = new Image();
     img.src = imagePreview.preview as string;
     img.onload = () => {
-      if (img.naturalHeight - img.naturalWidth < 0) {
+      if (img.naturalWidth / 2 > img.naturalHeight) {
         setImageDimenstion('contain');
       } else {
         setImageDimenstion('cover');
@@ -27,11 +28,13 @@ const CreatePost: React.FC = () => {
   return (
     <CreatePostContainer>
       <form>
+        <h2>Crie seu post!</h2>
         <ThemeProvider theme={formTheme}>
           <TextField
             fullWidth
             name="description"
             label="Description"
+            id="description"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -61,6 +64,11 @@ const CreatePost: React.FC = () => {
               </div>
             )}
           </label>
+          <div className="publish">
+            <PressStartButtonContainer type="submit" role="button">
+              <p>Publicar</p>
+            </PressStartButtonContainer>
+          </div>
         </ThemeProvider>
       </form>
     </CreatePostContainer>
