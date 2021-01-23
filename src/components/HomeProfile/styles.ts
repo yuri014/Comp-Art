@@ -18,8 +18,10 @@ const HomeProfileContainer = styled.aside`
     display: flex;
     align-items: center;
     & figure {
-      height: 48px;
-      width: 48px;
+      height: 60px;
+      width: 60px;
+      box-shadow: 0 0 7px #000;
+      border-radius: 50%;
       & img {
         border-radius: 50%;
         object-fit: cover;
