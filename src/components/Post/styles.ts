@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const PostContainer = styled.section`
+export const PostContainer = styled.section`
   display: flex;
   flex-direction: column;
   color: ${props => props.theme.colors.lightContrast};
@@ -69,4 +69,49 @@ const PostContainer = styled.section`
   }
 `;
 
-export default PostContainer;
+export const CreatePostContainer = styled.div`
+  padding-top: 8rem;
+  color: ${props => props.theme.colors.lightContrast};
+  width: 90%;
+  margin: 0 auto;
+  & form {
+    background: ${props => props.theme.colors.mainGradient};
+    padding: 2rem;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  & svg {
+    color: ${props => props.theme.colors.lightContrast};
+  }
+
+  & .image-label {
+    margin-top: 1rem;
+    width: 100%;
+    height: 100%;
+    max-height: 420px;
+    border-radius: 2px;
+    border: 1px dashed ${props => props.theme.colors.lightContrast};
+    & input {
+      display: none;
+    }
+
+    & img {
+      width: 100%;
+      height: 100%;
+    }
+
+    & .drop-image {
+      width: 100%;
+      height: 100%;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      & p {
+        font-size: 14px;
+      }
+    }
+  }
+`;
