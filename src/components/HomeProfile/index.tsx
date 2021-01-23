@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { ThemeProvider } from '@material-ui/core';
 import {
@@ -19,11 +19,9 @@ import { GET_LOGGED_PROFILE } from '../../graphql/queries/profile';
 import { IProfile } from '../../interfaces/Profile';
 import ErrorRequest from '../ErrorRequest';
 import TagsContainer from '../../styles';
-import { AuthContext } from '../../context/auth';
 
 const HomeProfile: React.FC = () => {
   const { data, loading, error } = useQuery(GET_LOGGED_PROFILE);
-  const { user } = useContext(AuthContext);
 
   if (loading) return <p>loading</p>;
 
@@ -85,7 +83,7 @@ const HomeProfile: React.FC = () => {
               <p>Fandom</p>
             </a>
           </Link>
-          {user.isArtist && (
+          {getLoggedProfile.isArtist && (
             <Link href="/new-post">
               <a>
                 <FaPlusCircle className="post-icon" />
