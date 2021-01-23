@@ -16,6 +16,7 @@ export interface IProfile {
   following: number;
   hashtags: Array<number>;
   owner: string;
+  isArtist: boolean;
   links: {
     soundcloud: string;
     twitter: string;
