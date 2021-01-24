@@ -1,17 +1,43 @@
 import React, { useEffect, useState } from 'react';
 import { InputAdornment, TextField, ThemeProvider } from '@material-ui/core';
 import { FiFileText } from 'react-icons/fi';
+import { useForm } from 'react-hook-form';
+import { useMutation } from '@apollo/client';
+import { useRouter } from 'next/router';
 
 import { CreatePostContainer } from './styles';
 import formTheme from '../../styles/themes/FormTheme';
 import useImagePreview from '../../hooks/imagePreview';
 import PressStartButtonContainer from '../PressStartButton/styles';
+import { CREATE_POST } from '../../graphql/mutations/post';
+
+interface IPostInput {
+  description: string;
+}
 
 const CreatePost: React.FC = () => {
+  const router = useRouter();
   const [imagePreview, setImagePreview] = useImagePreview();
   const [imageDimension, setImageDimenstion] = useState<'cover' | 'contain'>(
     'cover',
   );
+
+  const { register, errors, handleSubmit } = useForm<IPostInput>();
+
+  const [createPost] = useMutation(CREATE_POST, {
+    onCompleted: () => router.push('/home'),
+  });
+
+  const onSubmit = ({ description }: IPostInput) => {
+    createPost({
+      variables: {
+        post: {
+          description,
+          body: imagePreview.file,
+        },
+      },
+    });
+  };
 
   useEffect(() => {
     const img = new Image();
@@ -27,7 +53,7 @@ const CreatePost: React.FC = () => {
 
   return (
     <CreatePostContainer>
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <h2>Crie seu post!</h2>
         <ThemeProvider theme={formTheme}>
           <TextField
@@ -35,6 +61,12 @@ const CreatePost: React.FC = () => {
             name="description"
             label="Description"
             id="description"
+            error={!!errors.description}
+            helperText="Máximo de 255 caracteres"
+            inputRef={register({
+              maxLength: 255,
+              required: false,
+            })}
             InputProps={{
               startAdornment: (
                 <InputAdornment
@@ -50,10 +82,10 @@ const CreatePost: React.FC = () => {
           <label className="image-label" htmlFor="uploadImage">
             <input
               accept="image/*"
-              name="avatar"
               id="uploadImage"
               type="file"
               onChange={e => setImagePreview(e)}
+              required
             />
 
             {imagePreview.preview ? (
