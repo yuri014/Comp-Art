@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const MobileFooterContainer = styled.footer`
-  position: absolute;
+  position: fixed;
   bottom: 0;
   font-size: 24px;
   width: 100%;
