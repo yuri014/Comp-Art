@@ -10,6 +10,7 @@ import formTheme from '../../styles/themes/FormTheme';
 import useImagePreview from '../../hooks/imagePreview';
 import PressStartButtonContainer from '../PressStartButton/styles';
 import { CREATE_POST } from '../../graphql/mutations/post';
+import ErrorMessage from '../ErrorMessage';
 
 interface IPostInput {
   description: string;
@@ -17,6 +18,7 @@ interface IPostInput {
 
 const CreatePost: React.FC = () => {
   const router = useRouter();
+  const [showError, setShowError] = useState('');
   const [imagePreview, setImagePreview] = useImagePreview();
   const [imageDimension, setImageDimenstion] = useState<'cover' | 'contain'>(
     'cover',
@@ -26,6 +28,8 @@ const CreatePost: React.FC = () => {
 
   const [createPost] = useMutation(CREATE_POST, {
     onCompleted: () => router.push('/home'),
+    onError: ({ graphQLErrors }) =>
+      setShowError(graphQLErrors[0].extensions.errors),
   });
 
   const onSubmit = ({ description }: IPostInput) => {
@@ -100,6 +104,11 @@ const CreatePost: React.FC = () => {
               </div>
             )}
           </label>
+          {showError && (
+            <div style={{ marginTop: '2rem' }}>
+              <ErrorMessage>{showError}</ErrorMessage>
+            </div>
+          )}
           <div className="publish">
             <PressStartButtonContainer type="submit" role="button">
               <p>Publicar</p>

@@ -70,7 +70,7 @@ export const PostContainer = styled.section`
 `;
 
 export const CreatePostContainer = styled.div`
-  padding-top: 8rem;
+  padding: 8rem 0;
   color: ${props => props.theme.colors.lightContrast};
   width: 90%;
   margin: 0 auto;
