@@ -5,8 +5,9 @@ import ErrorMessageContainer from './styles';
 
 const ErrorMessage: React.FC = ({ children }) => (
   <ErrorMessageContainer>
-    <FaExclamationCircle />
-    &nbsp;&nbsp;&nbsp;&nbsp;{children}
+    <FaExclamationCircle className="danger-icon" />
+    &nbsp;&nbsp;
+    <p>{children}</p>
   </ErrorMessageContainer>
 );
 
