@@ -18,6 +18,8 @@ const ErrorMessageContainer = styled.div`
 
   @media (min-width: 1100px) {
     font-size: 18px;
+    padding: 0.6rem 1rem;
+    justify-content: flex-start;
   }
 `;
 
