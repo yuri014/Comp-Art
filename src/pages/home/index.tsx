@@ -54,17 +54,17 @@ const Home: React.FC = () => {
       <div className="home-desktop-content">
         <HomeProfile />
         <div className="timeline">
-          {data.getPosts.map((_, index) => {
+          {data.getPosts.map((post, index) => {
             if (data.getPosts.length === index + 1) {
               return (
                 <div ref={lastPostRef}>
-                  <Post />
+                  <Post post={post} />
                 </div>
               );
             }
             return (
               <div>
-                <Post />
+                <Post post={post} />
               </div>
             );
           })}
