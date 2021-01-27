@@ -28,3 +28,7 @@ export interface IProfile {
     customLink: string;
   };
 }
+
+export interface ILoggedProfile {
+  getLoggedProfile: IProfile;
+}

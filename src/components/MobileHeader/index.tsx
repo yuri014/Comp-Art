@@ -6,17 +6,19 @@ import { useQuery } from '@apollo/client';
 
 import MobileHeaderContainer from './styles';
 import { GET_LOGGED_PROFILE } from '../../graphql/queries/profile';
-import { IProfile } from '../../interfaces/Profile';
+import { ILoggedProfile } from '../../interfaces/Profile';
 import ErrorRequest from '../ErrorRequest';
 
 const MobileHeader: React.FC = () => {
-  const { data, loading, error } = useQuery(GET_LOGGED_PROFILE);
+  const {
+    data: { getLoggedProfile },
+    loading,
+    error,
+  } = useQuery<ILoggedProfile>(GET_LOGGED_PROFILE);
 
   if (loading) return <p>loading</p>;
 
   if (error) return <ErrorRequest />;
-
-  const { getLoggedProfile }: { getLoggedProfile: IProfile } = data;
 
   return (
     <MobileHeaderContainer>
