@@ -9,7 +9,7 @@ import { CreatePostContainer } from './styles';
 import formTheme from '../../styles/themes/FormTheme';
 import useImagePreview from '../../hooks/imagePreview';
 import PressStartButtonContainer from '../PressStartButton/styles';
-import { CREATE_POST } from '../../graphql/mutations/post';
+import CREATE_POST from '../../graphql/mutations/post';
 import ErrorMessage from '../ErrorMessage';
 
 interface IPostInput {
