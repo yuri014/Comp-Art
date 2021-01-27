@@ -38,7 +38,7 @@ function createApolloClient() {
       typePolicies: {
         Query: {
           fields: {
-            feed: {
+            getPosts: {
               keyArgs: false,
               merge(existing, incoming, { args: { offset = 0 } }) {
                 const merged = existing ? existing.slice(0) : [];
