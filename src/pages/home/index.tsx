@@ -11,24 +11,30 @@ import Post from '../../components/Post';
 import QuestsProgress from '../../components/QuestsProgress';
 import withAuth from '../../hocs/withAuth';
 import GET_POSTS from '../../graphql/queries/post';
+import { IPost } from '../../interfaces/Post';
 
 const Home: React.FC = () => {
   const [hasMore, setHasMore] = useState(false);
   const observer = useRef(null);
-  const { data, loading, error, fetchMore } = useQuery(GET_POSTS, {
+  const {
+    data: { getPosts },
+    loading,
+    error,
+    fetchMore,
+  } = useQuery<IPost>(GET_POSTS, {
     variables: { offset: 0 },
   });
 
   const lastPostRef = useCallback(
     node => {
-      if (!data.getPosts) return;
+      if (!getPosts) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver(entries => {
         if (entries[0].isIntersecting && !hasMore) {
           fetchMore({
-            variables: { offset: data.getPosts.length },
-          }).then(fetchMoreResult => {
-            if (fetchMoreResult.data.getPosts.length < 3) {
+            variables: { offset: getPosts.length },
+          }).then(({ data }) => {
+            if (data.getPosts.length < 3) {
               setHasMore(true);
             }
           });
@@ -37,7 +43,7 @@ const Home: React.FC = () => {
 
       if (node) observer.current.observe(node);
     },
-    [data],
+    [getPosts],
   );
 
   if (loading) return <p>loading</p>;
@@ -53,8 +59,8 @@ const Home: React.FC = () => {
       <div className="home-desktop-content">
         <HomeProfile />
         <div className="timeline">
-          {data.getPosts.map((_, index) => {
-            if (data.getPosts.length === index + 1) {
+          {getPosts.map((_, index) => {
+            if (getPosts.length === index + 1) {
               return (
                 <div ref={lastPostRef}>
                   <Post />
