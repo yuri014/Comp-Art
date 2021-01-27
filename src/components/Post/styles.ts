@@ -6,10 +6,11 @@ export const PostContainer = styled.section`
   color: ${props => props.theme.colors.lightContrast};
   background: ${props => props.theme.colors.secondaryBackgroundColor};
   border-radius: 4px;
-  padding: 2rem;
+  padding: 2rem 3rem;
   font-size: 18px;
   font-family: ${props => props.theme.fonts.primary};
   box-shadow: 0 0 6px #000;
+  margin-bottom: 4rem;
 
   .post-author {
     display: flex;
@@ -20,6 +21,15 @@ export const PostContainer = styled.section`
       align-items: center;
       & div {
         margin-left: 2rem;
+        & h4 {
+          font-size: 20px;
+          margin-bottom: 0.2rem;
+        }
+        & p {
+          margin-top: 0.2rem;
+          color: ${props => props.theme.colors.lightText};
+          font-size: 16px;
+        }
       }
     }
     & figure {
@@ -38,6 +48,7 @@ export const PostContainer = styled.section`
     }
 
     .post-image {
+      margin: 2rem 0;
       width: 100%;
       height: 432px;
       & img {
