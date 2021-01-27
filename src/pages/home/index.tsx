@@ -16,25 +16,20 @@ import { IPost } from '../../interfaces/Post';
 const Home: React.FC = () => {
   const [hasMore, setHasMore] = useState(false);
   const observer = useRef(null);
-  const {
-    data: { getPosts },
-    loading,
-    error,
-    fetchMore,
-  } = useQuery<IPost>(GET_POSTS, {
+  const { data, loading, error, fetchMore } = useQuery<IPost>(GET_POSTS, {
     variables: { offset: 0 },
   });
 
   const lastPostRef = useCallback(
     node => {
-      if (!getPosts) return;
+      if (!data.getPosts) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver(entries => {
         if (entries[0].isIntersecting && !hasMore) {
           fetchMore({
-            variables: { offset: getPosts.length },
-          }).then(({ data }) => {
-            if (data.getPosts.length < 3) {
+            variables: { offset: data.getPosts.length },
+          }).then(bah => {
+            if (bah.data.getPosts.length < 3) {
               setHasMore(true);
             }
           });
@@ -43,7 +38,7 @@ const Home: React.FC = () => {
 
       if (node) observer.current.observe(node);
     },
-    [getPosts],
+    [data],
   );
 
   if (loading) return <p>loading</p>;
@@ -59,8 +54,8 @@ const Home: React.FC = () => {
       <div className="home-desktop-content">
         <HomeProfile />
         <div className="timeline">
-          {getPosts.map((_, index) => {
-            if (getPosts.length === index + 1) {
+          {data.getPosts.map((_, index) => {
+            if (data.getPosts.length === index + 1) {
               return (
                 <div ref={lastPostRef}>
                   <Post />

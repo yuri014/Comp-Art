@@ -10,15 +10,13 @@ import { ILoggedProfile } from '../../interfaces/Profile';
 import ErrorRequest from '../ErrorRequest';
 
 const MobileHeader: React.FC = () => {
-  const {
-    data: { getLoggedProfile },
-    loading,
-    error,
-  } = useQuery<ILoggedProfile>(GET_LOGGED_PROFILE);
+  const { data, loading, error } = useQuery<ILoggedProfile>(GET_LOGGED_PROFILE);
 
   if (loading) return <p>loading</p>;
 
   if (error) return <ErrorRequest />;
+
+  const { getLoggedProfile } = data;
 
   return (
     <MobileHeaderContainer>
