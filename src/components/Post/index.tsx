@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { Badge, ThemeProvider } from '@material-ui/core';
 import {
   FaCog,
   FaRegComment,
@@ -9,6 +10,7 @@ import {
 
 import { PostContainer } from './styles';
 import { PostProps } from '../../interfaces/Post';
+import mainTheme from '../../styles/themes/MainTheme';
 
 const Post: React.FC<PostProps> = ({ post }) => (
   <PostContainer>
@@ -33,20 +35,28 @@ const Post: React.FC<PostProps> = ({ post }) => (
       <figure className="post-image">
         <Image src={post.body} alt="Publicação" layout="fill" />
       </figure>
-      <div className="post-interaction">
-        <div>
-          <FaRegHeart />
-          <p>Favoritar</p>
+      <ThemeProvider theme={mainTheme}>
+        <div className="post-interaction">
+          <div>
+            <Badge badgeContent={1} color="primary">
+              <FaRegHeart />
+            </Badge>
+            <p>Favoritar</p>
+          </div>
+          <div>
+            <Badge badgeContent={4} color="primary">
+              <FaRegComment />
+            </Badge>
+            <p>Comentar</p>
+          </div>
+          <div>
+            <Badge badgeContent={post.sharedCount} color="primary">
+              <FaRegShareSquare />
+            </Badge>
+            <p>Compartilhar</p>
+          </div>
         </div>
-        <div>
-          <FaRegComment />
-          <p>Comentar</p>
-        </div>
-        <div>
-          <FaRegShareSquare />
-          <p>Compartilhar</p>
-        </div>
-      </div>
+      </ThemeProvider>
     </div>
   </PostContainer>
 );
