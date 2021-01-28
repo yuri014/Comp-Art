@@ -38,13 +38,13 @@ const Post: React.FC<PostProps> = ({ post }) => (
       <ThemeProvider theme={mainTheme}>
         <div className="post-interaction">
           <div>
-            <Badge badgeContent={1} color="primary">
+            <Badge badgeContent={post.likesCount} color="primary">
               <FaRegHeart />
             </Badge>
             <p>Favoritar</p>
           </div>
           <div>
-            <Badge badgeContent={4} color="primary">
+            <Badge badgeContent={post.commentsCount} color="primary">
               <FaRegComment />
             </Badge>
             <p>Comentar</p>

@@ -8,7 +8,9 @@ interface Post {
       createdAt: string;
     },
   ];
+  likesCount: number;
   sharedCount: number;
+  commentsCount: number;
   createdAt: string;
   artist: string;
 }

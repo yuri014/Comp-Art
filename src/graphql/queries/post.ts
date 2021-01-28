@@ -5,12 +5,9 @@ const GET_POSTS = gql`
     getPosts(offset: $offset) {
       description
       body
-      likes {
-        username
-        avatar
-        createdAt
-      }
+      likesCount
       sharedCount
+      commentsCount
       createdAt
       artist
     }
