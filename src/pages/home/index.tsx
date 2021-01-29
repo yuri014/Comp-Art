@@ -12,6 +12,7 @@ import QuestsProgress from '../../components/QuestsProgress';
 import withAuth from '../../hocs/withAuth';
 import GET_POSTS from '../../graphql/queries/post';
 import { IPost } from '../../interfaces/Post';
+import LoadingPost from '../../components/Post/LoadingPost';
 
 const Home: React.FC = () => {
   const [hasMore, setHasMore] = useState(false);
@@ -41,8 +42,6 @@ const Home: React.FC = () => {
     [data],
   );
 
-  if (loading) return <p>loading</p>;
-
   return (
     <HomeContainer>
       <Head>
@@ -52,8 +51,8 @@ const Home: React.FC = () => {
       <div className="home-desktop-content">
         <HomeProfile />
         <div className="timeline">
-          {error || !data.getPosts[0] ? (
-            <p>Não há nenhum post.</p>
+          {loading || error ? (
+            <LoadingPost loading={loading} />
           ) : (
             data.getPosts.map((post, index) => {
               if (data.getPosts.length === index + 1) {
