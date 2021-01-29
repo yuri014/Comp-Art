@@ -21,14 +21,21 @@ export const PostContainer = styled.section`
       align-items: center;
       & div {
         margin-left: 2rem;
+
         & h4 {
-          font-size: 20px;
-          margin-bottom: 0.2rem;
+          font-size: 24px;
+          letter-spacing: 1px;
+          margin-bottom: 0.4 rem;
+          color: ${props => props.theme.colors.lightContrast};
         }
-        & p {
-          margin-top: 0.2rem;
-          color: ${props => props.theme.colors.lightText};
-          font-size: 16px;
+        & span {
+          display: flex;
+          & p {
+            margin-top: 0.4rem;
+            color: ${props => props.theme.colors.lightText};
+            font-size: 14px;
+            letter-spacing: 1px;
+          }
         }
       }
     }

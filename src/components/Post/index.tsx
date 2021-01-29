@@ -20,15 +20,18 @@ const Post: React.FC<PostProps> = ({ post }) => (
         <figure>
           <Image src="/profile.jpg" alt="Imagem do perfil" layout="fill" />
         </figure>
-        <div>
-          <Link href={`/profile/${post.artist.username}`}>
-            <a>{post.artist.name}</a>
-          </Link>
-          <span>
-            <p>{new Date(post.createdAt).toLocaleDateString('en-GB')}</p>
-            <p>@{post.artist.username}</p>
-          </span>
-        </div>
+        <Link href={`/profile/${post.artist.username}`}>
+          <a>
+            <div>
+              <h4>{post.artist.name}</h4>
+              <span>
+                <p>{new Date(post.createdAt).toLocaleDateString('en-GB')}</p>
+                <p>&nbsp;●&nbsp;</p>
+                <p>@{post.artist.username}</p>
+              </span>
+            </div>
+          </a>
+        </Link>
       </div>
       <div className="post-config">
         <FaCog />
