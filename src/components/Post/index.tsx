@@ -8,6 +8,7 @@ import {
   FaRegShareSquare,
 } from 'react-icons/fa';
 
+import Link from 'next/link';
 import { PostContainer } from './styles';
 import { PostProps } from '../../interfaces/Post';
 import mainTheme from '../../styles/themes/MainTheme';
@@ -20,8 +21,13 @@ const Post: React.FC<PostProps> = ({ post }) => (
           <Image src="/profile.jpg" alt="Imagem do perfil" layout="fill" />
         </figure>
         <div>
-          <h4>{post.artist}</h4>
-          <p>{new Date(post.createdAt).toLocaleDateString('en-GB')}</p>
+          <Link href={`/profile/${post.artist.username}`}>
+            <a>{post.artist.name}</a>
+          </Link>
+          <span>
+            <p>{new Date(post.createdAt).toLocaleDateString('en-GB')}</p>
+            <p>@{post.artist.username}</p>
+          </span>
         </div>
       </div>
       <div className="post-config">
