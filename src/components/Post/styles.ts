@@ -163,3 +163,55 @@ export const CreatePostContainer = styled.div`
     }
   }
 `;
+
+export const EmptyPostContainer = styled.div`
+  color: ${props => props.theme.colors.lightContrast};
+  background: ${props => props.theme.colors.secondaryBackgroundColor};
+  padding: 2rem 1rem;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 4px;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  & p {
+    margin-top: 2rem;
+  }
+
+  & button {
+    margin-top: 2rem;
+    background-color: ${props => props.theme.colors.mainColor};
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    color: ${props => props.theme.colors.secondaryBackgroundColor};
+    font-family: ${props => props.theme.fonts.display};
+    cursor: pointer;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    & span {
+      display: flex;
+      transform: rotate(90deg);
+    }
+    transition: all 0.4s ease;
+
+    &:hover {
+      & span {
+        animation: rotateCompass 0.4s ease-in-out infinite alternate;
+        @keyframes rotateCompass {
+          from {
+            transform: rotate(360deg);
+          }
+          to {
+            transform: rotate(0);
+          }
+        }
+      }
+    }
+  }
+`;
