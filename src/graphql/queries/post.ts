@@ -9,7 +9,10 @@ const GET_POSTS = gql`
       sharedCount
       commentsCount
       createdAt
-      artist
+      artist {
+        name
+        username
+      }
     }
   }
 `;

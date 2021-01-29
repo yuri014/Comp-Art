@@ -12,7 +12,10 @@ interface Post {
   sharedCount: number;
   commentsCount: number;
   createdAt: string;
-  artist: string;
+  artist: {
+    username: string;
+    name: string;
+  };
 }
 
 export interface PostProps {
