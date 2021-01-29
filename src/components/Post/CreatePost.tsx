@@ -29,7 +29,9 @@ const CreatePost: React.FC = () => {
   const [createPost] = useMutation(CREATE_POST, {
     onCompleted: () => router.push('/home'),
     onError: ({ graphQLErrors }) =>
-      setShowError(graphQLErrors[0].extensions.errors),
+      setShowError(
+        graphQLErrors[0].extensions.errors || graphQLErrors[0].message,
+      ),
   });
 
   const onSubmit = ({ description }: IPostInput) => {
