@@ -43,8 +43,6 @@ const Home: React.FC = () => {
 
   if (loading) return <p>loading</p>;
 
-  if (error) return <p>error</p>;
-
   return (
     <HomeContainer>
       <Head>
@@ -54,21 +52,24 @@ const Home: React.FC = () => {
       <div className="home-desktop-content">
         <HomeProfile />
         <div className="timeline">
-          {!data.getPosts[0] && <p>Não há nenhum post.</p>}
-          {data.getPosts.map((post, index) => {
-            if (data.getPosts.length === index + 1) {
+          {error || !data.getPosts[0] ? (
+            <p>Não há nenhum post.</p>
+          ) : (
+            data.getPosts.map((post, index) => {
+              if (data.getPosts.length === index + 1) {
+                return (
+                  <div ref={lastPostRef}>
+                    <Post post={post} />
+                  </div>
+                );
+              }
               return (
-                <div ref={lastPostRef}>
+                <div>
                   <Post post={post} />
                 </div>
               );
-            }
-            return (
-              <div>
-                <Post post={post} />
-              </div>
-            );
-          })}
+            })
+          )}
         </div>
         <div className="quests">
           <QuestsProgress />
