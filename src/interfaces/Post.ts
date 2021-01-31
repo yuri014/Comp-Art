@@ -1,4 +1,4 @@
-interface Post {
+export interface IPost {
   description: string;
   body: string;
   likes: [
@@ -19,9 +19,5 @@ interface Post {
 }
 
 export interface PostProps {
-  post: Post;
-}
-
-export interface IPost {
-  getPosts: Array<Post>;
+  post: IPost;
 }
