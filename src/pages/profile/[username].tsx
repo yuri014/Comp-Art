@@ -35,11 +35,9 @@ interface ProfileProps {
 const Profile: React.FC<ProfileProps> = ({ profile }) => {
   const auth = useContext(AuthContext);
 
-  const { data, loading } = profile;
+  const { data } = profile;
 
   const [follow] = useMutation(FOLLOW_PROFILE);
-
-  if (loading) return <p>loading</p>;
 
   const { getProfile }: { getProfile: IProfile } = data;
 
@@ -88,6 +86,7 @@ const Profile: React.FC<ProfileProps> = ({ profile }) => {
               Seguir
             </button>
           )}
+          {!hasAuth && <button type="button">Seguir</button>}
         </div>
         <section>
           <div className="profile">
