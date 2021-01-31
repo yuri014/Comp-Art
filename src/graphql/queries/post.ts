@@ -18,7 +18,7 @@ export const GET_POSTS = gql`
 `;
 
 export const GET_PROFILE_POSTS = gql`
-  query GetPosts($offset: Int!, $username: String!) {
+  query GetProfilePosts($offset: Int!, $username: String!) {
     getProfilePosts(offset: $offset, username: $username) {
       description
       body
