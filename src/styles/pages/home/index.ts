@@ -12,7 +12,16 @@ const HomeContainer = styled.main`
 
   @media (max-width: 1100px) {
     .home-desktop-content {
-      display: none;
+      padding: 8rem 2rem;
+      .quests,
+      .profile {
+        display: none;
+      }
+      & .timeline {
+        display: block;
+        width: 100%;
+        margin-left: 0;
+      }
     }
   }
 `;

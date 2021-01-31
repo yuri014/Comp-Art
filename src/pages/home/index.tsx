@@ -49,7 +49,9 @@ const Home: React.FC = () => {
       </Head>
       <Header />
       <div className="home-desktop-content">
-        <HomeProfile />
+        <div className="profile">
+          <HomeProfile />
+        </div>
         <div className="timeline">
           {loading || error ? (
             <LoadingPost loading={loading} />
