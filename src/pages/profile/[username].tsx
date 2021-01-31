@@ -98,7 +98,12 @@ const Profile: React.FC<ProfileProps> = ({ profile }) => {
               <p>
                 Level <span className="level">{getProfile.level}</span>
               </p>
-              <p>Publicações: 0</p>
+              {getProfile.sharedPostCount !== null && (
+                <p>Publicações: {getProfile.sharedPostCount}</p>
+              )}
+              {getProfile.postCount !== null && (
+                <p>Publicações: {getProfile.postCount}</p>
+              )}
             </div>
             <div className="profile-follows">
               <p>Seguindo: {getProfile.following}</p>
