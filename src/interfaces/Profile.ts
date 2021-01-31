@@ -27,6 +27,8 @@ export interface IProfile {
     deviantart: string;
     customLink: string;
   };
+  sharedPostCount?: number;
+  postCount?: number;
 }
 
 export interface ILoggedProfile {
