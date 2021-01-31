@@ -52,6 +52,8 @@ export const GET_PROFILE = gql`
         bandcamp
         customLink
       }
+      postCount
+      sharedPostCount
     }
   }
 `;
