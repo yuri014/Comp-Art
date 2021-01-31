@@ -64,10 +64,6 @@ const HeaderContainer = styled.header`
     }
   }
 
-  span {
-    cursor: pointer;
-  }
-
   @media (max-width: 1100px) {
     display: none;
   }
