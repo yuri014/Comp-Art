@@ -17,10 +17,13 @@ import Header from '../../components/Header';
 import MobileFooter from '../../components/MobileFooter';
 import { GET_PROFILE } from '../../graphql/queries/profile';
 import { IProfile } from '../../interfaces/Profile';
+import { IPost } from '../../interfaces/Post';
 import ProfileContainer from '../../styles/pages/profile/style';
 import { AuthContext } from '../../context/auth';
 import { FOLLOW_PROFILE } from '../../graphql/mutations/profile';
 import { initializeApollo } from '../../graphql/apollo/config';
+import { GET_PROFILE_POSTS } from '../../graphql/queries/post';
+import Post from '../../components/Post';
 
 interface ProfileProps {
   username: string;
@@ -30,12 +33,22 @@ interface ProfileProps {
       username: string;
     }
   >;
+  profilePosts: QueryResult<
+    { getProfilePosts: Array<IPost> },
+    {
+      username: string;
+    }
+  >;
 }
 
-const Profile: React.FC<ProfileProps> = ({ profile }) => {
+const Profile: React.FC<ProfileProps> = ({ profile, profilePosts }) => {
   const auth = useContext(AuthContext);
 
   const { data } = profile;
+
+  const {
+    data: { getProfilePosts },
+  } = profilePosts;
 
   const [follow] = useMutation(FOLLOW_PROFILE);
 
@@ -195,6 +208,11 @@ const Profile: React.FC<ProfileProps> = ({ profile }) => {
           </div>
         </section>
       </main>
+      <section className="profile-posts">
+        {getProfilePosts.map(post => (
+          <Post post={post} />
+        ))}
+      </section>
       <MobileFooter />
     </ProfileContainer>
   );
@@ -211,6 +229,11 @@ export const getServerSideProps: GetServerSideProps = async context => {
     errorPolicy: 'ignore',
   });
 
+  const profilePosts = await client.query({
+    query: GET_PROFILE_POSTS,
+    variables: { offset: 0, username },
+  });
+
   if (!profile.data.getProfile) {
     return {
       notFound: true,
@@ -219,6 +242,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   return {
     props: {
       profile,
+      profilePosts,
     },
   };
 };
