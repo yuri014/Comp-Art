@@ -27,6 +27,10 @@ export const PostContainer = styled.section`
           letter-spacing: 1px;
           margin-bottom: 0.4 rem;
           color: ${props => props.theme.colors.lightContrast};
+          white-space: nowrap;
+          max-width: 440px;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
         & span {
           display: flex;
@@ -35,6 +39,10 @@ export const PostContainer = styled.section`
             color: ${props => props.theme.colors.lightText};
             font-size: 14px;
             letter-spacing: 1px;
+            white-space: nowrap;
+            max-width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
         }
       }
@@ -89,6 +97,22 @@ export const PostContainer = styled.section`
 
   @media (max-width: 1100px) {
     padding: 2rem;
+
+    .post-author {
+      & .author-info {
+        & div {
+          & h4 {
+            max-width: 160px;
+          }
+          & span {
+            display: flex;
+            & p {
+              max-width: 80px;
+            }
+          }
+        }
+      }
+    }
 
     .post {
       .post-image {
