@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Head from 'next/head';
 import { QueryResult, useMutation } from '@apollo/client';
 import {
@@ -42,6 +42,10 @@ const Profile: React.FC<ProfileProps> = ({ profile }) => {
   if (loading) return <p>loading</p>;
 
   const { getProfile }: { getProfile: IProfile } = data;
+
+  const [isFollowing, setIsFollowing] = useState(false);
+  const hasAuth = auth.user;
+
   return (
     <ProfileContainer>
       <Head>
@@ -63,16 +67,23 @@ const Profile: React.FC<ProfileProps> = ({ profile }) => {
           />
         </div>
         <div className="edit-profile">
-          {auth.user && getProfile.owner === auth.user.username ? (
+          {hasAuth && getProfile.owner === auth.user.username && (
             <button type="button">Editar perfil</button>
-          ) : (
+          )}
+          {hasAuth && getProfile.owner !== auth.user.username && isFollowing && (
+            <button type="button" onClick={() => setIsFollowing(false)}>
+              Deixar de Seguir
+            </button>
+          )}
+          {hasAuth && getProfile.owner !== auth.user.username && !isFollowing && (
             <button
               type="button"
-              onClick={() =>
+              onClick={() => {
                 follow({
                   variables: { username: getProfile.owner },
-                })
-              }
+                });
+                setIsFollowing(true);
+              }}
             >
               Seguir
             </button>
