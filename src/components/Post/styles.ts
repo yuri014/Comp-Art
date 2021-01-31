@@ -86,6 +86,26 @@ export const PostContainer = styled.section`
       }
     }
   }
+
+  @media (max-width: 1100px) {
+    padding: 2rem;
+
+    .post {
+      .post-image {
+        height: 232px;
+      }
+
+      & .post-interaction {
+        padding: 0;
+        & div {
+          padding: 1rem 2rem;
+          & p {
+            display: none;
+          }
+        }
+      }
+    }
+  }
 `;
 
 export const CreatePostContainer = styled.div`
