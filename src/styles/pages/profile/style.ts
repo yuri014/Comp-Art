@@ -124,6 +124,11 @@ const ProfileContainer = styled.div`
     }
   }
 
+  .profile-posts {
+    padding: 1rem;
+    border-top: 1px solid ${props => props.theme.colors.namesakeText};
+  }
+
   @media (min-width: 1100px) {
     .edit-profile {
       width: 100%;
@@ -226,6 +231,12 @@ const ProfileContainer = styled.div`
           }
         }
       }
+    }
+
+    .profile-posts {
+      width: 100%;
+      margin-top: 2rem;
+      padding: 2rem 25%;
     }
   }
 `;
