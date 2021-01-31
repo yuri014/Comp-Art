@@ -1,38 +1,58 @@
-import React from 'react';
-import Link from 'next/link';
+import React, { useState } from 'react';
 import { FaBell, FaHome, FaScroll, FaSearch } from 'react-icons/fa';
 import { useRouter } from 'next/dist/client/router';
+import {
+  BottomNavigation,
+  BottomNavigationAction,
+  ThemeProvider,
+} from '@material-ui/core';
 
 import MobileFooterContainer from './styles';
+import mainTheme from '../../styles/themes/MainTheme';
 
 const MobileFooter: React.FC = () => {
   const routes = useRouter();
 
-  const activeLink = (link: string) =>
-    routes.pathname === link && 'active-footer-link';
+  const [value, setValue] = useState(routes.pathname);
+
+  const handleChange = (
+    event: React.ChangeEvent<HTMLElement>,
+    newValue: string,
+  ) => {
+    setValue(newValue);
+  };
 
   return (
     <MobileFooterContainer>
-      <Link href="/home">
-        <a className={activeLink('/home') || ''}>
-          <FaHome />
-        </a>
-      </Link>
-      <Link href="/search">
-        <a className={activeLink('/search') || ''}>
-          <FaSearch />
-        </a>
-      </Link>
-      <Link href="/notifications">
-        <a className={activeLink('/notifications') || ''}>
-          <FaBell />
-        </a>
-      </Link>
-      <Link href="/quests">
-        <a className={activeLink('/quests') || ''}>
-          <FaScroll />
-        </a>
-      </Link>
+      <ThemeProvider theme={mainTheme}>
+        <BottomNavigation value={value} onChange={handleChange}>
+          <BottomNavigationAction
+            label="Home"
+            value="/home"
+            icon={<FaHome />}
+            onClick={() => routes.push('/home')}
+          />
+
+          <BottomNavigationAction
+            label="Search"
+            value="/search"
+            icon={<FaSearch />}
+            onClick={() => routes.push('/search')}
+          />
+          <BottomNavigationAction
+            label="Notifications"
+            value="/notifications"
+            icon={<FaBell />}
+            onClick={() => routes.push('/notifications')}
+          />
+          <BottomNavigationAction
+            label="Quest"
+            value="/quest"
+            icon={<FaScroll />}
+            onClick={() => routes.push('/quest')}
+          />
+        </BottomNavigation>
+      </ThemeProvider>
     </MobileFooterContainer>
   );
 };
