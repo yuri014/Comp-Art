@@ -58,8 +58,10 @@ const Profile: React.FC<ProfileProps> = ({ profile, profilePosts }) => {
 
   const { getProfile }: { getProfile: IProfile } = data;
 
-  const [isFollowing, setIsFollowing] = useState(true);
+  const [isFollowing, setIsFollowing] = useState(false);
   const hasAuth = auth.user;
+
+  const [followersCount, setFollowersCount] = useState(getProfile.followers);
 
   return (
     <ProfileContainer>
@@ -93,6 +95,7 @@ const Profile: React.FC<ProfileProps> = ({ profile, profilePosts }) => {
                   variables: { username: getProfile.owner },
                 });
                 setIsFollowing(false);
+                setFollowersCount(followersCount - 1);
               }}
             >
               Deixar de Seguir
@@ -106,6 +109,7 @@ const Profile: React.FC<ProfileProps> = ({ profile, profilePosts }) => {
                   variables: { username: getProfile.owner },
                 });
                 setIsFollowing(true);
+                setFollowersCount(followersCount + 1);
               }}
             >
               Seguir
@@ -132,12 +136,12 @@ const Profile: React.FC<ProfileProps> = ({ profile, profilePosts }) => {
             </div>
             <div className="profile-follows">
               <p>Seguindo: {getProfile.following}</p>
-              <p>Seguidores: {getProfile.followers}</p>
+              <p>Seguidores: {followersCount}</p>
             </div>
           </div>
           <div className="mobile-profile-follows">
             <p>Seguindo: {getProfile.following}</p>
-            <p>Seguidores: {getProfile.followers}</p>
+            <p>Seguidores: {followersCount}</p>
           </div>
           {getProfile.bio && (
             <div className="bio">
