@@ -12,6 +12,20 @@ const mainTheme = createMuiTheme({
     fontFamily: ['-apple-system', 'BlinkMacSystemFont', '"Jura"'].join(','),
     fontSize: 22,
   },
+  overrides: {
+    MuiBottomNavigation: {
+      root: {
+        backgroundColor: '#0f0f28',
+      },
+    },
+    MuiBottomNavigationAction: {
+      root: {
+        '&.MuiBottomNavigationAction-iconOnly': {
+          color: '#393B73',
+        },
+      },
+    },
+  },
 });
 
 export default mainTheme;
