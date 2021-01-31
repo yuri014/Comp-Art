@@ -20,7 +20,10 @@ import { IProfile } from '../../interfaces/Profile';
 import { IPost } from '../../interfaces/Post';
 import ProfileContainer from '../../styles/pages/profile/style';
 import { AuthContext } from '../../context/auth';
-import { FOLLOW_PROFILE } from '../../graphql/mutations/profile';
+import {
+  FOLLOW_PROFILE,
+  UNFOLLOW_PROFILE,
+} from '../../graphql/mutations/profile';
 import { initializeApollo } from '../../graphql/apollo/config';
 import { GET_PROFILE_POSTS } from '../../graphql/queries/post';
 import Post from '../../components/Post';
@@ -51,10 +54,11 @@ const Profile: React.FC<ProfileProps> = ({ profile, profilePosts }) => {
   } = profilePosts;
 
   const [follow] = useMutation(FOLLOW_PROFILE);
+  const [unfollow] = useMutation(UNFOLLOW_PROFILE);
 
   const { getProfile }: { getProfile: IProfile } = data;
 
-  const [isFollowing, setIsFollowing] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(true);
   const hasAuth = auth.user;
 
   return (
@@ -82,7 +86,15 @@ const Profile: React.FC<ProfileProps> = ({ profile, profilePosts }) => {
             <button type="button">Editar perfil</button>
           )}
           {hasAuth && getProfile.owner !== auth.user.username && isFollowing && (
-            <button type="button" onClick={() => setIsFollowing(false)}>
+            <button
+              type="button"
+              onClick={() => {
+                unfollow({
+                  variables: { username: getProfile.owner },
+                });
+                setIsFollowing(false);
+              }}
+            >
               Deixar de Seguir
             </button>
           )}
