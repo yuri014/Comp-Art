@@ -10,14 +10,18 @@ import MobileFooter from '../../components/MobileFooter';
 import Post from '../../components/Post';
 import QuestsProgress from '../../components/QuestsProgress';
 import withAuth from '../../hocs/withAuth';
-import GET_POSTS from '../../graphql/queries/post';
+import { GET_POSTS } from '../../graphql/queries/post';
 import { IPost } from '../../interfaces/Post';
 import LoadingPost from '../../components/Post/LoadingPost';
+
+interface IGetPosts {
+  getPosts: Array<IPost>;
+}
 
 const Home: React.FC = () => {
   const [hasMore, setHasMore] = useState(false);
   const observer = useRef(null);
-  const { data, loading, error, fetchMore } = useQuery<IPost>(GET_POSTS, {
+  const { data, loading, error, fetchMore } = useQuery<IGetPosts>(GET_POSTS, {
     variables: { offset: 0 },
   });
 
