@@ -99,7 +99,7 @@ const HomeProfile: React.FC = () => {
           </h3>
           <TagsContainer>
             {getLoggedProfile.hashtags.map(tag => (
-              <span>{tag}</span>
+              <span key={tag}>{tag}</span>
             ))}
           </TagsContainer>
         </div>

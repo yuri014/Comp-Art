@@ -226,7 +226,7 @@ const Profile: React.FC<ProfileProps> = ({ profile, profilePosts }) => {
       </main>
       <section className="profile-posts">
         {getProfilePosts.map(post => (
-          <Post post={post} />
+          <Post key={`${post.artist}_${post.createdAt}`} post={post} />
         ))}
       </section>
       <MobileFooter />

@@ -63,13 +63,16 @@ const Home: React.FC = () => {
             data.getPosts.map((post, index) => {
               if (data.getPosts.length === index + 1) {
                 return (
-                  <div ref={lastPostRef}>
+                  <div
+                    key={`${post.artist}_${post.createdAt}`}
+                    ref={lastPostRef}
+                  >
                     <Post post={post} />
                   </div>
                 );
               }
               return (
-                <div>
+                <div key={`${post.artist}_${post.createdAt}`}>
                   <Post post={post} />
                 </div>
               );
