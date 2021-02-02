@@ -57,3 +57,9 @@ export const GET_PROFILE = gql`
     }
   }
 `;
+
+export const GET_IS_FOLLOWING = gql`
+  query GetIsFollowing($username: String!) {
+    getIsFollowing(username: $username)
+  }
+`;
