@@ -1,45 +1,59 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { FaCog } from 'react-icons/fa';
 import Image from 'next/image';
-import { useQuery } from '@apollo/client';
+import Skeleton from '@material-ui/lab/Skeleton';
+import { SwipeableDrawer, ThemeProvider } from '@material-ui/core';
 
 import MobileHeaderContainer from './styles';
-import { GET_LOGGED_PROFILE } from '../../graphql/queries/profile';
 import { ILoggedProfile } from '../../interfaces/Profile';
-import ErrorRequest from '../ErrorRequest';
+import mainTheme from '../../styles/themes/MainTheme';
+import HomeProfile from '../HomeProfile';
 
-const MobileHeader: React.FC = () => {
-  const { data, loading, error } = useQuery<ILoggedProfile>(GET_LOGGED_PROFILE);
+interface MobileHeaderProps extends ILoggedProfile {
+  loading: boolean;
+}
 
-  if (loading) return <p>loading</p>;
-
-  if (error) return <ErrorRequest />;
-
-  const { getLoggedProfile } = data;
+const MobileHeader: React.FC<MobileHeaderProps> = ({
+  getLoggedProfile,
+  loading,
+}) => {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   return (
     <MobileHeaderContainer>
-      <Link href="/profile">
-        <a>
-          <Image
-            src={getLoggedProfile.avatar || '/profile.jpg'}
-            alt="Imagem do perfil"
-            width={500}
-            height={500}
-          />
-        </a>
-      </Link>
-      <Link href="/home">
-        <a>
-          <h1>COMP-ART</h1>
-        </a>
-      </Link>
-      <Link href="/config">
-        <a>
-          <FaCog />
-        </a>
-      </Link>
+      <ThemeProvider theme={mainTheme}>
+        {loading ? (
+          <Skeleton animation="wave" variant="circle" width={24} height={24} />
+        ) : (
+          <div className="profile">
+            <Image
+              src={getLoggedProfile.avatar || '/profile.jpg'}
+              alt="Imagem do perfil"
+              width={500}
+              height={500}
+              onClick={() => setIsDrawerOpen(true)}
+            />
+          </div>
+        )}
+        <Link href="/home">
+          <a>
+            <h1>COMP-ART</h1>
+          </a>
+        </Link>
+        <Link href="/config">
+          <a>
+            <FaCog />
+          </a>
+        </Link>
+        <SwipeableDrawer
+          onClose={() => setIsDrawerOpen(false)}
+          onOpen={() => setIsDrawerOpen(true)}
+          open={isDrawerOpen}
+        >
+          <HomeProfile getLoggedProfile={getLoggedProfile} />
+        </SwipeableDrawer>
+      </ThemeProvider>
     </MobileHeaderContainer>
   );
 };
