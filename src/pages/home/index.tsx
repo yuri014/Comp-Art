@@ -13,6 +13,9 @@ import withAuth from '../../hocs/withAuth';
 import { GET_POSTS } from '../../graphql/queries/post';
 import { IPost } from '../../interfaces/Post';
 import LoadingPost from '../../components/Post/LoadingPost';
+import ErrorRequest from '../../components/ErrorRequest';
+import { ILoggedProfile } from '../../interfaces/Profile';
+import { GET_LOGGED_PROFILE } from '../../graphql/queries/profile';
 
 interface IGetPosts {
   getPosts: Array<IPost>;
@@ -46,6 +49,18 @@ const Home: React.FC = () => {
     [data],
   );
 
+  const {
+    data: profileData,
+    loading: loadingProfile,
+    error: errorProfile,
+  } = useQuery<ILoggedProfile>(GET_LOGGED_PROFILE);
+
+  if (loadingProfile) return <p>loading</p>;
+
+  if (errorProfile) return <ErrorRequest />;
+
+  const { getLoggedProfile } = profileData;
+
   return (
     <HomeContainer>
       <Head>
@@ -54,7 +69,7 @@ const Home: React.FC = () => {
       <Header />
       <div className="home-desktop-content">
         <div className="profile">
-          <HomeProfile />
+          <HomeProfile getLoggedProfile={getLoggedProfile} />
         </div>
         <div className="timeline">
           {loading || error ? (
@@ -83,7 +98,10 @@ const Home: React.FC = () => {
           <QuestsProgress />
         </div>
       </div>
-      <MobileHeader />
+      <MobileHeader
+        loading={loadingProfile}
+        getLoggedProfile={getLoggedProfile}
+      />
       <MobileFooter />
     </HomeContainer>
   );
