@@ -3,15 +3,22 @@ import styled from 'styled-components';
 const size = '24px';
 
 const MobileHeaderContainer = styled.header`
-  position: absolute;
-  top: 0;
-  font-size: ${size};
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: ${props => props.theme.colors.secondaryBackgroundColor};
-  padding: 1rem 2rem;
+  nav {
+    position: fixed;
+    top: 0;
+    font-size: ${size};
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: ${props => props.theme.colors.secondaryBackgroundColor};
+    padding: 1rem 2rem;
+    transition: all 0.4s ease-in-out;
+
+    &.hide {
+      top: -6rem;
+    }
+  }
 
   h1 {
     font: 400 16px ${props => props.theme.fonts.display}, sans-serif;
