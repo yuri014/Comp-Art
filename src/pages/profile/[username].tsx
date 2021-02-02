@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import Head from 'next/head';
-import { QueryResult, useMutation } from '@apollo/client';
+import { QueryResult, useMutation, useQuery } from '@apollo/client';
 import {
   FaBandcamp,
   FaDeviantart,
@@ -12,10 +12,11 @@ import {
 } from 'react-icons/fa';
 import { SiWattpad } from 'react-icons/si';
 import { GetServerSideProps } from 'next';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 import Header from '../../components/Header';
 import MobileFooter from '../../components/MobileFooter';
-import { GET_PROFILE } from '../../graphql/queries/profile';
+import { GET_IS_FOLLOWING, GET_PROFILE } from '../../graphql/queries/profile';
 import { IProfile } from '../../interfaces/Profile';
 import { IPost } from '../../interfaces/Post';
 import ProfileContainer from '../../styles/pages/profile/style';
@@ -44,8 +45,19 @@ interface ProfileProps {
   >;
 }
 
-const Profile: React.FC<ProfileProps> = ({ profile, profilePosts }) => {
+const Profile: React.FC<ProfileProps> = ({
+  username,
+  profile,
+  profilePosts,
+}) => {
   const auth = useContext(AuthContext);
+  const [isFollowing, setIsFollowing] = useState(false);
+  const { data: getIsFollowing, loading } = useQuery(GET_IS_FOLLOWING, {
+    variables: {
+      username,
+    },
+    onCompleted: () => setIsFollowing(getIsFollowing.getIsFollowing),
+  });
 
   const { data } = profile;
 
@@ -58,10 +70,12 @@ const Profile: React.FC<ProfileProps> = ({ profile, profilePosts }) => {
 
   const { getProfile }: { getProfile: IProfile } = data;
 
-  const [isFollowing, setIsFollowing] = useState(false);
   const hasAuth = auth.user;
 
   const [followersCount, setFollowersCount] = useState(getProfile.followers);
+
+  const checkFollowButton = () =>
+    hasAuth && getProfile.owner !== auth.user.username;
 
   return (
     <ProfileContainer>
@@ -87,7 +101,10 @@ const Profile: React.FC<ProfileProps> = ({ profile, profilePosts }) => {
           {hasAuth && getProfile.owner === auth.user.username && (
             <button type="button">Editar perfil</button>
           )}
-          {hasAuth && getProfile.owner !== auth.user.username && isFollowing && (
+
+          {loading && <Skeleton width={60} height={40} />}
+
+          {checkFollowButton() && isFollowing && !loading && (
             <button
               type="button"
               onClick={() => {
@@ -101,7 +118,7 @@ const Profile: React.FC<ProfileProps> = ({ profile, profilePosts }) => {
               Deixar de Seguir
             </button>
           )}
-          {hasAuth && getProfile.owner !== auth.user.username && !isFollowing && (
+          {checkFollowButton() && !isFollowing && !loading && (
             <button
               type="button"
               onClick={() => {
@@ -257,6 +274,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   }
   return {
     props: {
+      username,
       profile,
       profilePosts,
     },
