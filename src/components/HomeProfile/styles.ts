@@ -106,7 +106,75 @@ const HomeProfileContainer = styled.aside`
   }
 
   @media (max-width: 1100px) {
-    display: none;
+    grid-template-rows: 12% 8% 40% 40% !important;
+    position: unset;
+    left: unset;
+    background: ${props => props.theme.colors.mainGradient};
+    width: 88vw;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 4rem;
+    padding-right: 2rem;
+    border-radius: 0;
+
+    .profile {
+      & figure {
+        height: 48px;
+        width: 48px;
+        box-shadow: 0 0 7px ${props => props.theme.colors.backgroundColor};
+      }
+
+      & .profile-info {
+        margin-left: 1rem;
+        font-size: 11px;
+        & .profile-connections {
+          margin-top: 2px;
+          display: flex;
+          flex-direction: row !important;
+          align-items: center;
+          justify-content: space-between;
+          font-size: 12px;
+          & p {
+            &:first-child {
+              padding-right: 0.4rem !important;
+              margin-right: 0.4rem !important;
+              border-right: 1px solid
+                ${props => props.theme.colors.lightContrast};
+            }
+          }
+        }
+      }
+    }
+
+    .profile-reputation {
+      font-size: 16px;
+      display: grid;
+      grid-template-columns: 40% 60%;
+      font-weight: 600;
+      & .level {
+        display: flex;
+        align-items: center;
+        & span {
+          background-color: ${props => props.theme.colors.mainColor};
+          padding: 0 1rem;
+          border-radius: 2px;
+          color: ${props => props.theme.colors.backgroundColor};
+          margin-left: 1rem;
+        }
+      }
+      & .xp {
+        display: grid;
+        grid-template-columns: 15% 70%;
+        align-items: center;
+      }
+    }
+
+    .profile-hashtags {
+      display: block !important;
+      margin-top: 2rem;
+      padding-bottom: 0;
+      font-size: 12px;
+    }
   }
 
   @media (max-width: 1224px) {
