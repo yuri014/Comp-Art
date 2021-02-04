@@ -28,6 +28,16 @@ const mainTheme = createMuiTheme({
         },
       },
     },
+    MuiCard: {
+      root: {
+        background: '#08162f',
+      },
+    },
+    MuiLinearProgress: {
+      root: {
+        borderRadius: 30,
+      },
+    },
   },
 });
 

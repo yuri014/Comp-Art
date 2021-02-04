@@ -55,6 +55,13 @@ const formTheme = createMuiTheme({
         color: '#cbcaeb',
       },
     },
+    MuiLinearProgress: {
+      root: {
+        '&.MuiLinearProgress-colorPrimary': {
+          background: '#cbcaeb',
+        },
+      },
+    },
   },
 });
 
