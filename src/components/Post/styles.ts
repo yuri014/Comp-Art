@@ -259,3 +259,100 @@ export const EmptyPostContainer = styled.div`
     }
   }
 `;
+
+export const AudioPostContainer = styled.section`
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  .audio-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: ${props => props.theme.colors.namesakeText};
+    height: 160px;
+    border-radius: 4px;
+    box-shadow: 0 4px 4px #000;
+    .image {
+      height: 100%;
+      width: 55%;
+      img {
+        border-radius: 0 4px 4px 0;
+        height: 100%;
+        width: 100%;
+      }
+
+      .interactions {
+        opacity: 0;
+        pointer-events: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        height: 100%;
+        margin-left: 6rem;
+        margin-top: -160px;
+        cursor: pointer;
+        transition: all 0.4s ease-in-out;
+        span {
+          font-size: 20px;
+          filter: drop-shadow(1px 1px #000);
+        }
+      }
+
+      &:hover,
+      &:active,
+      &:focus {
+        outline: 1px solid ${props => props.theme.colors.mainColor};
+        .interactions {
+          opacity: 1;
+          pointer-events: all;
+        }
+      }
+    }
+
+    .audio-card-info {
+      padding: 2rem;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .MuiLinearProgress-colorPrimary {
+        background: ${props => props.theme.colors.backgroundColor};
+      }
+
+      .audio-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 6rem;
+        button {
+          margin-left: -10px;
+        }
+      }
+
+      .duration {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.2rem;
+      }
+    }
+  }
+
+  span {
+    color: ${props => props.theme.colors.mainColor};
+  }
+
+  p {
+    color: ${props => props.theme.colors.lightContrast};
+    &.music-name {
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    &.artist-name {
+      font-weight: 400;
+      font-size: 12px;
+    }
+  }
+`;
