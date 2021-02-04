@@ -20,7 +20,7 @@ const Custom404Container = styled.main`
     text-shadow: 4px 4px 2px ${props => props.theme.colors.titleColor};
   }
 
-  @media (min-width: 1100px) {
+  @media (min-width: 992px) {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;

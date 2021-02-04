@@ -64,7 +64,7 @@ const HeaderContainer = styled.header`
     }
   }
 
-  @media (max-width: 1100px) {
+  @media (max-width: 992px) {
     display: none;
   }
 `;

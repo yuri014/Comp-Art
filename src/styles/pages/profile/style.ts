@@ -129,7 +129,7 @@ const ProfileContainer = styled.div`
     border-top: 1px solid ${props => props.theme.colors.namesakeText};
   }
 
-  @media (min-width: 1100px) {
+  @media (min-width: 992px) {
     .edit-profile {
       width: 100%;
       display: flex;

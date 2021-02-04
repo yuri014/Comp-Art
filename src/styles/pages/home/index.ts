@@ -10,7 +10,7 @@ const HomeContainer = styled.main`
     margin-left: 25%;
   }
 
-  @media (max-width: 1100px) {
+  @media (max-width: 992px) {
     .home-desktop-content {
       padding: 8rem 2rem;
       .quests,

@@ -40,7 +40,7 @@ const formTheme = createMuiTheme({
     MuiTextField: {
       root: {
         marginBottom: '1rem',
-        '@media (min-width: 1100px)': {
+        '@media (min-width: 992px)': {
           marginBottom: '2rem',
         },
       },

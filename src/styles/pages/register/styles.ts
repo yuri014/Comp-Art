@@ -54,7 +54,7 @@ const SingUpContainer = styled.div`
     cursor: pointer;
   }
 
-  @media (min-width: 1100px) {
+  @media (min-width: 992px) {
     .form-content {
       display: grid;
       grid-template-columns: 1fr 2fr;

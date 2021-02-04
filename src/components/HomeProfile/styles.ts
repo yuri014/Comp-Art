@@ -105,7 +105,7 @@ const HomeProfileContainer = styled.aside`
     }
   }
 
-  @media (max-width: 1100px) {
+  @media (max-width: 992px) {
     grid-template-rows: 12% 8% 40% 40% !important;
     position: unset;
     left: unset;

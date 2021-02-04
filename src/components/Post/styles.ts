@@ -95,7 +95,7 @@ export const PostContainer = styled.section`
     }
   }
 
-  @media (max-width: 1100px) {
+  @media (max-width: 992px) {
     padding: 2rem;
 
     .post-author {
@@ -196,7 +196,7 @@ export const CreatePostContainer = styled.div`
     }
   }
 
-  @media (min-width: 1100px) {
+  @media (min-width: 992px) {
     width: 50%;
 
     & .image-label {

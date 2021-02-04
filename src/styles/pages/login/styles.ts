@@ -51,7 +51,7 @@ const SingUpContainer = styled.div`
     justify-content: space-evenly;
   }
 
-  @media (min-width: 1100px) {
+  @media (min-width: 992px) {
     .login-content {
       display: grid;
       grid-template-columns: 1fr 2fr;
