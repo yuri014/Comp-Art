@@ -10,27 +10,35 @@ import PressStartButton from '../components/PressStartButton';
 const Landing: React.FC = () => {
   const [modalShow, setModalShow] = useState(false);
   return (
-    <LandingContainer>
-      <Head>
-        <title>Comp-Art</title>
-      </Head>
-      <div className="start">
-        <div className="start-title">
-          Comp-
-          <br />
-          Art
+    <>
+      <LandingContainer>
+        <Head>
+          <title>Comp-Art</title>
+        </Head>
+
+        <div className="start">
+          <div>
+            <h1>
+              Comp-
+              <br />
+              Art
+            </h1>
+          </div>
+          <div className="start-icon">
+            <StartIcon />
+          </div>
         </div>
-        <div className="start-icon">
-          <StartIcon />
+
+        <div className="start-button">
+          <h2>
+            Rede social que visa superar os metódos conhecidos de divulgação
+            artística.
+          </h2>
+          <PressStartButton changeState={() => setModalShow(true)}>
+            Start
+          </PressStartButton>
         </div>
-        <div className="start-text">
-          Rede social que visa superar os metódos conhecidos de divulgação
-          artística.
-        </div>
-        <PressStartButton changeState={() => setModalShow(true)}>
-          Start
-        </PressStartButton>
-      </div>
+      </LandingContainer>
       <Modal
         title="A princesa está em outro castelo!"
         show={modalShow}
@@ -51,7 +59,7 @@ const Landing: React.FC = () => {
           </Link>
         </div>
       </Modal>
-    </LandingContainer>
+    </>
   );
 };
 
