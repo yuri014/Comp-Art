@@ -3,15 +3,15 @@ import styled from 'styled-components';
 const HomeContainer = styled.main`
   .home-desktop-content {
     padding: 8rem 4rem;
-  }
-
-  .timeline {
-    width: 50%;
-    margin-left: 25%;
+    display: grid;
+    grid-template-columns: 20% 55% 20%;
+    justify-content: space-between;
+    margin: auto;
   }
 
   @media (max-width: 992px) {
     .home-desktop-content {
+      display: block;
       padding: 8rem 2rem;
       .quests,
       .profile {

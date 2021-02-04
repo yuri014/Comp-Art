@@ -2,11 +2,9 @@ import styled from 'styled-components';
 
 const HomeProfileContainer = styled.aside`
   position: fixed;
-  left: 0;
-  width: 24%;
+
   height: 80vh;
   padding: 2rem 0;
-  padding-left: 4rem;
   border-radius: 4px;
   display: grid;
   grid-template-rows: 15% 5% 40% 40%;
