@@ -335,6 +335,7 @@ export const AudioPostContainer = styled.section`
         display: flex;
         justify-content: space-between;
         margin-bottom: 0.2rem;
+        font-size: 12px;
       }
     }
   }
