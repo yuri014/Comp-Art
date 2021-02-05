@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const ProfileContainer = styled.div`
   color: ${props => props.theme.colors.lightContrast};
+  width: 100%;
 
   & .cover-profile {
     width: 100%;
@@ -158,7 +159,6 @@ const ProfileContainer = styled.div`
         padding: 1rem 4rem;
         display: grid;
         margin-top: -10.4rem;
-        grid-template-columns: 35% 45% 35%;
         grid-template-areas:
           'profile profile .'
           'bio bio links';
@@ -226,6 +226,12 @@ const ProfileContainer = styled.div`
           font-size: 28px;
           grid-area: links;
           margin-top: 4rem;
+          width: 180px;
+          display: grid;
+          grid-template-columns: 19% 19% 19% 19%;
+          justify-content: space-between;
+          justify-self: flex-end;
+          direction: rtl;
           & a {
             text-align: right;
           }
