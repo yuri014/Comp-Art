@@ -57,7 +57,12 @@ const AudioPost: React.FC = () => {
               <p className="artist-name">Neutral Milk Hotel</p>
             </div>
             <div className="audio-buttons">
-              <IconButton aria-label="previous">
+              <IconButton
+                onClick={() => {
+                  audioRef.current.currentTime -= 10;
+                }}
+                aria-label="previous"
+              >
                 <FaBackward />
               </IconButton>
               <IconButton
@@ -66,7 +71,12 @@ const AudioPost: React.FC = () => {
               >
                 {!isPlaying ? <FaPlay /> : <FaPause />}
               </IconButton>
-              <IconButton aria-label="next">
+              <IconButton
+                onClick={() => {
+                  audioRef.current.currentTime += 10;
+                }}
+                aria-label="next"
+              >
                 <FaForward />
               </IconButton>
             </div>
