@@ -7,7 +7,7 @@ import { AppBar, Tab, Tabs, ThemeProvider } from '@material-ui/core';
 import Header from '../../components/Header';
 import MobileFooter from '../../components/MobileFooter';
 import CreatePost from '../../components/Post/CreatePost';
-import NewPostContainer from '../../styles/pages/newPost/styles';
+import NewPostContainer from '../../styles/pages/new-post/styles';
 import mainTheme from '../../styles/themes/MainTheme';
 
 const CreateAudioPost = dynamic(
