@@ -16,6 +16,7 @@ export interface IPost {
     username: string;
     name: string;
   };
+  isAudio: boolean;
 }
 
 export interface PostProps {

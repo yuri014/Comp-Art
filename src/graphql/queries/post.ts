@@ -14,6 +14,7 @@ export const GET_POSTS = gql`
         name
         username
       }
+      isAudio
     }
   }
 `;
@@ -32,6 +33,7 @@ export const GET_PROFILE_POSTS = gql`
         name
         username
       }
+      isAudio
     }
   }
 `;
