@@ -66,7 +66,7 @@ const CreatePost: React.FC = () => {
           <TextField
             fullWidth
             name="description"
-            label="Description"
+            label="Descrição"
             id="description"
             error={!!errors.description}
             helperText="Máximo de 255 caracteres"
