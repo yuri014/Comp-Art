@@ -18,7 +18,7 @@ interface IPostInput {
 const CreateAudioPost: React.FC = () => {
   const { register, errors, handleSubmit } = useForm<IPostInput>();
   const [showError, setShowError] = useState('');
-  const [audioResult, setAudioResult] = useState<File | string>('');
+  const [audioResult, setAudioResult] = useState<File>();
   const router = useRouter();
 
   const [createPost] = useMutation(CREATE_POST, {
@@ -77,8 +77,13 @@ const CreateAudioPost: React.FC = () => {
               onChange={e => setAudioResult(e.target.files[0])}
               required
             />
+
             <div className="drop-image">
-              <p>Clique ou arraste seu áudio.</p>
+              <p>
+                {audioResult
+                  ? audioResult.name
+                  : 'Clique ou arraste seu áudio.'}
+              </p>
             </div>
           </label>
           {showError && (
