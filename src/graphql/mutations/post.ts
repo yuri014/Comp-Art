@@ -6,4 +6,10 @@ const CREATE_POST = gql`
   }
 `;
 
+export const FAVORITE_POST = gql`
+  mutation favoritePost($id: ID!) {
+    favorite(id: $id)
+  }
+`;
+
 export default CREATE_POST;
