@@ -133,14 +133,13 @@ export const PostContainer = styled.section`
 `;
 
 export const CreatePostContainer = styled.div`
-  padding: 8rem 0;
   color: ${props => props.theme.colors.lightContrast};
   width: 90%;
   margin: 0 auto;
   & form {
     background: ${props => props.theme.colors.mainGradient};
     padding: 2rem;
-    border-radius: 4px;
+    border-radius: 0 0 4px 4px;
     display: flex;
     flex-direction: column;
     & h2 {
