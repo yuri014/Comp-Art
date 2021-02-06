@@ -2,15 +2,16 @@ import styled from 'styled-components';
 
 const HomeProfileContainer = styled.aside`
   position: fixed;
-
   height: 80vh;
+  width: 20%;
   padding: 2rem 0;
   border-radius: 4px;
   display: grid;
-  grid-template-rows: 15% 5% 40% 40%;
+  grid-template-rows: 15% 5% 40% 20%;
   align-items: flex-start;
   color: ${props => props.theme.colors.lightContrast};
   font-family: ${props => props.theme.fonts.primary};
+  max-width: 280px;
 
   .profile {
     display: flex;
@@ -48,12 +49,14 @@ const HomeProfileContainer = styled.aside`
 
   .profile-reputation {
     font-size: 16px;
-    display: grid;
-    grid-template-columns: 40% 60%;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
     font-weight: 600;
     & .level {
       display: flex;
       align-items: center;
+      justify-content: flex-start;
       & span {
         background-color: ${props => props.theme.colors.mainColor};
         padding: 0 1rem;
@@ -63,6 +66,8 @@ const HomeProfileContainer = styled.aside`
       }
     }
     & .xp {
+      margin-left: 2rem;
+      width: 100%;
       display: grid;
       grid-template-columns: 20% 70%;
       align-items: center;
@@ -161,6 +166,7 @@ const HomeProfileContainer = styled.aside`
         }
       }
       & .xp {
+        margin-left: 0rem;
         display: grid;
         grid-template-columns: 15% 70%;
         align-items: center;
@@ -182,6 +188,7 @@ const HomeProfileContainer = styled.aside`
       flex-direction: column;
       & .xp {
         margin-top: 1rem;
+        margin-left: 0rem;
       }
     }
 

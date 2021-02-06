@@ -5,6 +5,7 @@ const QuestsProgressContainer = styled.aside`
   top: 0;
   margin-top: 8rem;
   width: 20%;
+  max-width: 280px;
   padding: 2rem 0;
   border-radius: 4px;
   color: ${props => props.theme.colors.lightContrast};
