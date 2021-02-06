@@ -16,7 +16,6 @@ import LoadingPost from '../../components/Post/LoadingPost';
 import ErrorRequest from '../../components/ErrorRequest';
 import { ILoggedProfile } from '../../interfaces/Profile';
 import { GET_LOGGED_PROFILE } from '../../graphql/queries/profile';
-import AudioPost from '../../components/Post/AudioPost';
 
 interface IGetPosts {
   getPosts: Array<IPost>;
@@ -74,7 +73,6 @@ const Home: React.FC = () => {
             <HomeProfile getLoggedProfile={getLoggedProfile} />
           </div>
           <div className="timeline">
-            <AudioPost />
             {loading || error ? (
               <LoadingPost loading={loading} />
             ) : (
