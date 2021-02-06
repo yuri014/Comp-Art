@@ -18,6 +18,11 @@ export default createGlobalStyle`
     font-family: ${props => props.theme.fonts.primary};
   }
 
+  .container {
+    max-width: 1378px;
+    margin: 0 auto;
+  }
+
   a {
     text-decoration: none;
   }

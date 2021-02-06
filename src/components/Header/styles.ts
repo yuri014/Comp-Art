@@ -5,12 +5,15 @@ const HeaderContainer = styled.header`
   color: ${props => props.theme.colors.lightContrast};
   position: fixed;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: 1rem 4rem;
   font-size: 18px;
   z-index: 2;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
   & a:hover {
     text-decoration: none;

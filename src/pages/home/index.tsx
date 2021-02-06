@@ -68,36 +68,38 @@ const Home: React.FC = () => {
         <title>Comp-Art</title>
       </Head>
       <Header />
-      <div className="home-desktop-content">
-        <div className="profile">
-          <HomeProfile getLoggedProfile={getLoggedProfile} />
-        </div>
-        <div className="timeline">
-          <AudioPost />
-          {loading || error ? (
-            <LoadingPost loading={loading} />
-          ) : (
-            data.getPosts.map((post, index) => {
-              if (data.getPosts.length === index + 1) {
+      <div className="container">
+        <div className="home-desktop-content">
+          <div className="profile">
+            <HomeProfile getLoggedProfile={getLoggedProfile} />
+          </div>
+          <div className="timeline">
+            <AudioPost />
+            {loading || error ? (
+              <LoadingPost loading={loading} />
+            ) : (
+              data.getPosts.map((post, index) => {
+                if (data.getPosts.length === index + 1) {
+                  return (
+                    <div
+                      key={`${post.artist}_${post.createdAt}`}
+                      ref={lastPostRef}
+                    >
+                      <Post post={post} />
+                    </div>
+                  );
+                }
                 return (
-                  <div
-                    key={`${post.artist}_${post.createdAt}`}
-                    ref={lastPostRef}
-                  >
+                  <div key={`${post.artist}_${post.createdAt}`}>
                     <Post post={post} />
                   </div>
                 );
-              }
-              return (
-                <div key={`${post.artist}_${post.createdAt}`}>
-                  <Post post={post} />
-                </div>
-              );
-            })
-          )}
-        </div>
-        <div className="quests">
-          <QuestsProgress />
+              })
+            )}
+          </div>
+          <div className="quests">
+            <QuestsProgress />
+          </div>
         </div>
       </div>
       <MobileHeader
