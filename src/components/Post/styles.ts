@@ -47,13 +47,12 @@ export const PostContainer = styled.section`
         }
       }
     }
-    & figure {
+
+    & img {
       width: 60px;
       height: 60px;
-      & img {
-        border-radius: 50%;
-        object-fit: fill;
-      }
+      border-radius: 50%;
+      object-fit: fill;
     }
   }
 
@@ -353,6 +352,32 @@ export const AudioPostContainer = styled.section`
     &.artist-name {
       font-weight: 400;
       font-size: 12px;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .audio-card {
+      height: 200px;
+
+      .image {
+        .interactions {
+          opacity: 0;
+          pointer-events: none;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-around;
+          height: 100%;
+          margin-left: 65%;
+          margin-top: -200px;
+          cursor: pointer;
+          transition: all 0.4s ease-in-out;
+          span {
+            font-size: 20px;
+            filter: drop-shadow(1px 1px #000);
+          }
+        }
+      }
     }
   }
 `;
