@@ -69,7 +69,7 @@ const CreateAudioPost: React.FC = () => {
             }}
             multiline
           />
-          <label className="image-label" htmlFor="uploadAudio">
+          <label className="file-label" htmlFor="uploadAudio">
             <input
               accept="audio/*"
               id="uploadAudio"
@@ -78,7 +78,7 @@ const CreateAudioPost: React.FC = () => {
               required
             />
 
-            <div className="drop-image">
+            <div className="drop-file">
               <p>
                 {audioResult
                   ? audioResult.name

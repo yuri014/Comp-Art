@@ -152,7 +152,7 @@ export const CreatePostContainer = styled.div`
     color: ${props => props.theme.colors.lightContrast};
   }
 
-  & .image-label {
+  & .file-label {
     margin-top: 1rem;
     width: 100%;
     height: 100%;
@@ -171,7 +171,7 @@ export const CreatePostContainer = styled.div`
       border-radius: 2px;
     }
 
-    & .drop-image {
+    & .drop-file {
       width: 100%;
       height: 100%;
       padding: 2rem;
@@ -197,7 +197,7 @@ export const CreatePostContainer = styled.div`
   @media (min-width: 992px) {
     width: 50%;
 
-    & .image-label {
+    & .file-label {
       max-height: 432px;
       & img {
         max-height: 430px;

@@ -86,7 +86,7 @@ const CreatePost: React.FC = () => {
             }}
             multiline
           />
-          <label className="image-label" htmlFor="uploadImage">
+          <label className="file-label" htmlFor="uploadImage">
             <input
               accept="image/*"
               id="uploadImage"
@@ -102,7 +102,7 @@ const CreatePost: React.FC = () => {
                 style={{ objectFit: imageDimension }}
               />
             ) : (
-              <div className="drop-image">
+              <div className="drop-file">
                 <p>Clique ou arraste sua imagem.</p>
               </div>
             )}
