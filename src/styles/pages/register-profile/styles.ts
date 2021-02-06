@@ -9,7 +9,7 @@ const RegisterProfileContainer = styled.main`
   height: 180vh;
   #register-profile-title {
     text-align: center;
-    font-size: 20px;
+    font-size: 2rem;
     word-wrap: break-word;
     margin: 0;
   }

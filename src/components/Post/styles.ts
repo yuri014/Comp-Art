@@ -7,7 +7,7 @@ export const PostContainer = styled.section`
   background: ${props => props.theme.colors.secondaryBackgroundColor};
   border-radius: 4px;
   padding: 2rem 3rem;
-  font-size: 18px;
+  font-size: 1.8rem;
   font-family: ${props => props.theme.fonts.primary};
   box-shadow: 0 0 6px #000;
   margin-bottom: 4rem;
@@ -23,7 +23,7 @@ export const PostContainer = styled.section`
         margin-left: 2rem;
 
         & h4 {
-          font-size: 24px;
+          font-size: 2.4rem;
           letter-spacing: 1px;
           margin-bottom: 0.4 rem;
           color: ${props => props.theme.colors.lightContrast};
@@ -37,7 +37,7 @@ export const PostContainer = styled.section`
           & p {
             margin-top: 0.4rem;
             color: ${props => props.theme.colors.lightText};
-            font-size: 14px;
+            font-size: 1.4rem;
             letter-spacing: 1px;
             white-space: nowrap;
             max-width: 300px;
@@ -78,7 +78,7 @@ export const PostContainer = styled.section`
       padding: 0 2rem;
       padding-top: 1rem;
       margin-top: 1rem;
-      font-size: 24px;
+      font-size: 2.4rem;
       border-top: 2px solid ${props => props.theme.colors.lightContrast};
       & button {
         color: ${props => props.theme.colors.lightContrast};
@@ -146,7 +146,7 @@ export const CreatePostContainer = styled.div`
     display: flex;
     flex-direction: column;
     & h2 {
-      font-size: 24px;
+      font-size: 2.4rem;
       margin-bottom: 1rem;
       text-align: center;
     }
@@ -183,7 +183,7 @@ export const CreatePostContainer = styled.div`
       align-items: center;
       justify-content: center;
       & p {
-        font-size: 14px;
+        font-size: 1.4rem;
       }
     }
   }
@@ -214,7 +214,7 @@ export const EmptyPostContainer = styled.div`
   color: ${props => props.theme.colors.lightContrast};
   background: ${props => props.theme.colors.secondaryBackgroundColor};
   padding: 2rem 1rem;
-  font-size: 20px;
+  font-size: 2rem;
   text-align: center;
   border-radius: 4px;
 
@@ -233,7 +233,7 @@ export const EmptyPostContainer = styled.div`
     padding: 1rem 2rem;
     border: none;
     border-radius: 4px;
-    font-size: 14px;
+    font-size: 1.4rem;
     color: ${props => props.theme.colors.secondaryBackgroundColor};
     font-family: ${props => props.theme.fonts.display};
     cursor: pointer;
@@ -295,7 +295,7 @@ export const AudioPostContainer = styled.section`
         cursor: pointer;
         transition: all 0.4s ease-in-out;
         span {
-          font-size: 20px;
+          font-size: 2rem;
           filter: drop-shadow(1px 1px #000);
         }
       }
@@ -337,7 +337,7 @@ export const AudioPostContainer = styled.section`
         display: flex;
         justify-content: space-between;
         margin-bottom: 0.2rem;
-        font-size: 12px;
+        font-size: 1.2rem;
       }
     }
   }
@@ -350,12 +350,12 @@ export const AudioPostContainer = styled.section`
     color: ${props => props.theme.colors.lightContrast};
     &.music-name {
       font-weight: 700;
-      font-size: 16px;
+      font-size: 1.6rem;
     }
 
     &.artist-name {
       font-weight: 400;
-      font-size: 12px;
+      font-size: 1.2rem;
     }
   }
 
@@ -377,7 +377,7 @@ export const AudioPostContainer = styled.section`
           cursor: pointer;
           transition: all 0.4s ease-in-out;
           span {
-            font-size: 20px;
+            font-size: 2rem;
             filter: drop-shadow(1px 1px #000);
           }
         }

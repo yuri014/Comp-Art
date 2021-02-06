@@ -6,7 +6,7 @@ const HeaderContainer = styled.header`
   position: fixed;
   width: 100%;
   padding: 1rem 4rem;
-  font-size: 18px;
+  font-size: 1.8rem;
   z-index: 2;
 
   .container {
@@ -40,7 +40,7 @@ const HeaderContainer = styled.header`
       color: ${props => props.theme.colors.mainColor};
       border-radius: 2px;
       border: none;
-      font-size: 18px;
+      font-size: 1.8rem;
       background-color: transparent;
       display: flex;
       align-items: center;

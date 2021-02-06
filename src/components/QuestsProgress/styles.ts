@@ -9,7 +9,7 @@ const QuestsProgressContainer = styled.aside`
   padding: 2rem 0;
   border-radius: 4px;
   color: ${props => props.theme.colors.lightContrast};
-  font-size: 20px;
+  font-size: 2rem;
   font-family: ${props => props.theme.fonts.primary};
 
   & h5 {

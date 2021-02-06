@@ -46,14 +46,14 @@ const LandingContainer = styled.main`
     }
 
     h2 {
-      font-size: 28px;
+      font-size: 2.8rem;
     }
 
     .start-button {
       button {
         width: 20rem;
         height: 6rem;
-        font-size: 20px;
+        font-size: 2rem;
       }
     }
   }
@@ -87,7 +87,7 @@ const LandingContainer = styled.main`
       text-align: left;
       margin-top: -12rem;
       margin-bottom: 4rem;
-      font-size: 16px;
+      font-size: 1.6rem;
       padding-right: 60%;
     }
   }

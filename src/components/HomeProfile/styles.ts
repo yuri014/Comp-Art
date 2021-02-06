@@ -29,13 +29,13 @@ const HomeProfileContainer = styled.aside`
 
     & .profile-info {
       margin-left: 2rem;
-      font-size: 14px;
+      font-size: 1.4rem;
       & .profile-connections {
         margin-top: 2px;
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        font-size: 12px;
+        font-size: 1.2rem;
         & p {
           &:first-child {
             padding-right: 1rem;
@@ -48,7 +48,7 @@ const HomeProfileContainer = styled.aside`
   }
 
   .profile-reputation {
-    font-size: 16px;
+    font-size: 1.6rem;
     display: flex;
     justify-items: center;
     justify-content: center;
@@ -78,7 +78,7 @@ const HomeProfileContainer = styled.aside`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    font-size: 20px;
+    font-size: 2rem;
     & a {
       margin-top: 2rem;
       display: flex;
@@ -101,7 +101,7 @@ const HomeProfileContainer = styled.aside`
   .profile-hashtags {
     margin-top: 4rem;
     padding-bottom: 2rem;
-    font-size: 14px;
+    font-size: 1.4rem;
     & h3 {
       display: flex;
       align-items: center;
@@ -129,14 +129,14 @@ const HomeProfileContainer = styled.aside`
 
       & .profile-info {
         margin-left: 1rem;
-        font-size: 11px;
+        font-size: 1.1rem;
         & .profile-connections {
           margin-top: 2px;
           display: flex;
           flex-direction: row !important;
           align-items: center;
           justify-content: space-between;
-          font-size: 12px;
+          font-size: 1.2rem;
           & p {
             &:first-child {
               padding-right: 0.4rem !important;
@@ -150,7 +150,7 @@ const HomeProfileContainer = styled.aside`
     }
 
     .profile-reputation {
-      font-size: 16px;
+      font-size: 1.6rem;
       display: grid;
       grid-template-columns: 40% 60%;
       font-weight: 600;
@@ -177,7 +177,7 @@ const HomeProfileContainer = styled.aside`
       display: block !important;
       margin-top: 2rem;
       padding-bottom: 0;
-      font-size: 12px;
+      font-size: 1.2rem;
     }
   }
 

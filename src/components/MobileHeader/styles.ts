@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const size = '24px';
+const size = '2.4rem';
 
 const MobileHeaderContainer = styled.header`
   nav {

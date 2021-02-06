@@ -4,7 +4,7 @@ const TagsContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  font-size: 12px;
+  font-size: 1.2rem;
   & * {
     margin-top: 2rem;
     margin-right: 2rem;

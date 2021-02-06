@@ -46,7 +46,7 @@ const ProfileContainer = styled.div`
       background: none;
       transition: 0.4s ease;
       cursor: pointer;
-      font-size: 14px;
+      font-size: 1.4rem;
       font-family: ${props => props.theme.fonts.display};
       &:hover {
         box-shadow: 0 0 4px 2px ${props => props.theme.colors.lightText};
@@ -67,21 +67,21 @@ const ProfileContainer = styled.div`
         align-items: center;
         justify-content: space-between;
         & h1 {
-          font-size: 20px;
+          font-size: 2rem;
         }
 
         & h2 {
-          font-size: 14px;
+          font-size: 1.4rem;
           color: ${props => props.theme.colors.lightText};
         }
 
         & p {
-          font-size: 14px;
+          font-size: 1.4rem;
           color: ${props => props.theme.colors.lightText};
         }
 
         & p:first-child {
-          font-size: 20px;
+          font-size: 2rem;
           font-weight: 600;
           color: ${props => props.theme.colors.lightContrast};
           & .level {
@@ -96,7 +96,7 @@ const ProfileContainer = styled.div`
       .bio {
         margin-top: 2rem;
         width: 100%;
-        font-size: 14px;
+        font-size: 1.4rem;
         border: 1px solid ${props => props.theme.colors.namesakeText};
         border-radius: 4px;
         padding: 1rem;
@@ -109,7 +109,7 @@ const ProfileContainer = styled.div`
       .mobile-profile-follows {
         width: 100%;
         margin-top: 2rem;
-        font-size: 16px;
+        font-size: 1.6rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -117,7 +117,7 @@ const ProfileContainer = styled.div`
       .profile-links {
         width: 100%;
         margin-top: 2rem;
-        font-size: 22px;
+        font-size: 2.2rem;
         display: grid;
         grid-template-columns: 15% 15% 15% 15%;
         align-items: flex-start;
@@ -141,7 +141,7 @@ const ProfileContainer = styled.div`
       margin-bottom: 4rem;
       & button {
         padding: 0.8rem 2rem;
-        font-size: 16px;
+        font-size: 1.6rem;
       }
     }
 
@@ -172,22 +172,22 @@ const ProfileContainer = styled.div`
           justify-content: flex-start;
           grid-area: profile;
           & h1 {
-            font-size: 24px;
+            font-size: 2.4rem;
           }
 
           & h2 {
-            font-size: 16px;
+            font-size: 1.6rem;
             color: ${props => props.theme.colors.lightText};
             margin-top: 0.4rem;
           }
 
           & p:first-child {
-            font-size: 24px;
+            font-size: 2.4rem;
             margin-top: 0;
           }
 
           & p {
-            font-size: 16px;
+            font-size: 1.6rem;
             margin-left: 6rem;
             margin-top: 0.4rem;
             font-weight: 700;
@@ -205,26 +205,26 @@ const ProfileContainer = styled.div`
         .profile-follows {
           margin-top: 2rem;
           display: block;
-          font-size: 18px;
+          font-size: 1.8rem;
           & p:first-child {
             margin-bottom: 0.4rem;
-            font-size: 18px;
+            font-size: 1.8rem;
           }
 
           & p {
-            font-size: 18px;
+            font-size: 1.8rem;
             color: ${props => props.theme.colors.lightContrast};
           }
         }
 
         .bio {
-          font-size: 16px;
+          font-size: 1.6rem;
           width: 80%;
           grid-area: bio;
         }
 
         .profile-links {
-          font-size: 28px;
+          font-size: 2.8rem;
           grid-area: links;
           margin-top: 4rem;
           width: 180px;

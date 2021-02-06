@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const ErrorMessageContainer = styled.div`
-  font-size: 16px;
+  font-size: 1.6rem;
   color: ${props => props.theme.colors.danger};
   display: flex;
   align-items: center;
@@ -17,7 +17,7 @@ const ErrorMessageContainer = styled.div`
   }
 
   @media (min-width: 992px) {
-    font-size: 18px;
+    font-size: 1.8rem;
     padding: 0.6rem 1rem;
     justify-content: flex-start;
   }
