@@ -243,13 +243,13 @@ const Profile: React.FC<ProfileProps> = ({
           </section>
         </div>
       </main>
-      <section className="profile-posts">
-        <div className="container">
+      <div className="container">
+        <section className="profile-posts">
           {getProfilePosts.map(post => (
             <Post key={`${post.artist}_${post.createdAt}`} post={post} />
           ))}
-        </div>
-      </section>
+        </section>
+      </div>
       <MobileFooter />
     </ProfileContainer>
   );

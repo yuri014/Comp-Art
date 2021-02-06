@@ -126,7 +126,8 @@ const ProfileContainer = styled.div`
   }
 
   .profile-posts {
-    padding: 1rem;
+    padding: 4rem 1rem;
+    padding-bottom: 8rem;
     border-top: 1px solid ${props => props.theme.colors.namesakeText};
   }
 
