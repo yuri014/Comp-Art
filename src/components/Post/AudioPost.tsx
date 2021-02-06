@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import {
   FaBackward,
@@ -13,8 +13,9 @@ import { LinearProgress, ThemeProvider } from '@material-ui/core';
 
 import { AudioPostContainer } from './styles';
 import mainTheme from '../../styles/themes/MainTheme';
+import { PostProps } from '../../interfaces/Post';
 
-const AudioPost: React.FC = () => {
+const AudioPost: React.FC<PostProps> = ({ post }) => {
   const audioRef = useRef<null | HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioDuration, setAudioDuration] = useState('0:00');
@@ -28,12 +29,16 @@ const AudioPost: React.FC = () => {
   };
 
   const handleCurrentTime = () => {
-    setInterval(() => {
+    const interval = setInterval(() => {
       const current = audioRef.current.currentTime;
       const { minutes, seconds } = getTime(current);
       setCurrentTime(`${minutes}:${Math.floor(seconds)}`);
       const result = current / audioRef.current.duration;
       setProgress(result * 100);
+      if (current === audioRef.current.duration) {
+        setIsPlaying(false);
+        clearInterval(interval);
+      }
     }, 1);
   };
 
@@ -47,14 +52,21 @@ const AudioPost: React.FC = () => {
     return setIsPlaying(false);
   };
 
+  useEffect(() => {
+    if (audioRef.current.duration) {
+      const { minutes, seconds } = getTime(audioRef.current.duration);
+      setAudioDuration(`${minutes}:${seconds}`);
+    }
+  }, []);
+
   return (
     <AudioPostContainer>
       <ThemeProvider theme={mainTheme}>
         <div className="audio-card">
           <div className="audio-card-info">
             <div>
-              <p className="music-name">On Avery Island</p>
-              <p className="artist-name">Neutral Milk Hotel</p>
+              <p className="music-name">{post.description}</p>
+              <p className="artist-name">{post.artist.name}</p>
             </div>
             <div className="audio-buttons">
               <IconButton
@@ -111,14 +123,8 @@ const AudioPost: React.FC = () => {
         </div>
         <audio
           style={{ display: 'none' }}
-          onLoadedMetadata={() => {
-            if (audioRef.current.duration) {
-              const { minutes, seconds } = getTime(audioRef.current.duration);
-              setAudioDuration(`${minutes}:${seconds}`);
-            }
-          }}
           ref={audioRef}
-          src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+          src={post.body}
           controls
         />
       </ThemeProvider>
