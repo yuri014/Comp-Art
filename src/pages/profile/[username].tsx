@@ -91,160 +91,164 @@ const Profile: React.FC<ProfileProps> = ({
             <div className="holder" />
           )}
         </div>
-        <div className="avatar-profile">
-          <img
-            src={getProfile.avatar || '../profile.jpg'}
-            alt="Imagem do perfil"
-          />
-        </div>
-        <div className="edit-profile">
-          {hasAuth && getProfile.owner === auth.user.username && (
-            <button type="button">Editar perfil</button>
-          )}
+        <div className="container">
+          <div className="avatar-profile">
+            <img
+              src={getProfile.avatar || '../profile.jpg'}
+              alt="Imagem do perfil"
+            />
+          </div>
+          <div className="edit-profile">
+            {hasAuth && getProfile.owner === auth.user.username && (
+              <button type="button">Editar perfil</button>
+            )}
 
-          {loading && <Skeleton width={60} height={40} />}
+            {loading && <Skeleton width={60} height={40} />}
 
-          {checkFollowButton() && isFollowing && !loading && (
-            <button
-              type="button"
-              onClick={() => {
-                unfollow({
-                  variables: { username: getProfile.owner },
-                });
-                setIsFollowing(false);
-                setFollowersCount(followersCount - 1);
-              }}
-            >
-              Deixar de Seguir
-            </button>
-          )}
-          {checkFollowButton() && !isFollowing && !loading && (
-            <button
-              type="button"
-              onClick={() => {
-                follow({
-                  variables: { username: getProfile.owner },
-                });
-                setIsFollowing(true);
-                setFollowersCount(followersCount + 1);
-              }}
-            >
-              Seguir
-            </button>
-          )}
-          {!hasAuth && <button type="button">Seguir</button>}
-        </div>
-        <section>
-          <div className="profile">
-            <div>
-              <h1>{getProfile.name}</h1>
-              <h2>@{getProfile.owner}</h2>
+            {checkFollowButton() && isFollowing && !loading && (
+              <button
+                type="button"
+                onClick={() => {
+                  unfollow({
+                    variables: { username: getProfile.owner },
+                  });
+                  setIsFollowing(false);
+                  setFollowersCount(followersCount - 1);
+                }}
+              >
+                Deixar de Seguir
+              </button>
+            )}
+            {checkFollowButton() && !isFollowing && !loading && (
+              <button
+                type="button"
+                onClick={() => {
+                  follow({
+                    variables: { username: getProfile.owner },
+                  });
+                  setIsFollowing(true);
+                  setFollowersCount(followersCount + 1);
+                }}
+              >
+                Seguir
+              </button>
+            )}
+            {!hasAuth && <button type="button">Seguir</button>}
+          </div>
+          <section>
+            <div className="profile">
+              <div>
+                <h1>{getProfile.name}</h1>
+                <h2>@{getProfile.owner}</h2>
+              </div>
+              <div>
+                <p>
+                  Level <span className="level">{getProfile.level}</span>
+                </p>
+                {getProfile.sharedPostCount !== null && (
+                  <p>Publicações: {getProfile.sharedPostCount}</p>
+                )}
+                {getProfile.postCount !== null && (
+                  <p>Publicações: {getProfile.postCount}</p>
+                )}
+              </div>
+              <div className="profile-follows">
+                <p>Seguindo: {getProfile.following}</p>
+                <p>Seguidores: {followersCount}</p>
+              </div>
             </div>
-            <div>
-              <p>
-                Level <span className="level">{getProfile.level}</span>
-              </p>
-              {getProfile.sharedPostCount !== null && (
-                <p>Publicações: {getProfile.sharedPostCount}</p>
-              )}
-              {getProfile.postCount !== null && (
-                <p>Publicações: {getProfile.postCount}</p>
-              )}
-            </div>
-            <div className="profile-follows">
+            <div className="mobile-profile-follows">
               <p>Seguindo: {getProfile.following}</p>
               <p>Seguidores: {followersCount}</p>
             </div>
-          </div>
-          <div className="mobile-profile-follows">
-            <p>Seguindo: {getProfile.following}</p>
-            <p>Seguidores: {followersCount}</p>
-          </div>
-          {getProfile.bio && (
-            <div className="bio">
-              <p>{getProfile.bio}</p>
+            {getProfile.bio && (
+              <div className="bio">
+                <p>{getProfile.bio}</p>
+              </div>
+            )}
+            <div className="profile-links">
+              {getProfile.links.soundcloud && (
+                <a
+                  href={`http://soundcloud.com/${getProfile.links.soundcloud}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaSoundcloud className="soundcloud-icon" />
+                </a>
+              )}
+              {getProfile.links.twitter && (
+                <a
+                  href={`http://twitter.com/${getProfile.links.twitter}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaTwitter className="twitter-icon" />
+                </a>
+              )}
+              {getProfile.links.deviantart && (
+                <a
+                  href={`http://deviantart.com/${getProfile.links.deviantart}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaDeviantart className="deviantart-icon" />
+                </a>
+              )}
+              {getProfile.links.bandcamp && (
+                <a
+                  href={`http://${getProfile.links.bandcamp}.bandcamp.com`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaBandcamp className="bandcamp-icon" />
+                </a>
+              )}
+              {getProfile.links.wattpad && (
+                <a
+                  href={`http://wattpad.com/user/${getProfile.links.wattpad}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <SiWattpad className="wattpad-icon" />
+                </a>
+              )}
+              {getProfile.links.facebook && (
+                <a
+                  href={`http://facebook.com/${getProfile.links.facebook}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaFacebook className="facebook-icon" />
+                </a>
+              )}
+              {getProfile.links.pinterest && (
+                <a
+                  href={`http://pinterest.com/${getProfile.links.pinterest}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaPinterest className="pinterest-icon" />
+                </a>
+              )}
+              {getProfile.links.customLink && (
+                <a
+                  href={getProfile.links.customLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaLink className="primary-icon" />
+                </a>
+              )}
             </div>
-          )}
-          <div className="profile-links">
-            {getProfile.links.soundcloud && (
-              <a
-                href={`http://soundcloud.com/${getProfile.links.soundcloud}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaSoundcloud className="soundcloud-icon" />
-              </a>
-            )}
-            {getProfile.links.twitter && (
-              <a
-                href={`http://twitter.com/${getProfile.links.twitter}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaTwitter className="twitter-icon" />
-              </a>
-            )}
-            {getProfile.links.deviantart && (
-              <a
-                href={`http://deviantart.com/${getProfile.links.deviantart}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaDeviantart className="deviantart-icon" />
-              </a>
-            )}
-            {getProfile.links.bandcamp && (
-              <a
-                href={`http://${getProfile.links.bandcamp}.bandcamp.com`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaBandcamp className="bandcamp-icon" />
-              </a>
-            )}
-            {getProfile.links.wattpad && (
-              <a
-                href={`http://wattpad.com/user/${getProfile.links.wattpad}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <SiWattpad className="wattpad-icon" />
-              </a>
-            )}
-            {getProfile.links.facebook && (
-              <a
-                href={`http://facebook.com/${getProfile.links.facebook}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaFacebook className="facebook-icon" />
-              </a>
-            )}
-            {getProfile.links.pinterest && (
-              <a
-                href={`http://pinterest.com/${getProfile.links.pinterest}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaPinterest className="pinterest-icon" />
-              </a>
-            )}
-            {getProfile.links.customLink && (
-              <a
-                href={getProfile.links.customLink}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaLink className="primary-icon" />
-              </a>
-            )}
-          </div>
-        </section>
+          </section>
+        </div>
       </main>
       <section className="profile-posts">
-        {getProfilePosts.map(post => (
-          <Post key={`${post.artist}_${post.createdAt}`} post={post} />
-        ))}
+        <div className="container">
+          {getProfilePosts.map(post => (
+            <Post key={`${post.artist}_${post.createdAt}`} post={post} />
+          ))}
+        </div>
       </section>
       <MobileFooter />
     </ProfileContainer>
