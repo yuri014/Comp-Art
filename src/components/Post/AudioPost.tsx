@@ -105,17 +105,17 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
           </div>
           <div role="button" tabIndex={0} className="image">
             <img
-              alt="asd"
-              src="https://www.firerecords.com/wp/wp-content/uploads/2016/02/Neutral-Milk-Hotel-On-Avery-Island-2011-v2.jpg"
+              alt={`Imagem de perfil de ${post.artist.name}`}
+              src={post.avatar || '/profile.jpg'}
             />
             <div className="interactions">
-              <span>
+              <span title="Curtir">
                 <FaRegHeart />
               </span>
-              <span>
+              <span title="Comentar">
                 <FaRegComment />
               </span>
-              <span>
+              <span title="Compartilhar">
                 <FaRegShareSquare />
               </span>
             </div>
