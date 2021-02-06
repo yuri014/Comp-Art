@@ -34,6 +34,7 @@ export const GET_PROFILE_POSTS = gql`
         username
       }
       isAudio
+      avatar
     }
   }
 `;
