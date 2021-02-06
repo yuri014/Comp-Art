@@ -21,7 +21,7 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
   const [likePost] = useMutation(LIKE_POST, {
     // eslint-disable-next-line no-underscore-dangle
     variables: { id: post._id },
-    onCompleted: () => setIsLiked(true),
+    onCompleted: data => setIsLiked(data.like),
   });
 
   return (
@@ -59,7 +59,11 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
         </figure>
         <ThemeProvider theme={mainTheme}>
           <div className="post-interaction">
-            <button type="button" onClick={() => likePost()}>
+            <button
+              className={isLiked ? 'active' : ''}
+              type="button"
+              onClick={() => likePost()}
+            >
               <Badge badgeContent={post.likesCount} color="primary">
                 {isLiked ? <FaHeart /> : <FaRegHeart />}
               </Badge>

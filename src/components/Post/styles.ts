@@ -90,9 +90,23 @@ export const PostContainer = styled.section`
         justify-content: space-between;
         padding: 1rem 0;
         font-size: 2.4rem;
+        transition: all 0.4s ease-in-out;
         & p {
           font-size: 1.6rem;
           margin-left: 1rem;
+        }
+
+        &:hover {
+          filter: brightness(140%);
+        }
+
+        &:focus {
+          outline: none;
+          color: ${props => props.theme.colors.mainColor};
+        }
+
+        &.active {
+          color: ${props => props.theme.colors.mainColor};
         }
       }
     }
