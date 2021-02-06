@@ -28,7 +28,6 @@ import {
 import { initializeApollo } from '../../graphql/apollo/config';
 import { GET_PROFILE_POSTS } from '../../graphql/queries/post';
 import Post from '../../components/Post';
-import AudioPost from '../../components/Post/AudioPost';
 
 interface ProfileProps {
   username: string;
@@ -246,19 +245,9 @@ const Profile: React.FC<ProfileProps> = ({
       </main>
       <section className="profile-posts">
         <div className="container">
-          {getProfilePosts.map(post => {
-            if (post.isAudio) {
-              return (
-                <AudioPost
-                  key={`${post.artist}_${post.createdAt}`}
-                  post={post}
-                />
-              );
-            }
-            return (
-              <Post key={`${post.artist}_${post.createdAt}`} post={post} />
-            );
-          })}
+          {getProfilePosts.map(post => (
+            <Post key={`${post.artist}_${post.createdAt}`} post={post} />
+          ))}
         </div>
       </section>
       <MobileFooter />
