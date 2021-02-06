@@ -6,8 +6,8 @@ export const CREATE_POST = gql`
   }
 `;
 
-export const FAVORITE_POST = gql`
-  mutation favoritePost($id: ID!) {
-    favorite(id: $id)
+export const LIKE_POST = gql`
+  mutation likePost($id: ID!) {
+    like(id: $id)
   }
 `;

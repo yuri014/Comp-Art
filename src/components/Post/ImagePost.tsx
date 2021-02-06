@@ -14,14 +14,14 @@ import {
 import { PostContainer } from './styles';
 import { PostProps } from '../../interfaces/Post';
 import mainTheme from '../../styles/themes/MainTheme';
-import { FAVORITE_POST } from '../../graphql/mutations/post';
+import { LIKE_POST } from '../../graphql/mutations/post';
 
 const ImagePost: React.FC<PostProps> = ({ post }) => {
-  const [isFavorited, setIsFavorited] = useState(false);
-  const [favoritePost] = useMutation(FAVORITE_POST, {
+  const [isLiked, setIsLiked] = useState(false);
+  const [likePost] = useMutation(LIKE_POST, {
     // eslint-disable-next-line no-underscore-dangle
     variables: { id: post._id },
-    onCompleted: () => setIsFavorited(true),
+    onCompleted: () => setIsLiked(true),
   });
 
   return (
@@ -59,11 +59,11 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
         </figure>
         <ThemeProvider theme={mainTheme}>
           <div className="post-interaction">
-            <button type="button" onClick={() => favoritePost()}>
+            <button type="button" onClick={() => likePost()}>
               <Badge badgeContent={post.likesCount} color="primary">
-                {isFavorited ? <FaHeart /> : <FaRegHeart />}
+                {isLiked ? <FaHeart /> : <FaRegHeart />}
               </Badge>
-              <p>{isFavorited ? 'Desfavoritar' : 'Favoritar'}</p>
+              <p>{isLiked ? 'Desfavoritar' : 'Favoritar'}</p>
             </button>
             <button type="button">
               <Badge badgeContent={post.commentsCount} color="primary">
