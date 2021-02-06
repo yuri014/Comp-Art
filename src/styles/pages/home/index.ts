@@ -4,7 +4,7 @@ const HomeContainer = styled.main`
   .home-desktop-content {
     padding: 8rem 4rem;
     display: grid;
-    grid-template-columns: 20% 55% 20%;
+    grid-template-columns: 20% 50% 20%;
     justify-content: space-between;
     margin: auto;
   }
