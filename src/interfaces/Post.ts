@@ -1,4 +1,5 @@
 export interface IPost {
+  _id: string;
   description: string;
   body: string;
   likes: [

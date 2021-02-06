@@ -80,14 +80,18 @@ export const PostContainer = styled.section`
       margin-top: 1rem;
       font-size: 24px;
       border-top: 2px solid ${props => props.theme.colors.lightContrast};
-      & div {
+      & button {
+        color: ${props => props.theme.colors.lightContrast};
+        border: none;
+        background-color: transparent;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 1rem 0;
+        font-size: 2.4rem;
         & p {
-          font-size: 16px;
+          font-size: 1.6rem;
           margin-left: 1rem;
         }
       }
@@ -120,7 +124,7 @@ export const PostContainer = styled.section`
 
       & .post-interaction {
         padding: 0;
-        & div {
+        & button {
           padding: 1rem 2rem;
           & p {
             display: none;
