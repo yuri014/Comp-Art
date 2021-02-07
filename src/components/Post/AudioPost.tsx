@@ -24,7 +24,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
   const [audioDuration, setAudioDuration] = useState('0:00');
   const [currentTime, setCurrentTime] = useState('');
   const [progress, setProgress] = useState(0);
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(post.isLiked);
   const [likePost] = useMutation(LIKE_POST, {
     // eslint-disable-next-line no-underscore-dangle
     variables: { id: post._id },

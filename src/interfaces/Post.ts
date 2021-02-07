@@ -19,6 +19,7 @@ export interface IPost {
   };
   isAudio: boolean;
   avatar: string;
+  isLiked?: boolean;
 }
 
 export interface PostProps {

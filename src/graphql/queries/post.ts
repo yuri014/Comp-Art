@@ -15,6 +15,7 @@ export const GET_POSTS = gql`
         username
       }
       isAudio
+      isLiked
     }
   }
 `;

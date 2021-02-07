@@ -17,7 +17,7 @@ import mainTheme from '../../styles/themes/MainTheme';
 import { LIKE_POST } from '../../graphql/mutations/post';
 
 const ImagePost: React.FC<PostProps> = ({ post }) => {
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(post.isLiked);
   const [likePost] = useMutation(LIKE_POST, {
     // eslint-disable-next-line no-underscore-dangle
     variables: { id: post._id },
