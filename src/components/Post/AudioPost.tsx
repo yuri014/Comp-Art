@@ -37,24 +37,32 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
     return { minutes, seconds };
   };
 
-  const handleCurrentTime = () => {
-    const interval = setInterval(() => {
-      const current = audioRef.current.currentTime;
-      const { minutes, seconds } = getTime(current);
-      setCurrentTime(`${minutes}:${Math.floor(seconds)}`);
-      const result = current / audioRef.current.duration;
-      setProgress(result * 100);
-      if (current === audioRef.current.duration) {
-        setIsPlaying(false);
-        clearInterval(interval);
-      }
-    }, 1);
+  const updateTime = () => {
+    const current = audioRef.current.currentTime;
+    const { minutes, seconds } = getTime(current);
+    setCurrentTime(`${minutes}:${Math.floor(seconds)}`);
+    const result = current / audioRef.current.duration;
+    setProgress(result * 100);
+    if (current === audioRef.current.duration) {
+      setIsPlaying(false);
+    }
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      updateTime();
+    }, 100);
+
+    if (!isPlaying) {
+      clearInterval(interval);
+    }
+
+    return () => clearInterval(interval);
+  }, [isPlaying]);
 
   const handlePlaying = () => {
     if (!isPlaying) {
       audioRef.current.play();
-      handleCurrentTime();
       return setIsPlaying(true);
     }
     audioRef.current.pause();
