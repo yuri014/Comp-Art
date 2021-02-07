@@ -177,4 +177,4 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
   );
 };
 
-export default AudioPost;
+export default React.memo(AudioPost);

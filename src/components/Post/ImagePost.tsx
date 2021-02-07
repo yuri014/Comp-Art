@@ -95,4 +95,4 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
   );
 };
 
-export default ImagePost;
+export default React.memo(ImagePost);
