@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import IconButton from '@material-ui/core/IconButton';
 import {
   FaBackward,
@@ -93,10 +94,12 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
       <ThemeProvider theme={mainTheme}>
         <div className="audio-card">
           <div className="audio-card-info">
-            <div>
-              <p className="music-name">{post.description}</p>
-              <p className="artist-name">{post.artist.name}</p>
-            </div>
+            <Link href={`profile/${post.artist.username}`}>
+              <a>
+                <p className="music-name">{post.description}</p>
+                <p className="artist-name">{post.artist.name}</p>
+              </a>
+            </Link>
             <div className="audio-buttons">
               <IconButton
                 onClick={() => {
@@ -163,6 +166,10 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
           style={{ display: 'none' }}
           ref={audioRef}
           src={post.body}
+          onLoadedMetadata={() => {
+            const { minutes, seconds } = getTime(audioRef.current.duration);
+            setAudioDuration(`${minutes}:${seconds}`);
+          }}
           controls
         />
       </ThemeProvider>
