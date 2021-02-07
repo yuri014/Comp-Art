@@ -11,3 +11,9 @@ export const LIKE_POST = gql`
     like(id: $id)
   }
 `;
+
+export const DISLIKE_POST = gql`
+  mutation dislikePost($id: ID!) {
+    dislike(id: $id)
+  }
+`;

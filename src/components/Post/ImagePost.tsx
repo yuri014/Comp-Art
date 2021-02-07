@@ -14,14 +14,26 @@ import {
 import { PostContainer } from './styles';
 import { PostProps } from '../../interfaces/Post';
 import mainTheme from '../../styles/themes/MainTheme';
-import { LIKE_POST } from '../../graphql/mutations/post';
+import { DISLIKE_POST, LIKE_POST } from '../../graphql/mutations/post';
 
 const ImagePost: React.FC<PostProps> = ({ post }) => {
   const [isLiked, setIsLiked] = useState(post.isLiked);
+  const [likesCount, setLikesCount] = useState(post.likesCount);
   const [likePost] = useMutation(LIKE_POST, {
     // eslint-disable-next-line no-underscore-dangle
     variables: { id: post._id },
-    onCompleted: data => setIsLiked(data.like),
+    onCompleted: () => {
+      setIsLiked(true);
+      setLikesCount(likesCount + 1);
+    },
+  });
+  const [dislikePost] = useMutation(DISLIKE_POST, {
+    // eslint-disable-next-line no-underscore-dangle
+    variables: { id: post._id },
+    onCompleted: () => {
+      setIsLiked(false);
+      setLikesCount(likesCount - 1);
+    },
   });
 
   return (
@@ -62,11 +74,11 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
             <Button
               className={isLiked ? 'active' : ''}
               type="button"
-              onClick={() => likePost()}
+              onClick={() => (isLiked ? dislikePost() : likePost())}
               title="Curtir"
             >
               {isLiked ? <FaHeart /> : <FaRegHeart />}
-              <p>{post.likesCount}</p>
+              <p>{likesCount}</p>
             </Button>
             <Button title="Comentar" type="button">
               <FaRegComment />

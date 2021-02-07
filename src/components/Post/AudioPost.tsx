@@ -16,7 +16,7 @@ import { useMutation } from '@apollo/client';
 import { AudioPostContainer } from './styles';
 import mainTheme from '../../styles/themes/MainTheme';
 import { PostProps } from '../../interfaces/Post';
-import { LIKE_POST } from '../../graphql/mutations/post';
+import { DISLIKE_POST, LIKE_POST } from '../../graphql/mutations/post';
 
 const AudioPost: React.FC<PostProps> = ({ post }) => {
   const audioRef = useRef<null | HTMLAudioElement>(null);
@@ -24,11 +24,23 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
   const [audioDuration, setAudioDuration] = useState('0:00');
   const [currentTime, setCurrentTime] = useState('');
   const [progress, setProgress] = useState(0);
+  const [likesCount, setLikesCount] = useState(post.likesCount);
   const [isLiked, setIsLiked] = useState(post.isLiked);
   const [likePost] = useMutation(LIKE_POST, {
     // eslint-disable-next-line no-underscore-dangle
     variables: { id: post._id },
-    onCompleted: data => setIsLiked(data.like),
+    onCompleted: () => {
+      setIsLiked(true);
+      setLikesCount(likesCount + 1);
+    },
+  });
+  const [dislikePost] = useMutation(DISLIKE_POST, {
+    // eslint-disable-next-line no-underscore-dangle
+    variables: { id: post._id },
+    onCompleted: () => {
+      setIsLiked(false);
+      setLikesCount(likesCount - 1);
+    },
   });
 
   const getTime = (time: number) => {
@@ -127,7 +139,10 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
             />
             <div className="interactions">
               <div>
-                <IconButton title="Curtir" onClick={() => likePost()}>
+                <IconButton
+                  title="Curtir"
+                  onClick={() => (isLiked ? dislikePost() : likePost())}
+                >
                   <span>{isLiked ? <FaHeart /> : <FaRegHeart />}</span>
                 </IconButton>
               </div>
