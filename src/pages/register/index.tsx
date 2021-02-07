@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import Head from 'next/head';
 import { FaArrowLeft, FaArrowRight, FaMobile, FaPalette } from 'react-icons/fa';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { TextField } from '@material-ui/core';
@@ -16,6 +15,7 @@ import PressStartButton from '../../components/PressStartButton';
 import { IUser } from '../../interfaces/User';
 import { REGISTER_USER } from '../../graphql/mutations/user';
 import ErrorMessage from '../../components/ErrorMessage';
+import Meta from '../../components/SEO/Meta';
 
 function SignUp(): JSX.Element {
   const [isArtist, setIsArtist] = useState(true);
@@ -53,9 +53,12 @@ function SignUp(): JSX.Element {
 
   return (
     <SingUpContainer>
-      <Head>
-        <title>Comp-Art</title>
-      </Head>
+      <Meta
+        uri="register"
+        title="Comp-Art - Cadastre-se"
+        description="Cadastre-se para divulgar sua arte ou para apreciar a divulgar e apreciar a arte de outros artistas."
+        keywords="Comp-Art, comp-art, comp art, divulgação, arte, música, ilustrações, artistas, cadastro, entrar"
+      />
       <ThemeProvider theme={formTheme}>
         <div className="form-content">
           <div className="character-selection">
@@ -105,6 +108,7 @@ function SignUp(): JSX.Element {
                 autoFocus
                 fullWidth
                 name="username"
+                id="username"
                 error={!!errors.username}
                 helperText={
                   // eslint-disable-next-line operator-linebreak
@@ -119,6 +123,7 @@ function SignUp(): JSX.Element {
               <TextField
                 fullWidth
                 name="email"
+                id="email"
                 error={!!errors.email}
                 helperText={errors.email && 'Utilize um email válido'}
                 placeholder="Seu email..."
@@ -134,6 +139,7 @@ function SignUp(): JSX.Element {
                 placeholder="Sua senha..."
                 label="Senha"
                 name="password"
+                id="password"
                 error={!!errors.password}
                 helperText={
                   // eslint-disable-next-line operator-linebreak
@@ -159,6 +165,7 @@ function SignUp(): JSX.Element {
                   errors.confirmPassword && 'Senhas não conferem'
                 }
                 name="confirmPassword"
+                id="confirmPassword"
                 inputRef={register({
                   validate: (value: string) => value === watch('password'),
                   required: true,
@@ -194,6 +201,7 @@ function SignUp(): JSX.Element {
               <TextField
                 fullWidth
                 name="username"
+                id="username"
                 error={!!errors.username}
                 helperText={
                   // eslint-disable-next-line operator-linebreak
@@ -212,6 +220,7 @@ function SignUp(): JSX.Element {
               <TextField
                 fullWidth
                 name="email"
+                id="email"
                 error={!!errors.email}
                 helperText={errors.email && 'Utilize um email válido'}
                 placeholder="Seu email..."
@@ -227,6 +236,7 @@ function SignUp(): JSX.Element {
                 placeholder="Sua senha..."
                 label="Senha"
                 name="password"
+                id="password"
                 error={!!errors.password}
                 helperText={
                   // eslint-disable-next-line operator-linebreak
@@ -252,6 +262,7 @@ function SignUp(): JSX.Element {
                   errors.confirmPassword && 'Senhas não conferem'
                 }
                 name="confirmPassword"
+                id="confirmPassword"
                 inputRef={register({
                   validate: (value: string) => value === watch('password'),
                   required: true,

@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
-import Head from 'next/head';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 
 import StartIcon from '../assets/start-artist-icon.svg';
 import LandingContainer from '../styles/pages';
-import Modal from '../components/Modal';
 import PressStartButton from '../components/PressStartButton';
+import Meta from '../components/SEO/Meta';
+
+const Modal = dynamic(() => import('../components/Modal'));
 
 const Landing: React.FC = () => {
   const [modalShow, setModalShow] = useState(false);
   return (
     <>
       <LandingContainer>
-        <Head>
-          <title>Comp-Art</title>
-        </Head>
+        <Meta
+          title="Comp-Art"
+          description="Rede social com o propósito de ajudar a divulgação de artistas."
+          keywords="Comp-Art, comp-art, comp art, divulgação, arte, música, ilustrações, artistas"
+        />
 
         <div className="start">
           <div>

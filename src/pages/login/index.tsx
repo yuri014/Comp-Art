@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import Head from 'next/head';
 import { TextField, ThemeProvider } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import { FaGamepad } from 'react-icons/fa';
@@ -12,6 +11,7 @@ import formTheme from '../../styles/themes/FormTheme';
 import { LOGIN_USER } from '../../graphql/mutations/user';
 import { AuthContext } from '../../context/auth';
 import ErrorMessage from '../../components/ErrorMessage';
+import Meta from '../../components/SEO/Meta';
 
 interface ILogin {
   email: string;
@@ -53,9 +53,13 @@ const Login: React.FC = () => {
 
   return (
     <LoginContainer>
-      <Head>
-        <title>Comp-Art</title>
-      </Head>
+      <Meta
+        uri="login"
+        title="Comp-Art - Login"
+        description="Faça seu login e divulgue sua arte ou ajude a divulgar e apreciar a arte de outros artistas."
+        keywords="Comp-Art, comp-art, comp art, divulgação, arte, música, ilustrações, artistas, login, entrar"
+      />
+
       <div className="login-content">
         <div id="login-title" className="main-title">
           Load Game
@@ -71,6 +75,7 @@ const Login: React.FC = () => {
             <ThemeProvider theme={formTheme}>
               <TextField
                 fullWidth
+                id="email"
                 name="email"
                 placeholder="Seu email..."
                 inputRef={inputRef}
@@ -81,6 +86,7 @@ const Login: React.FC = () => {
                 fullWidth
                 placeholder="Sua senha..."
                 label="Senha"
+                id="password"
                 name="password"
                 inputRef={register()}
                 required

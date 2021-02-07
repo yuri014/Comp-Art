@@ -1,5 +1,4 @@
 import React, { useCallback, useContext, useRef, useState } from 'react';
-import Head from 'next/head';
 import { QueryResult, useMutation, useQuery } from '@apollo/client';
 import {
   FaBandcamp,
@@ -29,6 +28,7 @@ import { initializeApollo } from '../../graphql/apollo/config';
 import { GET_PROFILE_POSTS } from '../../graphql/queries/post';
 import Post from '../../components/Post';
 import SkeletonPost from '../../components/Post/SkeletonPost';
+import Meta from '../../components/SEO/Meta';
 
 interface ProfileProps {
   username: string;
@@ -92,11 +92,31 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
   const checkFollowButton = () =>
     hasAuth && getProfile.owner !== auth.user.username;
 
+  const formatMetaHashtags = () =>
+    `${getProfile.hashtags
+      .slice(0, -1)
+      .join(', ')
+      .replace(/#/g, '')} e ${getProfile.hashtags
+      .slice(-1)
+      .join('')
+      .replace('#', '')}`;
+
   return (
     <ProfileContainer>
-      <Head>
-        <title>{getProfile.owner} - Perfil</title>
-      </Head>
+      <Meta
+        title={`${getProfile.owner} - Perfil`}
+        description={`${getProfile.owner} é um ${
+          getProfile.isArtist
+            ? `artista que produz e/ou se interessa por ${formatMetaHashtags()}`
+            : `apreciador de ${formatMetaHashtags()}`
+        }`}
+        keywords={`${getProfile.owner}, ${
+          getProfile.name
+        }, ${formatMetaHashtags()}, ${getProfile.bio}, ${
+          getProfile.isArtist ? 'artista' : 'apreciador'
+        }`}
+        uri={`profile/${getProfile.owner}`}
+      />
       <Header />
       <main>
         <div className="cover-profile">

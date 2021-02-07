@@ -128,6 +128,7 @@ const RegisterProfile: React.FC = () => {
             <TextField
               fullWidth
               name="name"
+              id="name"
               error={!!errors.name}
               helperText={errors.name && 'Nome é obrigatório'}
               inputRef={register({
@@ -143,6 +144,7 @@ const RegisterProfile: React.FC = () => {
               <TextField
                 fullWidth
                 name="bio"
+                id="bio"
                 inputRef={register}
                 placeholder="Sua bio..."
                 label="Bio"
@@ -170,6 +172,7 @@ const RegisterProfile: React.FC = () => {
             <TextField
               fullWidth
               name="tags"
+              id="tags"
               helperText="Aperte vírgula cadastrar uma tag - clique nela para remover"
               placeholder="Coloque aqui seus gostos preferidos"
               label="Tags"
@@ -200,6 +203,7 @@ const RegisterProfile: React.FC = () => {
                 inputRef={register}
                 fullWidth
                 name="links.soundcloud"
+                id="links.soundcloud"
                 label="Soundcloud"
                 InputProps={{
                   startAdornment: (
@@ -214,6 +218,7 @@ const RegisterProfile: React.FC = () => {
                 inputRef={register}
                 fullWidth
                 name="links.bandcamp"
+                id="links.bandcamp"
                 label="Bandcamp"
                 InputProps={{
                   startAdornment: (
@@ -228,6 +233,7 @@ const RegisterProfile: React.FC = () => {
                 inputRef={register}
                 fullWidth
                 name="links.wattpad"
+                id="links.wattpad"
                 label="Wattpad"
                 InputProps={{
                   startAdornment: (
@@ -242,6 +248,7 @@ const RegisterProfile: React.FC = () => {
                 inputRef={register}
                 fullWidth
                 name="links.pinterest"
+                id="links.pinterest"
                 label="Pinterest"
                 InputProps={{
                   startAdornment: (
@@ -256,6 +263,7 @@ const RegisterProfile: React.FC = () => {
                 inputRef={register}
                 fullWidth
                 name="links.twitter"
+                id="links.twitter"
                 label="Twitter"
                 InputProps={{
                   startAdornment: (
@@ -270,6 +278,7 @@ const RegisterProfile: React.FC = () => {
                 inputRef={register}
                 fullWidth
                 name="links.facebook"
+                id="links.facebook"
                 label="Facebook"
                 InputProps={{
                   startAdornment: (
@@ -284,6 +293,7 @@ const RegisterProfile: React.FC = () => {
                 inputRef={register}
                 fullWidth
                 name="links.deviantart"
+                id="links.deviantart"
                 label="Deviantart"
                 InputProps={{
                   startAdornment: (
@@ -298,6 +308,7 @@ const RegisterProfile: React.FC = () => {
                 inputRef={register}
                 fullWidth
                 name="links.customLink"
+                id="links.customLink"
                 label="Link Adicional"
                 InputProps={{
                   startAdornment: (
