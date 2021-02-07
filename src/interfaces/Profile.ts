@@ -14,7 +14,7 @@ export interface IProfile {
   xp: number;
   followers: number;
   following: number;
-  hashtags: Array<number>;
+  hashtags: Array<string>;
   owner: string;
   isArtist: boolean;
   links: {
