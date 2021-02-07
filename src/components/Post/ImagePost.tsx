@@ -63,15 +63,16 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
               className={isLiked ? 'active' : ''}
               type="button"
               onClick={() => likePost()}
+              title="Curtir"
             >
               {isLiked ? <FaHeart /> : <FaRegHeart />}
               <p>{post.likesCount}</p>
             </Button>
-            <Button type="button">
+            <Button title="Comentar" type="button">
               <FaRegComment />
               <p>{post.commentsCount}</p>
             </Button>
-            <Button type="button">
+            <Button title="Compartilhar" type="button">
               <FaRegShareSquare />
               <p>{post.sharedCount}</p>
             </Button>
