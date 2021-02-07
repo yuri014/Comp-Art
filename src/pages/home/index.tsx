@@ -11,15 +11,11 @@ import Post from '../../components/Post';
 import QuestsProgress from '../../components/QuestsProgress';
 import withAuth from '../../hocs/withAuth';
 import { GET_POSTS } from '../../graphql/queries/post';
-import { IPost } from '../../interfaces/Post';
 import LoadingPost from '../../components/Post/LoadingPost';
 import ErrorRequest from '../../components/ErrorRequest';
 import { ILoggedProfile } from '../../interfaces/Profile';
 import { GET_LOGGED_PROFILE } from '../../graphql/queries/profile';
-
-interface IGetPosts {
-  getPosts: Array<IPost>;
-}
+import { IGetPosts } from '../../interfaces/Post';
 
 const Home: React.FC = () => {
   const [hasMore, setHasMore] = useState(false);
@@ -36,8 +32,8 @@ const Home: React.FC = () => {
         if (entries[0].isIntersecting && !hasMore) {
           fetchMore({
             variables: { offset: data.getPosts.length },
-          }).then(bah => {
-            if (bah.data.getPosts.length < 3) {
+          }).then(newPosts => {
+            if (newPosts.data.getPosts.length < 3) {
               setHasMore(true);
             }
           });

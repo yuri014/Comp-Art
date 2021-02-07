@@ -25,3 +25,7 @@ export interface IPost {
 export interface PostProps {
   post: IPost;
 }
+
+export interface IGetPosts {
+  getPosts: Array<IPost>;
+}
