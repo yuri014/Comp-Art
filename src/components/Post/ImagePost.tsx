@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Badge, Button, ThemeProvider } from '@material-ui/core';
+import { Button, ThemeProvider } from '@material-ui/core';
 import { useMutation } from '@apollo/client';
 import Link from 'next/link';
 import {
@@ -64,22 +64,16 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
               type="button"
               onClick={() => likePost()}
             >
-              <Badge badgeContent={post.likesCount} color="primary">
-                {isLiked ? <FaHeart /> : <FaRegHeart />}
-              </Badge>
-              <p>{isLiked ? 'Desfavoritar' : 'Favoritar'}</p>
+              {isLiked ? <FaHeart /> : <FaRegHeart />}
+              <p>{post.likesCount}</p>
             </Button>
             <Button type="button">
-              <Badge badgeContent={post.commentsCount} color="primary">
-                <FaRegComment />
-              </Badge>
-              <p>Comentar</p>
+              <FaRegComment />
+              <p>{post.commentsCount}</p>
             </Button>
             <Button type="button">
-              <Badge badgeContent={post.sharedCount} color="primary">
-                <FaRegShareSquare />
-              </Badge>
-              <p>Compartilhar</p>
+              <FaRegShareSquare />
+              <p>{post.sharedCount}</p>
             </Button>
           </div>
         </ThemeProvider>

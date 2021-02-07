@@ -85,12 +85,12 @@ export const PostContainer = styled.section`
         border: none;
         background-color: transparent;
         cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
         padding: 1rem 0;
         font-size: 2.4rem;
         transition: all 0.4s ease-in-out;
+        display: flex;
+        align-items: center;
+
         & p {
           font-size: 1.6rem;
           margin-left: 1rem;
@@ -106,7 +106,20 @@ export const PostContainer = styled.section`
         }
 
         &.active {
+          opacity: 1;
           color: ${props => props.theme.colors.mainColor};
+          svg {
+            transform: scale(0);
+            animation: liked 0.4s ease-in-out forwards;
+            @keyframes liked {
+              from {
+                transform: scale(0);
+              }
+              to {
+                transform: scale(1);
+              }
+            }
+          }
         }
       }
     }
@@ -140,9 +153,6 @@ export const PostContainer = styled.section`
         padding: 0;
         & button {
           padding: 1rem 2rem;
-          & p {
-            display: none;
-          }
         }
       }
     }
@@ -315,10 +325,6 @@ export const AudioPostContainer = styled.section`
           filter: drop-shadow(1px 1px #000);
           transition: all 0.4s ease-in-out;
           color: ${props => props.theme.colors.namesakeText};
-
-          &:focus {
-            outline: none;
-          }
         }
       }
 
