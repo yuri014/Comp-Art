@@ -36,8 +36,7 @@ export const GET_PROFILE_POSTS = gql`
       }
       isAudio
       avatar
+      isLiked
     }
   }
 `;
-
-export default GET_POSTS;
