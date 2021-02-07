@@ -3,6 +3,7 @@ import IconButton from '@material-ui/core/IconButton';
 import {
   FaBackward,
   FaForward,
+  FaHeart,
   FaPause,
   FaPlay,
   FaRegComment,
@@ -10,10 +11,12 @@ import {
   FaRegShareSquare,
 } from 'react-icons/fa';
 import { LinearProgress, ThemeProvider } from '@material-ui/core';
+import { useMutation } from '@apollo/client';
 
 import { AudioPostContainer } from './styles';
 import mainTheme from '../../styles/themes/MainTheme';
 import { PostProps } from '../../interfaces/Post';
+import { LIKE_POST } from '../../graphql/mutations/post';
 
 const AudioPost: React.FC<PostProps> = ({ post }) => {
   const audioRef = useRef<null | HTMLAudioElement>(null);
@@ -21,6 +24,12 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
   const [audioDuration, setAudioDuration] = useState('0:00');
   const [currentTime, setCurrentTime] = useState('');
   const [progress, setProgress] = useState(0);
+  const [isLiked, setIsLiked] = useState(false);
+  const [likePost] = useMutation(LIKE_POST, {
+    // eslint-disable-next-line no-underscore-dangle
+    variables: { id: post._id },
+    onCompleted: data => setIsLiked(data.like),
+  });
 
   const getTime = (time: number) => {
     const minutes = Math.floor(time / 60);
@@ -109,15 +118,21 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
               src={post.avatar || '/profile.jpg'}
             />
             <div className="interactions">
-              <span title="Curtir">
-                <FaRegHeart />
-              </span>
-              <span title="Comentar">
-                <FaRegComment />
-              </span>
-              <span title="Compartilhar">
-                <FaRegShareSquare />
-              </span>
+              <div>
+                <IconButton title="Curtir" onClick={() => likePost()}>
+                  <span>{isLiked ? <FaHeart /> : <FaRegHeart />}</span>
+                </IconButton>
+              </div>
+              <div>
+                <IconButton title="Comentar">
+                  <FaRegComment />
+                </IconButton>
+              </div>
+              <div>
+                <IconButton title="Compartilhar">
+                  <FaRegShareSquare />
+                </IconButton>
+              </div>
             </div>
           </div>
         </div>

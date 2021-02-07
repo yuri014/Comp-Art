@@ -69,10 +69,6 @@ export default createGlobalStyle`
     color: ${props => props.theme.colors.lightContrast}
   }
 
-  *:focus {
-    outline: thin dotted ${props => props.theme.colors.mainColor};
-  }
-
   .main-title {
     position: static;
     margin-top: 8rem;

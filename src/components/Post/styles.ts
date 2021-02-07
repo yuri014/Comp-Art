@@ -307,10 +307,18 @@ export const AudioPostContainer = styled.section`
         margin-left: 6rem;
         margin-top: -160px;
         cursor: pointer;
-        transition: all 0.4s ease-in-out;
-        span {
+        transition: all 0.2s ease-in-out;
+        button {
           font-size: 2rem;
+          background: transparent;
+          cursor: pointer;
           filter: drop-shadow(1px 1px #000);
+          transition: all 0.4s ease-in-out;
+          color: ${props => props.theme.colors.namesakeText};
+
+          &:focus {
+            outline: none;
+          }
         }
       }
 
@@ -390,7 +398,7 @@ export const AudioPostContainer = styled.section`
           margin-top: -200px;
           cursor: pointer;
           transition: all 0.4s ease-in-out;
-          span {
+          button {
             font-size: 2rem;
             filter: drop-shadow(1px 1px #000);
           }
