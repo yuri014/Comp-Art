@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useCallback, useContext, useRef, useState } from 'react';
 import Head from 'next/head';
 import { QueryResult, useMutation, useQuery } from '@apollo/client';
 import {
@@ -28,6 +28,7 @@ import {
 import { initializeApollo } from '../../graphql/apollo/config';
 import { GET_PROFILE_POSTS } from '../../graphql/queries/post';
 import Post from '../../components/Post';
+import SkeletonPost from '../../components/Post/SkeletonPost';
 
 interface ProfileProps {
   username: string;
@@ -37,19 +38,9 @@ interface ProfileProps {
       username: string;
     }
   >;
-  profilePosts: QueryResult<
-    { getProfilePosts: Array<IPost> },
-    {
-      username: string;
-    }
-  >;
 }
 
-const Profile: React.FC<ProfileProps> = ({
-  username,
-  profile,
-  profilePosts,
-}) => {
+const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
   const auth = useContext(AuthContext);
   const [isFollowing, setIsFollowing] = useState(false);
   const { data: getIsFollowing, loading } = useQuery(GET_IS_FOLLOWING, {
@@ -59,16 +50,40 @@ const Profile: React.FC<ProfileProps> = ({
     onCompleted: () => setIsFollowing(getIsFollowing.getIsFollowing),
   });
 
-  const { data } = profile;
-
-  const {
-    data: { getProfilePosts },
-  } = profilePosts;
-
   const [follow] = useMutation(FOLLOW_PROFILE);
   const [unfollow] = useMutation(UNFOLLOW_PROFILE);
 
-  const { getProfile }: { getProfile: IProfile } = data;
+  const [hasMore, setHasMore] = useState(false);
+  const observer = useRef(null);
+  const { data, error, loading: loadingPost, fetchMore } = useQuery<{
+    getProfilePosts: Array<IPost>;
+  }>(GET_PROFILE_POSTS, {
+    variables: { offset: 0, username },
+    ssr: true,
+  });
+
+  const lastPostRef = useCallback(
+    node => {
+      if (!data.getProfilePosts) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && !hasMore) {
+          fetchMore({
+            variables: { offset: data.getProfilePosts.length },
+          }).then(newPosts => {
+            if (newPosts.data.getProfilePosts.length < 3) {
+              setHasMore(true);
+            }
+          });
+        }
+      });
+
+      if (node) observer.current.observe(node);
+    },
+    [data],
+  );
+
+  const { getProfile }: { getProfile: IProfile } = profile.data;
 
   const hasAuth = auth.user;
 
@@ -245,9 +260,27 @@ const Profile: React.FC<ProfileProps> = ({
       </main>
       <div className="container">
         <section className="profile-posts">
-          {getProfilePosts.map(post => (
-            <Post key={`${post.artist}_${post.createdAt}`} post={post} />
-          ))}
+          {loadingPost || error ? (
+            <SkeletonPost />
+          ) : (
+            data.getProfilePosts.map((post, index) => {
+              if (data.getProfilePosts.length === index + 1) {
+                return (
+                  <div
+                    key={`${post.artist}_${post.createdAt}`}
+                    ref={lastPostRef}
+                  >
+                    <Post post={post} />
+                  </div>
+                );
+              }
+              return (
+                <div key={`${post.artist}_${post.createdAt}`}>
+                  <Post post={post} />
+                </div>
+              );
+            })
+          )}
         </section>
       </div>
       <MobileFooter />
@@ -266,11 +299,6 @@ export const getServerSideProps: GetServerSideProps = async context => {
     errorPolicy: 'ignore',
   });
 
-  const profilePosts = await client.query({
-    query: GET_PROFILE_POSTS,
-    variables: { offset: 0, username },
-  });
-
   if (!profile.data.getProfile) {
     return {
       notFound: true,
@@ -280,7 +308,6 @@ export const getServerSideProps: GetServerSideProps = async context => {
     props: {
       username,
       profile,
-      profilePosts,
     },
   };
 };
