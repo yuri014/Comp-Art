@@ -42,7 +42,8 @@ const Home: React.FC = () => {
 
       if (node) observer.current.observe(node);
     },
-    [data.getPosts, fetchMore, hasMore],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [data],
   );
 
   const {
