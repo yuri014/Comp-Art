@@ -11,7 +11,7 @@ import {
   FaRegHeart,
   FaRegShareSquare,
 } from 'react-icons/fa';
-import { LinearProgress, ThemeProvider } from '@material-ui/core';
+import { Slider, ThemeProvider } from '@material-ui/core';
 import { useMutation } from '@apollo/client';
 
 import { AudioPostContainer } from './styles';
@@ -24,7 +24,6 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioDuration, setAudioDuration] = useState('0:00');
   const [currentTime, setCurrentTime] = useState('');
-  const [progress, setProgress] = useState(0);
   const [likesCount, setLikesCount] = useState(post.likesCount);
   const [isLiked, setIsLiked] = useState(post.isLiked);
   const [likePost] = useMutation(LIKE_POST, {
@@ -54,8 +53,6 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
     const current = audioRef.current.currentTime;
     const { minutes, seconds } = getTime(current);
     setCurrentTime(`${minutes}:${Math.floor(seconds)}`);
-    const result = current / audioRef.current.duration;
-    setProgress(result * 100);
     if (current === audioRef.current.duration) {
       setIsPlaying(false);
     }
@@ -88,6 +85,10 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
       setAudioDuration(`${minutes}:${seconds}`);
     }
   }, []);
+
+  const handleScroll = (_, newValue: number | number[]) => {
+    audioRef.current.currentTime = newValue as number;
+  };
 
   return (
     <AudioPostContainer>
@@ -129,9 +130,12 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
                 <p>{currentTime || '0:00'}</p>
                 <p>{audioDuration || '0:00'}</p>
               </div>
-              <LinearProgress
-                variant="determinate"
-                value={Math.round(progress)}
+              <Slider
+                value={audioRef.current && audioRef.current.currentTime}
+                min={0}
+                max={audioRef.current && audioRef.current.duration}
+                onChange={handleScroll}
+                aria-labelledby="audio-progress"
               />
             </div>
           </div>

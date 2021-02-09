@@ -364,7 +364,7 @@ export const AudioPostContainer = styled.section`
       .duration {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 0.2rem;
+        margin-bottom: -0.6rem;
         font-size: 1.2rem;
       }
     }
