@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import IconButton from '@material-ui/core/IconButton';
@@ -19,6 +20,57 @@ import mainTheme from '../../styles/themes/MainTheme';
 import { PostProps } from '../../interfaces/Post';
 import { DISLIKE_POST, LIKE_POST } from '../../graphql/mutations/post';
 
+interface LinksProps {
+  username: string;
+  description: string;
+  name: string;
+}
+
+const Links = React.memo<LinksProps>(({ username, description, name }) => (
+  <Link href={`profile/${username}`}>
+    <a>
+      <p className="music-name">{description}</p>
+      <p className="artist-name">{name}</p>
+    </a>
+  </Link>
+));
+
+interface InteractionsProps {
+  name: string;
+  avatar: string;
+  isLiked: boolean;
+  dislikePost: () => void;
+  likePost: () => void;
+}
+
+const Interactions = React.memo<InteractionsProps>(
+  ({ avatar, dislikePost, isLiked, likePost, name }) => (
+    <div role="button" tabIndex={0} className="image">
+      <img alt={`Imagem de perfil de ${name}`} src={avatar || '/profile.jpg'} />
+      <div className="interactions">
+        <div>
+          <IconButton
+            title="Curtir"
+            onClick={() => (isLiked ? dislikePost() : likePost())}
+          >
+            <span>{isLiked ? <FaHeart /> : <FaRegHeart />}</span>
+          </IconButton>
+        </div>
+        <div>
+          <IconButton title="Comentar">
+            <FaRegComment />
+          </IconButton>
+        </div>
+        <div>
+          <IconButton title="Compartilhar">
+            <FaRegShareSquare />
+          </IconButton>
+        </div>
+      </div>
+    </div>
+  ),
+);
+
 const AudioPost: React.FC<PostProps> = ({ post }) => {
   const audioRef = useRef<null | HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -33,7 +85,6 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
   }, [post.isLiked, post.likesCount]);
 
   const [likePost] = useMutation(LIKE_POST, {
-    // eslint-disable-next-line no-underscore-dangle
     variables: { id: post._id },
     onCompleted: () => {
       setIsLiked(true);
@@ -41,7 +92,6 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
     },
   });
   const [dislikePost] = useMutation(DISLIKE_POST, {
-    // eslint-disable-next-line no-underscore-dangle
     variables: { id: post._id },
     onCompleted: () => {
       setIsLiked(false);
@@ -97,12 +147,11 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
       <ThemeProvider theme={mainTheme}>
         <div className="audio-card">
           <div className="audio-card-info">
-            <Link href={`profile/${post.artist.username}`}>
-              <a>
-                <p className="music-name">{post.description}</p>
-                <p className="artist-name">{post.artist.name}</p>
-              </a>
-            </Link>
+            <Links
+              username={post.artist.username}
+              description={post.description}
+              name={post.artist.name}
+            />
             <div className="audio-buttons">
               <IconButton
                 onClick={() => {
@@ -141,32 +190,13 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
               />
             </div>
           </div>
-          <div role="button" tabIndex={0} className="image">
-            <img
-              alt={`Imagem de perfil de ${post.artist.name}`}
-              src={post.avatar || '/profile.jpg'}
-            />
-            <div className="interactions">
-              <div>
-                <IconButton
-                  title="Curtir"
-                  onClick={() => (isLiked ? dislikePost() : likePost())}
-                >
-                  <span>{isLiked ? <FaHeart /> : <FaRegHeart />}</span>
-                </IconButton>
-              </div>
-              <div>
-                <IconButton title="Comentar">
-                  <FaRegComment />
-                </IconButton>
-              </div>
-              <div>
-                <IconButton title="Compartilhar">
-                  <FaRegShareSquare />
-                </IconButton>
-              </div>
-            </div>
-          </div>
+          <Interactions
+            avatar={post.avatar}
+            dislikePost={dislikePost}
+            isLiked={isLiked}
+            likePost={likePost}
+            name={post.artist.name}
+          />
         </div>
         <audio
           style={{ display: 'none' }}
