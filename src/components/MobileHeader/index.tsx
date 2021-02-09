@@ -22,13 +22,13 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
 
-  const handleScroll = () => {
-    const currentScrollPos = window.pageYOffset;
-    setVisible(currentScrollPos < prevScrollPos);
-    setPrevScrollPos(currentScrollPos);
-  };
-
   useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      setVisible(currentScrollPos < prevScrollPos);
+      setPrevScrollPos(currentScrollPos);
+    };
+
     window.addEventListener('scroll', handleScroll);
 
     return () => window.removeEventListener('scroll', handleScroll);

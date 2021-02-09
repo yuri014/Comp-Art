@@ -80,7 +80,7 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
 
       if (node) observer.current.observe(node);
     },
-    [data],
+    [data.getProfilePosts, fetchMore, hasMore],
   );
 
   const { getProfile }: { getProfile: IProfile } = profile.data;

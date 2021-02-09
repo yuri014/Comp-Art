@@ -42,7 +42,7 @@ const Home: React.FC = () => {
 
       if (node) observer.current.observe(node);
     },
-    [data],
+    [data.getPosts, fetchMore, hasMore],
   );
 
   const {

@@ -43,7 +43,7 @@ function SignUp(): JSX.Element {
       });
       inputRef.current.focus();
     }
-  }, []);
+  }, [register]);
 
   const onSubmit = (data: IUser) => {
     registerUser({

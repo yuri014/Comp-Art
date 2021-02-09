@@ -34,7 +34,7 @@ const Login: React.FC = () => {
       register(inputRef.current);
       inputRef.current.focus();
     }
-  }, []);
+  }, [register]);
 
   const [loginUser] = useMutation(LOGIN_USER, {
     onCompleted: response => {

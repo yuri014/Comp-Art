@@ -27,7 +27,7 @@ const ConfirmationEmail: React.FC = () => {
         variables: { token },
       });
     }
-  }, [token]);
+  }, [confirmEmail, token]);
 
   return (
     <ConfirmationEmailContainer>

@@ -24,8 +24,14 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioDuration, setAudioDuration] = useState('0:00');
   const [currentTime, setCurrentTime] = useState('');
-  const [likesCount, setLikesCount] = useState(post.likesCount);
-  const [isLiked, setIsLiked] = useState(post.isLiked);
+  const [likesCount, setLikesCount] = useState(0);
+  const [isLiked, setIsLiked] = useState(false);
+
+  useEffect(() => {
+    setLikesCount(post.likesCount);
+    setIsLiked(post.isLiked);
+  }, [post.isLiked, post.likesCount]);
+
   const [likePost] = useMutation(LIKE_POST, {
     // eslint-disable-next-line no-underscore-dangle
     variables: { id: post._id },
@@ -49,18 +55,14 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
     return { minutes, seconds };
   };
 
-  const updateTime = () => {
-    const current = audioRef.current.currentTime;
-    const { minutes, seconds } = getTime(current);
-    setCurrentTime(`${minutes}:${Math.floor(seconds)}`);
-    if (current === audioRef.current.duration) {
-      setIsPlaying(false);
-    }
-  };
-
   useEffect(() => {
     const interval = setInterval(() => {
-      updateTime();
+      const current = audioRef.current.currentTime;
+      const { minutes, seconds } = getTime(current);
+      setCurrentTime(`${minutes}:${Math.floor(seconds)}`);
+      if (current === audioRef.current.duration) {
+        setIsPlaying(false);
+      }
     }, 100);
 
     if (!isPlaying) {

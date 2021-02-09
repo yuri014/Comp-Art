@@ -18,6 +18,8 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   const apolloClient = useApollo(pageProps.initialApolloState);
+
+  const MainComponent = React.memo(() => <Component {...pageProps} />);
   return (
     <>
       <Head>
@@ -26,7 +28,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
       <AuthProvider>
         <ApolloProvider client={apolloClient}>
           <ThemeProvider theme={theme}>
-            <Component {...pageProps} />
+            <MainComponent />
             <GlobalStyle />
           </ThemeProvider>
         </ApolloProvider>
