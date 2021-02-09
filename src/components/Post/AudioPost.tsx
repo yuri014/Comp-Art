@@ -78,6 +78,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
   const [currentTime, setCurrentTime] = useState('');
   const [likesCount, setLikesCount] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
+  const [slider, setSlider] = useState(0);
 
   useEffect(() => {
     setLikesCount(post.likesCount);
@@ -110,10 +111,11 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
       const current = audioRef.current.currentTime;
       const { minutes, seconds } = getTime(current);
       setCurrentTime(`${minutes}:${Math.floor(seconds)}`);
+      setSlider(audioRef.current.currentTime);
       if (current === audioRef.current.duration) {
         setIsPlaying(false);
       }
-    }, 100);
+    }, 20);
 
     if (!isPlaying) {
       clearInterval(interval);
@@ -140,6 +142,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
 
   const handleScroll = (_, newValue: number | number[]) => {
     audioRef.current.currentTime = newValue as number;
+    setSlider(newValue as number);
   };
 
   return (
@@ -182,11 +185,12 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
                 <p>{audioDuration || '0:00'}</p>
               </div>
               <Slider
-                value={audioRef.current && audioRef.current.currentTime}
+                value={slider}
                 min={0}
                 max={audioRef.current && audioRef.current.duration}
                 onChange={handleScroll}
                 aria-labelledby="audio-progress"
+                step={0.01}
               />
             </div>
           </div>
