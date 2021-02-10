@@ -13,13 +13,12 @@ import {
   FaRegShareSquare,
 } from 'react-icons/fa';
 import { Slider, ThemeProvider } from '@material-ui/core';
-import { useMutation } from '@apollo/client';
 
 import { AudioPostContainer } from './styles';
 import mainTheme from '../../styles/themes/MainTheme';
 import { PostProps } from '../../interfaces/Post';
-import { DISLIKE_POST, LIKE_POST } from '../../graphql/mutations/post';
 import OptionsMenu from './OptionsMenu';
+import useDeletePost from '../../hooks/posts';
 
 interface LinksProps {
   username: string;
@@ -86,20 +85,17 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
     setIsLiked(post.isLiked);
   }, [post.isLiked, post.likesCount]);
 
-  const [likePost] = useMutation(LIKE_POST, {
-    variables: { id: post._id },
-    onCompleted: () => {
-      setIsLiked(true);
-      setLikesCount(likesCount + 1);
-    },
-  });
-  const [dislikePost] = useMutation(DISLIKE_POST, {
-    variables: { id: post._id },
-    onCompleted: () => {
+  const [deletePost, dislikePost, likePost] = useDeletePost(
+    post._id,
+    () => {
       setIsLiked(false);
       setLikesCount(likesCount - 1);
     },
-  });
+    () => {
+      setIsLiked(true);
+      setLikesCount(likesCount + 1);
+    },
+  );
 
   const getTime = (time: number) => {
     const minutes = Math.floor(time / 60);
@@ -157,7 +153,10 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
                 description={post.description}
                 name={post.artist.name}
               />
-              <OptionsMenu username={post.artist.username} />
+              <OptionsMenu
+                deletePost={deletePost}
+                username={post.artist.username}
+              />
             </div>
             <div className="audio-buttons">
               <IconButton

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+/* eslint-disable no-underscore-dangle */
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Button, ThemeProvider } from '@material-ui/core';
-import { useMutation } from '@apollo/client';
 import Link from 'next/link';
 import {
   FaHeart,
@@ -13,29 +13,29 @@ import {
 import { PostContainer } from './styles';
 import { PostProps } from '../../interfaces/Post';
 import mainTheme from '../../styles/themes/MainTheme';
-import { DISLIKE_POST, LIKE_POST } from '../../graphql/mutations/post';
 import OptionsMenu from './OptionsMenu';
+import useDeletePost from '../../hooks/posts';
 
 const ImagePost: React.FC<PostProps> = ({ post }) => {
-  const [isLiked, setIsLiked] = useState(post.isLiked);
-  const [likesCount, setLikesCount] = useState(post.likesCount);
+  const [isLiked, setIsLiked] = useState<boolean>();
+  const [likesCount, setLikesCount] = useState<number>();
 
-  const [likePost] = useMutation(LIKE_POST, {
-    // eslint-disable-next-line no-underscore-dangle
-    variables: { id: post._id },
-    onCompleted: () => {
-      setIsLiked(true);
-      setLikesCount(likesCount + 1);
-    },
-  });
-  const [dislikePost] = useMutation(DISLIKE_POST, {
-    // eslint-disable-next-line no-underscore-dangle
-    variables: { id: post._id },
-    onCompleted: () => {
+  useEffect(() => {
+    setIsLiked(post.isLiked);
+    setLikesCount(post.likesCount);
+  }, [post.isLiked, post.likesCount]);
+
+  const [deletePost, dislikePost, likePost] = useDeletePost(
+    post._id,
+    () => {
       setIsLiked(false);
       setLikesCount(likesCount - 1);
     },
-  });
+    () => {
+      setIsLiked(true);
+      setLikesCount(likesCount + 1);
+    },
+  );
 
   return (
     <PostContainer>
@@ -63,7 +63,10 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
             </Link>
           </div>
           <div className="post-config">
-            <OptionsMenu username={post.artist.username} />
+            <OptionsMenu
+              deletePost={deletePost}
+              username={post.artist.username}
+            />
           </div>
         </div>
         <div className="post">
