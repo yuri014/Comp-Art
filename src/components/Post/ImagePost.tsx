@@ -4,7 +4,6 @@ import { Button, ThemeProvider } from '@material-ui/core';
 import { useMutation } from '@apollo/client';
 import Link from 'next/link';
 import {
-  FaCog,
   FaHeart,
   FaRegComment,
   FaRegHeart,
@@ -15,10 +14,12 @@ import { PostContainer } from './styles';
 import { PostProps } from '../../interfaces/Post';
 import mainTheme from '../../styles/themes/MainTheme';
 import { DISLIKE_POST, LIKE_POST } from '../../graphql/mutations/post';
+import OptionsMenu from './OptionsMenu';
 
 const ImagePost: React.FC<PostProps> = ({ post }) => {
   const [isLiked, setIsLiked] = useState(post.isLiked);
   const [likesCount, setLikesCount] = useState(post.likesCount);
+
   const [likePost] = useMutation(LIKE_POST, {
     // eslint-disable-next-line no-underscore-dangle
     variables: { id: post._id },
@@ -38,38 +39,40 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
 
   return (
     <PostContainer>
-      <div className="post-author">
-        <div className="author-info">
-          <img
-            alt={`Imagem de perfil de ${post.artist.name}`}
-            src={post.avatar || '/profile.jpg'}
-          />
+      <ThemeProvider theme={mainTheme}>
+        <div className="post-author">
+          <div className="author-info">
+            <img
+              alt={`Imagem de perfil de ${post.artist.name}`}
+              src={post.avatar || '/profile.jpg'}
+            />
 
-          <Link href={`/profile/${post.artist.username}`}>
-            <a>
-              <div>
-                <h4>{post.artist.name}</h4>
-                <span>
-                  <p>{new Date(post.createdAt).toLocaleDateString('en-GB')}</p>
-                  <p>&nbsp;●&nbsp;</p>
-                  <p>@{post.artist.username}</p>
-                </span>
-              </div>
-            </a>
-          </Link>
+            <Link href={`/profile/${post.artist.username}`}>
+              <a>
+                <div>
+                  <h4>{post.artist.name}</h4>
+                  <span>
+                    <p>
+                      {new Date(post.createdAt).toLocaleDateString('en-GB')}
+                    </p>
+                    <p>&nbsp;●&nbsp;</p>
+                    <p>@{post.artist.username}</p>
+                  </span>
+                </div>
+              </a>
+            </Link>
+          </div>
+          <div className="post-config">
+            <OptionsMenu username={post.artist.username} />
+          </div>
         </div>
-        <div className="post-config">
-          <FaCog />
-        </div>
-      </div>
-      <div className="post">
-        <div className="post-description">
-          <p>{post.description}</p>
-        </div>
-        <figure className="post-image">
-          <Image src={post.body} alt="Publicação" layout="fill" />
-        </figure>
-        <ThemeProvider theme={mainTheme}>
+        <div className="post">
+          <div className="post-description">
+            <p>{post.description}</p>
+          </div>
+          <figure className="post-image">
+            <Image src={post.body} alt="Publicação" layout="fill" />
+          </figure>
           <div className="post-interaction">
             <Button
               className={isLiked ? 'active' : ''}
@@ -89,8 +92,8 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
               <p>{post.sharedCount}</p>
             </Button>
           </div>
-        </ThemeProvider>
-      </div>
+        </div>
+      </ThemeProvider>
     </PostContainer>
   );
 };

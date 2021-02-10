@@ -19,6 +19,7 @@ import { AudioPostContainer } from './styles';
 import mainTheme from '../../styles/themes/MainTheme';
 import { PostProps } from '../../interfaces/Post';
 import { DISLIKE_POST, LIKE_POST } from '../../graphql/mutations/post';
+import OptionsMenu from './OptionsMenu';
 
 interface LinksProps {
   username: string;
@@ -149,12 +150,15 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
     <AudioPostContainer>
       <ThemeProvider theme={mainTheme}>
         <div className="audio-card">
-          <div className="audio-card-info">
-            <Links
-              username={post.artist.username}
-              description={post.description}
-              name={post.artist.name}
-            />
+          <div className="audio-card-content">
+            <div className="audio-card-info">
+              <Links
+                username={post.artist.username}
+                description={post.description}
+                name={post.artist.name}
+              />
+              <OptionsMenu username={post.artist.username} />
+            </div>
             <div className="audio-buttons">
               <IconButton
                 onClick={() => {
