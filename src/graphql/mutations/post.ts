@@ -1,19 +1,25 @@
 import { gql } from '@apollo/client';
 
 export const CREATE_POST = gql`
-  mutation createPost($post: CreatePostInput!) {
+  mutation CreatePost($post: CreatePostInput!) {
     createPost(postInput: $post)
   }
 `;
 
 export const LIKE_POST = gql`
-  mutation likePost($id: ID!) {
+  mutation LikePost($id: ID!) {
     like(id: $id)
   }
 `;
 
 export const DISLIKE_POST = gql`
-  mutation dislikePost($id: ID!) {
+  mutation DislikePost($id: ID!) {
     dislike(id: $id)
+  }
+`;
+
+export const DELETE_POST = gql`
+  mutation DeletePost($id: ID!) {
+    deletePost(id: $id)
   }
 `;
