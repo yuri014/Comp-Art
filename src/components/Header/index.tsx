@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Link from 'next/link';
 import {
-  Button,
+  IconButton,
   Menu,
   MenuItem,
   NoSsr,
@@ -26,6 +26,7 @@ const Header: React.FC = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   return (
     <HeaderContainer>
       <div className="container">
@@ -53,16 +54,16 @@ const Header: React.FC = () => {
         <div className="header-icons">
           <span />
           <ThemeProvider theme={mainTheme}>
-            <Button
-              aria-controls="simple-menu"
+            <IconButton
+              aria-controls="menu-header"
               aria-haspopup="true"
               onClick={handleClick}
               color="secondary"
             >
-              <FaCog />
-            </Button>
+              <FaCog size={16} />
+            </IconButton>
             <Menu
-              id="simple-menu"
+              id="menu-header"
               anchorEl={anchorEl}
               keepMounted
               open={Boolean(anchorEl)}
