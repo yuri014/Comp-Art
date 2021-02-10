@@ -28,16 +28,18 @@ if (checkWindow && localStorage.getItem('jwtToken')) {
 
 interface IState {
   user: IUser | null;
+  login?: (data: IUser) => void;
+  logout?: () => void;
 }
 
-const AuthContext = createContext({
+const AuthContext = createContext<IState>({
   user: null,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   login: (data: IUser) => {},
   logout: () => {},
 });
 
-const authReducer = (state: IState, action: IAction) => {
+const authReducer = (state: { user: IState }, action: IAction) => {
   switch (action.type) {
     case 'LOGIN':
       return {
@@ -76,7 +78,7 @@ const AuthProvider: React.FC = props => {
 
   return (
     <AuthContext.Provider
-      value={{ user: state.user, login, logout }}
+      value={{ user: state.user as IUser, login, logout }}
       {...props}
     />
   );
