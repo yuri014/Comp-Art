@@ -5,10 +5,11 @@ import { FiMoreVertical, FiTrash2 } from 'react-icons/fi';
 import { AuthContext } from '../../context/auth';
 
 interface OptionsMenuProps {
+  deletePost: () => void;
   username: string;
 }
 
-const OptionsMenu: React.FC<OptionsMenuProps> = ({ username }) => {
+const OptionsMenu: React.FC<OptionsMenuProps> = ({ deletePost, username }) => {
   const auth = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -39,7 +40,7 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({ username }) => {
       >
         <MenuItem>Copiar Link</MenuItem>
         {auth.user && auth.user.username === username && (
-          <MenuItem>
+          <MenuItem onClick={deletePost}>
             <span className="danger-icon">Deletar &nbsp;</span>
             <FiTrash2 className="danger-icon" />
           </MenuItem>
