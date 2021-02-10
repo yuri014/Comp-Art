@@ -38,6 +38,12 @@ const mainTheme = createMuiTheme({
         borderRadius: 30,
       },
     },
+    MuiMenu: {
+      paper: {
+        background: '#08162f',
+        color: '#cbcaeb',
+      },
+    },
   },
 });
 
