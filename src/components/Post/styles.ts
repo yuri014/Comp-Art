@@ -339,13 +339,19 @@ export const AudioPostContainer = styled.section`
       }
     }
 
-    .audio-card-info {
+    .audio-card-content {
       padding: 2rem;
       height: 100%;
       width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+
+      .audio-card-info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
 
       .MuiLinearProgress-colorPrimary {
         background: ${props => props.theme.colors.backgroundColor};
