@@ -66,7 +66,11 @@ export default createGlobalStyle`
   }
 
   .secondary-icon {
-    color: ${props => props.theme.colors.lightContrast}
+    color: ${props => props.theme.colors.lightContrast};
+  }
+
+  .danger-icon {
+    color: ${props => props.theme.colors.danger};
   }
 
   .main-title {
