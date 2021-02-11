@@ -24,15 +24,22 @@ interface LinksProps {
   username: string;
   description: string;
   name: string;
+  id: string;
 }
 
-const Links = React.memo<LinksProps>(({ username, description, name }) => (
-  <Link href={`/profile/${username}`}>
-    <a>
-      <p className="music-name">{description}</p>
-      <p className="artist-name">{name}</p>
-    </a>
-  </Link>
+const Links = React.memo<LinksProps>(({ username, description, name, id }) => (
+  <div>
+    <Link href={`/profile/${id}`}>
+      <a>
+        <p className="music-name">{description}</p>
+      </a>
+    </Link>
+    <Link href={`/post/${username}`}>
+      <a>
+        <p className="artist-name">{name}</p>
+      </a>
+    </Link>
+  </div>
 ));
 
 interface InteractionsProps {
@@ -152,6 +159,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
                 username={post.artist.username}
                 description={post.description}
                 name={post.artist.name}
+                id={post._id}
               />
               <OptionsMenu
                 deletePost={deletePost}
