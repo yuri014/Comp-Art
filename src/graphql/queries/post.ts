@@ -1,5 +1,24 @@
 import { gql } from '@apollo/client';
 
+export const GET_POST = gql`
+  query GetPost($id: ID!) {
+    getPost(id: $id) {
+      description
+      body
+      likesCount
+      sharedCount
+      commentsCount
+      createdAt
+      artist {
+        name
+        username
+      }
+      isAudio
+      isLiked
+    }
+  }
+`;
+
 export const GET_POSTS = gql`
   query GetPosts($offset: Int!) {
     getPosts(offset: $offset) {
