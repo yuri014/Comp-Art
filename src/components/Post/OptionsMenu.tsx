@@ -1,16 +1,24 @@
-import React, { memo, useContext, useState } from 'react';
-import { IconButton, Menu, MenuItem } from '@material-ui/core';
+import React, { memo, useContext, useRef, useState } from 'react';
+import { IconButton, Menu, MenuItem, Snackbar } from '@material-ui/core';
 import { FiMoreVertical, FiTrash2 } from 'react-icons/fi';
 
+import { FaTimes } from 'react-icons/fa';
 import { AuthContext } from '../../context/auth';
 
 interface OptionsMenuProps {
   deletePost: () => void;
   username: string;
+  id: string;
 }
 
-const OptionsMenu: React.FC<OptionsMenuProps> = ({ deletePost, username }) => {
+const OptionsMenu: React.FC<OptionsMenuProps> = ({
+  deletePost,
+  id,
+  username,
+}) => {
   const auth = useContext(AuthContext);
+  const clip = useRef(null);
+  const [isClipped, setIsClipped] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -19,6 +27,12 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({ deletePost, username }) => {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const copyToClipboard = () => {
+    clip.current.select();
+    document.execCommand('copy');
+    setIsClipped(true);
   };
 
   return (
@@ -38,7 +52,14 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({ deletePost, username }) => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem>Copiar Link</MenuItem>
+        <MenuItem onClick={copyToClipboard}>
+          Copiar Link
+          <textarea
+            ref={clip}
+            style={{ position: 'absolute', left: '-999em' }}
+            value={`${process.env.NEXT_PUBLIC_HOST}/post/${id}`}
+          />
+        </MenuItem>
         {auth.user && auth.user.username === username && (
           <MenuItem onClick={deletePost}>
             <span className="danger-icon">Deletar &nbsp;</span>
@@ -46,6 +67,27 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({ deletePost, username }) => {
           </MenuItem>
         )}
       </Menu>
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        open={isClipped}
+        autoHideDuration={1000}
+        onClose={() => setIsClipped(false)}
+        message="Copiado"
+        color="error"
+        action={
+          <IconButton
+            size="small"
+            aria-label="close"
+            onClick={() => setIsClipped(false)}
+            color="primary"
+          >
+            <FaTimes />
+          </IconButton>
+        }
+      />
     </>
   );
 };
