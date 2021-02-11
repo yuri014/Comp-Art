@@ -25,17 +25,29 @@ const GET_IS_LIKED = gql`
 `;
 
 const Post: React.FC<PostProps> = ({ post }) => {
-  const [postData, setPostData] = useState<IPost>();
+  const [postData, setPostData] = useState<IPost>(post);
   const { data } = useQuery<PostQuery>(GET_IS_LIKED, {
     variables: { id: post._id },
   });
+
+  useEffect(() => {
+    if (data) {
+      const newPost = post;
+      newPost.isLiked = data.getPost.isLiked;
+      setPostData({ ...newPost });
+    }
+  }, [data, post]);
 
   return (
     <PostPageContainer>
       <Header />
       <main>
         <div className="container">
-          {post.isAudio ? <AudioPost post={post} /> : <ImagePost post={post} />}
+          {postData.isAudio ? (
+            <AudioPost post={postData} />
+          ) : (
+            <ImagePost post={postData} />
+          )}
         </div>
       </main>
       <MobileFooter />
