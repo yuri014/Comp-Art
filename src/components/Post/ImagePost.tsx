@@ -65,6 +65,7 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
           <div className="post-config">
             <OptionsMenu
               deletePost={deletePost}
+              id={post._id}
               username={post.artist.username}
             />
           </div>

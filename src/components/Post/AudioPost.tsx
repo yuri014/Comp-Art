@@ -155,6 +155,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
               />
               <OptionsMenu
                 deletePost={deletePost}
+                id={post._id}
                 username={post.artist.username}
               />
             </div>
