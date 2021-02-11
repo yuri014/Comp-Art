@@ -56,6 +56,7 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({
           Copiar Link
           <textarea
             ref={clip}
+            readOnly
             style={{ position: 'absolute', left: '-999em' }}
             value={`${process.env.NEXT_PUBLIC_HOST}/post/${id}`}
           />
