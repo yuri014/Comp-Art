@@ -27,7 +27,7 @@ interface LinksProps {
 }
 
 const Links = React.memo<LinksProps>(({ username, description, name }) => (
-  <Link href={`profile/${username}`}>
+  <Link href={`/profile/${username}`}>
     <a>
       <p className="music-name">{description}</p>
       <p className="artist-name">{name}</p>
