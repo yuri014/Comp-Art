@@ -39,6 +39,26 @@ export const GET_POSTS = gql`
   }
 `;
 
+export const GET_EXPLORE_POSTS = gql`
+  query GetExplorePosts($offset: Int!) {
+    getExplorePosts(offset: $offset) {
+      _id
+      description
+      body
+      likesCount
+      sharedCount
+      commentsCount
+      createdAt
+      artist {
+        name
+        username
+      }
+      isAudio
+      isLiked
+    }
+  }
+`;
+
 export const GET_PROFILE_POSTS = gql`
   query GetProfilePosts($offset: Int!, $username: String!) {
     getProfilePosts(offset: $offset, username: $username) {
