@@ -15,6 +15,7 @@ import AudioPost from '../../components/Post/AudioPost';
 import PostPageContainer from '../../styles/pages/post/styles';
 import FullImagePost from '../../components/Post/FullImagePost';
 import mainTheme from '../../styles/themes/MainTheme';
+import Comment from '../../components/Comment';
 
 interface PostQuery {
   getPost: IPost;
@@ -60,6 +61,11 @@ const Post: React.FC<PostProps> = ({ post }) => {
           ) : (
             <FullImagePost post={postData} />
           )}
+          <Comment />
+          <Comment />
+          <Comment />
+          <Comment />
+          <Comment />
         </main>
         <footer>
           <img src="/profile.jpg" alt="Profile name" />
