@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
 const PostPageContainer = styled.div`
-  background: linear-gradient(
+  /* background: linear-gradient(
       180deg,
       ${props => props.theme.colors.secondaryBackgroundColor} 0%,
       ${props => props.theme.colors.namesakeText} 100%
     ),
-    ${props => props.theme.colors.secondaryBackgroundColor};
+    ${props => props.theme.colors.secondaryBackgroundColor}; */
+
+  background: ${props => props.theme.colors.mainGradient};
   min-height: 100vh;
 
   nav {
@@ -21,6 +23,10 @@ const PostPageContainer = styled.div`
     a {
       color: ${props => props.theme.colors.mainColor};
     }
+  }
+
+  main {
+    padding-bottom: 8rem;
   }
 
   footer {
@@ -39,7 +45,7 @@ const PostPageContainer = styled.div`
     img {
       width: 3rem;
       height: 3rem;
-      object-fit: fill;
+      object-fit: cover;
       border-radius: 50%;
     }
 
