@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { FaRegHeart } from 'react-icons/fa';
-import CommentContainer from './styles';
+import { CommentContainer } from './styles';
 
 export interface CommentProps {
   avatar: string;

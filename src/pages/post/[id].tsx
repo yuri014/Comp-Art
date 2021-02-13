@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { GetServerSideProps } from 'next';
-import { IconButton, TextField, ThemeProvider } from '@material-ui/core';
 import { gql, useQuery } from '@apollo/client';
-import { AiOutlineSend } from 'react-icons/ai';
+
 import { FaArrowLeft, FaUserAlt } from 'react-icons/fa';
 
 import { initializeApollo } from '../../graphql/apollo/config';
@@ -12,9 +11,8 @@ import { IPost, PostProps } from '../../interfaces/Post';
 import AudioPost from '../../components/Post/AudioPost';
 import PostPageContainer from '../../styles/pages/post/styles';
 import FullImagePost from '../../components/Post/FullImagePost';
-import mainTheme from '../../styles/themes/MainTheme';
-import Comment from '../../components/Comment';
 import Meta from '../../components/SEO/Meta';
+import CommentsSections from '../../components/Comment/CommentsSections';
 
 interface PostQuery {
   getPost: IPost;
@@ -66,31 +64,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
           <FullImagePost post={postData} />
         )}
       </main>
-      <div className="comments">
-        <div className="comment-content">
-          <Comment />
-          <Comment />
-          <Comment />
-          <Comment />
-          <Comment />
-        </div>
-        <ThemeProvider theme={mainTheme}>
-          <footer>
-            <img src="/profile.jpg" alt="Profile name" />
-            <TextField
-              id="send-comment"
-              label="Enviar um comentário"
-              fullWidth
-              multiline
-            />
-            <IconButton aria-label="enviar comentário" color="primary">
-              <div className="send-button">
-                <AiOutlineSend />
-              </div>
-            </IconButton>
-          </footer>
-        </ThemeProvider>
-      </div>
+      <CommentsSections />
     </PostPageContainer>
   );
 };
