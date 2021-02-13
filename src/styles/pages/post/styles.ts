@@ -1,13 +1,6 @@
 import styled from 'styled-components';
 
 const PostPageContainer = styled.div`
-  /* background: linear-gradient(
-      180deg,
-      ${props => props.theme.colors.secondaryBackgroundColor} 0%,
-      ${props => props.theme.colors.namesakeText} 100%
-    ),
-    ${props => props.theme.colors.secondaryBackgroundColor}; */
-
   background: ${props => props.theme.colors.mainGradient};
   min-height: 100vh;
 
