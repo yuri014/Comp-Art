@@ -46,7 +46,7 @@ export const PostContainer = styled.section`
           display: flex;
           & p {
             margin-top: 0.4rem;
-            color: ${props => props.theme.colors.lightText};
+            color: ${props => props.theme.colors.blueContrast};
             font-size: 1.4rem;
             letter-spacing: 1px;
             white-space: nowrap;
