@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
 import { GetServerSideProps } from 'next';
 import { gql, useQuery } from '@apollo/client';
 
-import { FaArrowLeft, FaUserAlt } from 'react-icons/fa';
+import { FaArrowLeft } from 'react-icons/fa';
 
+import { useRouter } from 'next/router';
+import { IconButton } from '@material-ui/core';
 import { initializeApollo } from '../../graphql/apollo/config';
 import { GET_POST } from '../../graphql/queries/post';
 import { IPost, PostProps } from '../../interfaces/Post';
@@ -27,6 +28,8 @@ const GET_IS_LIKED = gql`
 `;
 
 const Post: React.FC<PostProps> = ({ post }) => {
+  const router = useRouter();
+
   const [postData, setPostData] = useState<IPost>(post);
   const { data } = useQuery<PostQuery>(GET_IS_LIKED, {
     variables: { id: post._id },
@@ -51,12 +54,13 @@ const Post: React.FC<PostProps> = ({ post }) => {
 
       <main>
         <nav>
-          <FaArrowLeft />
-          <Link href="/profile/">
-            <a title="Meu perfil">
-              <FaUserAlt />
-            </a>
-          </Link>
+          <IconButton
+            onClick={() => router.back()}
+            aria-label="Voltar"
+            color="primary"
+          >
+            <FaArrowLeft />
+          </IconButton>
         </nav>
         {postData.isAudio ? (
           <AudioPost post={postData} />
