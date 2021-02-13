@@ -52,11 +52,11 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
                 <div>
                   <h4>{post.artist.name}</h4>
                   <span>
+                    <p>@{post.artist.username}</p>
+                    <p>&nbsp;●&nbsp;</p>
                     <p>
                       {new Date(post.createdAt).toLocaleDateString('en-GB')}
                     </p>
-                    <p>&nbsp;●&nbsp;</p>
-                    <p>@{post.artist.username}</p>
                   </span>
                 </div>
               </a>
