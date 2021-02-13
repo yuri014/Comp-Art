@@ -44,14 +44,14 @@ const Landing: React.FC = () => {
         </div>
       </LandingContainer>
       <Modal
-        title="A princesa está em outro castelo!"
+        title="Comece sua jornada!"
         show={modalShow}
         onHide={() => setModalShow(false)}
       >
         <div className="modal-body">
           <p>
-            Para se aventurar em uma jornada de muita beleza e emoção, se
-            cadastre! Se sua jornada já começou, faça o seu login!
+            Faça o login ou se cadastre para conhecer e interagir com novos
+            artistas ou fãs com gostos em comum com você.
           </p>
         </div>
         <div className="link-buttons-block">
