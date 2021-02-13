@@ -92,7 +92,7 @@ export const CommentContainer = styled.div`
 export const CommentsSectionContainer = styled.section`
   padding-bottom: 8rem;
 
-  footer {
+  form {
     background: rgba(119, 166, 230, 0.3);
     backdrop-filter: blur(4px);
     border: 1px solid rgba(255, 255, 255, 0.18);
@@ -129,7 +129,7 @@ export const CommentsSectionContainer = styled.section`
     overflow-y: scroll;
     padding-bottom: 0;
 
-    footer {
+    form {
       border-top: 0;
       background: rgba(119, 166, 230, 0.3);
       backdrop-filter: blur(4px);

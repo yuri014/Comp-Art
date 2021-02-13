@@ -14,7 +14,7 @@ const PostPageContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     color: ${props => props.theme.colors.mainColor};
-    padding: 2rem;
+    padding: 0 2rem;
     border-bottom: 1px solid ${props => props.theme.colors.mainColor};
 
     a {
