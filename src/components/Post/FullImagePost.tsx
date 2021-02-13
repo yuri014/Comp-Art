@@ -39,16 +39,17 @@ const FullImagePost: React.FC<PostProps> = ({ post }) => {
     <PostContainer className="full-post">
       <ThemeProvider theme={mainTheme}>
         <div className="post">
-          <button
-            className="button-image-post"
-            type="button"
+          <div
+            role="button"
             onClick={() => setIsImageFullScreen(true)}
+            onKeyDown={() => setIsImageFullScreen(true)}
             onBlur={() => setIsImageFullScreen(false)}
+            tabIndex={0}
           >
             <figure className="post-image">
               <img src={post.body} alt="Publicação" />
             </figure>
-          </button>
+          </div>
           <div className="post-author">
             <div className="author-info">
               <img
