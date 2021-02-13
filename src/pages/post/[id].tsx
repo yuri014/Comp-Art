@@ -2,15 +2,19 @@
 import React, { useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import { gql, useQuery } from '@apollo/client';
+import { AiOutlineSend } from 'react-icons/ai';
 
+import { FaArrowLeft, FaUserAlt } from 'react-icons/fa';
+import Link from 'next/link';
+import { IconButton, TextField, ThemeProvider } from '@material-ui/core';
 import Header from '../../components/Header';
-import MobileFooter from '../../components/MobileFooter';
 import { initializeApollo } from '../../graphql/apollo/config';
 import { GET_POST } from '../../graphql/queries/post';
 import { IPost, PostProps } from '../../interfaces/Post';
 import AudioPost from '../../components/Post/AudioPost';
-import ImagePost from '../../components/Post/ImagePost';
 import PostPageContainer from '../../styles/pages/post/styles';
+import FullImagePost from '../../components/Post/FullImagePost';
+import mainTheme from '../../styles/themes/MainTheme';
 
 interface PostQuery {
   getPost: IPost;
@@ -40,17 +44,38 @@ const Post: React.FC<PostProps> = ({ post }) => {
 
   return (
     <PostPageContainer>
-      <Header />
-      <main>
-        <div className="container">
+      <ThemeProvider theme={mainTheme}>
+        <Header />
+        <nav>
+          <FaArrowLeft />
+          <Link href="/profile/">
+            <a>
+              <FaUserAlt />
+            </a>
+          </Link>
+        </nav>
+        <main>
           {postData.isAudio ? (
             <AudioPost post={postData} />
           ) : (
-            <ImagePost post={postData} />
+            <FullImagePost post={postData} />
           )}
-        </div>
-      </main>
-      <MobileFooter />
+        </main>
+        <footer>
+          <img src="/profile.jpg" alt="Profile name" />
+          <TextField
+            id="send-comment"
+            label="Enviar um comentário"
+            fullWidth
+            multiline
+          />
+          <IconButton>
+            <div className="send-button">
+              <AiOutlineSend />
+            </div>
+          </IconButton>
+        </footer>
+      </ThemeProvider>
     </PostPageContainer>
   );
 };
