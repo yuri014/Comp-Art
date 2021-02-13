@@ -7,16 +7,20 @@ import {
   FaRegHeart,
   FaRegShareSquare,
 } from 'react-icons/fa';
+import dynamic from 'next/dynamic';
 
 import { PostContainer } from './styles';
 import { PostProps } from '../../interfaces/Post';
 import mainTheme from '../../styles/themes/MainTheme';
-import OptionsMenu from './OptionsMenu';
 import useDeletePost from '../../hooks/posts';
+
+const FullScreenImage = dynamic(() => import('../FullScreenImage'));
+const OptionsMenu = dynamic(() => import('./OptionsMenu'));
 
 const ImagePost: React.FC<PostProps> = ({ post }) => {
   const [isLiked, setIsLiked] = useState<boolean>();
   const [likesCount, setLikesCount] = useState<number>();
+  const [isImageFullScreen, setIsImageFullScreen] = useState(false);
 
   useEffect(() => {
     setIsLiked(post.isLiked);
@@ -72,9 +76,17 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
           <div className="post-description">
             <p>{post.description}</p>
           </div>
-          <figure className="post-image">
-            <img src={post.body} alt="Publicação" />
-          </figure>
+          <div
+            onClick={() => setIsImageFullScreen(true)}
+            onKeyDown={() => setIsImageFullScreen(true)}
+            onBlur={() => setIsImageFullScreen(false)}
+            role="button"
+            tabIndex={0}
+          >
+            <figure className="post-image">
+              <img src={post.body} alt="Publicação" />
+            </figure>
+          </div>
           <div className="post-interaction">
             <Button
               className={isLiked ? 'active' : ''}
@@ -96,6 +108,12 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
           </div>
         </div>
       </ThemeProvider>
+      {isImageFullScreen && (
+        <FullScreenImage
+          img={post.body}
+          onClose={() => setIsImageFullScreen(false)}
+        />
+      )}
     </PostContainer>
   );
 };
