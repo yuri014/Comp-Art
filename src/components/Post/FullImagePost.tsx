@@ -42,6 +42,7 @@ const FullImagePost: React.FC<PostProps> = ({ post }) => {
             className="button-image-post"
             type="button"
             onClick={() => setIsImageFullScreen(true)}
+            onBlur={() => setIsImageFullScreen(false)}
           >
             <figure className="post-image">
               <img src={post.body} alt="Publicação" />
