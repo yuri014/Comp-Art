@@ -12,6 +12,16 @@ export const PostContainer = styled.section`
   box-shadow: 0 0 6px #000;
   margin-bottom: 4rem;
 
+  &.full-post {
+    box-shadow: none;
+    background: none;
+    border-bottom: 1px solid ${props => props.theme.colors.lightContrast};
+
+    .post-config {
+      margin-right: -2rem;
+    }
+  }
+
   .post-author {
     display: flex;
     align-items: center;
