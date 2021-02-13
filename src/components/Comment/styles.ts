@@ -79,11 +79,11 @@ const CommentContainer = styled.div`
 
   @media (min-width: 992px) {
     max-width: 100%;
+    display: grid;
 
-    .comment-body,
-    .comment-interations {
-      max-width: 95%;
-      margin-left: auto;
+    .comment-body {
+      max-width: unset;
+      width: 100%;
     }
   }
 `;

@@ -16,6 +16,7 @@ export const PostContainer = styled.section`
     box-shadow: none;
     background: none;
     border-bottom: 1px solid ${props => props.theme.colors.lightContrast};
+    border-radius: 0;
 
     .post-config {
       margin-right: -2rem;
@@ -24,15 +25,6 @@ export const PostContainer = styled.section`
     .post {
       .post-image {
         height: 100%;
-      }
-    }
-
-    @media (min-width: 992px) {
-      border-bottom: none;
-
-      img {
-        max-height: 70vh;
-        object-fit: fill;
       }
     }
   }

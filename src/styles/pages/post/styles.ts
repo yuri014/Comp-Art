@@ -4,6 +4,10 @@ const PostPageContainer = styled.div`
   background: ${props => props.theme.colors.mainGradient};
   min-height: 100vh;
 
+  .profile {
+    display: none;
+  }
+
   nav {
     font-size: 2rem;
     display: flex;
@@ -18,13 +22,16 @@ const PostPageContainer = styled.div`
     }
   }
 
-  main {
+  .comments {
     padding-bottom: 8rem;
   }
 
   footer {
+    background: rgba(119, 166, 230, 0.3);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    width: 100%;
     border-top: 1px solid ${props => props.theme.colors.mainColor};
-    background: ${props => props.theme.colors.mainGradient};
     position: fixed;
     width: 100%;
     bottom: 0;
@@ -48,36 +55,19 @@ const PostPageContainer = styled.div`
   }
 
   @media (min-width: 992px) {
-    display: flex;
-    justify-content: space-between;
     max-width: 1378px;
     margin: 0 auto;
-    max-height: 100vh;
-    overflow: hidden;
-
-    nav {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      max-width: 1378px;
-    }
-
-    main {
-      display: flex;
-      align-items: flex-start;
-      margin-top: 7rem;
-    }
-
-    .post {
-      grid-area: post;
-    }
+    width: 60%;
+    background: ${props => props.theme.colors.mainGradient};
 
     .comments {
-      grid-area: comments;
-      width: 50%;
+      width: 100%;
+      margin: 0 auto;
       margin-top: 4rem;
-      max-height: 80vh;
+      max-height: 100%;
+      max-height: 65vh;
       overflow-y: scroll;
+      padding-bottom: 0;
     }
 
     footer {

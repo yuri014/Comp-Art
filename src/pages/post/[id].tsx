@@ -15,8 +15,6 @@ import PostPageContainer from '../../styles/pages/post/styles';
 import FullImagePost from '../../components/Post/FullImagePost';
 import mainTheme from '../../styles/themes/MainTheme';
 import Comment from '../../components/Comment';
-import OptionsMenu from '../../components/Post/OptionsMenu';
-import useDeletePost from '../../hooks/posts';
 
 interface PostQuery {
   getPost: IPost;
@@ -36,8 +34,6 @@ const Post: React.FC<PostProps> = ({ post }) => {
     variables: { id: post._id },
   });
 
-  const [deletePost] = useDeletePost(post._id);
-
   useEffect(() => {
     if (data) {
       const newPost = post;
@@ -48,88 +44,46 @@ const Post: React.FC<PostProps> = ({ post }) => {
 
   return (
     <PostPageContainer>
-      <nav>
-        <FaArrowLeft />
-        <Link href="/profile/">
-          <a>
-            <FaUserAlt />
-          </a>
-        </Link>
-      </nav>
       <main>
-        <div className="post">
-          {postData.isAudio ? (
-            <AudioPost post={postData} />
-          ) : (
-            <FullImagePost post={postData} />
-          )}
-        </div>
-        <div className="comments">
-          {/* {<div className="post-author">
-            <div className="author-info">
-              <img
-                alt={`Imagem de perfil de ${post.artist.name}`}
-                src={post.avatar || '/profile.jpg'}
-              />
-              <Link href={`/profile/${post.artist.username}`}>
-                <a>
-                  <div>
-                    <h4>{post.artist.name}</h4>
-                    <span>
-                      <p>
-                        {new Date(post.createdAt).toLocaleDateString('en-GB')}
-                      </p>
-                      <p>&nbsp;●&nbsp;</p>
-                      <p>@{post.artist.username}</p>
-                    </span>
-                  </div>
-                </a>
-              </Link>
-            </div>
-            <div className="post-config">
-              <OptionsMenu
-                deletePost={deletePost}
-                id={post._id}
-                username={post.artist.username}
-              />
-            </div>
-          </div>
-          <div className="post-description">
-            <p>{post.description}</p>
-          </div>} */}
-          <div className="comment-content">
-            <Comment />
-            <Comment />
-            <Comment />
-            <Comment />
-            <Comment />
-            <Comment />
-            <Comment />
-            <Comment />
-            <Comment />
-            <Comment />
-            <Comment />
-            <Comment />
-            <Comment />
-          </div>
-          <ThemeProvider theme={mainTheme}>
-            <footer>
-              <img src="/profile.jpg" alt="Profile name" />
-              <TextField
-                id="send-comment"
-                label="Enviar um comentário"
-                fullWidth
-                multiline
-              />
-              <IconButton>
-                <div className="send-button">
-                  <AiOutlineSend />
-                </div>
-              </IconButton>
-            </footer>
-          </ThemeProvider>
-        </div>
+        <nav>
+          <FaArrowLeft />
+          <Link href="/profile/">
+            <a>
+              <FaUserAlt />
+            </a>
+          </Link>
+        </nav>
+        {postData.isAudio ? (
+          <AudioPost post={postData} />
+        ) : (
+          <FullImagePost post={postData} />
+        )}
       </main>
+      <div className="comments">
+        <div className="comment-content">
+          <Comment />
+          <Comment />
+          <Comment />
+          <Comment />
+          <Comment />
+        </div>
+        <ThemeProvider theme={mainTheme}>
+          <footer>
+            <img src="/profile.jpg" alt="Profile name" />
+            <TextField
+              id="send-comment"
+              label="Enviar um comentário"
+              fullWidth
+              multiline
+            />
+            <IconButton>
+              <div className="send-button">
+                <AiOutlineSend />
+              </div>
+            </IconButton>
+          </footer>
+        </ThemeProvider>
+      </div>
     </PostPageContainer>
   );
 };

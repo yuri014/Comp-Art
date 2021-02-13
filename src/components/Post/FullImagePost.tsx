@@ -2,10 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import { Button, ThemeProvider } from '@material-ui/core';
 import { FaHeart, FaRegHeart, FaRegShareSquare } from 'react-icons/fa';
+import Link from 'next/link';
 
 import { PostProps } from '../../interfaces/Post';
 import mainTheme from '../../styles/themes/MainTheme';
 import useDeletePost from '../../hooks/posts';
+import OptionsMenu from './OptionsMenu';
 import { PostContainer } from './styles';
 
 const FullImagePost: React.FC<PostProps> = ({ post }) => {
@@ -17,7 +19,7 @@ const FullImagePost: React.FC<PostProps> = ({ post }) => {
     setLikesCount(post.likesCount);
   }, [post.isLiked, post.likesCount]);
 
-  const [, dislikePost, likePost] = useDeletePost(
+  const [deletePost, dislikePost, likePost] = useDeletePost(
     post._id,
     () => {
       setIsLiked(false);
@@ -36,6 +38,38 @@ const FullImagePost: React.FC<PostProps> = ({ post }) => {
           <figure className="post-image">
             <img src={post.body} alt="Publicação" />
           </figure>
+          <div className="post-author">
+            <div className="author-info">
+              <img
+                alt={`Imagem de perfil de ${post.artist.name}`}
+                src={post.avatar || '/profile.jpg'}
+              />
+              <Link href={`/profile/${post.artist.username}`}>
+                <a>
+                  <div>
+                    <h4>{post.artist.name}</h4>
+                    <span>
+                      <p>
+                        {new Date(post.createdAt).toLocaleDateString('en-GB')}
+                      </p>
+                      <p>&nbsp;●&nbsp;</p>
+                      <p>@{post.artist.username}</p>
+                    </span>
+                  </div>
+                </a>
+              </Link>
+            </div>
+            <div className="post-config">
+              <OptionsMenu
+                deletePost={deletePost}
+                id={post._id}
+                username={post.artist.username}
+              />
+            </div>
+          </div>
+          <div className="post-description">
+            <p>{post.description}</p>
+          </div>
           <div className="post-interaction">
             <Button
               className={isLiked ? 'active' : ''}
