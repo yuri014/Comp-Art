@@ -22,6 +22,8 @@ const ProfileContainer = styled.div`
     margin-left: 2rem;
     margin-top: -4rem;
     border-radius: 50%;
+    cursor: pointer;
+
     & img {
       box-shadow: 0 0 4px ${props => props.theme.colors.namesakeText};
       width: 100%;

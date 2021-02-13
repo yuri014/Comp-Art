@@ -12,6 +12,7 @@ import {
 import { SiWattpad } from 'react-icons/si';
 import { GetServerSideProps } from 'next';
 import Skeleton from '@material-ui/lab/Skeleton';
+import dynamic from 'next/dynamic';
 
 import Header from '../../components/Header';
 import MobileFooter from '../../components/MobileFooter';
@@ -30,6 +31,10 @@ import Post from '../../components/Post';
 import SkeletonPost from '../../components/Post/SkeletonPost';
 import Meta from '../../components/SEO/Meta';
 
+const FullScreenImage = dynamic(
+  () => import('../../components/FullScreenImage'),
+);
+
 interface ProfileProps {
   username: string;
   profile: QueryResult<
@@ -42,6 +47,7 @@ interface ProfileProps {
 
 const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
   const auth = useContext(AuthContext);
+  const [isImageFullScreen, setIsImageFullScreen] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
   const { data: getIsFollowing, loading } = useQuery(GET_IS_FOLLOWING, {
     variables: {
@@ -128,7 +134,14 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
           )}
         </div>
         <div className="container">
-          <div className="avatar-profile">
+          <div
+            className="avatar-profile"
+            onClick={() => setIsImageFullScreen(true)}
+            onKeyDown={() => setIsImageFullScreen(true)}
+            onBlur={() => setIsImageFullScreen(false)}
+            role="button"
+            tabIndex={0}
+          >
             <img
               src={getProfile.avatar || '../profile.jpg'}
               alt="Imagem do perfil"
@@ -305,6 +318,12 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
         </section>
       </div>
       <MobileFooter />
+      {isImageFullScreen && (
+        <FullScreenImage
+          img={getProfile.avatar || '/profile.jpg'}
+          onClose={() => setIsImageFullScreen(false)}
+        />
+      )}
     </ProfileContainer>
   );
 };
