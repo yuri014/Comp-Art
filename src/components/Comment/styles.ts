@@ -80,6 +80,7 @@ const CommentContainer = styled.div`
   @media (min-width: 992px) {
     max-width: 100%;
     display: grid;
+    grid-template-columns: 5% 92%;
 
     .comment-body {
       max-width: unset;
