@@ -9,6 +9,7 @@ import mainTheme from '../../styles/themes/MainTheme';
 import useDeletePost from '../../hooks/posts';
 import OptionsMenu from './OptionsMenu';
 import { PostContainer } from './styles';
+import FullScreenImage from '../FullScreenImage';
 
 const FullImagePost: React.FC<PostProps> = ({ post }) => {
   const [isLiked, setIsLiked] = useState<boolean>();
@@ -31,13 +32,21 @@ const FullImagePost: React.FC<PostProps> = ({ post }) => {
     },
   );
 
+  const [isImageFullScreen, setIsImageFullScreen] = useState(false);
+
   return (
     <PostContainer className="full-post">
       <ThemeProvider theme={mainTheme}>
         <div className="post">
-          <figure className="post-image">
-            <img src={post.body} alt="Publicação" />
-          </figure>
+          <button
+            className="button-image-post"
+            type="button"
+            onClick={() => setIsImageFullScreen(true)}
+          >
+            <figure className="post-image">
+              <img src={post.body} alt="Publicação" />
+            </figure>
+          </button>
           <div className="post-author">
             <div className="author-info">
               <img
@@ -87,6 +96,12 @@ const FullImagePost: React.FC<PostProps> = ({ post }) => {
           </div>
         </div>
       </ThemeProvider>
+      {isImageFullScreen && (
+        <FullScreenImage
+          img={post.body}
+          onClose={() => setIsImageFullScreen(false)}
+        />
+      )}
     </PostContainer>
   );
 };

@@ -78,6 +78,12 @@ export const PostContainer = styled.section`
       }
     }
 
+    .button-image-post {
+      border: none;
+      background: transparent;
+      padding: 0;
+    }
+
     .post-image {
       margin: 2rem 0;
       width: 100%;
