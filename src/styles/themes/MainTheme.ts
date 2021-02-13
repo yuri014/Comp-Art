@@ -44,6 +44,33 @@ const mainTheme = createMuiTheme({
         color: '#cbcaeb',
       },
     },
+    MuiTextField: {
+      root: {
+        marginBottom: 20,
+        color: '#cbcaeb',
+        '&.Mui-disabled': {
+          color: '#cbcaeb',
+        },
+      },
+    },
+    MuiInput: {
+      input: {
+        '&::placeholder': {
+          color: '#cbcaeb',
+        },
+        color: '#cbcaeb',
+      },
+      underline: {
+        '&:before': {
+          borderBottom: '1px solid grey',
+        },
+      },
+    },
+    MuiInputLabel: {
+      root: {
+        color: '#cbcaeb',
+      },
+    },
   },
 });
 
