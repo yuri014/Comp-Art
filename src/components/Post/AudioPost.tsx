@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import IconButton from '@material-ui/core/IconButton';
@@ -13,13 +12,14 @@ import {
   FaRegShareSquare,
 } from 'react-icons/fa';
 import { Slider, ThemeProvider } from '@material-ui/core';
+import dynamic from 'next/dynamic';
 
 import { AudioPostContainer } from './styles';
 import mainTheme from '../../styles/themes/MainTheme';
 import { PostProps } from '../../interfaces/Post';
-import OptionsMenu from './OptionsMenu';
 import useDeletePost from '../../hooks/posts';
 
+const OptionsMenu = dynamic(() => import('./OptionsMenu'));
 interface LinksProps {
   username: string;
   description: string;

@@ -1,15 +1,16 @@
-/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 import { Button, ThemeProvider } from '@material-ui/core';
 import { FaHeart, FaRegHeart, FaRegShareSquare } from 'react-icons/fa';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 
 import { PostProps } from '../../interfaces/Post';
 import mainTheme from '../../styles/themes/MainTheme';
 import useDeletePost from '../../hooks/posts';
-import OptionsMenu from './OptionsMenu';
 import { PostContainer } from './styles';
-import FullScreenImage from '../FullScreenImage';
+
+const FullScreenImage = dynamic(() => import('../FullScreenImage'));
+const OptionsMenu = dynamic(() => import('./OptionsMenu'));
 
 const FullImagePost: React.FC<PostProps> = ({ post }) => {
   const [isLiked, setIsLiked] = useState<boolean>();

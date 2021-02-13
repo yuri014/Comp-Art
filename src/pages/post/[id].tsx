@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { GetServerSideProps } from 'next';
