@@ -45,28 +45,28 @@ const Post: React.FC<PostProps> = ({ post }) => {
 
   return (
     <PostPageContainer>
+      <Header />
+      <nav>
+        <FaArrowLeft />
+        <Link href="/profile/">
+          <a>
+            <FaUserAlt />
+          </a>
+        </Link>
+      </nav>
+      <main>
+        {postData.isAudio ? (
+          <AudioPost post={postData} />
+        ) : (
+          <FullImagePost post={postData} />
+        )}
+        <Comment />
+        <Comment />
+        <Comment />
+        <Comment />
+        <Comment />
+      </main>
       <ThemeProvider theme={mainTheme}>
-        <Header />
-        <nav>
-          <FaArrowLeft />
-          <Link href="/profile/">
-            <a>
-              <FaUserAlt />
-            </a>
-          </Link>
-        </nav>
-        <main>
-          {postData.isAudio ? (
-            <AudioPost post={postData} />
-          ) : (
-            <FullImagePost post={postData} />
-          )}
-          <Comment />
-          <Comment />
-          <Comment />
-          <Comment />
-          <Comment />
-        </main>
         <footer>
           <img src="/profile.jpg" alt="Profile name" />
           <TextField

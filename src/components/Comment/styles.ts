@@ -41,7 +41,7 @@ const CommentContainer = styled.div`
 
     .comment-text {
       margin-top: 1rem;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
     }
   }
 
