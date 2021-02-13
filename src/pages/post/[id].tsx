@@ -15,6 +15,7 @@ import PostPageContainer from '../../styles/pages/post/styles';
 import FullImagePost from '../../components/Post/FullImagePost';
 import mainTheme from '../../styles/themes/MainTheme';
 import Comment from '../../components/Comment';
+import Meta from '../../components/SEO/Meta';
 
 interface PostQuery {
   getPost: IPost;
@@ -44,11 +45,18 @@ const Post: React.FC<PostProps> = ({ post }) => {
 
   return (
     <PostPageContainer>
+      <Meta
+        description={`Post de ${postData.artist.name}`}
+        keywords={`comp-art, post, artista, divulgação, ${postData.artist.name}`}
+        title={`Post - ${postData.artist.name}`}
+        uri={`/post/${postData._id}`}
+      />
+
       <main>
         <nav>
           <FaArrowLeft />
           <Link href="/profile/">
-            <a>
+            <a title="Meu perfil">
               <FaUserAlt />
             </a>
           </Link>
@@ -76,7 +84,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
               fullWidth
               multiline
             />
-            <IconButton>
+            <IconButton aria-label="enviar comentário" color="primary">
               <div className="send-button">
                 <AiOutlineSend />
               </div>

@@ -38,7 +38,7 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({
   return (
     <>
       <IconButton
-        aria-controls="menu-post"
+        aria-label="abrir menu post"
         aria-haspopup="true"
         onClick={handleClick}
         color="secondary"
@@ -81,7 +81,7 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({
         action={
           <IconButton
             size="small"
-            aria-label="close"
+            aria-label="fechar menu post"
             onClick={() => setIsClipped(false)}
             color="primary"
           >

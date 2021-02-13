@@ -21,12 +21,6 @@ export const PostContainer = styled.section`
     .post-config {
       margin-right: -2rem;
     }
-
-    .post {
-      .post-image {
-        height: 100%;
-      }
-    }
   }
 
   .post-author {
