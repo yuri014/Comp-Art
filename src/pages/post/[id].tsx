@@ -1,13 +1,12 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { GetServerSideProps } from 'next';
+import { IconButton, TextField, ThemeProvider } from '@material-ui/core';
 import { gql, useQuery } from '@apollo/client';
 import { AiOutlineSend } from 'react-icons/ai';
-
 import { FaArrowLeft, FaUserAlt } from 'react-icons/fa';
-import Link from 'next/link';
-import { IconButton, TextField, ThemeProvider } from '@material-ui/core';
-import Header from '../../components/Header';
+
 import { initializeApollo } from '../../graphql/apollo/config';
 import { GET_POST } from '../../graphql/queries/post';
 import { IPost, PostProps } from '../../interfaces/Post';
@@ -16,6 +15,8 @@ import PostPageContainer from '../../styles/pages/post/styles';
 import FullImagePost from '../../components/Post/FullImagePost';
 import mainTheme from '../../styles/themes/MainTheme';
 import Comment from '../../components/Comment';
+import OptionsMenu from '../../components/Post/OptionsMenu';
+import useDeletePost from '../../hooks/posts';
 
 interface PostQuery {
   getPost: IPost;
@@ -35,6 +36,8 @@ const Post: React.FC<PostProps> = ({ post }) => {
     variables: { id: post._id },
   });
 
+  const [deletePost] = useDeletePost(post._id);
+
   useEffect(() => {
     if (data) {
       const newPost = post;
@@ -45,7 +48,6 @@ const Post: React.FC<PostProps> = ({ post }) => {
 
   return (
     <PostPageContainer>
-      <Header />
       <nav>
         <FaArrowLeft />
         <Link href="/profile/">
@@ -55,33 +57,79 @@ const Post: React.FC<PostProps> = ({ post }) => {
         </Link>
       </nav>
       <main>
-        {postData.isAudio ? (
-          <AudioPost post={postData} />
-        ) : (
-          <FullImagePost post={postData} />
-        )}
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
-      </main>
-      <ThemeProvider theme={mainTheme}>
-        <footer>
-          <img src="/profile.jpg" alt="Profile name" />
-          <TextField
-            id="send-comment"
-            label="Enviar um comentário"
-            fullWidth
-            multiline
-          />
-          <IconButton>
-            <div className="send-button">
-              <AiOutlineSend />
+        <div className="post">
+          {postData.isAudio ? (
+            <AudioPost post={postData} />
+          ) : (
+            <FullImagePost post={postData} />
+          )}
+        </div>
+        <div className="comments">
+          {/* {<div className="post-author">
+            <div className="author-info">
+              <img
+                alt={`Imagem de perfil de ${post.artist.name}`}
+                src={post.avatar || '/profile.jpg'}
+              />
+              <Link href={`/profile/${post.artist.username}`}>
+                <a>
+                  <div>
+                    <h4>{post.artist.name}</h4>
+                    <span>
+                      <p>
+                        {new Date(post.createdAt).toLocaleDateString('en-GB')}
+                      </p>
+                      <p>&nbsp;●&nbsp;</p>
+                      <p>@{post.artist.username}</p>
+                    </span>
+                  </div>
+                </a>
+              </Link>
             </div>
-          </IconButton>
-        </footer>
-      </ThemeProvider>
+            <div className="post-config">
+              <OptionsMenu
+                deletePost={deletePost}
+                id={post._id}
+                username={post.artist.username}
+              />
+            </div>
+          </div>
+          <div className="post-description">
+            <p>{post.description}</p>
+          </div>} */}
+          <div className="comment-content">
+            <Comment />
+            <Comment />
+            <Comment />
+            <Comment />
+            <Comment />
+            <Comment />
+            <Comment />
+            <Comment />
+            <Comment />
+            <Comment />
+            <Comment />
+            <Comment />
+            <Comment />
+          </div>
+          <ThemeProvider theme={mainTheme}>
+            <footer>
+              <img src="/profile.jpg" alt="Profile name" />
+              <TextField
+                id="send-comment"
+                label="Enviar um comentário"
+                fullWidth
+                multiline
+              />
+              <IconButton>
+                <div className="send-button">
+                  <AiOutlineSend />
+                </div>
+              </IconButton>
+            </footer>
+          </ThemeProvider>
+        </div>
+      </main>
     </PostPageContainer>
   );
 };

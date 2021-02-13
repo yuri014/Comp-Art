@@ -46,6 +46,50 @@ const PostPageContainer = styled.div`
       color: ${props => props.theme.colors.mainColor};
     }
   }
+
+  @media (min-width: 992px) {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1378px;
+    margin: 0 auto;
+    max-height: 100vh;
+    overflow: hidden;
+
+    nav {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      max-width: 1378px;
+    }
+
+    main {
+      display: flex;
+      align-items: flex-start;
+      margin-top: 7rem;
+    }
+
+    .post {
+      grid-area: post;
+    }
+
+    .comments {
+      grid-area: comments;
+      width: 50%;
+      margin-top: 4rem;
+      max-height: 80vh;
+      overflow-y: scroll;
+    }
+
+    footer {
+      border-top: 0;
+      background: rgba(119, 166, 230, 0.3);
+      backdrop-filter: blur(4px);
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      position: sticky;
+      width: 100%;
+    }
+  }
 `;
 
 export default PostPageContainer;

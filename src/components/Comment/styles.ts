@@ -58,6 +58,34 @@ const CommentContainer = styled.div`
       font-weight: 700;
     }
   }
+
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+
+    max-width: 350px;
+
+    .comment-body {
+      max-width: 250px;
+    }
+
+    .author-image {
+      img {
+        width: 4rem;
+        height: 4rem;
+      }
+    }
+  }
+
+  @media (min-width: 992px) {
+    max-width: 100%;
+
+    .comment-body,
+    .comment-interations {
+      max-width: 95%;
+      margin-left: auto;
+    }
+  }
 `;
 
 export default CommentContainer;

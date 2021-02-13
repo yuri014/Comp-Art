@@ -26,6 +26,15 @@ export const PostContainer = styled.section`
         height: 100%;
       }
     }
+
+    @media (min-width: 992px) {
+      border-bottom: none;
+
+      img {
+        max-height: 70vh;
+        object-fit: fill;
+      }
+    }
   }
 
   .post-author {
@@ -75,6 +84,12 @@ export const PostContainer = styled.section`
   .post {
     & .post-description {
       margin: 2rem 0 1rem 0;
+      max-width: 100%;
+
+      p {
+        overflow: hidden;
+        max-width: 700px;
+      }
     }
 
     .post-image {

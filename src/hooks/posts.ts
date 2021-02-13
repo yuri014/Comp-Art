@@ -8,8 +8,8 @@ import {
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const usePostsMutations = (
   id: string,
-  dislikeCallback: () => void,
-  likeCallback: () => void,
+  dislikeCallback?: () => void,
+  likeCallback?: () => void,
 ) => {
   const [deletePost] = useMutation(DELETE_POST, {
     variables: { id },
