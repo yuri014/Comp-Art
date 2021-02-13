@@ -20,6 +20,12 @@ export const PostContainer = styled.section`
     .post-config {
       margin-right: -2rem;
     }
+
+    .post {
+      .post-image {
+        height: 100%;
+      }
+    }
   }
 
   .post-author {
@@ -76,6 +82,8 @@ export const PostContainer = styled.section`
       width: 100%;
       height: 432px;
       & img {
+        width: 100%;
+        height: 100%;
         border-radius: 4px;
         object-fit: cover;
       }
@@ -135,7 +143,7 @@ export const PostContainer = styled.section`
     }
   }
 
-  @media (max-width: 992px) {
+  @media (max-width: 769px) {
     padding: 2rem;
 
     .post-author {
@@ -164,6 +172,14 @@ export const PostContainer = styled.section`
         & button {
           padding: 1rem 2rem;
         }
+      }
+    }
+  }
+
+  @media (max-width: 992px) {
+    .post {
+      .post-image {
+        height: 332px;
       }
     }
   }

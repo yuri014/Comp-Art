@@ -1,6 +1,5 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { Button, ThemeProvider } from '@material-ui/core';
 import Link from 'next/link';
 import {
@@ -75,7 +74,7 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
             <p>{post.description}</p>
           </div>
           <figure className="post-image">
-            <Image src={post.body} alt="Publicação" layout="fill" />
+            <img src={post.body} alt="Publicação" />
           </figure>
           <div className="post-interaction">
             <Button
