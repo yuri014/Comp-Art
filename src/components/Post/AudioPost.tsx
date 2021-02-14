@@ -87,6 +87,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
   const [likesCount, setLikesCount] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
   const [slider, setSlider] = useState(0);
+  const [isDeleted, setIsDeleted] = useState(false);
 
   const levelContext = useContext(LevelContext);
 
@@ -108,6 +109,11 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
       levelContext.updateLevel();
     },
   );
+
+  const handleDeletePost = () => {
+    deletePost();
+    setIsDeleted(true);
+  };
 
   const getTime = (time: number) => {
     const minutes = Math.floor(time / 60);
@@ -155,82 +161,87 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
   };
 
   return (
-    <AudioPostContainer>
-      <ThemeProvider theme={mainTheme}>
-        <div className="audio-card">
-          <div className="audio-card-content">
-            <div className="audio-card-info">
-              <Links
-                username={post.artist.username}
-                description={post.description}
-                name={post.artist.name}
-                id={post._id}
-              />
-              <OptionsMenu
-                deletePost={deletePost}
-                id={post._id}
-                username={post.artist.username}
-              />
-            </div>
-            <div className="audio-buttons">
-              <IconButton
-                onClick={() => {
-                  audioRef.current.currentTime -= 10;
-                }}
-                aria-label="previous"
-              >
-                <FaBackward />
-              </IconButton>
-              <IconButton
-                onClick={() => handlePlaying()}
-                aria-label="play/pause"
-              >
-                {!isPlaying ? <FaPlay /> : <FaPause />}
-              </IconButton>
-              <IconButton
-                onClick={() => {
-                  audioRef.current.currentTime += 10;
-                }}
-                aria-label="next"
-              >
-                <FaForward />
-              </IconButton>
-            </div>
-            <div className="progress">
-              <div className="duration">
-                <p>{currentTime || '0:00'}</p>
-                <p>{audioDuration || '0:00'}</p>
+    <>
+      {' '}
+      {!isDeleted && (
+        <AudioPostContainer>
+          <ThemeProvider theme={mainTheme}>
+            <div className="audio-card">
+              <div className="audio-card-content">
+                <div className="audio-card-info">
+                  <Links
+                    username={post.artist.username}
+                    description={post.description}
+                    name={post.artist.name}
+                    id={post._id}
+                  />
+                  <OptionsMenu
+                    deletePost={handleDeletePost}
+                    id={post._id}
+                    username={post.artist.username}
+                  />
+                </div>
+                <div className="audio-buttons">
+                  <IconButton
+                    onClick={() => {
+                      audioRef.current.currentTime -= 10;
+                    }}
+                    aria-label="previous"
+                  >
+                    <FaBackward />
+                  </IconButton>
+                  <IconButton
+                    onClick={() => handlePlaying()}
+                    aria-label="play/pause"
+                  >
+                    {!isPlaying ? <FaPlay /> : <FaPause />}
+                  </IconButton>
+                  <IconButton
+                    onClick={() => {
+                      audioRef.current.currentTime += 10;
+                    }}
+                    aria-label="next"
+                  >
+                    <FaForward />
+                  </IconButton>
+                </div>
+                <div className="progress">
+                  <div className="duration">
+                    <p>{currentTime || '0:00'}</p>
+                    <p>{audioDuration || '0:00'}</p>
+                  </div>
+                  <Slider
+                    value={slider}
+                    min={0}
+                    max={audioRef.current && audioRef.current.duration}
+                    onChange={handleScroll}
+                    aria-labelledby="audio-progress"
+                    step={0.01}
+                  />
+                </div>
               </div>
-              <Slider
-                value={slider}
-                min={0}
-                max={audioRef.current && audioRef.current.duration}
-                onChange={handleScroll}
-                aria-labelledby="audio-progress"
-                step={0.01}
+              <Interactions
+                avatar={post.avatar}
+                dislikePost={dislikePost}
+                isLiked={isLiked}
+                likePost={likePost}
+                name={post.artist.name}
               />
             </div>
-          </div>
-          <Interactions
-            avatar={post.avatar}
-            dislikePost={dislikePost}
-            isLiked={isLiked}
-            likePost={likePost}
-            name={post.artist.name}
-          />
-        </div>
-        <audio
-          style={{ display: 'none' }}
-          ref={audioRef}
-          src={post.body}
-          onLoadedMetadata={() => {
-            const { minutes, seconds } = getTime(audioRef.current.duration);
-            setAudioDuration(`${minutes}:${seconds}`);
-          }}
-          controls
-        />
-      </ThemeProvider>
-    </AudioPostContainer>
+            <audio
+              style={{ display: 'none' }}
+              ref={audioRef}
+              src={post.body}
+              onLoadedMetadata={() => {
+                const { minutes, seconds } = getTime(audioRef.current.duration);
+                setAudioDuration(`${minutes}:${seconds}`);
+              }}
+              controls
+            />
+          </ThemeProvider>
+        </AudioPostContainer>
+      )}
+    </>
   );
 };
 

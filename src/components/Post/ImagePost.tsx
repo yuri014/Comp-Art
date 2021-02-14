@@ -22,6 +22,7 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
   const [isLiked, setIsLiked] = useState<boolean>();
   const [likesCount, setLikesCount] = useState<number>();
   const [isImageFullScreen, setIsImageFullScreen] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false);
 
   useEffect(() => {
     setIsLiked(post.isLiked);
@@ -44,82 +45,91 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
     },
   );
 
-  return (
-    <PostContainer>
-      <ThemeProvider theme={mainTheme}>
-        <div className="post-author">
-          <div className="author-info">
-            <img
-              alt={`Imagem de perfil de ${post.artist.name}`}
-              src={post.avatar || '/profile.jpg'}
-            />
+  const handleDeletePost = () => {
+    deletePost();
+    setIsDeleted(true);
+  };
 
-            <Link href={`/profile/${post.artist.username}`}>
-              <a>
-                <div>
-                  <h4>{post.artist.name}</h4>
-                  <span>
-                    <p>@{post.artist.username}</p>
-                    <p>&nbsp;●&nbsp;</p>
-                    <p>
-                      {new Date(post.createdAt).toLocaleDateString('en-GB')}
-                    </p>
-                  </span>
-                </div>
-              </a>
-            </Link>
-          </div>
-          <div className="post-config">
-            <OptionsMenu
-              deletePost={deletePost}
-              id={post._id}
-              username={post.artist.username}
+  return (
+    <>
+      {!isDeleted && (
+        <PostContainer>
+          <ThemeProvider theme={mainTheme}>
+            <div className="post-author">
+              <div className="author-info">
+                <img
+                  alt={`Imagem de perfil de ${post.artist.name}`}
+                  src={post.avatar || '/profile.jpg'}
+                />
+
+                <Link href={`/profile/${post.artist.username}`}>
+                  <a>
+                    <div>
+                      <h4>{post.artist.name}</h4>
+                      <span>
+                        <p>@{post.artist.username}</p>
+                        <p>&nbsp;●&nbsp;</p>
+                        <p>
+                          {new Date(post.createdAt).toLocaleDateString('en-GB')}
+                        </p>
+                      </span>
+                    </div>
+                  </a>
+                </Link>
+              </div>
+              <div className="post-config">
+                <OptionsMenu
+                  deletePost={handleDeletePost}
+                  id={post._id}
+                  username={post.artist.username}
+                />
+              </div>
+            </div>
+            <div className="post">
+              <div className="post-description">
+                <p>{post.description}</p>
+              </div>
+              <div
+                onClick={() => setIsImageFullScreen(true)}
+                onKeyDown={() => setIsImageFullScreen(true)}
+                onBlur={() => setIsImageFullScreen(false)}
+                role="button"
+                tabIndex={0}
+              >
+                <figure className="post-image">
+                  <img src={post.body} alt="Publicação" />
+                </figure>
+              </div>
+              <div className="post-interaction">
+                <Button
+                  className={isLiked ? 'active' : ''}
+                  type="button"
+                  onClick={() => (isLiked ? dislikePost() : likePost())}
+                  title="Curtir"
+                >
+                  {isLiked ? <FaHeart /> : <FaRegHeart />}
+                  <p>{likesCount}</p>
+                </Button>
+                <Button title="Comentar" type="button">
+                  <FaRegComment />
+                  <p>{post.commentsCount}</p>
+                </Button>
+                <Button title="Compartilhar" type="button">
+                  <FaRegShareSquare />
+                  <p>{post.sharedCount}</p>
+                </Button>
+              </div>
+            </div>
+          </ThemeProvider>
+          {isImageFullScreen && (
+            <FullScreenImage
+              img={post.body}
+              onClose={() => setIsImageFullScreen(false)}
             />
-          </div>
-        </div>
-        <div className="post">
-          <div className="post-description">
-            <p>{post.description}</p>
-          </div>
-          <div
-            onClick={() => setIsImageFullScreen(true)}
-            onKeyDown={() => setIsImageFullScreen(true)}
-            onBlur={() => setIsImageFullScreen(false)}
-            role="button"
-            tabIndex={0}
-          >
-            <figure className="post-image">
-              <img src={post.body} alt="Publicação" />
-            </figure>
-          </div>
-          <div className="post-interaction">
-            <Button
-              className={isLiked ? 'active' : ''}
-              type="button"
-              onClick={() => (isLiked ? dislikePost() : likePost())}
-              title="Curtir"
-            >
-              {isLiked ? <FaHeart /> : <FaRegHeart />}
-              <p>{likesCount}</p>
-            </Button>
-            <Button title="Comentar" type="button">
-              <FaRegComment />
-              <p>{post.commentsCount}</p>
-            </Button>
-            <Button title="Compartilhar" type="button">
-              <FaRegShareSquare />
-              <p>{post.sharedCount}</p>
-            </Button>
-          </div>
-        </div>
-      </ThemeProvider>
-      {isImageFullScreen && (
-        <FullScreenImage
-          img={post.body}
-          onClose={() => setIsImageFullScreen(false)}
-        />
+          )}
+        </PostContainer>
       )}
-    </PostContainer>
+    </>
   );
 };
 

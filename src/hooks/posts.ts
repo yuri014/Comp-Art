@@ -13,6 +13,17 @@ const usePostsMutations = (
 ) => {
   const [deletePost] = useMutation(DELETE_POST, {
     variables: { id },
+    update(cache) {
+      cache.modify({
+        fields: {
+          getPosts(existingPosts, { readField }) {
+            return existingPosts.filter(
+              postRef => id !== readField('_id', postRef),
+            );
+          },
+        },
+      });
+    },
   });
 
   const [dislikePost] = useMutation(DISLIKE_POST, {
