@@ -16,7 +16,6 @@ const GET_LOGGED_PROFILE = gql`
       name
       avatar
       owner
-      isArtist
     }
   }
 `;
