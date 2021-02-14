@@ -57,4 +57,4 @@ const MobileFooter: React.FC = () => {
   );
 };
 
-export default MobileFooter;
+export default React.memo(MobileFooter);
