@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import IconButton from '@material-ui/core/IconButton';
 import {
@@ -18,6 +18,7 @@ import { AudioPostContainer } from './styles';
 import mainTheme from '../../styles/themes/MainTheme';
 import { PostProps } from '../../interfaces/Post';
 import useDeletePost from '../../hooks/posts';
+import LevelContext from '../../context/level';
 
 const OptionsMenu = dynamic(() => import('./OptionsMenu'));
 interface LinksProps {
@@ -87,6 +88,8 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [slider, setSlider] = useState(0);
 
+  const levelContext = useContext(LevelContext);
+
   useEffect(() => {
     setLikesCount(post.likesCount);
     setIsLiked(post.isLiked);
@@ -97,10 +100,12 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
     () => {
       setIsLiked(false);
       setLikesCount(likesCount - 1);
+      levelContext.updateLevel();
     },
     () => {
       setIsLiked(true);
       setLikesCount(likesCount + 1);
+      levelContext.updateLevel();
     },
   );
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Button, ThemeProvider } from '@material-ui/core';
 import Link from 'next/link';
 import {
@@ -13,6 +13,7 @@ import { PostContainer } from './styles';
 import { PostProps } from '../../interfaces/Post';
 import mainTheme from '../../styles/themes/MainTheme';
 import useDeletePost from '../../hooks/posts';
+import LevelContext from '../../context/level';
 
 const FullScreenImage = dynamic(() => import('../FullScreenImage'));
 const OptionsMenu = dynamic(() => import('./OptionsMenu'));
@@ -27,15 +28,19 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
     setLikesCount(post.likesCount);
   }, [post.isLiked, post.likesCount]);
 
+  const levelContext = useContext(LevelContext);
+
   const [deletePost, dislikePost, likePost] = useDeletePost(
     post._id,
     () => {
       setIsLiked(false);
       setLikesCount(likesCount - 1);
+      levelContext.updateLevel();
     },
     () => {
       setIsLiked(true);
       setLikesCount(likesCount + 1);
+      levelContext.updateLevel();
     },
   );
 
