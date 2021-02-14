@@ -1,5 +1,12 @@
 {
- "name": "App",
+ "name": "Comp-Art",
+ "short_name": "Comp-Art",
+ "theme_color": "#050211",
+ "background_color": "#050211",
+ "display": "fullscreen",
+ "orientation": "portrait",
+ "scope": "/",
+ "start_url": "/",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",
