@@ -11,7 +11,7 @@ import { AuthContext } from '../../context/auth';
 import { ILoggedProfile, IProfile } from '../../interfaces/Profile';
 
 const GET_LOGGED_PROFILE = gql`
-  query GetLoggedProfile {
+  query GetCommentProfile {
     getLoggedProfile {
       name
       avatar
