@@ -1,6 +1,6 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Head from 'next/head';
-import { useQuery } from '@apollo/client';
+import { gql, useLazyQuery, useQuery } from '@apollo/client';
 
 import Header from '../../components/Header';
 import HomeContainer from '../../styles/pages/home';
@@ -16,6 +16,16 @@ import ErrorRequest from '../../components/ErrorRequest';
 import { ILoggedProfile } from '../../interfaces/Profile';
 import { GET_LOGGED_PROFILE } from '../../graphql/queries/profile';
 import { IGetPosts } from '../../interfaces/Post';
+import LevelContext from '../../context/level';
+
+const GET_LEVEL_XP = gql`
+  query GetLevelProfile {
+    getLoggedProfile {
+      level
+      xp
+    }
+  }
+`;
 
 const Home: React.FC = () => {
   const [hasMore, setHasMore] = useState(false);
@@ -52,6 +62,14 @@ const Home: React.FC = () => {
     error: errorProfile,
   } = useQuery<ILoggedProfile>(GET_LOGGED_PROFILE);
 
+  const [getLevel, { data: profileLevel }] = useLazyQuery(GET_LEVEL_XP, {
+    fetchPolicy: 'no-cache',
+  });
+
+  useEffect(() => {
+    getLevel();
+  }, [getLevel]);
+
   if (loadingProfile) return <p>loading</p>;
 
   if (errorProfile) return <ErrorRequest />;
@@ -59,50 +77,54 @@ const Home: React.FC = () => {
   const { getLoggedProfile } = profileData;
 
   return (
-    <HomeContainer>
-      <Head>
-        <title>Comp-Art</title>
-      </Head>
-      <Header />
-      <div className="container">
-        <div className="home-desktop-content">
-          <div className="profile">
-            <HomeProfile getLoggedProfile={getLoggedProfile} />
-          </div>
-          <div className="timeline">
-            {loading || error ? (
-              <LoadingPost loading={loading} />
-            ) : (
-              data.getPosts.map((post, index) => {
-                if (data.getPosts.length === index + 1) {
+    <LevelContext.Provider
+      value={{ updateLevel: getLevel, level: profileLevel }}
+    >
+      <HomeContainer>
+        <Head>
+          <title>Comp-Art</title>
+        </Head>
+        <Header />
+        <div className="container">
+          <div className="home-desktop-content">
+            <div className="profile">
+              <HomeProfile getLoggedProfile={getLoggedProfile} />
+            </div>
+            <div className="timeline">
+              {loading || error ? (
+                <LoadingPost loading={loading} />
+              ) : (
+                data.getPosts.map((post, index) => {
+                  if (data.getPosts.length === index + 1) {
+                    return (
+                      <div
+                        key={`${post.artist}_${post.createdAt}`}
+                        ref={lastPostRef}
+                      >
+                        <Post post={post} />
+                      </div>
+                    );
+                  }
                   return (
-                    <div
-                      key={`${post.artist}_${post.createdAt}`}
-                      ref={lastPostRef}
-                    >
+                    <div key={`${post.artist}_${post.createdAt}`}>
                       <Post post={post} />
                     </div>
                   );
-                }
-                return (
-                  <div key={`${post.artist}_${post.createdAt}`}>
-                    <Post post={post} />
-                  </div>
-                );
-              })
-            )}
-          </div>
-          <div className="quests">
-            <QuestsProgress />
+                })
+              )}
+            </div>
+            <div className="quests">
+              <QuestsProgress />
+            </div>
           </div>
         </div>
-      </div>
-      <MobileHeader
-        loading={loadingProfile}
-        getLoggedProfile={getLoggedProfile}
-      />
-      <MobileFooter />
-    </HomeContainer>
+        <MobileHeader
+          loading={loadingProfile}
+          getLoggedProfile={getLoggedProfile}
+        />
+        <MobileFooter />
+      </HomeContainer>
+    </LevelContext.Provider>
   );
 };
 
