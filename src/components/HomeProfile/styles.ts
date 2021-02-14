@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const HomeProfileContainer = styled.aside`
   position: fixed;
-  height: 80vh;
+  height: 100%;
   width: 20%;
   padding: 2rem 0;
   border-radius: 4px;
@@ -12,6 +12,8 @@ const HomeProfileContainer = styled.aside`
   color: ${props => props.theme.colors.lightContrast};
   font-family: ${props => props.theme.fonts.primary};
   max-width: 280px;
+  max-height: 568px;
+  overflow-y: auto;
 
   .profile {
     display: flex;
