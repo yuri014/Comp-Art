@@ -9,7 +9,7 @@ const EmptyPost: React.FC = () => (
   <EmptyPostContainer>
     <FiInfo size={80} />
     <p>Não há posts por enquanto!</p>
-    <p>Você ainda pode explorar para achar coisas que possam te emocionar!</p>
+    <p>Você ainda pode explorar para achar coisas que possam te inspirar!</p>
     <Link href="/explore">
       <a>
         <button type="button">
