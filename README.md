@@ -28,7 +28,15 @@ Isso vai além de apenas a estética da rede, tem um grande impacto nos usuário
 
 >Artistas poderão criar bônus para promoções. Exemplo: o Artista divulga uma promoção em algum de seus produtos, o usuário paga menos porém o artista continua ganhando o preço total.
 
-## Grupos e Fandom
+## Produtos
+
+Artistas poderão cadastrar seu whatsapp e criar um catálogo de produtos para apresentar no perfil de acordo com o nível atual. Poderá criar produtos como camisetas, logos, ilustrações, animações, discos, canecas e o que envolver a sua arte.
+
+**Futuramente:**
+
+Dependendo da recepção da plataforma, irá ser implementado metódos de pagamento dentro da plataforma. Isso irá permitir que os apreciadores recebam cupons de descontos como recomenpesas por missões.
+
+## Grupos e Fandom (ainda em discussão)
 
 Nos grupos e fandons, os apreciadores poderão postar. Ambos têm limitações de participantes.
 
