@@ -53,11 +53,11 @@ const HomePage: React.FC = () => {
         value={{ updateLevel: getLevel, level: profileLevel }}
       >
         <Home getLoggedProfile={getLoggedProfile} />
+        <MobileHeader
+          loading={loadingProfile}
+          getLoggedProfile={getLoggedProfile}
+        />
       </LevelContext.Provider>
-      <MobileHeader
-        loading={loadingProfile}
-        getLoggedProfile={getLoggedProfile}
-      />
       <MobileFooter />
     </HomeContainer>
   );

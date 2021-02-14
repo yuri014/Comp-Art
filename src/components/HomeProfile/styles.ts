@@ -117,10 +117,10 @@ const HomeProfileContainer = styled.aside`
     background: ${props => props.theme.colors.mainGradient};
     width: 88vw;
     height: 100vh;
-    overflow-y: auto;
     padding: 4rem;
     padding-right: 2rem;
     border-radius: 0;
+    max-height: 100vh;
 
     .profile {
       & figure {
@@ -185,6 +185,7 @@ const HomeProfileContainer = styled.aside`
 
   @media (max-width: 1224px) {
     grid-template-rows: 20% 10% 40% 40%;
+
     .profile-reputation {
       display: flex;
       flex-direction: column;
