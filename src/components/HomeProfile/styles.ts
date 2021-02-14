@@ -68,7 +68,7 @@ const HomeProfileContainer = styled.aside`
       }
     }
     & .xp {
-      margin-left: 2rem;
+      margin-left: 1rem;
       width: 100%;
       display: grid;
       grid-template-columns: 20% 70%;
