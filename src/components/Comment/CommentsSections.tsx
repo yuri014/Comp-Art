@@ -2,14 +2,24 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AiOutlineSend } from 'react-icons/ai';
 import { IconButton, TextField, ThemeProvider } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
-import { useLazyQuery } from '@apollo/client';
+import { gql, useLazyQuery } from '@apollo/client';
 
 import Comment, { CommentProps } from '.';
 import mainTheme from '../../styles/themes/MainTheme';
 import { CommentsSectionContainer } from './styles';
 import { AuthContext } from '../../context/auth';
-import { GET_LOGGED_PROFILE } from '../../graphql/queries/profile';
 import { ILoggedProfile, IProfile } from '../../interfaces/Profile';
+
+const GET_LOGGED_PROFILE = gql`
+  query GetLoggedProfile {
+    getLoggedProfile {
+      name
+      avatar
+      owner
+      isArtist
+    }
+  }
+`;
 
 interface CommentForm {
   comment: string;
