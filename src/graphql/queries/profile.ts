@@ -7,23 +7,11 @@ export const GET_LOGGED_PROFILE = gql`
       avatar
       coverImage
       bio
-      xp
-      level
       followers
       following
       hashtags
       owner
       isArtist
-      links {
-        soundcloud
-        twitter
-        facebook
-        wattpad
-        pinterest
-        deviantart
-        bandcamp
-        customLink
-      }
     }
   }
 `;
