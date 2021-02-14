@@ -66,6 +66,8 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
   }>(GET_PROFILE_POSTS, {
     variables: { offset: 0, username },
     ssr: true,
+    fetchPolicy: 'cache-and-network',
+    nextFetchPolicy: 'cache-first',
   });
 
   const lastPostRef = useCallback(
