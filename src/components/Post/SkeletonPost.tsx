@@ -37,15 +37,12 @@ const SkeletonPost: React.FC = () => (
         <div className="post-interaction">
           <div>
             <FaRegHeart />
-            <p>Favoritar</p>
           </div>
           <div>
             <FaRegComment />
-            <p>Comentar</p>
           </div>
           <div>
             <FaRegShareSquare />
-            <p>Compartilhar</p>
           </div>
         </div>
       </ThemeProvider>
