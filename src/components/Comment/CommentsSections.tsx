@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { AiOutlineSend } from 'react-icons/ai';
-import { IconButton, TextField, ThemeProvider } from '@material-ui/core';
+import { IconButton, TextField } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
-import { gql, useLazyQuery } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
 
 import Comment, { CommentProps } from '.';
-import mainTheme from '../../styles/themes/MainTheme';
 import { CommentsSectionContainer } from './styles';
 import { AuthContext } from '../../context/auth';
 import { ILoggedProfile, IProfile } from '../../interfaces/Profile';
@@ -29,18 +28,13 @@ const CommentsSections: React.FC = () => {
   const [newComment, setNewComment] = useState<Array<CommentProps>>([]);
   const [profile, setProfile] = useState<IProfile>();
 
-  const [getProfile] = useLazyQuery<ILoggedProfile>(GET_LOGGED_PROFILE, {
-    onCompleted: res => {
-      setProfile(res.getLoggedProfile);
+  const { data: getProfile } = useQuery<ILoggedProfile>(GET_LOGGED_PROFILE, {
+    onCompleted: () => {
+      if (auth) {
+        setProfile(getProfile.getLoggedProfile);
+      }
     },
   });
-
-  useEffect(() => {
-    if (auth) {
-      getProfile();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [auth]);
 
   const { handleSubmit, register } = useForm<CommentForm>();
 
@@ -71,31 +65,29 @@ const CommentsSections: React.FC = () => {
           ))}
       </div>
       {profile && (
-        <ThemeProvider theme={mainTheme}>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <img src={profile.avatar || '/profile.jpg'} alt="Profile name" />
-            <TextField
-              id="send-comment"
-              label="Enviar um comentário"
-              fullWidth
-              multiline
-              name="comment"
-              inputRef={register({
-                required: true,
-              })}
-              required
-            />
-            <IconButton
-              aria-label="enviar comentário"
-              color="primary"
-              type="submit"
-            >
-              <div className="send-button">
-                <AiOutlineSend />
-              </div>
-            </IconButton>
-          </form>
-        </ThemeProvider>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <img src={profile.avatar || '/profile.jpg'} alt="Profile name" />
+          <TextField
+            id="send-comment"
+            label="Enviar um comentário"
+            fullWidth
+            multiline
+            name="comment"
+            inputRef={register({
+              required: true,
+            })}
+            required
+          />
+          <IconButton
+            aria-label="enviar comentário"
+            color="primary"
+            type="submit"
+          >
+            <div className="send-button">
+              <AiOutlineSend />
+            </div>
+          </IconButton>
+        </form>
       )}
     </CommentsSectionContainer>
   );
