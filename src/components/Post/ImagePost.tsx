@@ -62,12 +62,12 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
                   src={post.avatar || '/profile.jpg'}
                 />
 
-                <Link href={`/profile/${post.artist.username}`}>
+                <Link href={`/profile/${post.artist.owner}`}>
                   <a>
                     <div>
                       <h4>{post.artist.name}</h4>
                       <span>
-                        <p>@{post.artist.username}</p>
+                        <p>@{post.artist.owner}</p>
                         <p>&nbsp;●&nbsp;</p>
                         <p>
                           {new Date(post.createdAt).toLocaleDateString('en-GB')}
@@ -81,7 +81,7 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
                 <OptionsMenu
                   deletePost={handleDeletePost}
                   id={post._id}
-                  username={post.artist.username}
+                  username={post.artist.owner}
                 />
               </div>
             </div>

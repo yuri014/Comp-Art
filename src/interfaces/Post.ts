@@ -14,7 +14,7 @@ export interface IPost {
   commentsCount: number;
   createdAt: string;
   artist: {
-    username: string;
+    owner: string;
     name: string;
   };
   isAudio: boolean;

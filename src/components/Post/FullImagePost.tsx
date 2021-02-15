@@ -56,7 +56,7 @@ const FullImagePost: React.FC<PostProps> = ({ post }) => {
                 alt={`Imagem de perfil de ${post.artist.name}`}
                 src={post.avatar || '/profile.jpg'}
               />
-              <Link href={`/profile/${post.artist.username}`}>
+              <Link href={`/profile/${post.artist.owner}`}>
                 <a>
                   <div>
                     <h4>{post.artist.name}</h4>
@@ -65,7 +65,7 @@ const FullImagePost: React.FC<PostProps> = ({ post }) => {
                         {new Date(post.createdAt).toLocaleDateString('en-GB')}
                       </p>
                       <p>&nbsp;●&nbsp;</p>
-                      <p>@{post.artist.username}</p>
+                      <p>@{post.artist.owner}</p>
                     </span>
                   </div>
                 </a>
@@ -75,7 +75,7 @@ const FullImagePost: React.FC<PostProps> = ({ post }) => {
               <OptionsMenu
                 deletePost={deletePost}
                 id={post._id}
-                username={post.artist.username}
+                username={post.artist.owner}
               />
             </div>
           </div>

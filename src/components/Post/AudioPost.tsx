@@ -170,7 +170,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
               <div className="audio-card-content">
                 <div className="audio-card-info">
                   <Links
-                    username={post.artist.username}
+                    username={post.artist.owner}
                     description={post.description}
                     name={post.artist.name}
                     id={post._id}
@@ -178,7 +178,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
                   <OptionsMenu
                     deletePost={handleDeletePost}
                     id={post._id}
-                    username={post.artist.username}
+                    username={post.artist.owner}
                   />
                 </div>
                 <div className="audio-buttons">
