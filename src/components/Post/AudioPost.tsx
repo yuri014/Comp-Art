@@ -49,10 +49,11 @@ interface InteractionsProps {
   isLiked: boolean;
   dislikePost: () => void;
   likePost: () => void;
+  id: string;
 }
 
 const Interactions = React.memo<InteractionsProps>(
-  ({ avatar, dislikePost, isLiked, likePost, name }) => (
+  ({ avatar, dislikePost, isLiked, likePost, name, id }) => (
     <div role="button" tabIndex={0} className="image">
       <img alt={`Imagem de perfil de ${name}`} src={avatar || '/profile.jpg'} />
       <div className="interactions">
@@ -65,9 +66,13 @@ const Interactions = React.memo<InteractionsProps>(
           </IconButton>
         </div>
         <div>
-          <IconButton title="Comentar">
-            <FaRegComment />
-          </IconButton>
+          <Link href={`post/${id}`}>
+            <a>
+              <IconButton title="Comentar">
+                <FaRegComment />
+              </IconButton>
+            </a>
+          </Link>
         </div>
         <div>
           <IconButton title="Compartilhar">
@@ -226,6 +231,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
                 isLiked={isLiked}
                 likePost={likePost}
                 name={post.artist.name}
+                id={post._id}
               />
             </div>
             <audio

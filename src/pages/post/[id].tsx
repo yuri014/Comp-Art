@@ -5,7 +5,7 @@ import { gql, useQuery } from '@apollo/client';
 import { FaArrowLeft } from 'react-icons/fa';
 
 import { useRouter } from 'next/router';
-import { IconButton } from '@material-ui/core';
+import { IconButton, ThemeProvider } from '@material-ui/core';
 import { initializeApollo } from '../../graphql/apollo/config';
 import { GET_POST } from '../../graphql/queries/post';
 import { IPost, PostProps } from '../../interfaces/Post';
@@ -14,6 +14,7 @@ import PostPageContainer from '../../styles/pages/post/styles';
 import FullImagePost from '../../components/Post/FullImagePost';
 import Meta from '../../components/SEO/Meta';
 import CommentsSections from '../../components/Comment/CommentsSections';
+import mainTheme from '../../styles/themes/MainTheme';
 
 interface PostQuery {
   getPost: IPost;
@@ -44,32 +45,33 @@ const Post: React.FC<PostProps> = ({ post }) => {
   }, [data, post]);
 
   return (
-    <PostPageContainer>
-      <Meta
-        description={`Post de ${postData.artist.name}`}
-        keywords={`comp-art, post, artista, divulgação, ${postData.artist.name}`}
-        title={`Post - ${postData.artist.name}`}
-        uri={`/post/${postData._id}`}
-      />
-
-      <main>
-        <nav>
-          <IconButton
-            onClick={() => router.back()}
-            aria-label="Voltar"
-            color="primary"
-          >
-            <FaArrowLeft />
-          </IconButton>
-        </nav>
-        {postData.isAudio ? (
-          <AudioPost post={postData} />
-        ) : (
-          <FullImagePost post={postData} />
-        )}
-      </main>
-      <CommentsSections />
-    </PostPageContainer>
+    <ThemeProvider theme={mainTheme}>
+      <PostPageContainer>
+        <Meta
+          description={`Post de ${postData.artist.name}`}
+          keywords={`comp-art, post, artista, divulgação, ${postData.artist.name}`}
+          title={`Post - ${postData.artist.name}`}
+          uri={`/post/${postData._id}`}
+        />
+        <main>
+          <nav>
+            <IconButton
+              onClick={() => router.back()}
+              aria-label="Voltar"
+              color="primary"
+            >
+              <FaArrowLeft />
+            </IconButton>
+          </nav>
+          {postData.isAudio ? (
+            <AudioPost post={postData} />
+          ) : (
+            <FullImagePost post={postData} />
+          )}
+        </main>
+        <CommentsSections />
+      </PostPageContainer>
+    </ThemeProvider>
   );
 };
 

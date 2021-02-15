@@ -110,23 +110,27 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
                   {isLiked ? <FaHeart /> : <FaRegHeart />}
                   <p>{likesCount}</p>
                 </Button>
-                <Button title="Comentar" type="button">
-                  <FaRegComment />
-                  <p>{post.commentsCount}</p>
-                </Button>
+                <Link href={`post/${post._id}`}>
+                  <a>
+                    <Button title="Comentar" type="button">
+                      <FaRegComment />
+                      <p>{post.commentsCount}</p>
+                    </Button>
+                  </a>
+                </Link>
                 <Button title="Compartilhar" type="button">
                   <FaRegShareSquare />
                   <p>{post.sharedCount}</p>
                 </Button>
               </div>
             </div>
+            {isImageFullScreen && (
+              <FullScreenImage
+                img={post.body}
+                onClose={() => setIsImageFullScreen(false)}
+              />
+            )}
           </ThemeProvider>
-          {isImageFullScreen && (
-            <FullScreenImage
-              img={post.body}
-              onClose={() => setIsImageFullScreen(false)}
-            />
-          )}
         </PostContainer>
       )}
     </>
