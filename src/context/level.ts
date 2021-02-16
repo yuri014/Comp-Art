@@ -1,5 +1,10 @@
 import { createContext } from 'react';
 
-const LevelContext = createContext(null);
+interface LevelContextProps {
+  updateLevel: () => void;
+  level: number;
+}
+
+const LevelContext = createContext<LevelContextProps>(null);
 
 export default LevelContext;
