@@ -36,12 +36,16 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
     () => {
       setIsLiked(false);
       setLikesCount(likesCount - 1);
-      levelContext.updateLevel();
+      if (levelContext) {
+        levelContext.updateLevel();
+      }
     },
     () => {
       setIsLiked(true);
       setLikesCount(likesCount + 1);
-      levelContext.updateLevel();
+      if (levelContext) {
+        levelContext.updateLevel();
+      }
     },
   );
 
