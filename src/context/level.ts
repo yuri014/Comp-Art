@@ -1,8 +1,10 @@
 import { createContext } from 'react';
 
+import { ILoggedProfile } from '../interfaces/Profile';
+
 interface LevelContextProps {
   updateLevel: () => void;
-  level: number;
+  level: ILoggedProfile;
 }
 
 const LevelContext = createContext<LevelContextProps>(null);
