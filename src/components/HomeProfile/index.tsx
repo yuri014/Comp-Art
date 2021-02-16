@@ -42,7 +42,7 @@ const HomeProfile: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
           </div>
         </div>
         <div className="profile-reputation">
-          {context.level ? (
+          {context ? (
             <>
               <div className="level">
                 <p>Level:</p>
