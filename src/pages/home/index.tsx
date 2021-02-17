@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
-import { gql, useLazyQuery, useQuery } from '@apollo/client';
+import { useLazyQuery, useQuery } from '@apollo/client';
 
 import Header from '../../components/Header';
 import HomeContainer from '../../styles/pages/home';
@@ -11,16 +11,10 @@ import Home from '../../components/Home';
 import LevelContext from '../../context/level';
 import ErrorRequest from '../../components/ErrorRequest';
 import { ILoggedProfile } from '../../interfaces/Profile';
-import { GET_LOGGED_PROFILE } from '../../graphql/queries/profile';
-
-const GET_LEVEL_XP = gql`
-  query GetLevelProfile {
-    getLoggedProfile {
-      level
-      xp
-    }
-  }
-`;
+import {
+  GET_LEVEL_XP,
+  GET_LOGGED_PROFILE,
+} from '../../graphql/queries/profile';
 
 const HomePage: React.FC = () => {
   const {
