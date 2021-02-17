@@ -56,9 +56,9 @@ const HomeProfile: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
           ) : (
             <Skeleton
               animation="wave"
-              variant="circle"
+              variant="rect"
               width="100%"
-              height={24}
+              height={20}
             />
           )}
         </div>
