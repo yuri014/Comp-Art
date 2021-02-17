@@ -15,11 +15,15 @@ import Post from '../../components/Post';
 import LoadingPost from '../../components/Post/LoadingPost';
 import { GET_EXPLORE_POSTS } from '../../graphql/queries/post';
 import { AuthContext } from '../../context/auth';
-import { GET_LOGGED_PROFILE } from '../../graphql/queries/profile';
+import {
+  GET_LEVEL_XP,
+  GET_LOGGED_PROFILE,
+} from '../../graphql/queries/profile';
 import HomeProfile from '../../components/HomeProfile';
 import Header from '../../components/Header';
 import MobileHeader from '../../components/MobileHeader';
 import QuestsProgress from '../../components/QuestsProgress';
+import LevelContext from '../../context/level';
 
 interface IExplorePosts {
   getExplorePosts: Array<IPost>;
@@ -69,6 +73,14 @@ const Explore: React.FC = () => {
     }
   }, [getProfile, user]);
 
+  const [getLevel, { data: profileLevel }] = useLazyQuery(GET_LEVEL_XP, {
+    fetchPolicy: 'no-cache',
+  });
+
+  useEffect(() => {
+    getLevel();
+  }, [getLevel]);
+
   return (
     <HomeContainer>
       <Head>
@@ -79,7 +91,11 @@ const Explore: React.FC = () => {
         <div className="home-desktop-content">
           <div className="profile">
             {profileData && (
-              <HomeProfile getLoggedProfile={profileData.getLoggedProfile} />
+              <LevelContext.Provider
+                value={{ updateLevel: getLevel, level: profileLevel }}
+              >
+                <HomeProfile getLoggedProfile={profileData.getLoggedProfile} />
+              </LevelContext.Provider>
             )}
           </div>
           <div className="timeline">
