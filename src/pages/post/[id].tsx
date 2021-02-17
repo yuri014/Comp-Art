@@ -69,7 +69,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
             <FullImagePost post={postData} />
           )}
         </main>
-        <CommentsSections />
+        <CommentsSections postId={postData._id} />
       </PostPageContainer>
     </ThemeProvider>
   );
