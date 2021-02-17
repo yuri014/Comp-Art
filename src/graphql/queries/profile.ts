@@ -51,3 +51,12 @@ export const GET_IS_FOLLOWING = gql`
     getIsFollowing(username: $username)
   }
 `;
+
+export const GET_LEVEL_XP = gql`
+  query GetLevelProfile {
+    getLoggedProfile {
+      level
+      xp
+    }
+  }
+`;
