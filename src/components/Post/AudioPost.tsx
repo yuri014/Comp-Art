@@ -66,7 +66,7 @@ const Interactions = React.memo<InteractionsProps>(
           </IconButton>
         </div>
         <div>
-          <Link href={`post/${id}`}>
+          <Link href={`/post/${id}`}>
             <a>
               <IconButton title="Comentar">
                 <FaRegComment />

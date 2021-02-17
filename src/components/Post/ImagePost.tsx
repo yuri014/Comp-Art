@@ -114,7 +114,7 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
                   {isLiked ? <FaHeart /> : <FaRegHeart />}
                   <p>{likesCount}</p>
                 </Button>
-                <Link href={`post/${post._id}`}>
+                <Link href={`/post/${post._id}`}>
                   <a>
                     <Button title="Comentar" type="button">
                       <FaRegComment />
