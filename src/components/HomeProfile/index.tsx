@@ -42,7 +42,7 @@ const HomeProfile: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
           </div>
         </div>
         <div className="profile-reputation">
-          {context ? (
+          {context && context.level ? (
             <>
               <div className="level">
                 <p>Level:</p>
@@ -54,7 +54,12 @@ const HomeProfile: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
               </div>
             </>
           ) : (
-            <Skeleton animation="wave" variant="rect" width={24} height={24} />
+            <Skeleton
+              animation="wave"
+              variant="circle"
+              width="100%"
+              height={24}
+            />
           )}
         </div>
         <div className="profile-buttons">
