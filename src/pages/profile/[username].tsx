@@ -154,7 +154,7 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
               <button type="button">Editar perfil</button>
             )}
 
-            {loading && <Skeleton width={60} height={40} />}
+            {loading && <Skeleton animation="wave" width={60} height={40} />}
 
             {checkFollowButton() && isFollowing && !loading && (
               <button

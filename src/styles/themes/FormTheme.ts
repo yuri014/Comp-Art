@@ -2,6 +2,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 
 const formTheme = createMuiTheme({
   palette: {
+    type: 'dark',
     primary: {
       main: '#1cc5b7',
     },
