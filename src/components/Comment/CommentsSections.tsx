@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { AiOutlineSend } from 'react-icons/ai';
 import { IconButton, TextField } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
-import { gql, useQuery } from '@apollo/client';
+import { gql, useMutation, useQuery } from '@apollo/client';
 
 import Comment, { CommentProps } from '.';
 import { CommentsSectionContainer } from './styles';
@@ -19,11 +19,21 @@ const GET_LOGGED_PROFILE = gql`
   }
 `;
 
+const CREATE_COMMENT = gql`
+  mutation CreateComment($id: ID!, $body: String!) {
+    comment(postID: $id, comment: $body)
+  }
+`;
+
 interface CommentForm {
   comment: string;
 }
 
-const CommentsSections: React.FC = () => {
+interface CommentsSectionsProps {
+  postId: string;
+}
+
+const CommentsSections: React.FC<CommentsSectionsProps> = ({ postId }) => {
   const auth = useContext(AuthContext);
   const [newComment, setNewComment] = useState<Array<CommentProps>>([]);
   const [profile, setProfile] = useState<IProfile>();
@@ -35,6 +45,8 @@ const CommentsSections: React.FC = () => {
       }
     },
   });
+
+  const [createComment] = useMutation(CREATE_COMMENT);
 
   const { handleSubmit, register } = useForm<CommentForm>();
 
@@ -50,6 +62,7 @@ const CommentsSections: React.FC = () => {
         text: commentInput.comment,
       },
     ]);
+    createComment({ variables: { id: postId, body: commentInput.comment } });
   };
 
   return (
