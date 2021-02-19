@@ -27,7 +27,7 @@ export const CommentContainer = styled.div`
 
     a {
       color: ${props => props.theme.colors.lightContrast};
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       display: flex;
       align-items: center;
       font-weight: 700;
@@ -41,7 +41,7 @@ export const CommentContainer = styled.div`
 
     .comment-text {
       margin-top: 1rem;
-      font-size: 1.3rem;
+      font-size: 1.5rem;
     }
   }
 
@@ -49,7 +49,7 @@ export const CommentContainer = styled.div`
     display: flex;
     align-items: center;
     margin-top: 1rem;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: ${props => props.theme.colors.lightContrast};
     margin-left: 1rem;
 
