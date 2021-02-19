@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React from 'react';
 import { useQuery } from '@apollo/client';
 
 import HomeProfile from '../HomeProfile';
@@ -8,38 +8,25 @@ import QuestsProgress from '../QuestsProgress';
 import { IGetPosts } from '../../interfaces/Post';
 import { GET_POSTS } from '../../graphql/queries/post';
 import { IProfile } from '../../interfaces/Profile';
+import useInfiniteScroll from '../../hooks/infiniteScroll';
 
 interface HomeProps {
   getLoggedProfile: IProfile;
 }
 
 const Home: React.FC<HomeProps> = ({ getLoggedProfile }) => {
-  const [hasMore, setHasMore] = useState(false);
-  const observer = useRef(null);
   const { data, loading, error, fetchMore } = useQuery<IGetPosts>(GET_POSTS, {
     variables: { offset: 0 },
   });
 
-  const lastPostRef = useCallback(
-    node => {
-      if (!data.getPosts) return;
-      if (observer.current) observer.current.disconnect();
-      observer.current = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting && !hasMore) {
-          fetchMore({
-            variables: { offset: data.getPosts.length },
-          }).then(newPosts => {
-            if (newPosts.data.getPosts.length < 3) {
-              setHasMore(true);
-            }
-          });
-        }
-      });
-
-      if (node) observer.current.observe(node);
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [data],
+  const lastPostRef = useInfiniteScroll(
+    data,
+    !data,
+    () =>
+      !!data.getPosts &&
+      fetchMore({
+        variables: { offset: data.getPosts.length },
+      }).then(newPosts => newPosts.data.getPosts.length < 3),
   );
 
   return (
