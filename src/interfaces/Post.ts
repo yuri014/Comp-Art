@@ -29,3 +29,17 @@ export interface PostProps {
 export interface IGetPosts {
   getPosts: Array<IPost>;
 }
+
+export interface IComment {
+  author: {
+    name: string;
+    owner: string;
+    avatar: string;
+  };
+  body: string;
+  createdAt: string;
+}
+
+export interface IGetComment {
+  getComments: [IComment];
+}
