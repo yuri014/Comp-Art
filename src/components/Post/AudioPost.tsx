@@ -21,6 +21,7 @@ import useDeletePost from '../../hooks/posts';
 import LevelContext from '../../context/level';
 
 const OptionsMenu = dynamic(() => import('./OptionsMenu'));
+const ModalLikes = dynamic(() => import('../ModalLikes'));
 interface LinksProps {
   username: string;
   description: string;
@@ -93,6 +94,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [slider, setSlider] = useState(0);
   const [isDeleted, setIsDeleted] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
   const levelContext = useContext(LevelContext);
 
@@ -172,7 +174,6 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
 
   return (
     <>
-      {' '}
       {!isDeleted && (
         <AudioPostContainer>
           <ThemeProvider theme={mainTheme}>
@@ -185,11 +186,13 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
                     name={post.artist.name}
                     id={post._id}
                   />
-                  <OptionsMenu
-                    deletePost={handleDeletePost}
-                    id={post._id}
-                    username={post.artist.owner}
-                  />
+                  <div className="options">
+                    <OptionsMenu
+                      deletePost={handleDeletePost}
+                      id={post._id}
+                      username={post.artist.owner}
+                    />
+                  </div>
                 </div>
                 <div className="audio-buttons">
                   <IconButton
@@ -215,6 +218,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
                     <FaForward />
                   </IconButton>
                 </div>
+
                 <div className="progress">
                   <div className="duration">
                     <p>{currentTime || '0:00'}</p>
@@ -239,6 +243,26 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
                 id={post._id}
               />
             </div>
+            <div className="post-counts">
+              <button onClick={() => setModalShow(true)} type="button">
+                <div className="likes-images">
+                  {post.likes &&
+                    post.likes.map(({ profile }) => (
+                      <img
+                        key={profile.owner}
+                        src={profile.avatar || '/profile.jpg'}
+                        alt={profile.owner}
+                        title={profile.owner}
+                      />
+                    ))}
+                </div>
+                {likesCount > 0 && (
+                  <>
+                    {likesCount} {likesCount > 1 ? 'curtidas' : 'curtida'}
+                  </>
+                )}
+              </button>
+            </div>
             <audio
               style={{ display: 'none' }}
               ref={audioRef}
@@ -251,6 +275,9 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
             />
           </ThemeProvider>
         </AudioPostContainer>
+      )}
+      {modalShow && (
+        <ModalLikes id={post._id} onHide={() => setModalShow(false)} />
       )}
     </>
   );

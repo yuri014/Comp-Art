@@ -63,6 +63,7 @@ const ModalLikesContainer = styled.div`
 
           .level {
             background-color: ${props => props.theme.colors.mainColor};
+            color: ${props => props.theme.colors.namesakeText};
             padding: 0 0.6rem;
             border-radius: 4px;
           }

@@ -353,6 +353,45 @@ export const EmptyPostContainer = styled.div`
 export const AudioPostContainer = styled.section`
   margin: 0 auto;
   margin-bottom: 2rem;
+
+  .post-counts {
+    margin-top: 1rem;
+
+    button {
+      color: ${props => props.theme.colors.lightContrast};
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 1.6rem;
+      display: flex;
+      align-items: center;
+
+      &:focus {
+        outline: 1px solid ${props => props.theme.colors.mainColor};
+      }
+
+      .likes-images {
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+        img {
+          width: 2.8rem;
+          height: 2.8rem;
+          border-radius: 50%;
+          object-fit: cover;
+
+          &:first-child {
+            margin-right: 1rem;
+          }
+
+          & + img {
+            margin-right: -1rem;
+          }
+        }
+      }
+    }
+  }
+
   .audio-card {
     display: flex;
     align-items: center;
@@ -361,6 +400,7 @@ export const AudioPostContainer = styled.section`
     height: 160px;
     border-radius: 4px;
     box-shadow: 0 4px 4px #000;
+
     .image {
       height: 100%;
       width: 55%;
@@ -404,7 +444,7 @@ export const AudioPostContainer = styled.section`
     }
 
     .audio-card-content {
-      padding: 2rem;
+      padding: 1rem 2rem;
       height: 100%;
       width: 100%;
       display: flex;
@@ -415,6 +455,10 @@ export const AudioPostContainer = styled.section`
         display: flex;
         align-items: center;
         justify-content: space-between;
+
+        .options {
+          margin-right: -2rem;
+        }
       }
 
       .MuiLinearProgress-colorPrimary {
@@ -434,8 +478,9 @@ export const AudioPostContainer = styled.section`
       .duration {
         display: flex;
         justify-content: space-between;
-        margin-bottom: -0.6rem;
-        font-size: 1.2rem;
+        margin-bottom: -1.2rem;
+        margin-top: 1rem;
+        font-size: 1.4rem;
       }
     }
   }
@@ -448,12 +493,12 @@ export const AudioPostContainer = styled.section`
     color: ${props => props.theme.colors.lightContrast};
     &.music-name {
       font-weight: 700;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
     }
 
     &.artist-name {
       font-weight: 400;
-      font-size: 1.2rem;
+      font-size: 1.6rem;
     }
   }
 
@@ -478,6 +523,13 @@ export const AudioPostContainer = styled.section`
             font-size: 2rem;
             filter: drop-shadow(1px 1px #000);
           }
+        }
+      }
+
+      .audio-card-content {
+        .duration {
+          margin-bottom: -0.6rem;
+          margin-top: 0;
         }
       }
     }
