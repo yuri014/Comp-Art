@@ -17,12 +17,14 @@ import LevelContext from '../../context/level';
 
 const FullScreenImage = dynamic(() => import('../FullScreenImage'));
 const OptionsMenu = dynamic(() => import('./OptionsMenu'));
+const ModalLikes = dynamic(() => import('../ModalLikes'));
 
 const ImagePost: React.FC<PostProps> = ({ post }) => {
   const [isLiked, setIsLiked] = useState<boolean>();
   const [likesCount, setLikesCount] = useState<number>();
   const [isImageFullScreen, setIsImageFullScreen] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
   useEffect(() => {
     setIsLiked(post.isLiked);
@@ -105,7 +107,7 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
                 </figure>
               </div>
               <div className="post-counts">
-                <button type="button">
+                <button onClick={() => setModalShow(true)} type="button">
                   <div className="likes-images">
                     {post.likes &&
                       post.likes.map(({ profile }) => (
@@ -153,6 +155,9 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
             )}
           </ThemeProvider>
         </PostContainer>
+      )}
+      {modalShow && (
+        <ModalLikes id={post._id} onHide={() => setModalShow(false)} />
       )}
     </>
   );

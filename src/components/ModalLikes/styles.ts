@@ -31,6 +31,10 @@ const ModalLikesContainer = styled.div`
     transform-origin: center;
     transform: scale(0);
 
+    a {
+      color: ${props => props.theme.colors.lightContrast};
+    }
+
     .profile {
       display: flex;
       align-items: flex-start;
