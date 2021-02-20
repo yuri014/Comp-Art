@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useLazyQuery, useQuery } from '@apollo/client';
 
 import Head from 'next/head';
@@ -24,6 +18,7 @@ import Header from '../../components/Header';
 import MobileHeader from '../../components/MobileHeader';
 import QuestsProgress from '../../components/QuestsProgress';
 import LevelContext from '../../context/level';
+import useInfiniteScroll from '../../hooks/infiniteScroll';
 
 interface IExplorePosts {
   getExplorePosts: Array<IPost>;
@@ -31,8 +26,6 @@ interface IExplorePosts {
 
 const Explore: React.FC = () => {
   const { user } = useContext(AuthContext);
-  const [hasMore, setHasMore] = useState(false);
-  const observer = useRef(null);
   const { data, loading, error, fetchMore } = useQuery<IExplorePosts>(
     GET_EXPLORE_POSTS,
     {
@@ -40,26 +33,14 @@ const Explore: React.FC = () => {
     },
   );
 
-  const lastPostRef = useCallback(
-    node => {
-      if (!data.getExplorePosts) return;
-      if (observer.current) observer.current.disconnect();
-      observer.current = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting && !hasMore) {
-          fetchMore({
-            variables: { offset: data.getExplorePosts.length },
-          }).then(newPosts => {
-            if (newPosts.data.getExplorePosts.length < 3) {
-              setHasMore(true);
-            }
-          });
-        }
-      });
-
-      if (node) observer.current.observe(node);
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [data],
+  const lastPostRef = useInfiniteScroll(
+    data,
+    !data,
+    () =>
+      !!data.getExplorePosts &&
+      fetchMore({
+        variables: { offset: data.getExplorePosts.length },
+      }).then(newPosts => newPosts.data.getExplorePosts.length < 3),
   );
 
   const [

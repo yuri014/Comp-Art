@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useRef, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { QueryResult, useMutation, useQuery } from '@apollo/client';
 import {
   FaBandcamp,
@@ -30,6 +30,7 @@ import { GET_PROFILE_POSTS } from '../../graphql/queries/post';
 import Post from '../../components/Post';
 import SkeletonPost from '../../components/Post/SkeletonPost';
 import Meta from '../../components/SEO/Meta';
+import useInfiniteScroll from '../../hooks/infiniteScroll';
 
 const FullScreenImage = dynamic(
   () => import('../../components/FullScreenImage'),
@@ -59,8 +60,6 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
   const [follow] = useMutation(FOLLOW_PROFILE);
   const [unfollow] = useMutation(UNFOLLOW_PROFILE);
 
-  const [hasMore, setHasMore] = useState(false);
-  const observer = useRef(null);
   const { data, error, loading: loadingPost, fetchMore } = useQuery<{
     getProfilePosts: Array<IPost>;
   }>(GET_PROFILE_POSTS, {
@@ -70,26 +69,14 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
     nextFetchPolicy: 'cache-first',
   });
 
-  const lastPostRef = useCallback(
-    node => {
-      if (!data.getProfilePosts) return;
-      if (observer.current) observer.current.disconnect();
-      observer.current = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting && !hasMore) {
-          fetchMore({
-            variables: { offset: data.getProfilePosts.length },
-          }).then(newPosts => {
-            if (newPosts.data.getProfilePosts.length < 3) {
-              setHasMore(true);
-            }
-          });
-        }
-      });
-
-      if (node) observer.current.observe(node);
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [data],
+  const lastPostRef = useInfiniteScroll(
+    data,
+    !data,
+    () =>
+      !!data.getProfilePosts &&
+      fetchMore({
+        variables: { offset: data.getProfilePosts.length },
+      }).then(newPosts => newPosts.data.getProfilePosts.length < 3),
   );
 
   const { getProfile }: { getProfile: IProfile } = profile.data;
