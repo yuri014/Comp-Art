@@ -115,7 +115,11 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
                       />
                     ))}
                   </div>
-                  {likesCount} {likesCount > 1 ? 'curtidas' : 'curtida'}
+                  {likesCount > 0 && (
+                    <>
+                      {likesCount} {likesCount > 1 ? 'curtidas' : 'curtida'}
+                    </>
+                  )}
                 </button>
               </div>
               <div className="post-interaction">
@@ -131,13 +135,11 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
                   <a>
                     <Button title="Comentar" type="button">
                       <FaRegComment />
-                      <p>{post.commentsCount}</p>
                     </Button>
                   </a>
                 </Link>
                 <Button title="Compartilhar" type="button">
                   <FaRegShareSquare />
-                  <p>{post.sharedCount}</p>
                 </Button>
               </div>
             </div>
