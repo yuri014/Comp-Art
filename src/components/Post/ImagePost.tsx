@@ -126,7 +126,6 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
                   title="Curtir"
                 >
                   {isLiked ? <FaHeart /> : <FaRegHeart />}
-                  <p>{likesCount}</p>
                 </Button>
                 <Link href={`/post/${post._id}`}>
                   <a>
