@@ -15,9 +15,10 @@ export const GET_POST = gql`
         avatar
       }
       likes {
-        username
-        avatar
-        createdAt
+        profile {
+          owner
+          avatar
+        }
       }
       isAudio
       isLiked
@@ -41,9 +42,10 @@ export const GET_POSTS = gql`
         avatar
       }
       likes {
-        username
-        avatar
-        createdAt
+        profile {
+          owner
+          avatar
+        }
       }
       isAudio
       isLiked
@@ -67,9 +69,10 @@ export const GET_EXPLORE_POSTS = gql`
         avatar
       }
       likes {
-        username
-        avatar
-        createdAt
+        profile {
+          owner
+          avatar
+        }
       }
       isAudio
       isLiked
@@ -93,9 +96,10 @@ export const GET_PROFILE_POSTS = gql`
         avatar
       }
       likes {
-        username
-        avatar
-        createdAt
+        profile {
+          owner
+          avatar
+        }
       }
       isAudio
       avatar

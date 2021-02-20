@@ -107,13 +107,15 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
               <div className="post-counts">
                 <button type="button">
                   <div className="likes-images">
-                    {post.likes.map(like => (
-                      <img
-                        src={like.avatar || '/profile.jpg'}
-                        alt={like.username}
-                        title={like.username}
-                      />
-                    ))}
+                    {post.likes &&
+                      post.likes.map(({ profile }) => (
+                        <img
+                          key={profile.owner}
+                          src={profile.avatar || '/profile.jpg'}
+                          alt={profile.owner}
+                          title={profile.owner}
+                        />
+                      ))}
                   </div>
                   {likesCount > 0 && (
                     <>

@@ -1,12 +1,12 @@
+import { IProfile } from './Profile';
+
 export interface IPost {
   _id: string;
   description: string;
   body: string;
   likes: [
     {
-      username: string;
-      avatar: string;
-      createdAt: string;
+      profile: IProfile;
     },
   ];
   likesCount: number;
