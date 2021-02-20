@@ -91,7 +91,43 @@ export const PostContainer = styled.section`
       }
     }
 
-    & .post-interaction {
+    .post-counts {
+      button {
+        color: ${props => props.theme.colors.lightContrast};
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 1.6rem;
+        display: flex;
+        align-items: center;
+
+        &:focus {
+          outline: 1px solid ${props => props.theme.colors.mainColor};
+        }
+
+        .likes-images {
+          display: flex;
+          align-items: center;
+          flex-direction: row-reverse;
+          img {
+            width: 2.8rem;
+            height: 2.8rem;
+            border-radius: 50%;
+            object-fit: cover;
+
+            &:first-child {
+              margin-right: 1rem;
+            }
+
+            & + img {
+              margin-right: -1rem;
+            }
+          }
+        }
+      }
+    }
+
+    .post-interaction {
       display: flex;
       align-items: center;
       justify-content: space-between;

@@ -104,6 +104,20 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
                   <img src={post.body} alt="Publicação" />
                 </figure>
               </div>
+              <div className="post-counts">
+                <button type="button">
+                  <div className="likes-images">
+                    {post.likes.map(like => (
+                      <img
+                        src={like.avatar || '/profile.jpg'}
+                        alt={like.username}
+                        title={like.username}
+                      />
+                    ))}
+                  </div>
+                  {likesCount} {likesCount > 1 ? 'curtidas' : 'curtida'}
+                </button>
+              </div>
               <div className="post-interaction">
                 <Button
                   className={isLiked ? 'active' : ''}
