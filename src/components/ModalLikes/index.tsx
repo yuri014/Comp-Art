@@ -6,27 +6,24 @@ import { ThemeProvider } from '@material-ui/core';
 import Link from 'next/link';
 import mainTheme from '../../styles/themes/MainTheme';
 import ModalLikesContainer from './styles';
-import { IPost } from '../../interfaces/Post';
 import useOutsideClick from '../../hooks/outsideClick';
+import useInfiniteScroll from '../../hooks/infiniteScroll';
+import { IProfile } from '../../interfaces/Profile';
 
 const GET_LIKES = gql`
-  query GetLikes {
-    getPost(id: "60308b75a13d0853616d6b62") {
-      likes {
-        profile {
-          name
-          avatar
-          bio
-          owner
-          level
-        }
-      }
+  query GetLikes($id: ID!, $offset: Int!) {
+    getLikes(postID: $id, offset: $offset) {
+      name
+      avatar
+      bio
+      owner
+      level
     }
   }
 `;
 
 interface IGetPost {
-  getPost: IPost;
+  getLikes: [IProfile];
 }
 
 interface ModalProps {
@@ -34,10 +31,22 @@ interface ModalProps {
   id: string;
 }
 
-const ModalLikes: React.FC<ModalProps> = ({ onHide }) => {
-  const { data, loading } = useQuery<IGetPost>(GET_LIKES);
-  const ref = useRef(null);
+const ModalLikes: React.FC<ModalProps> = ({ onHide, id }) => {
+  const { data, loading, fetchMore } = useQuery<IGetPost>(GET_LIKES, {
+    variables: { id, offset: 0 },
+  });
 
+  const lastPostRef = useInfiniteScroll(
+    data,
+    !data,
+    () =>
+      !!data.getLikes &&
+      fetchMore({
+        variables: { offset: data.getLikes.length },
+      }).then(newComments => newComments.data.getLikes.length < 3),
+  );
+
+  const ref = useRef(null);
   useOutsideClick(ref, onHide);
 
   return (
@@ -55,21 +64,50 @@ const ModalLikes: React.FC<ModalProps> = ({ onHide }) => {
             </>
           ) : (
             <>
-              {data.getPost.likes.map(({ profile }) => (
-                <Link href={`/profile/${profile.owner}`} key={profile.owner}>
-                  <a className="profile">
-                    <img src={profile.avatar || '/profile.jpg'} alt="Profile" />
-                    <div className="profile-content">
-                      <div className="profile-info">
-                        <strong>{profile.name}</strong>
-                        <p>@{profile.owner}</p>
-                        <div className="level">{profile.level}</div>
+              {data.getLikes.map((profile, index) => {
+                if (data.getLikes.length === index + 1) {
+                  return (
+                    <Link
+                      href={`/profile/${profile.owner}`}
+                      key={profile.owner}
+                    >
+                      <a ref={lastPostRef} className="profile">
+                        <img
+                          src={profile.avatar || '/profile.jpg'}
+                          alt="Profile"
+                        />
+                        <div className="profile-content">
+                          <div className="profile-info">
+                            <strong>{profile.name}</strong>
+                            <p>@{profile.owner}</p>
+                            <div className="level">{profile.level}</div>
+                          </div>
+                          <p className="bio">{profile.bio}</p>
+                        </div>
+                      </a>
+                    </Link>
+                  );
+                }
+
+                return (
+                  <Link href={`/profile/${profile.owner}`} key={profile.owner}>
+                    <a className="profile">
+                      <img
+                        src={profile.avatar || '/profile.jpg'}
+                        alt="Profile"
+                      />
+                      <div className="profile-content">
+                        <div className="profile-info">
+                          <strong>{profile.name}</strong>
+                          <p>@{profile.owner}</p>
+                          <div className="level">{profile.level}</div>
+                        </div>
+                        <p className="bio">{profile.bio}</p>
                       </div>
-                      <p className="bio">{profile.bio}</p>
-                    </div>
-                  </a>
-                </Link>
-              ))}
+                    </a>
+                  </Link>
+                );
+              })}
             </>
           )}
         </div>
