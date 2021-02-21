@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-import Skeleton from '@material-ui/lab/Skeleton';
 import { gql, useQuery } from '@apollo/client';
 import { ThemeProvider } from '@material-ui/core';
 
@@ -9,6 +8,7 @@ import ModalLikesContainer from './styles';
 import useOutsideClick from '../../hooks/outsideClick';
 import useInfiniteScroll from '../../hooks/infiniteScroll';
 import { IProfile } from '../../interfaces/Profile';
+import LoadingProfileLikes from './Loading';
 
 const GET_LIKES = gql`
   query GetLikes($id: ID!, $offset: Int!) {
@@ -55,12 +55,11 @@ const ModalLikes: React.FC<ModalProps> = ({ onHide, id }) => {
         <div className="modal-content" ref={ref}>
           {loading ? (
             <>
-              <Skeleton animation="wave" height={60} width="100%" />
-              <Skeleton animation="wave" height={60} width="100%" />
-              <Skeleton animation="wave" height={60} width="100%" />
-              <Skeleton animation="wave" height={60} width="100%" />
-              <Skeleton animation="wave" height={60} width="100%" />
-              <Skeleton animation="wave" height={60} width="100%" />
+              <LoadingProfileLikes />
+              <LoadingProfileLikes />
+              <LoadingProfileLikes />
+              <LoadingProfileLikes />
+              <LoadingProfileLikes />
             </>
           ) : (
             <>
@@ -72,7 +71,12 @@ const ModalLikes: React.FC<ModalProps> = ({ onHide, id }) => {
                       key={profile.owner}
                     >
                       <a ref={lastPostRef} className="profile">
-                        <img src={profile.avatar} alt="Profile" />
+                        <img
+                          src={
+                            process.env.NEXT_PUBLIC_API_HOST + profile.avatar
+                          }
+                          alt="Profile"
+                        />
                         <div className="profile-content">
                           <div className="profile-info">
                             <strong>{profile.name}</strong>
