@@ -57,7 +57,7 @@ const FullImagePost: React.FC<PostProps> = ({ post }) => {
             <Link href={`/profile/${post.artist.owner}`}>
               <a>
                 <div>
-                  <h4>{post.artist.name}</h4>
+                  <p>{post.artist.name}</p>
                   <span>
                     <p>
                       {new Date(post.createdAt).toLocaleDateString('en-GB')}
