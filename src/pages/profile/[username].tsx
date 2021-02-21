@@ -99,7 +99,7 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
       .replace('#', '')}`;
 
   return (
-    <ProfileContainer>
+    <>
       <Meta
         title={`${getProfile.owner} - Perfil`}
         description={`${getProfile.owner} é um ${
@@ -115,221 +115,223 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
         uri={`profile/${getProfile.owner}`}
       />
       <Header />
-      <main>
-        <div className="cover-profile">
-          {getProfile.coverImage ? (
-            <img
-              src={process.env.NEXT_PUBLIC_API_HOST + getProfile.coverImage}
-              alt="Capa do perfil"
-            />
-          ) : (
-            <div className="holder" />
-          )}
-        </div>
-        <div className="container">
-          <div
-            className="avatar-profile"
-            onClick={() => setIsImageFullScreen(true)}
-            onKeyDown={() => setIsImageFullScreen(true)}
-            onBlur={() => setIsImageFullScreen(false)}
-            role="button"
-            tabIndex={0}
-          >
-            <img
-              src={process.env.NEXT_PUBLIC_API_HOST + getProfile.avatar}
-              alt="Imagem do perfil"
-            />
+      <ProfileContainer>
+        <main>
+          <div className="cover-profile">
+            {getProfile.coverImage ? (
+              <img
+                src={process.env.NEXT_PUBLIC_API_HOST + getProfile.coverImage}
+                alt="Capa do perfil"
+              />
+            ) : (
+              <div className="holder" />
+            )}
           </div>
-          <div className="edit-profile">
-            {hasAuth && getProfile.owner === auth.user.username && (
-              <Link href={`/profile/edit/${getProfile.owner}`}>
-                <a>
-                  <button type="button">Editar perfil</button>
-                </a>
-              </Link>
-            )}
+          <div className="container">
+            <div
+              className="avatar-profile"
+              onClick={() => setIsImageFullScreen(true)}
+              onKeyDown={() => setIsImageFullScreen(true)}
+              onBlur={() => setIsImageFullScreen(false)}
+              role="button"
+              tabIndex={0}
+            >
+              <img
+                src={process.env.NEXT_PUBLIC_API_HOST + getProfile.avatar}
+                alt="Imagem do perfil"
+              />
+            </div>
+            <div className="edit-profile">
+              {hasAuth && getProfile.owner === auth.user.username && (
+                <Link href={`/profile/edit/${getProfile.owner}`}>
+                  <a>
+                    <button type="button">Editar perfil</button>
+                  </a>
+                </Link>
+              )}
 
-            {loading && <Skeleton animation="wave" width={60} height={40} />}
+              {loading && <Skeleton animation="wave" width={60} height={40} />}
 
-            {checkFollowButton() && isFollowing && !loading && (
-              <button
-                type="button"
-                onClick={() => {
-                  unfollow({
-                    variables: { username: getProfile.owner },
-                  });
-                  setIsFollowing(false);
-                  setFollowersCount(followersCount - 1);
-                }}
-              >
-                Deixar de Seguir
-              </button>
-            )}
-            {checkFollowButton() && !isFollowing && !loading && (
-              <button
-                type="button"
-                onClick={() => {
-                  follow({
-                    variables: { username: getProfile.owner },
-                  });
-                  setIsFollowing(true);
-                  setFollowersCount(followersCount + 1);
-                }}
-              >
-                Seguir
-              </button>
-            )}
-            {!hasAuth && <button type="button">Seguir</button>}
-          </div>
-          <section>
-            <div className="profile">
-              <div>
-                <h1>{getProfile.name}</h1>
-                <h2>@{getProfile.owner}</h2>
+              {checkFollowButton() && isFollowing && !loading && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    unfollow({
+                      variables: { username: getProfile.owner },
+                    });
+                    setIsFollowing(false);
+                    setFollowersCount(followersCount - 1);
+                  }}
+                >
+                  Deixar de Seguir
+                </button>
+              )}
+              {checkFollowButton() && !isFollowing && !loading && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    follow({
+                      variables: { username: getProfile.owner },
+                    });
+                    setIsFollowing(true);
+                    setFollowersCount(followersCount + 1);
+                  }}
+                >
+                  Seguir
+                </button>
+              )}
+              {!hasAuth && <button type="button">Seguir</button>}
+            </div>
+            <section>
+              <div className="profile">
+                <div>
+                  <h1>{getProfile.name}</h1>
+                  <h2>@{getProfile.owner}</h2>
+                </div>
+                <div>
+                  <p>
+                    Level <span className="level">{getProfile.level}</span>
+                  </p>
+                  {getProfile.sharedPostCount !== null && (
+                    <p>Publicações: {getProfile.sharedPostCount}</p>
+                  )}
+                  {getProfile.postCount !== null && (
+                    <p>Publicações: {getProfile.postCount}</p>
+                  )}
+                </div>
+                <div className="profile-follows">
+                  <p>Seguindo: {getProfile.following}</p>
+                  <p>Seguidores: {followersCount}</p>
+                </div>
               </div>
-              <div>
-                <p>
-                  Level <span className="level">{getProfile.level}</span>
-                </p>
-                {getProfile.sharedPostCount !== null && (
-                  <p>Publicações: {getProfile.sharedPostCount}</p>
-                )}
-                {getProfile.postCount !== null && (
-                  <p>Publicações: {getProfile.postCount}</p>
-                )}
-              </div>
-              <div className="profile-follows">
+              <div className="mobile-profile-follows">
                 <p>Seguindo: {getProfile.following}</p>
                 <p>Seguidores: {followersCount}</p>
               </div>
-            </div>
-            <div className="mobile-profile-follows">
-              <p>Seguindo: {getProfile.following}</p>
-              <p>Seguidores: {followersCount}</p>
-            </div>
-            {getProfile.bio && (
-              <div className="bio">
-                <p>{getProfile.bio}</p>
-              </div>
-            )}
-            <div className="profile-links">
-              {getProfile.links.soundcloud && (
-                <a
-                  href={`http://soundcloud.com/${getProfile.links.soundcloud}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Soundcloud"
-                >
-                  <FaSoundcloud className="soundcloud-icon" />
-                </a>
+              {getProfile.bio && (
+                <div className="bio">
+                  <p>{getProfile.bio}</p>
+                </div>
               )}
-              {getProfile.links.twitter && (
-                <a
-                  href={`http://twitter.com/${getProfile.links.twitter}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Twitter"
-                >
-                  <FaTwitter className="twitter-icon" />
-                </a>
-              )}
-              {getProfile.links.deviantart && (
-                <a
-                  href={`http://deviantart.com/${getProfile.links.deviantart}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="DeviantArt"
-                >
-                  <FaDeviantart className="deviantart-icon" />
-                </a>
-              )}
-              {getProfile.links.bandcamp && (
-                <a
-                  href={`http://${getProfile.links.bandcamp}.bandcamp.com`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Bandcamp"
-                >
-                  <FaBandcamp className="bandcamp-icon" />
-                </a>
-              )}
-              {getProfile.links.wattpad && (
-                <a
-                  href={`http://wattpad.com/user/${getProfile.links.wattpad}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Wattpad"
-                >
-                  <SiWattpad className="wattpad-icon" />
-                </a>
-              )}
-              {getProfile.links.facebook && (
-                <a
-                  href={`http://facebook.com/${getProfile.links.facebook}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Facebook"
-                >
-                  <FaFacebook className="facebook-icon" />
-                </a>
-              )}
-              {getProfile.links.pinterest && (
-                <a
-                  href={`http://pinterest.com/${getProfile.links.pinterest}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Pinterest"
-                >
-                  <FaPinterest className="pinterest-icon" />
-                </a>
-              )}
-              {getProfile.links.customLink && (
-                <a
-                  href={getProfile.links.customLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Link Externo"
-                >
-                  <FaLink className="primary-icon" />
-                </a>
-              )}
-            </div>
-          </section>
-        </div>
-      </main>
-      <div className="container">
-        <section className="profile-posts">
-          {loadingPost || error ? (
-            <SkeletonPost />
-          ) : (
-            data.getProfilePosts.map((post, index) => {
-              if (data.getProfilePosts.length === index + 1) {
-                return (
-                  <div
-                    key={`${post.artist}_${post.createdAt}`}
-                    ref={lastPostRef}
+              <div className="profile-links">
+                {getProfile.links.soundcloud && (
+                  <a
+                    href={`http://soundcloud.com/${getProfile.links.soundcloud}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Soundcloud"
                   >
+                    <FaSoundcloud className="soundcloud-icon" />
+                  </a>
+                )}
+                {getProfile.links.twitter && (
+                  <a
+                    href={`http://twitter.com/${getProfile.links.twitter}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Twitter"
+                  >
+                    <FaTwitter className="twitter-icon" />
+                  </a>
+                )}
+                {getProfile.links.deviantart && (
+                  <a
+                    href={`http://deviantart.com/${getProfile.links.deviantart}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="DeviantArt"
+                  >
+                    <FaDeviantart className="deviantart-icon" />
+                  </a>
+                )}
+                {getProfile.links.bandcamp && (
+                  <a
+                    href={`http://${getProfile.links.bandcamp}.bandcamp.com`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Bandcamp"
+                  >
+                    <FaBandcamp className="bandcamp-icon" />
+                  </a>
+                )}
+                {getProfile.links.wattpad && (
+                  <a
+                    href={`http://wattpad.com/user/${getProfile.links.wattpad}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Wattpad"
+                  >
+                    <SiWattpad className="wattpad-icon" />
+                  </a>
+                )}
+                {getProfile.links.facebook && (
+                  <a
+                    href={`http://facebook.com/${getProfile.links.facebook}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Facebook"
+                  >
+                    <FaFacebook className="facebook-icon" />
+                  </a>
+                )}
+                {getProfile.links.pinterest && (
+                  <a
+                    href={`http://pinterest.com/${getProfile.links.pinterest}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Pinterest"
+                  >
+                    <FaPinterest className="pinterest-icon" />
+                  </a>
+                )}
+                {getProfile.links.customLink && (
+                  <a
+                    href={getProfile.links.customLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Link Externo"
+                  >
+                    <FaLink className="primary-icon" />
+                  </a>
+                )}
+              </div>
+            </section>
+          </div>
+        </main>
+        <div className="container">
+          <section className="profile-posts">
+            {loadingPost || error ? (
+              <SkeletonPost />
+            ) : (
+              data.getProfilePosts.map((post, index) => {
+                if (data.getProfilePosts.length === index + 1) {
+                  return (
+                    <div
+                      key={`${post.artist}_${post.createdAt}`}
+                      ref={lastPostRef}
+                    >
+                      <Post post={post} />
+                    </div>
+                  );
+                }
+                return (
+                  <div key={`${post.artist}_${post.createdAt}`}>
                     <Post post={post} />
                   </div>
                 );
-              }
-              return (
-                <div key={`${post.artist}_${post.createdAt}`}>
-                  <Post post={post} />
-                </div>
-              );
-            })
-          )}
-        </section>
-      </div>
-      <MobileFooter />
-      {isImageFullScreen && (
-        <FullScreenImage
-          img={process.env.NEXT_PUBLIC_API_HOST + getProfile.avatar}
-          onClose={() => setIsImageFullScreen(false)}
-        />
-      )}
-    </ProfileContainer>
+              })
+            )}
+          </section>
+        </div>
+        <MobileFooter />
+        {isImageFullScreen && (
+          <FullScreenImage
+            img={process.env.NEXT_PUBLIC_API_HOST + getProfile.avatar}
+            onClose={() => setIsImageFullScreen(false)}
+          />
+        )}
+      </ProfileContainer>
+    </>
   );
 };
 
