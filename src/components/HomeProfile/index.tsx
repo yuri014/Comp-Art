@@ -27,10 +27,9 @@ const HomeProfile: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
       <ThemeProvider theme={formTheme}>
         <div className="profile">
           <figure>
-            <Image
-              src={getLoggedProfile.avatar || '/profile.jpg'}
+            <img
+              src={process.env.NEXT_PUBLIC_API_HOST + getLoggedProfile.avatar}
               alt="Imagem do perfil"
-              layout="fill"
             />
           </figure>
           <div className="profile-info">

@@ -24,6 +24,8 @@ const HomeProfileContainer = styled.aside`
       box-shadow: 0 0 7px #000;
       border-radius: 50%;
       & img {
+        height: 100%;
+        width: 100%;
         border-radius: 50%;
         object-fit: cover;
       }

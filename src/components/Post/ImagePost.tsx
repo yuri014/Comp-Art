@@ -65,9 +65,8 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
               <div className="author-info">
                 <img
                   alt={`Imagem de perfil de ${post.artist.name}`}
-                  src={post.avatar || '/profile.jpg'}
+                  src={process.env.NEXT_PUBLIC_API_HOST + post.artist.avatar}
                 />
-
                 <Link href={`/profile/${post.artist.owner}`}>
                   <a>
                     <div>
@@ -103,7 +102,10 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
                 tabIndex={0}
               >
                 <figure className="post-image">
-                  <img src={post.body} alt="Publicação" />
+                  <img
+                    src={process.env.NEXT_PUBLIC_API_HOST + post.body}
+                    alt="Publicação"
+                  />
                 </figure>
               </div>
               <div className="post-counts">
@@ -117,7 +119,9 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
                       post.likes.map(({ profile }) => (
                         <img
                           key={profile.owner}
-                          src={profile.avatar || '/profile.jpg'}
+                          src={
+                            process.env.NEXT_PUBLIC_API_HOST + profile.avatar
+                          }
                           alt={profile.owner}
                           title={profile.owner}
                         />
@@ -153,7 +157,7 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
             </div>
             {isImageFullScreen && (
               <FullScreenImage
-                img={post.body}
+                img={process.env.NEXT_PUBLIC_API_HOST + post.body}
                 onClose={() => setIsImageFullScreen(false)}
               />
             )}

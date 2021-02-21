@@ -56,7 +56,10 @@ interface InteractionsProps {
 const Interactions = React.memo<InteractionsProps>(
   ({ avatar, dislikePost, isLiked, likePost, name, id }) => (
     <div role="button" tabIndex={0} className="image">
-      <img alt={`Imagem de perfil de ${name}`} src={avatar || '/profile.jpg'} />
+      <img
+        alt={`Imagem de perfil de ${name}`}
+        src={process.env.NEXT_PUBLIC_API_HOST + avatar}
+      />
       <div className="interactions">
         <div>
           <IconButton
@@ -235,7 +238,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
                 </div>
               </div>
               <Interactions
-                avatar={post.avatar}
+                avatar={post.artist.avatar}
                 dislikePost={dislikePost}
                 isLiked={isLiked}
                 likePost={likePost}
@@ -254,7 +257,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
                     post.likes.map(({ profile }) => (
                       <img
                         key={profile.owner}
-                        src={profile.avatar || '/profile.jpg'}
+                        src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
                         alt={profile.owner}
                         title={profile.owner}
                       />
@@ -270,7 +273,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
             <audio
               style={{ display: 'none' }}
               ref={audioRef}
-              src={post.body}
+              src={process.env.NEXT_PUBLIC_API_HOST + post.body}
               onLoadedMetadata={() => {
                 const { minutes, seconds } = getTime(audioRef.current.duration);
                 setAudioDuration(`${minutes}:${seconds}`);

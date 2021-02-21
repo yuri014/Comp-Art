@@ -15,7 +15,7 @@ export interface CommentProps {
 const Comment: React.FC<CommentProps> = ({ avatar, owner, text }) => (
   <CommentContainer>
     <div className="author-image">
-      <img src={avatar || '/profile.jpg'} alt={`${owner.name}`} />
+      <img src={avatar} alt={`${owner.name}`} />
     </div>
     <div className="comment">
       <div className="comment-body">

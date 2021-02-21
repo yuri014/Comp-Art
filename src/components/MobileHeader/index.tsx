@@ -48,7 +48,7 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({
           ) : (
             <div className="profile">
               <Image
-                src={getLoggedProfile.avatar || '/profile.jpg'}
+                src={process.env.NEXT_PUBLIC_API_HOST + getLoggedProfile.avatar}
                 alt="Imagem do perfil"
                 width={500}
                 height={500}

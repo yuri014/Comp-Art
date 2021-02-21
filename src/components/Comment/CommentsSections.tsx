@@ -89,7 +89,7 @@ const CommentsSections: React.FC<CommentsSectionsProps> = ({ postId }) => {
     setNewComment([
       ...newComment,
       {
-        avatar: profile.avatar || '/profile.jpg',
+        avatar: profile.avatar,
         owner: {
           name: profile.name,
           username: profile.owner,
@@ -150,7 +150,10 @@ const CommentsSections: React.FC<CommentsSectionsProps> = ({ postId }) => {
       )}
       {profile && (
         <form onSubmit={handleSubmit(onSubmit)}>
-          <img src={profile.avatar || '/profile.jpg'} alt="Profile name" />
+          <img
+            src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
+            alt="Profile name"
+          />
           <TextField
             id="send-comment"
             label="Enviar um comentário"

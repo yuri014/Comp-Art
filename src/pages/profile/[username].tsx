@@ -118,7 +118,10 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
       <main>
         <div className="cover-profile">
           {getProfile.coverImage ? (
-            <img src={getProfile.coverImage} alt="Capa do perfil" />
+            <img
+              src={process.env.NEXT_PUBLIC_API_HOST + getProfile.coverImage}
+              alt="Capa do perfil"
+            />
           ) : (
             <div className="holder" />
           )}
@@ -133,7 +136,7 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
             tabIndex={0}
           >
             <img
-              src={getProfile.avatar || '../profile.jpg'}
+              src={process.env.NEXT_PUBLIC_API_HOST + getProfile.avatar}
               alt="Imagem do perfil"
             />
           </div>
@@ -322,7 +325,7 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
       <MobileFooter />
       {isImageFullScreen && (
         <FullScreenImage
-          img={getProfile.avatar || '/profile.jpg'}
+          img={process.env.NEXT_PUBLIC_API_HOST + getProfile.avatar}
           onClose={() => setIsImageFullScreen(false)}
         />
       )}

@@ -52,7 +52,7 @@ const FullImagePost: React.FC<PostProps> = ({ post }) => {
           <div className="author-info">
             <img
               alt={`Imagem de perfil de ${post.artist.name}`}
-              src={post.avatar || '/profile.jpg'}
+              src={post.avatar}
             />
             <Link href={`/profile/${post.artist.owner}`}>
               <a>

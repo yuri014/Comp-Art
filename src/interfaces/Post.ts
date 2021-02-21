@@ -13,12 +13,8 @@ export interface IPost {
   sharedCount: number;
   commentsCount: number;
   createdAt: string;
-  artist: {
-    owner: string;
-    name: string;
-  };
+  artist: IProfile;
   isAudio: boolean;
-  avatar: string;
   isLiked?: boolean;
 }
 

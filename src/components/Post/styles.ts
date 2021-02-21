@@ -445,6 +445,7 @@ export const AudioPostContainer = styled.section`
 
     .audio-card-content {
       padding: 1rem 2rem;
+      padding-top: 1.2rem;
       height: 100%;
       width: 100%;
       display: flex;
@@ -493,12 +494,12 @@ export const AudioPostContainer = styled.section`
     color: ${props => props.theme.colors.lightContrast};
     &.music-name {
       font-weight: 700;
-      font-size: 1.8rem;
+      font-size: 2rem;
     }
 
     &.artist-name {
       font-weight: 400;
-      font-size: 1.6rem;
+      font-size: 1.4rem;
     }
   }
 

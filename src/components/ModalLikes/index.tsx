@@ -72,10 +72,7 @@ const ModalLikes: React.FC<ModalProps> = ({ onHide, id }) => {
                       key={profile.owner}
                     >
                       <a ref={lastPostRef} className="profile">
-                        <img
-                          src={profile.avatar || '/profile.jpg'}
-                          alt="Profile"
-                        />
+                        <img src={profile.avatar} alt="Profile" />
                         <div className="profile-content">
                           <div className="profile-info">
                             <strong>{profile.name}</strong>
@@ -93,7 +90,7 @@ const ModalLikes: React.FC<ModalProps> = ({ onHide, id }) => {
                   <Link href={`/profile/${profile.owner}`} key={profile.owner}>
                     <a className="profile">
                       <img
-                        src={profile.avatar || '/profile.jpg'}
+                        src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
                         alt="Profile"
                       />
                       <div className="profile-content">
