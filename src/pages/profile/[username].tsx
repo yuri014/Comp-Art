@@ -13,6 +13,7 @@ import { SiWattpad } from 'react-icons/si';
 import { GetServerSideProps } from 'next';
 import Skeleton from '@material-ui/lab/Skeleton';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 
 import Header from '../../components/Header';
 import MobileFooter from '../../components/MobileFooter';
@@ -138,7 +139,11 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
           </div>
           <div className="edit-profile">
             {hasAuth && getProfile.owner === auth.user.username && (
-              <button type="button">Editar perfil</button>
+              <Link href={`/profile/edit/${getProfile.owner}`}>
+                <a>
+                  <button type="button">Editar perfil</button>
+                </a>
+              </Link>
             )}
 
             {loading && <Skeleton animation="wave" width={60} height={40} />}
@@ -210,6 +215,7 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
                   href={`http://soundcloud.com/${getProfile.links.soundcloud}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  title="Soundcloud"
                 >
                   <FaSoundcloud className="soundcloud-icon" />
                 </a>
@@ -219,6 +225,7 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
                   href={`http://twitter.com/${getProfile.links.twitter}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  title="Twitter"
                 >
                   <FaTwitter className="twitter-icon" />
                 </a>
@@ -228,6 +235,7 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
                   href={`http://deviantart.com/${getProfile.links.deviantart}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  title="DeviantArt"
                 >
                   <FaDeviantart className="deviantart-icon" />
                 </a>
@@ -237,6 +245,7 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
                   href={`http://${getProfile.links.bandcamp}.bandcamp.com`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  title="Bandcamp"
                 >
                   <FaBandcamp className="bandcamp-icon" />
                 </a>
@@ -246,6 +255,7 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
                   href={`http://wattpad.com/user/${getProfile.links.wattpad}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  title="Wattpad"
                 >
                   <SiWattpad className="wattpad-icon" />
                 </a>
@@ -255,6 +265,7 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
                   href={`http://facebook.com/${getProfile.links.facebook}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  title="Facebook"
                 >
                   <FaFacebook className="facebook-icon" />
                 </a>
@@ -264,6 +275,7 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
                   href={`http://pinterest.com/${getProfile.links.pinterest}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  title="Pinterest"
                 >
                   <FaPinterest className="pinterest-icon" />
                 </a>
@@ -273,6 +285,7 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
                   href={getProfile.links.customLink}
                   target="_blank"
                   rel="noopener noreferrer"
+                  title="Link Externo"
                 >
                   <FaLink className="primary-icon" />
                 </a>
