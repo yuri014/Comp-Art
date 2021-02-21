@@ -71,7 +71,7 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
                 <Link href={`/profile/${post.artist.owner}`}>
                   <a>
                     <div>
-                      <h4>{post.artist.name}</h4>
+                      <p>{post.artist.name}</p>
                       <span>
                         <p>@{post.artist.owner}</p>
                         <p>&nbsp;●&nbsp;</p>
@@ -107,7 +107,11 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
                 </figure>
               </div>
               <div className="post-counts">
-                <button onClick={() => setModalShow(true)} type="button">
+                <button
+                  onClick={() => setModalShow(true)}
+                  type="button"
+                  aria-label="Abrir modal de likes"
+                >
                   <div className="likes-images">
                     {post.likes &&
                       post.likes.map(({ profile }) => (

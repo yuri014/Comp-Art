@@ -33,7 +33,7 @@ export const PostContainer = styled.section`
       & div {
         margin-left: 2rem;
 
-        & h4 {
+        & p {
           font-size: 2.4rem;
           letter-spacing: 1px;
           margin-bottom: 0.4 rem;

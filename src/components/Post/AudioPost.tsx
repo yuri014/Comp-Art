@@ -229,7 +229,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
                     min={0}
                     max={audioRef.current && audioRef.current.duration}
                     onChange={handleScroll}
-                    aria-labelledby="audio-progress"
+                    aria-label="input-slider"
                     step={0.01}
                   />
                 </div>
@@ -244,7 +244,11 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
               />
             </div>
             <div className="post-counts">
-              <button onClick={() => setModalShow(true)} type="button">
+              <button
+                onClick={() => setModalShow(true)}
+                type="button"
+                aria-label="Abrir modal de likes"
+              >
                 <div className="likes-images">
                   {post.likes &&
                     post.likes.map(({ profile }) => (
