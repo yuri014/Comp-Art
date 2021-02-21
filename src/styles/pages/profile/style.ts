@@ -255,4 +255,11 @@ export const EditProfileContainer = styled.main`
   place-items: center;
   margin-top: 2rem;
   padding-bottom: 8rem;
+
+  @media (min-width: 992px) {
+    padding-top: 8rem;
+    padding-bottom: 2rem;
+    margin: 0 auto;
+    width: 50%;
+  }
 `;
