@@ -20,7 +20,7 @@ import MobileFooter from '../../components/MobileFooter';
 import { GET_IS_FOLLOWING, GET_PROFILE } from '../../graphql/queries/profile';
 import { IProfile } from '../../interfaces/Profile';
 import { IPost } from '../../interfaces/Post';
-import ProfileContainer from '../../styles/pages/profile/style';
+import { ProfileContainer } from '../../styles/pages/profile/style';
 import { AuthContext } from '../../context/auth';
 import {
   FOLLOW_PROFILE,
