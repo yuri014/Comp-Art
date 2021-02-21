@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ProfileContainer = styled.div`
+export const ProfileContainer = styled.div`
   color: ${props => props.theme.colors.lightContrast};
   width: 100%;
 
@@ -250,4 +250,9 @@ const ProfileContainer = styled.div`
   }
 `;
 
-export default ProfileContainer;
+export const EditProfileContainer = styled.main`
+  display: grid;
+  place-items: center;
+  margin-top: 2rem;
+  padding-bottom: 8rem;
+`;
