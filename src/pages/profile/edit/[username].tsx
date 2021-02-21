@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useRouter } from 'next/router';
 import { ThemeProvider } from '@material-ui/core';
+import { gql, useQuery } from '@apollo/client';
 
 import Header from '../../../components/Header';
 import FormProfile from '../../../components/FormProfile';
@@ -12,14 +12,42 @@ import Meta from '../../../components/SEO/Meta';
 import withAuth from '../../../hocs/withAuth';
 import mainTheme from '../../../styles/themes/MainTheme';
 
+export const GET_LOGGED_PROFILE = gql`
+  query GetLoggedProfile {
+    getLoggedProfile {
+      name
+      avatar
+      coverImage
+      bio
+      followers
+      following
+      hashtags
+      owner
+      isArtist
+      links {
+        soundcloud
+        twitter
+        facebook
+        wattpad
+        pinterest
+        deviantart
+        bandcamp
+        customLink
+      }
+    }
+  }
+`;
+
 const EditProfile: React.FC = () => {
-  const router = useRouter();
   const [showError, setShowError] = useState('');
   const [tags, setTags] = useState([]);
 
   const [profileImage, setProfileImage] = useImagePreview();
-
   const [coverImage, setCoverImage] = useImagePreview();
+
+  const { data: profile, loading } = useQuery(GET_LOGGED_PROFILE, {
+    fetchPolicy: 'no-cache',
+  });
 
   const onSubmit = (data: IProfileInput) => {
     console.log(data);
@@ -37,17 +65,20 @@ const EditProfile: React.FC = () => {
         <Header />
       </ThemeProvider>
       <EditProfileContainer>
-        <FormProfile
-          onSubmit={onSubmit}
-          coverImagePreview={coverImage.preview as string}
-          profileImagePreview={profileImage.preview as string}
-          setCoverImage={setCoverImage}
-          setProfileImage={setProfileImage}
-          setShowError={setShowError}
-          setTags={setTags}
-          showError={showError}
-          tags={tags}
-        />
+        {!loading && (
+          <FormProfile
+            onSubmit={onSubmit}
+            coverImagePreview={coverImage.preview as string}
+            profileImagePreview={profileImage.preview as string}
+            setCoverImage={setCoverImage}
+            setProfileImage={setProfileImage}
+            setShowError={setShowError}
+            setTags={setTags}
+            showError={showError}
+            tags={tags}
+            defaultValues={profile.getLoggedProfile}
+          />
+        )}
       </EditProfileContainer>
       <MobileFooter />
     </>

@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { SiWattpad } from 'react-icons/si';
 import {
   IconButton,
   InputAdornment,
-  NoSsr,
   TextField,
   ThemeProvider,
 } from '@material-ui/core';
@@ -20,7 +19,7 @@ import {
   FaTwitter,
 } from 'react-icons/fa';
 
-import { IProfileInput } from '../../interfaces/Profile';
+import { IProfile, IProfileInput } from '../../interfaces/Profile';
 import formTheme from '../../styles/themes/FormTheme';
 import TagsContainer from '../../styles';
 import PressStartButton from '../PressStartButton';
@@ -37,7 +36,7 @@ interface FormProfileProps {
   setTags: React.Dispatch<React.SetStateAction<string[]>>;
   showError: string;
   setShowError: (_args0: React.SetStateAction<string>) => void;
-  defaultValues?: IProfileInput;
+  defaultValues?: IProfile;
 }
 
 const FormProfile: React.FC<FormProfileProps> = ({
@@ -50,13 +49,32 @@ const FormProfile: React.FC<FormProfileProps> = ({
   setTags,
   showError,
   setShowError,
+  defaultValues,
 }) => {
-  const { register, handleSubmit, errors } = useForm<IProfileInput>({
+  const { register, handleSubmit, errors, setValue } = useForm<IProfileInput>({
     mode: 'onChange',
     reValidateMode: 'onChange',
   });
 
   const [tagInput, setTagInput] = useState('');
+
+  useEffect(() => {
+    if (defaultValues) {
+      setTags(defaultValues.hashtags ? defaultValues.hashtags : []);
+      setValue('name', defaultValues.name);
+      setValue('bio', defaultValues.bio);
+
+      const { links } = defaultValues;
+
+      setValue('links.bandcamp', links.bandcamp);
+      setValue('links.customLink', links.customLink);
+      setValue('links.deviantart', links.deviantart);
+      setValue('links.facebook', links.facebook);
+      setValue('links.pinterest', links.pinterest);
+      setValue('links.twitter', links.twitter);
+      setValue('links.wattpad', links.wattpad);
+    }
+  }, [defaultValues, setTags, setValue]);
 
   return (
     <ThemeProvider theme={formTheme}>
@@ -121,21 +139,21 @@ const FormProfile: React.FC<FormProfileProps> = ({
           />
           <br />
           <br />
-          <NoSsr>
-            <TextField
-              fullWidth
-              name="bio"
-              id="bio"
-              inputRef={register}
-              placeholder="Sua bio..."
-              label="Bio"
-              variant="outlined"
-              multiline
-              rows={2}
-              rowsMax={4}
-              style={{ marginBottom: '0' }}
-            />
-          </NoSsr>
+
+          <TextField
+            fullWidth
+            name="bio"
+            id="bio"
+            inputRef={register}
+            placeholder="Sua bio..."
+            label="Bio"
+            variant="outlined"
+            multiline
+            rows={2}
+            rowsMax={4}
+            style={{ marginBottom: '0' }}
+          />
+
           <TagsContainer>
             {tags.map(tag => (
               <button
