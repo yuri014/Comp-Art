@@ -28,53 +28,55 @@ const Header: React.FC = () => {
   };
 
   return (
-    <HeaderContainer>
-      <div className="container">
-        <Link href="/home">
-          <a>
-            <h1>COMP-ART</h1>
-          </a>
-        </Link>
-        <div className="search-input">
-          <ThemeProvider theme={formTheme}>
-            <NoSsr>
-              <TextField
-                variant="outlined"
-                id="search"
-                label="Search"
-                size="small"
-                fullWidth
-              />
-            </NoSsr>
-          </ThemeProvider>
-          <button type="button">
-            <FaSearch />
-          </button>
+    <ThemeProvider theme={mainTheme}>
+      <HeaderContainer>
+        <div className="container">
+          <Link href="/home">
+            <a>
+              <h1>COMP-ART</h1>
+            </a>
+          </Link>
+          <div className="search-input">
+            <ThemeProvider theme={formTheme}>
+              <NoSsr>
+                <TextField
+                  variant="outlined"
+                  id="search"
+                  label="Search"
+                  size="small"
+                  fullWidth
+                />
+              </NoSsr>
+            </ThemeProvider>
+            <button type="button">
+              <FaSearch />
+            </button>
+          </div>
+          <div className="header-icons">
+            <span />
+            <ThemeProvider theme={mainTheme}>
+              <IconButton
+                aria-controls="menu-header"
+                aria-haspopup="true"
+                onClick={handleClick}
+                color="secondary"
+              >
+                <FaCog size={16} />
+              </IconButton>
+              <Menu
+                id="menu-header"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={() => auth.logout()}>Sair</MenuItem>
+              </Menu>
+            </ThemeProvider>
+          </div>
         </div>
-        <div className="header-icons">
-          <span />
-          <ThemeProvider theme={mainTheme}>
-            <IconButton
-              aria-controls="menu-header"
-              aria-haspopup="true"
-              onClick={handleClick}
-              color="secondary"
-            >
-              <FaCog size={16} />
-            </IconButton>
-            <Menu
-              id="menu-header"
-              anchorEl={anchorEl}
-              keepMounted
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              <MenuItem onClick={() => auth.logout()}>Sair</MenuItem>
-            </Menu>
-          </ThemeProvider>
-        </div>
-      </div>
-    </HeaderContainer>
+      </HeaderContainer>
+    </ThemeProvider>
   );
 };
 
