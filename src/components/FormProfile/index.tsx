@@ -25,6 +25,7 @@ import formTheme from '../../styles/themes/FormTheme';
 import TagsContainer from '../../styles';
 import PressStartButton from '../PressStartButton';
 import ErrorMessage from '../ErrorMessage';
+import FormProfileContainer from './styles';
 
 interface FormProfileProps {
   onSubmit: (_args0: IProfileInput) => void;
@@ -36,6 +37,7 @@ interface FormProfileProps {
   setTags: React.Dispatch<React.SetStateAction<string[]>>;
   showError: string;
   setShowError: (_args0: React.SetStateAction<string>) => void;
+  defaultValues?: IProfileInput;
 }
 
 const FormProfile: React.FC<FormProfileProps> = ({
@@ -58,7 +60,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
 
   return (
     <ThemeProvider theme={formTheme}>
-      <form onSubmit={handleSubmit(onSubmit)} className="forms">
+      <FormProfileContainer onSubmit={handleSubmit(onSubmit)} className="forms">
         <div className="profile-image-cover">
           {coverImagePreview ? (
             <img src={coverImagePreview as string} alt="Capa do perfil" />
@@ -301,7 +303,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
           {showError && <ErrorMessage>{showError}</ErrorMessage>}
           <PressStartButton type="submit">Start</PressStartButton>
         </div>
-      </form>
+      </FormProfileContainer>
     </ThemeProvider>
   );
 };
