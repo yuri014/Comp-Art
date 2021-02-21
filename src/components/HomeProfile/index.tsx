@@ -9,7 +9,6 @@ import {
   FaUserFriends,
   FaUsers,
 } from 'react-icons/fa';
-import Image from 'next/image';
 import Skeleton from '@material-ui/lab/Skeleton';
 
 import HomeProfileContainer from './styles';
