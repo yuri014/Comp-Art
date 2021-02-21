@@ -41,7 +41,6 @@
     "react/destructuring-assignment": "off",
     "arrow-parens": ["error", "as-needed"],
     "implicit-arrow-linebreak": "off",
-    "no-unused-vars": "error",
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -66,6 +65,7 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "no-underscore-dangle": "off",
-    "operator-linebreak": "off"
+    "operator-linebreak": "off",
+    "@typescript-eslint/no-unused-vars": "error"
   }
 }

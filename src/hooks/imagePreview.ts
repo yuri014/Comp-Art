@@ -7,7 +7,6 @@ interface ImagePreview {
 
 const useImagePreview = (): [
   ImagePreview,
-  // eslint-disable-next-line no-unused-vars
   (_args0: React.ChangeEvent<HTMLInputElement>) => void,
 ] => {
   const [image, setImage] = useState<ImagePreview>({

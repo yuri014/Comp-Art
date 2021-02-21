@@ -1,7 +1,6 @@
 import { ApolloQueryResult } from '@apollo/client';
 import { useCallback, useRef, useState } from 'react';
 
-// eslint-disable-next-line no-unused-vars
 type UseInfiniteScroll = (args: unknown) => void;
 
 const useInfiniteScroll = (
