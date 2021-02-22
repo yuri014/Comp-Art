@@ -143,7 +143,7 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
             </div>
             <div className="edit-profile">
               {hasAuth && getProfile.owner === auth.user.username && (
-                <Link href={`/profile/edit/${getProfile.owner}`}>
+                <Link href="/profile/edit">
                   <a>
                     <button type="button">Editar perfil</button>
                   </a>
