@@ -57,6 +57,8 @@ const FormProfile: React.FC<FormProfileProps> = ({
   });
 
   const [tagInput, setTagInput] = useState('');
+  const [oldProfileImage, setOldProfileImage] = useState('');
+  const [oldCoverImage, setOldCoverImage] = useState('');
 
   useEffect(() => {
     if (defaultValues) {
@@ -67,12 +69,23 @@ const FormProfile: React.FC<FormProfileProps> = ({
       const { links } = defaultValues;
 
       setValue('links.bandcamp', links.bandcamp);
+      setValue('links.soundcloud', links.soundcloud);
       setValue('links.customLink', links.customLink);
       setValue('links.deviantart', links.deviantart);
       setValue('links.facebook', links.facebook);
       setValue('links.pinterest', links.pinterest);
       setValue('links.twitter', links.twitter);
       setValue('links.wattpad', links.wattpad);
+
+      setOldProfileImage(
+        process.env.NEXT_PUBLIC_API_HOST + defaultValues.avatar,
+      );
+    }
+
+    if (defaultValues.coverImage) {
+      setOldCoverImage(
+        process.env.NEXT_PUBLIC_API_HOST + defaultValues.coverImage,
+      );
     }
   }, [defaultValues, setTags, setValue]);
 
@@ -83,7 +96,13 @@ const FormProfile: React.FC<FormProfileProps> = ({
           {coverImagePreview ? (
             <img src={coverImagePreview as string} alt="Capa do perfil" />
           ) : (
-            <div className="holder" />
+            <>
+              {oldCoverImage ? (
+                <img src={oldCoverImage} alt="Capa do perfil" />
+              ) : (
+                <div className="holder" />
+              )}
+            </>
           )}
           <label htmlFor="uploadCoverButton">
             <IconButton aria-label="upload picture" component="span">
@@ -102,14 +121,9 @@ const FormProfile: React.FC<FormProfileProps> = ({
           {profileImagePreview ? (
             <img src={profileImagePreview as string} alt="Imagem do perfil" />
           ) : (
-            <a
-              href="https://www.pexels.com/pt-br/foto/foto-de-silhueta-de-mulher-1446948/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src="/profile.jpg" alt="Imagem do perfil" />
-            </a>
+            <img src={oldProfileImage} alt="Imagem do perfil" />
           )}
+
           <label htmlFor="uploadButton">
             <IconButton aria-label="upload picture" component="span">
               <FaCameraRetro className="upload-icon" />
@@ -118,7 +132,9 @@ const FormProfile: React.FC<FormProfileProps> = ({
                 name="avatar"
                 id="uploadButton"
                 type="file"
-                onChange={e => setProfileImage(e)}
+                onChange={e => {
+                  setProfileImage(e);
+                }}
               />
             </IconButton>
           </label>
