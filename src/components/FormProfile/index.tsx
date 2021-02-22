@@ -80,12 +80,12 @@ const FormProfile: React.FC<FormProfileProps> = ({
       setOldProfileImage(
         process.env.NEXT_PUBLIC_API_HOST + defaultValues.avatar,
       );
-    }
 
-    if (defaultValues.coverImage) {
-      setOldCoverImage(
-        process.env.NEXT_PUBLIC_API_HOST + defaultValues.coverImage,
-      );
+      if (defaultValues.coverImage) {
+        setOldCoverImage(
+          process.env.NEXT_PUBLIC_API_HOST + defaultValues.coverImage,
+        );
+      }
     }
   }, [defaultValues, setTags, setValue]);
 
