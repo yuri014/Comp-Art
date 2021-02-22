@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ThemeProvider } from '@material-ui/core';
-import { gql, useQuery } from '@apollo/client';
+import { gql, useMutation, useQuery } from '@apollo/client';
 
 import Header from '../../../components/Header';
 import FormProfile from '../../../components/FormProfile';
@@ -38,6 +38,12 @@ export const GET_LOGGED_PROFILE = gql`
   }
 `;
 
+const UPDATE_PROFILE = gql`
+  mutation UpdateProfile($profile: CreateProfileInput) {
+    updateProfile(newProfileInput: $profile)
+  }
+`;
+
 const EditProfile: React.FC = () => {
   const [showError, setShowError] = useState('');
   const [tags, setTags] = useState([]);
@@ -49,8 +55,19 @@ const EditProfile: React.FC = () => {
     fetchPolicy: 'no-cache',
   });
 
+  const [updateProfile] = useMutation(UPDATE_PROFILE);
+
   const onSubmit = (data: IProfileInput) => {
-    console.log(data);
+    updateProfile({
+      variables: {
+        profile: {
+          ...data,
+          avatar: profileImage.file,
+          coverImage: coverImage.file,
+          hashtags: tags,
+        },
+      },
+    });
   };
 
   return (
