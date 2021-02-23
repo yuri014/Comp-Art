@@ -34,6 +34,14 @@ const HomeProfileContainer = styled.aside`
     & .profile-info {
       margin-left: 2rem;
       font-size: 1.4rem;
+
+      h2 {
+        max-width: 18rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
       & .profile-connections {
         margin-top: 2px;
         display: flex;
