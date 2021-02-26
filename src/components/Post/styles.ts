@@ -27,25 +27,25 @@ export const PostContainer = styled.section`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    & .author-info {
+    .author-info {
       display: flex;
       align-items: center;
-      & div {
+      div {
         margin-left: 2rem;
 
-        & p {
+        p {
           font-size: 2.4rem;
           letter-spacing: 1px;
-          margin-bottom: 0.4 rem;
+          margin-bottom: 0.4rem;
           color: ${props => props.theme.colors.lightContrast};
           white-space: nowrap;
           max-width: 440px;
           overflow: hidden;
           text-overflow: ellipsis;
         }
-        & span {
+        span {
           display: flex;
-          & p {
+          p {
             margin-top: 0.4rem;
             color: ${props => props.theme.colors.blueContrast};
             font-size: 1.4rem;
@@ -59,7 +59,7 @@ export const PostContainer = styled.section`
       }
     }
 
-    & img {
+    img {
       width: 60px;
       height: 60px;
       border-radius: 50%;
@@ -68,7 +68,7 @@ export const PostContainer = styled.section`
   }
 
   .post {
-    & .post-description {
+    .post-description {
       margin: 2rem 0 1rem 0;
       max-width: 100%;
 
@@ -78,12 +78,19 @@ export const PostContainer = styled.section`
       }
     }
 
+    button {
+      display: block;
+      background-color: transparent;
+      border: none;
+      padding: 0;
+    }
+
     .post-image {
       cursor: pointer;
       margin: 2rem 0;
       width: 100%;
       height: 432px;
-      & img {
+      img {
         width: 100%;
         height: 100%;
         border-radius: 4px;
@@ -185,14 +192,14 @@ export const PostContainer = styled.section`
     padding: 2rem;
 
     .post-author {
-      & .author-info {
-        & div {
-          & h4 {
+      .author-info {
+        div {
+          p {
             max-width: 160px;
           }
-          & span {
+          span {
             display: flex;
-            & p {
+            p {
               max-width: 80px;
             }
           }

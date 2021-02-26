@@ -13,7 +13,7 @@ const Modal: React.FC<ModalProps> = props => (
     <div className={`modal-block-${props.show}`}>
       <div className="modal-content">
         <div className="modal-title">
-          <h2>{props.title}</h2>
+          <p>{props.title}</p>
         </div>
         <button type="button" onClick={props.onHide} className="close-modal">
           <FaTimesCircle />

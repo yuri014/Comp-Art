@@ -35,7 +35,7 @@ const HomeProfileContainer = styled.aside`
       margin-left: 2rem;
       font-size: 1.4rem;
 
-      h2 {
+      h1 {
         max-width: 18rem;
         white-space: nowrap;
         overflow: hidden;
@@ -114,9 +114,11 @@ const HomeProfileContainer = styled.aside`
     margin-top: 4rem;
     padding-bottom: 2rem;
     font-size: 1.4rem;
-    & h3 {
+    & p {
       display: flex;
       align-items: center;
+      font-weight: bold;
+      font-size: 1.6rem;
     }
   }
 

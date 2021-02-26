@@ -44,7 +44,7 @@ const CreateAudioPost: React.FC = () => {
   return (
     <CreatePostContainer>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h2>Crie seu post!</h2>
+        <h1>Crie seu post!</h1>
         <ThemeProvider theme={formTheme}>
           <TextField
             fullWidth

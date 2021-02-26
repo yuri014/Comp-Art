@@ -86,7 +86,7 @@ const SingUpContainer = styled.div`
     }
 
     .form-character-title {
-      font: 20px ${props => props.theme.fonts.primary}, sans-serif;
+      font: 1.4rem ${props => props.theme.fonts.primary}, sans-serif;
       padding: 2px 7px;
       text-shadow: 2px 2px 2px #030447d3;
       letter-spacing: 1px;

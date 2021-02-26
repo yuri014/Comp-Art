@@ -61,6 +61,7 @@ const ModalContainer = styled.section`
     padding: 2px 7px;
     text-shadow: 2px 2px 2px #030447d3;
     letter-spacing: 1px;
+    font-weight: bold;
   }
 
   .modal-body {

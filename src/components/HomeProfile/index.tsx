@@ -32,7 +32,7 @@ const HomeProfile: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
             />
           </figure>
           <div className="profile-info">
-            <h2>{getLoggedProfile.name}</h2>
+            <h1>{getLoggedProfile.name}</h1>
             <div className="profile-connections">
               <p>Seguidores: {getLoggedProfile.followers}</p>
               <p>Seguindo: {getLoggedProfile.following}</p>
@@ -95,10 +95,10 @@ const HomeProfile: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
           )}
         </div>
         <div className="profile-hashtags">
-          <h3>
+          <p>
             <FaHashtag />
             &nbsp;Hashtags Seguidas
-          </h3>
+          </p>
           <TagsContainer>
             {getLoggedProfile.hashtags.map(tag => (
               <span key={tag}>{tag}</span>

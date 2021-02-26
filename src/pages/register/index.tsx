@@ -114,7 +114,7 @@ function SignUp(): JSX.Element {
           </div>
           <div className="form-character">
             <div className="form-character-title">
-              <h2>Faça seu cadastro!</h2>
+              <h1>Faça seu cadastro!</h1>
               <hr />
             </div>
             <form onSubmit={handleSubmit(onSubmit)} className="forms">

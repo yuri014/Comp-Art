@@ -20,7 +20,7 @@ const MobileHeaderContainer = styled.header`
     }
   }
 
-  h1 {
+  p {
     font: 400 16px ${props => props.theme.fonts.display}, sans-serif;
     filter: blur(0.4px);
     letter-spacing: 4px;

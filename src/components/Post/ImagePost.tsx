@@ -94,12 +94,10 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
               <div className="post-description">
                 <p>{post.description}</p>
               </div>
-              <div
+              <button
                 onClick={() => setIsImageFullScreen(true)}
-                onKeyDown={() => setIsImageFullScreen(true)}
                 onBlur={() => setIsImageFullScreen(false)}
-                role="button"
-                tabIndex={0}
+                type="button"
               >
                 <figure className="post-image">
                   <img
@@ -107,7 +105,7 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
                     alt="Publicação"
                   />
                 </figure>
-              </div>
+              </button>
               <div className="post-counts">
                 <button
                   onClick={() => setModalShow(true)}
