@@ -92,7 +92,7 @@ const CreateAudioPost: React.FC = () => {
             </div>
           )}
           <div className="publish">
-            <PressStartButtonContainer type="submit" role="button">
+            <PressStartButtonContainer type="submit">
               <p>Publicar</p>
             </PressStartButtonContainer>
           </div>
