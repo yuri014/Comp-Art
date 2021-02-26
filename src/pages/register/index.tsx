@@ -70,14 +70,20 @@ function SignUp(): JSX.Element {
             </div>
             <div className="selection-buttons">
               <span className="arrow-selection">
-                <FaArrowLeft onClick={() => setIsArtist(!isArtist)} />
+                <button
+                  type="button"
+                  onClick={() => setIsArtist(!isArtist)}
+                  title={`Escolher cadastro como ${
+                    isArtist ? 'Artista' : 'Usuário'
+                  }`}
+                >
+                  <FaArrowLeft />
+                </button>
               </span>
-              <div
+              <button
                 className="form-start-button"
                 onClick={() => setModalShow(true)}
-                onKeyDown={() => setModalShow(true)}
-                role="button"
-                tabIndex={0}
+                type="button"
               >
                 {isArtist ? (
                   <>
@@ -92,9 +98,17 @@ function SignUp(): JSX.Element {
                     <FaMobile />
                   </>
                 )}
-              </div>
+              </button>
               <span className="arrow-selection">
-                <FaArrowRight onClick={() => setIsArtist(!isArtist)} />
+                <button
+                  type="button"
+                  onClick={() => setIsArtist(!isArtist)}
+                  title={`Escolher cadastro como ${
+                    isArtist ? 'Artista' : 'Usuário'
+                  }`}
+                >
+                  <FaArrowRight />
+                </button>
               </span>
             </div>
           </div>

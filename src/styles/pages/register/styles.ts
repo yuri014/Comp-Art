@@ -24,13 +24,18 @@ const SingUpContainer = styled.div`
   }
 
   .arrow-selection {
-    cursor: pointer;
-    color: white;
-    transition: color 0.6s ease-in-out;
-  }
+    button {
+      cursor: pointer;
+      color: white;
+      transition: color 0.6s ease-in-out;
+      background-color: transparent;
+      border: none;
+      font-size: 3rem;
 
-  .arrow-selection:hover {
-    color: ${props => props.theme.colors.mainColor};
+      &:hover {
+        color: ${props => props.theme.colors.mainColor};
+      }
+    }
   }
 
   .forms {
