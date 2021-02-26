@@ -32,7 +32,7 @@ const Header: React.FC = () => {
       <div className="container">
         <Link href="/home">
           <a>
-            <h1>COMP-ART</h1>
+            <p>COMP-ART</p>
           </a>
         </Link>
         <div className="search-input">
