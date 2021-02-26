@@ -15,15 +15,9 @@ const Modal: React.FC<ModalProps> = props => (
         <div className="modal-title">
           <h2>{props.title}</h2>
         </div>
-        <div
-          role="button"
-          onClick={props.onHide}
-          onKeyDown={props.onHide}
-          className="close-modal"
-          tabIndex={0}
-        >
+        <button type="button" onClick={props.onHide} className="close-modal">
           <FaTimesCircle />
-        </div>
+        </button>
         <hr />
         {props.show && props.children}
       </div>

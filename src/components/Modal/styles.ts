@@ -70,6 +70,8 @@ const ModalContainer = styled.section`
   }
 
   .close-modal {
+    border: none;
+    background-color: transparent;
     color: ${props => props.theme.colors.mainColor};
     font-size: 2rem;
     display: flex;
