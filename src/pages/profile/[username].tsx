@@ -11,7 +11,6 @@ import {
 } from 'react-icons/fa';
 import { SiWattpad } from 'react-icons/si';
 import { GetServerSideProps } from 'next';
-import Skeleton from '@material-ui/lab/Skeleton';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
@@ -118,7 +117,7 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
       <ProfileContainer>
         <main>
           <div className="cover-profile">
-            {getProfile.coverImage ? (
+            {getProfile.coverImage !== '' ? (
               <img
                 src={process.env.NEXT_PUBLIC_API_HOST + getProfile.coverImage}
                 alt="Capa do perfil"
@@ -149,8 +148,6 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
                   </a>
                 </Link>
               )}
-
-              {loading && <Skeleton animation="wave" width={60} height={40} />}
 
               {checkFollowButton() && isFollowing && !loading && (
                 <button
