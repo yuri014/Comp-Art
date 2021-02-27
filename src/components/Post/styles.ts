@@ -83,18 +83,22 @@ export const PostContainer = styled.section`
       background-color: transparent;
       border: none;
       padding: 0;
-    }
 
-    .post-image {
-      cursor: pointer;
-      margin: 2rem 0;
-      width: 100%;
-      height: 432px;
-      img {
+      &.image-button {
         width: 100%;
-        height: 100%;
-        border-radius: 4px;
-        object-fit: cover;
+      }
+
+      .post-image {
+        cursor: pointer;
+        margin: 2rem 0;
+        width: 100%;
+        height: 432px;
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 4px;
+          object-fit: cover;
+        }
       }
     }
 
@@ -107,6 +111,7 @@ export const PostContainer = styled.section`
         font-size: 1.6rem;
         display: flex;
         align-items: center;
+        width: unset;
 
         &:focus {
           outline: 1px solid ${props => props.theme.colors.mainColor};
