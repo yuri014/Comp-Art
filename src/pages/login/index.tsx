@@ -1,7 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { TextField, ThemeProvider } from '@material-ui/core';
+import {
+  IconButton,
+  Snackbar,
+  TextField,
+  ThemeProvider,
+} from '@material-ui/core';
 import { useForm } from 'react-hook-form';
-import { FaGamepad } from 'react-icons/fa';
+import { FaGamepad, FaTimes } from 'react-icons/fa';
 import { useMutation } from '@apollo/client';
 
 import { useRouter } from 'next/dist/client/router';
@@ -10,7 +15,6 @@ import LoginContainer from '../../styles/pages/login/styles';
 import formTheme from '../../styles/themes/FormTheme';
 import { LOGIN_USER } from '../../graphql/mutations/user';
 import { AuthContext } from '../../context/auth';
-import ErrorMessage from '../../components/ErrorMessage';
 import Meta from '../../components/SEO/Meta';
 
 interface ILogin {
@@ -92,13 +96,26 @@ const Login: React.FC = () => {
                 required
                 type="password"
               />
-              <div className="login-error">
-                {showError && (
-                  <ErrorMessage>
-                    <p>{showError}</p>
-                  </ErrorMessage>
-                )}
-              </div>
+              <Snackbar
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'right',
+                }}
+                open={!!showError}
+                autoHideDuration={1000}
+                onClose={() => setShowError('')}
+                message={showError}
+                action={
+                  <IconButton
+                    size="small"
+                    aria-label="fechar menu post"
+                    onClick={() => setShowError('')}
+                    color="secondary"
+                  >
+                    <FaTimes />
+                  </IconButton>
+                }
+              />
               <button type="submit" className="login-button">
                 Start&nbsp;
                 <FaGamepad />

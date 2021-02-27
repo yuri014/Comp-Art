@@ -6,6 +6,9 @@ const formTheme = createMuiTheme({
     primary: {
       main: '#1cc5b7',
     },
+    secondary: {
+      main: '#f50057',
+    },
     contrastThreshold: 3,
     tonalOffset: 0.2,
   },
@@ -61,6 +64,13 @@ const formTheme = createMuiTheme({
         '&.MuiLinearProgress-colorPrimary': {
           background: '#cbcaeb',
         },
+      },
+    },
+    MuiSnackbarContent: {
+      root: {
+        backgroundColor: '#08162f',
+        color: '#cbcaeb',
+        borderRadius: 2,
       },
     },
   },
