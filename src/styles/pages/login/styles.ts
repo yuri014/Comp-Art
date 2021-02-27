@@ -52,40 +52,43 @@ const SingUpContainer = styled.div`
   }
 
   @media (min-width: 992px) {
+    .login-form {
+      width: unset;
+    }
+
     .login-content {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      height: 100vh;
     }
 
     .login-form-content {
+      width: 70rem;
       background: transparent;
+      position: relative;
+      margin: 20rem 0;
       & label,
       input {
         color: ${props => props.theme.colors.namesakeText};
       }
     }
 
-    .login-error {
-      position: absolute;
-      margin-top: 10rem;
-    }
-
     .login-icon {
       position: absolute;
       display: initial;
+      top: 0;
     }
 
     .login-icon svg {
       display: flex;
       width: 100%;
       margin: auto;
-      margin-top: 65%;
     }
 
     #login-title {
       font-size: 8rem;
-      margin-left: 25%;
-      margin-top: auto;
+      width: 26rem;
     }
 
     .login-form-content input::placeholder {
@@ -104,12 +107,7 @@ const SingUpContainer = styled.div`
       color: ${props => props.theme.colors.namesakeText};
     }
 
-    .login-form {
-      margin-top: -25%;
-    }
-
     .login-form-content {
-      margin-top: 45%;
       padding: 0 12rem;
       background-color: unset;
     }
@@ -118,21 +116,16 @@ const SingUpContainer = styled.div`
       width: 100%;
       display: flex;
       margin: auto;
-      margin-top: 65%;
     }
 
     .login-button {
-      margin-top: 8rem;
+      margin-top: 4rem;
       border: 1px solid ${props => props.theme.colors.namesakeText};
       color: ${props => props.theme.colors.namesakeText};
       display: flex;
       align-items: center;
       justify-content: center;
       width: 12rem;
-    }
-
-    .login-icon img {
-      height: 90vh;
     }
 
     .login-button:hover {
