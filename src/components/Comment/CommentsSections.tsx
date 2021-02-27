@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AiOutlineSend } from 'react-icons/ai';
 import { IconButton, TextField } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
@@ -59,9 +59,17 @@ const CommentsSections: React.FC<CommentsSectionsProps> = ({ postId }) => {
     loading,
     error,
     fetchMore,
+    client,
   } = useQuery<IGetComment>(GET_COMMENTS, {
     variables: { id: postId, offset: 0 },
   });
+
+  useEffect(
+    () => () => {
+      client.cache.evict({ fieldName: 'getComments' });
+    },
+    [client.cache],
+  );
 
   const lastPostRef = useInfiniteScroll(
     commentsData,
@@ -119,7 +127,7 @@ const CommentsSections: React.FC<CommentsSectionsProps> = ({ postId }) => {
           if (commentsData.getComments.length === index + 1) {
             return (
               <span
-                key={`${comment.author.owner}_${comment.body}`}
+                key={`${comment.author.owner}_${comment.createdAt}`}
                 ref={lastPostRef}
               >
                 <Comment
@@ -135,7 +143,7 @@ const CommentsSections: React.FC<CommentsSectionsProps> = ({ postId }) => {
           }
 
           return (
-            <span key={`${comment.author.owner}_${comment.body}`}>
+            <span key={`${comment.author.owner}_${comment.createdAt}`}>
               <Comment
                 avatar={comment.author.avatar}
                 text={comment.body}
