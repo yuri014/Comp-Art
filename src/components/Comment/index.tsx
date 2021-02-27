@@ -15,7 +15,10 @@ export interface CommentProps {
 const Comment: React.FC<CommentProps> = ({ avatar, owner, text }) => (
   <CommentContainer>
     <div className="author-image">
-      <img src={avatar} alt={`${owner.name}`} />
+      <img
+        src={process.env.NEXT_PUBLIC_API_HOST + avatar}
+        alt={`${owner.name}`}
+      />
     </div>
     <div className="comment">
       <div className="comment-body">

@@ -37,22 +37,24 @@ const FullImagePost: React.FC<PostProps> = ({ post }) => {
   return (
     <PostContainer className="full-post">
       <div className="post">
-        <div
-          role="button"
+        <button
+          type="button"
           onClick={() => setIsImageFullScreen(true)}
-          onKeyDown={() => setIsImageFullScreen(true)}
           onBlur={() => setIsImageFullScreen(false)}
-          tabIndex={0}
+          className="image-button"
         >
           <figure className="post-image">
-            <img src={post.body} alt="Publicação" />
+            <img
+              src={process.env.NEXT_PUBLIC_API_HOST + post.body}
+              alt="Publicação"
+            />
           </figure>
-        </div>
+        </button>
         <div className="post-author">
           <div className="author-info">
             <img
               alt={`Imagem de perfil de ${post.artist.name}`}
-              src={post.avatar}
+              src={process.env.NEXT_PUBLIC_API_HOST + post.artist.avatar}
             />
             <Link href={`/profile/${post.artist.owner}`}>
               <a>
@@ -98,7 +100,7 @@ const FullImagePost: React.FC<PostProps> = ({ post }) => {
       </div>
       {isImageFullScreen && (
         <FullScreenImage
-          img={post.body}
+          img={process.env.NEXT_PUBLIC_API_HOST + post.body}
           onClose={() => setIsImageFullScreen(false)}
         />
       )}
