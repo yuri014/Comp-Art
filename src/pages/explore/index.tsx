@@ -35,7 +35,6 @@ const Explore: React.FC = () => {
 
   const lastPostRef = useInfiniteScroll(
     data,
-    !data,
     () =>
       !!data.getExplorePosts &&
       fetchMore({

@@ -73,7 +73,6 @@ const CommentsSections: React.FC<CommentsSectionsProps> = ({ postId }) => {
 
   const lastPostRef = useInfiniteScroll(
     commentsData,
-    !commentsData,
     () =>
       !!commentsData.getComments &&
       fetchMore({

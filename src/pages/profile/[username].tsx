@@ -76,7 +76,6 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
 
   const lastPostRef = useInfiniteScroll(
     data,
-    !data,
     () =>
       !!data.getProfilePosts &&
       fetchMore({

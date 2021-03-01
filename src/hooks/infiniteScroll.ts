@@ -5,7 +5,6 @@ type UseInfiniteScroll = (args: unknown) => void;
 
 const useInfiniteScroll = (
   data: unknown,
-  condition: boolean,
   callback: () => Promise<boolean | ApolloQueryResult<unknown>>,
 ): UseInfiniteScroll => {
   const [hasMore, setHasMore] = useState(false);
@@ -13,7 +12,7 @@ const useInfiniteScroll = (
 
   const lastPostRef = useCallback(
     node => {
-      if (condition) return;
+      if (!data) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver(async entries => {
         if (entries[0].isIntersecting && !hasMore) {

@@ -38,7 +38,6 @@ const ModalLikes: React.FC<ModalProps> = ({ onHide, id }) => {
 
   const lastPostRef = useInfiniteScroll(
     data,
-    !data,
     () =>
       !!data.getLikes &&
       fetchMore({

@@ -21,7 +21,6 @@ const Home: React.FC<HomeProps> = ({ getLoggedProfile }) => {
 
   const lastPostRef = useInfiniteScroll(
     data,
-    !data,
     () =>
       !!data.getPosts &&
       fetchMore({
