@@ -60,13 +60,18 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
   const [follow] = useMutation(FOLLOW_PROFILE);
   const [unfollow] = useMutation(UNFOLLOW_PROFILE);
 
-  const { data, error, loading: loadingPost, fetchMore } = useQuery<{
+  const { client, data, error, loading: loadingPost, fetchMore } = useQuery<{
     getProfilePosts: Array<IPost>;
   }>(GET_PROFILE_POSTS, {
     variables: { offset: 0, username },
     ssr: true,
     fetchPolicy: 'cache-and-network',
     nextFetchPolicy: 'cache-first',
+    onCompleted: () => {
+      if (data.getProfilePosts.length === 0) {
+        client.cache.evict({ fieldName: 'getProfilePosts' });
+      }
+    },
   });
 
   const lastPostRef = useInfiniteScroll(
