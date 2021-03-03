@@ -1,7 +1,7 @@
 import { ApolloQueryResult } from '@apollo/client';
 import { useCallback, useRef, useState } from 'react';
 
-type UseInfiniteScroll = (args: unknown) => void;
+export type UseInfiniteScroll = (args: unknown) => void;
 
 const useInfiniteScroll = (
   data: unknown,
