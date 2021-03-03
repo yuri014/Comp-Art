@@ -23,3 +23,15 @@ export const DELETE_POST = gql`
     deletePost(id: $id)
   }
 `;
+
+export const GET_LIKES = gql`
+  query GetLikes($id: ID!, $offset: Int!) {
+    getLikes(postID: $id, offset: $offset) {
+      name
+      avatar
+      bio
+      owner
+      level
+    }
+  }
+`;
