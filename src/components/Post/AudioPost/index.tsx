@@ -3,25 +3,18 @@ import IconButton from '@material-ui/core/IconButton';
 import { FaBackward, FaForward, FaPause, FaPlay } from 'react-icons/fa';
 import { Slider, ThemeProvider } from '@material-ui/core';
 import dynamic from 'next/dynamic';
-import { useLazyQuery } from '@apollo/client';
 
 import { AudioPostContainer } from '../styles';
 import mainTheme from '../../../styles/themes/MainTheme';
 import { PostProps } from '../../../interfaces/Post';
 import useDeletePost from '../../../hooks/posts';
 import LevelContext from '../../../context/level';
-import useInfiniteScroll from '../../../hooks/infiniteScroll';
-import { IProfile } from '../../../interfaces/Profile';
-import { GET_LIKES } from '../../../graphql/mutations/post';
 import Interactions from './Interactions';
 import Links from './Links';
+import useGetProfileLikes from '../../../hooks/getModalQuery';
 
 const OptionsMenu = dynamic(() => import('../OptionsMenu'));
 const ModalProfile = dynamic(() => import('../../ModalProfile'));
-
-interface IGetProfileLikes {
-  getLikes: Array<IProfile>;
-}
 
 const AudioPost: React.FC<PostProps> = ({ post }) => {
   const audioRef = useRef<null | HTMLAudioElement>(null);
@@ -110,34 +103,12 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
     setSlider(newValue as number);
   };
 
-  // * Get profiles likes
-
-  const [isLoading, setIsLoading] = useState(true);
-
   const [
+    isLoading,
     getProfilesLikes,
-    { data: profilesLikes, client, fetchMore },
-  ] = useLazyQuery<IGetProfileLikes>(GET_LIKES, {
-    variables: { id: post._id, offset: 0 },
-    onCompleted: () => {
-      setIsLoading(false);
-    },
-  });
-
-  const lastPostRefLikes = useInfiniteScroll(
+    lastPostRefLikes,
     profilesLikes,
-    () =>
-      !!profilesLikes.getLikes &&
-      fetchMore({
-        variables: { offset: profilesLikes.getLikes.length },
-      }).then(newProfiles => {
-        if (newProfiles.data.getLikes.length < 3) {
-          client.cache.evict({ fieldName: 'getLikes' });
-        }
-
-        return newProfiles.data.getLikes.length < 3;
-      }),
-  );
+  ] = useGetProfileLikes(post._id);
 
   return (
     <>

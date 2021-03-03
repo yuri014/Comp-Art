@@ -8,24 +8,17 @@ import {
   FaRegShareSquare,
 } from 'react-icons/fa';
 import dynamic from 'next/dynamic';
-import { useLazyQuery } from '@apollo/client';
 
 import { PostContainer } from './styles';
 import { PostProps } from '../../interfaces/Post';
 import mainTheme from '../../styles/themes/MainTheme';
 import useDeletePost from '../../hooks/posts';
 import LevelContext from '../../context/level';
-import useInfiniteScroll from '../../hooks/infiniteScroll';
-import { GET_LIKES } from '../../graphql/mutations/post';
-import { IProfile } from '../../interfaces/Profile';
+import useGetProfileLikes from '../../hooks/getModalQuery';
 
 const FullScreenImage = dynamic(() => import('../FullScreenImage'));
 const OptionsMenu = dynamic(() => import('./OptionsMenu'));
 const ModalProfile = dynamic(() => import('../ModalProfile'));
-
-interface IGetPost {
-  getLikes: [IProfile];
-}
 
 const ImagePost: React.FC<PostProps> = ({ post }) => {
   const [isLiked, setIsLiked] = useState<boolean>();
@@ -64,32 +57,12 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
     setIsDeleted(true);
   };
 
-  const [isLoading, setIsLoading] = useState(true);
-
   const [
+    isLoading,
     getProfilesLikes,
-    { data: profilesLikes, client, fetchMore },
-  ] = useLazyQuery<IGetPost>(GET_LIKES, {
-    variables: { id: post._id, offset: 0 },
-    onCompleted: () => {
-      setIsLoading(false);
-    },
-  });
-
-  const lastPostRefLikes = useInfiniteScroll(
+    lastPostRefLikes,
     profilesLikes,
-    () =>
-      !!profilesLikes.getLikes &&
-      fetchMore({
-        variables: { offset: profilesLikes.getLikes.length },
-      }).then(newProfiles => {
-        if (newProfiles.data.getLikes.length < 3) {
-          client.cache.evict({ fieldName: 'getLikes' });
-        }
-
-        return newProfiles.data.getLikes.length < 3;
-      }),
-  );
+  ] = useGetProfileLikes(post._id);
 
   return (
     <>
