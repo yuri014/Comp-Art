@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ModalLikesContainer = styled.div`
+const ModalProfileContainer = styled.div`
   position: fixed;
   left: 0;
   bottom: 0;
@@ -104,4 +104,4 @@ const ModalLikesContainer = styled.div`
   }
 `;
 
-export default ModalLikesContainer;
+export default ModalProfileContainer;
