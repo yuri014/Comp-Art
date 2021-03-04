@@ -14,7 +14,7 @@ import { PostProps } from '../../interfaces/Post';
 import mainTheme from '../../styles/themes/MainTheme';
 import useDeletePost from '../../hooks/posts';
 import LevelContext from '../../context/level';
-import useGetProfileLikes from '../../hooks/getModalQuery';
+import { GET_LIKES } from '../../graphql/mutations/post';
 
 const FullScreenImage = dynamic(() => import('../FullScreenImage'));
 const OptionsMenu = dynamic(() => import('./OptionsMenu'));
@@ -56,13 +56,6 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
     deletePost();
     setIsDeleted(true);
   };
-
-  const [
-    isLoading,
-    getProfilesLikes,
-    lastPostRefLikes,
-    profilesLikes,
-  ] = useGetProfileLikes(post._id);
 
   return (
     <>
@@ -174,10 +167,9 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
       {modalShow && (
         <ModalProfile
           onHide={() => setModalShow(false)}
-          lastPostRef={lastPostRefLikes}
-          isLoading={isLoading}
-          queryResult={{ data: { ...profilesLikes }, result: 'getLikes' }}
-          getProfiles={getProfilesLikes}
+          queryResult="getLikes"
+          query={GET_LIKES}
+          id={post._id}
         />
       )}
     </>

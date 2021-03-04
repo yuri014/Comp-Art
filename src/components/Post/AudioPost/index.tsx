@@ -11,7 +11,7 @@ import useDeletePost from '../../../hooks/posts';
 import LevelContext from '../../../context/level';
 import Interactions from './Interactions';
 import Links from './Links';
-import useGetProfileLikes from '../../../hooks/getModalQuery';
+import { GET_LIKES } from '../../../graphql/mutations/post';
 
 const OptionsMenu = dynamic(() => import('../OptionsMenu'));
 const ModalProfile = dynamic(() => import('../../ModalProfile'));
@@ -102,13 +102,6 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
     audioRef.current.currentTime = newValue as number;
     setSlider(newValue as number);
   };
-
-  const [
-    isLoading,
-    getProfilesLikes,
-    lastPostRefLikes,
-    profilesLikes,
-  ] = useGetProfileLikes(post._id);
 
   return (
     <>
@@ -220,10 +213,9 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
       {modalShow && (
         <ModalProfile
           onHide={() => setModalShow(false)}
-          lastPostRef={lastPostRefLikes}
-          queryResult={{ data: { ...profilesLikes }, result: 'getLikes' }}
-          isLoading={isLoading}
-          getProfiles={getProfilesLikes}
+          queryResult="getLikes"
+          query={GET_LIKES}
+          id={post._id}
         />
       )}
     </>
