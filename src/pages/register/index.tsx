@@ -125,7 +125,6 @@ function SignUp(): JSX.Element {
                 id="username"
                 error={!!errors.username}
                 helperText={
-                  // eslint-disable-next-line operator-linebreak
                   errors.username &&
                   'Utilize um username de no mínimo 6 letras e no máximo 24 letras'
                 }
@@ -156,7 +155,6 @@ function SignUp(): JSX.Element {
                 id="password"
                 error={!!errors.password}
                 helperText={
-                  // eslint-disable-next-line operator-linebreak
                   errors.password &&
                   'Sua senha deve ter no mínimo 8 caracteres e conter uma letra maiúscula, uma letra minúscula, um número e um caracter especial.'
                 }
@@ -174,10 +172,7 @@ function SignUp(): JSX.Element {
                 label="Confirme sua senha"
                 required
                 error={!!errors.confirmPassword}
-                helperText={
-                  // eslint-disable-next-line operator-linebreak
-                  errors.confirmPassword && 'Senhas não conferem'
-                }
+                helperText={errors.confirmPassword && 'Senhas não conferem'}
                 name="confirmPassword"
                 id="confirmPassword"
                 inputRef={register({
@@ -218,7 +213,6 @@ function SignUp(): JSX.Element {
                 id="username"
                 error={!!errors.username}
                 helperText={
-                  // eslint-disable-next-line operator-linebreak
                   errors.username &&
                   'Utilize um username de no mínimo 6 letras e no máximo 24 letras'
                 }
@@ -253,7 +247,6 @@ function SignUp(): JSX.Element {
                 id="password"
                 error={!!errors.password}
                 helperText={
-                  // eslint-disable-next-line operator-linebreak
                   errors.password &&
                   'Sua senha deve ter no mínimo 8 caracteres e conter uma letra maiúscula, uma letra minúscula, um número e um caracter especial.'
                 }
@@ -271,10 +264,7 @@ function SignUp(): JSX.Element {
                 label="Confirme sua senha"
                 required
                 error={!!errors.confirmPassword}
-                helperText={
-                  // eslint-disable-next-line operator-linebreak
-                  errors.confirmPassword && 'Senhas não conferem'
-                }
+                helperText={errors.confirmPassword && 'Senhas não conferem'}
                 name="confirmPassword"
                 id="confirmPassword"
                 inputRef={register({
