@@ -10,7 +10,7 @@ _Exemplo:_
 
 ```typescript
 // Errado
-if (id !== 2) {
+if (id === 2) {
   return <Audio />
 }
 ```
@@ -20,7 +20,7 @@ if (id !== 2) {
 const imageId = 1;
 const audioId = 2;
 
-if (id !== audioId) {
+if (id === audioId) {
   return <Audio />
 }
 ```
