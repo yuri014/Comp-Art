@@ -25,4 +25,8 @@ if (id === audioId) {
 }
 ```
 
+**Cores:**
+
+Sempre utilize essa [ferramenta](https://dequeuniversity.com/rules/axe/2.2/color-contrast?application=lighthouse) para verificar se a cor tem uma boa acessibilidade.
+
 [Voltar ao índice](./index.md)
