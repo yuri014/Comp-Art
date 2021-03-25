@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import { FaGamepad } from 'react-icons/fa';
 
 import StartIcon from '../assets/start-artist-icon.svg';
-import LandingContainer from '../styles/pages';
 import PressStartButton from '../components/PressStartButton';
 import Meta from '../components/SEO/Meta';
+import LandingContainer from './_index';
 
 const Modal = dynamic(() => import('../components/Modal'));
 
@@ -13,35 +14,36 @@ const Landing: React.FC = () => {
   const [modalShow, setModalShow] = useState(false);
   return (
     <>
-      <LandingContainer>
-        <Meta
-          title="Comp-Art"
-          description="Rede social com o propósito de ajudar a divulgação de artistas."
-          keywords="Comp-Art, comp-art, comp art, divulgação, arte, música, ilustrações, artistas"
-        />
-
-        <div className="start">
-          <div>
-            <h1>
-              Comp-
-              <br />
-              Art
-            </h1>
-          </div>
-          <div className="start-icon">
+      <Meta
+        title="Comp-Art"
+        description="Rede social com o propósito de ajudar a divulgação de artistas."
+        keywords="Comp-Art, comp-art, comp art, divulgação, arte, música, ilustrações, artistas"
+      />
+      <LandingContainer className="container">
+        <main>
+          <h1>CompArt</h1>
+          <h2>Venha descobrir novas artes e compartilhar as suas!</h2>
+          <section>
             <StartIcon />
+            <div>
+              <p>
+                Rede social que visa superar os metódos conhecidos de divulgação
+                artística.
+              </p>
+              <PressStartButton changeState={() => setModalShow(true)}>
+                Start
+              </PressStartButton>
+            </div>
+          </section>
+        </main>
+        <footer>
+          <FaGamepad />
+          <div>
+            <Link href="/about">
+              <a>Sobre</a>
+            </Link>
           </div>
-        </div>
-
-        <div className="start-button">
-          <h2>
-            Rede social que visa superar os metódos conhecidos de divulgação
-            artística.
-          </h2>
-          <PressStartButton changeState={() => setModalShow(true)}>
-            Start
-          </PressStartButton>
-        </div>
+        </footer>
       </LandingContainer>
       <Modal
         title="Comece sua jornada!"
