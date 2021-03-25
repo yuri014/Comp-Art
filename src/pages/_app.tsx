@@ -8,7 +8,8 @@ import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 
 import GlobalStyle from '../styles/global';
-import theme from '../styles/themes/dark';
+import dark from '../styles/themes/dark';
+import light from '../styles/themes/light';
 import { AuthProvider } from '../context/auth';
 import { useApollo } from '../graphql/apollo/config';
 
@@ -29,7 +30,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
       </Head>
       <AuthProvider>
         <ApolloProvider client={apolloClient}>
-          <ThemeProvider theme={theme}>
+          <ThemeProvider theme={dark}>
             <MainComponent />
             <GlobalStyle />
           </ThemeProvider>
