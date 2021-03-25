@@ -1,5 +1,4 @@
 import React from 'react';
-import { FaGamepad } from 'react-icons/fa';
 
 import PressStartButtonContainer from './styles';
 
@@ -20,7 +19,6 @@ const PressStartButton: React.FC<PressStartButtonProps> = ({
     className="press-start"
   >
     {children}
-    <FaGamepad />
   </PressStartButtonContainer>
 );
 
