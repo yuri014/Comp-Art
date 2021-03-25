@@ -16,7 +16,7 @@ const Custom404Container = styled.main`
     transform: skewY(-5deg);
     letter-spacing: 4px;
     word-spacing: -8px;
-    color: ${props => props.theme.colors.white};
+    color: ${props => props.theme.colors.themeColor};
     text-shadow: 4px 4px 2px ${props => props.theme.colors.titleColor};
   }
 
