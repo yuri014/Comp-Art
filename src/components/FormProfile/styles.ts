@@ -70,7 +70,7 @@ const FormProfileContainer = styled.form`
       background: ${props => props.theme.colors.mainColor};
 
       .upload-icon {
-        color: #fff;
+        color: ${props => props.theme.colors.white};
       }
     }
   }

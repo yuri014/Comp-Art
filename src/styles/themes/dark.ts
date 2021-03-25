@@ -15,6 +15,7 @@ const theme = {
       #141432 100%
     )`,
     danger: '#f50057',
+    white: '#fff',
   },
   fonts: {
     display: '"Audiowide", sans-serif',

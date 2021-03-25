@@ -24,7 +24,7 @@ const MobileHeaderContainer = styled.header`
     font: 400 16px ${props => props.theme.fonts.display}, sans-serif;
     filter: blur(0.4px);
     letter-spacing: 4px;
-    color: #ffffff;
+    color: ${props => props.theme.colors.white};
     text-shadow: 3px 3px 2px ${props => props.theme.colors.titleColor};
   }
   .profile {

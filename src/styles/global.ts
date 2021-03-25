@@ -84,7 +84,7 @@ export default createGlobalStyle`
     transform: skewY(-5deg);
     letter-spacing: 4px;
     word-spacing: -8px;
-    color: #ffffff;
+    color: ${props => props.theme.colors.white};
     text-shadow: 4px 4px 2px ${props => props.theme.colors.titleColor};
   }
 
