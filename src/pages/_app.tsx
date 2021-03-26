@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AppProps } from 'next/app';
 import { ThemeProvider } from 'styled-components';
 import { ApolloProvider } from '@apollo/client';
@@ -12,6 +12,8 @@ import dark from '../styles/themes/dark';
 import light from '../styles/themes/light';
 import { AuthProvider } from '../context/auth';
 import { useApollo } from '../graphql/apollo/config';
+import ThemeContext from '../context/theme';
+import useTheme from '../hooks/theme';
 
 NProgress.configure({ showSpinner: false });
 
@@ -21,8 +23,13 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   const apolloClient = useApollo(pageProps.initialApolloState);
-
   const MainComponent = React.memo(() => <Component {...pageProps} />);
+  const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setTheme(window.localStorage.getItem('theme'));
+  }, [setTheme]);
+
   return (
     <>
       <Head>
@@ -30,10 +37,12 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
       </Head>
       <AuthProvider>
         <ApolloProvider client={apolloClient}>
-          <ThemeProvider theme={dark}>
-            <MainComponent />
-            <GlobalStyle />
-          </ThemeProvider>
+          <ThemeContext.Provider value={{ theme, setTheme }}>
+            <ThemeProvider theme={theme === 'light' ? light : dark}>
+              <MainComponent />
+              <GlobalStyle />
+            </ThemeProvider>
+          </ThemeContext.Provider>
         </ApolloProvider>
       </AuthProvider>
     </>
