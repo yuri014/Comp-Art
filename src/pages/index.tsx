@@ -21,7 +21,9 @@ const Landing: React.FC = () => {
         keywords="Comp-Art, comp-art, comp art, divulgação, arte, música, ilustrações, artistas"
       />
       <LandingContainer className="container">
-        <ToggleThemeButton />
+        <div className="toggle-button">
+          <ToggleThemeButton />
+        </div>
         <main>
           <h1>CompArt</h1>
           <h2>Venha descobrir novas artes e compartilhar as suas!</h2>

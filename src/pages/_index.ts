@@ -3,9 +3,14 @@ import styled from 'styled-components';
 const LandingContainer = styled.div`
   width: 80%;
 
+  .toggle-button {
+    display: flex;
+    justify-content: flex-end;
+  }
+
   main {
     display: flex;
-    height: 80vh;
+    height: 65vh;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
@@ -40,10 +45,9 @@ const LandingContainer = styled.div`
 
   footer {
     display: flex;
-    margin-top: 8rem;
+    margin-top: 10rem;
     align-items: center;
     justify-content: space-between;
-    bottom: 4rem;
     font-size: 1.8rem;
 
     a {
