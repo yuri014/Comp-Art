@@ -50,6 +50,10 @@ const LandingContainer = styled.div`
         text-align: center;
         margin: 2rem 0;
       }
+
+      button {
+        width: 20rem;
+      }
     }
   }
 
