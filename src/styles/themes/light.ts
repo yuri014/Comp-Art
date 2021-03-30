@@ -16,6 +16,7 @@ const theme = {
     )`,
     danger: '#f50057',
     themeColor: '#050211',
+    currentThemeColor: '#fff',
   },
   fonts: {
     display: '"Audiowide", sans-serif',
