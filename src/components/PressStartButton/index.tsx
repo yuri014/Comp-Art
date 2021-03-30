@@ -15,7 +15,6 @@ const PressStartButton: React.FC<PressStartButtonProps> = ({
   <PressStartButtonContainer
     type={type || 'button'}
     onClick={changeState}
-    onKeyDown={changeState}
     className="press-start"
   >
     {children}
