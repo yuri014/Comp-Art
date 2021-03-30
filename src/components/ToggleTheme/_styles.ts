@@ -8,7 +8,7 @@ const ToggleThemeContainer = styled.span`
     padding: 0;
 
     svg {
-      width: 6rem;
+      transform: scale(0.75);
     }
   }
 `;
