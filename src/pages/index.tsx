@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { FaGamepad } from 'react-icons/fa';
 
 import PressStartButton from '../components/PressStartButton';
 import Meta from '../components/SEO/Meta';
 import LandingContainer from './_index';
 import ToggleThemeButton from '../components/ToggleTheme';
+import Footer from '../components/Footer';
 
 const Modal = dynamic(() => import('../components/Modal'));
 
@@ -43,20 +43,7 @@ const Landing: React.FC = () => {
               </div>
             </section>
           </main>
-          <footer>
-            <FaGamepad />
-            <div>
-              <Link href="/about">
-                <a>Sobre</a>
-              </Link>
-              <Link href="/terms">
-                <a>Termos de uso</a>
-              </Link>
-              <Link href="/about">
-                <a>Políticas de privacidade</a>
-              </Link>
-            </div>
-          </footer>
+          <Footer />
         </div>
       </LandingContainer>
       <Modal
