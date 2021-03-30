@@ -147,13 +147,13 @@ const LandingContainer = styled.div`
   @media (min-width: 1200px) {
     main {
       h2 {
-        width: 60%;
+        width: 60rem;
       }
 
       section {
         width: 100%;
         img {
-          width: 60%;
+          width: 47rem;
         }
       }
     }
