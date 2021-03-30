@@ -1,4 +1,13 @@
 module.exports = {
-  presets: ['next/babel'],
+  presets: [
+    [
+      'next/babel',
+      {
+        'preset-react': {
+          runtime: 'classic',
+        },
+      },
+    ],
+  ],
   plugins: [['styled-components', { ssr: true }], 'inline-react-svg'],
 };
