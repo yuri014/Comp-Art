@@ -1,20 +1,13 @@
 import styled from 'styled-components';
 
 const LandingContainer = styled.div`
-  width: 80%;
-  height: 100vh;
-  padding: 4rem 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-
-  .toggle-button {
+  background-color: ${props => props.theme.colors.currentThemeColor};
+  .container {
+    height: 100vh;
+    padding: 4rem 0;
     display: flex;
-    justify-content: flex-end;
-
-    button {
-      padding: 0;
-    }
+    flex-direction: column;
+    justify-content: space-around;
   }
 
   main {
@@ -82,7 +75,9 @@ const LandingContainer = styled.div`
   }
 
   @media (min-width: 768px) {
-    padding: 8rem 0;
+    .container {
+      padding: 8rem 0;
+    }
 
     main {
       h2,

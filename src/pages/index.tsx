@@ -19,43 +19,45 @@ const Landing: React.FC = () => {
         description="Rede social com o propósito de ajudar a divulgação de artistas."
         keywords="Comp-Art, comp-art, comp art, divulgação, arte, música, ilustrações, artistas"
       />
-      <LandingContainer className="container">
-        <div className="toggle-button">
-          <ToggleThemeButton />
-        </div>
-        <main>
-          <h1>CompArt</h1>
-          <h2>Venha descobrir novas artes e compartilhar as suas!</h2>
-          <section>
-            <img
-              src="/assets/start-artist-icon.svg"
-              alt="Pessoa ao lado de um quadro com notas músicais"
-            />
-            <div>
-              <p>
-                Rede social que visa superar os metódos conhecidos de divulgação
-                artística.
-              </p>
-              <PressStartButton changeState={() => setModalShow(true)}>
-                Start
-              </PressStartButton>
-            </div>
-          </section>
-        </main>
-        <footer>
-          <FaGamepad />
-          <div>
-            <Link href="/about">
-              <a>Sobre</a>
-            </Link>
-            <Link href="/terms">
-              <a>Termos de uso</a>
-            </Link>
-            <Link href="/about">
-              <a>Políticas de privacidade</a>
-            </Link>
+      <LandingContainer>
+        <div className="container">
+          <div className="toggle-button">
+            <ToggleThemeButton />
           </div>
-        </footer>
+          <main>
+            <h1>CompArt</h1>
+            <h2>Venha descobrir novas artes e compartilhar as suas!</h2>
+            <section>
+              <img
+                src="/assets/start-artist-icon.svg"
+                alt="Pessoa ao lado de um quadro com notas músicais"
+              />
+              <div>
+                <p>
+                  Rede social que visa superar os metódos conhecidos de
+                  divulgação artística.
+                </p>
+                <PressStartButton changeState={() => setModalShow(true)}>
+                  Start
+                </PressStartButton>
+              </div>
+            </section>
+          </main>
+          <footer>
+            <FaGamepad />
+            <div>
+              <Link href="/about">
+                <a>Sobre</a>
+              </Link>
+              <Link href="/terms">
+                <a>Termos de uso</a>
+              </Link>
+              <Link href="/about">
+                <a>Políticas de privacidade</a>
+              </Link>
+            </div>
+          </footer>
+        </div>
       </LandingContainer>
       <Modal
         title="Comece sua jornada!"
