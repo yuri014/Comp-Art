@@ -3,7 +3,6 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { FaGamepad } from 'react-icons/fa';
 
-import StartIcon from '../assets/start-artist-icon.svg';
 import PressStartButton from '../components/PressStartButton';
 import Meta from '../components/SEO/Meta';
 import LandingContainer from './_index';
@@ -28,7 +27,10 @@ const Landing: React.FC = () => {
           <h1>CompArt</h1>
           <h2>Venha descobrir novas artes e compartilhar as suas!</h2>
           <section>
-            <StartIcon />
+            <img
+              src="/assets/start-artist-icon.svg"
+              alt="Pessoa ao lado de um quadro com notas músicais"
+            />
             <div>
               <p>
                 Rede social que visa superar os metódos conhecidos de divulgação
@@ -45,6 +47,12 @@ const Landing: React.FC = () => {
           <div>
             <Link href="/about">
               <a>Sobre</a>
+            </Link>
+            <Link href="/terms">
+              <a>Termos de uso</a>
+            </Link>
+            <Link href="/about">
+              <a>Políticas de privacidade</a>
             </Link>
           </div>
         </footer>

@@ -2,15 +2,24 @@ import styled from 'styled-components';
 
 const LandingContainer = styled.div`
   width: 80%;
+  height: 100vh;
+  padding: 4rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 
   .toggle-button {
     display: flex;
     justify-content: flex-end;
+
+    button {
+      padding: 0;
+    }
   }
 
   main {
+    height: 100%;
     display: flex;
-    height: 65vh;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
@@ -21,6 +30,7 @@ const LandingContainer = styled.div`
       font-family: ${props => props.theme.fonts.display};
       font-size: 5rem;
       letter-spacing: 0.2rem;
+      text-shadow: 6px 6px 0px rgba(0, 0, 0, 0.2);
     }
 
     h2 {
@@ -29,10 +39,10 @@ const LandingContainer = styled.div`
     }
 
     section {
-      svg {
+      img {
         width: 100%;
-        height: 100%;
-        margin: -2rem 0;
+        height: 90%;
+        margin: -3rem 0;
       }
 
       p {
@@ -44,19 +54,109 @@ const LandingContainer = styled.div`
   }
 
   footer {
+    margin-top: 6rem;
     display: flex;
-    margin-top: 10rem;
     align-items: center;
     justify-content: space-between;
-    font-size: 1.8rem;
 
-    a {
-      color: ${props => props.theme.colors.themeColor};
+    div {
+      width: 90%;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      font-size: 1.2rem;
+
+      a {
+        color: ${props => props.theme.colors.themeColor};
+      }
     }
 
     svg {
       color: ${props => props.theme.colors.themeColor};
-      font-size: 2.6rem;
+      font-size: 1.6rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    padding: 8rem 0;
+
+    main {
+      h2,
+      p {
+        padding: 0 6rem;
+      }
+
+      section {
+        p {
+          margin-top: 4rem;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 992px) {
+    main {
+      height: 80%;
+
+      h1 {
+        font-size: 6rem;
+      }
+
+      h2 {
+        font-size: 2.6rem;
+      }
+
+      section {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: space-between;
+
+        p {
+          padding: 0;
+          width: 40rem;
+          text-align: left;
+          font-size: 1.8rem;
+        }
+
+        button {
+          margin: unset;
+          margin-top: 8rem;
+        }
+
+        img {
+          margin: unset;
+        }
+      }
+    }
+
+    footer {
+      div {
+        width: 57rem;
+
+        a {
+          font-size: 2rem;
+        }
+      }
+
+      svg {
+        font-size: 2.6rem;
+      }
+    }
+  }
+
+  @media (min-width: 1200px) {
+    main {
+      h2 {
+        width: 60%;
+      }
+
+      section {
+        width: 100%;
+        img {
+          width: 60%;
+        }
+      }
     }
   }
 `;
