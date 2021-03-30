@@ -1,8 +1,15 @@
 import styled from 'styled-components';
 
 const ToggleThemeContainer = styled.span`
-  svg {
-    width: 6rem;
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    padding: 0;
+
+    svg {
+      width: 6rem;
+    }
   }
 `;
 

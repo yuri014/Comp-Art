@@ -24,14 +24,14 @@ const ToggleThemeButton: React.FC = () => {
   }, [setTheme]);
 
   return (
-    <IconButton
-      aria-label={`mudar para tema ${theme === 'light' ? 'claro' : 'escuro'}`}
-      onClick={toggleTheme}
-    >
-      <ToggleThemeContainer>
+    <ToggleThemeContainer>
+      <IconButton
+        aria-label={`mudar para tema ${theme === 'light' ? 'claro' : 'escuro'}`}
+        onClick={toggleTheme}
+      >
         {theme === 'light' ? <LightIcon /> : <DarkIcon />}
-      </ToggleThemeContainer>
-    </IconButton>
+      </IconButton>
+    </ToggleThemeContainer>
   );
 };
 
