@@ -21,6 +21,7 @@ export default createGlobalStyle`
   .container {
     max-width: 1378px;
     margin: 0 auto;
+    width: 80%;
   }
 
   a {
