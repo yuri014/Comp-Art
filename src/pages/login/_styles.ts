@@ -17,6 +17,7 @@ const LoginContainer = styled.div`
       background-color: ${props => props.theme.colors.secondaryBackgroundColor};
       border-radius: 10px;
       padding: 3rem;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
       h2 {
         text-align: center;
@@ -66,6 +67,7 @@ const LoginContainer = styled.div`
         margin-bottom: 2rem;
         cursor: pointer;
         transition: 0.2s ease-in-out;
+        font-weight: 500;
 
         &:hover {
           border-radius: 10px;
