@@ -39,4 +39,5 @@ Siga o padrão abaixo:
 @media (min-width: 768px) {}
 @media (min-width: 992px) {}
 @media (min-width: 1200px) {}
+@media (min-width: 1440px) {}
 ```
