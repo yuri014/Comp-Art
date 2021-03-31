@@ -23,7 +23,7 @@ const LandingContainer = styled.div`
       font-family: ${props => props.theme.fonts.display};
       font-size: 5rem;
       letter-spacing: 0.2rem;
-      text-shadow: 6px 6px 0px rgba(0, 0, 0, 0.2);
+      text-shadow: 4px 4px 0px ${props => props.theme.colors.titleColor};
     }
 
     h2 {
