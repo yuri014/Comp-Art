@@ -32,23 +32,6 @@ const LoginContainer = styled.div`
         font-weight: bold;
       }
 
-      label {
-        display: flex;
-        flex-direction: column;
-
-        input {
-          padding: 1.4rem 2rem;
-          background-color: ${props => props.theme.colors.backgroundColor};
-          border: none;
-          border-radius: 5px;
-          margin-bottom: 2rem;
-
-          &:focus {
-            outline: 1px solid #949494;
-          }
-        }
-      }
-
       a {
         margin-bottom: 2rem;
         display: block;

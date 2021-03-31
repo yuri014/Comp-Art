@@ -14,6 +14,7 @@ import Meta from '../../components/SEO/Meta';
 import ToggleThemeButton from '../../components/ToggleTheme';
 import Footer from '../../components/Footer';
 import Title from '../../components/Title';
+import Input from '../../components/Input';
 
 interface ILogin {
   email: string;
@@ -68,27 +69,23 @@ const Login: React.FC = () => {
         <Title />
         <form onSubmit={handleSubmit(onSubmit)} className="login-form-content">
           <h2>Faça seu login na plataforma</h2>
-          <label htmlFor="email">
-            <p>E-mail</p>
-            <input
-              id="email"
-              name="email"
-              placeholder="Digite seu e-mail"
-              ref={inputRef}
-              required
-            />
-          </label>
-          <label htmlFor="password">
-            <p>Senha</p>
-            <input
-              placeholder="Digite sua senha"
-              id="password"
-              name="password"
-              ref={register}
-              required
-              type="password"
-            />
-          </label>
+          <Input
+            name="email"
+            placeholder="Digite seu e-mail"
+            required
+            ref={inputRef}
+          >
+            E-mail
+          </Input>
+          <Input
+            placeholder="Digite sua senha"
+            name="password"
+            ref={register}
+            required
+            type="password"
+          >
+            Senha
+          </Input>
 
           <Link href="/forgot-password">
             <a>Esqueci minha senha</a>
