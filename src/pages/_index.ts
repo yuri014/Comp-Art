@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const LandingContainer = styled.div`
-  background-color: ${props => props.theme.colors.currentThemeColor};
+  background-color: ${props => props.theme.colors.backgroundColor};
   .container {
     height: 100vh;
     padding: 4rem 0;

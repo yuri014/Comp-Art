@@ -2,7 +2,7 @@ const theme = {
   colors: {
     mainColor: '#1cc5b7',
     titleColor: 'rgba(0, 0, 0, 0.2)',
-    backgroundColor: '#EEEEFF',
+    backgroundColor: '#f5f5f5',
     secondaryBackgroundColor: '#fff',
     alternativeBackground: '#0f0f28',
     lightText: '#393B73',
@@ -16,7 +16,6 @@ const theme = {
     )`,
     danger: '#f50057',
     themeColor: '#050211',
-    currentThemeColor: '#fff',
   },
   fonts: {
     display: '"Audiowide", sans-serif',
