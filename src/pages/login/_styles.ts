@@ -56,7 +56,7 @@ const LoginContainer = styled.div`
         text-decoration: underline;
       }
 
-      button {
+      .login-button {
         width: 100%;
         padding: 1.4rem;
         border-radius: 5px;
@@ -64,6 +64,12 @@ const LoginContainer = styled.div`
         background-color: ${props => props.theme.colors.mainColor};
         color: ${props => props.theme.colors.themeColor};
         margin-bottom: 2rem;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+
+        &:hover {
+          border-radius: 10px;
+        }
       }
 
       .register {
@@ -78,6 +84,31 @@ const LoginContainer = styled.div`
 
   footer {
     margin-top: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    main {
+      form {
+        max-width: 40rem;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  @media (min-width: 1440px) {
+    main {
+      h1 {
+        margin-bottom: 4rem;
+      }
+
+      form {
+        padding: 4rem;
+      }
+
+      .register {
+        margin-top: 2rem;
+      }
+    }
   }
 `;
 
