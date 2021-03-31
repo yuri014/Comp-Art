@@ -7,6 +7,7 @@ import Meta from '../components/SEO/Meta';
 import LandingContainer from './_index';
 import ToggleThemeButton from '../components/ToggleTheme';
 import Footer from '../components/Footer';
+import Title from '../components/Title';
 
 const Modal = dynamic(() => import('../components/Modal'));
 
@@ -25,7 +26,7 @@ const Landing: React.FC = () => {
             <ToggleThemeButton />
           </div>
           <main>
-            <h1>CompArt</h1>
+            <Title />
             <h2>Venha descobrir novas artes e compartilhar as suas!</h2>
             <section>
               <img

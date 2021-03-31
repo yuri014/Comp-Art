@@ -13,6 +13,7 @@ import { AuthContext } from '../../context/auth';
 import Meta from '../../components/SEO/Meta';
 import ToggleThemeButton from '../../components/ToggleTheme';
 import Footer from '../../components/Footer';
+import Title from '../../components/Title';
 
 interface ILogin {
   email: string;
@@ -64,7 +65,7 @@ const Login: React.FC = () => {
         <ToggleThemeButton />
       </div>
       <main>
-        <h1>CompArt</h1>
+        <Title />
         <form onSubmit={handleSubmit(onSubmit)} className="login-form-content">
           <h2>Faça seu login na plataforma</h2>
           <label htmlFor="email">
