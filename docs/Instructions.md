@@ -36,6 +36,8 @@ Sempre utilize essa [ferramenta](https://dequeuniversity.com/rules/axe/2.2/color
 Caso queira dividir uma página muito grande em componentes que você não vai reutilizar, use a pasta `src/components/Splitter` para colocar seus componentes.
 Todos os componentes dessa pasta não serão reutilizado, caso você reutilize algum desses componentes, crie uma pasta só para ele.
 
+> Nota: não divida o styled component para aquele componente, apenas o JSX mesmo.
+
 ### Media Queries
 
 Siga o padrão abaixo:
