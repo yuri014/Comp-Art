@@ -17,12 +17,12 @@ const LoginContainer = styled.div`
       background-color: ${props => props.theme.colors.secondaryBackgroundColor};
       border-radius: 10px;
       padding: 3rem;
-      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      box-shadow: ${({ theme }) => theme.colors.mainShadow};
 
       h2 {
         text-align: center;
         margin-bottom: 2rem;
-        font-size: 1.8rem;
+        font-size: 2rem;
       }
 
       p,
