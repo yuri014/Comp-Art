@@ -39,7 +39,7 @@ const Landing: React.FC = () => {
                   divulgação artística.
                 </p>
                 <PressStartButton changeState={() => setModalShow(true)}>
-                  Start
+                  START
                 </PressStartButton>
               </div>
             </section>
