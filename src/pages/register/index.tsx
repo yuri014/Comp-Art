@@ -80,48 +80,50 @@ function SignUp(): JSX.Element {
               trabalhos!
             </p>
 
-            <Input
-              name="username"
-              placeholder="Digite seu username"
-              ref={inputRef}
-              required
-            >
-              Username
-            </Input>
-            <Input
-              name="email"
-              placeholder="Digite seu e-mail"
-              ref={register({
-                pattern: /^\S+@\S+$/,
-                required: true,
-              })}
-              required
-            >
-              E-mail
-            </Input>
-            <Input
-              name="password"
-              placeholder="Digite sua senha"
-              ref={register({
-                minLength: 8,
-                pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                required: true,
-              })}
-              required
-            >
-              Senha
-            </Input>
-            <Input
-              name="confirmPassword"
-              placeholder="Digite novamente sua senha"
-              ref={register({
-                validate: (value: string) => value === watch('password'),
-                required: true,
-              })}
-              required
-            >
-              Confirmar Senha
-            </Input>
+            <div className="input-group">
+              <Input
+                name="username"
+                placeholder="Digite seu username"
+                ref={inputRef}
+                required
+              >
+                Username
+              </Input>
+              <Input
+                name="email"
+                placeholder="Digite seu e-mail"
+                ref={register({
+                  pattern: /^\S+@\S+$/,
+                  required: true,
+                })}
+                required
+              >
+                E-mail
+              </Input>
+              <Input
+                name="password"
+                placeholder="Digite sua senha"
+                ref={register({
+                  minLength: 8,
+                  pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                  required: true,
+                })}
+                required
+              >
+                Senha
+              </Input>
+              <Input
+                name="confirmPassword"
+                placeholder="Digite novamente sua senha"
+                ref={register({
+                  validate: (value: string) => value === watch('password'),
+                  required: true,
+                })}
+                required
+              >
+                Confirmar Senha
+              </Input>
+            </div>
             <CAButton type="submit">Cadastrar</CAButton>
 
             <div className="contract">

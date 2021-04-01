@@ -5,6 +5,9 @@ const RegisterContainer = styled.div`
   color: ${props => props.theme.colors.themeColor};
 
   main {
+    max-width: 80rem;
+    margin: 0 auto;
+
     h1 {
       margin-top: 2rem;
     }
@@ -26,6 +29,7 @@ const RegisterContainer = styled.div`
         height: 10rem;
         border-radius: 10px;
         border: none;
+        cursor: pointer;
 
         &.active,
         &:focus {
@@ -91,7 +95,65 @@ const RegisterContainer = styled.div`
 
           a {
             display: contents;
+            font-weight: 400;
           }
+        }
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    main {
+      form {
+        .subtitle,
+        .contract p {
+          width: 60%;
+          margin: 0 auto;
+        }
+
+        .subtitle {
+          margin: 2rem auto;
+        }
+      }
+
+      .choose-profile {
+        flex-direction: row;
+        margin: 6rem 0;
+        justify-content: space-between;
+
+        button {
+          margin-top: 0;
+
+          &:last-child {
+            margin-top: 0;
+
+            img {
+              left: 19rem;
+            }
+          }
+        }
+      }
+
+      form {
+        padding: 4rem;
+      }
+    }
+  }
+
+  @media (min-width: 992px) {
+    main {
+      form {
+        .input-group {
+          display: grid;
+          grid-template-columns: 48% 48%;
+          justify-content: space-between;
+        }
+
+        button {
+          width: 50%;
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
         }
       }
     }
