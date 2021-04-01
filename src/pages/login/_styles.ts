@@ -40,23 +40,6 @@ const LoginContainer = styled.div`
         text-decoration: underline;
       }
 
-      .login-button {
-        width: 100%;
-        padding: 1.4rem;
-        border-radius: 5px;
-        border: none;
-        background-color: ${props => props.theme.colors.mainColor};
-        color: ${props => props.theme.colors.themeColor};
-        margin-bottom: 2rem;
-        cursor: pointer;
-        transition: 0.2s ease-in-out;
-        font-weight: 500;
-
-        &:hover {
-          border-radius: 10px;
-        }
-      }
-
       .register {
         text-align: center;
 

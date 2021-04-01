@@ -15,6 +15,7 @@ import ToggleThemeButton from '../../components/ToggleTheme';
 import Footer from '../../components/Footer';
 import Title from '../../components/Title';
 import Input from '../../components/Input';
+import CAButton from '../../styles/components/button';
 
 interface ILogin {
   email: string;
@@ -113,9 +114,7 @@ const Login: React.FC = () => {
               }
             />
           </ThemeProvider>
-          <button type="submit" className="login-button">
-            ENTRAR
-          </button>
+          <CAButton type="submit">ENTRAR</CAButton>
 
           <p className="register">
             Não tem uma conta?{' '}
