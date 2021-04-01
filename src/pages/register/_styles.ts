@@ -79,6 +79,21 @@ const RegisterContainer = styled.div`
         text-align: center;
         margin: 2rem 0;
       }
+
+      button {
+        margin-top: 1rem;
+      }
+
+      .contract {
+        p {
+          font-size: 1.4rem;
+          text-align: center;
+
+          a {
+            display: contents;
+          }
+        }
+      }
     }
   }
 `;

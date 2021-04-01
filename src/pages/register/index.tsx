@@ -16,6 +16,7 @@ import ToggleThemeButton from '../../components/ToggleTheme';
 import Footer from '../../components/Footer';
 import ChooseProfile from '../../components/Splitter/ChooseProfile';
 import Input from '../../components/Input';
+import CAButton from '../../styles/components/button';
 
 function SignUp(): JSX.Element {
   const [isArtist, setIsArtist] = useState(true);
@@ -121,6 +122,20 @@ function SignUp(): JSX.Element {
             >
               Confirmar Senha
             </Input>
+            <CAButton type="submit">Cadastrar</CAButton>
+
+            <div className="contract">
+              <p>
+                Ao se registrar, você aceita nossos{' '}
+                <Link href="/terms">
+                  <a>termos de uso</a>
+                </Link>{' '}
+                e a nossa{' '}
+                <Link href="/terms">
+                  <a>política de privacidade.</a>
+                </Link>
+              </p>
+            </div>
           </form>
         </main>
         <Footer />
