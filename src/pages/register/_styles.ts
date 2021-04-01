@@ -3,6 +3,8 @@ import styled from 'styled-components';
 const RegisterContainer = styled.div`
   padding: 2rem 0;
   color: ${props => props.theme.colors.themeColor};
+  min-height: 100vh;
+  display: grid;
 
   main {
     max-width: 80rem;
