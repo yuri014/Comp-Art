@@ -31,6 +31,11 @@ Sempre utilize essa [ferramenta](https://dequeuniversity.com/rules/axe/2.2/color
 
 [Voltar ao índice](./index.md)
 
+**Components:**
+
+Caso queira dividir uma página muito grande em componentes que você não vai reutilizar, use a pasta `src/components/Splitter` para colocar seus componentes.
+Todos os componentes dessa pasta não serão reutilizado, caso você reutilize algum desses componentes, crie uma pasta só para ele.
+
 ### Media Queries
 
 Siga o padrão abaixo:
