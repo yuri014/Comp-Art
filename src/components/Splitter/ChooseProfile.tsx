@@ -13,7 +13,7 @@ const ChooseProfile: React.FC<ChooseProfileProps> = ({
     <button
       onClick={() => setIsArtist(true)}
       type="button"
-      className={isArtist && 'active'}
+      className={isArtist ? 'active' : ''}
     >
       <img src="/assets/avatar-artist.svg" alt="Representação de um artista" />
       <p>Cadastrar como Artista</p>
@@ -21,7 +21,7 @@ const ChooseProfile: React.FC<ChooseProfileProps> = ({
     <button
       type="button"
       onClick={() => setIsArtist(false)}
-      className={!isArtist && 'active'}
+      className={!isArtist ? 'active' : ''}
     >
       <img src="/assets/avatar-user.svg" alt="Representação de um fã" />
       <p>Cadastrar como Fã</p>

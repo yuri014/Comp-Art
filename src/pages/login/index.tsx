@@ -74,14 +74,14 @@ const Login: React.FC = () => {
             name="email"
             placeholder="Digite seu e-mail"
             required
-            ref={inputRef}
+            refInput={inputRef}
           >
             E-mail
           </Input>
           <Input
             placeholder="Digite sua senha"
             name="password"
-            ref={register}
+            refInput={register}
             required
             type="password"
           >

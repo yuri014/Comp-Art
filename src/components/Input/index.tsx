@@ -4,7 +4,7 @@ import { InputContainer, LabelInputContainer } from './styles';
 
 interface InputProps {
   name: string;
-  ref: unknown;
+  refInput: unknown;
   placeholder: string;
   type?: string;
   required?: boolean;
@@ -14,7 +14,7 @@ const Input: React.FC<InputProps> = ({
   children,
   name,
   placeholder,
-  ref,
+  refInput,
   required,
   type,
 }) => (
@@ -25,7 +25,7 @@ const Input: React.FC<InputProps> = ({
       name={name}
       type={type}
       placeholder={placeholder}
-      ref={ref as React.Ref<HTMLInputElement>}
+      ref={refInput as React.Ref<HTMLInputElement>}
       required={required}
     />
   </LabelInputContainer>

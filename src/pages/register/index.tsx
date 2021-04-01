@@ -84,7 +84,7 @@ function SignUp(): JSX.Element {
               <Input
                 name="username"
                 placeholder="Digite seu username"
-                ref={inputRef}
+                refInput={inputRef}
                 required
               >
                 Username
@@ -92,7 +92,7 @@ function SignUp(): JSX.Element {
               <Input
                 name="email"
                 placeholder="Digite seu e-mail"
-                ref={register({
+                refInput={register({
                   pattern: /^\S+@\S+$/,
                   required: true,
                 })}
@@ -103,7 +103,7 @@ function SignUp(): JSX.Element {
               <Input
                 name="password"
                 placeholder="Digite sua senha"
-                ref={register({
+                refInput={register({
                   minLength: 8,
                   pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
                   required: true,
@@ -115,7 +115,7 @@ function SignUp(): JSX.Element {
               <Input
                 name="confirmPassword"
                 placeholder="Digite novamente sua senha"
-                ref={register({
+                refInput={register({
                   validate: (value: string) => value === watch('password'),
                   required: true,
                 })}
