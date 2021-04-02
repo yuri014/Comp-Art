@@ -99,7 +99,7 @@ const Login: React.FC = () => {
                 horizontal: 'right',
               }}
               open={!!showError}
-              autoHideDuration={1000}
+              autoHideDuration={1800}
               onClose={() => setShowError('')}
               message={showError}
               action={
