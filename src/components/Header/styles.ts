@@ -23,64 +23,73 @@ export const HeaderContainer = styled.header`
   z-index: 2;
 
   .container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 20% 40% 20%;
     align-items: center;
     justify-content: space-between;
+
+    p {
+      font: 400 2.8rem ${({ theme }) => theme.fonts.display};
+      color: ${({ theme }) => theme.colors.themeColor};
+    }
+
+    .search-input {
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      input {
+        padding: 1.4rem 2rem;
+        background-color: ${({ theme }) => theme.colors.backgroundColor};
+        border: none;
+        border-radius: 5px;
+        width: 100%;
+        height: 100%;
+        color: ${({ theme }) => theme.colors.themeColor};
+
+        &:focus {
+          padding: calc(1.4rem - 1px) 2rem;
+          border: 1px solid #949494;
+          outline: none;
+        }
+      }
+
+      .search-button {
+        position: absolute;
+        left: calc(100% - 4.6rem);
+        button {
+          color: ${({ theme }) => theme.colors.gray};
+          font-size: 1.6rem;
+        }
+      }
+    }
+
+    .header-icons {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-left: 4rem;
+
+      a {
+        color: ${({ theme }) => theme.colors.gray};
+      }
+
+      button {
+        padding: 0.2rem;
+
+        img {
+          width: 3rem;
+          height: 3rem;
+          border-radius: 50%;
+          cursor: pointer;
+          object-fit: fill;
+        }
+      }
+    }
   }
 
   & a:hover {
     text-decoration: none;
-  }
-
-  p {
-    font: 400 2.8rem ${({ theme }) => theme.fonts.display};
-    color: ${({ theme }) => theme.colors.themeColor};
-  }
-
-  .search-input {
-    position: relative;
-    display: flex;
-    align-items: center;
-
-    input {
-      padding: 1.4rem 2rem;
-      background-color: ${({ theme }) => theme.colors.backgroundColor};
-      border: none;
-      border-radius: 5px;
-      width: 40rem;
-      height: 100%;
-      color: ${({ theme }) => theme.colors.themeColor};
-
-      &:focus {
-        padding: calc(1.4rem - 1px) 2rem;
-        border: 1px solid #949494;
-        outline: none;
-      }
-    }
-
-    .search-button {
-      position: absolute;
-      left: 36rem;
-      button {
-        color: ${({ theme }) => theme.colors.gray};
-        font-size: 1.6rem;
-      }
-    }
-  }
-
-  .header-icons {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 24rem;
-
-    & img {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      cursor: pointer;
-      object-fit: fill;
-    }
   }
 
   @media (max-width: 992px) {

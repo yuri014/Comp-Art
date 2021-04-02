@@ -6,6 +6,7 @@ import {
   FaExchangeAlt,
   FaMoon,
   FaSearch,
+  FaShoppingCart,
   FaSignOutAlt,
   FaUserAlt,
 } from 'react-icons/fa';
@@ -13,9 +14,13 @@ import {
 import { HeaderContainer, MenuListIcon } from './styles';
 import mainTheme from '../../styles/themes/MainTheme';
 import { AuthContext } from '../../context/auth';
+import ThemeContext from '../../context/theme';
+import toggleTheme from '../../utils/toggleTheme';
+import { ILoggedProfile } from '../../interfaces/Profile';
 
-const Header: React.FC = () => {
+const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
   const auth = useContext(AuthContext);
+  const { theme, setTheme } = useContext(ThemeContext);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -43,15 +48,38 @@ const Header: React.FC = () => {
           </div>
         </div>
         <div className="header-icons">
-          <span />
+          <Link href="/market">
+            <a title="Ir para o marketplace">
+              <FaShoppingCart />
+            </a>
+          </Link>
+          <Link href="/market">
+            <a title="Ir para o marketplace">
+              <FaShoppingCart />
+            </a>
+          </Link>
+          <Link href="/market">
+            <a title="Ir para o marketplace">
+              <FaShoppingCart />
+            </a>
+          </Link>
+          <Link href="/market">
+            <a title="Ir para o marketplace">
+              <FaShoppingCart />
+            </a>
+          </Link>
           <ThemeProvider theme={mainTheme}>
             <IconButton
               aria-controls="menu-header"
               aria-haspopup="true"
+              aria-label="Abrir menu de configurações"
               onClick={handleClick}
               color="secondary"
             >
-              <FaCog size={16} />
+              <img
+                src={process.env.NEXT_PUBLIC_API_HOST + getLoggedProfile.avatar}
+                alt="Foto do perfil"
+              />
             </IconButton>
             <Menu
               id="menu-header"
@@ -69,9 +97,9 @@ const Header: React.FC = () => {
                 </Link>
               </MenuItem>
               <MenuItem>
-                <MenuListIcon>
+                <MenuListIcon onClick={() => toggleTheme(theme, setTheme)}>
                   <FaMoon />
-                  <p>Modo Escuro</p>
+                  <p>Modo {theme === 'light' ? 'Claro' : 'Escuro'}</p>
                 </MenuListIcon>
               </MenuItem>
               <MenuItem>
