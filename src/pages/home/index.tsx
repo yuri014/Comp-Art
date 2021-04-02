@@ -42,7 +42,7 @@ const HomePage: React.FC = () => {
       <Head>
         <title>Comp-Art</title>
       </Head>
-      <Header />
+      <Header getLoggedProfile={getLoggedProfile} />
       <LevelContext.Provider
         value={{ updateLevel: getLevel, level: profileLevel }}
       >
