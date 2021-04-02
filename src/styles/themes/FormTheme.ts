@@ -68,9 +68,9 @@ const formTheme = createMuiTheme({
     },
     MuiSnackbarContent: {
       root: {
-        backgroundColor: '#08162f',
-        color: '#cbcaeb',
-        borderRadius: 2,
+        backgroundColor: '#ED4848',
+        color: '#FFFFFF',
+        borderRadius: 5,
       },
     },
   },
