@@ -14,12 +14,12 @@ export default createGlobalStyle`
   html,
   body,
   #root {
-    background-color: ${props => props.theme.colors.backgroundColor};
-    font-family: ${props => props.theme.fonts.primary};
+    background-color: ${({ theme }) => theme.colors.backgroundColor};
+    font-family: ${({ theme }) => theme.fonts.primary};
   }
 
   button {
-    font-family: ${props => props.theme.fonts.primary};
+    font-family: ${({ theme }) => theme.fonts.primary};
   }
 
   .container {
@@ -67,15 +67,15 @@ export default createGlobalStyle`
   }
 
   .primary-icon {
-    color: ${props => props.theme.colors.mainColor};
+    color: ${({ theme }) => theme.colors.mainColor};
   }
 
   .secondary-icon {
-    color: ${props => props.theme.colors.lightContrast};
+    color: ${({ theme }) => theme.colors.lightContrast};
   }
 
   .danger-icon {
-    color: ${props => props.theme.colors.danger};
+    color: ${({ theme }) => theme.colors.danger};
   }
 
   .main-title {
@@ -84,28 +84,28 @@ export default createGlobalStyle`
     display: flex;
     align-items: center;
     justify-content: center;
-    font: 400 40px ${props => props.theme.fonts.display}, sans-serif;
+    font: 400 40px ${({ theme }) => theme.fonts.display}, sans-serif;
     filter: blur(0.4px);
     transform: skewY(-5deg);
     letter-spacing: 4px;
     word-spacing: -8px;
-    color: ${props => props.theme.colors.themeColor};
-    text-shadow: 4px 4px 2px ${props => props.theme.colors.titleColor};
+    color: ${({ theme }) => theme.colors.themeColor};
+    text-shadow: 4px 4px 2px ${({ theme }) => theme.colors.titleColor};
   }
 
   .holder {
-    background: ${props => props.theme.colors.mainGradient};
+    background: ${({ theme }) => theme.colors.mainGradient};
     width: 100%;
     height: 100%;
   }
 
   #nprogress .bar {
-  background: ${props => props.theme.colors.mainColor};
+  background: ${({ theme }) => theme.colors.mainColor};
   }
 
   #nprogress .spinner-icon {
-    border-top-color: ${props => props.theme.colors.mainColor};
-    border-left-color: ${props => props.theme.colors.mainColor};
+    border-top-color: ${({ theme }) => theme.colors.mainColor};
+    border-left-color: ${({ theme }) => theme.colors.mainColor};
   }
 
   ::-webkit-scrollbar {
@@ -113,16 +113,16 @@ export default createGlobalStyle`
   }
 
   ::-webkit-scrollbar-track {
-    background: ${props => props.theme.colors.secondaryBackgroundColor};
+    background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
   }
 
   ::-webkit-scrollbar-thumb {
-    background: ${props => props.theme.colors.lightContrast};
+    background: ${({ theme }) => theme.colors.lightContrast};
     border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: ${props => props.theme.colors.mainColor};
+    background: ${({ theme }) => theme.colors.mainColor};
   }
 
   @media (min-width: 768px) {

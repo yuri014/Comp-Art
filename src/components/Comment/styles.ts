@@ -14,26 +14,26 @@ export const CommentContainer = styled.div`
       height: 3rem;
       border-radius: 50%;
       object-fit: cover;
-      box-shadow: 1px 2px 4px ${props => props.theme.colors.backgroundColor};
+      box-shadow: 1px 2px 4px ${({ theme }) => theme.colors.backgroundColor};
     }
   }
 
   .comment-body {
-    background: ${props => props.theme.colors.secondaryBackgroundColor};
-    color: ${props => props.theme.colors.lightContrast};
+    background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
+    color: ${({ theme }) => theme.colors.lightContrast};
     border-radius: 4px;
     padding: 1rem;
-    box-shadow: 1px 2px 4px ${props => props.theme.colors.backgroundColor};
+    box-shadow: 1px 2px 4px ${({ theme }) => theme.colors.backgroundColor};
 
     a {
-      color: ${props => props.theme.colors.lightContrast};
+      color: ${({ theme }) => theme.colors.lightContrast};
       font-size: 1.5rem;
       display: flex;
       align-items: center;
       font-weight: 700;
 
       p:last-child {
-        color: ${props => props.theme.colors.blueContrast};
+        color: ${({ theme }) => theme.colors.blueContrast};
         font-weight: 400;
         margin-left: 0.5rem;
       }
@@ -50,7 +50,7 @@ export const CommentContainer = styled.div`
     align-items: center;
     margin-top: 1rem;
     font-size: 1.3rem;
-    color: ${props => props.theme.colors.lightContrast};
+    color: ${({ theme }) => theme.colors.lightContrast};
     margin-left: 1rem;
 
     p {
@@ -97,7 +97,7 @@ export const CommentsSectionContainer = styled.section`
     backdrop-filter: blur(4px);
     border: 1px solid rgba(255, 255, 255, 0.18);
     width: 100%;
-    border-top: 1px solid ${props => props.theme.colors.mainColor};
+    border-top: 1px solid ${({ theme }) => theme.colors.mainColor};
     position: fixed;
     width: 100%;
     bottom: 0;
@@ -116,7 +116,7 @@ export const CommentsSectionContainer = styled.section`
     }
 
     .send-button {
-      color: ${props => props.theme.colors.mainColor};
+      color: ${({ theme }) => theme.colors.mainColor};
     }
   }
 

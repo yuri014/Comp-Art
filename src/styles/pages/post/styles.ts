@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const PostPageContainer = styled.div`
-  background: ${props => props.theme.colors.mainGradient};
+  background: ${({ theme }) => theme.colors.mainGradient};
   min-height: 100vh;
 
   .profile {
@@ -13,12 +13,12 @@ const PostPageContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: ${props => props.theme.colors.mainColor};
+    color: ${({ theme }) => theme.colors.mainColor};
     padding: 0 2rem;
-    border-bottom: 1px solid ${props => props.theme.colors.mainColor};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.mainColor};
 
     a {
-      color: ${props => props.theme.colors.mainColor};
+      color: ${({ theme }) => theme.colors.mainColor};
     }
   }
 
@@ -26,7 +26,7 @@ const PostPageContainer = styled.div`
     max-width: 1378px;
     margin: 0 auto;
     width: 60%;
-    background: ${props => props.theme.colors.mainGradient};
+    background: ${({ theme }) => theme.colors.mainGradient};
   }
 `;
 

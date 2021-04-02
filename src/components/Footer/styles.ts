@@ -14,12 +14,12 @@ const FooterContainer = styled.footer`
     font-size: 1.2rem;
 
     a {
-      color: ${props => props.theme.colors.themeColor};
+      color: ${({ theme }) => theme.colors.themeColor};
     }
   }
 
   svg {
-    color: ${props => props.theme.colors.themeColor};
+    color: ${({ theme }) => theme.colors.themeColor};
     font-size: 1.6rem;
   }
 

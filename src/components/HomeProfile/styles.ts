@@ -9,8 +9,8 @@ const HomeProfileContainer = styled.aside`
   display: grid;
   grid-template-rows: 15% 5% 40% 20%;
   align-items: flex-start;
-  color: ${props => props.theme.colors.lightContrast};
-  font-family: ${props => props.theme.fonts.primary};
+  color: ${({ theme }) => theme.colors.lightContrast};
+  font-family: ${({ theme }) => theme.fonts.primary};
   max-width: 280px;
   max-height: 568px;
   overflow-y: auto;
@@ -52,7 +52,7 @@ const HomeProfileContainer = styled.aside`
           &:first-child {
             padding-right: 1rem;
             margin-right: 1rem;
-            border-right: 1px solid ${props => props.theme.colors.lightContrast};
+            border-right: 1px solid ${({ theme }) => theme.colors.lightContrast};
           }
         }
       }
@@ -70,10 +70,10 @@ const HomeProfileContainer = styled.aside`
       align-items: center;
       justify-content: flex-start;
       & span {
-        background-color: ${props => props.theme.colors.mainColor};
+        background-color: ${({ theme }) => theme.colors.mainColor};
         padding: 0 1rem;
         border-radius: 2px;
-        color: ${props => props.theme.colors.backgroundColor};
+        color: ${({ theme }) => theme.colors.backgroundColor};
         margin-left: 2rem;
       }
     }
@@ -95,17 +95,17 @@ const HomeProfileContainer = styled.aside`
       margin-top: 2rem;
       display: flex;
       align-items: center;
-      color: ${props => props.theme.colors.lightContrast};
+      color: ${({ theme }) => theme.colors.lightContrast};
       transition: text-shadow 0.2s ease-in;
       &:hover {
-        text-shadow: 1px 1px 4px ${props => props.theme.colors.lightContrast};
+        text-shadow: 1px 1px 4px ${({ theme }) => theme.colors.lightContrast};
       }
       & p {
         margin-left: 1rem;
       }
 
       & .post-icon {
-        color: ${props => props.theme.colors.mainColor};
+        color: ${({ theme }) => theme.colors.mainColor};
       }
     }
   }
@@ -126,7 +126,7 @@ const HomeProfileContainer = styled.aside`
     grid-template-rows: 12% 8% 40% 40% !important;
     position: unset;
     left: unset;
-    background: ${props => props.theme.colors.mainGradient};
+    background: ${({ theme }) => theme.colors.mainGradient};
     width: 88vw;
     height: 100vh;
     padding: 4rem;
@@ -138,7 +138,7 @@ const HomeProfileContainer = styled.aside`
       & figure {
         height: 48px;
         width: 48px;
-        box-shadow: 0 0 7px ${props => props.theme.colors.backgroundColor};
+        box-shadow: 0 0 7px ${({ theme }) => theme.colors.backgroundColor};
       }
 
       & .profile-info {
@@ -156,7 +156,7 @@ const HomeProfileContainer = styled.aside`
               padding-right: 0.4rem !important;
               margin-right: 0.4rem !important;
               border-right: 1px solid
-                ${props => props.theme.colors.lightContrast};
+                ${({ theme }) => theme.colors.lightContrast};
             }
           }
         }
@@ -172,10 +172,10 @@ const HomeProfileContainer = styled.aside`
         display: flex;
         align-items: center;
         & span {
-          background-color: ${props => props.theme.colors.mainColor};
+          background-color: ${({ theme }) => theme.colors.mainColor};
           padding: 0 1rem;
           border-radius: 2px;
-          color: ${props => props.theme.colors.backgroundColor};
+          color: ${({ theme }) => theme.colors.backgroundColor};
           margin-left: 1rem;
         }
       }
@@ -220,7 +220,7 @@ const HomeProfileContainer = styled.aside`
             &:first-child {
               padding-right: 0;
               margin-right: 0;
-              border-right: 0 solid ${props => props.theme.colors.lightContrast};
+              border-right: 0 solid ${({ theme }) => theme.colors.lightContrast};
             }
           }
         }

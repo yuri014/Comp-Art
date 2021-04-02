@@ -11,8 +11,8 @@ const TagsContainer = styled.div`
     cursor: pointer;
     padding: 1rem;
     border: none;
-    background-color: ${props => props.theme.colors.lightContrast};
-    color: ${props => props.theme.colors.backgroundColor};
+    background-color: ${({ theme }) => theme.colors.lightContrast};
+    color: ${({ theme }) => theme.colors.backgroundColor};
     font-weight: 700;
     border-radius: 4px;
     text-shadow: 0 0 2px #00000050;

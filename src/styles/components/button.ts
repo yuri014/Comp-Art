@@ -5,8 +5,8 @@ const CAButton = styled.button`
   padding: 1.4rem;
   border-radius: 5px;
   border: none;
-  background-color: ${props => props.theme.colors.mainColor};
-  color: ${props => props.theme.colors.themeColor};
+  background-color: ${({ theme }) => theme.colors.mainColor};
+  color: ${({ theme }) => theme.colors.themeColor};
   margin-bottom: 2rem;
   cursor: pointer;
   transition: 0.2s ease-in-out;

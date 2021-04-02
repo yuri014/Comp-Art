@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const ProfileContainer = styled.div`
-  color: ${props => props.theme.colors.lightContrast};
+  color: ${({ theme }) => theme.colors.lightContrast};
   width: 100%;
 
   & .cover-profile {
     width: 100%;
     height: 12rem;
-    border-bottom: 1px solid ${props => props.theme.colors.mainColor};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.mainColor};
     z-index: 1;
     & img {
       width: 100%;
@@ -25,7 +25,7 @@ export const ProfileContainer = styled.div`
     cursor: pointer;
 
     & img {
-      box-shadow: 0 0 4px ${props => props.theme.colors.namesakeText};
+      box-shadow: 0 0 4px ${({ theme }) => theme.colors.namesakeText};
       width: 100%;
       height: 100%;
       border-radius: 50%;
@@ -41,17 +41,17 @@ export const ProfileContainer = styled.div`
     margin-top: -3rem;
     margin-bottom: 1rem;
     & button {
-      border: 1px solid ${props => props.theme.colors.mainColor};
-      color: ${props => props.theme.colors.lightContrast};
+      border: 1px solid ${({ theme }) => theme.colors.mainColor};
+      color: ${({ theme }) => theme.colors.lightContrast};
       border-radius: 4px;
       padding: 0.4rem 1rem;
       background: none;
       transition: 0.4s ease;
       cursor: pointer;
       font-size: 1.4rem;
-      font-family: ${props => props.theme.fonts.display};
+      font-family: ${({ theme }) => theme.fonts.display};
       &:hover {
-        box-shadow: 0 0 4px 2px ${props => props.theme.colors.lightText};
+        box-shadow: 0 0 4px 2px ${({ theme }) => theme.colors.lightText};
       }
     }
   }
@@ -74,21 +74,21 @@ export const ProfileContainer = styled.div`
 
         & h2 {
           font-size: 1.4rem;
-          color: ${props => props.theme.colors.lightText};
+          color: ${({ theme }) => theme.colors.lightText};
         }
 
         & p {
           font-size: 1.4rem;
-          color: ${props => props.theme.colors.lightText};
+          color: ${({ theme }) => theme.colors.lightText};
         }
 
         & p:first-child {
           font-size: 2rem;
           font-weight: 600;
-          color: ${props => props.theme.colors.lightContrast};
+          color: ${({ theme }) => theme.colors.lightContrast};
           & .level {
-            background-color: ${props => props.theme.colors.mainColor};
-            color: ${props => props.theme.colors.backgroundColor};
+            background-color: ${({ theme }) => theme.colors.mainColor};
+            color: ${({ theme }) => theme.colors.backgroundColor};
             padding: 0 0.8rem;
             border-radius: 4px;
           }
@@ -99,7 +99,7 @@ export const ProfileContainer = styled.div`
         margin-top: 2rem;
         width: 100%;
         font-size: 1.4rem;
-        border: 1px solid ${props => props.theme.colors.namesakeText};
+        border: 1px solid ${({ theme }) => theme.colors.namesakeText};
         border-radius: 4px;
         padding: 1rem;
       }
@@ -130,7 +130,7 @@ export const ProfileContainer = styled.div`
   .profile-posts {
     padding: 4rem 1rem;
     padding-bottom: 8rem;
-    border-top: 1px solid ${props => props.theme.colors.namesakeText};
+    border-top: 1px solid ${({ theme }) => theme.colors.namesakeText};
   }
 
   @media (min-width: 992px) {
@@ -179,7 +179,7 @@ export const ProfileContainer = styled.div`
 
           & h2 {
             font-size: 1.6rem;
-            color: ${props => props.theme.colors.lightText};
+            color: ${({ theme }) => theme.colors.lightText};
             margin-top: 0.4rem;
           }
 
@@ -215,7 +215,7 @@ export const ProfileContainer = styled.div`
 
           & p {
             font-size: 1.8rem;
-            color: ${props => props.theme.colors.lightContrast};
+            color: ${({ theme }) => theme.colors.lightContrast};
           }
         }
 

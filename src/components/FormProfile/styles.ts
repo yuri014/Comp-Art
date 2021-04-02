@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const FormProfileContainer = styled.form`
   width: 85%;
-  background: ${props => props.theme.colors.mainGradient};
+  background: ${({ theme }) => theme.colors.mainGradient};
   border-radius: 4px;
   .profile-image-upload,
   .profile-image-cover {
@@ -31,13 +31,13 @@ const FormProfileContainer = styled.form`
       object-fit: cover;
     }
     .holder {
-      background: ${props => props.theme.colors.lightContrast};
+      background: ${({ theme }) => theme.colors.lightContrast};
       border-radius: 4px 4px 0 0;
     }
     label {
       margin-top: -12rem;
       .upload-icon {
-        color: ${props => props.theme.colors.mainColor};
+        color: ${({ theme }) => theme.colors.mainColor};
       }
     }
   }
@@ -67,23 +67,23 @@ const FormProfileContainer = styled.form`
       margin-left: -4rem;
       margin-bottom: 1rem;
       border-radius: 50%;
-      background: ${props => props.theme.colors.mainColor};
+      background: ${({ theme }) => theme.colors.mainColor};
 
       .upload-icon {
-        color: ${props => props.theme.colors.themeColor};
+        color: ${({ theme }) => theme.colors.themeColor};
       }
     }
   }
 
   .link-label {
-    color: ${props => props.theme.colors.lightContrast};
+    color: ${({ theme }) => theme.colors.lightContrast};
     margin-left: 1rem;
     margin-right: -0.9rem;
     margin-bottom: 0.2rem;
   }
 
   .link-label-end {
-    color: ${props => props.theme.colors.lightContrast};
+    color: ${({ theme }) => theme.colors.lightContrast};
     margin-bottom: 0.2rem;
   }
 

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const ErrorMessageContainer = styled.div`
   font-size: 1.6rem;
-  color: ${props => props.theme.colors.danger};
+  color: ${({ theme }) => theme.colors.danger};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,10 +10,10 @@ const ErrorMessageContainer = styled.div`
   font-weight: 500;
   padding: 0.6rem;
   border-radius: 4px;
-  border: 1px solid ${props => props.theme.colors.danger};
+  border: 1px solid ${({ theme }) => theme.colors.danger};
 
   .danger-icon {
-    color: ${props => props.theme.colors.danger};
+    color: ${({ theme }) => theme.colors.danger};
   }
 
   @media (min-width: 992px) {

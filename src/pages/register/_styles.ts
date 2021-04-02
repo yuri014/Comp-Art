@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const RegisterContainer = styled.div`
   padding: 2rem 0;
-  color: ${props => props.theme.colors.themeColor};
+  color: ${({ theme }) => theme.colors.themeColor};
   min-height: 100vh;
   display: grid;
 
@@ -35,14 +35,14 @@ const RegisterContainer = styled.div`
 
         &.active,
         &:focus {
-          border: 2px solid ${props => props.theme.colors.mainColor};
+          border: 2px solid ${({ theme }) => theme.colors.mainColor};
           outline: none;
         }
 
         p {
           font-size: 1.4rem;
           font-weight: bold;
-          color: ${props => props.theme.colors.themeColor};
+          color: ${({ theme }) => theme.colors.themeColor};
         }
 
         img {

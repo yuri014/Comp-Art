@@ -23,7 +23,7 @@ const ModalProfileContainer = styled.div`
     margin: auto;
     background-color: #1e2939;
     border-radius: 8px;
-    border: 2px solid ${props => props.theme.colors.mainColor};
+    border: 2px solid ${({ theme }) => theme.colors.mainColor};
     color: white;
     text-align: left;
     padding: 1rem 0;
@@ -32,14 +32,14 @@ const ModalProfileContainer = styled.div`
     transform: scale(0);
 
     a {
-      color: ${props => props.theme.colors.lightContrast};
+      color: ${({ theme }) => theme.colors.lightContrast};
     }
 
     .profile {
       display: flex;
       align-items: flex-start;
       padding: 0.6rem 2rem;
-      border-bottom: 1px solid ${props => props.theme.colors.lightText};
+      border-bottom: 1px solid ${({ theme }) => theme.colors.lightText};
 
       img {
         height: 4rem;
@@ -58,12 +58,12 @@ const ModalProfileContainer = styled.div`
           }
 
           p {
-            color: ${props => props.theme.colors.blueContrast};
+            color: ${({ theme }) => theme.colors.blueContrast};
           }
 
           .level {
-            background-color: ${props => props.theme.colors.mainColor};
-            color: ${props => props.theme.colors.namesakeText};
+            background-color: ${({ theme }) => theme.colors.mainColor};
+            color: ${({ theme }) => theme.colors.namesakeText};
             padding: 0 0.6rem;
             border-radius: 4px;
           }

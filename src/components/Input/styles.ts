@@ -27,7 +27,7 @@ export const LabelInputContainer = styled.label`
 
 export const InputContainer = styled.input`
   padding: 1.4rem 2rem;
-  background-color: ${props => props.theme.colors.backgroundColor};
+  background-color: ${({ theme }) => theme.colors.backgroundColor};
   border: none;
   border-radius: 5px;
   color: ${({ theme }) => theme.colors.themeColor};

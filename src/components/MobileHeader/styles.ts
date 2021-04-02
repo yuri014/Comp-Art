@@ -11,7 +11,7 @@ const MobileHeaderContainer = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: ${props => props.theme.colors.secondaryBackgroundColor};
+    background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
     padding: 1rem 2rem;
     transition: all 0.4s ease-in-out;
 
@@ -21,11 +21,11 @@ const MobileHeaderContainer = styled.header`
   }
 
   p {
-    font: 400 16px ${props => props.theme.fonts.display}, sans-serif;
+    font: 400 16px ${({ theme }) => theme.fonts.display}, sans-serif;
     filter: blur(0.4px);
     letter-spacing: 4px;
-    color: ${props => props.theme.colors.themeColor};
-    text-shadow: 3px 3px 2px ${props => props.theme.colors.titleColor};
+    color: ${({ theme }) => theme.colors.themeColor};
+    text-shadow: 3px 3px 2px ${({ theme }) => theme.colors.titleColor};
   }
   .profile {
     img {
@@ -38,7 +38,7 @@ const MobileHeaderContainer = styled.header`
 
   a {
     size: ${size};
-    color: ${props => props.theme.colors.mainColor};
+    color: ${({ theme }) => theme.colors.mainColor};
   }
 
   @media (min-width: 992px) {

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const LandingContainer = styled.div`
-  background-color: ${props => props.theme.colors.backgroundColor};
+  background-color: ${({ theme }) => theme.colors.backgroundColor};
   .container {
     height: 100vh;
     padding: 4rem 0;
@@ -16,7 +16,7 @@ const LandingContainer = styled.div`
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    color: ${props => props.theme.colors.themeColor};
+    color: ${({ theme }) => theme.colors.themeColor};
 
     h2 {
       font-size: 2rem;

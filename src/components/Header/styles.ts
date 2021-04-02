@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const HeaderContainer = styled.header`
-  background: ${props => props.theme.colors.secondaryBackgroundColor};
-  color: ${props => props.theme.colors.lightContrast};
+  background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
+  color: ${({ theme }) => theme.colors.lightContrast};
   position: fixed;
   width: 100%;
   padding: 1rem 4rem;
@@ -20,11 +20,11 @@ const HeaderContainer = styled.header`
   }
 
   p {
-    font: 400 18px ${props => props.theme.fonts.display}, sans-serif;
+    font: 400 18px ${({ theme }) => theme.fonts.display}, sans-serif;
     filter: blur(0.4px);
     letter-spacing: 4px;
-    color: ${props => props.theme.colors.themeColor};
-    text-shadow: 3px 3px 2px ${props => props.theme.colors.titleColor};
+    color: ${({ theme }) => theme.colors.themeColor};
+    text-shadow: 3px 3px 2px ${({ theme }) => theme.colors.titleColor};
   }
 
   .search-input {
@@ -37,7 +37,7 @@ const HeaderContainer = styled.header`
     }
     & button {
       margin-left: 1rem;
-      color: ${props => props.theme.colors.mainColor};
+      color: ${({ theme }) => theme.colors.mainColor};
       border-radius: 2px;
       border: none;
       font-size: 1.8rem;
@@ -49,7 +49,7 @@ const HeaderContainer = styled.header`
     }
 
     & input {
-      color: ${props => props.theme.colors.lightContrast};
+      color: ${({ theme }) => theme.colors.lightContrast};
     }
   }
 

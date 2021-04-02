@@ -37,7 +37,7 @@ const ModalContainer = styled.section`
     flex-direction: column;
     background-color: #1e2939;
     border-radius: 8px;
-    border: 2px solid ${props => props.theme.colors.mainColor};
+    border: 2px solid ${({ theme }) => theme.colors.mainColor};
     color: white;
     text-align: left;
     padding: 2rem;
@@ -57,7 +57,7 @@ const ModalContainer = styled.section`
 
   .modal-title {
     max-width: 90%;
-    font: 2rem ${props => props.theme.fonts.primary}, sans-serif;
+    font: 2rem ${({ theme }) => theme.fonts.primary}, sans-serif;
     padding: 2px 7px;
     text-shadow: 2px 2px 2px #030447d3;
     letter-spacing: 1px;
@@ -66,14 +66,14 @@ const ModalContainer = styled.section`
 
   .modal-body {
     padding: 14px 0;
-    font: 16px ${props => props.theme.fonts.primary}, sans-serif;
+    font: 16px ${({ theme }) => theme.fonts.primary}, sans-serif;
     color: gainsboro;
   }
 
   .close-modal {
     border: none;
     background-color: transparent;
-    color: ${props => props.theme.colors.mainColor};
+    color: ${({ theme }) => theme.colors.mainColor};
     font-size: 2rem;
     display: flex;
     position: absolute;
@@ -88,9 +88,9 @@ const ModalContainer = styled.section`
   }
 
   .link-buttons-block a {
-    color: ${props => props.theme.colors.namesakeText};
+    color: ${({ theme }) => theme.colors.namesakeText};
     padding: 15px 15px;
-    background: ${props => props.theme.colors.mainColor};
+    background: ${({ theme }) => theme.colors.mainColor};
     border-radius: 4px;
     width: 48%;
     letter-spacing: 1px;
@@ -99,12 +99,12 @@ const ModalContainer = styled.section`
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    font: 400 12px ${props => props.theme.fonts.display}, sans-serif;
+    font: 400 12px ${({ theme }) => theme.fonts.display}, sans-serif;
   }
 
   .link-buttons-block a:hover {
-    filter: drop-shadow(1px 1px 4px ${props => props.theme.colors.mainColor});
-    color: ${props => props.theme.colors.lightText};
+    filter: drop-shadow(1px 1px 4px ${({ theme }) => theme.colors.mainColor});
+    color: ${({ theme }) => theme.colors.lightText};
   }
 
   @media (min-width: 992px) {

@@ -3,19 +3,19 @@ import styled from 'styled-components';
 export const PostContainer = styled.section`
   display: flex;
   flex-direction: column;
-  color: ${props => props.theme.colors.lightContrast};
-  background: ${props => props.theme.colors.secondaryBackgroundColor};
+  color: ${({ theme }) => theme.colors.lightContrast};
+  background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
   border-radius: 4px;
   padding: 2rem 3rem;
   font-size: 1.8rem;
-  font-family: ${props => props.theme.fonts.primary};
+  font-family: ${({ theme }) => theme.fonts.primary};
   box-shadow: 0 0 6px #000;
   margin-bottom: 4rem;
 
   &.full-post {
     box-shadow: none;
     background: none;
-    border-bottom: 1px solid ${props => props.theme.colors.lightContrast};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.lightContrast};
     border-radius: 0;
 
     .post-config {
@@ -37,7 +37,7 @@ export const PostContainer = styled.section`
           font-size: 2.4rem;
           letter-spacing: 1px;
           margin-bottom: 0.4rem;
-          color: ${props => props.theme.colors.lightContrast};
+          color: ${({ theme }) => theme.colors.lightContrast};
           white-space: nowrap;
           max-width: 440px;
           overflow: hidden;
@@ -47,7 +47,7 @@ export const PostContainer = styled.section`
           display: flex;
           p {
             margin-top: 0.4rem;
-            color: ${props => props.theme.colors.blueContrast};
+            color: ${({ theme }) => theme.colors.blueContrast};
             font-size: 1.4rem;
             letter-spacing: 1px;
             white-space: nowrap;
@@ -104,7 +104,7 @@ export const PostContainer = styled.section`
 
     .post-counts {
       button {
-        color: ${props => props.theme.colors.lightContrast};
+        color: ${({ theme }) => theme.colors.lightContrast};
         background: transparent;
         border: none;
         cursor: pointer;
@@ -114,7 +114,7 @@ export const PostContainer = styled.section`
         width: unset;
 
         &:focus {
-          outline: 1px solid ${props => props.theme.colors.mainColor};
+          outline: 1px solid ${({ theme }) => theme.colors.mainColor};
         }
 
         .likes-images {
@@ -147,9 +147,9 @@ export const PostContainer = styled.section`
       padding-top: 1rem;
       margin-top: 1rem;
       font-size: 2.4rem;
-      border-top: 2px solid ${props => props.theme.colors.lightContrast};
+      border-top: 2px solid ${({ theme }) => theme.colors.lightContrast};
       & button {
-        color: ${props => props.theme.colors.lightContrast};
+        color: ${({ theme }) => theme.colors.lightContrast};
         border: none;
         background-color: transparent;
         cursor: pointer;
@@ -170,12 +170,12 @@ export const PostContainer = styled.section`
 
         &:focus {
           outline: none;
-          color: ${props => props.theme.colors.mainColor};
+          color: ${({ theme }) => theme.colors.mainColor};
         }
 
         &.active {
           opacity: 1;
-          color: ${props => props.theme.colors.mainColor};
+          color: ${({ theme }) => theme.colors.mainColor};
           svg {
             transform: scale(0);
             animation: liked 0.4s ease-in-out forwards;
@@ -236,11 +236,11 @@ export const PostContainer = styled.section`
 `;
 
 export const CreatePostContainer = styled.div`
-  color: ${props => props.theme.colors.lightContrast};
+  color: ${({ theme }) => theme.colors.lightContrast};
   width: 90%;
   margin: 0 auto;
   & form {
-    background: ${props => props.theme.colors.mainGradient};
+    background: ${({ theme }) => theme.colors.mainGradient};
     padding: 2rem;
     border-radius: 0 0 4px 4px;
     display: flex;
@@ -253,7 +253,7 @@ export const CreatePostContainer = styled.div`
   }
 
   & svg {
-    color: ${props => props.theme.colors.lightContrast};
+    color: ${({ theme }) => theme.colors.lightContrast};
   }
 
   & .file-label {
@@ -263,7 +263,7 @@ export const CreatePostContainer = styled.div`
     max-height: 300px;
     border-radius: 2px;
     cursor: pointer;
-    border: 1px dashed ${props => props.theme.colors.lightContrast};
+    border: 1px dashed ${({ theme }) => theme.colors.lightContrast};
     & input {
       display: none;
     }
@@ -293,7 +293,7 @@ export const CreatePostContainer = styled.div`
     & button {
       width: 16rem;
       & svg {
-        color: ${props => props.theme.colors.namesakeText};
+        color: ${({ theme }) => theme.colors.namesakeText};
       }
     }
   }
@@ -311,8 +311,8 @@ export const CreatePostContainer = styled.div`
 `;
 
 export const EmptyPostContainer = styled.div`
-  color: ${props => props.theme.colors.lightContrast};
-  background: ${props => props.theme.colors.secondaryBackgroundColor};
+  color: ${({ theme }) => theme.colors.lightContrast};
+  background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
   padding: 2rem 1rem;
   font-size: 2rem;
   text-align: center;
@@ -329,13 +329,13 @@ export const EmptyPostContainer = styled.div`
 
   & button {
     margin-top: 2rem;
-    background-color: ${props => props.theme.colors.mainColor};
+    background-color: ${({ theme }) => theme.colors.mainColor};
     padding: 1rem 2rem;
     border: none;
     border-radius: 4px;
     font-size: 1.4rem;
-    color: ${props => props.theme.colors.secondaryBackgroundColor};
-    font-family: ${props => props.theme.fonts.display};
+    color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
+    font-family: ${({ theme }) => theme.fonts.display};
     cursor: pointer;
     text-transform: uppercase;
     display: flex;
@@ -370,7 +370,7 @@ export const AudioPostContainer = styled.section`
     margin-top: 1rem;
 
     button {
-      color: ${props => props.theme.colors.lightContrast};
+      color: ${({ theme }) => theme.colors.lightContrast};
       background: transparent;
       border: none;
       cursor: pointer;
@@ -379,7 +379,7 @@ export const AudioPostContainer = styled.section`
       align-items: center;
 
       &:focus {
-        outline: 1px solid ${props => props.theme.colors.mainColor};
+        outline: 1px solid ${({ theme }) => theme.colors.mainColor};
       }
 
       .likes-images {
@@ -408,7 +408,7 @@ export const AudioPostContainer = styled.section`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: ${props => props.theme.colors.namesakeText};
+    background: ${({ theme }) => theme.colors.namesakeText};
     height: 160px;
     border-radius: 4px;
     box-shadow: 0 4px 4px #000;
@@ -440,14 +440,14 @@ export const AudioPostContainer = styled.section`
           cursor: pointer;
           filter: drop-shadow(1px 1px #000);
           transition: all 0.4s ease-in-out;
-          color: ${props => props.theme.colors.namesakeText};
+          color: ${({ theme }) => theme.colors.namesakeText};
         }
       }
 
       &:hover,
       &:active,
       &:focus {
-        outline: 1px solid ${props => props.theme.colors.mainColor};
+        outline: 1px solid ${({ theme }) => theme.colors.mainColor};
         .interactions {
           opacity: 1;
           pointer-events: all;
@@ -475,7 +475,7 @@ export const AudioPostContainer = styled.section`
       }
 
       .MuiLinearProgress-colorPrimary {
-        background: ${props => props.theme.colors.backgroundColor};
+        background: ${({ theme }) => theme.colors.backgroundColor};
       }
 
       .audio-buttons {
@@ -499,11 +499,11 @@ export const AudioPostContainer = styled.section`
   }
 
   span {
-    color: ${props => props.theme.colors.mainColor};
+    color: ${({ theme }) => theme.colors.mainColor};
   }
 
   p {
-    color: ${props => props.theme.colors.lightContrast};
+    color: ${({ theme }) => theme.colors.lightContrast};
     &.music-name {
       font-weight: 700;
       font-size: 2rem;

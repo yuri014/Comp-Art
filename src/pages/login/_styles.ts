@@ -6,7 +6,7 @@ const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  color: ${props => props.theme.colors.themeColor};
+  color: ${({ theme }) => theme.colors.themeColor};
 
   main {
     h1 {
@@ -14,7 +14,7 @@ const LoginContainer = styled.div`
     }
 
     form {
-      background-color: ${props => props.theme.colors.secondaryBackgroundColor};
+      background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
       border-radius: 10px;
       padding: 3rem;
       box-shadow: ${({ theme }) => theme.colors.mainShadow};
@@ -35,7 +35,7 @@ const LoginContainer = styled.div`
       a {
         margin-bottom: 2rem;
         display: block;
-        color: ${props => props.theme.colors.mainColor};
+        color: ${({ theme }) => theme.colors.mainColor};
         font-size: 1.4rem;
         text-decoration: underline;
       }

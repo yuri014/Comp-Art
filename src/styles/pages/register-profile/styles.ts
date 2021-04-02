@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const RegisterProfileContainer = styled.main`
-  color: ${props => props.theme.colors.lightContrast};
+  color: ${({ theme }) => theme.colors.lightContrast};
   display: flex;
   align-items: center;
   justify-content: space-around;
