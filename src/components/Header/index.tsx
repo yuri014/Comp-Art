@@ -1,17 +1,16 @@
 import React, { useContext } from 'react';
 import Link from 'next/link';
+import { IconButton, Menu, MenuItem, ThemeProvider } from '@material-ui/core';
 import {
-  IconButton,
-  Menu,
-  MenuItem,
-  NoSsr,
-  TextField,
-  ThemeProvider,
-} from '@material-ui/core';
-import { FaCog, FaSearch } from 'react-icons/fa';
+  FaCog,
+  FaExchangeAlt,
+  FaMoon,
+  FaSearch,
+  FaSignOutAlt,
+  FaUserAlt,
+} from 'react-icons/fa';
 
-import HeaderContainer from './styles';
-import formTheme from '../../styles/themes/FormTheme';
+import { HeaderContainer, MenuListIcon } from './styles';
 import mainTheme from '../../styles/themes/MainTheme';
 import { AuthContext } from '../../context/auth';
 
@@ -32,24 +31,16 @@ const Header: React.FC = () => {
       <div className="container">
         <Link href="/home">
           <a>
-            <p>COMP-ART</p>
+            <p>CompArt</p>
           </a>
         </Link>
         <div className="search-input">
-          <ThemeProvider theme={formTheme}>
-            <NoSsr>
-              <TextField
-                variant="outlined"
-                id="search"
-                label="Search"
-                size="small"
-                fullWidth
-              />
-            </NoSsr>
-          </ThemeProvider>
-          <button type="button">
-            <FaSearch />
-          </button>
+          <input type="text" title="Buscar..." placeholder="Buscar..." />
+          <div className="search-button">
+            <IconButton type="button" aria-label="Buscar">
+              <FaSearch />
+            </IconButton>
+          </div>
         </div>
         <div className="header-icons">
           <span />
@@ -69,7 +60,42 @@ const Header: React.FC = () => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={() => auth.logout()}>Sair</MenuItem>
+              <MenuItem>
+                <Link href="/profile">
+                  <MenuListIcon as="a">
+                    <FaUserAlt />
+                    <p>Meu Perfil</p>
+                  </MenuListIcon>
+                </Link>
+              </MenuItem>
+              <MenuItem>
+                <MenuListIcon>
+                  <FaMoon />
+                  <p>Modo Escuro</p>
+                </MenuListIcon>
+              </MenuItem>
+              <MenuItem>
+                <Link href="/changelog">
+                  <MenuListIcon as="a">
+                    <FaExchangeAlt />
+                    <p>Changelog</p>
+                  </MenuListIcon>
+                </Link>
+              </MenuItem>
+              <MenuItem>
+                <Link href="/config">
+                  <MenuListIcon as="a">
+                    <FaCog />
+                    <p>Configurações</p>
+                  </MenuListIcon>
+                </Link>
+              </MenuItem>
+              <MenuItem onClick={() => auth.logout()}>
+                <MenuListIcon>
+                  <FaSignOutAlt />
+                  <p>Sair</p>
+                </MenuListIcon>
+              </MenuItem>
             </Menu>
           </ThemeProvider>
         </div>

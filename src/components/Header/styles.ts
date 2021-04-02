@@ -1,11 +1,24 @@
 import styled from 'styled-components';
 
-const HeaderContainer = styled.header`
+export const MenuListIcon = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: ${({ theme }) => theme.colors.mainColor};
+  font-size: 1.2rem;
+
+  p {
+    font-weight: bold;
+    color: #fff;
+  }
+`;
+
+export const HeaderContainer = styled.header`
   background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
   color: ${({ theme }) => theme.colors.lightContrast};
   position: fixed;
   width: 100%;
-  padding: 1rem 4rem;
+  padding: 1rem 0;
   font-size: 1.8rem;
   z-index: 2;
 
@@ -20,36 +33,38 @@ const HeaderContainer = styled.header`
   }
 
   p {
-    font: 400 18px ${({ theme }) => theme.fonts.display}, sans-serif;
-    filter: blur(0.4px);
-    letter-spacing: 4px;
+    font: 400 2.8rem ${({ theme }) => theme.fonts.display};
     color: ${({ theme }) => theme.colors.themeColor};
-    text-shadow: 3px 3px 2px ${({ theme }) => theme.colors.titleColor};
   }
 
   .search-input {
+    position: relative;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 32rem;
-    & div {
-      margin-bottom: 0;
-    }
-    & button {
-      margin-left: 1rem;
-      color: ${({ theme }) => theme.colors.mainColor};
-      border-radius: 2px;
+
+    input {
+      padding: 1.4rem 2rem;
+      background-color: ${({ theme }) => theme.colors.backgroundColor};
       border: none;
-      font-size: 1.8rem;
-      background-color: transparent;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
+      border-radius: 5px;
+      width: 40rem;
+      height: 100%;
+      color: ${({ theme }) => theme.colors.themeColor};
+
+      &:focus {
+        padding: calc(1.4rem - 1px) 2rem;
+        border: 1px solid #949494;
+        outline: none;
+      }
     }
 
-    & input {
-      color: ${({ theme }) => theme.colors.lightContrast};
+    .search-button {
+      position: absolute;
+      left: 36rem;
+      button {
+        color: ${({ theme }) => theme.colors.gray};
+        font-size: 1.6rem;
+      }
     }
   }
 
@@ -58,6 +73,7 @@ const HeaderContainer = styled.header`
     align-items: center;
     justify-content: space-between;
     width: 24rem;
+
     & img {
       width: 24px;
       height: 24px;
@@ -71,5 +87,3 @@ const HeaderContainer = styled.header`
     display: none;
   }
 `;
-
-export default HeaderContainer;
