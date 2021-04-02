@@ -18,6 +18,10 @@ export default createGlobalStyle`
     font-family: ${props => props.theme.fonts.primary};
   }
 
+  button {
+    font-family: ${props => props.theme.fonts.primary};
+  }
+
   .container {
     max-width: 1378px;
     margin: 0 auto;

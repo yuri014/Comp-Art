@@ -61,7 +61,7 @@ const RegisterContainer = styled.div`
     form {
       background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
       margin-top: 4rem;
-      padding: 2rem;
+      padding: 3rem;
       border-radius: 10px;
       box-shadow: ${({ theme }) => theme.colors.mainShadow};
 
