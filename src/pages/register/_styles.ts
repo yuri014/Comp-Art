@@ -26,6 +26,7 @@ const RegisterContainer = styled.div`
         place-items: center;
         margin-top: 2rem;
         background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
+        font-family: ${({ theme }) => theme.fonts.display};
         position: relative;
         width: 25rem;
         height: 10rem;
@@ -41,7 +42,6 @@ const RegisterContainer = styled.div`
 
         p {
           font-size: 1.4rem;
-          font-weight: bold;
           color: ${({ theme }) => theme.colors.themeColor};
         }
 
