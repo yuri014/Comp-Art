@@ -68,7 +68,7 @@ const Login: React.FC = () => {
       </div>
       <main>
         <Title />
-        <form onSubmit={handleSubmit(onSubmit)} className="login-form-content">
+        <form onSubmit={handleSubmit(onSubmit)}>
           <h2>Faça seu login na plataforma</h2>
           <Input
             name="email"
@@ -107,7 +107,6 @@ const Login: React.FC = () => {
                   size="small"
                   aria-label="fechar menu post"
                   onClick={() => setShowError('')}
-                  color="secondary"
                 >
                   <FaTimes />
                 </IconButton>
