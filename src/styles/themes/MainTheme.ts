@@ -41,8 +41,12 @@ const mainTheme = createMuiTheme({
     },
     MuiMenu: {
       paper: {
-        background: '#08162f',
-        color: '#cbcaeb',
+        background: '#38383C',
+      },
+    },
+    MuiMenuItem: {
+      root: {
+        padding: '2rem',
       },
     },
     MuiTextField: {
