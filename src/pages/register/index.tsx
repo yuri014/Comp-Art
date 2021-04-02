@@ -156,7 +156,7 @@ function SignUp(): JSX.Element {
                 Confirmar Senha
               </Input>
             </div>
-            <CAButton type="submit">Cadastrar</CAButton>
+            <CAButton type="submit">CADASTRAR</CAButton>
 
             <div className="contract">
               <p>
