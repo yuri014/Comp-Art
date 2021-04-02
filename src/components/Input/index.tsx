@@ -8,17 +8,19 @@ interface InputProps {
   placeholder: string;
   type?: string;
   required?: boolean;
+  error?: string;
 }
 
 const Input: React.FC<InputProps> = ({
   children,
+  error,
   name,
   placeholder,
   refInput,
   required,
   type,
 }) => (
-  <LabelInputContainer htmlFor={name}>
+  <LabelInputContainer htmlFor={name} className={error ? 'error' : ''}>
     <p>{children}</p>
     <InputContainer
       id={name}
@@ -28,6 +30,7 @@ const Input: React.FC<InputProps> = ({
       ref={refInput as React.Ref<HTMLInputElement>}
       required={required}
     />
+    <span>{error}</span>
   </LabelInputContainer>
 );
 
