@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import Link from 'next/link';
 import { IconButton, Menu, MenuItem, ThemeProvider } from '@material-ui/core';
 import {
+  FaBell,
+  FaBookmark,
   FaCog,
   FaExchangeAlt,
   FaMoon,
@@ -55,17 +57,12 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
           </Link>
           <Link href="/market">
             <a title="Ir para o marketplace">
-              <FaShoppingCart />
+              <FaBell />
             </a>
           </Link>
           <Link href="/market">
-            <a title="Ir para o marketplace">
-              <FaShoppingCart />
-            </a>
-          </Link>
-          <Link href="/market">
-            <a title="Ir para o marketplace">
-              <FaShoppingCart />
+            <a title="Ir para os salvos">
+              <FaBookmark />
             </a>
           </Link>
           <ThemeProvider theme={mainTheme}>
@@ -99,7 +96,7 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
               <MenuItem>
                 <MenuListIcon onClick={() => toggleTheme(theme, setTheme)}>
                   <FaMoon />
-                  <p>Modo {theme === 'light' ? 'Claro' : 'Escuro'}</p>
+                  <p>Modo {theme === 'light' ? 'Escuro' : 'Claro'}</p>
                 </MenuListIcon>
               </MenuItem>
               <MenuItem>
