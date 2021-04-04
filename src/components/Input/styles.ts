@@ -31,6 +31,7 @@ export const InputContainer = styled.input`
   border: none;
   border-radius: 5px;
   color: ${({ theme }) => theme.colors.themeColor};
+  box-shadow: ${({ theme }) => theme.colors.secondaryShadow};
 
   &:focus {
     border: 1px solid #949494;

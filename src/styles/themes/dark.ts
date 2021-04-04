@@ -19,6 +19,7 @@ const theme = {
     error: '#FF3838',
     themeColor: '#fff',
     mainShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
+    secondaryShadow: '0px 0px',
   },
   fonts: {
     display: '"Audiowide", sans-serif',
