@@ -10,7 +10,7 @@ export const MenuListIcon = styled.div`
 
   p {
     font-weight: bold;
-    color: #fff;
+    color: ${({ theme }) => theme.colors.themeColor};
   }
 `;
 

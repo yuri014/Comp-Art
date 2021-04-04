@@ -14,11 +14,12 @@ import {
 } from 'react-icons/fa';
 
 import { HeaderContainer, MenuListIcon } from './styles';
-import mainTheme from '../../styles/themes/MainTheme';
 import { AuthContext } from '../../context/auth';
 import ThemeContext from '../../context/theme';
 import toggleTheme from '../../utils/toggleTheme';
 import { ILoggedProfile } from '../../interfaces/Profile';
+import mainLightTheme from '../../styles/themes/MainLightTheme';
+import mainDarkTheme from '../../styles/themes/MainDarkTheme';
 
 const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
   const auth = useContext(AuthContext);
@@ -65,7 +66,9 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
               <FaBookmark />
             </a>
           </Link>
-          <ThemeProvider theme={mainTheme}>
+          <ThemeProvider
+            theme={theme === 'light' ? mainLightTheme : mainDarkTheme}
+          >
             <IconButton
               aria-controls="menu-header"
               aria-haspopup="true"

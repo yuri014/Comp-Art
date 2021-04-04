@@ -9,7 +9,7 @@ const theme = {
     blueContrast: '#8184C1',
     namesakeText: '#08162f',
     lightContrast: '#cbcaeb',
-    gray: '#e1e1e1',
+    gray: '#38383C',
     mainGradient: `linear-gradient(
       310deg,
       #050211 0%,
