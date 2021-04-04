@@ -46,7 +46,7 @@ const mainTheme = createMuiTheme({
     },
     MuiMenuItem: {
       root: {
-        padding: '2rem',
+        padding: '0',
       },
     },
     MuiTextField: {
