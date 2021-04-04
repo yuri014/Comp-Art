@@ -4,6 +4,7 @@ export const MenuListIcon = styled.div`
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  padding: 0 2rem;
   color: ${({ theme }) => theme.colors.mainColor};
   font-size: 1.2rem;
 
@@ -46,6 +47,7 @@ export const HeaderContainer = styled.header`
         width: 100%;
         height: 100%;
         color: ${({ theme }) => theme.colors.themeColor};
+        box-shadow: ${({ theme }) => theme.colors.secondaryShadow};
 
         &:focus {
           padding: calc(1.4rem - 1px) 2rem;
@@ -68,7 +70,7 @@ export const HeaderContainer = styled.header`
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-left: 4rem;
+      padding-left: 6rem;
 
       a {
         color: ${({ theme }) => theme.colors.gray};
