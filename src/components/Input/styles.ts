@@ -34,6 +34,7 @@ export const InputContainer = styled.input`
   box-shadow: ${({ theme }) => theme.colors.secondaryShadow};
 
   &:focus {
+    padding: calc(1.4rem - 1px) 2rem;
     border: 1px solid #949494;
     outline: none;
   }
