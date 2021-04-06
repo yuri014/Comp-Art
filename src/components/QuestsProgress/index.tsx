@@ -1,16 +1,28 @@
 import React from 'react';
-import { FaCheckSquare, FaRegSquare } from 'react-icons/fa';
+import { FaCheck } from 'react-icons/fa';
 
 import QuestsProgressContainer from './styles';
 
 const QuestsProgress: React.FC = () => (
   <QuestsProgressContainer>
-    <h5>Quests Atuais</h5>
-    <div className="daily-quests">
-      <h6>Quests Diária: </h6>
-      <FaCheckSquare />
-      <FaCheckSquare />
-      <FaRegSquare />
+    <h4>Quests atuais</h4>
+    <div className="quest-container">
+      <div>
+        <div className="quest-icon-complete">
+          <FaCheck />
+        </div>
+        <p>Adicionar foto de perfil</p>
+      </div>
+      <p>+10xp</p>
+    </div>
+    <div className="quest-container">
+      <div>
+        <div className="quest-icon-complete">
+          <FaCheck />
+        </div>
+        <p>Adicionar foto de perfil</p>
+      </div>
+      <p>+10xp</p>
     </div>
   </QuestsProgressContainer>
 );

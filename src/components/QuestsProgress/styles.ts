@@ -1,33 +1,46 @@
 import styled from 'styled-components';
 
-const QuestsProgressContainer = styled.aside`
-  position: fixed;
-  top: 0;
-  margin-top: 8rem;
-  width: 20%;
-  max-width: 280px;
-  padding: 2rem 0;
-  border-radius: 4px;
-  color: ${({ theme }) => theme.colors.lightContrast};
-  font-size: 2rem;
-  font-family: ${({ theme }) => theme.fonts.primary};
+const QuestsProgressContainer = styled.div`
+  background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
+  border-radius: 5px;
+  padding: 2rem;
+  color: ${({ theme }) => theme.colors.themeColor};
+  box-shadow: ${({ theme }) => theme.colors.mainShadow};
 
-  & h5 {
+  h4 {
+    font-size: 1.8rem;
     text-align: center;
+    font-weight: bold;
   }
 
-  .daily-quests {
-    margin-top: 2rem;
-    border: 1px solid ${({ theme }) => theme.colors.lightContrast};
-    border-radius: 2px;
+  .quest-container {
     display: flex;
-    padding: 1rem;
     align-items: center;
-    justify-content: center;
-    color: ${({ theme }) => theme.colors.mainColor};
-    & h6 {
-      color: ${({ theme }) => theme.colors.lightContrast};
-      margin-right: 1rem;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: ${({ theme }) => theme.colors.lightSecondaryBackground};
+    padding: 1rem;
+    border-radius: 5px;
+    margin-top: 2rem;
+
+    div {
+      display: inherit;
+      align-items: inherit;
+      justify-content: inherit;
+      gap: 1rem;
+    }
+
+    .quest-icon-complete {
+      color: white;
+      font-size: 0.8rem;
+      background: ${({ theme }) => theme.colors.lightGreen};
+      border-radius: 50%;
+      padding: 0.3rem;
+    }
+
+    & + .quest-container {
+      margin-top: 1rem;
     }
   }
 `;
