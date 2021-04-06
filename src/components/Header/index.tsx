@@ -89,7 +89,7 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
               onClose={handleClose}
             >
               <MenuItem>
-                <Link href="/profile">
+                <Link href={`/profile/${getLoggedProfile.owner}`}>
                   <MenuListIcon as="a">
                     <FaUserAlt />
                     <p>Meu Perfil</p>
