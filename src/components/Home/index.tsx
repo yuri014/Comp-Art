@@ -29,37 +29,32 @@ const Home: React.FC<HomeProps> = ({ getLoggedProfile }) => {
   );
 
   return (
-    <div className="container">
-      <div className="home-desktop-content">
-        <div className="profile">
-          <HomeProfile getLoggedProfile={getLoggedProfile} />
-        </div>
-        <div className="timeline">
-          {loading || error ? (
-            <LoadingPost loading={loading} />
-          ) : (
-            data.getPosts.map((post, index) => {
-              if (data.getPosts.length === index + 1) {
-                return (
-                  <div
-                    key={`${post.artist}_${post.createdAt}`}
-                    ref={lastPostRef}
-                  >
-                    <Post post={post} />
-                  </div>
-                );
-              }
+    <div className="home-desktop-content">
+      <div className="profile">
+        <HomeProfile getLoggedProfile={getLoggedProfile} />
+      </div>
+      <div className="timeline">
+        {loading || error ? (
+          <LoadingPost loading={loading} />
+        ) : (
+          data.getPosts.map((post, index) => {
+            if (data.getPosts.length === index + 1) {
               return (
-                <div key={`${post.artist}_${post.createdAt}`}>
+                <div key={`${post.artist}_${post.createdAt}`} ref={lastPostRef}>
                   <Post post={post} />
                 </div>
               );
-            })
-          )}
-        </div>
-        <div className="quests">
-          <QuestsProgress />
-        </div>
+            }
+            return (
+              <div key={`${post.artist}_${post.createdAt}`}>
+                <Post post={post} />
+              </div>
+            );
+          })
+        )}
+      </div>
+      <div className="quests">
+        <QuestsProgress />
       </div>
     </div>
   );
