@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useLazyQuery, useQuery } from '@apollo/client';
 
 import Header from '../../components/Header';
-import HomeContainer from '../../styles/pages/home';
+import HomeContainer from './styles';
 import MobileHeader from '../../components/MobileHeader';
 import MobileFooter from '../../components/MobileFooter';
 import withAuth from '../../hocs/withAuth';
