@@ -10,6 +10,8 @@ const theme = {
     namesakeText: '#08162f',
     lightContrast: '#cbcaeb',
     gray: '#38383C',
+    lightSecondaryBackground: '#28282C',
+    lightGreen: '#5DD083',
     mainGradient: `linear-gradient(
       310deg,
       #050211 0%,
