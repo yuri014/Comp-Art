@@ -103,6 +103,7 @@ const HomeProfileContainer = styled.div`
   }
 
   @media (min-width: 992px) {
+    height: unset;
     border-radius: 5px;
   }
 
