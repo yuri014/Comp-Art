@@ -12,8 +12,8 @@ const HomeProfileContainer = styled.div`
     align-items: center;
 
     figure {
-      height: 7rem;
-      width: 7rem;
+      height: 6rem;
+      width: 6rem;
       box-shadow: ${({ theme }) => theme.colors.mainShadow};
       border-radius: 50%;
       img {
@@ -31,6 +31,11 @@ const HomeProfileContainer = styled.div`
 
       h1 {
         font-size: 1.6rem;
+      }
+
+      h1,
+      h2 {
+        max-width: 13rem;
       }
 
       h2 {
