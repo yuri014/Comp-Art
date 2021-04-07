@@ -4,7 +4,7 @@ const HomeProfileContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
   color: ${({ theme }) => theme.colors.themeColor};
   box-shadow: ${({ theme }) => theme.colors.mainShadow};
-  border-radius: 5px;
+  height: 100%;
   padding: 2rem;
 
   .profile {
@@ -88,7 +88,7 @@ const HomeProfileContainer = styled.div`
 
   .post-button {
     background-color: ${({ theme }) => theme.colors.mainColor};
-    width: 50%;
+    width: 80%;
     margin: 0 auto;
     margin-top: 2rem;
     border-radius: 5px;
@@ -100,6 +100,16 @@ const HomeProfileContainer = styled.div`
     gap: 0.4rem;
     font-size: 1.4rem;
     color: ${({ theme }) => theme.colors.namesakeText};
+  }
+
+  @media (min-width: 992px) {
+    border-radius: 5px;
+  }
+
+  @media (min-width: 1200px) {
+    .post-button {
+      width: 50%;
+    }
   }
 `;
 

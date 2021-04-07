@@ -4,9 +4,13 @@ const HomeContainer = styled.main`
   .home-desktop-content {
     padding: 8rem 4rem;
     display: grid;
-    grid-template-columns: 25% 45% 25%;
+    grid-template-columns: 20% 50% 20%;
     justify-content: space-between;
     margin: auto;
+  }
+
+  @media (min-width: 1440px) {
+    grid-template-columns: 25% 45% 25%;
   }
 
   @media (max-width: 992px) {
