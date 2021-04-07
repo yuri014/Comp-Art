@@ -30,9 +30,9 @@ const Home: React.FC<HomeProps> = ({ getLoggedProfile }) => {
 
   return (
     <div className="home-desktop-content">
-      <div className="profile">
+      <aside>
         <HomeProfile getLoggedProfile={getLoggedProfile} />
-      </div>
+      </aside>
       <div className="timeline">
         {loading || error ? (
           <LoadingPost loading={loading} />
@@ -53,9 +53,9 @@ const Home: React.FC<HomeProps> = ({ getLoggedProfile }) => {
           })
         )}
       </div>
-      <div className="quests">
+      <aside>
         <QuestsProgress />
-      </div>
+      </aside>
     </div>
   );
 };

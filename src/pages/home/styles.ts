@@ -17,8 +17,7 @@ const HomeContainer = styled.main`
     .home-desktop-content {
       display: block;
       padding: 8rem 2rem;
-      .quests,
-      .profile {
+      aside {
         display: none;
       }
       & .timeline {
