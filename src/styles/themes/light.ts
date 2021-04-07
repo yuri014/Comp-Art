@@ -10,7 +10,7 @@ const theme = {
     namesakeText: '#08162f',
     lightContrast: '#cbcaeb',
     gray: '#38383C',
-    lightSecondaryBackground: '#28282C',
+    lightSecondaryBackground: '#e5e5e5',
     lightGreen: '#5DD083',
     mainGradient: `linear-gradient(
       310deg,
