@@ -19,6 +19,7 @@ const theme = {
     )`,
     danger: '#f50057',
     error: '#FF3838',
+    pink: '#FF4F6D',
     themeColor: '#050211',
     mainShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
     secondaryShadow:
