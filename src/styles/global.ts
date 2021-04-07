@@ -78,25 +78,16 @@ export default createGlobalStyle`
     color: ${({ theme }) => theme.colors.danger};
   }
 
-  .main-title {
-    position: static;
-    margin-top: 8rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font: 400 40px ${({ theme }) => theme.fonts.display}, sans-serif;
-    filter: blur(0.4px);
-    transform: skewY(-5deg);
-    letter-spacing: 4px;
-    word-spacing: -8px;
-    color: ${({ theme }) => theme.colors.themeColor};
-    text-shadow: 4px 4px 2px ${({ theme }) => theme.colors.titleColor};
-  }
-
   .holder {
     background: ${({ theme }) => theme.colors.mainGradient};
     width: 100%;
     height: 100%;
+  }
+
+  .limited-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   #nprogress .bar {
