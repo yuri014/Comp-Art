@@ -16,7 +16,6 @@ export const MenuListIcon = styled.div`
 
 export const HeaderContainer = styled.header`
   background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
-  color: ${({ theme }) => theme.colors.lightContrast};
   position: fixed;
   width: 100%;
   padding: 1rem 4rem;

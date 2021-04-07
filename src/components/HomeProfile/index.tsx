@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 import Link from 'next/link';
-import { ThemeProvider } from '@material-ui/core';
+import { LinearProgress, ThemeProvider } from '@material-ui/core';
 import {
-  FaHashtag,
   FaPlusCircle,
   FaRegCompass,
   FaUserAlt,
@@ -13,9 +12,7 @@ import Skeleton from '@material-ui/lab/Skeleton';
 
 import HomeProfileContainer from './styles';
 import formTheme from '../../styles/themes/FormTheme';
-import ProgressBar from '../ProgressBar';
 import { ILoggedProfile } from '../../interfaces/Profile';
-import TagsContainer from '../../styles';
 import LevelContext from '../../context/level';
 
 const HomeProfile: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
@@ -33,23 +30,25 @@ const HomeProfile: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
           </figure>
           <div className="profile-info">
             <h1>{getLoggedProfile.name}</h1>
-            <div className="profile-connections">
-              <p>Seguidores: {getLoggedProfile.followers}</p>
-              <p>Seguindo: {getLoggedProfile.following}</p>
-            </div>
+            <h2>@{getLoggedProfile.owner}</h2>
+            <p>Seguidores: {getLoggedProfile.followers}</p>
+            <p>Seguindo: {getLoggedProfile.following}</p>
           </div>
         </div>
         <div className="profile-reputation">
           {context && context.level ? (
             <>
-              <div className="level">
-                <p>Level:</p>
-                <span>{context.level.getLoggedProfile.level}</span>
-              </div>
               <div className="xp">
-                <p>XP:</p>
-                <ProgressBar value={context.level.getLoggedProfile.xp} />
+                <div className="level">
+                  <p>Level:</p>
+                  <span>{context.level.getLoggedProfile.level}</span>
+                </div>
+                <p>{context.level.getLoggedProfile.xp}%</p>
               </div>
+              <LinearProgress
+                variant="determinate"
+                value={context.level.getLoggedProfile.xp}
+              />
             </>
           ) : (
             <Skeleton
@@ -85,26 +84,16 @@ const HomeProfile: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
               <p>Fandom</p>
             </a>
           </Link>
-          {getLoggedProfile.isArtist && (
-            <Link href="/new-post">
-              <a>
-                <FaPlusCircle className="post-icon" />
-                <p>Publicar</p>
-              </a>
-            </Link>
-          )}
         </div>
-        <div className="profile-hashtags">
-          <p>
-            <FaHashtag />
-            &nbsp;Hashtags Seguidas
-          </p>
-          <TagsContainer>
-            {getLoggedProfile.hashtags.map(tag => (
-              <span key={tag}>{tag}</span>
-            ))}
-          </TagsContainer>
-        </div>
+        {getLoggedProfile.isArtist && (
+          <Link href="/new-post">
+            <a className="post-button">
+              <p>PUBLICAR</p>
+
+              <FaPlusCircle className="post-icon" />
+            </a>
+          </Link>
+        )}
       </ThemeProvider>
     </HomeProfileContainer>
   );
