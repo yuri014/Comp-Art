@@ -9,6 +9,7 @@ import { IGetPosts } from '../../interfaces/Post';
 import { GET_POSTS } from '../../graphql/queries/post';
 import { IProfile } from '../../interfaces/Profile';
 import useInfiniteScroll from '../../hooks/infiniteScroll';
+import SuggestedProfiles from '../SuggestedProfiles';
 
 interface HomeProps {
   getLoggedProfile: IProfile;
@@ -54,6 +55,9 @@ const Home: React.FC<HomeProps> = ({ getLoggedProfile }) => {
         )}
       </div>
       <aside>
+        <SuggestedProfiles />
+        <br />
+        <br />
         <QuestsProgress />
       </aside>
     </div>
