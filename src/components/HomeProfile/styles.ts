@@ -109,7 +109,7 @@ const HomeProfileContainer = styled.div`
 
   @media (min-width: 1200px) {
     .post-button {
-      width: 50%;
+      width: 60%;
     }
   }
 `;
