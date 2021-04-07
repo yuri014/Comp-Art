@@ -7,7 +7,7 @@ const QuestsProgressContainer = styled.div`
   color: ${({ theme }) => theme.colors.themeColor};
   box-shadow: ${({ theme }) => theme.colors.mainShadow};
 
-  h4 {
+  h5 {
     font-size: 1.8rem;
     text-align: center;
     font-weight: bold;

@@ -5,7 +5,7 @@ import QuestsProgressContainer from './styles';
 
 const QuestsProgress: React.FC = () => (
   <QuestsProgressContainer>
-    <h4>Quests atuais</h4>
+    <h5>Quests atuais</h5>
     <div className="quest-container">
       <div>
         <div className="quest-icon-complete">
