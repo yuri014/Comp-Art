@@ -9,6 +9,7 @@ import {
   FaMoon,
   FaSearch,
   FaShoppingCart,
+  FaSignInAlt,
   FaSignOutAlt,
   FaUserAlt,
 } from 'react-icons/fa';
@@ -49,83 +50,95 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
           </IconButton>
         </div>
       </div>
-      <div className="header-icons">
-        <Link href="/market">
-          <a title="Ir para o marketplace">
-            <FaShoppingCart />
-          </a>
-        </Link>
-        <Link href="/market">
-          <a title="Ir para o marketplace">
-            <FaBell />
-          </a>
-        </Link>
-        <Link href="/market">
-          <a title="Ir para os salvos">
-            <FaBookmark />
-          </a>
-        </Link>
-        <ThemeProvider
-          theme={theme === 'light' ? mainLightTheme : mainDarkTheme}
-        >
-          <IconButton
-            aria-controls="menu-header"
-            aria-haspopup="true"
-            aria-label="Abrir menu de configurações"
-            onClick={handleClick}
-            color="secondary"
+      {auth.user ? (
+        <div className="header-icons">
+          <Link href="/market">
+            <a title="Ir para o marketplace">
+              <FaShoppingCart />
+            </a>
+          </Link>
+          <Link href="/market">
+            <a title="Ir para o marketplace">
+              <FaBell />
+            </a>
+          </Link>
+          <Link href="/market">
+            <a title="Ir para os salvos">
+              <FaBookmark />
+            </a>
+          </Link>
+          <ThemeProvider
+            theme={theme === 'light' ? mainLightTheme : mainDarkTheme}
           >
-            <img
-              src={process.env.NEXT_PUBLIC_API_HOST + getLoggedProfile.avatar}
-              alt="Foto do perfil"
-            />
-          </IconButton>
-          <Menu
-            id="menu-header"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
-            <MenuItem>
-              <Link href={`/profile/${getLoggedProfile.owner}`}>
-                <MenuListIcon as="a">
-                  <FaUserAlt />
-                  <p>Meu Perfil</p>
+            <IconButton
+              aria-controls="menu-header"
+              aria-haspopup="true"
+              aria-label="Abrir menu de configurações"
+              onClick={handleClick}
+              color="secondary"
+            >
+              <img
+                src={process.env.NEXT_PUBLIC_API_HOST + getLoggedProfile.avatar}
+                alt="Foto do perfil"
+              />
+            </IconButton>
+            <Menu
+              id="menu-header"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem>
+                <Link href={`/profile/${getLoggedProfile.owner}`}>
+                  <MenuListIcon as="a">
+                    <FaUserAlt />
+                    <p>Meu Perfil</p>
+                  </MenuListIcon>
+                </Link>
+              </MenuItem>
+              <MenuItem>
+                <MenuListIcon onClick={() => toggleTheme(theme, setTheme)}>
+                  <FaMoon />
+                  <p>Modo {theme === 'light' ? 'Escuro' : 'Claro'}</p>
                 </MenuListIcon>
-              </Link>
-            </MenuItem>
-            <MenuItem>
-              <MenuListIcon onClick={() => toggleTheme(theme, setTheme)}>
-                <FaMoon />
-                <p>Modo {theme === 'light' ? 'Escuro' : 'Claro'}</p>
-              </MenuListIcon>
-            </MenuItem>
-            <MenuItem>
-              <Link href="/changelog">
-                <MenuListIcon as="a">
-                  <FaExchangeAlt />
-                  <p>Changelog</p>
+              </MenuItem>
+              <MenuItem>
+                <Link href="/changelog">
+                  <MenuListIcon as="a">
+                    <FaExchangeAlt />
+                    <p>Changelog</p>
+                  </MenuListIcon>
+                </Link>
+              </MenuItem>
+              <MenuItem>
+                <Link href="/config">
+                  <MenuListIcon as="a">
+                    <FaCog />
+                    <p>Configurações</p>
+                  </MenuListIcon>
+                </Link>
+              </MenuItem>
+              <MenuItem onClick={() => auth.logout()}>
+                <MenuListIcon>
+                  <FaSignOutAlt />
+                  <p>Sair</p>
                 </MenuListIcon>
-              </Link>
-            </MenuItem>
-            <MenuItem>
-              <Link href="/config">
-                <MenuListIcon as="a">
-                  <FaCog />
-                  <p>Configurações</p>
-                </MenuListIcon>
-              </Link>
-            </MenuItem>
-            <MenuItem onClick={() => auth.logout()}>
-              <MenuListIcon>
-                <FaSignOutAlt />
-                <p>Sair</p>
-              </MenuListIcon>
-            </MenuItem>
-          </Menu>
-        </ThemeProvider>
-      </div>
+              </MenuItem>
+            </Menu>
+          </ThemeProvider>
+        </div>
+      ) : (
+        <div className="header-icons">
+          <span />
+          <span />
+          <Link href="/login">
+            <a title="Ir para o login">
+              <FaSignInAlt />
+            </a>
+          </Link>
+        </div>
+      )}
     </HeaderContainer>
   );
 };

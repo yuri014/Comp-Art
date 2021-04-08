@@ -117,7 +117,7 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
         }`}
         uri={`profile/${getProfile.owner}`}
       />
-      {hasAuth && <Header getLoggedProfile={getProfile} />}
+      <Header getLoggedProfile={getProfile} />
       <ProfileContainer>
         <main>
           <div className="cover-profile">
