@@ -107,7 +107,7 @@ const ModalContainer = styled.section`
     color: ${({ theme }) => theme.colors.lightText};
   }
 
-  @media (min-width: 992px) {
+  @media (min-width: 1100px) {
     .modal-content {
       width: 40%;
     }

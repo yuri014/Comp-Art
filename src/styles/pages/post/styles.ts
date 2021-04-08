@@ -22,7 +22,7 @@ const PostPageContainer = styled.div`
     }
   }
 
-  @media (min-width: 992px) {
+  @media (min-width: 1100px) {
     max-width: 1378px;
     margin: 0 auto;
     width: 60%;

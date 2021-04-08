@@ -90,7 +90,7 @@ export const HeaderContainer = styled.header`
     text-decoration: none;
   }
 
-  @media (max-width: 992px) {
+  @media (max-width: 1100px) {
     display: none;
   }
 `;

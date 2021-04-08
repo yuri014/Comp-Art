@@ -226,7 +226,7 @@ export const PostContainer = styled.section`
     }
   }
 
-  @media (max-width: 992px) {
+  @media (max-width: 1100px) {
     .post {
       .post-image {
         height: 332px;
@@ -298,7 +298,7 @@ export const CreatePostContainer = styled.div`
     }
   }
 
-  @media (min-width: 992px) {
+  @media (min-width: 1100px) {
     width: 50%;
 
     & .file-label {
@@ -515,7 +515,7 @@ export const AudioPostContainer = styled.section`
     }
   }
 
-  @media (min-width: 992px) {
+  @media (min-width: 1100px) {
     .audio-card {
       height: 200px;
 

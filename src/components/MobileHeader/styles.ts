@@ -41,7 +41,7 @@ const MobileHeaderContainer = styled.header`
     color: ${({ theme }) => theme.colors.mainColor};
   }
 
-  @media (min-width: 992px) {
+  @media (min-width: 1100px) {
     display: none;
   }
 `;

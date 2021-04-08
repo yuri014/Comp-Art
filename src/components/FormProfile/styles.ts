@@ -87,7 +87,7 @@ const FormProfileContainer = styled.form`
     margin-bottom: 0.2rem;
   }
 
-  @media (min-width: 992px) {
+  @media (min-width: 1100px) {
     width: 100%;
     .profile-links {
       display: grid;

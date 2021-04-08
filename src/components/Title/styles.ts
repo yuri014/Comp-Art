@@ -7,7 +7,7 @@ const TitleContainer = styled.h1`
   letter-spacing: 0.2rem;
   text-shadow: 4px 4px 0px ${({ theme }) => theme.colors.titleColor};
 
-  @media (min-width: 992px) {
+  @media (min-width: 1100px) {
     font-size: 6rem;
   }
 `;

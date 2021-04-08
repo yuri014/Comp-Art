@@ -16,7 +16,7 @@ const ErrorMessageContainer = styled.div`
     color: ${({ theme }) => theme.colors.danger};
   }
 
-  @media (min-width: 992px) {
+  @media (min-width: 1100px) {
     font-size: 1.8rem;
     padding: 0.6rem 1rem;
     justify-content: flex-start;

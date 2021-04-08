@@ -15,7 +15,7 @@ const HomeContainer = styled.main`
     }
   }
 
-  @media (max-width: 992px) {
+  @media (max-width: 1100px) {
     .home-desktop-content {
       display: block;
       padding: 8rem 2rem;

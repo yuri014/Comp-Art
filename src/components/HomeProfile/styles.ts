@@ -107,7 +107,7 @@ const HomeProfileContainer = styled.div`
     color: ${({ theme }) => theme.colors.namesakeText};
   }
 
-  @media (min-width: 992px) {
+  @media (min-width: 1100px) {
     height: unset;
     border-radius: 5px;
   }

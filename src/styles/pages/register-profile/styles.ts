@@ -14,7 +14,7 @@ const RegisterProfileContainer = styled.main`
     margin: 0;
   }
 
-  @media (min-width: 992px) {
+  @media (min-width: 1100px) {
     display: grid;
     grid-template-columns: 20% 50%;
     justify-content: space-around;

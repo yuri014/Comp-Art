@@ -133,7 +133,7 @@ export const ProfileContainer = styled.div`
     border-top: 1px solid ${({ theme }) => theme.colors.namesakeText};
   }
 
-  @media (min-width: 992px) {
+  @media (min-width: 1100px) {
     .edit-profile {
       width: 100%;
       display: flex;
@@ -256,7 +256,7 @@ export const EditProfileContainer = styled.main`
   margin-top: 2rem;
   padding-bottom: 8rem;
 
-  @media (min-width: 992px) {
+  @media (min-width: 1100px) {
     padding-top: 8rem;
     padding-bottom: 2rem;
     margin: 0 auto;

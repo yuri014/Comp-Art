@@ -61,7 +61,7 @@ const LandingContainer = styled.div`
     }
   }
 
-  @media (min-width: 992px) {
+  @media (min-width: 1100px) {
     main {
       height: 80%;
 

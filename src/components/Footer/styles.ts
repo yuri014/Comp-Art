@@ -23,7 +23,7 @@ const FooterContainer = styled.footer`
     font-size: 1.6rem;
   }
 
-  @media (min-width: 992px) {
+  @media (min-width: 1100px) {
     div {
       width: 57rem;
 

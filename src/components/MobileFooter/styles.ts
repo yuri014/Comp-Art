@@ -5,7 +5,7 @@ const MobileFooterContainer = styled.footer`
   bottom: 0;
   width: 100%;
 
-  @media (min-width: 992px) {
+  @media (min-width: 1100px) {
     display: none;
   }
 `;
