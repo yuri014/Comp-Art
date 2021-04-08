@@ -117,6 +117,17 @@ const HomeProfileContainer = styled.div`
       width: 60%;
     }
   }
+
+  @media (min-width: 1440px) {
+    .profile {
+      .profile-info {
+        h1,
+        h2 {
+          max-width: 10vw;
+        }
+      }
+    }
+  }
 `;
 
 export default HomeProfileContainer;

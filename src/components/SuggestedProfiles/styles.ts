@@ -31,20 +31,24 @@ const SuggestedProfilesContainer = styled.div`
         object-fit: fill;
       }
 
-      p {
-        font-size: 1.4rem;
-        font-weight: bold;
-      }
+      .suggested-profile-info {
+        p {
+          max-width: 6vw;
+          font-size: 1.4rem;
+          font-weight: bold;
 
-      span {
-        font-size: 1.2rem;
-        color: ${({ theme }) => theme.colors.gray};
+          & + p {
+            font-size: 1.2rem;
+            color: ${({ theme }) => theme.colors.gray};
+          }
+        }
       }
     }
 
     button {
       color: ${({ theme }) => theme.colors.pink};
       font-weight: bold;
+      width: 9rem;
       cursor: pointer;
       border: 1px solid ${({ theme }) => theme.colors.pink};
       background-color: transparent;
@@ -56,6 +60,18 @@ const SuggestedProfilesContainer = styled.div`
       &:hover {
         background-color: ${({ theme }) => theme.colors.pink};
         color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
+      }
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .suggested-profile-container {
+      .suggested-profile {
+        .suggested-profile-info {
+          p {
+            max-width: 8vw;
+          }
+        }
       }
     }
   }
