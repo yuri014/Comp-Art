@@ -6,7 +6,6 @@ export const GET_LOGGED_PROFILE = gql`
       name
       avatar
       coverImage
-      bio
       followers
       following
       hashtags
