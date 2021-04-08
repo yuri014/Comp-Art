@@ -99,4 +99,4 @@ const HomeProfile: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
   );
 };
 
-export default HomeProfile;
+export default React.memo(HomeProfile);
