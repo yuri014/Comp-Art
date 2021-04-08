@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const HomeProfileContainer = styled.div`
+export const HomeProfileContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
   color: ${({ theme }) => theme.colors.themeColor};
   box-shadow: ${({ theme }) => theme.colors.mainShadow};
@@ -130,4 +130,32 @@ const HomeProfileContainer = styled.div`
   }
 `;
 
-export default HomeProfileContainer;
+export const HashtagsProfileContainer = styled.div`
+  background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
+  color: ${({ theme }) => theme.colors.themeColor};
+  box-shadow: ${({ theme }) => theme.colors.mainShadow};
+  padding: 2rem;
+  border-radius: 5px;
+
+  h3 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .hashtag-container {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    a {
+      color: ${({ theme }) => theme.colors.themeColor};
+      background-color: ${({ theme }) => theme.colors.pink};
+      padding: 1rem;
+      border-radius: 5px;
+      font-size: 1.2rem;
+    }
+  }
+`;

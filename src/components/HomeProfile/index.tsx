@@ -10,7 +10,7 @@ import {
 } from 'react-icons/fa';
 import Skeleton from '@material-ui/lab/Skeleton';
 
-import HomeProfileContainer from './styles';
+import { HomeProfileContainer } from './styles';
 import formTheme from '../../styles/themes/FormTheme';
 import { ILoggedProfile } from '../../interfaces/Profile';
 import LevelContext from '../../context/level';
