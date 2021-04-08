@@ -30,6 +30,7 @@ import Post from '../../components/Post';
 import SkeletonPost from '../../components/Post/SkeletonPost';
 import Meta from '../../components/SEO/Meta';
 import useInfiniteScroll from '../../hooks/infiniteScroll';
+import Header from '../../components/Header';
 
 const FullScreenImage = dynamic(
   () => import('../../components/FullScreenImage'),
@@ -116,6 +117,7 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
         }`}
         uri={`profile/${getProfile.owner}`}
       />
+      {hasAuth && <Header getLoggedProfile={getProfile} />}
       <ProfileContainer>
         <main>
           <div className="cover-profile">
