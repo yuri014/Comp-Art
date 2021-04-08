@@ -3,7 +3,7 @@
  "short_name": "Comp-Art",
  "theme_color": "#050211",
  "background_color": "#050211",
- "display": "fullscreen",
+ "display": "standalone",
  "orientation": "portrait",
  "scope": "/",
  "start_url": "/",
