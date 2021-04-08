@@ -29,8 +29,8 @@ const HomeProfile: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
             />
           </figure>
           <div className="profile-info">
-            <h1>{getLoggedProfile.name}</h1>
-            <h2>@{getLoggedProfile.owner}</h2>
+            <h1 className="limited-text">{getLoggedProfile.name}</h1>
+            <h2 className="limited-text">@{getLoggedProfile.owner}</h2>
             <p>Seguidores: {getLoggedProfile.followers}</p>
             <p>Seguindo: {getLoggedProfile.following}</p>
           </div>

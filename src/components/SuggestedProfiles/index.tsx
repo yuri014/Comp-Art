@@ -12,9 +12,9 @@ const SuggestedProfiles: React.FC = () => (
           alt="Nome do usuário"
         />
 
-        <div>
-          <p>Example</p>
-          <span>@example01</span>
+        <div className="suggested-profile-info">
+          <p className="limited-text">Example</p>
+          <p className="limited-text">@example01</p>
         </div>
       </div>
       <button type="button">SEGUIR</button>
