@@ -1,22 +1,22 @@
 import React from 'react';
 import Link from 'next/link';
-import { FiInfo } from 'react-icons/fi';
 import { FaRegCompass } from 'react-icons/fa';
 
+import NoPostIcon from '../../assets/no-posts.svg';
 import { EmptyPostContainer } from './styles';
 
 const EmptyPost: React.FC = () => (
   <EmptyPostContainer>
-    <FiInfo size={80} />
-    <p>Não há posts por enquanto!</p>
-    <p>Você ainda pode explorar para achar coisas que possam te inspirar!</p>
+    <p className="empty-post-title">Não há postagens por enquanto!</p>
+    <NoPostIcon />
+    <p>Venha explorar novas artes antes de publicar as suas</p>
     <Link href="/explore">
       <a>
         <button type="button">
-          Explorar&nbsp;
-          <span>
-            <FaRegCompass size={20} />
-          </span>
+          EXPLORAR
+          <div>
+            <FaRegCompass />
+          </div>
         </button>
       </a>
     </Link>

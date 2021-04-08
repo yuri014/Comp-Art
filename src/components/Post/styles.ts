@@ -311,44 +311,53 @@ export const CreatePostContainer = styled.div`
 `;
 
 export const EmptyPostContainer = styled.div`
-  color: ${({ theme }) => theme.colors.lightContrast};
+  color: ${({ theme }) => theme.colors.themeColor};
   background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
-  padding: 2rem 1rem;
+  padding: 4rem;
   font-size: 2rem;
   text-align: center;
-  border-radius: 4px;
+  border-radius: 5px;
+  box-shadow: ${({ theme }) => theme.colors.mainShadow};
 
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
 
-  & p {
-    margin-top: 2rem;
+  .empty-post-title {
+    font-size: 2.6rem;
+    margin-top: 0;
+    margin-bottom: 2rem;
   }
 
-  & button {
+  p {
+    font-size: 1.6rem;
     margin-top: 2rem;
-    background-color: ${({ theme }) => theme.colors.mainColor};
+    margin-bottom: 1rem;
+  }
+
+  button {
+    margin-top: 2rem;
+    background-color: ${({ theme }) => theme.colors.pink};
     padding: 1rem 2rem;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     font-size: 1.4rem;
-    color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
-    font-family: ${({ theme }) => theme.fonts.display};
+    color: ${({ theme }) => theme.colors.themeColor};
     cursor: pointer;
-    text-transform: uppercase;
+    font-weight: bold;
     display: flex;
     align-items: center;
-    & span {
+    gap: 0.4rem;
+
+    div {
       display: flex;
-      transform: rotate(90deg);
     }
-    transition: all 0.4s ease;
 
     &:hover {
-      & span {
+      div {
         animation: rotateCompass 0.4s ease-in-out infinite alternate;
+
         @keyframes rotateCompass {
           from {
             transform: rotate(360deg);
@@ -358,6 +367,15 @@ export const EmptyPostContainer = styled.div`
           }
         }
       }
+    }
+  }
+  @media (min-width: 1100px) {
+    .empty-post-title {
+      width: 100%;
+    }
+
+    p {
+      width: 60%;
     }
   }
 `;
