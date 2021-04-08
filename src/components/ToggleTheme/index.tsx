@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from 'react';
-import { IconButton } from '@material-ui/core';
 
 import ThemeContext from '../../context/theme';
 import LightIcon from '../../assets/light-toggle.svg';
@@ -16,12 +15,13 @@ const ToggleThemeButton: React.FC = () => {
 
   return (
     <ToggleThemeContainer>
-      <IconButton
+      <button
         aria-label={`mudar para tema ${theme === 'light' ? 'claro' : 'escuro'}`}
         onClick={() => toggleTheme(theme, setTheme)}
+        type="button"
       >
         {theme === 'light' ? <LightIcon /> : <DarkIcon />}
-      </IconButton>
+      </button>
     </ToggleThemeContainer>
   );
 };

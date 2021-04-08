@@ -6,6 +6,8 @@ const ToggleThemeContainer = styled.span`
 
   button {
     padding: 0;
+    border: none;
+    background-color: transparent;
 
     svg {
       transform: scale(0.75);
