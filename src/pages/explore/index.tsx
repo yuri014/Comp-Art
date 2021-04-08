@@ -3,7 +3,7 @@ import { useLazyQuery, useQuery } from '@apollo/client';
 
 import Head from 'next/head';
 import { IPost } from '../../interfaces/Post';
-import HomeContainer from '../../styles/pages/home';
+import HomeContainer from '../home/_styles';
 import MobileFooter from '../../components/MobileFooter';
 import Post from '../../components/Post';
 import LoadingPost from '../../components/Post/LoadingPost';
@@ -14,7 +14,6 @@ import {
   GET_LOGGED_PROFILE,
 } from '../../graphql/queries/profile';
 import HomeProfile from '../../components/HomeProfile';
-import Header from '../../components/Header';
 import MobileHeader from '../../components/MobileHeader';
 import QuestsProgress from '../../components/QuestsProgress';
 import LevelContext from '../../context/level';
@@ -66,7 +65,6 @@ const Explore: React.FC = () => {
       <Head>
         <title>Comp-Art</title>
       </Head>
-      <Header />
       <div className="container">
         <div className="home-desktop-content">
           <div className="profile">

@@ -79,7 +79,7 @@ const EditProfile: React.FC = () => {
         keywords="editar, perfil, comp art"
       />
       <ThemeProvider theme={mainTheme}>
-        <Header />
+        <Header getLoggedProfile={profile} />
       </ThemeProvider>
       <EditProfileContainer>
         {!loading && (

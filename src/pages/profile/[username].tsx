@@ -14,7 +14,6 @@ import { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
-import Header from '../../components/Header';
 import MobileFooter from '../../components/MobileFooter';
 import { GET_IS_FOLLOWING, GET_PROFILE } from '../../graphql/queries/profile';
 import { IProfile } from '../../interfaces/Profile';
@@ -117,7 +116,6 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
         }`}
         uri={`profile/${getProfile.owner}`}
       />
-      <Header />
       <ProfileContainer>
         <main>
           <div className="cover-profile">

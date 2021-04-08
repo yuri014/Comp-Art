@@ -4,7 +4,6 @@ import Head from 'next/head';
 import { FaImage, FaMusic } from 'react-icons/fa';
 import { AppBar, Tab, Tabs, ThemeProvider } from '@material-ui/core';
 
-import Header from '../../components/Header';
 import MobileFooter from '../../components/MobileFooter';
 import CreatePost from '../../components/Post/CreatePost';
 import NewPostContainer from '../../styles/pages/new-post/styles';
@@ -41,7 +40,6 @@ const NewPost: React.FC = () => {
       <Head>
         <title>Novo Post</title>
       </Head>
-      <Header />
       <main>
         <div className="container">
           <ThemeProvider theme={mainTheme}>
