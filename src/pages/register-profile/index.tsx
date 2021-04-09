@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/dist/client/router';
 
 import Head from 'next/head';
-import RegisterProfileContainer from '../../styles/pages/register-profile/styles';
+import RegisterProfileContainer from './_styles';
 import { IProfileInput } from '../../interfaces/Profile';
 import { REGISTER_PROFILE } from '../../graphql/mutations/profile';
 import withAuth from '../../hocs/withAuth';
