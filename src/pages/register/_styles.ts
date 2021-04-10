@@ -86,7 +86,7 @@ const RegisterContainer = styled.div`
         margin: 2rem 0;
       }
 
-      button {
+      button[type='submit'] {
         margin-top: 1rem;
       }
 
@@ -151,7 +151,7 @@ const RegisterContainer = styled.div`
           justify-content: space-between;
         }
 
-        button {
+        button[type='submit'] {
           width: 50%;
           display: block;
           margin-left: auto;
