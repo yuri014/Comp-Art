@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { FaArrowLeft } from 'react-icons/fa';
+import { FaArrowLeft, FaTimes } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@apollo/client';
+import { IconButton, Snackbar, ThemeProvider } from '@material-ui/core';
 
 import { IUser } from '../../interfaces/User';
 import { REGISTER_USER } from '../../graphql/mutations/user';
@@ -16,38 +16,8 @@ import Footer from '../../components/Footer';
 import ChooseProfile from '../../components/Splitter/ChooseProfile';
 import Input from '../../components/Input';
 import CAButton from '../../styles/components/button';
-
-yup.setLocale({
-  mixed: {
-    required: 'Preencha esse campo para continuar',
-  },
-  string: {
-    email: 'Preencha um e-mail válido',
-    min: 'Valor muito curto (mínimo ${min} caracteres)',
-    max: 'Valor muito longo (máximo ${max} caracteres)',
-  },
-  number: {
-    min: 'Valor inválido (deve ser maior ou igual a ${min})',
-    max: 'Valor inválido (deve ser menor ou igual a ${max})',
-  },
-});
-
-const schema = yup.object().shape({
-  username: yup.string().min(6).max(24).required(),
-  email: yup.string().email().required(),
-  password: yup
-    .string()
-    .min(8)
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-      'Senha precisa de uma letra maiúscula e uma minúscula, um número e um caracter especial',
-    )
-    .required(),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref('password'), null], 'Senhas não conferem')
-    .required(),
-});
+import formTheme from '../../styles/themes/FormTheme';
+import registerUserSchema from './_validations';
 
 function SignUp(): JSX.Element {
   const [isArtist, setIsArtist] = useState(true);
@@ -62,7 +32,7 @@ function SignUp(): JSX.Element {
 
   const { register, handleSubmit, errors, watch } = useForm<IUser>({
     mode: 'onChange',
-    resolver: yupResolver(schema),
+    resolver: yupResolver(registerUserSchema),
     reValidateMode: 'onChange',
   });
 
@@ -170,6 +140,27 @@ function SignUp(): JSX.Element {
                 </Link>
               </p>
             </div>
+            <ThemeProvider theme={formTheme}>
+              <Snackbar
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={!!showError}
+                autoHideDuration={1800}
+                onClose={() => setShowError('')}
+                message={showError}
+                action={
+                  <IconButton
+                    size="small"
+                    aria-label="fechar menu post"
+                    onClick={() => setShowError('')}
+                  >
+                    <FaTimes />
+                  </IconButton>
+                }
+              />
+            </ThemeProvider>
           </form>
         </main>
         <Footer />
