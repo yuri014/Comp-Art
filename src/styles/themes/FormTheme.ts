@@ -71,6 +71,7 @@ const formTheme = createMuiTheme({
         backgroundColor: '#ED4848',
         color: '#FFFFFF',
         borderRadius: 5,
+        fontWeight: 'bold',
       },
     },
   },
