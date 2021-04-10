@@ -8,10 +8,8 @@ const ToggleThemeContainer = styled.span`
     padding: 0;
     border: none;
     background-color: transparent;
-
-    svg {
-      transform: scale(0.75);
-    }
+    cursor: pointer;
+    transform: scale(0.75);
   }
 `;
 
