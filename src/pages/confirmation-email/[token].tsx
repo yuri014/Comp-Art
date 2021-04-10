@@ -4,10 +4,12 @@ import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
 import Head from 'next/head';
 
-import PressStartButton from '../../components/PressStartButton';
 import { CONFIRMATION_EMAIL } from '../../graphql/mutations/user';
-import ConfirmationEmailContainer from '../../styles/pages/confirmation-email/styles';
+import ConfirmationEmailContainer from './_styles';
 import { AuthContext } from '../../context/auth';
+import ToggleThemeButton from '../../components/ToggleTheme';
+import Footer from '../../components/Footer';
+import Title from '../../components/Title';
 
 const ConfirmationEmail: React.FC = () => {
   const router = useRouter();
@@ -34,26 +36,28 @@ const ConfirmationEmail: React.FC = () => {
       <Head>
         <title>Confirmação de email</title>
       </Head>
-      {!hasError ? (
-        <div className="confirm-email-message">
-          <h1>Sua conta agora está ativa!</h1>
-          <PressStartButton>
-            <Link href="/register-profile">
-              <a>Start</a>
-            </Link>
-          </PressStartButton>
-        </div>
-      ) : (
-        <div className="error-confirm-email">
-          <h1>OPS! Aconteceu algo de errado na confirmação do seu email!</h1>
-          <h2>Refaça seu login para gerar um novo email</h2>
-          <PressStartButton>
-            <Link href="/login">
-              <a>Login</a>
-            </Link>
-          </PressStartButton>
-        </div>
-      )}
+      <div className="container">
+        <header>
+          <ToggleThemeButton />
+        </header>
+        <main>
+          <Title />
+          <p>
+            Agradecemos pela sua inscrição
+            <br />
+            Seu e-mail foi confirmado com sucesso
+          </p>
+          <img
+            src="/assets/email-confirmation-icon.svg"
+            alt="Mão segurando celular com ícone de email"
+          />
+          <p>Venha explorar esse novo mundo da arte!</p>
+          <Link href="/home">
+            <a>EXPLORAR</a>
+          </Link>
+        </main>
+        <Footer />
+      </div>
     </ConfirmationEmailContainer>
   );
 };
