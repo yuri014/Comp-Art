@@ -95,7 +95,7 @@ const Login: React.FC = () => {
           <ThemeProvider theme={formTheme}>
             <Snackbar
               anchorOrigin={{
-                vertical: 'bottom',
+                vertical: 'top',
                 horizontal: 'right',
               }}
               open={!!showError}
@@ -105,7 +105,7 @@ const Login: React.FC = () => {
               action={
                 <IconButton
                   size="small"
-                  aria-label="fechar menu post"
+                  aria-label="fechar menu erro"
                   onClick={() => setShowError('')}
                 >
                   <FaTimes />
