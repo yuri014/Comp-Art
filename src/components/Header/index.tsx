@@ -7,7 +7,6 @@ import {
   FaCog,
   FaExchangeAlt,
   FaMoon,
-  FaSearch,
   FaShoppingCart,
   FaSignInAlt,
   FaSignOutAlt,
@@ -21,6 +20,7 @@ import toggleTheme from '../../utils/toggleTheme';
 import { ILoggedProfile } from '../../interfaces/Profile';
 import mainLightTheme from '../../styles/themes/MainLightTheme';
 import mainDarkTheme from '../../styles/themes/MainDarkTheme';
+import SearchProfileHeader from '../Splitter/SearchProfileHeader';
 
 const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
   const auth = useContext(AuthContext);
@@ -39,17 +39,10 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
     <HeaderContainer>
       <Link href="/home">
         <a>
-          <p>CompArt</p>
+          <p className="title">CompArt</p>
         </a>
       </Link>
-      <div className="search-input">
-        <input type="text" title="Buscar..." placeholder="Buscar..." />
-        <div className="search-button">
-          <IconButton type="button" aria-label="Buscar">
-            <FaSearch />
-          </IconButton>
-        </div>
-      </div>
+      <SearchProfileHeader />
       {auth.user ? (
         <div className="header-icons">
           <Link href="/market">

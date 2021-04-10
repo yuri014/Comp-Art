@@ -28,7 +28,7 @@ export const HeaderContainer = styled.header`
   align-items: center;
   justify-content: space-between;
 
-  p {
+  .title {
     font: 400 2.8rem ${({ theme }) => theme.fonts.display};
     color: ${({ theme }) => theme.colors.themeColor};
   }
@@ -61,6 +61,48 @@ export const HeaderContainer = styled.header`
       button {
         color: ${({ theme }) => theme.colors.gray};
         font-size: 1.6rem;
+      }
+    }
+
+    .search-results {
+      position: absolute;
+      background-color: #0e0b21;
+      width: 100%;
+      padding: 1rem 2rem;
+      color: ${({ theme }) => theme.colors.themeColor};
+      border-radius: 5px;
+      top: 4.6rem;
+
+      .profile-info {
+        display: flex;
+        align-items: center;
+        color: ${({ theme }) => theme.colors.themeColor};
+
+        div {
+          display: flex;
+          margin-left: 1rem;
+          align-items: flex-start;
+          flex-direction: column;
+
+          strong {
+            font-size: 1.4rem;
+          }
+
+          p {
+            font-size: 1.1rem;
+            color: ${({ theme }) => theme.colors.gray};
+          }
+        }
+
+        img {
+          width: 3.2rem;
+          height: 3.2rem;
+          border-radius: 50%;
+        }
+
+        & + .profile-info {
+          margin-top: 1rem;
+        }
       }
     }
   }
