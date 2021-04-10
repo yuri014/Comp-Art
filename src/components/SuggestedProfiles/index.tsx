@@ -25,8 +25,13 @@ const SuggestedProfiles: React.FC = () => {
   return (
     <SuggestedProfilesContainer>
       <h4>Sugestões para seguir</h4>
-      {loading ? (
-        <LoadingSuggestedProfile />
+      {loading && !data ? (
+        <>
+          <LoadingSuggestedProfile />
+          <LoadingSuggestedProfile />
+          <LoadingSuggestedProfile />
+          <LoadingSuggestedProfile />
+        </>
       ) : (
         <>
           {data.getSuggestedProfiles.map(profile => (
