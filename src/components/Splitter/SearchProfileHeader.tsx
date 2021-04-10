@@ -45,7 +45,6 @@ const SearchProfileHeader: React.FC = () => {
         title="Buscar..."
         onChange={e => handleSearchProfile(e)}
         placeholder="Buscar..."
-        onBlur={() => setShowSearch(false)}
         onFocus={() => setShowSearch(true)}
       />
       <div className="search-button">
