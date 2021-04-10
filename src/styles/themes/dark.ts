@@ -4,7 +4,7 @@ const theme = {
     titleColor: '#50c878',
     backgroundColor: '#050211',
     secondaryBackgroundColor: '#202024',
-    alternativeBackground: '#0f0f28',
+    alternativeBackground: '#111112',
     lightText: '#393B73',
     blueContrast: '#8184C1',
     namesakeText: '#08162f',

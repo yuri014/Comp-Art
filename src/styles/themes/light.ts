@@ -4,7 +4,7 @@ const theme = {
     titleColor: 'rgba(0, 0, 0, 0.2)',
     backgroundColor: '#f5f5f5',
     secondaryBackgroundColor: '#fff',
-    alternativeBackground: '#0f0f28',
+    alternativeBackground: '#f5f5f5',
     lightText: '#393B73',
     blueContrast: '#8184C1',
     namesakeText: '#08162f',
