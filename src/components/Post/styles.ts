@@ -68,6 +68,10 @@ const PostContainer = styled.section`
     }
 
     .post-info {
+      .share-count {
+        display: none;
+      }
+
       .post-counts {
         width: 100%;
         display: flex;
@@ -125,13 +129,20 @@ const PostContainer = styled.section`
     }
 
     .post-interaction {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
       padding-top: 1rem;
       margin-top: 1rem;
       font-size: 2.4rem;
       border-top: 1px solid #3e3e3e;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .interaction-group {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
 
       button {
         color: ${({ theme }) => theme.colors.darkGray};
@@ -192,6 +203,73 @@ const PostContainer = styled.section`
         }
       }
     }
+  }
+
+  @media (min-width: 768px) {
+    width: 90%;
+    margin: 0 auto;
+    padding: 4rem;
+    border-radius: 5px;
+
+    .post {
+      .post-info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        p {
+          font-size: 1.2rem;
+        }
+
+        .share-count {
+          display: unset;
+
+          &-mobile {
+            display: none;
+          }
+        }
+
+        .post-counts {
+          width: 43rem;
+
+          @media (min-width: 1100px) {
+            width: 39rem;
+          }
+        }
+
+        .publish-date {
+          border-top: none;
+          padding: 0;
+          margin-top: 0;
+        }
+      }
+
+      .post-interaction {
+        .interaction-group {
+          width: 43rem;
+
+          @media (min-width: 1100px) {
+            width: 39rem;
+          }
+        }
+
+        button {
+          .interactions-button {
+            p {
+              font-size: 1.4rem;
+            }
+          }
+
+          &.bookmark {
+            display: unset;
+          }
+        }
+      }
+    }
+  }
+
+  @media (min-width: 1100px) {
+    padding: 2rem;
   }
 `;
 
