@@ -67,30 +67,6 @@ const PostContainer = styled.section`
       }
     }
 
-    button {
-      display: block;
-      background-color: transparent;
-      border: none;
-      padding: 0;
-
-      &.image-button {
-        margin: 2rem 0;
-        width: 100%;
-      }
-
-      .post-image {
-        cursor: pointer;
-        width: 100%;
-        height: 36.4rem;
-        img {
-          width: 100%;
-          height: 100%;
-          border-radius: 4px;
-          object-fit: cover;
-        }
-      }
-    }
-
     .post-info {
       .post-counts {
         width: 100%;
