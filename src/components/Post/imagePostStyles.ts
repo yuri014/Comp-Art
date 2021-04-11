@@ -3,30 +3,20 @@ import styled from 'styled-components';
 const PostContainer = styled.section`
   display: flex;
   flex-direction: column;
-  color: ${({ theme }) => theme.colors.lightContrast};
+  color: ${({ theme }) => theme.colors.themeColor};
   background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
   border-radius: 4px;
   padding: 2rem 3rem;
   font-size: 1.8rem;
   font-family: ${({ theme }) => theme.fonts.primary};
-  box-shadow: 0 0 6px #000;
+  box-shadow: ${({ theme }) => theme.colors.mainShadow};
   margin-bottom: 4rem;
-
-  &.full-post {
-    box-shadow: none;
-    background: none;
-    border-bottom: 1px solid ${({ theme }) => theme.colors.lightContrast};
-    border-radius: 0;
-
-    .post-config {
-      margin-right: -2rem;
-    }
-  }
 
   .post-author {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     .author-info {
       display: flex;
       align-items: center;
@@ -35,23 +25,21 @@ const PostContainer = styled.section`
 
         p {
           font-size: 2.4rem;
-          letter-spacing: 1px;
-          margin-bottom: 0.4rem;
-          color: ${({ theme }) => theme.colors.lightContrast};
+          letter-spacing: 0.1rem;
+          color: ${({ theme }) => theme.colors.themeColor};
           white-space: nowrap;
-          max-width: 440px;
+          max-width: 44rem;
           overflow: hidden;
           text-overflow: ellipsis;
         }
         span {
           display: flex;
           p {
-            margin-top: 0.4rem;
-            color: ${({ theme }) => theme.colors.blueContrast};
+            color: #ababab;
             font-size: 1.4rem;
-            letter-spacing: 1px;
+            letter-spacing: 0.1rem;
             white-space: nowrap;
-            max-width: 300px;
+            max-width: 30rem;
             overflow: hidden;
             text-overflow: ellipsis;
           }
@@ -60,8 +48,8 @@ const PostContainer = styled.section`
     }
 
     img {
-      width: 60px;
-      height: 60px;
+      width: 6rem;
+      height: 6rem;
       border-radius: 50%;
       object-fit: fill;
     }
@@ -103,12 +91,16 @@ const PostContainer = styled.section`
     }
 
     .post-counts {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 1.3rem;
+
       button {
-        color: ${({ theme }) => theme.colors.lightContrast};
+        color: ${({ theme }) => theme.colors.themeColor};
         background: transparent;
         border: none;
         cursor: pointer;
-        font-size: 1.6rem;
         display: flex;
         align-items: center;
         width: unset;
@@ -148,7 +140,8 @@ const PostContainer = styled.section`
       margin-top: 1rem;
       font-size: 2.4rem;
       border-top: 2px solid ${({ theme }) => theme.colors.lightContrast};
-      & button {
+
+      button {
         color: ${({ theme }) => theme.colors.lightContrast};
         border: none;
         background-color: transparent;
@@ -159,7 +152,7 @@ const PostContainer = styled.section`
         display: flex;
         align-items: center;
 
-        & p {
+        p {
           font-size: 1.6rem;
           margin-left: 1rem;
         }
@@ -176,9 +169,11 @@ const PostContainer = styled.section`
         &.active {
           opacity: 1;
           color: ${({ theme }) => theme.colors.mainColor};
+
           svg {
             transform: scale(0);
             animation: liked 0.4s ease-in-out forwards;
+
             @keyframes liked {
               from {
                 transform: scale(0);
@@ -188,6 +183,10 @@ const PostContainer = styled.section`
               }
             }
           }
+        }
+
+        &.bookmark {
+          display: none;
         }
       }
     }
