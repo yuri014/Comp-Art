@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { FaRegCompass } from 'react-icons/fa';
 
 import NoPostIcon from '../../assets/no-posts.svg';
-import { EmptyPostContainer } from './styles';
+import { EmptyPostContainer } from './utilsStyles';
 
 const EmptyPost: React.FC = () => (
   <EmptyPostContainer>

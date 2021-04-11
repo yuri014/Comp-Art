@@ -5,12 +5,12 @@ import { useForm } from 'react-hook-form';
 import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
 
-import { CreatePostContainer } from './styles';
 import formTheme from '../../styles/themes/FormTheme';
 import useImagePreview from '../../hooks/imagePreview';
 import PressStartButtonContainer from '../PressStartButton/styles';
 import { CREATE_POST } from '../../graphql/mutations/post';
 import ErrorMessage from '../ErrorMessage';
+import { CreatePostContainer } from './utilsStyles';
 
 interface IPostInput {
   description: string;

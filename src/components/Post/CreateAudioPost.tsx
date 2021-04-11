@@ -6,10 +6,10 @@ import { FiFileText } from 'react-icons/fi';
 import { useRouter } from 'next/router';
 
 import { CREATE_POST } from '../../graphql/mutations/post';
-import { CreatePostContainer } from './styles';
 import PressStartButtonContainer from '../PressStartButton/styles';
 import formTheme from '../../styles/themes/FormTheme';
 import ErrorMessage from '../ErrorMessage';
+import { CreatePostContainer } from './utilsStyles';
 
 interface IPostInput {
   description: string;

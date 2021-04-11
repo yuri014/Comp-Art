@@ -10,7 +10,7 @@ import {
 import Skeleton from '@material-ui/lab/Skeleton';
 
 import mainTheme from '../../styles/themes/MainTheme';
-import PostContainer from './imagePostStyles';
+import PostContainer from './styles';
 
 const SkeletonPost: React.FC = () => (
   <PostContainer>
