@@ -6,6 +6,7 @@ export interface IProfileInput {
 }
 
 export interface IProfile {
+  _id: string;
   name: string;
   avatar: string;
   coverImage: string;
