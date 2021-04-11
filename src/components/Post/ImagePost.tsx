@@ -3,9 +3,10 @@ import { Button, ThemeProvider } from '@material-ui/core';
 import Link from 'next/link';
 import {
   FaHeart,
-  FaRegComment,
+  FaRegBookmark,
+  FaRegCommentAlt,
   FaRegHeart,
-  FaRegShareSquare,
+  FaShareAlt,
 } from 'react-icons/fa';
 import dynamic from 'next/dynamic';
 
@@ -15,6 +16,7 @@ import useDeletePost from '../../hooks/posts';
 import LevelContext from '../../context/level';
 import { GET_LIKES } from '../../graphql/mutations/post';
 import PostContainer from './imagePostStyles';
+import formatDate from '../../utils/formatDate';
 
 const FullScreenImage = dynamic(() => import('../FullScreenImage'));
 const OptionsMenu = dynamic(() => import('./OptionsMenu'));
@@ -57,6 +59,16 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
     setIsDeleted(true);
   };
 
+  const publishDate = () => {
+    const date = formatDate(post.createdAt);
+    const hour = new Date(post.createdAt).toLocaleTimeString('en-GB', {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+
+    return `${date} · ${hour}h`;
+  };
+
   return (
     <>
       {!isDeleted && (
@@ -74,10 +86,6 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
                       <p>{post.artist.name}</p>
                       <span>
                         <p>@{post.artist.owner}</p>
-                        <p>&nbsp;●&nbsp;</p>
-                        <p>
-                          {new Date(post.createdAt).toLocaleDateString('en-GB')}
-                        </p>
                       </span>
                     </div>
                   </a>
@@ -133,25 +141,29 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
                     </>
                   )}
                 </button>
+                <p className="publish-date">{publishDate()}</p>
               </div>
               <div className="post-interaction">
                 <Button
                   className={isLiked ? 'active' : ''}
                   type="button"
                   onClick={() => (isLiked ? dislikePost() : likePost())}
-                  title="Curtir"
+                  aria-label="Curtir"
                 >
                   {isLiked ? <FaHeart /> : <FaRegHeart />}
                 </Button>
                 <Link href={`/post/${post._id}`}>
                   <a>
-                    <Button title="Comentar" type="button">
-                      <FaRegComment />
+                    <Button aria-label="Comentar" type="button">
+                      <FaRegCommentAlt />
                     </Button>
                   </a>
                 </Link>
-                <Button title="Compartilhar" type="button">
-                  <FaRegShareSquare />
+                <Button aria-label="Compartilhar" type="button">
+                  <FaShareAlt />
+                </Button>
+                <Button className="bookmark" aria-label="Salvar" type="button">
+                  <FaRegBookmark />
                 </Button>
               </div>
             </div>
