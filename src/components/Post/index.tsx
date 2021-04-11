@@ -112,49 +112,57 @@ const Post: React.FC<PostProps> = ({ post }) => {
               ) : (
                 <ImagePost image={post.body} />
               )}
-
               <div className="post-info">
                 <div className="post-counts">
                   <ModalLikesButton post={post} likesCount={likesCount} />
                   <p>300k comentários</p>
+                  <p className="share-count">300k compartilhamentos</p>
                 </div>
                 <div className="publish-date">
-                  <p>300k compartilhamentos</p>
+                  <p className="share-count-mobile">300k compartilhamentos</p>
                   <p>{publishDate()}</p>
                 </div>
               </div>
               <div className="post-interaction">
-                <IconButton
-                  className={isLiked ? 'active' : ''}
-                  type="button"
-                  onClick={() => (isLiked ? dislikePost() : likePost())}
-                  aria-label="Curtir"
-                >
-                  <div className="interactions-button">
-                    {isLiked ? <FaHeart /> : <FaRegHeart />}
-                    <p>Curtir</p>
-                  </div>
-                </IconButton>
-                <Link href={`/post/${post._id}`}>
-                  <a>
-                    <IconButton aria-label="Comentar" type="button">
-                      <div className="interactions-button">
-                        <FaCommentAlt /> <p>Comentar</p>
-                      </div>
-                    </IconButton>
-                  </a>
-                </Link>
-                <IconButton aria-label="Compartilhar" type="button">
-                  <div className="interactions-button">
-                    <FaShareAlt /> <p>Compartilhar</p>
-                  </div>
-                </IconButton>
+                <div className="interaction-group">
+                  <IconButton
+                    className={isLiked ? 'active' : ''}
+                    type="button"
+                    onClick={() => (isLiked ? dislikePost() : likePost())}
+                    aria-label="Curtir"
+                  >
+                    <div className="interactions-button">
+                      {isLiked ? (
+                        <FaHeart size={20} />
+                      ) : (
+                        <FaRegHeart size={20} />
+                      )}
+                      <p>Curtir</p>
+                    </div>
+                  </IconButton>
+                  <Link href={`/post/${post._id}`}>
+                    <a>
+                      <IconButton aria-label="Comentar" type="button">
+                        <div className="interactions-button">
+                          <FaCommentAlt size={20} /> <p>Comentar</p>
+                        </div>
+                      </IconButton>
+                    </a>
+                  </Link>
+                  <IconButton aria-label="Compartilhar" type="button">
+                    <div className="interactions-button">
+                      <FaShareAlt size={20} /> <p>Compartilhar</p>
+                    </div>
+                  </IconButton>
+                </div>
                 <IconButton
                   className="bookmark"
                   aria-label="Salvar"
                   type="button"
                 >
-                  <FaRegBookmark />
+                  <div className="interactions-button">
+                    <FaRegBookmark size={20} /> <p>Salvar</p>
+                  </div>
                 </IconButton>
               </div>
             </div>
