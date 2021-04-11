@@ -52,7 +52,7 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
   const [isFollowing, setIsFollowing] = useState(false);
   const { data: getIsFollowing, loading } = useQuery(GET_IS_FOLLOWING, {
     variables: {
-      username,
+      id: profile.data.getProfile._id,
     },
     onCompleted: () => setIsFollowing(getIsFollowing.getIsFollowing),
   });
