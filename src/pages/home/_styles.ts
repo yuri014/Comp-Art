@@ -18,7 +18,8 @@ const HomeContainer = styled.main`
   @media (max-width: 1100px) {
     .home-desktop-content {
       display: block;
-      padding: 8rem 2rem;
+      padding: 8rem 0;
+      margin: unset;
       aside {
         display: none;
       }
