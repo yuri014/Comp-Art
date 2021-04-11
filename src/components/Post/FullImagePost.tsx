@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 
 import { PostProps } from '../../interfaces/Post';
 import useDeletePost from '../../hooks/posts';
-import { PostContainer } from './styles';
+import PostContainer from './imagePostStyles';
 
 const FullScreenImage = dynamic(() => import('../FullScreenImage'));
 const OptionsMenu = dynamic(() => import('./OptionsMenu'));
