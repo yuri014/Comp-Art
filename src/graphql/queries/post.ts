@@ -20,7 +20,7 @@ export const GET_POST = gql`
           avatar
         }
       }
-      isAudio
+      mediaId
       isLiked
     }
   }
@@ -47,7 +47,7 @@ export const GET_POSTS = gql`
           avatar
         }
       }
-      isAudio
+      mediaId
       isLiked
     }
   }
@@ -74,7 +74,7 @@ export const GET_EXPLORE_POSTS = gql`
           avatar
         }
       }
-      isAudio
+      mediaId
       isLiked
     }
   }
@@ -101,7 +101,7 @@ export const GET_PROFILE_POSTS = gql`
           avatar
         }
       }
-      isAudio
+      mediaId
       isLiked
     }
   }

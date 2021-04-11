@@ -40,7 +40,8 @@ const CreatePost: React.FC = () => {
         post: {
           description,
           body: imagePreview.file,
-          isAudio: false,
+          mediaId: 1,
+          alt: '',
         },
       },
     });

@@ -14,7 +14,7 @@ export interface IPost {
   commentsCount: number;
   createdAt: string;
   artist: IProfile;
-  isAudio: boolean;
+  mediaId: number;
   isLiked?: boolean;
 }
 
