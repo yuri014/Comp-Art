@@ -9,6 +9,7 @@ const theme = {
     blueContrast: '#8184C1',
     namesakeText: '#08162f',
     lightContrast: '#cbcaeb',
+    darkGray: '#ababab',
     gray: '#e1e1e1',
     lightSecondaryBackground: '#28282C',
     lightGreen: '#5DD083',
