@@ -14,7 +14,11 @@ const ImagePostContainer = styled.div`
     .post-image {
       cursor: pointer;
       width: 100%;
-      height: 26rem;
+      height: 30vh;
+
+      @media (min-width: 1100px) {
+        height: 40vh;
+      }
 
       img {
         width: 100%;
