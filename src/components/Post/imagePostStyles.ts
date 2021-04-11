@@ -5,8 +5,7 @@ const PostContainer = styled.section`
   flex-direction: column;
   color: ${({ theme }) => theme.colors.themeColor};
   background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
-  border-radius: 4px;
-  padding: 2rem 3rem;
+  padding: 1rem;
   font-size: 1.8rem;
   font-family: ${({ theme }) => theme.fonts.primary};
   box-shadow: ${({ theme }) => theme.colors.mainShadow};
@@ -32,10 +31,12 @@ const PostContainer = styled.section`
           overflow: hidden;
           text-overflow: ellipsis;
         }
+
         span {
           display: flex;
+
           p {
-            color: #ababab;
+            color: ${({ theme }) => theme.colors.darkGray};
             font-size: 1.4rem;
             letter-spacing: 0.1rem;
             white-space: nowrap;
@@ -73,14 +74,14 @@ const PostContainer = styled.section`
       padding: 0;
 
       &.image-button {
+        margin: 2rem 0;
         width: 100%;
       }
 
       .post-image {
         cursor: pointer;
-        margin: 2rem 0;
         width: 100%;
-        height: 432px;
+        height: 36.4rem;
         img {
           width: 100%;
           height: 100%;
@@ -90,59 +91,74 @@ const PostContainer = styled.section`
       }
     }
 
-    .post-counts {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 1.3rem;
-
-      button {
-        color: ${({ theme }) => theme.colors.themeColor};
-        background: transparent;
-        border: none;
-        cursor: pointer;
+    .post-info {
+      .post-counts {
+        width: 100%;
         display: flex;
         align-items: center;
-        width: unset;
+        justify-content: space-between;
 
-        &:focus {
-          outline: 1px solid ${({ theme }) => theme.colors.mainColor};
-        }
-
-        .likes-images {
+        button {
+          color: ${({ theme }) => theme.colors.themeColor};
+          background: transparent;
+          border: none;
+          cursor: pointer;
           display: flex;
           align-items: center;
-          flex-direction: row-reverse;
-          img {
-            width: 2.8rem;
-            height: 2.8rem;
-            border-radius: 50%;
-            object-fit: cover;
+          width: unset;
 
-            &:first-child {
-              margin-right: 1rem;
-            }
+          &:focus {
+            outline: 1px solid ${({ theme }) => theme.colors.mainColor};
+          }
 
-            & + img {
-              margin-right: -1rem;
+          .likes-images {
+            display: flex;
+            align-items: center;
+            flex-direction: row-reverse;
+            img {
+              width: 2.4rem;
+              height: 2.4rem;
+              border-radius: 50%;
+              object-fit: cover;
+
+              &:first-child {
+                margin-right: 0.4rem;
+              }
+
+              & + img {
+                margin-right: -1.6rem;
+              }
             }
           }
         }
       }
+
+      p {
+        font-size: 1.2rem;
+      }
+    }
+
+    .publish-date {
+      font-size: 1.1rem;
+      padding-top: 1rem;
+      margin-top: 1rem;
+      border-top: 1px solid #3e3e3e;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .post-interaction {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 2rem;
       padding-top: 1rem;
       margin-top: 1rem;
       font-size: 2.4rem;
-      border-top: 2px solid ${({ theme }) => theme.colors.lightContrast};
+      border-top: 1px solid #3e3e3e;
 
       button {
-        color: ${({ theme }) => theme.colors.lightContrast};
+        color: ${({ theme }) => theme.colors.darkGray};
         border: none;
         background-color: transparent;
         cursor: pointer;
@@ -151,6 +167,16 @@ const PostContainer = styled.section`
         transition: all 0.4s ease-in-out;
         display: flex;
         align-items: center;
+
+        .interactions-button {
+          display: flex;
+          align-items: center;
+
+          p {
+            font-size: 1.4rem;
+            margin-left: 1rem;
+          }
+        }
 
         p {
           font-size: 1.6rem;
@@ -191,46 +217,6 @@ const PostContainer = styled.section`
       }
     }
   }
-
-  @media (max-width: 769px) {
-    padding: 2rem;
-
-    .post-author {
-      .author-info {
-        div {
-          p {
-            max-width: 160px;
-          }
-          span {
-            display: flex;
-            p {
-              max-width: 80px;
-            }
-          }
-        }
-      }
-    }
-
-    .post {
-      .post-image {
-        height: 232px;
-      }
-
-      & .post-interaction {
-        padding: 0;
-        & button {
-          padding: 1rem 2rem;
-        }
-      }
-    }
-  }
-
-  @media (max-width: 1100px) {
-    .post {
-      .post-image {
-        height: 332px;
-      }
-    }
-  }
 `;
+
 export default PostContainer;

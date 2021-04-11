@@ -1,33 +1,34 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Button, ThemeProvider } from '@material-ui/core';
+import { IconButton, ThemeProvider } from '@material-ui/core';
 import Link from 'next/link';
 import {
   FaHeart,
   FaRegBookmark,
-  FaRegCommentAlt,
+  FaCommentAlt,
   FaRegHeart,
   FaShareAlt,
 } from 'react-icons/fa';
 import dynamic from 'next/dynamic';
 
 import { PostProps } from '../../interfaces/Post';
-import mainTheme from '../../styles/themes/MainTheme';
 import useDeletePost from '../../hooks/posts';
 import LevelContext from '../../context/level';
-import { GET_LIKES } from '../../graphql/mutations/post';
 import PostContainer from './imagePostStyles';
 import formatDate from '../../utils/formatDate';
+import ThemeContext from '../../context/theme';
+import mainDarkTheme from '../../styles/themes/MainDarkTheme';
+import mainLightTheme from '../../styles/themes/MainLightTheme';
+import ModalLikesButton from '../Splitter/ModalLikesButton';
 
 const FullScreenImage = dynamic(() => import('../FullScreenImage'));
 const OptionsMenu = dynamic(() => import('./OptionsMenu'));
-const ModalProfile = dynamic(() => import('../ModalProfile'));
 
 const ImagePost: React.FC<PostProps> = ({ post }) => {
   const [isLiked, setIsLiked] = useState<boolean>();
+  const { theme } = useContext(ThemeContext);
   const [likesCount, setLikesCount] = useState<number>();
   const [isImageFullScreen, setIsImageFullScreen] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
-  const [modalShow, setModalShow] = useState(false);
 
   useEffect(() => {
     setIsLiked(post.isLiked);
@@ -73,7 +74,9 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
     <>
       {!isDeleted && (
         <PostContainer>
-          <ThemeProvider theme={mainTheme}>
+          <ThemeProvider
+            theme={theme === 'light' ? mainLightTheme : mainDarkTheme}
+          >
             <div className="post-author">
               <div className="author-info">
                 <img
@@ -116,55 +119,49 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
                   />
                 </figure>
               </button>
-              <div className="post-counts">
-                <button
-                  onClick={() => setModalShow(true)}
-                  type="button"
-                  aria-label="Abrir modal de likes"
-                >
-                  <div className="likes-images">
-                    {post.likes &&
-                      post.likes.map(({ profile }) => (
-                        <img
-                          key={profile.owner}
-                          src={
-                            process.env.NEXT_PUBLIC_API_HOST + profile.avatar
-                          }
-                          alt={profile.owner}
-                          title={profile.owner}
-                        />
-                      ))}
-                  </div>
-                  {likesCount > 0 && (
-                    <>
-                      {likesCount} {likesCount > 1 ? 'curtidas' : 'curtida'}
-                    </>
-                  )}
-                </button>
-                <p className="publish-date">{publishDate()}</p>
+              <div className="post-info">
+                <div className="post-counts">
+                  <ModalLikesButton post={post} likesCount={likesCount} />
+                  <p>300k comentários</p>
+                </div>
+                <div className="publish-date">
+                  <p>300k compartilhamentos</p>
+                  <p>{publishDate()}</p>
+                </div>
               </div>
               <div className="post-interaction">
-                <Button
+                <IconButton
                   className={isLiked ? 'active' : ''}
                   type="button"
                   onClick={() => (isLiked ? dislikePost() : likePost())}
                   aria-label="Curtir"
                 >
-                  {isLiked ? <FaHeart /> : <FaRegHeart />}
-                </Button>
+                  <div className="interactions-button">
+                    {isLiked ? <FaHeart /> : <FaRegHeart />}
+                    <p>Curtir</p>
+                  </div>
+                </IconButton>
                 <Link href={`/post/${post._id}`}>
                   <a>
-                    <Button aria-label="Comentar" type="button">
-                      <FaRegCommentAlt />
-                    </Button>
+                    <IconButton aria-label="Comentar" type="button">
+                      <div className="interactions-button">
+                        <FaCommentAlt /> <p>Comentar</p>
+                      </div>
+                    </IconButton>
                   </a>
                 </Link>
-                <Button aria-label="Compartilhar" type="button">
-                  <FaShareAlt />
-                </Button>
-                <Button className="bookmark" aria-label="Salvar" type="button">
+                <IconButton aria-label="Compartilhar" type="button">
+                  <div className="interactions-button">
+                    <FaShareAlt /> <p>Compartilhar</p>
+                  </div>
+                </IconButton>
+                <IconButton
+                  className="bookmark"
+                  aria-label="Salvar"
+                  type="button"
+                >
                   <FaRegBookmark />
-                </Button>
+                </IconButton>
               </div>
             </div>
             {isImageFullScreen && (
@@ -175,14 +172,6 @@ const ImagePost: React.FC<PostProps> = ({ post }) => {
             )}
           </ThemeProvider>
         </PostContainer>
-      )}
-      {modalShow && (
-        <ModalProfile
-          onHide={() => setModalShow(false)}
-          queryResult="getLikes"
-          query={GET_LIKES}
-          id={post._id}
-        />
       )}
     </>
   );
