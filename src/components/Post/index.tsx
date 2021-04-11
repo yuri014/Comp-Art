@@ -115,11 +115,15 @@ const Post: React.FC<PostProps> = ({ post }) => {
               <div className="post-info">
                 <div className="post-counts">
                   <ModalLikesButton post={post} likesCount={likesCount} />
-                  <p>300k comentários</p>
-                  <p className="share-count">300k compartilhamentos</p>
+                  {post.commentsCount > 0 && <p>0 comentários</p>}
+                  {post.sharedCount > 0 && (
+                    <p className="share-count">0 compartilhamentos</p>
+                  )}
                 </div>
                 <div className="publish-date">
-                  <p className="share-count-mobile">300k compartilhamentos</p>
+                  {post.sharedCount > 0 && (
+                    <p className="share-count-mobile">0 compartilhamentos</p>
+                  )}
                   <p>{publishDate()}</p>
                 </div>
               </div>

@@ -33,23 +33,13 @@ const ModalLikesButton: React.FC<ModalLikesButtonProps> = ({
                   alt={profile.owner}
                   title={profile.owner}
                 />
-                <img
-                  key={profile.owner}
-                  src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
-                  alt={profile.owner}
-                  title={profile.owner}
-                />
-                <img
-                  key={profile.owner}
-                  src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
-                  alt={profile.owner}
-                  title={profile.owner}
-                />
               </>
             ))}
         </div>
         {likesCount > 0 && (
-          <p>300k {likesCount > 1 ? 'curtidas' : 'curtida'}</p>
+          <p>
+            {likesCount} {likesCount > 1 ? 'curtidas' : 'curtida'}
+          </p>
         )}
       </button>
       {modalShow && (
