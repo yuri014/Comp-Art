@@ -18,6 +18,7 @@ export const GET_LOGGED_PROFILE = gql`
 export const GET_PROFILE = gql`
   query GetProfile($username: String!) {
     getProfile(username: $username) {
+      _id
       name
       avatar
       coverImage
@@ -46,8 +47,8 @@ export const GET_PROFILE = gql`
 `;
 
 export const GET_IS_FOLLOWING = gql`
-  query GetIsFollowing($username: String!) {
-    getIsFollowing(username: $username)
+  query GetIsFollowing($id: String!) {
+    getIsFollowing(id: $id)
   }
 `;
 
