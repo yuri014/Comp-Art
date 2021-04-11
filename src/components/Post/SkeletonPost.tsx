@@ -9,8 +9,8 @@ import {
 } from 'react-icons/fa';
 import Skeleton from '@material-ui/lab/Skeleton';
 
-import { PostContainer } from './styles';
 import mainTheme from '../../styles/themes/MainTheme';
+import PostContainer from './imagePostStyles';
 
 const SkeletonPost: React.FC = () => (
   <PostContainer>

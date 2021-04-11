@@ -4,7 +4,7 @@ import { FaBackward, FaForward, FaPause, FaPlay } from 'react-icons/fa';
 import { Slider, ThemeProvider } from '@material-ui/core';
 import dynamic from 'next/dynamic';
 
-import { AudioPostContainer } from '../styles';
+import AudioPostContainer from './audioPostStyles';
 import mainTheme from '../../../styles/themes/MainTheme';
 import { PostProps } from '../../../interfaces/Post';
 import useDeletePost from '../../../hooks/posts';

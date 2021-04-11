@@ -9,12 +9,12 @@ import {
 } from 'react-icons/fa';
 import dynamic from 'next/dynamic';
 
-import { PostContainer } from './styles';
 import { PostProps } from '../../interfaces/Post';
 import mainTheme from '../../styles/themes/MainTheme';
 import useDeletePost from '../../hooks/posts';
 import LevelContext from '../../context/level';
 import { GET_LIKES } from '../../graphql/mutations/post';
+import PostContainer from './imagePostStyles';
 
 const FullScreenImage = dynamic(() => import('../FullScreenImage'));
 const OptionsMenu = dynamic(() => import('./OptionsMenu'));
