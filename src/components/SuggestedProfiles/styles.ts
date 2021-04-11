@@ -57,7 +57,8 @@ const SuggestedProfilesContainer = styled.div`
       font-size: 1.2rem;
       transition: 0.2s ease-out;
 
-      &:hover {
+      &:hover,
+      &.followed {
         background-color: ${({ theme }) => theme.colors.pink};
         color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
       }
