@@ -1,9 +1,13 @@
-import React from 'react';
-import { gql, useQuery } from '@apollo/client';
+import React, { useState } from 'react';
+import { gql, useMutation, useQuery } from '@apollo/client';
 
 import SuggestedProfilesContainer from './styles';
 import LoadingSuggestedProfile from './loading';
 import { IProfile } from '../../interfaces/Profile';
+import {
+  FOLLOW_PROFILE,
+  UNFOLLOW_PROFILE,
+} from '../../graphql/mutations/profile';
 
 const GET_SUGGESTED_PROFILES = gql`
   query GetSuggestedProfiles {
@@ -19,6 +23,43 @@ interface ISuggestedProfile {
   getSuggestedProfiles: Array<IProfile>;
 }
 
+const FollowButton: React.FC<{ username: string }> = ({ username }) => {
+  const [isFollowing, setIsFollowing] = useState(false);
+
+  const [follow] = useMutation(FOLLOW_PROFILE);
+  const [unfollow] = useMutation(UNFOLLOW_PROFILE);
+  return (
+    <>
+      {isFollowing ? (
+        <button
+          type="button"
+          className="followed"
+          onClick={() => {
+            unfollow({
+              variables: { username },
+            });
+            setIsFollowing(false);
+          }}
+        >
+          SEGUINDO
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={() => {
+            follow({
+              variables: { username },
+            });
+            setIsFollowing(true);
+          }}
+        >
+          SEGUIR
+        </button>
+      )}
+    </>
+  );
+};
+
 const SuggestedProfiles: React.FC = () => {
   const { data, loading } = useQuery<ISuggestedProfile>(GET_SUGGESTED_PROFILES);
 
@@ -27,6 +68,7 @@ const SuggestedProfiles: React.FC = () => {
       <h4>Sugestões para seguir</h4>
       {loading && !data ? (
         <>
+          <LoadingSuggestedProfile />
           <LoadingSuggestedProfile />
           <LoadingSuggestedProfile />
           <LoadingSuggestedProfile />
@@ -47,7 +89,7 @@ const SuggestedProfiles: React.FC = () => {
                   <p className="limited-text">@{profile.owner}</p>
                 </div>
               </div>
-              <button type="button">SEGUIR</button>
+              <FollowButton username={profile.owner} />
             </div>
           ))}
         </>
