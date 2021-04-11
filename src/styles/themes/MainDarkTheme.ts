@@ -7,7 +7,7 @@ const mainDarkTheme = createMuiTheme({
       main: '#1cc5b7',
     },
     secondary: {
-      main: '#cbcaeb',
+      main: '#ababab',
     },
     contrastThreshold: 3,
     tonalOffset: 0.2,
@@ -28,6 +28,16 @@ const mainDarkTheme = createMuiTheme({
       },
     },
     MuiMenuItem: {
+      root: {
+        padding: '0',
+      },
+    },
+    MuiIconButton: {
+      root: {
+        padding: '0',
+      },
+    },
+    MuiButton: {
       root: {
         padding: '0',
       },
