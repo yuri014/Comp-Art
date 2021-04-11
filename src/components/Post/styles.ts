@@ -1,146 +1,222 @@
 import styled from 'styled-components';
 
-export const CreatePostContainer = styled.div`
-  color: ${({ theme }) => theme.colors.lightContrast};
-  width: 90%;
-  margin: 0 auto;
-  & form {
-    background: ${({ theme }) => theme.colors.mainGradient};
-    padding: 2rem;
-    border-radius: 0 0 4px 4px;
-    display: flex;
-    flex-direction: column;
-    & h2 {
-      font-size: 2.4rem;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-  }
-
-  & svg {
-    color: ${({ theme }) => theme.colors.lightContrast};
-  }
-
-  & .file-label {
-    margin-top: 1rem;
-    width: 100%;
-    height: 100%;
-    max-height: 300px;
-    border-radius: 2px;
-    cursor: pointer;
-    border: 1px dashed ${({ theme }) => theme.colors.lightContrast};
-    & input {
-      display: none;
-    }
-
-    & img {
-      width: 100%;
-      height: 100%;
-      max-height: 298px;
-      border-radius: 2px;
-    }
-
-    & .drop-file {
-      width: 100%;
-      height: 100%;
-      padding: 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      & p {
-        font-size: 1.4rem;
-      }
-    }
-  }
-
-  & .publish {
-    margin-top: 2rem;
-    & button {
-      width: 16rem;
-      & svg {
-        color: ${({ theme }) => theme.colors.namesakeText};
-      }
-    }
-  }
-
-  @media (min-width: 1100px) {
-    width: 50%;
-
-    & .file-label {
-      max-height: 432px;
-      & img {
-        max-height: 430px;
-      }
-    }
-  }
-`;
-
-export const EmptyPostContainer = styled.div`
+const PostContainer = styled.section`
+  display: flex;
+  flex-direction: column;
   color: ${({ theme }) => theme.colors.themeColor};
   background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
-  padding: 4rem;
-  font-size: 2rem;
-  text-align: center;
-  border-radius: 5px;
+  padding: 1rem;
+  font-size: 1.8rem;
+  font-family: ${({ theme }) => theme.fonts.primary};
   box-shadow: ${({ theme }) => theme.colors.mainShadow};
+  margin-bottom: 4rem;
 
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-
-  .empty-post-title {
-    font-size: 2.6rem;
-    margin-top: 0;
-    margin-bottom: 2rem;
-  }
-
-  p {
-    font-size: 1.6rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
-
-  button {
-    margin-top: 2rem;
-    background-color: ${({ theme }) => theme.colors.pink};
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.4rem;
-    color: ${({ theme }) => theme.colors.themeColor};
-    cursor: pointer;
-    font-weight: bold;
+  .post-author {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    justify-content: space-between;
 
-    div {
+    .author-info {
       display: flex;
-    }
-
-    &:hover {
+      align-items: center;
       div {
-        animation: rotateCompass 0.4s ease-in-out infinite alternate;
+        margin-left: 2rem;
 
-        @keyframes rotateCompass {
-          from {
-            transform: rotate(360deg);
-          }
-          to {
-            transform: rotate(0);
+        p {
+          font-size: 2.4rem;
+          letter-spacing: 0.1rem;
+          color: ${({ theme }) => theme.colors.themeColor};
+          white-space: nowrap;
+          max-width: 44rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        span {
+          display: flex;
+
+          p {
+            color: ${({ theme }) => theme.colors.darkGray};
+            font-size: 1.4rem;
+            letter-spacing: 0.1rem;
+            white-space: nowrap;
+            max-width: 30rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
         }
       }
     }
+
+    img {
+      width: 6rem;
+      height: 6rem;
+      border-radius: 50%;
+      object-fit: fill;
+    }
   }
-  @media (min-width: 1100px) {
-    .empty-post-title {
-      width: 100%;
+
+  .post {
+    .post-description {
+      margin: 2rem 0 1rem 0;
+      max-width: 100%;
+
+      p {
+        overflow: hidden;
+        max-width: 700px;
+      }
     }
 
-    p {
-      width: 60%;
+    button {
+      display: block;
+      background-color: transparent;
+      border: none;
+      padding: 0;
+
+      &.image-button {
+        margin: 2rem 0;
+        width: 100%;
+      }
+
+      .post-image {
+        cursor: pointer;
+        width: 100%;
+        height: 36.4rem;
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 4px;
+          object-fit: cover;
+        }
+      }
+    }
+
+    .post-info {
+      .post-counts {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        button {
+          color: ${({ theme }) => theme.colors.themeColor};
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          width: unset;
+
+          &:focus {
+            outline: 1px solid ${({ theme }) => theme.colors.mainColor};
+          }
+
+          .likes-images {
+            display: flex;
+            align-items: center;
+            flex-direction: row-reverse;
+            img {
+              width: 2.4rem;
+              height: 2.4rem;
+              border-radius: 50%;
+              object-fit: cover;
+
+              &:first-child {
+                margin-right: 0.4rem;
+              }
+
+              & + img {
+                margin-right: -1.6rem;
+              }
+            }
+          }
+        }
+      }
+
+      p {
+        font-size: 1.2rem;
+      }
+    }
+
+    .publish-date {
+      font-size: 1.1rem;
+      padding-top: 1rem;
+      margin-top: 1rem;
+      border-top: 1px solid #3e3e3e;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .post-interaction {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      margin-top: 1rem;
+      font-size: 2.4rem;
+      border-top: 1px solid #3e3e3e;
+
+      button {
+        color: ${({ theme }) => theme.colors.darkGray};
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        padding: 1rem 0;
+        font-size: 2.4rem;
+        transition: all 0.4s ease-in-out;
+        display: flex;
+        align-items: center;
+
+        .interactions-button {
+          display: flex;
+          align-items: center;
+
+          p {
+            font-size: 1.4rem;
+            margin-left: 1rem;
+          }
+        }
+
+        p {
+          font-size: 1.6rem;
+          margin-left: 1rem;
+        }
+
+        &:hover {
+          filter: brightness(140%);
+        }
+
+        &:focus {
+          outline: none;
+          color: ${({ theme }) => theme.colors.mainColor};
+        }
+
+        &.active {
+          opacity: 1;
+          color: ${({ theme }) => theme.colors.mainColor};
+
+          svg {
+            transform: scale(0);
+            animation: liked 0.4s ease-in-out forwards;
+
+            @keyframes liked {
+              from {
+                transform: scale(0);
+              }
+              to {
+                transform: scale(1);
+              }
+            }
+          }
+        }
+
+        &.bookmark {
+          display: none;
+        }
+      }
     }
   }
 `;
+
+export default PostContainer;
