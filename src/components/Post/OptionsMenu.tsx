@@ -1,6 +1,6 @@
 import React, { memo, useContext, useRef, useState } from 'react';
 import { IconButton, Menu, MenuItem, Snackbar } from '@material-ui/core';
-import { FiMoreVertical, FiTrash2 } from 'react-icons/fi';
+import { FiMoreHorizontal, FiTrash2 } from 'react-icons/fi';
 
 import { FaTimes } from 'react-icons/fa';
 import { AuthContext } from '../../context/auth';
@@ -43,7 +43,7 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({
         onClick={handleClick}
         color="secondary"
       >
-        <FiMoreVertical />
+        <FiMoreHorizontal />
       </IconButton>
       <Menu
         id="menu-post-image"
