@@ -26,7 +26,7 @@ const Timeline: React.FC = () => {
         <LoadingPost loading={loading} />
       ) : (
         data.getPosts.map((post, index) => {
-          if (data.getPosts.length === index + 1 && data.getPosts.length > 1) {
+          if (data.getPosts.length === index + 1 && data.getPosts.length > 3) {
             return (
               <div key={`${post.artist}_${post.createdAt}`} ref={lastPostRef}>
                 <Post post={post} />
