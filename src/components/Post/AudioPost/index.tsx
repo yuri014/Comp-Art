@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import {
   FaBackward,
@@ -31,11 +37,16 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
     return { minutes, seconds };
   };
 
+  const setTime = useCallback(() => {
+    const time = audioRef.current.currentTime;
+    const { minutes, seconds } = getTime(time);
+    setCurrentTime(`${minutes}:${Math.floor(seconds)}`);
+    return time;
+  }, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
-      const current = audioRef.current.currentTime;
-      const { minutes, seconds } = getTime(current);
-      setCurrentTime(`${minutes}:${Math.floor(seconds)}`);
+      const current = setTime();
       setSlider(audioRef.current.currentTime);
       if (current === audioRef.current.duration) {
         setIsPlaying(false);
@@ -47,7 +58,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
     }
 
     return () => clearInterval(interval);
-  }, [isPlaying]);
+  }, [isPlaying, setTime]);
 
   const handlePlaying = () => {
     if (!isPlaying) {
@@ -60,14 +71,14 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
 
   useEffect(() => {
     if (audioRef.current.duration) {
-      const { minutes, seconds } = getTime(audioRef.current.duration);
-      setAudioDuration(`${minutes}:${seconds}`);
+      setTime();
     }
-  }, []);
+  }, [setTime]);
 
   const handleScroll = (_, newValue: number | number[]) => {
     audioRef.current.currentTime = newValue as number;
     setSlider(newValue as number);
+    setTime();
   };
 
   return (
@@ -135,16 +146,18 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
             </div>
           </div>
         </div>
-        <audio
-          style={{ display: 'none' }}
-          ref={audioRef}
-          src={process.env.NEXT_PUBLIC_API_HOST + post.body}
-          onLoadedMetadata={() => {
-            const { minutes, seconds } = getTime(audioRef.current.duration);
-            setAudioDuration(`${minutes}:${seconds}`);
-          }}
-          controls
-        />
+        {post.body && (
+          <audio
+            style={{ display: 'none' }}
+            ref={audioRef}
+            src={process.env.NEXT_PUBLIC_API_HOST + post.body}
+            onLoadedMetadata={() => {
+              const { minutes, seconds } = getTime(audioRef.current.duration);
+              setAudioDuration(`${minutes}:${seconds}`);
+            }}
+            controls
+          />
+        )}
       </ThemeProvider>
     </AudioPostContainer>
   );
