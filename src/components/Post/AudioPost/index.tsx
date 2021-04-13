@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import {
   FaBackward,
@@ -11,9 +11,11 @@ import { Slider, ThemeProvider } from '@material-ui/core';
 
 import { FiRepeat } from 'react-icons/fi';
 import AudioPostContainer from './audioPostStyles';
-import mainTheme from '../../../styles/themes/MainTheme';
 import { PostProps } from '../../../interfaces/Post';
 import Links from './Links';
+import ThemeContext from '../../../context/theme';
+import mainDarkTheme from '../../../styles/themes/MainDarkTheme';
+import mainLightTheme from '../../../styles/themes/MainLightTheme';
 
 const AudioPost: React.FC<PostProps> = ({ post }) => {
   const audioRef = useRef<null | HTMLAudioElement>(null);
@@ -21,6 +23,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
   const [audioDuration, setAudioDuration] = useState('0:00');
   const [currentTime, setCurrentTime] = useState('');
   const [slider, setSlider] = useState(0);
+  const { theme } = useContext(ThemeContext);
 
   const getTime = (time: number) => {
     const minutes = Math.floor(time / 60);
@@ -69,7 +72,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
 
   return (
     <AudioPostContainer>
-      <ThemeProvider theme={mainTheme}>
+      <ThemeProvider theme={theme === 'light' ? mainLightTheme : mainDarkTheme}>
         <div className="audio-card">
           <div className="audio-card-content">
             <div className="audio-card-info">
@@ -82,7 +85,9 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
             </div>
             <div className="audio-buttons">
               <IconButton aria-label="volume">
-                <FaVolumeUp />
+                <span>
+                  <FaVolumeUp size={18} />
+                </span>
               </IconButton>
               <div className="primary-audio-button">
                 <IconButton
@@ -97,7 +102,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
                   onClick={() => handlePlaying()}
                   aria-label="play/pause"
                 >
-                  {!isPlaying ? <FaPlay /> : <FaPause />}
+                  {!isPlaying ? <FaPlay size={28} /> : <FaPause size={28} />}
                 </IconButton>
                 <IconButton
                   onClick={() => {
@@ -109,14 +114,12 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
                 </IconButton>
               </div>
               <IconButton aria-label="repetir">
-                <FiRepeat />
+                <span className="secondary-button">
+                  <FiRepeat size={18} />
+                </span>
               </IconButton>
             </div>
             <div className="progress">
-              <div className="duration">
-                <p>{currentTime || '0:00'}</p>
-                <p>{audioDuration || '0:00'}</p>
-              </div>
               <Slider
                 value={slider}
                 min={0}
@@ -125,6 +128,10 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
                 aria-label="input-slider"
                 step={0.01}
               />
+              <div className="duration">
+                <p>{currentTime || '0:00'}</p>
+                <p>{audioDuration || '0:00'}</p>
+              </div>
             </div>
           </div>
         </div>
