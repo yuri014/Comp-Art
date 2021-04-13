@@ -35,7 +35,7 @@ const CreateAudioPost: React.FC = () => {
         post: {
           description,
           body: audioResult,
-          isAudio: true,
+          mediaId: 2,
         },
       },
     });
