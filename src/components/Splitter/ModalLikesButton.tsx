@@ -26,14 +26,12 @@ const ModalLikesButton: React.FC<ModalLikesButtonProps> = ({
         <div className="likes-images">
           {post.likes &&
             post.likes.map(({ profile }) => (
-              <>
-                <img
-                  key={profile.owner}
-                  src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
-                  alt={profile.owner}
-                  title={profile.owner}
-                />
-              </>
+              <img
+                key={profile.owner}
+                src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
+                alt={profile.owner}
+                title={profile.owner}
+              />
             ))}
         </div>
         {likesCount > 0 && (
