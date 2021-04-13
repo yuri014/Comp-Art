@@ -4,6 +4,7 @@ import React, { createContext, useReducer } from 'react';
 import jwtDecode, { JwtPayload } from 'jwt-decode';
 
 import { IUser } from '../interfaces/User';
+import { initializeApollo } from '../graphql/apollo/config';
 
 interface IAction {
   type: string;
@@ -72,6 +73,9 @@ const AuthProvider: React.FC = props => {
   const logout = () => {
     if (checkWindow) {
       localStorage.removeItem('jwtToken');
+      const client = initializeApollo();
+
+      client.clearStore();
       dispatch({ type: 'LOGOUT' });
     }
   };
