@@ -208,6 +208,7 @@ const PostContainer = styled.section`
   @media (min-width: 768px) {
     width: 90%;
     margin: 0 auto;
+    margin-bottom: 2rem;
     padding: 4rem;
     border-radius: 5px;
 
