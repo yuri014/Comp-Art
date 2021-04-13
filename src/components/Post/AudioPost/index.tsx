@@ -96,9 +96,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
             </div>
             <div className="audio-buttons">
               <IconButton aria-label="volume">
-                <span>
-                  <FaVolumeUp size={18} />
-                </span>
+                <FaVolumeUp />
               </IconButton>
               <div className="primary-audio-button">
                 <IconButton
@@ -113,7 +111,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
                   onClick={() => handlePlaying()}
                   aria-label="play/pause"
                 >
-                  {!isPlaying ? <FaPlay size={28} /> : <FaPause size={28} />}
+                  {!isPlaying ? <FaPlay /> : <FaPause />}
                 </IconButton>
                 <IconButton
                   onClick={() => {
@@ -125,9 +123,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
                 </IconButton>
               </div>
               <IconButton aria-label="repetir">
-                <span className="secondary-button">
-                  <FiRepeat size={18} />
-                </span>
+                <FiRepeat className="secondary-button" />
               </IconButton>
             </div>
             <div className="progress">
