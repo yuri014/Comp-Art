@@ -9,9 +9,7 @@ import { IconButton, ThemeProvider } from '@material-ui/core';
 import { initializeApollo } from '../../graphql/apollo/config';
 import { GET_POST } from '../../graphql/queries/post';
 import { IPost, PostProps } from '../../interfaces/Post';
-import AudioPost from '../../components/Post/AudioPost';
 import PostPageContainer from '../../styles/pages/post/styles';
-import FullImagePost from '../../components/Post/FullImagePost';
 import Meta from '../../components/SEO/Meta';
 import CommentsSections from '../../components/Comment/CommentsSections';
 import mainTheme from '../../styles/themes/MainTheme';
@@ -63,11 +61,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
               <FaArrowLeft />
             </IconButton>
           </nav>
-          {postData.isAudio ? (
-            <AudioPost post={postData} />
-          ) : (
-            <FullImagePost post={postData} />
-          )}
+          <Post post={postData} />
         </main>
         <CommentsSections postId={postData._id} />
       </PostPageContainer>

@@ -17,7 +17,7 @@ import ChooseProfile from '../../components/Splitter/ChooseProfile';
 import Input from '../../components/Input';
 import CAButton from '../../styles/components/button';
 import formTheme from '../../styles/themes/FormTheme';
-import registerUserSchema from './_validations';
+import registerUserSchema from '../../validations/register';
 
 function SignUp(): JSX.Element {
   const [isArtist, setIsArtist] = useState(true);
