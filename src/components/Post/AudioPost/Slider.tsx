@@ -1,9 +1,10 @@
-/* eslint-disable no-param-reassign */
 import React, { useCallback, useEffect, useState } from 'react';
 import { Slider } from '@material-ui/core';
+import { Howl } from 'howler';
+import formatTime from '../../../utils/formatTime';
 
 interface AudioSliderProps {
-  audio: HTMLAudioElement;
+  audio: Howl;
   isPlaying: boolean;
   setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -15,36 +16,29 @@ const AudioSlider: React.FC<AudioSliderProps> = ({
 }) => {
   const [slider, setSlider] = useState(0);
   const [currentTime, setCurrentTime] = useState('');
-  const [audioDuration, setAudioDuration] = useState('0:00');
-
-  const getTime = (time: number) => {
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time - minutes * 60);
-    return { minutes, seconds };
-  };
+  const [audioDuration, setAudioDuration] = useState<string | number>('0:00');
 
   const setTime = useCallback(() => {
-    const time = audio.currentTime;
-    const { minutes, seconds } = getTime(time);
+    const time = audio.seek();
+    const { minutes, seconds } = formatTime(time as number);
     setCurrentTime(`${minutes}:${Math.floor(seconds)}`);
   }, [audio]);
 
   useEffect(() => {
-    audio.onloadedmetadata = () => {
-      const { minutes, seconds } = getTime(audio.duration);
-      setAudioDuration(`${minutes}:${seconds}`);
-    };
-  }, [audio]);
+    const duration = audio.duration();
+    const { minutes, seconds } = formatTime(duration as number);
+    setAudioDuration(`${minutes}:${Math.floor(seconds)}`);
+  }, [audio, isPlaying]);
 
   useEffect(() => {
     setTime();
-    setSlider(audio.currentTime);
+    setSlider(audio.seek() as number);
   }, [audio, setTime]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTime();
-      setSlider(audio.currentTime);
+      setSlider(audio.seek() as number);
     }, 24);
 
     if (!isPlaying) {
@@ -55,7 +49,7 @@ const AudioSlider: React.FC<AudioSliderProps> = ({
   }, [audio, isPlaying, setIsPlaying, setTime]);
 
   const handleScroll = (_, newValue: number | number[]) => {
-    audio.currentTime = newValue as number;
+    audio.seek(newValue as number);
     setSlider(newValue as number);
     setTime();
   };
@@ -65,7 +59,7 @@ const AudioSlider: React.FC<AudioSliderProps> = ({
       <Slider
         value={slider}
         min={0}
-        max={audio && audio.duration}
+        max={audio.duration()}
         onChange={handleScroll}
         aria-label="input-slider"
         step={0.01}
