@@ -32,11 +32,7 @@ const mainDarkTheme = createMuiTheme({
         padding: '0',
       },
     },
-    MuiIconButton: {
-      root: {
-        padding: '0',
-      },
-    },
+
     MuiButton: {
       root: {
         padding: '0',

@@ -32,11 +32,6 @@ const mainLightTheme = createMuiTheme({
         padding: '0',
       },
     },
-    MuiIconButton: {
-      root: {
-        padding: '0',
-      },
-    },
   },
 });
 
