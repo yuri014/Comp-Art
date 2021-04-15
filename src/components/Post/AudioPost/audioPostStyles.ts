@@ -10,6 +10,7 @@ const AudioPostContainer = styled.section`
     justify-content: space-between;
     background: ${({ theme }) => theme.colors.lightSecondaryBackground};
     border-radius: 5px;
+    height: 21rem;
     border-top: 1rem solid ${({ theme }) => theme.colors.mainColor};
 
     .audio-card-content {
@@ -66,6 +67,23 @@ const AudioPostContainer = styled.section`
       font-weight: 400;
       font-size: 1.4rem;
       color: #4bf1e3;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .audio-card {
+      .audio-buttons,
+      .progress {
+        padding: 1rem 4rem;
+      }
+
+      .audio-card-content {
+        .progress {
+          .duration {
+            transform: translateY(-1.2rem);
+          }
+        }
+      }
     }
   }
 `;
