@@ -8,6 +8,7 @@ import {
   FaVolumeUp,
 } from 'react-icons/fa';
 import { ThemeProvider } from '@material-ui/core';
+import { Howl } from 'howler';
 
 import { FiRepeat } from 'react-icons/fi';
 import AudioPostContainer from './audioPostStyles';
@@ -20,7 +21,7 @@ import AudioSlider from './Slider';
 
 const AudioPost: React.FC<PostProps> = ({ post }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [audio, setAudio] = useState<HTMLAudioElement>();
+  const [audio, setAudio] = useState<Howl>();
   const { theme } = useContext(ThemeContext);
 
   const handlePlaying = () => {
@@ -33,14 +34,36 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
   };
 
   useEffect(() => {
-    const newAudio = new Audio(process.env.NEXT_PUBLIC_API_HOST + post.body);
+    const newAudio = new Howl({
+      src: [process.env.NEXT_PUBLIC_API_HOST + post.body],
+      autoplay: false,
+      html5: true,
+      loop: false,
+    });
     setAudio(newAudio);
 
-    newAudio.addEventListener('ended', () => setIsPlaying(false));
-
-    return () =>
-      newAudio.removeEventListener('ended', () => setIsPlaying(false));
+    newAudio.once('end', () => setIsPlaying(false));
   }, [post.body]);
+
+  const changeCurrentTime = (direction: 'forward' | 'backward') => {
+    const currentSeek = audio.seek() as number;
+    if (direction === 'forward') {
+      const toTime = currentSeek + 10;
+      const duration = audio.duration();
+      if (toTime >= duration) {
+        return;
+      }
+      audio.seek(toTime);
+      audio.play();
+    } else {
+      const toTime = currentSeek - 10;
+      if (toTime <= 0) {
+        return;
+      }
+      audio.seek(toTime);
+      audio.play();
+    }
+  };
 
   return (
     <AudioPostContainer>
@@ -62,7 +85,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
               <div className="primary-audio-button">
                 <IconButton
                   onClick={() => {
-                    audio.currentTime -= 10;
+                    changeCurrentTime('backward');
                   }}
                   aria-label="voltar 10 segundos"
                 >
@@ -76,7 +99,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
                 </IconButton>
                 <IconButton
                   onClick={() => {
-                    audio.currentTime += 10;
+                    changeCurrentTime('forward');
                   }}
                   aria-label="avançar 10 segundos"
                 >
