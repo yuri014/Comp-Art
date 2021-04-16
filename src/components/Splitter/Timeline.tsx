@@ -25,6 +25,7 @@ const Timeline: React.FC = () => {
         variables: { offset: data.getPosts.length },
       }).then(newPosts => newPosts.data.getPosts.length < 6),
   );
+
   return (
     <ThemeProvider theme={theme === 'light' ? mainLightTheme : mainDarkTheme}>
       {loading || error || data.getPosts.length === 0 ? (
@@ -33,7 +34,7 @@ const Timeline: React.FC = () => {
         </>
       ) : (
         data.getPosts.map((post, index) => {
-          if (data.getPosts.length === index + 1 && data.getPosts.length > 6) {
+          if (data.getPosts.length === index + 1) {
             if (post.artist) {
               return (
                 <div key={`${post.artist}_${post.createdAt}`} ref={lastPostRef}>
@@ -42,7 +43,11 @@ const Timeline: React.FC = () => {
               );
             }
 
-            return <p>shares</p>;
+            return (
+              <p key={`${post._id}`} ref={lastPostRef}>
+                shares
+              </p>
+            );
           }
           if (post.artist) {
             return (
@@ -52,7 +57,7 @@ const Timeline: React.FC = () => {
             );
           }
 
-          return <p>shares</p>;
+          return <p key={`${post._id}`}>shares</p>;
         })
       )}
     </ThemeProvider>
