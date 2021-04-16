@@ -12,7 +12,9 @@ const Links = React.memo<LinksProps>(({ username, description, name, id }) => (
   <div>
     <Link href={`/post/${id}`}>
       <a>
-        <p className="music-name">{description}</p>
+        <p className="music-name" title={description}>
+          {description}
+        </p>
       </a>
     </Link>
     <Link href={`/profile/${username}`}>

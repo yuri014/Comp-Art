@@ -21,6 +21,11 @@ const AudioPostContainer = styled.section`
       flex-direction: column;
       justify-content: space-between;
 
+      a {
+        width: max-content;
+        display: block;
+      }
+
       .audio-buttons {
         margin-top: 2rem;
         display: flex;
@@ -61,6 +66,13 @@ const AudioPostContainer = styled.section`
     &.music-name {
       font-weight: 700;
       font-size: 2rem;
+    }
+
+    &.music-name,
+    &.artist-name {
+      max-width: 30rem;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
 
     &.artist-name {
