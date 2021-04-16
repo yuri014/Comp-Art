@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import {
   FaBackward,
@@ -7,22 +7,17 @@ import {
   FaPlay,
   FaVolumeUp,
 } from 'react-icons/fa';
-import { ThemeProvider } from '@material-ui/core';
 import { Howl } from 'howler';
 
 import { FiRepeat } from 'react-icons/fi';
 import AudioPostContainer from './audioPostStyles';
 import { PostProps } from '../../../interfaces/Post';
 import Links from './Links';
-import ThemeContext from '../../../context/theme';
-import mainDarkTheme from '../../../styles/themes/MainDarkTheme';
-import mainLightTheme from '../../../styles/themes/MainLightTheme';
 import AudioSlider from './Slider';
 
 const AudioPost: React.FC<PostProps> = ({ post }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [audio, setAudio] = useState<Howl>();
-  const { theme } = useContext(ThemeContext);
 
   const handlePlaying = () => {
     if (!isPlaying) {
@@ -67,61 +62,59 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
 
   return (
     <AudioPostContainer>
-      <ThemeProvider theme={theme === 'light' ? mainLightTheme : mainDarkTheme}>
-        <div className="audio-card">
-          <div className="audio-card-content">
-            <div className="audio-card-info">
-              <Links
-                username={post.artist.owner}
-                description={post.description}
-                name={post.artist.name}
-                id={post._id}
-              />
-            </div>
-            <div className="audio-buttons">
-              <IconButton aria-label="volume">
-                <FaVolumeUp />
-              </IconButton>
-              <div className="primary-audio-button">
-                <IconButton
-                  onClick={() => {
-                    changeCurrentTime('backward');
-                  }}
-                  aria-label="voltar 10 segundos"
-                >
-                  <FaBackward />
-                </IconButton>
-                <IconButton
-                  onClick={() => handlePlaying()}
-                  aria-label="play/pause"
-                >
-                  {!isPlaying ? <FaPlay /> : <FaPause />}
-                </IconButton>
-                <IconButton
-                  onClick={() => {
-                    changeCurrentTime('forward');
-                  }}
-                  aria-label="avançar 10 segundos"
-                >
-                  <FaForward />
-                </IconButton>
-              </div>
-              <IconButton aria-label="repetir">
-                <FiRepeat className="secondary-button" />
-              </IconButton>
-            </div>
-            {audio && (
-              <AudioSlider
-                audio={audio}
-                isPlaying={isPlaying}
-                setIsPlaying={setIsPlaying}
-              />
-            )}
+      <div className="audio-card">
+        <div className="audio-card-content">
+          <div className="audio-card-info">
+            <Links
+              username={post.artist.owner}
+              description={post.description}
+              name={post.artist.name}
+              id={post._id}
+            />
           </div>
+          <div className="audio-buttons">
+            <IconButton aria-label="volume">
+              <FaVolumeUp />
+            </IconButton>
+            <div className="primary-audio-button">
+              <IconButton
+                onClick={() => {
+                  changeCurrentTime('backward');
+                }}
+                aria-label="voltar 10 segundos"
+              >
+                <FaBackward />
+              </IconButton>
+              <IconButton
+                onClick={() => handlePlaying()}
+                aria-label="play/pause"
+              >
+                {!isPlaying ? <FaPlay /> : <FaPause />}
+              </IconButton>
+              <IconButton
+                onClick={() => {
+                  changeCurrentTime('forward');
+                }}
+                aria-label="avançar 10 segundos"
+              >
+                <FaForward />
+              </IconButton>
+            </div>
+            <IconButton aria-label="repetir">
+              <FiRepeat className="secondary-button" />
+            </IconButton>
+          </div>
+          {audio && (
+            <AudioSlider
+              audio={audio}
+              isPlaying={isPlaying}
+              setIsPlaying={setIsPlaying}
+            />
+          )}
         </div>
-      </ThemeProvider>
+      </div>
     </AudioPostContainer>
   );
 };
 
-export default AudioPost;
+export default React.memo(AudioPost);
