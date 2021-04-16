@@ -29,26 +29,55 @@ export const GET_POST = gql`
 export const GET_POSTS = gql`
   query GetPosts($offset: Int!) {
     getPosts(offset: $offset) {
-      _id
-      description
-      body
-      likesCount
-      sharedCount
-      commentsCount
-      createdAt
-      artist {
-        name
-        owner
-        avatar
-      }
-      likes {
-        profile {
+      ... on Post {
+        _id
+        description
+        body
+        likes {
+          profile {
+            owner
+            avatar
+          }
+        }
+        likesCount
+        sharedCount
+        commentsCount
+        createdAt
+        mediaId
+        artist {
+          name
           owner
           avatar
         }
       }
-      mediaId
-      isLiked
+      ... on Share {
+        _id
+        description
+        post {
+          description
+          body
+          artist {
+            name
+            owner
+            avatar
+          }
+        }
+        likes {
+          profile {
+            name
+            avatar
+            owner
+          }
+        }
+        likesCount
+        sharedCount
+        profile {
+          name
+          owner
+          avatar
+        }
+        isLiked
+      }
     }
   }
 `;
