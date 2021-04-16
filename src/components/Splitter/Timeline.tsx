@@ -23,7 +23,7 @@ const Timeline: React.FC = () => {
       !!data.getPosts &&
       fetchMore({
         variables: { offset: data.getPosts.length },
-      }).then(newPosts => newPosts.data.getPosts.length < 2),
+      }).then(newPosts => newPosts.data.getPosts.length < 6),
   );
   return (
     <ThemeProvider theme={theme === 'light' ? mainLightTheme : mainDarkTheme}>
@@ -33,7 +33,7 @@ const Timeline: React.FC = () => {
         </>
       ) : (
         data.getPosts.map((post, index) => {
-          if (data.getPosts.length === index + 1 && data.getPosts.length > 2) {
+          if (data.getPosts.length === index + 1 && data.getPosts.length > 6) {
             if (post.artist) {
               return (
                 <div key={`${post.artist}_${post.createdAt}`} ref={lastPostRef}>
