@@ -1,4 +1,4 @@
-import React, { memo, useContext, useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { IconButton, Menu, MenuItem, Snackbar } from '@material-ui/core';
 import { FiMoreHorizontal, FiTrash2 } from 'react-icons/fi';
 
@@ -93,4 +93,4 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({
   );
 };
 
-export default memo(OptionsMenu);
+export default React.memo(OptionsMenu);
