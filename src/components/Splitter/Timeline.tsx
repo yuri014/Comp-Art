@@ -23,26 +23,36 @@ const Timeline: React.FC = () => {
       !!data.getPosts &&
       fetchMore({
         variables: { offset: data.getPosts.length },
-      }).then(newPosts => newPosts.data.getPosts.length < 3),
+      }).then(newPosts => newPosts.data.getPosts.length < 2),
   );
   return (
     <ThemeProvider theme={theme === 'light' ? mainLightTheme : mainDarkTheme}>
       {loading || error || data.getPosts.length === 0 ? (
-        <LoadingPost loading={loading} />
+        <>
+          <LoadingPost loading={loading} />
+        </>
       ) : (
         data.getPosts.map((post, index) => {
-          if (data.getPosts.length === index + 1 && data.getPosts.length > 3) {
+          if (data.getPosts.length === index + 1 && data.getPosts.length > 2) {
+            if (post.artist) {
+              return (
+                <div key={`${post.artist}_${post.createdAt}`} ref={lastPostRef}>
+                  <Post post={post} />
+                </div>
+              );
+            }
+
+            return <p>shares</p>;
+          }
+          if (post.artist) {
             return (
-              <div key={`${post.artist}_${post.createdAt}`} ref={lastPostRef}>
+              <div key={`${post.artist}_${post.createdAt}`}>
                 <Post post={post} />
               </div>
             );
           }
-          return (
-            <div key={`${post.artist}_${post.createdAt}`}>
-              <Post post={post} />
-            </div>
-          );
+
+          return <p>shares</p>;
         })
       )}
     </ThemeProvider>
