@@ -1,20 +1,26 @@
 import { IProfile } from './Profile';
 
 export interface IPost {
+  body: string;
+  artist: IProfile;
+  mediaId: number;
+}
+
+export interface IShare {
+  post: IPost;
+  profile: IProfile;
+}
+
+interface Timeline extends IPost, IShare {
   _id: string;
   description: string;
-  body: string;
-  likes: [
-    {
-      profile: IProfile;
-    },
-  ];
+  likes: Array<{
+    profile: IProfile;
+  }>;
   likesCount: number;
   sharedCount: number;
   commentsCount: number;
   createdAt: string;
-  artist: IProfile;
-  mediaId: number;
   isLiked?: boolean;
 }
 
@@ -23,7 +29,7 @@ export interface PostProps {
 }
 
 export interface IGetPosts {
-  getPosts: Array<IPost>;
+  getPosts: Array<Timeline>;
 }
 
 export interface IComment {
