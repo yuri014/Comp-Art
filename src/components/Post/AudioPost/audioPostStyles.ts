@@ -22,7 +22,6 @@ const AudioPostContainer = styled.section`
       justify-content: space-between;
 
       a {
-        width: max-content;
         display: block;
       }
 
