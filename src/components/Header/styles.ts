@@ -28,11 +28,6 @@ export const HeaderContainer = styled.header`
   align-items: center;
   justify-content: space-between;
 
-  .title {
-    font: 400 2.8rem ${({ theme }) => theme.fonts.display};
-    color: ${({ theme }) => theme.colors.themeColor};
-  }
-
   .search-input {
     position: relative;
     display: flex;

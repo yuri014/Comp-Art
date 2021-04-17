@@ -21,6 +21,7 @@ import { ILoggedProfile } from '../../interfaces/Profile';
 import mainLightTheme from '../../styles/themes/MainLightTheme';
 import mainDarkTheme from '../../styles/themes/MainDarkTheme';
 import SearchProfileHeader from '../Splitter/SearchProfileHeader';
+import Logo from '../../assets/logo.svg';
 
 const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
   const auth = useContext(AuthContext);
@@ -39,7 +40,7 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
     <HeaderContainer>
       <Link href="/home">
         <a>
-          <p className="title">CompArt</p>
+          <Logo />
         </a>
       </Link>
       <SearchProfileHeader />
