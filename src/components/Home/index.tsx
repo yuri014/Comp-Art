@@ -24,8 +24,8 @@ const Home: React.FC<HomeProps> = ({ getLoggedProfile }) => (
       <Timeline />
     </div>
     <aside>
-      <SuggestedProfiles />
       <QuestsProgress />
+      <SuggestedProfiles />
     </aside>
   </div>
 );

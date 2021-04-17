@@ -6,6 +6,9 @@ const SuggestedProfilesContainer = styled.div`
   padding: 2rem;
   color: ${({ theme }) => theme.colors.themeColor};
   box-shadow: ${({ theme }) => theme.colors.mainShadow};
+  width: 20%;
+  margin-left: 1rem;
+  margin-top: 18rem;
 
   h4 {
     font-size: 1.8rem;
@@ -66,6 +69,9 @@ const SuggestedProfilesContainer = styled.div`
   }
 
   @media (min-width: 1440px) {
+    width: 19%;
+    margin-left: 0;
+
     .suggested-profile-container {
       .suggested-profile {
         .suggested-profile-info {

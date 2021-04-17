@@ -77,20 +77,22 @@ const SuggestedProfiles: React.FC = () => {
       ) : (
         <>
           {data.getSuggestedProfiles.map(profile => (
-            <div key={profile.owner} className="suggested-profile-container">
-              <div className="suggested-profile">
-                <img
-                  src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
-                  alt={profile.name}
-                />
+            <React.Fragment key={profile.owner}>
+              <div className="suggested-profile-container">
+                <div className="suggested-profile">
+                  <img
+                    src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
+                    alt={profile.name}
+                  />
 
-                <div className="suggested-profile-info">
-                  <p className="limited-text">{profile.name}</p>
-                  <p className="limited-text">@{profile.owner}</p>
+                  <div className="suggested-profile-info">
+                    <p className="limited-text">{profile.name}</p>
+                    <p className="limited-text">@{profile.owner}</p>
+                  </div>
                 </div>
+                <FollowButton username={profile.owner} />
               </div>
-              <FollowButton username={profile.owner} />
-            </div>
+            </React.Fragment>
           ))}
         </>
       )}
