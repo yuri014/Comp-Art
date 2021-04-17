@@ -5,10 +5,14 @@ import { HashtagsProfileContainer } from './styles';
 
 interface HashtagsProfileProps {
   hashtags: Array<string>;
+  isArtist: boolean;
 }
 
-const HashtagsProfile: React.FC<HashtagsProfileProps> = ({ hashtags }) => (
-  <HashtagsProfileContainer>
+const HashtagsProfile: React.FC<HashtagsProfileProps> = ({
+  isArtist,
+  hashtags,
+}) => (
+  <HashtagsProfileContainer isArtist={isArtist}>
     <h3># Hashtags seguidas</h3>
     <div className="hashtag-container">
       {hashtags.map(hashtag => (
@@ -19,5 +23,4 @@ const HashtagsProfile: React.FC<HashtagsProfileProps> = ({ hashtags }) => (
     </div>
   </HashtagsProfileContainer>
 );
-
 export default HashtagsProfile;

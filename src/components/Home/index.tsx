@@ -15,17 +15,16 @@ const Home: React.FC<HomeProps> = ({ getLoggedProfile }) => (
   <div className="home-desktop-content">
     <aside>
       <HomeProfile getLoggedProfile={getLoggedProfile} />
-      <br />
-      <br />
-      <HashtagsProfile hashtags={getLoggedProfile.hashtags} />
+      <HashtagsProfile
+        hashtags={getLoggedProfile.hashtags}
+        isArtist={getLoggedProfile.isArtist}
+      />
     </aside>
     <div className="timeline">
       <Timeline />
     </div>
     <aside>
       <SuggestedProfiles />
-      <br />
-      <br />
       <QuestsProgress />
     </aside>
   </div>
