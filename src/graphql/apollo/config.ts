@@ -14,6 +14,7 @@ let apolloClient: ApolloClient<NormalizedCacheObject>;
 
 const httpLink = createUploadLink({
   uri: `${process.env.NEXT_PUBLIC_API_HOST}/graphql`,
+  credentials: 'include',
 });
 
 const getToken = () =>
@@ -25,6 +26,8 @@ const authLink = setContext((_, { headers }) => {
     headers: {
       ...headers,
       authorization: token ? `Bearer ${token}` : '',
+      'Access-Control-Allow-Credentials': true,
+      'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_API_HOST,
     },
   };
 });
