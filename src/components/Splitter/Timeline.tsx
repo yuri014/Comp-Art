@@ -37,7 +37,7 @@ const Timeline: React.FC = () => {
           if (data.getPosts.length === index + 1) {
             if (post.artist) {
               return (
-                <div key={`${post.artist}_${post.createdAt}`} ref={lastPostRef}>
+                <div key={post._id} ref={lastPostRef}>
                   <Post post={post} />
                 </div>
               );
@@ -51,13 +51,13 @@ const Timeline: React.FC = () => {
           }
           if (post.artist) {
             return (
-              <div key={`${post.artist}_${post.createdAt}`}>
+              <div key={post._id}>
                 <Post post={post} />
               </div>
             );
           }
 
-          return <p key={`${post._id}`}>shares</p>;
+          return <p key={post._id}>shares</p>;
         })
       )}
     </ThemeProvider>
