@@ -5,6 +5,7 @@ const theme = {
     backgroundColor: '#f5f5f5',
     secondaryBackgroundColor: '#fff',
     alternativeBackground: '#f5f5f5',
+    modalBackrgound: '#fff',
     lightText: '#393B73',
     blueContrast: '#8184C1',
     namesakeText: '#08162f',
@@ -21,7 +22,7 @@ const theme = {
     danger: '#f50057',
     error: '#FF3838',
     pink: '#FF4F6D',
-    themeColor: '#050211',
+    themeColor: '#202024',
     mainShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
     secondaryShadow:
       '#d3d6db 1px 1px 5px 0px inset, #ffffff80 -1px -1px 5px 1px inset',

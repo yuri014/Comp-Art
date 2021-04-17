@@ -5,6 +5,7 @@ const theme = {
     backgroundColor: '#050211',
     secondaryBackgroundColor: '#202024',
     alternativeBackground: '#111112',
+    modalBackrgound: '#202024',
     lightText: '#393B73',
     blueContrast: '#8184C1',
     namesakeText: '#08162f',
