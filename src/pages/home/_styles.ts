@@ -7,6 +7,12 @@ const HomeContainer = styled.main`
     grid-template-columns: 22% 54% 22%;
     justify-content: space-between;
     margin: auto;
+
+    aside {
+      & > * {
+        position: fixed;
+      }
+    }
   }
 
   @media (min-width: 1440px) {
