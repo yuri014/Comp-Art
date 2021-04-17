@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Link from 'next/link';
 import { gql, useLazyQuery } from '@apollo/client';
 import { IconButton } from '@material-ui/core';
 import { FaSearch } from 'react-icons/fa';
 
 import { IProfile } from '../../interfaces/Profile';
+import useOutsideClick from '../../hooks/outsideClick';
 
 const GET_PROFILE_PREVIEW_SEARCH = gql`
   query GetProfilePreviewSearch($query: String!, $offset: Int!, $limit: Int!) {
@@ -38,8 +39,11 @@ const SearchProfileHeader: React.FC = () => {
     getProfile();
   };
 
+  const modalSearchRef = useRef(null);
+  useOutsideClick(modalSearchRef, () => setShowSearch(false));
+
   return (
-    <div className="search-input">
+    <div ref={modalSearchRef} className="search-input">
       <input
         type="text"
         title="Buscar..."
