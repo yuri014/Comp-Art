@@ -14,60 +14,54 @@ const Modal = dynamic(() => import('../components/Modal'));
 const Landing: React.FC = () => {
   const [modalShow, setModalShow] = useState(false);
   return (
-    <>
+    <LandingContainer>
       <Meta
         title="Comp-Art"
         description="Rede social com o propósito de ajudar a divulgação de artistas."
         keywords="Comp-Art, comp-art, comp art, divulgação, arte, música, ilustrações, artistas"
       />
-      <LandingContainer>
-        <div className="container">
-          <div className="toggle-button">
-            <ToggleThemeButton />
-          </div>
-          <main>
-            <Title />
-            <h2>Venha descobrir novas artes e compartilhar as suas!</h2>
-            <section>
-              <img
-                src="/assets/start-artist-icon.svg"
-                alt="Pessoa ao lado de um quadro com notas músicais"
-              />
-              <div>
-                <p>
-                  Rede social que visa superar os metódos conhecidos de
-                  divulgação artística.
-                </p>
-                <PressStartButton changeState={() => setModalShow(true)}>
-                  START
-                </PressStartButton>
-              </div>
-            </section>
-          </main>
-          <Footer />
+      <div className="container">
+        <div className="toggle-button">
+          <ToggleThemeButton />
         </div>
-      </LandingContainer>
+        <main>
+          <Title />
+          <h2>Venha descobrir novas artes e compartilhar as suas!</h2>
+          <section>
+            <img
+              src="/assets/start-artist-icon.svg"
+              alt="Pessoa ao lado de um quadro com notas músicais"
+            />
+            <div>
+              <p>
+                Rede social que visa superar os metódos conhecidos de divulgação
+                artística.
+              </p>
+              <PressStartButton changeState={() => setModalShow(true)}>
+                START
+              </PressStartButton>
+            </div>
+          </section>
+        </main>
+        <Footer />
+      </div>
       <Modal
         title="Comece sua jornada!"
+        text="Faça o login ou se cadastre para conhecer e interagir com novos
+        artistas ou fãs com gostos em comum com você."
         show={modalShow}
         onHide={() => setModalShow(false)}
       >
-        <div className="modal-body">
-          <p>
-            Faça o login ou se cadastre para conhecer e interagir com novos
-            artistas ou fãs com gostos em comum com você.
-          </p>
-        </div>
         <div className="link-buttons-block">
           <Link href="/login">
-            <a>Login</a>
+            <a>LOGIN</a>
           </Link>
           <Link href="/register">
-            <a>Cadastre-se</a>
+            <a>CADASTRE-SE</a>
           </Link>
         </div>
       </Modal>
-    </>
+    </LandingContainer>
   );
 };
 

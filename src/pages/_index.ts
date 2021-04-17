@@ -42,6 +42,36 @@ const LandingContainer = styled.div`
     }
   }
 
+  .link-buttons-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 2rem;
+    margin-top: 2rem;
+  }
+
+  .link-buttons-block a {
+    padding: 1rem 1rem;
+    background: #50505b;
+    border-radius: 4px;
+    width: 48%;
+    transition: filter 1s ease, color 1s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font: 700 1.2rem ${({ theme }) => theme.fonts.primary};
+    color: #fff;
+
+    &:last-child {
+      background: #393b73;
+    }
+  }
+
+  .link-buttons-block a:hover {
+    filter: brightness(0.7);
+  }
+
   @media (min-width: 768px) {
     .container {
       padding: 8rem 0;
@@ -84,13 +114,17 @@ const LandingContainer = styled.div`
 
         button {
           margin: unset;
-          margin-top: 8rem;
+          margin-top: 4rem;
         }
 
         img {
           margin: unset;
         }
       }
+    }
+
+    .link-buttons-block {
+      padding-bottom: 0;
     }
   }
 
