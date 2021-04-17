@@ -30,6 +30,7 @@ export default createGlobalStyle`
 
   a {
     text-decoration: none;
+    width: max-content;
   }
 
   figure {
