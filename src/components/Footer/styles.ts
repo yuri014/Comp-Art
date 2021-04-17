@@ -19,8 +19,10 @@ const FooterContainer = styled.footer`
   }
 
   svg {
-    color: ${({ theme }) => theme.colors.themeColor};
-    font-size: 1.6rem;
+    display: block;
+    transform: scale(0.4) translateX(-50%);
+    width: 4rem;
+    margin-left: 0;
   }
 
   @media (min-width: 1100px) {
@@ -33,7 +35,7 @@ const FooterContainer = styled.footer`
     }
 
     svg {
-      font-size: 2.6rem;
+      transform: scale(0.8) translateX(-50%);
     }
   }
 `;
