@@ -80,7 +80,7 @@ export default createGlobalStyle`
   }
 
   .holder {
-    background: ${({ theme }) => theme.colors.mainGradient};
+    background: ${({ theme }) => theme.colors.mainColor};
     width: 100%;
     height: 100%;
   }
