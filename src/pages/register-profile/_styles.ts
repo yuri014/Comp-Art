@@ -1,26 +1,32 @@
 import styled from 'styled-components';
 
-const RegisterProfileContainer = styled.main`
-  color: ${({ theme }) => theme.colors.lightContrast};
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: column;
-  height: 180vh;
-  #register-profile-title {
-    text-align: center;
-    font-size: 2rem;
-    word-wrap: break-word;
-    margin: 0;
-  }
+const RegisterProfileContainer = styled.div`
+  min-height: 100vh;
+  width: 100vw;
+  padding: 4rem 0;
+  background-color: ${({ theme }) => theme.colors.alternativeBackground};
+  color: ${({ theme }) => theme.colors.themeColor};
 
-  @media (min-width: 1100px) {
-    display: grid;
-    grid-template-columns: 20% 50%;
-    justify-content: space-around;
-    height: 120vh;
-    & h1 {
-      font-size: 54px;
+  .container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+
+    .message {
+      text-align: center;
+
+      p {
+        font-size: 2rem;
+        margin-top: 1rem;
+      }
+    }
+
+    footer {
+      width: 100%;
+      margin-top: 0;
     }
   }
 `;
