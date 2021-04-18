@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { DocumentNode, useMutation } from '@apollo/client';
 import { useForm } from 'react-hook-form';
 import { SiWattpad } from 'react-icons/si';
 import {
@@ -25,36 +27,47 @@ import TagsContainer from '../../styles';
 import PressStartButton from '../PressStartButton';
 import ErrorMessage from '../ErrorMessage';
 import FormProfileContainer from './styles';
+import useImagePreview from '../../hooks/imagePreview';
 
 interface FormProfileProps {
-  onSubmit: (_args0: IProfileInput) => void;
-  coverImagePreview: string;
-  setCoverImage: (_args0: React.ChangeEvent<HTMLInputElement>) => void;
-  profileImagePreview: string;
-  setProfileImage: (_args0: React.ChangeEvent<HTMLInputElement>) => void;
-  tags: string[];
-  setTags: React.Dispatch<React.SetStateAction<string[]>>;
-  showError: string;
-  setShowError: (_args0: React.SetStateAction<string>) => void;
+  mutation: DocumentNode;
   defaultValues?: IProfile;
 }
 
 const FormProfile: React.FC<FormProfileProps> = ({
-  coverImagePreview,
-  onSubmit,
-  profileImagePreview,
-  setCoverImage,
-  setProfileImage,
-  tags,
-  setTags,
-  showError,
-  setShowError,
   defaultValues,
+  mutation,
 }) => {
   const { register, handleSubmit, errors, setValue } = useForm<IProfileInput>({
     mode: 'onChange',
     reValidateMode: 'onChange',
   });
+
+  const router = useRouter();
+  const [showError, setShowError] = useState('');
+  const [tags, setTags] = useState([]);
+
+  const [profileImage, setProfileImage] = useImagePreview();
+  const [coverImage, setCoverImage] = useImagePreview();
+
+  const [handleProfileMutation] = useMutation(mutation, {
+    onCompleted: () => router.push('/home'),
+    onError: ({ graphQLErrors }) =>
+      setShowError(graphQLErrors[0].extensions.errors),
+  });
+
+  const onSubmit = (data: IProfileInput) => {
+    handleProfileMutation({
+      variables: {
+        profile: {
+          ...data,
+          avatar: profileImage.file,
+          coverImage: coverImage.file,
+          hashtags: tags,
+        },
+      },
+    });
+  };
 
   const [tagInput, setTagInput] = useState('');
   const [oldProfileImage, setOldProfileImage] = useState('');
@@ -93,8 +106,8 @@ const FormProfile: React.FC<FormProfileProps> = ({
     <ThemeProvider theme={formTheme}>
       <FormProfileContainer onSubmit={handleSubmit(onSubmit)} className="forms">
         <div className="profile-image-cover">
-          {coverImagePreview ? (
-            <img src={coverImagePreview as string} alt="Capa do perfil" />
+          {coverImage.preview ? (
+            <img src={coverImage.preview as string} alt="Capa do perfil" />
           ) : (
             <>
               {oldCoverImage ? (
@@ -118,8 +131,8 @@ const FormProfile: React.FC<FormProfileProps> = ({
           </label>
         </div>
         <div className="profile-image-upload">
-          {profileImagePreview ? (
-            <img src={profileImagePreview as string} alt="Imagem do perfil" />
+          {profileImage.preview ? (
+            <img src={profileImage.preview as string} alt="Imagem do perfil" />
           ) : (
             <img src={oldProfileImage} alt="Imagem do perfil" />
           )}

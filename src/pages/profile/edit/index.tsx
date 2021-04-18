@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ThemeProvider } from '@material-ui/core';
-import { gql, useMutation, useQuery } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
 
 import Header from '../../../components/Header';
 import FormProfile from '../../../components/FormProfile';
-import { IProfileInput } from '../../../interfaces/Profile';
-import useImagePreview from '../../../hooks/imagePreview';
 import { EditProfileContainer } from '../../../styles/pages/profile/style';
 import MobileFooter from '../../../components/MobileFooter';
 import Meta from '../../../components/SEO/Meta';
@@ -45,30 +43,9 @@ const UPDATE_PROFILE = gql`
 `;
 
 const EditProfile: React.FC = () => {
-  const [showError, setShowError] = useState('');
-  const [tags, setTags] = useState([]);
-
-  const [profileImage, setProfileImage] = useImagePreview();
-  const [coverImage, setCoverImage] = useImagePreview();
-
   const { data: profile, loading } = useQuery(GET_LOGGED_PROFILE, {
     fetchPolicy: 'no-cache',
   });
-
-  const [updateProfile] = useMutation(UPDATE_PROFILE);
-
-  const onSubmit = (data: IProfileInput) => {
-    updateProfile({
-      variables: {
-        profile: {
-          ...data,
-          avatar: profileImage.file,
-          coverImage: coverImage.file,
-          hashtags: tags,
-        },
-      },
-    });
-  };
 
   return (
     <>
@@ -79,20 +56,12 @@ const EditProfile: React.FC = () => {
         keywords="editar, perfil, comp art"
       />
       <ThemeProvider theme={mainTheme}>
-        <Header getLoggedProfile={profile} />
+        <Header getLoggedProfile={profile.getLoggedProfile} />
       </ThemeProvider>
       <EditProfileContainer>
         {!loading && (
           <FormProfile
-            onSubmit={onSubmit}
-            coverImagePreview={coverImage.preview as string}
-            profileImagePreview={profileImage.preview as string}
-            setCoverImage={setCoverImage}
-            setProfileImage={setProfileImage}
-            setShowError={setShowError}
-            setTags={setTags}
-            showError={showError}
-            tags={tags}
+            mutation={UPDATE_PROFILE}
             defaultValues={profile.getLoggedProfile}
           />
         )}
