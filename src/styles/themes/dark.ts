@@ -13,6 +13,7 @@ const theme = {
     darkGray: '#ababab',
     gray: '#e1e1e1',
     lightSecondaryBackground: '#28282C',
+    lighterSecondaryBackground: '#38383C',
     lightGreen: '#5DD083',
     mainGradient: `linear-gradient(
       310deg,
