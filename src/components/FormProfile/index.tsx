@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { DocumentNode, useMutation } from '@apollo/client';
 import { useForm } from 'react-hook-form';
 import { SiWattpad } from 'react-icons/si';
+import { MdEdit } from 'react-icons/md';
 import {
   IconButton,
   InputAdornment,
@@ -11,7 +12,6 @@ import {
 } from '@material-ui/core';
 import {
   FaBandcamp,
-  FaCameraRetro,
   FaDeviantart,
   FaFacebook,
   FaHashtag,
@@ -28,6 +28,8 @@ import PressStartButton from '../PressStartButton';
 import ErrorMessage from '../ErrorMessage';
 import FormProfileContainer from './styles';
 import useImagePreview from '../../hooks/imagePreview';
+import ProfileImagePreview from './ProfileImagePreview';
+import { AuthContext } from '../../context/auth';
 
 interface FormProfileProps {
   mutation: DocumentNode;
@@ -42,6 +44,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
     mode: 'onChange',
     reValidateMode: 'onChange',
   });
+  const { user } = useContext(AuthContext);
 
   const router = useRouter();
   const [showError, setShowError] = useState('');
@@ -90,13 +93,13 @@ const FormProfile: React.FC<FormProfileProps> = ({
       setValue('links.twitter', links.twitter);
       setValue('links.wattpad', links.wattpad);
 
-      setOldProfileImage(
-        process.env.NEXT_PUBLIC_API_HOST + defaultValues.avatar,
-      );
-
       if (defaultValues.coverImage) {
         setOldCoverImage(
           process.env.NEXT_PUBLIC_API_HOST + defaultValues.coverImage,
+        );
+
+        setOldProfileImage(
+          process.env.NEXT_PUBLIC_API_HOST + defaultValues.avatar,
         );
       }
     }
@@ -106,40 +109,44 @@ const FormProfile: React.FC<FormProfileProps> = ({
     <ThemeProvider theme={formTheme}>
       <FormProfileContainer onSubmit={handleSubmit(onSubmit)} className="forms">
         <div className="profile-image-cover">
-          {coverImage.preview ? (
-            <img src={coverImage.preview as string} alt="Capa do perfil" />
-          ) : (
-            <>
-              {oldCoverImage ? (
-                <img src={oldCoverImage} alt="Capa do perfil" />
-              ) : (
-                <div className="holder" />
-              )}
-            </>
-          )}
+          <ProfileImagePreview
+            alt="Capa do perfil"
+            olderImage={oldCoverImage}
+            preview={coverImage.preview as string}
+          >
+            <div className="holder" />
+          </ProfileImagePreview>
           <label htmlFor="uploadCoverButton">
-            <IconButton aria-label="upload picture" component="span">
-              <FaCameraRetro className="upload-icon" />
-              <input
-                accept="image/*"
-                name="coverImage"
-                id="uploadCoverButton"
-                type="file"
-                onChange={e => setCoverImage(e)}
-              />
-            </IconButton>
+            <div className="upload-cover">
+              <MdEdit />
+              Adicionar capa
+            </div>
+            <input
+              accept="image/*"
+              name="coverImage"
+              id="uploadCoverButton"
+              type="file"
+              onChange={e => setCoverImage(e)}
+            />
           </label>
         </div>
         <div className="profile-image-upload">
-          {profileImage.preview ? (
-            <img src={profileImage.preview as string} alt="Imagem do perfil" />
-          ) : (
-            <img src={oldProfileImage} alt="Imagem do perfil" />
-          )}
+          <ProfileImagePreview
+            alt="Imagem do perfil"
+            olderImage={oldProfileImage}
+            preview={profileImage.preview as string}
+          >
+            <div className="holder">
+              <p>
+                {user.username[0]}
+                {user.username[1]}
+              </p>
+            </div>
+          </ProfileImagePreview>
 
           <label htmlFor="uploadButton">
             <IconButton aria-label="upload picture" component="span">
-              <FaCameraRetro className="upload-icon" />
+              <MdEdit className="upload-icon" />
               <input
                 accept="image/*"
                 name="avatar"

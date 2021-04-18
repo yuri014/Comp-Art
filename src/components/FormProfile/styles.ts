@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 const FormProfileContainer = styled.form`
-  width: 85%;
-  background: ${({ theme }) => theme.colors.mainGradient};
+  background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
   border-radius: 4px;
   .profile-image-upload,
   .profile-image-cover {
@@ -11,18 +10,27 @@ const FormProfileContainer = styled.form`
     }
   }
 
-  .inputs {
-    padding: 2rem;
-  }
-
   .profile-image-cover {
     border-radius: 4px 4px 0 0;
     height: 12rem;
     width: 100%;
     display: flex;
-    align-items: flex-start;
+    align-items: flex-end;
     flex-direction: column;
     justify-content: flex-start;
+
+    .upload-cover {
+      background: ${({ theme }) => theme.colors.alternativeBackground}cc;
+      font-size: 1.4rem;
+      padding: 0.4rem 1rem;
+      border-radius: 2px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-right: 1rem;
+      margin-top: 1rem;
+    }
 
     img {
       width: 100%;
@@ -30,25 +38,23 @@ const FormProfileContainer = styled.form`
       border-radius: 4px 4px 0 0;
       object-fit: cover;
     }
+
     .holder {
-      background: ${({ theme }) => theme.colors.lightContrast};
+      background: ${({ theme }) => theme.colors.lighterSecondaryBackground};
       border-radius: 4px 4px 0 0;
     }
+
     label {
       margin-top: -12rem;
-      .upload-icon {
-        color: ${({ theme }) => theme.colors.mainColor};
-      }
     }
   }
 
   .profile-image-upload {
-    width: 100px;
-    height: 100px;
     margin: 0 auto;
     margin-top: -6rem;
     display: flex;
     align-items: baseline;
+    justify-content: center;
     border-radius: 50%;
 
     a {
@@ -58,20 +64,33 @@ const FormProfileContainer = styled.form`
 
     img {
       border-radius: 50%;
-      width: 100%;
-      height: 100%;
+      width: 10rem;
+      height: 10rem;
       object-fit: cover;
+    }
+
+    .holder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      color: #000;
+      text-transform: uppercase;
+      font-weight: bold;
+      width: 10rem;
+      height: 10rem;
+      border-radius: 50%;
+
+      p {
+        position: absolute;
+      }
     }
 
     label {
       margin-left: -4rem;
       margin-bottom: 1rem;
       border-radius: 50%;
-      background: ${({ theme }) => theme.colors.mainColor};
-
-      .upload-icon {
-        color: ${({ theme }) => theme.colors.themeColor};
-      }
+      background: ${({ theme }) => theme.colors.danger};
     }
   }
 
