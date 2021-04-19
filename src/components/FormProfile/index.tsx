@@ -4,12 +4,7 @@ import { DocumentNode, useMutation } from '@apollo/client';
 import { useForm } from 'react-hook-form';
 import { SiWattpad } from 'react-icons/si';
 import { MdEdit } from 'react-icons/md';
-import {
-  IconButton,
-  InputAdornment,
-  TextField,
-  ThemeProvider,
-} from '@material-ui/core';
+import { IconButton, ThemeProvider } from '@material-ui/core';
 import {
   FaBandcamp,
   FaDeviantart,
@@ -30,7 +25,7 @@ import useImagePreview from '../../hooks/imagePreview';
 import ProfileImagePreview from './ProfileImagePreview';
 import { AuthContext } from '../../context/auth';
 import Input from '../Input';
-import { LabelInputContainer } from '../Input/styles';
+import SocialInput from '../Splitter/SocialInput';
 
 interface FormProfileProps {
   mutation: DocumentNode;
@@ -207,137 +202,69 @@ const FormProfile: React.FC<FormProfileProps> = ({
           </TagsContainer>
 
           <div className="profile-links">
-            <div className="social-input">
-              <LabelInputContainer htmlFor="links.soundcloud">
-                <p>Soundcloud</p>
-                <div className="input-container">
-                  <div className="link-label">
-                    <FaSoundcloud className="soundcloud-icon" />
-                    <p>soundcloud.com/</p>
-                  </div>
-                  <input type="text" name="links.soundcloud" ref={register} />
-                </div>
-              </LabelInputContainer>
-            </div>
-            <TextField
-              inputRef={register}
-              fullWidth
-              name="links.soundcloud"
-              id="links.soundcloud"
+            <SocialInput
               label="Soundcloud"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <FaSoundcloud className="soundcloud-icon" />
-                    <p className="link-label">soundcloud.com/</p>
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <TextField
-              inputRef={register}
-              fullWidth
-              name="links.bandcamp"
-              id="links.bandcamp"
+              name="links.soundcloud"
+              register={register}
+            >
+              <FaSoundcloud className="soundcloud-icon" />
+              <p>soundcloud.com/</p>
+            </SocialInput>
+            <SocialInput
               label="Bandcamp"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <FaBandcamp className="bandcamp-icon" />
-                  </InputAdornment>
-                ),
-                endAdornment: <p className="link-label-end">.bandcamp.com</p>,
-              }}
-            />
-            <TextField
-              inputRef={register}
-              fullWidth
-              name="links.wattpad"
-              id="links.wattpad"
+              name="links.bandcamp"
+              register={register}
+              endAdornment=".bandcamp.com"
+            >
+              <FaBandcamp className="bandcamp-icon" />
+            </SocialInput>
+            <SocialInput
               label="Wattpad"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SiWattpad className="wattpad-icon" />
-                    <p className="link-label">wattpad.com/user/</p>
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <TextField
-              inputRef={register}
-              fullWidth
+              name="links.wattpad"
+              register={register}
+            >
+              <SiWattpad className="wattpad-icon" />
+              <p>wattpad.com/user/</p>
+            </SocialInput>
+            <SocialInput
               name="links.pinterest"
-              id="links.pinterest"
               label="Pinterest"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <FaPinterest className="pinterest-icon" />
-                    <p className="link-label">pinterest.com/</p>
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <TextField
-              inputRef={register}
-              fullWidth
+              register={register}
+            >
+              <FaPinterest className="pinterest-icon" />
+              <p>pinterest.com/</p>
+            </SocialInput>
+            <SocialInput
               name="links.twitter"
-              id="links.twitter"
               label="Twitter"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <FaTwitter className="twitter-icon" />
-                    <p className="link-label">twitter.com/</p>
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <TextField
-              inputRef={register}
-              fullWidth
+              register={register}
+            >
+              <FaTwitter className="twitter-icon" />
+              <p>twitter.com/</p>
+            </SocialInput>
+            <SocialInput
               name="links.facebook"
-              id="links.facebook"
               label="Facebook"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <FaFacebook className="facebook-icon" />
-                    <p className="link-label">facebook.com/</p>
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <TextField
-              inputRef={register}
-              fullWidth
+              register={register}
+            >
+              <FaFacebook className="facebook-icon" />
+              <p>facebook.com/</p>
+            </SocialInput>
+            <SocialInput
               name="links.deviantart"
-              id="links.deviantart"
               label="Deviantart"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <FaDeviantart className="deviantart-icon" />
-                    <p className="link-label">deviantart.com/</p>
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <TextField
-              inputRef={register}
-              fullWidth
+              register={register}
+            >
+              <FaDeviantart className="deviantart-icon" />
+              <p>deviantart.com/</p>
+            </SocialInput>
+            <SocialInput
               name="links.customLink"
-              id="links.customLink"
               label="Link Adicional"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <FaLink className="primary-icon" />
-                  </InputAdornment>
-                ),
-              }}
-            />
+              register={register}
+            >
+              <FaLink className="primary-icon" />
+            </SocialInput>
           </div>
           {showError && <ErrorMessage>{showError}</ErrorMessage>}
           <PressStartButton type="submit">Start</PressStartButton>
