@@ -1,4 +1,5 @@
 import React from 'react';
+import SocialInputContainer from '../../styles/components/socialInput';
 import { LabelInputContainer } from '../Input/styles';
 
 interface SocialInputProps {
@@ -15,7 +16,7 @@ const SocialInput: React.FC<SocialInputProps> = ({
   endAdornment,
   children,
 }) => (
-  <div className="social-input">
+  <SocialInputContainer>
     <LabelInputContainer htmlFor={name}>
       <p>{label}</p>
       <div className="input-container">
@@ -31,7 +32,7 @@ const SocialInput: React.FC<SocialInputProps> = ({
         </div>
       </div>
     </LabelInputContainer>
-  </div>
+  </SocialInputContainer>
 );
 
 export default SocialInput;
