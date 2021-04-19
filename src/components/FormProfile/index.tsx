@@ -14,7 +14,6 @@ import {
   FaBandcamp,
   FaDeviantart,
   FaFacebook,
-  FaHashtag,
   FaLink,
   FaPinterest,
   FaSoundcloud,
@@ -23,13 +22,15 @@ import {
 
 import { IProfile, IProfileInput } from '../../interfaces/Profile';
 import formTheme from '../../styles/themes/FormTheme';
-import TagsContainer from '../../styles';
+import TagsContainer from '../../styles/components/tags';
 import PressStartButton from '../PressStartButton';
 import ErrorMessage from '../ErrorMessage';
 import FormProfileContainer from './styles';
 import useImagePreview from '../../hooks/imagePreview';
 import ProfileImagePreview from './ProfileImagePreview';
 import { AuthContext } from '../../context/auth';
+import Input from '../Input';
+import { LabelInputContainer } from '../Input/styles';
 
 interface FormProfileProps {
   mutation: DocumentNode;
@@ -160,65 +161,21 @@ const FormProfile: React.FC<FormProfileProps> = ({
           </label>
         </div>
         <div className="inputs">
-          <TextField
-            fullWidth
+          <Input
             name="name"
-            id="name"
-            error={!!errors.name}
-            helperText={errors.name && 'Nome é obrigatório'}
-            inputRef={register({
+            placeholder="Seu nome"
+            refInput={register({
               required: true,
             })}
-            placeholder="Seu nome..."
-            label="Nome"
             required
-          />
-          <br />
-          <br />
-
-          <TextField
-            fullWidth
-            name="bio"
-            id="bio"
-            inputRef={register}
-            placeholder="Sua bio..."
-            label="Bio"
-            variant="outlined"
-            multiline
-            rows={2}
-            rowsMax={4}
-            style={{ marginBottom: '0' }}
-          />
-
-          <TagsContainer>
-            {tags.map(tag => (
-              <button
-                type="button"
-                onClick={() =>
-                  setTags(tags.filter(tagToRemove => tagToRemove !== tag))
-                }
-                style={{ marginBottom: '2rem' }}
-                key={tag}
-              >
-                {tag}
-              </button>
-            ))}
-          </TagsContainer>
-          <TextField
-            fullWidth
+            error={errors.name && 'Nome é obrigatório'}
+          >
+            Nome*
+          </Input>
+          <Input
             name="tags"
-            id="tags"
-            helperText="Aperte vírgula cadastrar uma tag - clique nela para remover"
-            placeholder="Coloque aqui seus gostos preferidos"
-            label="Tags"
-            value={tagInput}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <FaHashtag className="secondary-icon" />
-                </InputAdornment>
-              ),
-            }}
+            placeholder="Coloque aqui seus 5 gostos preferidos"
+            helperText="Pressione vírgula cadastrar uma tag e para remover clique sobre ela"
             onChange={e =>
               e.target.value !== ',' && setTagInput(e.target.value)
             }
@@ -232,8 +189,36 @@ const FormProfile: React.FC<FormProfileProps> = ({
                 }
               }
             }}
-          />
+          >
+            Adicionar tags
+          </Input>
+          <TagsContainer>
+            {tags.map(tag => (
+              <button
+                type="button"
+                onClick={() =>
+                  setTags(tags.filter(tagToRemove => tagToRemove !== tag))
+                }
+                key={tag}
+              >
+                {tag} X
+              </button>
+            ))}
+          </TagsContainer>
+
           <div className="profile-links">
+            <div className="social-input">
+              <LabelInputContainer htmlFor="links.soundcloud">
+                <p>Soundcloud</p>
+                <div className="input-container">
+                  <div className="link-label">
+                    <FaSoundcloud className="soundcloud-icon" />
+                    <p>soundcloud.com/</p>
+                  </div>
+                  <input type="text" name="links.soundcloud" ref={register} />
+                </div>
+              </LabelInputContainer>
+            </div>
             <TextField
               inputRef={register}
               fullWidth
