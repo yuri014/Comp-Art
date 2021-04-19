@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const FormProfileContainer = styled.form`
+  max-width: 100rem;
   background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
   border-radius: 4px;
   .profile-image-upload,
@@ -103,16 +104,25 @@ const FormProfileContainer = styled.form`
     padding: 0 1rem;
   }
 
+  button {
+    display: block;
+    padding: 1rem 4rem;
+    border-radius: 5px;
+    border: none;
+    background: ${({ theme }) => theme.colors.mainColor};
+    color: ${({ theme }) => theme.colors.namesakeText};
+    font-weight: bold;
+    margin: 0 auto;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    font-size: 1.6rem;
+  }
+
   @media (min-width: 1100px) {
-    width: 100%;
     .profile-links {
       display: grid;
       grid-template-columns: 48% 48%;
       justify-content: space-between;
-    }
-
-    .link-label {
-      margin-bottom: 0.1rem;
     }
   }
 `;

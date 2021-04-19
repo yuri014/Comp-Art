@@ -18,7 +18,6 @@ import {
 import { IProfile, IProfileInput } from '../../interfaces/Profile';
 import formTheme from '../../styles/themes/FormTheme';
 import TagsContainer from '../../styles/components/tags';
-import PressStartButton from '../PressStartButton';
 import ErrorMessage from '../ErrorMessage';
 import FormProfileContainer from './styles';
 import useImagePreview from '../../hooks/imagePreview';
@@ -267,7 +266,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
             </SocialInput>
           </div>
           {showError && <ErrorMessage>{showError}</ErrorMessage>}
-          <PressStartButton type="submit">Start</PressStartButton>
+          <button type="submit">CRIAR PERFIL</button>
         </div>
       </FormProfileContainer>
     </ThemeProvider>
