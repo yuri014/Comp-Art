@@ -12,6 +12,7 @@ import {
   FaLink,
   FaPinterest,
   FaSoundcloud,
+  FaTimes,
   FaTwitter,
 } from 'react-icons/fa';
 
@@ -112,7 +113,10 @@ const FormProfile: React.FC<FormProfileProps> = ({
             <div className="holder" />
           </ProfileImagePreview>
           <label htmlFor="uploadCoverButton">
-            <div className="upload-cover">
+            <div
+              className="upload-cover"
+              title="Clique aqui para adicionar a capa"
+            >
               <MdEdit />
               Adicionar capa
             </div>
@@ -140,7 +144,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
           </ProfileImagePreview>
 
           <label htmlFor="uploadButton">
-            <IconButton aria-label="upload picture" component="span">
+            <IconButton aria-label="Adicionar foto do perfil" component="span">
               <MdEdit className="upload-icon" />
               <input
                 accept="image/*"
@@ -184,7 +188,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
               }
             }}
           >
-            Adicionar tags
+            Adicionar tags*
           </Input>
           <TagsContainer>
             {tags.map(tag => (
@@ -195,7 +199,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
                 }
                 key={tag}
               >
-                {tag} X
+                <p>{tag}</p> <FaTimes />
               </button>
             ))}
           </TagsContainer>

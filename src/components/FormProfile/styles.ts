@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const FormProfileContainer = styled.form`
-  max-width: 100rem;
+  max-width: 60rem;
   background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
   border-radius: 4px;
   .profile-image-upload,
@@ -31,6 +31,7 @@ const FormProfileContainer = styled.form`
       gap: 0.4rem;
       margin-right: 1rem;
       margin-top: 1rem;
+      cursor: pointer;
     }
 
     img {
@@ -104,7 +105,7 @@ const FormProfileContainer = styled.form`
     padding: 0 1rem;
   }
 
-  button {
+  button[type='submit'] {
     display: block;
     padding: 1rem 4rem;
     border-radius: 5px;
@@ -114,11 +115,28 @@ const FormProfileContainer = styled.form`
     font-weight: bold;
     margin: 0 auto;
     margin-top: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     font-size: 1.6rem;
+    cursor: pointer;
+    transition: filter 0.2s ease-in-out;
+
+    &:hover {
+      filter: brightness(0.8);
+    }
   }
 
   @media (min-width: 1100px) {
+    .inputs {
+      padding: 0 6rem;
+    }
+
+    .profile-image-cover {
+      .upload-cover {
+        margin-top: 8rem;
+        margin-right: 2rem;
+      }
+    }
+
     .profile-links {
       display: grid;
       grid-template-columns: 48% 48%;
