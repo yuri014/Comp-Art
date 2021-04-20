@@ -17,7 +17,7 @@ const ImagePostContainer = styled.div`
       height: 30vh;
 
       @media (min-width: 1100px) {
-        height: 40vh;
+        height: 45vh;
       }
 
       img {
