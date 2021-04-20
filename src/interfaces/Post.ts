@@ -25,7 +25,7 @@ interface Timeline extends IPost, IShare {
 }
 
 export interface PostProps {
-  post: IPost;
+  post: Timeline;
 }
 
 export interface IGetPosts {
