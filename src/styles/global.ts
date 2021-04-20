@@ -76,7 +76,7 @@ export default createGlobalStyle`
   }
 
   .danger-icon {
-    color: ${({ theme }) => theme.colors.danger};
+    color: ${({ theme }) => theme.colors.error};
   }
 
   .holder {
