@@ -88,7 +88,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
                 </a>
               </Link>
             </div>
-            <div className="post-config">
+            <div>
               <OptionsMenu
                 deletePost={handleDeletePost}
                 id={post._id}
