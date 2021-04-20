@@ -2,8 +2,9 @@ import React, { useContext, useRef, useState } from 'react';
 import { IconButton, Menu, MenuItem, Snackbar } from '@material-ui/core';
 import { FiMoreHorizontal, FiTrash2 } from 'react-icons/fi';
 
-import { FaTimes } from 'react-icons/fa';
+import { FaLink, FaRegFlag, FaTimes } from 'react-icons/fa';
 import { AuthContext } from '../../context/auth';
+import { MenuListIcon } from '../Header/styles';
 
 interface OptionsMenuProps {
   deletePost: () => void;
@@ -52,21 +53,32 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={copyToClipboard}>
-          Copiar Link
-          <textarea
-            ref={clip}
-            readOnly
-            style={{ position: 'absolute', left: '-999em' }}
-            value={`${process.env.NEXT_PUBLIC_HOST}/post/${id}`}
-          />
-        </MenuItem>
         {auth.user && auth.user.username === username && (
           <MenuItem onClick={deletePost}>
-            <span className="danger-icon">Deletar &nbsp;</span>
-            <FiTrash2 className="danger-icon" />
+            <MenuListIcon>
+              <span className="danger-icon">Deletar &nbsp;</span>
+              <FiTrash2 className="danger-icon" />
+            </MenuListIcon>
           </MenuItem>
         )}
+        <MenuItem onClick={copyToClipboard}>
+          <MenuListIcon>
+            <FaLink />
+            <p>Copiar Link</p>
+            <textarea
+              ref={clip}
+              readOnly
+              style={{ position: 'absolute', left: '-999em' }}
+              value={`${process.env.NEXT_PUBLIC_HOST}/post/${id}`}
+            />
+          </MenuListIcon>
+        </MenuItem>
+        <MenuItem>
+          <MenuListIcon>
+            <FaRegFlag className="danger-icon" />
+            <p>Denunciar</p>
+          </MenuListIcon>
+        </MenuItem>
       </Menu>
       <Snackbar
         anchorOrigin={{
