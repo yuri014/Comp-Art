@@ -19,13 +19,16 @@ import LevelContext from '../../context/level';
 import PostContainer from './styles';
 import formatDate from '../../utils/formatDate';
 import ModalLikesButton from '../Splitter/ModalLikesButton';
+import { GET_LIKES } from '../../graphql/mutations/post';
 
 const OptionsMenu = dynamic(() => import('./OptionsMenu'));
+const ModalProfile = dynamic(() => import('../ModalProfile'));
 
 const Post: React.FC<PostProps> = ({ post }) => {
   const [isLiked, setIsLiked] = useState<boolean>();
   const [likesCount, setLikesCount] = useState<number>();
   const [isDeleted, setIsDeleted] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
   useEffect(() => {
     setIsLiked(post.isLiked);
@@ -107,7 +110,11 @@ const Post: React.FC<PostProps> = ({ post }) => {
             )}
             <div className="post-info">
               <div className="post-counts">
-                <ModalLikesButton post={post} likesCount={likesCount} />
+                <ModalLikesButton
+                  showModal={() => setModalShow(true)}
+                  post={post}
+                  likesCount={likesCount}
+                />
                 {post.commentsCount > 0 && <p>0 comentários</p>}
                 {post.sharedCount > 0 && (
                   <p className="share-count">0 compartilhamentos</p>
@@ -160,6 +167,14 @@ const Post: React.FC<PostProps> = ({ post }) => {
             </div>
           </div>
         </PostContainer>
+      )}
+      {modalShow && (
+        <ModalProfile
+          onHide={() => setModalShow(false)}
+          queryResult="getLikes"
+          query={GET_LIKES}
+          id={post._id}
+        />
       )}
     </>
   );
