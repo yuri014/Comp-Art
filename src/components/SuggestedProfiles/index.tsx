@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { gql, useMutation, useQuery } from '@apollo/client';
 
 import SuggestedProfilesContainer from './styles';
@@ -62,42 +62,53 @@ const FollowButton: React.FC<{ username: string }> = ({ username }) => {
 };
 
 const SuggestedProfiles: React.FC = () => {
+  const [showComponent, setShowComponent] = useState(true);
   const { data, loading } = useQuery<ISuggestedProfile>(GET_SUGGESTED_PROFILES);
 
-  return (
-    <SuggestedProfilesContainer>
-      <h4>Sugestões para seguir</h4>
-      {loading && !data ? (
-        <>
-          <LoadingSuggestedProfile />
-          <LoadingSuggestedProfile />
-          <LoadingSuggestedProfile />
-          <LoadingSuggestedProfile />
-          <LoadingSuggestedProfile />
-        </>
-      ) : (
-        <>
-          {data.getSuggestedProfiles.map(profile => (
-            <React.Fragment key={profile.owner}>
-              <div className="suggested-profile-container">
-                <div className="suggested-profile">
-                  <img
-                    src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
-                    alt={profile.name}
-                  />
+  useEffect(() => {
+    if (data.getSuggestedProfiles) {
+      setShowComponent(data.getSuggestedProfiles.length !== 0);
+    }
+  }, [data.getSuggestedProfiles]);
 
-                  <div className="suggested-profile-info">
-                    <p className="limited-text">{profile.name}</p>
-                    <p className="limited-text">@{profile.owner}</p>
+  return (
+    <>
+      {showComponent && (
+        <SuggestedProfilesContainer>
+          <h4>Sugestões para seguir</h4>
+          {loading && !data ? (
+            <>
+              <LoadingSuggestedProfile />
+              <LoadingSuggestedProfile />
+              <LoadingSuggestedProfile />
+              <LoadingSuggestedProfile />
+              <LoadingSuggestedProfile />
+            </>
+          ) : (
+            <>
+              {data.getSuggestedProfiles.map(profile => (
+                <React.Fragment key={profile.owner}>
+                  <div className="suggested-profile-container">
+                    <div className="suggested-profile">
+                      <img
+                        src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
+                        alt={profile.name}
+                      />
+
+                      <div className="suggested-profile-info">
+                        <p className="limited-text">{profile.name}</p>
+                        <p className="limited-text">@{profile.owner}</p>
+                      </div>
+                    </div>
+                    <FollowButton username={profile.owner} />
                   </div>
-                </div>
-                <FollowButton username={profile.owner} />
-              </div>
-            </React.Fragment>
-          ))}
-        </>
+                </React.Fragment>
+              ))}
+            </>
+          )}
+        </SuggestedProfilesContainer>
       )}
-    </SuggestedProfilesContainer>
+    </>
   );
 };
 
