@@ -15,6 +15,7 @@ import {
   GET_LEVEL_XP,
   GET_LOGGED_PROFILE,
 } from '../../graphql/queries/profile';
+import Timeline from '../../components/Splitter/Timeline';
 
 const HomePage: React.FC = () => {
   const {
@@ -46,7 +47,9 @@ const HomePage: React.FC = () => {
       <LevelContext.Provider
         value={{ updateLevel: getLevel, level: profileLevel }}
       >
-        <Home getLoggedProfile={getLoggedProfile} />
+        <Home getLoggedProfile={getLoggedProfile}>
+          <Timeline />
+        </Home>
         <MobileHeader
           loading={loadingProfile}
           getLoggedProfile={getLoggedProfile}
