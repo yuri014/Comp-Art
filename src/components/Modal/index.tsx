@@ -1,31 +1,43 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { CgClose } from 'react-icons/cg';
+import useOutsideClick from '../../hooks/outsideClick';
 import ModalContainer from './styles';
 
 interface ModalProps {
   show: boolean;
   onHide: () => void;
   title: string;
-  text: string;
+  text?: string;
+  fontSize?: string;
 }
 
-const Modal: React.FC<ModalProps> = props => (
-  <ModalContainer className={`modal-block-${props.show}`}>
-    <div className="modal">
-      <button type="button" onClick={props.onHide} className="close-modal">
-        <CgClose />
-      </button>
-      <div className="modal-content">
-        <div className="modal-title">
-          <p>{props.title}</p>
+const Modal: React.FC<ModalProps> = props => {
+  const ref = useRef(null);
+  useOutsideClick(ref, props.onHide);
+
+  return (
+    <ModalContainer
+      fontSize={props.fontSize}
+      className={`modal-block-${props.show}`}
+    >
+      <div className="modal" ref={ref}>
+        <button type="button" onClick={props.onHide} className="close-modal">
+          <CgClose />
+        </button>
+        <div className="modal-content">
+          <div className="modal-title">
+            <p>{props.title}</p>
+          </div>
+          {props.text && (
+            <div className="modal-body">
+              <p>{props.text}</p>
+            </div>
+          )}
+          {props.children}
         </div>
-        <div className="modal-body">
-          <p>{props.text}</p>
-        </div>
-        {props.show && props.children}
       </div>
-    </div>
-  </ModalContainer>
-);
+    </ModalContainer>
+  );
+};
 
 export default Modal;

@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-const ModalContainer = styled.section`
+interface ModalContainerProps {
+  fontSize?: string;
+}
+
+const ModalContainer = styled.section<ModalContainerProps>`
   &.modal-block-false {
     display: none;
   }
@@ -18,6 +22,7 @@ const ModalContainer = styled.section`
     display: flex;
     animation: modal-background 0.2s ease-in-out;
     transform-origin: top;
+    z-index: 9;
   }
 
   @keyframes modal-background {
@@ -30,7 +35,7 @@ const ModalContainer = styled.section`
   }
 
   .modal {
-    max-width: calc(100% - 2rem);
+    width: calc(100% - 2rem);
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -46,9 +51,13 @@ const ModalContainer = styled.section`
     .modal-content {
       .modal-title {
         padding-top: 4rem;
-        font: 2rem ${({ theme }) => theme.fonts.primary};
-        text-align: center;
-        font-weight: bold;
+
+        p {
+          font-family: ${({ theme }) => theme.fonts.primary};
+          text-align: center;
+          font-weight: bold;
+          font-size: ${props => (props.fontSize ? props.fontSize : '2rem')};
+        }
       }
 
       .modal-body {
