@@ -8,6 +8,7 @@ import {
   FOLLOW_PROFILE,
   UNFOLLOW_PROFILE,
 } from '../../graphql/mutations/profile';
+import CASecondaryButton from '../../styles/components/secondaryButton';
 
 const GET_SUGGESTED_PROFILES = gql`
   query GetSuggestedProfiles {
@@ -31,9 +32,9 @@ const FollowButton: React.FC<{ username: string }> = ({ username }) => {
   return (
     <>
       {isFollowing ? (
-        <button
+        <CASecondaryButton
           type="button"
-          className="followed"
+          className="active"
           onClick={() => {
             unfollow({
               variables: { username },
@@ -42,9 +43,9 @@ const FollowButton: React.FC<{ username: string }> = ({ username }) => {
           }}
         >
           SEGUINDO
-        </button>
+        </CASecondaryButton>
       ) : (
-        <button
+        <CASecondaryButton
           type="button"
           onClick={() => {
             follow({
@@ -54,7 +55,7 @@ const FollowButton: React.FC<{ username: string }> = ({ username }) => {
           }}
         >
           SEGUIR
-        </button>
+        </CASecondaryButton>
       )}
     </>
   );

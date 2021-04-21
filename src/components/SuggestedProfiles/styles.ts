@@ -47,25 +47,6 @@ const SuggestedProfilesContainer = styled.div`
         }
       }
     }
-
-    button {
-      color: ${({ theme }) => theme.colors.pink};
-      font-weight: bold;
-      width: 9rem;
-      cursor: pointer;
-      border: 1px solid ${({ theme }) => theme.colors.pink};
-      background-color: transparent;
-      border-radius: 30px;
-      padding: 0.4rem 1rem;
-      font-size: 1.2rem;
-      transition: 0.2s ease-out;
-
-      &:hover,
-      &.followed {
-        background-color: ${({ theme }) => theme.colors.pink};
-        color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
-      }
-    }
   }
 
   @media (min-width: 1440px) {
