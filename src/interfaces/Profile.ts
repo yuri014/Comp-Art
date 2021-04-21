@@ -33,5 +33,5 @@ export interface IProfile {
 }
 
 export interface ILoggedProfile {
-  getLoggedProfile: IProfile;
+  getLoggedProfile?: IProfile;
 }
