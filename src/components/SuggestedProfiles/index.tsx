@@ -66,10 +66,10 @@ const SuggestedProfiles: React.FC = () => {
   const { data, loading } = useQuery<ISuggestedProfile>(GET_SUGGESTED_PROFILES);
 
   useEffect(() => {
-    if (data.getSuggestedProfiles) {
+    if (data && !loading) {
       setShowComponent(data.getSuggestedProfiles.length !== 0);
     }
-  }, [data.getSuggestedProfiles]);
+  }, [data, loading]);
 
   return (
     <>
