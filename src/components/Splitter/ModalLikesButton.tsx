@@ -1,55 +1,37 @@
-import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
+import React from 'react';
 
-import { GET_LIKES } from '../../graphql/mutations/post';
 import { PostProps } from '../../interfaces/Post';
-
-const ModalProfile = dynamic(() => import('../ModalProfile'));
 
 interface ModalLikesButtonProps extends PostProps {
   likesCount: number;
+  showModal: () => void;
 }
 
 const ModalLikesButton: React.FC<ModalLikesButtonProps> = ({
   post,
   likesCount,
-}) => {
-  const [modalShow, setModalShow] = useState(false);
-
-  return (
-    <>
-      <button
-        onClick={() => setModalShow(true)}
-        type="button"
-        aria-label="Abrir modal de likes"
-      >
-        <div className="likes-images">
-          {post.likes &&
-            post.likes.map(({ profile }) => (
-              <img
-                key={profile.owner}
-                src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
-                alt={profile.owner}
-                title={profile.owner}
-              />
-            ))}
-        </div>
-        {likesCount > 0 && (
-          <p>
-            {likesCount} {likesCount > 1 ? 'curtidas' : 'curtida'}
-          </p>
-        )}
-      </button>
-      {modalShow && (
-        <ModalProfile
-          onHide={() => setModalShow(false)}
-          queryResult="getLikes"
-          query={GET_LIKES}
-          id={post._id}
-        />
+  showModal,
+}) => (
+  <>
+    <button onClick={showModal} type="button" aria-label="Abrir modal de likes">
+      <div className="likes-images">
+        {post.likes &&
+          post.likes.map(({ profile }) => (
+            <img
+              key={profile.owner}
+              src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
+              alt={profile.owner}
+              title={profile.owner}
+            />
+          ))}
+      </div>
+      {likesCount > 0 && (
+        <p>
+          {likesCount} {likesCount > 1 ? 'curtidas' : 'curtida'}
+        </p>
       )}
-    </>
-  );
-};
+    </button>
+  </>
+);
 
 export default ModalLikesButton;
