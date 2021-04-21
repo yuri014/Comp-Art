@@ -1,105 +1,115 @@
 import styled from 'styled-components';
 
 const ModalProfileContainer = styled.div`
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 99;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  animation: modal-background 0.3s ease-in-out;
-  transform-origin: top;
+  margin-top: 3rem;
 
   .modal-content {
-    width: 80%;
-    height: 40rem;
-    max-width: 60rem;
-    overflow-y: auto;
-    position: relative;
-    margin: auto;
-    background-color: #1e2939;
-    border-radius: 8px;
-    border: 2px solid ${({ theme }) => theme.colors.mainColor};
-    color: white;
-    text-align: left;
-    padding: 1rem 0;
-    animation: modal-start 0.7s ease-in-out 0.3s forwards;
-    transform-origin: center;
-    transform: scale(0);
-
-    a {
-      color: ${({ theme }) => theme.colors.lightContrast};
-    }
+    min-height: 15rem;
+    max-height: 30rem;
+    overflow-x: auto;
 
     .profile {
+      background-color: ${({ theme }) => theme.colors.lightSecondaryBackground};
+      padding: 2rem;
+      border-radius: 5px;
+      transition: filter 0.3s ease;
       display: flex;
-      align-items: flex-start;
-      padding: 0.6rem 2rem;
-      border-bottom: 1px solid ${({ theme }) => theme.colors.lightText};
+      justify-content: space-between;
+      margin-bottom: 2rem;
+
+      a,
+      .loading {
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .loading {
+        .profile-content {
+          .first-row,
+          .second-row {
+            max-width: unset;
+          }
+        }
+      }
+
+      &:hover {
+        filter: brightness(1.2);
+      }
 
       img {
-        height: 4rem;
-        width: 4rem;
+        height: 5rem;
+        width: 5rem;
         border-radius: 50%;
       }
 
       .profile-content {
-        font-size: 1.6rem;
-
-        .profile-info {
+        .first-row {
+          font-size: 1.4rem;
           display: flex;
+          align-items: center;
+          color: ${({ theme }) => theme.colors.themeColor};
+          max-width: 11rem;
 
           & > * {
             margin-left: 1rem;
           }
 
-          p {
-            color: ${({ theme }) => theme.colors.blueContrast};
-          }
-
           .level {
+            display: none;
             background-color: ${({ theme }) => theme.colors.mainColor};
-            color: ${({ theme }) => theme.colors.namesakeText};
+            color: ${({ theme }) => theme.colors.lightSecondaryBackground};
             padding: 0 0.6rem;
             border-radius: 4px;
+            font-weight: bold;
+
+            @media (min-width: 768px) {
+              display: block;
+            }
+          }
+
+          @media (min-width: 1100px) {
+            max-width: 25rem;
           }
         }
 
-        .bio {
-          font-size: 1.4rem;
-          white-space: nowrap;
-          max-width: 20rem;
-          margin-left: 1rem;
-          overflow: hidden;
-          text-overflow: ellipsis;
+        .second-row {
+          max-width: 11rem;
+          p {
+            color: ${({ theme }) => theme.colors.darkGray};
+            font-size: 1.4rem;
+            margin-left: 1rem;
+          }
 
-          @media (min-width: 768px) {
-            max-width: 50rem;
+          .bio {
+            color: ${({ theme }) => theme.colors.themeColor};
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          @media (min-width: 1100px) {
+            max-width: 25rem;
           }
         }
       }
     }
-  }
 
-  @keyframes modal-background {
-    from {
-      height: 0;
+    @keyframes modal-background {
+      from {
+        height: 0;
+      }
+      to {
+        height: 100%;
+      }
     }
-    to {
-      height: 100%;
-    }
-  }
 
-  @keyframes modal-start {
-    from {
-      transform: scale(0);
-    }
-    to {
-      transform: scale(1);
+    @keyframes modal-start {
+      from {
+        transform: scale(0);
+      }
+      to {
+        transform: scale(1);
+      }
     }
   }
 `;

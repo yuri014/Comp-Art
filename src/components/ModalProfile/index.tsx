@@ -1,14 +1,15 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { ThemeProvider } from '@material-ui/core';
 import { DocumentNode, useQuery } from '@apollo/client';
 
 import Link from 'next/link';
 import mainTheme from '../../styles/themes/MainTheme';
-import ModalLikesContainer from './styles';
-import useOutsideClick from '../../hooks/outsideClick';
 import LoadingProfileLikes from './Loading';
 import useInfiniteScroll from '../../hooks/infiniteScroll';
 import { IProfile } from '../../interfaces/Profile';
+import Modal from '../Modal';
+import ModalProfileContainer from './styles';
+import CASecondaryButton from '../../styles/components/secondaryButton';
 
 interface ModalProps {
   onHide: () => void;
@@ -34,9 +35,6 @@ const ModalProfile: React.FC<ModalProps> = ({
     [client.cache, queryResult],
   );
 
-  const ref = useRef(null);
-  useOutsideClick(ref, onHide);
-
   const lastPostRefLikes = useInfiniteScroll(
     data,
     () =>
@@ -48,75 +46,93 @@ const ModalProfile: React.FC<ModalProps> = ({
 
   return (
     <ThemeProvider theme={mainTheme}>
-      <ModalLikesContainer>
-        <div className="modal-content" ref={ref}>
-          {loading ? (
-            <>
-              <LoadingProfileLikes />
-              <LoadingProfileLikes />
-              <LoadingProfileLikes />
-              <LoadingProfileLikes />
-              <LoadingProfileLikes />
-            </>
-          ) : (
-            <>
-              {data[`${queryResult}`].map(
-                (profile: IProfile, index: number) => {
-                  if (data[`${queryResult}`].length === index + 1) {
-                    return (
-                      <Link
-                        href={`/profile/${profile.owner}`}
-                        key={profile.owner}
-                      >
-                        <a ref={lastPostRefLikes} className="profile">
-                          <img
-                            src={
-                              process.env.NEXT_PUBLIC_API_HOST + profile.avatar
-                            }
-                            alt="Profile"
-                          />
-                          <div className="profile-content">
-                            <div className="profile-info">
-                              <strong>{profile.name}</strong>
-                              <p>@{profile.owner}</p>
-                              <div className="level">{profile.level}</div>
-                            </div>
-                            <p className="bio">{profile.bio}</p>
-                          </div>
-                        </a>
-                      </Link>
-                    );
-                  }
-
-                  return (
-                    <Link
-                      href={`/profile/${profile.owner}`}
-                      key={profile.owner}
-                    >
-                      <a className="profile">
-                        <img
-                          src={
-                            process.env.NEXT_PUBLIC_API_HOST + profile.avatar
-                          }
-                          alt="Profile"
-                        />
-                        <div className="profile-content">
-                          <div className="profile-info">
-                            <strong>{profile.name}</strong>
-                            <p>@{profile.owner}</p>
-                            <div className="level">{profile.level}</div>
-                          </div>
-                          <p className="bio">{profile.bio}</p>
+      <Modal onHide={onHide} show title="Ver curtidas" fontSize="2.4rem">
+        <ModalProfileContainer>
+          <div className="modal-content">
+            {loading ? (
+              <>
+                <LoadingProfileLikes />
+                <LoadingProfileLikes />
+              </>
+            ) : (
+              <>
+                {data[`${queryResult}`].map(
+                  (profile: IProfile, index: number) => {
+                    if (data[`${queryResult}`].length === index + 1) {
+                      return (
+                        <div className="profile" ref={lastPostRefLikes}>
+                          <Link
+                            href={`/profile/${profile.owner}`}
+                            key={profile.owner}
+                          >
+                            <a>
+                              <img
+                                src={
+                                  process.env.NEXT_PUBLIC_API_HOST +
+                                  profile.avatar
+                                }
+                                alt="Perfil"
+                              />
+                              <div className="profile-content">
+                                <div className="first-row">
+                                  <strong>{profile.name}</strong>
+                                  <div className="level">{profile.level}</div>
+                                </div>
+                                <div className="second-row">
+                                  <p>@{profile.owner}</p>
+                                  <p className="bio">{profile.bio}</p>
+                                </div>
+                              </div>
+                            </a>
+                          </Link>
+                          <CASecondaryButton
+                            className="main-color"
+                            type="button"
+                          >
+                            SEGUIR
+                          </CASecondaryButton>
                         </div>
-                      </a>
-                    </Link>
-                  );
-                },
-              )}
-            </>
-          )}
-        </div>
-      </ModalLikesContainer>
+                      );
+                    }
+
+                    return (
+                      <div className="profile">
+                        <Link
+                          href={`/profile/${profile.owner}`}
+                          key={profile.owner}
+                        >
+                          <a>
+                            <img
+                              src={
+                                process.env.NEXT_PUBLIC_API_HOST +
+                                profile.avatar
+                              }
+                              alt="Perfil"
+                            />
+                            <div className="profile-content">
+                              <div className="first-row">
+                                <strong>{profile.name}</strong>
+                                <div className="level">{profile.level}</div>
+                              </div>
+                              <div className="second-row">
+                                <p>@{profile.owner}</p>
+                                <p className="bio">{profile.bio}</p>
+                              </div>
+                            </div>
+                          </a>
+                        </Link>
+                        <CASecondaryButton className="main-color" type="button">
+                          SEGUIR
+                        </CASecondaryButton>
+                      </div>
+                    );
+                  },
+                )}
+              </>
+            )}
+          </div>
+        </ModalProfileContainer>
+      </Modal>
     </ThemeProvider>
   );
 };
