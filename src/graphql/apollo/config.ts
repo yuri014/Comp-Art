@@ -9,6 +9,7 @@ import {
 import merge from 'deepmerge';
 import { createUploadLink } from 'apollo-upload-client';
 import { setContext } from 'apollo-link-context';
+import Cookie from 'js-cookie';
 
 let apolloClient: ApolloClient<NormalizedCacheObject>;
 
@@ -16,11 +17,8 @@ const httpLink = createUploadLink({
   uri: `${process.env.NEXT_PUBLIC_API_HOST}/graphql`,
 });
 
-const getToken = () =>
-  typeof window !== 'undefined' && localStorage.getItem('jwtToken');
-
 const authLink = setContext((_, { headers }) => {
-  const token = getToken();
+  const token = Cookie.get('jwtToken');
   return {
     headers: {
       ...headers,

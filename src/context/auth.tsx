@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React, { createContext, useReducer } from 'react';
 import jwtDecode, { JwtPayload } from 'jwt-decode';
+import Cookie from 'js-cookie';
 
 import { IUser } from '../interfaces/User';
 import { initializeApollo } from '../graphql/apollo/config';
@@ -15,16 +16,10 @@ const initialState = {
   user: null,
 };
 
-const checkWindow = typeof window !== 'undefined';
+if (Cookie.get('jwtToken')) {
+  const decodedToken = jwtDecode<JwtPayload>(Cookie.get('jwtToken'));
 
-if (checkWindow && localStorage.getItem('jwtToken')) {
-  const decodedToken = jwtDecode<JwtPayload>(localStorage.getItem('jwtToken'));
-
-  if (decodedToken.exp * 1000 < Date.now()) {
-    localStorage.removeItem('jwtToken');
-  } else {
-    initialState.user = decodedToken;
-  }
+  initialState.user = decodedToken;
 }
 
 interface IState {
@@ -61,23 +56,25 @@ const AuthProvider: React.FC = props => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   const login = (data: IUser) => {
-    if (checkWindow) {
-      localStorage.setItem('jwtToken', data.token);
-      dispatch({
-        type: 'LOGIN',
-        payload: data,
-      });
-    }
+    Cookie.set('jwtToken', data.token, {
+      expires: 2,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'Strict',
+    });
+
+    Cookie.get('jwtToken');
+    dispatch({
+      type: 'LOGIN',
+      payload: data,
+    });
   };
 
   const logout = () => {
-    if (checkWindow) {
-      localStorage.removeItem('jwtToken');
-      const client = initializeApollo();
+    Cookie.remove('jwtToken');
+    const client = initializeApollo();
 
-      client.clearStore();
-      dispatch({ type: 'LOGOUT' });
-    }
+    client.clearStore();
+    dispatch({ type: 'LOGOUT' });
   };
 
   return (
