@@ -7,24 +7,34 @@ import SuggestedProfiles from '../SuggestedProfiles';
 import HashtagsProfile from '../HomeProfile/HashtagsProfile';
 
 interface HomeProps {
-  getLoggedProfile: IProfile;
+  getLoggedProfile?: IProfile;
   children: React.ReactNode;
 }
 
 const Home: React.FC<HomeProps> = ({ getLoggedProfile, children }) => (
   <div className="home-desktop-content">
-    <aside>
-      <HomeProfile getLoggedProfile={getLoggedProfile} />
-      <HashtagsProfile
-        hashtags={getLoggedProfile.hashtags}
-        isArtist={getLoggedProfile.isArtist}
-      />
-    </aside>
-    <div className="timeline">{children}</div>
-    <aside>
-      <QuestsProgress />
-      <SuggestedProfiles />
-    </aside>
+    {getLoggedProfile ? (
+      <>
+        <aside>
+          <HomeProfile getLoggedProfile={getLoggedProfile} />
+          <HashtagsProfile
+            hashtags={getLoggedProfile.hashtags}
+            isArtist={getLoggedProfile.isArtist}
+          />
+        </aside>
+        <div className="timeline">{children}</div>
+        <aside>
+          <QuestsProgress />
+          <SuggestedProfiles />
+        </aside>
+      </>
+    ) : (
+      <>
+        <aside />
+        <div className="timeline">{children}</div>
+        <aside />
+      </>
+    )}
   </div>
 );
 
