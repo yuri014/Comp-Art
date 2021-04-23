@@ -5,10 +5,17 @@ interface MetaProps {
   title: string;
   description: string;
   keywords: string;
+  seoImage?: string;
   uri?: string;
 }
 
-const Meta: React.FC<MetaProps> = ({ uri, title, description, keywords }) => (
+const Meta: React.FC<MetaProps> = ({
+  uri,
+  title,
+  description,
+  keywords,
+  seoImage,
+}) => (
   <Head>
     <title>{title}</title>
     <meta name="title" content={title} />
@@ -25,7 +32,7 @@ const Meta: React.FC<MetaProps> = ({ uri, title, description, keywords }) => (
     />
     <meta property="og:title" content="Comp-Art" />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="./CardSEO.png" />
+    <meta property="og:image" content={seoImage} />
     <meta property="twitter:card" content="summary_large_image" />
     <meta
       property="twitter:url"
@@ -37,8 +44,12 @@ const Meta: React.FC<MetaProps> = ({ uri, title, description, keywords }) => (
     />
     <meta property="twitter:title" content="Comp-Art" />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content="./CardSEO.png" />
+    <meta property="twitter:image" content={seoImage} />
   </Head>
 );
+
+Meta.defaultProps = {
+  seoImage: '/CardSEO.png',
+};
 
 export default Meta;
