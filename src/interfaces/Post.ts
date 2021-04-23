@@ -11,7 +11,7 @@ export interface IShare {
   profile: IProfile;
 }
 
-interface Timeline extends IPost, IShare {
+export interface Timeline extends IPost, IShare {
   _id: string;
   description: string;
   likes: Array<{
