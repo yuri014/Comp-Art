@@ -96,12 +96,13 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
         description={`${getProfile.owner} é um ${
           getProfile.isArtist
             ? `artista que produz e/ou se interessa por ${hashtags}`
-            : `apreciador de ${hashtags}`
+            : `fã de ${hashtags}`
         }`}
         keywords={`${getProfile.owner}, ${getProfile.name}, ${hashtags}, ${
           getProfile.bio
-        }, ${getProfile.isArtist ? 'artista' : 'apreciador'}`}
+        }, ${getProfile.isArtist ? 'artista' : 'fã'}`}
         uri={`profile/${getProfile.owner}`}
+        seoImage={getProfile.avatar}
       />
       <Header getLoggedProfile={getProfile} />
       <ProfileContainer>
