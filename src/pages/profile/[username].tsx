@@ -27,6 +27,7 @@ import mainLightTheme from '../../styles/themes/MainLightTheme';
 import mainDarkTheme from '../../styles/themes/MainDarkTheme';
 import formatMetaHashtags from '../../utils/formatHashtags';
 import ProfileLinks from '../../components/Splitter/ProfileLinks';
+import CASecondaryButton from '../../styles/components/secondaryButton';
 
 const FullScreenImage = dynamic(
   () => import('../../components/FullScreenImage'),
@@ -136,13 +137,16 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
               {hasAuth && getProfile.owner === auth.user.username && (
                 <Link href="/profile/edit">
                   <a>
-                    <button type="button">Editar perfil</button>
+                    <CASecondaryButton className="main-color" type="button">
+                      Editar perfil
+                    </CASecondaryButton>
                   </a>
                 </Link>
               )}
 
               {checkFollowButton() && isFollowing && !loading && (
-                <button
+                <CASecondaryButton
+                  className="main-color"
                   type="button"
                   onClick={() => {
                     unfollow({
@@ -153,11 +157,11 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
                   }}
                 >
                   Deixar de Seguir
-                </button>
+                </CASecondaryButton>
               )}
               {checkFollowButton() && !isFollowing && !loading && (
-                <button
-                  type="button"
+                <CASecondaryButton
+                  className="main-color"
                   onClick={() => {
                     follow({
                       variables: { username: getProfile.owner },
@@ -167,9 +171,13 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
                   }}
                 >
                   Seguir
-                </button>
+                </CASecondaryButton>
               )}
-              {!hasAuth && <button type="button">Seguir</button>}
+              {!hasAuth && (
+                <CASecondaryButton className="main-color" type="button">
+                  Seguir
+                </CASecondaryButton>
+              )}
             </div>
             <section>
               <div className="profile">
