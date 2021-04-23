@@ -7,11 +7,16 @@ export const ProfileContainer = styled.div`
     width: 100%;
     height: 12rem;
     border-bottom: 1px solid ${({ theme }) => theme.colors.mainColor};
-    z-index: 1;
-    & img {
+
+    button {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: 12rem;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
   }
   .avatar-profile {
@@ -31,10 +36,11 @@ export const ProfileContainer = styled.div`
     }
   }
 
-  .edit-profile {
+  .buttons-profile {
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    gap: 0.8rem;
     margin-top: -3rem;
     margin-bottom: 1rem;
   }
