@@ -21,6 +21,11 @@ const FullScreenImageContainer = styled.div`
     position: absolute;
     left: 0;
     top: 0;
+    button {
+      width: 6rem;
+      height: 6rem;
+      color: ${({ theme }) => theme.colors.danger};
+    }
   }
 
   img {

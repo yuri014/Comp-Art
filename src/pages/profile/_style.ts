@@ -141,6 +141,14 @@ export const ProfileContainer = styled.div`
       }
     }
 
+    .cover-profile {
+      height: 18rem;
+
+      button {
+        height: 18rem;
+      }
+    }
+
     .avatar-profile {
       width: 12rem;
       height: 12rem;
