@@ -75,7 +75,7 @@ export const ProfileContainer = styled.div`
           text-align: right;
           font-size: 2rem;
           font-weight: 600;
-          color: ${({ theme }) => theme.colors.lightContrast};
+          color: ${({ theme }) => theme.colors.themeColor};
           .level {
             background-color: ${({ theme }) => theme.colors.mainColor};
             color: ${({ theme }) => theme.colors.backgroundColor};
@@ -206,14 +206,14 @@ export const ProfileContainer = styled.div`
           margin-top: 2rem;
           display: block;
           font-size: 1.8rem;
-          & p:first-child {
+          p:first-child {
             margin-bottom: 0.4rem;
             font-size: 1.8rem;
           }
 
-          & p {
+          p {
             font-size: 1.8rem;
-            color: ${({ theme }) => theme.colors.lightContrast};
+            color: ${({ theme }) => theme.colors.themeColor};
           }
         }
 
@@ -248,6 +248,7 @@ export const EditProfileContainer = styled.main`
   place-items: center;
   margin-top: 2rem;
   padding-bottom: 8rem;
+  color: ${({ theme }) => theme.colors.themeColor};
 
   @media (min-width: 1100px) {
     padding-top: 8rem;

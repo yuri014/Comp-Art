@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ThemeProvider } from '@material-ui/core';
 import { gql, useQuery } from '@apollo/client';
 
 import Header from '../../../components/Header';
 import FormProfile from '../../../components/FormProfile';
-import { EditProfileContainer } from '../../../styles/pages/profile/style';
+import { EditProfileContainer } from '../_style';
 import MobileFooter from '../../../components/MobileFooter';
 import Meta from '../../../components/SEO/Meta';
 import withAuth from '../../../hocs/withAuth';
-import mainTheme from '../../../styles/themes/MainTheme';
+import mainLightTheme from '../../../styles/themes/MainLightTheme';
+import mainDarkTheme from '../../../styles/themes/MainDarkTheme';
+import ThemeContext from '../../../context/theme';
 
 export const GET_LOGGED_PROFILE = gql`
   query GetLoggedProfile {
@@ -46,6 +48,7 @@ const EditProfile: React.FC = () => {
   const { data: profile, loading } = useQuery(GET_LOGGED_PROFILE, {
     fetchPolicy: 'no-cache',
   });
+  const { theme } = useContext(ThemeContext);
 
   return (
     <>
@@ -55,17 +58,19 @@ const EditProfile: React.FC = () => {
         uri="/edit"
         keywords="editar, perfil, comp art"
       />
-      <ThemeProvider theme={mainTheme}>
-        <Header getLoggedProfile={profile.getLoggedProfile} />
-      </ThemeProvider>
-      <EditProfileContainer>
+      <ThemeProvider theme={theme === 'light' ? mainLightTheme : mainDarkTheme}>
         {!loading && (
-          <FormProfile
-            mutation={UPDATE_PROFILE}
-            defaultValues={profile.getLoggedProfile}
-          />
+          <>
+            <Header getLoggedProfile={profile.getLoggedProfile} />
+            <EditProfileContainer>
+              <FormProfile
+                mutation={UPDATE_PROFILE}
+                defaultValues={profile.getLoggedProfile}
+              />
+            </EditProfileContainer>
+          </>
         )}
-      </EditProfileContainer>
+      </ThemeProvider>
       <MobileFooter />
     </>
   );
