@@ -29,9 +29,7 @@ import formatMetaHashtags from '../../utils/formatHashtags';
 import ProfileLinks from '../../components/Splitter/ProfileLinks';
 import CASecondaryButton from '../../styles/components/secondaryButton';
 
-const FullScreenImage = dynamic(
-  () => import('../../components/FullScreenImage'),
-);
+const CAImage = dynamic(() => import('../../components/CAImage'));
 
 interface ProfileProps {
   username: string;
@@ -46,7 +44,6 @@ interface ProfileProps {
 const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
   const auth = useContext(AuthContext);
   const { theme } = useContext(ThemeContext);
-  const [isImageFullScreen, setIsImageFullScreen] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
   const { data: getIsFollowing, loading } = useQuery(GET_IS_FOLLOWING, {
     variables: {
@@ -111,29 +108,15 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
         <main>
           <div className="cover-profile">
             {getProfile.coverImage !== '' ? (
-              <img
-                src={process.env.NEXT_PUBLIC_API_HOST + getProfile.coverImage}
-                alt="Capa do perfil"
-              />
+              <CAImage image={getProfile.coverImage} />
             ) : (
               <div className="holder" />
             )}
           </div>
           <div className="container">
-            <div
-              className="avatar-profile"
-              onClick={() => setIsImageFullScreen(true)}
-              onKeyDown={() => setIsImageFullScreen(true)}
-              onBlur={() => setIsImageFullScreen(false)}
-              role="button"
-              tabIndex={0}
-            >
-              <img
-                src={process.env.NEXT_PUBLIC_API_HOST + getProfile.avatar}
-                alt="Imagem do perfil"
-              />
-            </div>
-            <div className="edit-profile">
+            <CAImage className="avatar-profile" image={getProfile.avatar} />
+            <div className="buttons-profile">
+              <CASecondaryButton type="button">Patrocinar</CASecondaryButton>
               {hasAuth && getProfile.owner === auth.user.username && (
                 <Link href="/profile/edit">
                   <a>
@@ -239,12 +222,6 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
         </section>
 
         <MobileFooter />
-        {isImageFullScreen && (
-          <FullScreenImage
-            img={process.env.NEXT_PUBLIC_API_HOST + getProfile.avatar}
-            onClose={() => setIsImageFullScreen(false)}
-          />
-        )}
       </ProfileContainer>
     </ThemeProvider>
   );
