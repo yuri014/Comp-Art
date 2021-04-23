@@ -126,6 +126,119 @@ export const ProfileContainer = styled.div`
     padding-bottom: 8rem;
     border-top: 1px solid ${({ theme }) => theme.colors.namesakeText};
   }
+
+  @media (min-width: 1100px) {
+    .buttons-profile {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: -6rem;
+      margin-bottom: 4rem;
+      button {
+        padding: 0.8rem 0;
+        font-size: 1.6rem;
+        width: 14rem;
+      }
+    }
+
+    .avatar-profile {
+      width: 12rem;
+      height: 12rem;
+      margin: 0;
+      margin-top: -4rem;
+    }
+
+    main {
+      padding-top: 6rem;
+
+      section {
+        display: grid;
+        margin-top: -10.4rem;
+        grid-template-areas:
+          'profile profile .'
+          'bio bio links';
+        align-items: baseline;
+
+        .profile {
+          margin-left: 16rem;
+          display: flex;
+          align-items: baseline;
+          justify-content: flex-start;
+          grid-area: profile;
+
+          h1 {
+            font-size: 2.4rem;
+          }
+
+          h2 {
+            font-size: 1.6rem;
+            color: ${({ theme }) => theme.colors.lightText};
+            margin-top: 0.4rem;
+          }
+
+          p:first-child {
+            font-size: 2.4rem;
+            margin-top: 0;
+            text-align: left;
+          }
+
+          p {
+            font-size: 1.6rem;
+            margin-left: 6rem;
+            margin-top: 0.4rem;
+            font-weight: 700;
+          }
+        }
+
+        .mobile-profile-follows {
+          display: none;
+        }
+
+        .profile-follows {
+          margin-top: 2rem;
+          display: block;
+          font-size: 1.8rem;
+          & p:first-child {
+            margin-bottom: 0.4rem;
+            font-size: 1.8rem;
+          }
+
+          & p {
+            font-size: 1.8rem;
+            color: ${({ theme }) => theme.colors.lightContrast};
+          }
+        }
+
+        .bio {
+          font-size: 1.6rem;
+          width: 80%;
+          grid-area: bio;
+          height: 6.8rem;
+        }
+
+        .profile-links {
+          font-size: 2.8rem;
+          grid-area: links;
+          margin-top: 4rem;
+          width: 180px;
+          display: grid;
+          grid-template-columns: 19% 19% 19% 19%;
+          justify-content: space-between;
+          justify-self: flex-end;
+          direction: rtl;
+          & a {
+            text-align: right;
+          }
+        }
+      }
+    }
+
+    .profile-posts {
+      width: 100%;
+      margin-top: 2rem;
+      padding: 2rem 25%;
+    }
+  }
 `;
 
 export const EditProfileContainer = styled.main`
