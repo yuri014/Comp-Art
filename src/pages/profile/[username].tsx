@@ -1,24 +1,15 @@
 import React, { useContext, useState } from 'react';
 import { QueryResult, useMutation, useQuery } from '@apollo/client';
-import {
-  FaBandcamp,
-  FaDeviantart,
-  FaFacebook,
-  FaLink,
-  FaPinterest,
-  FaSoundcloud,
-  FaTwitter,
-} from 'react-icons/fa';
-import { SiWattpad } from 'react-icons/si';
 import { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import { ThemeProvider } from '@material-ui/core';
 
 import MobileFooter from '../../components/MobileFooter';
 import { GET_IS_FOLLOWING, GET_PROFILE } from '../../graphql/queries/profile';
 import { IProfile } from '../../interfaces/Profile';
-import { IPost } from '../../interfaces/Post';
-import { ProfileContainer } from '../../styles/pages/profile/style';
+import { Timeline } from '../../interfaces/Post';
+import { ProfileContainer } from './_style';
 import { AuthContext } from '../../context/auth';
 import {
   FOLLOW_PROFILE,
@@ -31,6 +22,11 @@ import SkeletonPost from '../../components/Post/SkeletonPost';
 import Meta from '../../components/SEO/Meta';
 import useInfiniteScroll from '../../hooks/infiniteScroll';
 import Header from '../../components/Header';
+import ThemeContext from '../../context/theme';
+import mainLightTheme from '../../styles/themes/MainLightTheme';
+import mainDarkTheme from '../../styles/themes/MainDarkTheme';
+import formatMetaHashtags from '../../utils/formatHashtags';
+import ProfileLinks from '../../components/Splitter/ProfileLinks';
 
 const FullScreenImage = dynamic(
   () => import('../../components/FullScreenImage'),
@@ -48,6 +44,7 @@ interface ProfileProps {
 
 const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
   const auth = useContext(AuthContext);
+  const { theme } = useContext(ThemeContext);
   const [isImageFullScreen, setIsImageFullScreen] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
   const { data: getIsFollowing, loading } = useQuery(GET_IS_FOLLOWING, {
@@ -61,7 +58,7 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
   const [unfollow] = useMutation(UNFOLLOW_PROFILE);
 
   const { client, data, error, loading: loadingPost, fetchMore } = useQuery<{
-    getProfilePosts: Array<IPost>;
+    getProfilePosts: Array<Timeline>;
   }>(GET_PROFILE_POSTS, {
     variables: { offset: 0, username },
     ssr: true,
@@ -92,29 +89,20 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
   const checkFollowButton = () =>
     hasAuth && getProfile.owner !== auth.user.username;
 
-  const formatMetaHashtags = () =>
-    `${getProfile.hashtags
-      .slice(0, -1)
-      .join(', ')
-      .replace(/#/g, '')} e ${getProfile.hashtags
-      .slice(-1)
-      .join('')
-      .replace('#', '')}`;
+  const hashtags = formatMetaHashtags(getProfile.hashtags);
 
   return (
-    <>
+    <ThemeProvider theme={theme === 'light' ? mainLightTheme : mainDarkTheme}>
       <Meta
         title={`${getProfile.owner} - Perfil`}
         description={`${getProfile.owner} é um ${
           getProfile.isArtist
-            ? `artista que produz e/ou se interessa por ${formatMetaHashtags()}`
-            : `apreciador de ${formatMetaHashtags()}`
+            ? `artista que produz e/ou se interessa por ${hashtags}`
+            : `apreciador de ${hashtags}`
         }`}
-        keywords={`${getProfile.owner}, ${
-          getProfile.name
-        }, ${formatMetaHashtags()}, ${getProfile.bio}, ${
-          getProfile.isArtist ? 'artista' : 'apreciador'
-        }`}
+        keywords={`${getProfile.owner}, ${getProfile.name}, ${hashtags}, ${
+          getProfile.bio
+        }, ${getProfile.isArtist ? 'artista' : 'apreciador'}`}
         uri={`profile/${getProfile.owner}`}
       />
       <Header getLoggedProfile={getProfile} />
@@ -214,116 +202,34 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
                   <p>{getProfile.bio}</p>
                 </div>
               )}
-              <div className="profile-links">
-                {getProfile.links.soundcloud && (
-                  <a
-                    href={`http://soundcloud.com/${getProfile.links.soundcloud}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="Soundcloud"
-                  >
-                    <FaSoundcloud className="soundcloud-icon" />
-                  </a>
-                )}
-                {getProfile.links.twitter && (
-                  <a
-                    href={`http://twitter.com/${getProfile.links.twitter}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="Twitter"
-                  >
-                    <FaTwitter className="twitter-icon" />
-                  </a>
-                )}
-                {getProfile.links.deviantart && (
-                  <a
-                    href={`http://deviantart.com/${getProfile.links.deviantart}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="DeviantArt"
-                  >
-                    <FaDeviantart className="deviantart-icon" />
-                  </a>
-                )}
-                {getProfile.links.bandcamp && (
-                  <a
-                    href={`http://${getProfile.links.bandcamp}.bandcamp.com`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="Bandcamp"
-                  >
-                    <FaBandcamp className="bandcamp-icon" />
-                  </a>
-                )}
-                {getProfile.links.wattpad && (
-                  <a
-                    href={`http://wattpad.com/user/${getProfile.links.wattpad}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="Wattpad"
-                  >
-                    <SiWattpad className="wattpad-icon" />
-                  </a>
-                )}
-                {getProfile.links.facebook && (
-                  <a
-                    href={`http://facebook.com/${getProfile.links.facebook}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="Facebook"
-                  >
-                    <FaFacebook className="facebook-icon" />
-                  </a>
-                )}
-                {getProfile.links.pinterest && (
-                  <a
-                    href={`http://pinterest.com/${getProfile.links.pinterest}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="Pinterest"
-                  >
-                    <FaPinterest className="pinterest-icon" />
-                  </a>
-                )}
-                {getProfile.links.customLink && (
-                  <a
-                    href={getProfile.links.customLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="Link Externo"
-                  >
-                    <FaLink className="primary-icon" />
-                  </a>
-                )}
-              </div>
+              <ProfileLinks links={getProfile.links} />
             </section>
           </div>
         </main>
-        <div className="container">
-          <section className="profile-posts">
-            {loadingPost || error ? (
-              <SkeletonPost />
-            ) : (
-              data.getProfilePosts.map((post, index) => {
-                if (data.getProfilePosts.length === index + 1) {
-                  return (
-                    <div
-                      key={`${post.artist}_${post.createdAt}`}
-                      ref={lastPostRef}
-                    >
-                      <Post post={post} />
-                    </div>
-                  );
-                }
+        <section className="profile-posts">
+          {loadingPost || error ? (
+            <SkeletonPost />
+          ) : (
+            data.getProfilePosts.map((post, index) => {
+              if (data.getProfilePosts.length === index + 1) {
                 return (
-                  <div key={`${post.artist}_${post.createdAt}`}>
+                  <div
+                    key={`${post.artist}_${post.createdAt}`}
+                    ref={lastPostRef}
+                  >
                     <Post post={post} />
                   </div>
                 );
-              })
-            )}
-          </section>
-        </div>
+              }
+              return (
+                <div key={`${post.artist}_${post.createdAt}`}>
+                  <Post post={post} />
+                </div>
+              );
+            })
+          )}
+        </section>
+
         <MobileFooter />
         {isImageFullScreen && (
           <FullScreenImage
@@ -332,7 +238,7 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
           />
         )}
       </ProfileContainer>
-    </>
+    </ThemeProvider>
   );
 };
 
