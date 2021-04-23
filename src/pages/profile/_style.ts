@@ -220,15 +220,9 @@ export const ProfileContainer = styled.div`
           font-size: 2.8rem;
           grid-area: links;
           margin-top: 4rem;
-          width: 180px;
-          display: grid;
-          grid-template-columns: 19% 19% 19% 19%;
+          width: 18rem;
           justify-content: space-between;
           justify-self: flex-end;
-          direction: rtl;
-          & a {
-            text-align: right;
-          }
         }
       }
     }
