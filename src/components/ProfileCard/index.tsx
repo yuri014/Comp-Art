@@ -3,6 +3,7 @@ import React from 'react';
 import { UseInfiniteScroll } from '../../hooks/infiniteScroll';
 import { IProfile } from '../../interfaces/Profile';
 import CASecondaryButton from '../../styles/components/secondaryButton';
+import ProfileSimpleCardContainer from './styles';
 
 interface ProfileSimpleCardProps {
   profile: IProfile;
@@ -13,7 +14,7 @@ const ProfileSimpleCard: React.FC<ProfileSimpleCardProps> = ({
   ref,
   profile,
 }) => (
-  <div className="profile" ref={ref}>
+  <ProfileSimpleCardContainer ref={ref}>
     <Link href={`/profile/${profile.owner}`} key={profile.owner}>
       <a>
         <img
@@ -35,7 +36,7 @@ const ProfileSimpleCard: React.FC<ProfileSimpleCardProps> = ({
     <CASecondaryButton className="main-color" type="button">
       SEGUIR
     </CASecondaryButton>
-  </div>
+  </ProfileSimpleCardContainer>
 );
 
 export default ProfileSimpleCard;
