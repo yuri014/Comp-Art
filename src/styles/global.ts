@@ -16,6 +16,7 @@ export default createGlobalStyle`
   #root {
     background-color: ${({ theme }) => theme.colors.backgroundColor};
     font-family: ${({ theme }) => theme.fonts.primary};
+    color: ${({ theme }) => theme.colors.themeColor};
   }
 
   button {
