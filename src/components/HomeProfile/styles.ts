@@ -9,7 +9,8 @@ export const HomeProfileContainer = styled.div`
   color: ${({ theme }) => theme.colors.themeColor};
   box-shadow: ${({ theme }) => theme.colors.mainShadow};
   padding: 2rem;
-  width: 20%;
+  width: 100%;
+  height: 100vh;
   max-width: 33rem;
 
   .profile {
@@ -115,6 +116,7 @@ export const HomeProfileContainer = styled.div`
   @media (min-width: 1100px) {
     height: unset;
     border-radius: 5px;
+    width: 20%;
   }
 
   @media (min-width: 1200px) {
