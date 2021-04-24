@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import { CORE_PROFILE_VIEW } from '../fragments/profile';
+import { CORE_PROFILE_VIEW, LINKS_PROFILE } from '../fragments/profile';
 
 export const GET_LOGGED_PROFILE = gql`
   ${CORE_PROFILE_VIEW}
@@ -17,9 +17,11 @@ export const GET_LOGGED_PROFILE = gql`
 
 export const GET_PROFILE = gql`
   ${CORE_PROFILE_VIEW}
+  ${LINKS_PROFILE}
   query GetProfile($username: String!) {
     getProfile(username: $username) {
       ...CoreProfileView
+      ...LinksProfile
       _id
       coverImage
       bio
@@ -29,16 +31,6 @@ export const GET_PROFILE = gql`
       following
       hashtags
       isArtist
-      links {
-        soundcloud
-        twitter
-        facebook
-        wattpad
-        pinterest
-        deviantart
-        bandcamp
-        customLink
-      }
       postCount
       sharedPostCount
     }
@@ -56,6 +48,23 @@ export const GET_LEVEL_XP = gql`
     getLoggedProfile {
       level
       xp
+    }
+  }
+`;
+
+export const GET_FULL_LOGGED_PROFILE = gql`
+  ${CORE_PROFILE_VIEW}
+  ${LINKS_PROFILE}
+  query GetLoggedProfile {
+    getLoggedProfile {
+      ...CoreProfileView
+      ...LinksProfile
+      coverImage
+      bio
+      followers
+      following
+      hashtags
+      isArtist
     }
   }
 `;

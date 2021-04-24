@@ -11,32 +11,7 @@ import withAuth from '../../../hocs/withAuth';
 import mainLightTheme from '../../../styles/themes/MainLightTheme';
 import mainDarkTheme from '../../../styles/themes/MainDarkTheme';
 import ThemeContext from '../../../context/theme';
-import { CORE_PROFILE_VIEW } from '../../../graphql/fragments/profile';
-
-export const GET_LOGGED_PROFILE = gql`
-  ${CORE_PROFILE_VIEW}
-  query GetLoggedProfile {
-    getLoggedProfile {
-      ...CoreProfileView
-      coverImage
-      bio
-      followers
-      following
-      hashtags
-      isArtist
-      links {
-        soundcloud
-        twitter
-        facebook
-        wattpad
-        pinterest
-        deviantart
-        bandcamp
-        customLink
-      }
-    }
-  }
-`;
+import { GET_FULL_LOGGED_PROFILE } from '../../../graphql/queries/profile';
 
 const UPDATE_PROFILE = gql`
   mutation UpdateProfile($profile: CreateProfileInput) {
@@ -45,7 +20,7 @@ const UPDATE_PROFILE = gql`
 `;
 
 const EditProfile: React.FC = () => {
-  const { data: profile, loading } = useQuery(GET_LOGGED_PROFILE, {
+  const { data: profile, loading } = useQuery(GET_FULL_LOGGED_PROFILE, {
     fetchPolicy: 'no-cache',
   });
   const { theme } = useContext(ThemeContext);
