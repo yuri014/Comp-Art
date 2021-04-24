@@ -40,14 +40,16 @@ const FormProfile: React.FC<FormProfileProps> = ({
     mode: 'onChange',
     reValidateMode: 'onChange',
   });
-  const { user } = useContext(AuthContext);
 
-  const router = useRouter();
   const [showError, setShowError] = useState('');
   const [tags, setTags] = useState([]);
-
-  const [profileImage, setProfileImage] = useImagePreview();
   const [coverImage, setCoverImage] = useImagePreview();
+  const [tagInput, setTagInput] = useState('');
+  const [oldProfileImage, setOldProfileImage] = useState('');
+  const [oldCoverImage, setOldCoverImage] = useState('');
+  const router = useRouter();
+  const { user } = useContext(AuthContext);
+  const [profileImage, setProfileImage] = useImagePreview();
 
   const [handleProfileMutation] = useMutation(mutation, {
     onCompleted: () => router.push('/home'),
@@ -68,15 +70,11 @@ const FormProfile: React.FC<FormProfileProps> = ({
     });
   };
 
-  const [tagInput, setTagInput] = useState('');
-  const [oldProfileImage, setOldProfileImage] = useState('');
-  const [oldCoverImage, setOldCoverImage] = useState('');
-
   useEffect(() => {
     if (defaultValues) {
       setTags(defaultValues.hashtags ? defaultValues.hashtags : []);
       setValue('name', defaultValues.name);
-      setValue('bio', defaultValues.bio);
+      setValue('bio', defaultValues.bio || '');
 
       const { links } = defaultValues;
 
