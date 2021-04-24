@@ -51,7 +51,3 @@ Nos grupos e fandons, os apreciadores poderão postar. Ambos têm limitações d
 ### Observações
 
 Muitas dessas coisas são apenas planos e eu não sei se vou ter ânimo ou tempo para desenvolver. No momento estou mais focado na minha carreira pessoal (sim, eu sei que o projeto pode ajudar mas a probabilidade de me sustentar é pouca).
-
-### Contribuições
-
-Sinta-se livre para abrir issues e fazer prs.
