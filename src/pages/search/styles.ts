@@ -19,9 +19,11 @@ const SearchContainer = styled.div`
     }
   }
 
-  @media (min-width: 1100px) {
-    padding: 0 2rem;
+  .posts-results {
+    margin-top: 3rem;
+  }
 
+  @media (min-width: 1100px) {
     .profile-results {
       border-radius: 5px;
     }

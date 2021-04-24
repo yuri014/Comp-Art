@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const PostContainer = styled.section`
+const PostContainer = styled.div`
   display: flex;
   flex-direction: column;
   color: ${({ theme }) => theme.colors.themeColor};
@@ -271,6 +271,7 @@ const PostContainer = styled.section`
 
   @media (min-width: 1100px) {
     padding: 2rem;
+    width: 100%;
   }
 `;
 

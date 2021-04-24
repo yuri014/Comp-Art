@@ -13,6 +13,10 @@ const HomeContainer = styled.main`
         position: fixed;
       }
     }
+
+    .timeline {
+      padding: 0 3rem;
+    }
   }
 
   @media (min-width: 1440px) {
@@ -29,7 +33,7 @@ const HomeContainer = styled.main`
       aside {
         display: none;
       }
-      & .timeline {
+      .timeline {
         display: block;
         width: 100%;
         margin-left: 0;
