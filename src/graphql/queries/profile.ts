@@ -1,26 +1,26 @@
 import { gql } from '@apollo/client';
+import { CORE_PROFILE_VIEW } from '../fragments/profile';
 
 export const GET_LOGGED_PROFILE = gql`
+  ${CORE_PROFILE_VIEW}
   query GetLoggedProfile {
     getLoggedProfile {
-      name
-      avatar
+      ...CoreProfileView
       coverImage
       followers
       following
       hashtags
-      owner
       isArtist
     }
   }
 `;
 
 export const GET_PROFILE = gql`
+  ${CORE_PROFILE_VIEW}
   query GetProfile($username: String!) {
     getProfile(username: $username) {
+      ...CoreProfileView
       _id
-      name
-      avatar
       coverImage
       bio
       xp
@@ -28,7 +28,6 @@ export const GET_PROFILE = gql`
       followers
       following
       hashtags
-      owner
       isArtist
       links {
         soundcloud

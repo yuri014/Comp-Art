@@ -11,18 +11,18 @@ import withAuth from '../../../hocs/withAuth';
 import mainLightTheme from '../../../styles/themes/MainLightTheme';
 import mainDarkTheme from '../../../styles/themes/MainDarkTheme';
 import ThemeContext from '../../../context/theme';
+import { CORE_PROFILE_VIEW } from '../../../graphql/fragments/profile';
 
 export const GET_LOGGED_PROFILE = gql`
+  ${CORE_PROFILE_VIEW}
   query GetLoggedProfile {
     getLoggedProfile {
-      name
-      avatar
+      ...CoreProfileView
       coverImage
       bio
       followers
       following
       hashtags
-      owner
       isArtist
       links {
         soundcloud

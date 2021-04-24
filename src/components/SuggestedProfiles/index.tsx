@@ -9,13 +9,13 @@ import {
   UNFOLLOW_PROFILE,
 } from '../../graphql/mutations/profile';
 import CASecondaryButton from '../../styles/components/secondaryButton';
+import { CORE_PROFILE_VIEW } from '../../graphql/fragments/profile';
 
 const GET_SUGGESTED_PROFILES = gql`
+  ${CORE_PROFILE_VIEW}
   query GetSuggestedProfiles {
     getSuggestedProfiles {
-      avatar
-      name
-      owner
+      ...CoreProfileView
     }
   }
 `;

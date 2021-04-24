@@ -10,13 +10,13 @@ import { AuthContext } from '../../context/auth';
 import { ILoggedProfile, IProfile } from '../../interfaces/Profile';
 import useInfiniteScroll from '../../hooks/infiniteScroll';
 import { IGetComment } from '../../interfaces/Post';
+import { CORE_PROFILE_VIEW } from '../../graphql/fragments/profile';
 
 const GET_LOGGED_PROFILE = gql`
+  ${CORE_PROFILE_VIEW}
   query GetCommentProfile {
     getLoggedProfile {
-      name
-      avatar
-      owner
+      ...CoreProfileView
     }
   }
 `;
@@ -28,12 +28,11 @@ const CREATE_COMMENT = gql`
 `;
 
 const GET_COMMENTS = gql`
+  ${CORE_PROFILE_VIEW}
   query GetComments($id: ID!, $offset: Int!) {
     getComments(postID: $id, offset: $offset) {
       author {
-        name
-        owner
-        avatar
+        ...CoreProfileView
       }
       body
       createdAt

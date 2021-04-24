@@ -6,13 +6,13 @@ import { FaSearch } from 'react-icons/fa';
 
 import { IProfile } from '../../interfaces/Profile';
 import useOutsideClick from '../../hooks/outsideClick';
+import { CORE_PROFILE_VIEW } from '../../graphql/fragments/profile';
 
 const GET_PROFILE_PREVIEW_SEARCH = gql`
+  ${CORE_PROFILE_VIEW}
   query GetProfilePreviewSearch($query: String!, $offset: Int!, $limit: Int!) {
     searchProfiles(query: $query, offset: $offset, limit: $limit) {
-      name
-      owner
-      avatar
+      ...CoreProfileView
     }
   }
 `;
