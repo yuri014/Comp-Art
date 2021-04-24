@@ -18,6 +18,8 @@ import HomeContainer from '../home/_styles';
 import ProfileSimpleCard from '../../components/ProfileCard';
 import SearchContainer from './styles';
 import { initializeApollo } from '../../graphql/apollo/config';
+import { Timeline } from '../../interfaces/Post';
+import Post from '../../components/Post';
 
 const GET_SEARCH_PROFILE = gql`
   query SearchProfiles($query: String!, $offset: Int!, $limit: Int!) {
@@ -31,11 +33,43 @@ const GET_SEARCH_PROFILE = gql`
   }
 `;
 
+const GET_SEARCH_POSTS = gql`
+  query SearchPost($query: String!, $offset: Int!) {
+    searchPost(query: $query, offset: $offset) {
+      _id
+      description
+      body
+      likes {
+        profile {
+          name
+          avatar
+          _id
+          owner
+          bio
+        }
+      }
+      likesCount
+      sharedCount
+      commentsCount
+      createdAt
+      artist {
+        name
+        owner
+        avatar
+      }
+      mediaId
+      isLiked
+      alt
+    }
+  }
+`;
+
 interface SearchPageProps {
   profiles: Array<IProfile>;
+  posts: Array<Timeline>;
 }
 
-const SearchPage: React.FC<SearchPageProps> = ({ profiles }) => {
+const SearchPage: React.FC<SearchPageProps> = ({ profiles, posts }) => {
   const {
     query: { query },
   } = useRouter();
@@ -76,6 +110,11 @@ const SearchPage: React.FC<SearchPageProps> = ({ profiles }) => {
                     ))}
                   </div>
                 </section>
+                <section className="posts-results">
+                  {posts.map(post => (
+                    <Post post={post} />
+                  ))}
+                </section>
               </SearchContainer>
             </Home>
             <MobileHeader
@@ -108,11 +147,19 @@ export const getServerSideProps: GetServerSideProps = async context => {
     errorPolicy: 'ignore',
   });
 
+  const getPosts = await client.query({
+    query: GET_SEARCH_POSTS,
+    variables: { query, offset: 0 },
+    errorPolicy: 'ignore',
+  });
+
   const profiles = getProfiles.data.searchProfiles;
+  const posts = getPosts.data.searchPost;
 
   return {
     props: {
       profiles,
+      posts,
     },
   };
 };
