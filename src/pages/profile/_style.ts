@@ -43,6 +43,10 @@ export const ProfileContainer = styled.div`
     gap: 0.8rem;
     margin-top: -3rem;
     margin-bottom: 1rem;
+
+    button {
+      width: 10rem;
+    }
   }
 
   main {
@@ -92,6 +96,7 @@ export const ProfileContainer = styled.div`
         border: 1px solid ${({ theme }) => theme.colors.namesakeText};
         border-radius: 4px;
         padding: 1rem;
+        word-break: break-all;
       }
 
       .profile-follows {
@@ -112,11 +117,15 @@ export const ProfileContainer = styled.div`
         width: 100%;
         margin: 2rem 0;
         font-size: 2.2rem;
-        display: grid;
-        grid-column-gap: 1.4rem;
-        grid-template-columns: 2.2rem 2.2rem 2.2rem 2.2rem;
-        align-content: flex-end;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.5rem;
         justify-content: flex-end;
+
+        div > * {
+          margin-left: 1.6rem;
+        }
       }
     }
   }
