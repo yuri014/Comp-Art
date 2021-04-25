@@ -181,13 +181,13 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
                   )}
                 </div>
                 <div className="profile-follows">
-                  <p>Seguindo: {getProfile.following}</p>
-                  <p>Seguidores: {followersCount}</p>
+                  <p>
+                    Seguindo: <span>{getProfile.following}</span>
+                  </p>
+                  <p>
+                    Seguidores: <span>{followersCount}</span>
+                  </p>
                 </div>
-              </div>
-              <div className="mobile-profile-follows">
-                <p>Seguindo: {getProfile.following}</p>
-                <p>Seguidores: {followersCount}</p>
               </div>
               {getProfile.bio && (
                 <div className="bio">

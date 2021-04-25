@@ -58,11 +58,17 @@ export const ProfileContainer = styled.div`
       .profile {
         margin-top: 1rem;
         width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        display: grid;
+        grid-template-areas:
+          '. .'
+          'follow follow';
+        grid-template-rows: auto auto;
+
         h1 {
           font-size: 2rem;
+          width: 18.8rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         h2 {
@@ -73,6 +79,7 @@ export const ProfileContainer = styled.div`
         p {
           font-size: 1.4rem;
           color: ${({ theme }) => theme.colors.lightText};
+          text-align: right;
         }
 
         p:first-child {
@@ -89,6 +96,30 @@ export const ProfileContainer = styled.div`
         }
       }
 
+      .profile-follows {
+        grid-area: follow;
+        margin-top: 2rem;
+        display: flex;
+        justify-content: flex-start;
+        gap: 1rem;
+
+        p:first-child {
+          margin-bottom: 0.4rem;
+          font-size: 1.8rem;
+          font-weight: 300;
+        }
+
+        p {
+          font-weight: 300;
+          font-size: 1.8rem;
+          color: ${({ theme }) => theme.colors.themeColor};
+
+          span {
+            font-weight: bold;
+          }
+        }
+      }
+
       .bio {
         margin-top: 2rem;
         width: 100%;
@@ -97,20 +128,6 @@ export const ProfileContainer = styled.div`
         border-radius: 4px;
         padding: 1rem;
         word-break: break-all;
-      }
-
-      .profile-follows {
-        display: none;
-      }
-
-      .mobile-profile-follows {
-        width: 100%;
-        margin-top: 2rem;
-        font-size: 1.6rem;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 1rem;
       }
 
       .profile-links {
@@ -207,10 +224,6 @@ export const ProfileContainer = styled.div`
           }
         }
 
-        .mobile-profile-follows {
-          display: none;
-        }
-
         .profile-follows {
           margin-top: 2rem;
           display: block;
@@ -223,6 +236,7 @@ export const ProfileContainer = styled.div`
           p {
             font-size: 1.8rem;
             color: ${({ theme }) => theme.colors.themeColor};
+            font-weight: 300;
           }
         }
 
