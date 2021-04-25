@@ -3,6 +3,7 @@ import { gql } from '@apollo/client';
 
 export const CORE_PROFILE_VIEW = gql`
   fragment CoreProfileView on Profile {
+    _id
     name
     avatar
     owner
