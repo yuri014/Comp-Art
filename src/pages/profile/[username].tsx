@@ -166,7 +166,7 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
             <section>
               <div className="profile">
                 <div>
-                  <h1>{getProfile.name}</h1>
+                  <h1 title={getProfile.name}>{getProfile.name}</h1>
                   <h2>@{getProfile.owner}</h2>
                 </div>
                 <div>
