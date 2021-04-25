@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { gql, useLazyQuery, useQuery } from '@apollo/client';
+import { gql, useLazyQuery } from '@apollo/client';
 
 import { GetServerSideProps } from 'next';
 import Header from '../../components/Header';
@@ -63,20 +63,19 @@ const GET_SEARCH_POSTS = gql`
   }
 `;
 
-interface SearchPageProps {
+interface SearchPageProps extends ILoggedProfile {
   profiles: Array<IProfile>;
   posts: Array<Timeline>;
 }
 
-const SearchPage: React.FC<SearchPageProps> = ({ profiles, posts }) => {
+const SearchPage: React.FC<SearchPageProps> = ({
+  profiles,
+  posts,
+  getLoggedProfile,
+}) => {
   const {
     query: { query },
   } = useRouter();
-
-  const {
-    data: profileData,
-    loading: loadingProfile,
-  } = useQuery<ILoggedProfile>(GET_LOGGED_PROFILE);
 
   const [getLevel, { data: profileLevel }] = useLazyQuery(GET_LEVEL_XP, {
     fetchPolicy: 'no-cache',
@@ -86,20 +85,18 @@ const SearchPage: React.FC<SearchPageProps> = ({ profiles, posts }) => {
     getLevel();
   }, [getLevel]);
 
-  if (loadingProfile) return <p>loading</p>;
-
   return (
     <HomeContainer>
       <Head>
         <title>Comp-Art</title>
       </Head>
-      {profileData ? (
+      {getLoggedProfile ? (
         <>
-          <Header getLoggedProfile={profileData.getLoggedProfile} />
+          <Header getLoggedProfile={getLoggedProfile} />
           <LevelContext.Provider
             value={{ updateLevel: getLevel, level: profileLevel }}
           >
-            <Home getLoggedProfile={profileData.getLoggedProfile}>
+            <Home getLoggedProfile={getLoggedProfile}>
               <SearchContainer>
                 <section className="profile-results">
                   <p className="title">Resultados para &quot;{query}&quot;</p>
@@ -116,10 +113,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ profiles, posts }) => {
                 </section>
               </SearchContainer>
             </Home>
-            <MobileHeader
-              loading={loadingProfile}
-              getLoggedProfile={profileData.getLoggedProfile}
-            />
+            <MobileHeader loading={false} getLoggedProfile={getLoggedProfile} />
           </LevelContext.Provider>
         </>
       ) : (
@@ -137,8 +131,9 @@ const SearchPage: React.FC<SearchPageProps> = ({ profiles, posts }) => {
 
 export const getServerSideProps: GetServerSideProps = async context => {
   const { query } = context.params;
+  const { jwtToken } = context.req.cookies;
 
-  const client = initializeApollo();
+  const client = initializeApollo(null, jwtToken);
 
   const getProfiles = await client.query({
     query: GET_SEARCH_PROFILE,
@@ -152,13 +147,20 @@ export const getServerSideProps: GetServerSideProps = async context => {
     errorPolicy: 'ignore',
   });
 
+  const getProfile = await client.query({
+    query: GET_LOGGED_PROFILE,
+    errorPolicy: 'ignore',
+  });
+
   const profiles = getProfiles.data.searchProfiles;
   const posts = getPosts.data.searchPost;
+  const { getLoggedProfile } = getProfile.data;
 
   return {
     props: {
       profiles,
       posts,
+      getLoggedProfile,
     },
   };
 };

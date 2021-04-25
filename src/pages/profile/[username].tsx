@@ -1,13 +1,17 @@
 import React, { useContext, useState } from 'react';
-import { QueryResult, useMutation, useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { ThemeProvider } from '@material-ui/core';
 
 import MobileFooter from '../../components/MobileFooter';
-import { GET_IS_FOLLOWING, GET_PROFILE } from '../../graphql/queries/profile';
-import { IProfile } from '../../interfaces/Profile';
+import {
+  GET_IS_FOLLOWING,
+  GET_LOGGED_PROFILE,
+  GET_PROFILE,
+} from '../../graphql/queries/profile';
+import { ILoggedProfile, IProfile } from '../../interfaces/Profile';
 import { Timeline } from '../../interfaces/Post';
 import ProfileContainer from './_styles';
 import { AuthContext } from '../../context/auth';
@@ -31,23 +35,22 @@ import CASecondaryButton from '../../styles/components/secondaryButton';
 
 const CAImage = dynamic(() => import('../../components/CAImage'));
 
-interface ProfileProps {
+interface ProfileProps extends ILoggedProfile {
   username: string;
-  profile: QueryResult<
-    { getProfile: IProfile },
-    {
-      username: string;
-    }
-  >;
+  getProfile: IProfile;
 }
 
-const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
+const Profile: React.FC<ProfileProps> = ({
+  username,
+  getProfile,
+  getLoggedProfile,
+}) => {
   const auth = useContext(AuthContext);
   const { theme } = useContext(ThemeContext);
   const [isFollowing, setIsFollowing] = useState(false);
   const { data: getIsFollowing, loading } = useQuery(GET_IS_FOLLOWING, {
     variables: {
-      id: profile.data.getProfile._id,
+      id: getProfile._id,
     },
     onCompleted: () => setIsFollowing(getIsFollowing.getIsFollowing),
   });
@@ -78,8 +81,6 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
       }).then(newPosts => newPosts.data.getProfilePosts.length < 3),
   );
 
-  const { getProfile }: { getProfile: IProfile } = profile.data;
-
   const hasAuth = auth.user;
 
   const [followersCount, setFollowersCount] = useState(getProfile.followers);
@@ -104,7 +105,7 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
         uri={`profile/${getProfile.owner}`}
         seoImage={getProfile.avatar}
       />
-      <Header getLoggedProfile={getProfile} />
+      <Header getLoggedProfile={getLoggedProfile} />
       <ProfileContainer>
         <main>
           <div className="cover-profile">
@@ -230,12 +231,18 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
 
 export const getServerSideProps: GetServerSideProps = async context => {
   const { username } = context.params;
+  const { jwtToken } = context.req.cookies;
 
-  const client = initializeApollo();
+  const client = initializeApollo(null, jwtToken);
 
   const profile = await client.query({
     query: GET_PROFILE,
     variables: { username },
+    errorPolicy: 'ignore',
+  });
+
+  const loggedProfile = await client.query({
+    query: GET_LOGGED_PROFILE,
     errorPolicy: 'ignore',
   });
 
@@ -244,10 +251,15 @@ export const getServerSideProps: GetServerSideProps = async context => {
       notFound: true,
     };
   }
+
+  const { getProfile } = profile.data;
+  const { getLoggedProfile } = loggedProfile.data;
+
   return {
     props: {
       username,
-      profile,
+      getProfile,
+      getLoggedProfile,
     },
   };
 };
