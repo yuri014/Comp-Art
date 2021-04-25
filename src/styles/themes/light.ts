@@ -6,7 +6,7 @@ const theme = {
     secondaryBackgroundColor: '#fff',
     alternativeBackground: '#f5f5f5',
     modalBackrgound: '#fff',
-    lightText: '#393B73',
+    lightText: '#414145',
     blueContrast: '#8184C1',
     namesakeText: '#08162f',
     lightContrast: '#cbcaeb',
