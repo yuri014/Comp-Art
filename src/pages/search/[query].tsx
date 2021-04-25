@@ -156,6 +156,15 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const posts = getPosts.data.searchPost;
   const { getLoggedProfile } = getProfile.data;
 
+  if (jwtToken && !getLoggedProfile) {
+    return {
+      redirect: {
+        destination: '/register-profile',
+        permanent: false,
+      },
+    };
+  }
+
   return {
     props: {
       profiles,

@@ -73,7 +73,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
   const { getLoggedProfile } = getProfile.data;
 
-  if (!getLoggedProfile) {
+  if (jwtToken && !getLoggedProfile) {
     return {
       redirect: {
         destination: '/register-profile',
