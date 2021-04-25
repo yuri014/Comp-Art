@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { useLazyQuery, useQuery } from '@apollo/client';
 
 import Head from 'next/head';
-import { IPost } from '../../interfaces/Post';
+import { Timeline } from '../../interfaces/Post';
 import HomeContainer from '../home/_styles';
 import MobileFooter from '../../components/MobileFooter';
 import Post from '../../components/Post';
@@ -20,7 +20,7 @@ import LevelContext from '../../context/level';
 import useInfiniteScroll from '../../hooks/infiniteScroll';
 
 interface IExplorePosts {
-  getExplorePosts: Array<IPost>;
+  getExplorePosts: Array<Timeline>;
 }
 
 const Explore: React.FC = () => {

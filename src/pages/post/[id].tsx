@@ -8,14 +8,14 @@ import { useRouter } from 'next/router';
 import { IconButton, ThemeProvider } from '@material-ui/core';
 import { initializeApollo } from '../../graphql/apollo/config';
 import { GET_POST } from '../../graphql/queries/post';
-import { IPost, PostProps } from '../../interfaces/Post';
+import { PostProps, Timeline } from '../../interfaces/Post';
 import PostPageContainer from '../../styles/pages/post/styles';
 import Meta from '../../components/SEO/Meta';
 import CommentsSections from '../../components/Comment/CommentsSections';
 import mainTheme from '../../styles/themes/MainTheme';
 
 interface PostQuery {
-  getPost: IPost;
+  getPost: Timeline;
 }
 
 const GET_IS_LIKED = gql`
@@ -29,7 +29,7 @@ const GET_IS_LIKED = gql`
 const Post: React.FC<PostProps> = ({ post }) => {
   const router = useRouter();
 
-  const [postData, setPostData] = useState<IPost>(post);
+  const [postData, setPostData] = useState<Timeline>(post);
   const { data } = useQuery<PostQuery>(GET_IS_LIKED, {
     variables: { id: post._id },
   });
