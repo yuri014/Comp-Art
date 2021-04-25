@@ -22,7 +22,6 @@ export const GET_PROFILE = gql`
     getProfile(username: $username) {
       ...CoreProfileView
       ...LinksProfile
-      _id
       coverImage
       bio
       xp

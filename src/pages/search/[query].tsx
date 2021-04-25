@@ -20,15 +20,14 @@ import SearchContainer from './styles';
 import { initializeApollo } from '../../graphql/apollo/config';
 import { Timeline } from '../../interfaces/Post';
 import Post from '../../components/Post';
+import { CORE_PROFILE_VIEW } from '../../graphql/fragments/profile';
 
 const GET_SEARCH_PROFILE = gql`
+  ${CORE_PROFILE_VIEW}
   query SearchProfiles($query: String!, $offset: Int!, $limit: Int!) {
     searchProfiles(query: $query, offset: $offset, limit: $limit) {
+      ...CoreProfileView
       bio
-      name
-      owner
-      _id
-      avatar
     }
   }
 `;
