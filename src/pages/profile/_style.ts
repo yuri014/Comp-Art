@@ -50,6 +50,9 @@ export const ProfileContainer = styled.div`
   }
 
   main {
+    background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
+    box-shadow: ${({ theme }) => theme.colors.mainShadow};
+
     section {
       display: flex;
       flex-direction: column;
@@ -69,6 +72,7 @@ export const ProfileContainer = styled.div`
           width: 18.8rem;
           overflow: hidden;
           text-overflow: ellipsis;
+          white-space: nowrap;
         }
 
         h2 {
@@ -106,11 +110,9 @@ export const ProfileContainer = styled.div`
         p:first-child {
           margin-bottom: 0.4rem;
           font-size: 1.8rem;
-          font-weight: 300;
         }
 
         p {
-          font-weight: 300;
           font-size: 1.8rem;
           color: ${({ theme }) => theme.colors.themeColor};
 
@@ -124,7 +126,6 @@ export const ProfileContainer = styled.div`
         margin-top: 2rem;
         width: 100%;
         font-size: 1.4rem;
-        border: 1px solid ${({ theme }) => theme.colors.namesakeText};
         border-radius: 4px;
         padding: 1rem;
         word-break: break-all;
@@ -148,9 +149,7 @@ export const ProfileContainer = styled.div`
   }
 
   .profile-posts {
-    padding-top: 4rem;
     padding-bottom: 8rem;
-    border-top: 1px solid ${({ theme }) => theme.colors.namesakeText};
   }
 
   @media (min-width: 1100px) {
@@ -231,12 +230,17 @@ export const ProfileContainer = styled.div`
           p:first-child {
             margin-bottom: 0.4rem;
             font-size: 1.8rem;
+            color: ${({ theme }) => theme.colors.lightText};
           }
 
           p {
             font-size: 1.8rem;
-            color: ${({ theme }) => theme.colors.themeColor};
-            font-weight: 300;
+            color: ${({ theme }) => theme.colors.lightText};
+            font-weight: 600;
+
+            span {
+              color: ${({ theme }) => theme.colors.themeColor};
+            }
           }
         }
 
@@ -250,7 +254,7 @@ export const ProfileContainer = styled.div`
         .profile-links {
           font-size: 2.8rem;
           grid-area: links;
-          margin-top: 4rem;
+          margin: 3rem 0;
           width: 18rem;
           justify-content: space-between;
           justify-self: flex-end;
@@ -260,7 +264,6 @@ export const ProfileContainer = styled.div`
 
     .profile-posts {
       width: 100%;
-      margin-top: 2rem;
       padding: 2rem 25%;
     }
   }
