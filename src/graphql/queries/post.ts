@@ -49,6 +49,7 @@ export const GET_POSTS = gql`
           owner
           avatar
         }
+        isLiked
       }
       ... on Share {
         _id
