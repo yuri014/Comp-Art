@@ -9,7 +9,7 @@ import MobileFooter from '../../components/MobileFooter';
 import { GET_IS_FOLLOWING, GET_PROFILE } from '../../graphql/queries/profile';
 import { IProfile } from '../../interfaces/Profile';
 import { Timeline } from '../../interfaces/Post';
-import { ProfileContainer } from './_style';
+import ProfileContainer from './_styles';
 import { AuthContext } from '../../context/auth';
 import {
   FOLLOW_PROFILE,

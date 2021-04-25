@@ -16,7 +16,7 @@ import {
 } from '../../graphql/queries/profile';
 import HomeContainer from '../home/_styles';
 import ProfileSimpleCard from '../../components/ProfileCard';
-import SearchContainer from './styles';
+import SearchContainer from './_styles';
 import { initializeApollo } from '../../graphql/apollo/config';
 import { Timeline } from '../../interfaces/Post';
 import Post from '../../components/Post';

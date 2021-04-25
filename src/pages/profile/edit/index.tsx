@@ -4,7 +4,7 @@ import { gql, useQuery } from '@apollo/client';
 
 import Header from '../../../components/Header';
 import FormProfile from '../../../components/FormProfile';
-import { EditProfileContainer } from '../_style';
+import EditProfileContainer from './_styles';
 import MobileFooter from '../../../components/MobileFooter';
 import Meta from '../../../components/SEO/Meta';
 import withAuth from '../../../hocs/withAuth';
