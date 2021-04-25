@@ -18,22 +18,24 @@ const httpLink = createUploadLink({
   credentials: 'same-origin',
 });
 
-const authLink = setContext((_, { headers }) => {
-  const token = Cookie.get('jwtToken');
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : '',
-      'Access-Control-Allow-Credentials': true,
-      'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_API_HOST,
-    },
-  };
-});
+const authLink = (cookie?: string) =>
+  setContext((_, { headers }) => {
+    const token = cookie || Cookie.get('jwtToken');
 
-function createApolloClient() {
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token}` : '',
+        'Access-Control-Allow-Credentials': true,
+        'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_API_HOST,
+      },
+    };
+  });
+
+function createApolloClient(cookie?: string) {
   return new ApolloClient({
-    ssrMode: typeof window === 'undefined',
-    link: (authLink.concat(httpLink as never) as unknown) as ApolloLink,
+    ssrMode: true,
+    link: (authLink(cookie).concat(httpLink as never) as unknown) as ApolloLink,
     cache: new InMemoryCache({
       typePolicies: {
         Query: {
@@ -85,8 +87,8 @@ function createApolloClient() {
   });
 }
 
-export function initializeApollo(initialState = null) {
-  const _apolloClient = apolloClient ?? createApolloClient();
+export function initializeApollo(initialState = null, cookie?: string) {
+  const _apolloClient = apolloClient ?? createApolloClient(cookie);
 
   if (initialState) {
     const existingCache = _apolloClient.extract();
