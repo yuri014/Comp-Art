@@ -1,13 +1,8 @@
 import React from 'react';
-
-import { ThemeProvider } from '@material-ui/core';
-import {
-  FaCog,
-  FaRegComment,
-  FaRegHeart,
-  FaRegShareSquare,
-} from 'react-icons/fa';
 import Skeleton from '@material-ui/lab/Skeleton';
+import { ThemeProvider } from '@material-ui/core';
+import { FiMoreHorizontal } from 'react-icons/fi';
+import { FaRegHeart, FaShareAlt, FaCommentAlt } from 'react-icons/fa';
 
 import mainTheme from '../../styles/themes/MainTheme';
 import PostContainer from './styles';
@@ -31,7 +26,7 @@ const SkeletonPost: React.FC = () => (
           </div>
         </div>
         <div className="post-config">
-          <FaCog />
+          <FiMoreHorizontal />
         </div>
       </div>
       <div className="post">
@@ -45,10 +40,10 @@ const SkeletonPost: React.FC = () => (
               <FaRegHeart />
             </div>
             <div>
-              <FaRegComment />
+              <FaCommentAlt />
             </div>
             <div>
-              <FaRegShareSquare />
+              <FaShareAlt />
             </div>
           </div>
         </ThemeProvider>
