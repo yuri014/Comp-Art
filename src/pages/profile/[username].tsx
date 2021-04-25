@@ -140,7 +140,7 @@ const Profile: React.FC<ProfileProps> = ({ username, profile }) => {
                     setFollowersCount(followersCount - 1);
                   }}
                 >
-                  Deixar de Seguir
+                  Seguindo
                 </CASecondaryButton>
               )}
               {checkFollowButton() && !isFollowing && !loading && (
