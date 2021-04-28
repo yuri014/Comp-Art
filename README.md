@@ -1,8 +1,8 @@
-# Projeto CompArt
+# Projeto Comp-Art
 
 ## A Rede
 
-O CompArt é uma rede social criada com o intuito de unir a comunidade artística. Acreditamos que arte é o que dá o sabor da vida, então nossa meta é fazer artistas criarem mais e serem mais reconhecidos, enquanto o público descobre coisas novas. O objetivo é fazer um ajudar ao outro para poder viver e ser reconhecido pelo que tanto amam fazer.
+O Comp-Art é uma rede social criada com o intuito de unir a comunidade artística. Acreditamos que arte é o que dá o sabor da vida, então nossa meta é fazer artistas criarem mais e serem mais reconhecidos, enquanto o público descobre coisas novas. O objetivo é fazer um ajudar ao outro para poder viver e ser reconhecido pelo que tanto amam fazer.
 
 ## Como funciona
 
@@ -16,7 +16,7 @@ Cada pessoa pode se cadastrar como Artista ou Apreciador. O Artista pode ser gru
 
 >Apreciadores não poderão postar na rede. Poderão criar grupos ou fandom para um determinado artista. Também terão uma página própria. Podem personalizar como quiser também. Mas exceto pela foto de perfil e a capa, a música e a imagem precisa ser linkada com alguma arte da rede.
 
-## CompArt e a influência de jogos
+## Comp-Art e a influência de jogos
 
 Isso vai além de apenas a estética da rede, tem um grande impacto nos usuários também. Os Apreciadores terão grande papel aqui, os Artistas também irão ter, mas vai ser diferente. E é por isso que eu vou começar pelos Apreciadores.
 

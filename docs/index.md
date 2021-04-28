@@ -1,4 +1,4 @@
-# CompArt
+# Comp-Art
 
 Projeto construído com Next.js.
 
