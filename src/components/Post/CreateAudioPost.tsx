@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { useForm } from 'react-hook-form';
 import { InputAdornment, TextField, ThemeProvider } from '@material-ui/core';
@@ -10,6 +10,7 @@ import PressStartButtonContainer from '../PressStartButton/styles';
 import formTheme from '../../styles/themes/FormTheme';
 import ErrorMessage from '../ErrorMessage';
 import { CreatePostContainer } from './utilsStyles';
+import useImagePreview from '../../hooks/imagePreview';
 
 interface IPostInput {
   description: string;
@@ -19,14 +20,15 @@ const CreateAudioPost: React.FC = () => {
   const { register, errors, handleSubmit } = useForm<IPostInput>();
   const [showError, setShowError] = useState('');
   const [audioResult, setAudioResult] = useState<File>();
+  const [imagePreview, setImagePreview] = useImagePreview();
+  const [imageDimension, setImageDimenstion] = useState<'cover' | 'contain'>(
+    'cover',
+  );
   const router = useRouter();
 
   const [createPost] = useMutation(CREATE_POST, {
     onCompleted: () => router.push('/home'),
-    onError: ({ graphQLErrors }) =>
-      setShowError(
-        graphQLErrors[0].extensions.errors || graphQLErrors[0].message,
-      ),
+    onError: ({ graphQLErrors }) => setShowError(graphQLErrors[0].message),
   });
 
   const onSubmit = ({ description }: IPostInput) => {
@@ -36,10 +38,24 @@ const CreateAudioPost: React.FC = () => {
           description,
           body: audioResult,
           mediaId: 2,
+          alt: '',
+          thumbnail: imagePreview.file || '',
         },
       },
     });
   };
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = imagePreview.preview as string;
+    img.onload = () => {
+      if (img.naturalWidth / 2 > img.naturalHeight) {
+        setImageDimenstion('contain');
+      } else {
+        setImageDimenstion('cover');
+      }
+    };
+  }, [imagePreview]);
 
   return (
     <CreatePostContainer>
@@ -69,6 +85,27 @@ const CreateAudioPost: React.FC = () => {
             }}
             multiline
           />
+          <label className="file-label" htmlFor="uploadImage">
+            <input
+              accept="image/*"
+              id="uploadImage"
+              type="file"
+              onChange={e => setImagePreview(e)}
+              required
+            />
+
+            {imagePreview.preview ? (
+              <img
+                src={imagePreview.preview as string}
+                alt="Imagem do perfil"
+                style={{ objectFit: imageDimension }}
+              />
+            ) : (
+              <div className="drop-file">
+                <p>Clique ou arraste sua imagem.</p>
+              </div>
+            )}
+          </label>
           <label className="file-label" htmlFor="uploadAudio">
             <input
               accept="audio/*"
