@@ -32,7 +32,10 @@ const Meta: React.FC<MetaProps> = ({
     />
     <meta property="og:title" content="Comp-Art" />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={seoImage} />
+    <meta
+      property="og:image"
+      content={process.env.NEXT_PUBLIC_HOST + seoImage}
+    />
     <meta property="twitter:card" content="summary_large_image" />
     <meta
       property="twitter:url"
@@ -44,7 +47,10 @@ const Meta: React.FC<MetaProps> = ({
     />
     <meta property="twitter:title" content="Comp-Art" />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={seoImage} />
+    <meta
+      property="twitter:image"
+      content={process.env.NEXT_PUBLIC_HOST + seoImage}
+    />
   </Head>
 );
 
