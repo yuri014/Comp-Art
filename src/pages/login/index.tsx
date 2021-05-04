@@ -45,8 +45,7 @@ const Login: React.FC = () => {
       authContext.login(response.login);
       router.push('/home');
     },
-    onError: ({ graphQLErrors }) =>
-      setShowError(graphQLErrors[0].extensions.errors.general),
+    onError: ({ graphQLErrors }) => setShowError(graphQLErrors[0].message),
   });
 
   const onSubmit = (inputs: ILogin) => {

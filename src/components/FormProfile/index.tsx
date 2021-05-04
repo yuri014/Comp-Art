@@ -53,8 +53,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
 
   const [handleProfileMutation] = useMutation(mutation, {
     onCompleted: () => router.push('/home'),
-    onError: ({ graphQLErrors }) =>
-      setShowError(graphQLErrors[0].extensions.errors),
+    onError: ({ graphQLErrors }) => setShowError(graphQLErrors[0].message),
   });
 
   const onSubmit = (data: IProfileInput) => {

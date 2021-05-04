@@ -26,8 +26,7 @@ function SignUp(): JSX.Element {
   const inputRef = useRef(null);
   const [registerUser] = useMutation(REGISTER_USER, {
     onCompleted: () => setSuccessModalShow(true),
-    onError: ({ graphQLErrors }) =>
-      setShowError(graphQLErrors[0].extensions.errors.duplicate),
+    onError: ({ graphQLErrors }) => setShowError(graphQLErrors[0].message),
   });
 
   const { register, handleSubmit, errors, watch } = useForm<IUser>({
