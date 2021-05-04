@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
-import PressStartButton from '../components/PressStartButton';
-import Meta from '../components/SEO/Meta';
+import PressStartButton from '@components/PressStartButton';
+import Meta from '@components/SEO/Meta';
+import ToggleThemeButton from '@components/ToggleTheme';
+import Footer from '@components/Footer';
+import Title from '@components/Title';
 import LandingContainer from './_index';
-import ToggleThemeButton from '../components/ToggleTheme';
-import Footer from '../components/Footer';
-import Title from '../components/Title';
 
 const Modal = dynamic(() => import('../components/Modal'));
 

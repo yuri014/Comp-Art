@@ -4,13 +4,13 @@ import Head from 'next/head';
 import { FaImage, FaMusic } from 'react-icons/fa';
 import { AppBar, Tab, Tabs, ThemeProvider } from '@material-ui/core';
 
-import MobileFooter from '../../components/MobileFooter';
-import CreatePost from '../../components/Post/CreatePost';
-import NewPostContainer from '../../styles/pages/new-post/styles';
-import mainTheme from '../../styles/themes/MainTheme';
+import MobileFooter from '@components/MobileFooter';
+import CreatePost from '@components/Post/CreatePost';
+import NewPostContainer from '@styles/pages/new-post/styles';
+import mainTheme from '@styles/themes/MainTheme';
 
 const CreateAudioPost = dynamic(
-  () => import('../../components/Post/CreateAudioPost'),
+  () => import('@components/Post/CreateAudioPost'),
 );
 
 const createPostReducer = (state, action) => {

@@ -5,35 +5,32 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { ThemeProvider } from '@material-ui/core';
 
-import MobileFooter from '../../components/MobileFooter';
+import Header from '@components/Header';
+import MobileFooter from '@components/MobileFooter';
+import Post from '@components/Post';
+import SkeletonPost from '@components/Post/SkeletonPost';
+import Meta from '@components/SEO/Meta';
+import ProfileLinks from '@components/Splitter/ProfileLinks';
+import { AuthContext } from '@context/auth';
+import ThemeContext from '@context/theme';
+import { initializeApollo } from '@graphql/apollo/config';
+import { FOLLOW_PROFILE, UNFOLLOW_PROFILE } from '@graphql/mutations/profile';
+import { GET_PROFILE_POSTS } from '@graphql/queries/post';
 import {
   GET_IS_FOLLOWING,
-  GET_LOGGED_PROFILE,
   GET_PROFILE,
-} from '../../graphql/queries/profile';
-import { ILoggedProfile, IProfile } from '../../interfaces/Profile';
-import { Timeline } from '../../interfaces/Post';
+  GET_LOGGED_PROFILE,
+} from '@graphql/queries/profile';
+import useInfiniteScroll from '@hooks/infiniteScroll';
+import { Timeline } from '@interfaces/Post';
+import { ILoggedProfile, IProfile } from '@interfaces/Profile';
+import CASecondaryButton from '@styles/components/secondaryButton';
+import mainDarkTheme from '@styles/themes/MainDarkTheme';
+import mainLightTheme from '@styles/themes/MainLightTheme';
+import formatMetaHashtags from '@utils/formatHashtags';
 import ProfileContainer from './_styles';
-import { AuthContext } from '../../context/auth';
-import {
-  FOLLOW_PROFILE,
-  UNFOLLOW_PROFILE,
-} from '../../graphql/mutations/profile';
-import { initializeApollo } from '../../graphql/apollo/config';
-import { GET_PROFILE_POSTS } from '../../graphql/queries/post';
-import Post from '../../components/Post';
-import SkeletonPost from '../../components/Post/SkeletonPost';
-import Meta from '../../components/SEO/Meta';
-import useInfiniteScroll from '../../hooks/infiniteScroll';
-import Header from '../../components/Header';
-import ThemeContext from '../../context/theme';
-import mainLightTheme from '../../styles/themes/MainLightTheme';
-import mainDarkTheme from '../../styles/themes/MainDarkTheme';
-import formatMetaHashtags from '../../utils/formatHashtags';
-import ProfileLinks from '../../components/Splitter/ProfileLinks';
-import CASecondaryButton from '../../styles/components/secondaryButton';
 
-const CAImage = dynamic(() => import('../../components/CAImage'));
+const CAImage = dynamic(() => import('@components/CAImage'));
 
 interface ProfileProps extends ILoggedProfile {
   username: string;

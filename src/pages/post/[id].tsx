@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import { gql, useQuery } from '@apollo/client';
-
-import { FaArrowLeft } from 'react-icons/fa';
-
-import { useRouter } from 'next/router';
 import { IconButton, ThemeProvider } from '@material-ui/core';
-import { initializeApollo } from '../../graphql/apollo/config';
-import { GET_POST } from '../../graphql/queries/post';
-import { PostProps, Timeline } from '../../interfaces/Post';
-import PostPageContainer from '../../styles/pages/post/styles';
-import Meta from '../../components/SEO/Meta';
-import CommentsSections from '../../components/Comment/CommentsSections';
-import mainTheme from '../../styles/themes/MainTheme';
+import { FaArrowLeft } from 'react-icons/fa';
+import { useRouter } from 'next/router';
+
+import CommentsSections from '@components/Comment/CommentsSections';
+import Meta from '@components/SEO/Meta';
+import { initializeApollo } from '@graphql/apollo/config';
+import { GET_POST } from '@graphql/queries/post';
+import { Timeline, PostProps } from '@interfaces/Post';
+import PostPageContainer from '@styles/pages/post/styles';
+import mainTheme from '@styles/themes/MainTheme';
 
 interface PostQuery {
   getPost: Timeline;

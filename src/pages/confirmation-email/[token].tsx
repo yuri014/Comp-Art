@@ -4,12 +4,12 @@ import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
 import Head from 'next/head';
 
-import { CONFIRMATION_EMAIL } from '../../graphql/mutations/user';
+import ToggleThemeButton from '@components/ToggleTheme';
+import Footer from '@components/Footer';
+import Title from '@components/Title';
+import { AuthContext } from '@context/auth';
+import { CONFIRMATION_EMAIL } from '@graphql/mutations/user';
 import ConfirmationEmailContainer from './_styles';
-import { AuthContext } from '../../context/auth';
-import ToggleThemeButton from '../../components/ToggleTheme';
-import Footer from '../../components/Footer';
-import Title from '../../components/Title';
 
 const ConfirmationEmail: React.FC = () => {
   const router = useRouter();

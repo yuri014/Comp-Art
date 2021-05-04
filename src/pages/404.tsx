@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 
-import Custom404Container from '../styles/pages/404';
+import Custom404Container from '@styles/pages/404';
 import NotFoundIcon from '../assets/404.svg';
 
 const Custom404: React.FC = () => (

@@ -7,13 +7,13 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 
-import GlobalStyle from '../styles/global';
-import dark from '../styles/themes/dark';
-import light from '../styles/themes/light';
-import { AuthProvider } from '../context/auth';
-import { useApollo } from '../graphql/apollo/config';
-import ThemeContext from '../context/theme';
-import useTheme from '../hooks/theme';
+import GlobalStyle from '@styles/global';
+import dark from '@styles/themes/dark';
+import light from '@styles/themes/light';
+import { AuthProvider } from '@context/auth';
+import { useApollo } from '@graphql/apollo/config';
+import ThemeContext from '@context/theme';
+import useTheme from '@hooks/theme';
 
 NProgress.configure({ showSpinner: false });
 

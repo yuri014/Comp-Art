@@ -6,18 +6,18 @@ import { useForm } from 'react-hook-form';
 import { useMutation } from '@apollo/client';
 import { IconButton, Snackbar, ThemeProvider } from '@material-ui/core';
 
-import { IUser } from '../../interfaces/User';
-import { REGISTER_USER } from '../../graphql/mutations/user';
-import Meta from '../../components/SEO/Meta';
+import Footer from '@components/Footer';
+import Input from '@components/Input';
+import Meta from '@components/SEO/Meta';
+import ChooseProfile from '@components/Splitter/ChooseProfile';
+import Title from '@components/Title';
+import ToggleThemeButton from '@components/ToggleTheme';
+import { REGISTER_USER } from '@graphql/mutations/user';
+import { IUser } from '@interfaces/User';
+import CAButton from '@styles/components/button';
+import formTheme from '@styles/themes/FormTheme';
+import registerUserSchema from '@validations/register';
 import RegisterContainer from './_styles';
-import Title from '../../components/Title';
-import ToggleThemeButton from '../../components/ToggleTheme';
-import Footer from '../../components/Footer';
-import ChooseProfile from '../../components/Splitter/ChooseProfile';
-import Input from '../../components/Input';
-import CAButton from '../../styles/components/button';
-import formTheme from '../../styles/themes/FormTheme';
-import registerUserSchema from '../../validations/register';
 
 function SignUp(): JSX.Element {
   const [isArtist, setIsArtist] = useState(true);

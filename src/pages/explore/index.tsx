@@ -1,23 +1,20 @@
 import React, { useContext, useEffect } from 'react';
 import { useLazyQuery, useQuery } from '@apollo/client';
-
 import Head from 'next/head';
-import { Timeline } from '../../interfaces/Post';
+
+import HomeProfile from '@components/HomeProfile';
+import MobileFooter from '@components/MobileFooter';
+import MobileHeader from '@components/MobileHeader';
+import Post from '@components/Post';
+import LoadingPost from '@components/Post/LoadingPost';
+import QuestsProgress from '@components/QuestsProgress';
+import { AuthContext } from '@context/auth';
+import LevelContext from '@context/level';
+import { GET_EXPLORE_POSTS } from '@graphql/queries/post';
+import { GET_LOGGED_PROFILE, GET_LEVEL_XP } from '@graphql/queries/profile';
+import useInfiniteScroll from '@hooks/infiniteScroll';
+import { Timeline } from '@interfaces/Post';
 import HomeContainer from '../home/_styles';
-import MobileFooter from '../../components/MobileFooter';
-import Post from '../../components/Post';
-import LoadingPost from '../../components/Post/LoadingPost';
-import { GET_EXPLORE_POSTS } from '../../graphql/queries/post';
-import { AuthContext } from '../../context/auth';
-import {
-  GET_LEVEL_XP,
-  GET_LOGGED_PROFILE,
-} from '../../graphql/queries/profile';
-import HomeProfile from '../../components/HomeProfile';
-import MobileHeader from '../../components/MobileHeader';
-import QuestsProgress from '../../components/QuestsProgress';
-import LevelContext from '../../context/level';
-import useInfiniteScroll from '../../hooks/infiniteScroll';
 
 interface IExplorePosts {
   getExplorePosts: Array<Timeline>;

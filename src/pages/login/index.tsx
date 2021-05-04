@@ -3,19 +3,19 @@ import { IconButton, Snackbar, ThemeProvider } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import { FaTimes } from 'react-icons/fa';
 import { useMutation } from '@apollo/client';
-
-import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+import Footer from '@components/Footer';
+import Input from '@components/Input';
+import Meta from '@components/SEO/Meta';
+import Title from '@components/Title';
+import ToggleThemeButton from '@components/ToggleTheme';
+import { AuthContext } from '@context/auth';
+import { LOGIN_USER } from '@graphql/mutations/user';
+import CAButton from '@styles/components/button';
+import formTheme from '@styles/themes/FormTheme';
 import LoginContainer from './_styles';
-import formTheme from '../../styles/themes/FormTheme';
-import { LOGIN_USER } from '../../graphql/mutations/user';
-import { AuthContext } from '../../context/auth';
-import Meta from '../../components/SEO/Meta';
-import ToggleThemeButton from '../../components/ToggleTheme';
-import Footer from '../../components/Footer';
-import Title from '../../components/Title';
-import Input from '../../components/Input';
-import CAButton from '../../styles/components/button';
 
 interface ILogin {
   email: string;

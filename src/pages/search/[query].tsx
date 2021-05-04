@@ -2,25 +2,22 @@ import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { gql, useLazyQuery } from '@apollo/client';
-
 import { GetServerSideProps } from 'next';
-import Header from '../../components/Header';
-import MobileHeader from '../../components/MobileHeader';
-import MobileFooter from '../../components/MobileFooter';
-import Home from '../../components/Home';
-import LevelContext from '../../context/level';
-import { ILoggedProfile, IProfile } from '../../interfaces/Profile';
-import {
-  GET_LEVEL_XP,
-  GET_LOGGED_PROFILE,
-} from '../../graphql/queries/profile';
+
+import Header from '@components/Header';
+import Home from '@components/Home';
+import MobileFooter from '@components/MobileFooter';
+import MobileHeader from '@components/MobileHeader';
+import Post from '@components/Post';
+import ProfileSimpleCard from '@components/ProfileCard';
+import LevelContext from '@context/level';
+import { initializeApollo } from '@graphql/apollo/config';
+import { CORE_PROFILE_VIEW } from '@graphql/fragments/profile';
+import { GET_LEVEL_XP, GET_LOGGED_PROFILE } from '@graphql/queries/profile';
+import { Timeline } from '@interfaces/Post';
+import { ILoggedProfile, IProfile } from '@interfaces/Profile';
 import HomeContainer from '../home/_styles';
-import ProfileSimpleCard from '../../components/ProfileCard';
 import SearchContainer from './_styles';
-import { initializeApollo } from '../../graphql/apollo/config';
-import { Timeline } from '../../interfaces/Post';
-import Post from '../../components/Post';
-import { CORE_PROFILE_VIEW } from '../../graphql/fragments/profile';
 
 const GET_SEARCH_PROFILE = gql`
   ${CORE_PROFILE_VIEW}
