@@ -59,6 +59,7 @@
         "aspects": ["invalidHref", "preferButton"]
       }
     ],
+    "import/no-unresolved": "off",
     "object-curly-newline": "off",
     "no-plusplus": [2, { "allowForLoopAfterthoughts": true }],
     "jsx-a11y/media-has-caption": "off",
