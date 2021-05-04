@@ -22,6 +22,9 @@
       "@hooks/*": ["src/hooks/*"],
       "@utils/*": ["src/utils/*"],
       "@validations/*": ["src/validations/*"],
+      "@interfaces/*": ["src/interfaces/*"],
+      "@styles/*": ["src/styles/*"],
+      "@hocs/*": ["src/hocs/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
