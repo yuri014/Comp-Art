@@ -14,6 +14,7 @@ const theme = {
     gray: '#38383C',
     lightSecondaryBackground: '#e5e5e5',
     lighterSecondaryBackground: '#e5e5e5',
+    inputBackground: '#dddddd',
     lightGreen: '#5DD083',
     mainGradient: `linear-gradient(
       310deg,
