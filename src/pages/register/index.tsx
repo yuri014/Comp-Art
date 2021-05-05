@@ -5,6 +5,8 @@ import { FaArrowLeft, FaTimes } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@apollo/client';
 import { IconButton, Snackbar, ThemeProvider } from '@material-ui/core';
+import dynamic from 'next/dynamic';
+import ReactCodeInput from 'react-verification-code-input';
 
 import Footer from '@components/Footer';
 import Input from '@components/Input';
@@ -18,6 +20,8 @@ import CAButton from '@styles/components/button';
 import formTheme from '@styles/themes/FormTheme';
 import registerUserSchema from '@validations/register';
 import RegisterContainer from './_styles';
+
+const Modal = dynamic(() => import('@components/Modal'));
 
 function SignUp(): JSX.Element {
   const [isArtist, setIsArtist] = useState(true);
@@ -163,6 +167,29 @@ function SignUp(): JSX.Element {
           </form>
         </main>
         <Footer />
+        <Modal
+          title="Quase lá, vai ser jogo rápido!"
+          text={
+            <>
+              <p>
+                Já enviamos um código para o seu e-mail{' '}
+                <span>email@email.com</span>
+              </p>
+              <p>
+                Verifique sua caixa de entrada e insira o código no campo abaixo
+                para verificar seu e-mail
+              </p>
+            </>
+          }
+          show={sucessModalShow}
+          onHide={() => setSuccessModalShow(false)}
+        >
+          <form className="verification-code">
+            <ReactCodeInput fields={4} className="input-group" />
+
+            <CAButton type="submit">ENVIAR</CAButton>
+          </form>
+        </Modal>
       </RegisterContainer>
     </>
   );
