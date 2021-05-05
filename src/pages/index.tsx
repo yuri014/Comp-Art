@@ -47,8 +47,12 @@ const Landing: React.FC = () => {
       </div>
       <Modal
         title="Comece sua jornada!"
-        text="Faça o login ou se cadastre para conhecer e interagir com novos
-        artistas ou fãs com gostos em comum com você."
+        text={
+          <p>
+            Faça o login ou se cadastre para conhecer e interagir com novos
+            artistas ou fãs com gostos em comum com você.
+          </p>
+        }
         show={modalShow}
         onHide={() => setModalShow(false)}
       >

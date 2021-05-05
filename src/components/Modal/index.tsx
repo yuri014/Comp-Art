@@ -7,7 +7,7 @@ interface ModalProps {
   show: boolean;
   onHide: () => void;
   title: string;
-  text?: string;
+  text?: string | React.ReactNode;
   fontSize?: string;
 }
 
@@ -28,11 +28,7 @@ const Modal: React.FC<ModalProps> = props => {
           <div className="modal-title">
             <p>{props.title}</p>
           </div>
-          {props.text && (
-            <div className="modal-body">
-              <p>{props.text}</p>
-            </div>
-          )}
+          {props.text && <div className="modal-body">{props.text}</div>}
           {props.children}
         </div>
       </div>
