@@ -42,7 +42,7 @@ const HomePage: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
           <Home getLoggedProfile={getLoggedProfile}>
             <Timeline />
           </Home>
-          <MobileHeader loading={false} getLoggedProfile={getLoggedProfile} />
+          <MobileHeader getLoggedProfile={getLoggedProfile} />
         </LevelContext.Provider>
         <MobileFooter />
       </HomeContainer>
