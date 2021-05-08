@@ -37,6 +37,7 @@ const HomeContainer = styled.main`
         display: block;
         width: 100%;
         margin-left: 0;
+        padding: 0;
       }
     }
   }
