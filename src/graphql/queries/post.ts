@@ -50,6 +50,8 @@ export const GET_POSTS = gql`
           avatar
         }
         isLiked
+        darkColor
+        lightColor
       }
       ... on Share {
         _id
@@ -62,6 +64,8 @@ export const GET_POSTS = gql`
             owner
             avatar
           }
+          darkColor
+          lightColor
         }
         likes {
           profile {
