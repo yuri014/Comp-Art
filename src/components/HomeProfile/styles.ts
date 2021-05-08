@@ -77,14 +77,24 @@ export const HomeProfileContainer = styled.div`
     flex-direction: column;
     align-items: flex-start;
     font-size: 1.6rem;
+
     a {
-      margin-top: 2rem;
       display: flex;
       align-items: center;
       color: ${({ theme }) => theme.colors.themeColor};
       transition: text-shadow 0.2s ease-in;
+      padding: 1rem;
+      padding-left: 0;
+      border-radius: 5px;
+      transition: padding-left 0.125s ease-in;
+
+      &:first-child {
+        margin-top: 1rem;
+      }
+
       &:hover {
-        text-shadow: 1px 1px 4px ${({ theme }) => theme.colors.lightContrast};
+        padding-left: 1rem;
+        background: ${({ theme }) => theme.colors.lighterSecondaryBackground};
       }
 
       p {
