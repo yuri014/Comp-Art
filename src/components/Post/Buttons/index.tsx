@@ -5,9 +5,13 @@ import {
   FaCommentAlt,
   FaRegHeart,
   FaShareAlt,
+  FaShare,
+  FaEdit,
 } from 'react-icons/fa';
 import Link from 'next/link';
 import { gql, useMutation } from '@apollo/client';
+import { Menu, MenuItem } from '@material-ui/core';
+import { MenuListIcon } from '@components/Header/styles';
 
 interface PostInteractionButtonsProps {
   isLiked: boolean;
@@ -29,6 +33,16 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
   postID,
 }) => {
   const [savePost] = useMutation(SAVE_POST);
+
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <div className="post-interaction">
@@ -53,11 +67,36 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
             </button>
           </a>
         </Link>
-        <button aria-label="Compartilhar" type="button">
+        <button
+          aria-label="Compartilhar"
+          type="button"
+          aria-haspopup="true"
+          onClick={handleClick}
+        >
           <div className="interactions-button">
             <FaShareAlt size={20} /> <p>Compartilhar</p>
           </div>
         </button>
+        <Menu
+          id="simple-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <MenuItem onClick={handleClose}>
+            <MenuListIcon>
+              <FaShare />
+              <p>Compartilhar agora</p>
+            </MenuListIcon>
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+            <MenuListIcon>
+              <FaEdit />
+              <p>Compartilhar com comentário</p>
+            </MenuListIcon>
+          </MenuItem>
+        </Menu>
       </div>
       <button
         className="bookmark"
