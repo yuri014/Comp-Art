@@ -20,6 +20,7 @@ export const LabelInputContainer = styled.label`
     span {
       color: ${({ theme }) => theme.colors.error};
       margin-top: 0.2rem;
+      max-width: 30rem;
     }
   }
 
