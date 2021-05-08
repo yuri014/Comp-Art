@@ -1,7 +1,6 @@
 import React from 'react';
 
 import HomeProfile from '../HomeProfile';
-import QuestsProgress from '../QuestsProgress';
 import { IProfile } from '../../interfaces/Profile';
 import SuggestedProfiles from '../SuggestedProfiles';
 import HashtagsProfile from '../HomeProfile/HashtagsProfile';
@@ -24,7 +23,6 @@ const Home: React.FC<HomeProps> = ({ getLoggedProfile, children }) => (
         </aside>
         <div className="timeline">{children}</div>
         <aside>
-          <QuestsProgress />
           <SuggestedProfiles />
         </aside>
       </>

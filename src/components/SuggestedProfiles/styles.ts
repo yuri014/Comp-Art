@@ -8,7 +8,6 @@ const SuggestedProfilesContainer = styled.div`
   box-shadow: ${({ theme }) => theme.colors.mainShadow};
   width: 20%;
   margin-left: 1rem;
-  margin-top: 18rem;
 
   h4 {
     font-size: 1.8rem;
