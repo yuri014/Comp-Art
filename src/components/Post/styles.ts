@@ -76,7 +76,8 @@ const PostContainer = styled.div`
         width: 100%;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-start;
+        gap: 0.6rem;
 
         button {
           color: ${({ theme }) => theme.colors.themeColor};
