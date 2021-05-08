@@ -158,11 +158,16 @@ const PostContainer = styled.div`
         border: none;
         background-color: transparent;
         cursor: pointer;
-        padding: 1rem 0;
+        padding: 1rem;
         font-size: 2.4rem;
         transition: all 0.4s ease-in-out;
         display: flex;
         align-items: center;
+        border-radius: 5px;
+
+        &:hover {
+          background: ${({ theme }) => theme.colors.lighterSecondaryBackground};
+        }
 
         .interactions-button {
           display: flex;
@@ -177,10 +182,6 @@ const PostContainer = styled.div`
         p {
           font-size: 1.6rem;
           margin-left: 1rem;
-        }
-
-        &:hover {
-          filter: brightness(140%);
         }
 
         &:focus {
