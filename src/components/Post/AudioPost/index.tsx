@@ -61,8 +61,14 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
   };
 
   return (
-    <AudioPostContainer>
+    <AudioPostContainer darkColor={post.darkColor} lightColor={post.lightColor}>
       <div className="audio-card">
+        <div className="thumbnail">
+          <img
+            src={process.env.NEXT_PUBLIC_API_HOST + post.thumbnail}
+            alt={post.description}
+          />
+        </div>
         <div className="audio-card-content">
           <div className="audio-card-info">
             <Links
