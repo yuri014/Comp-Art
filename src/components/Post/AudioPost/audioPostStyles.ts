@@ -94,6 +94,11 @@ const AudioPostContainer = styled.section<AudioPostContainerProps>`
       max-width: 30rem;
       text-overflow: ellipsis;
       overflow: hidden;
+
+      &:hover {
+        text-decoration: underline;
+        text-decoration-color: inherit;
+      }
     }
 
     &.artist-name {

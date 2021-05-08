@@ -19,6 +19,14 @@ const PostContainer = styled.div`
     .author-info {
       display: flex;
       align-items: center;
+
+      a {
+        p:hover {
+          text-decoration: underline;
+          text-decoration-color: inherit;
+        }
+      }
+
       div {
         margin-left: 2rem;
 
