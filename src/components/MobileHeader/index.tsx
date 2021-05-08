@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { FaCog } from 'react-icons/fa';
 import Image from 'next/image';
-import Skeleton from '@material-ui/lab/Skeleton';
 import { SwipeableDrawer, ThemeProvider } from '@material-ui/core';
 
 import MobileHeaderContainer from './styles';
@@ -10,14 +9,7 @@ import { ILoggedProfile } from '../../interfaces/Profile';
 import mainTheme from '../../styles/themes/MainTheme';
 import HomeProfile from '../HomeProfile';
 
-interface MobileHeaderProps extends ILoggedProfile {
-  loading: boolean;
-}
-
-const MobileHeader: React.FC<MobileHeaderProps> = ({
-  getLoggedProfile,
-  loading,
-}) => {
+const MobileHeader: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
@@ -38,24 +30,15 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({
     <MobileHeaderContainer>
       <nav className={visible ? '' : 'hide'}>
         <ThemeProvider theme={mainTheme}>
-          {loading ? (
-            <Skeleton
-              animation="wave"
-              variant="circle"
-              width={24}
-              height={24}
+          <div className="profile">
+            <Image
+              src={process.env.NEXT_PUBLIC_API_HOST + getLoggedProfile.avatar}
+              alt="Imagem do perfil"
+              width={500}
+              height={500}
+              onClick={() => setIsDrawerOpen(true)}
             />
-          ) : (
-            <div className="profile">
-              <Image
-                src={process.env.NEXT_PUBLIC_API_HOST + getLoggedProfile.avatar}
-                alt="Imagem do perfil"
-                width={500}
-                height={500}
-                onClick={() => setIsDrawerOpen(true)}
-              />
-            </div>
-          )}
+          </div>
           <Link href="/home">
             <a>
               <p>COMP-ART</p>
@@ -67,6 +50,7 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({
             </a>
           </Link>
           <SwipeableDrawer
+            anchor="left"
             onClose={() => setIsDrawerOpen(false)}
             onOpen={() => setIsDrawerOpen(true)}
             open={isDrawerOpen}
