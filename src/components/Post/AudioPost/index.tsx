@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import {
   FaBackward,
@@ -7,57 +7,26 @@ import {
   FaPlay,
   FaVolumeUp,
 } from 'react-icons/fa';
-import { Howl } from 'howler';
-
 import { FiRepeat } from 'react-icons/fi';
+
+import formatTime from '@utils/formatTime';
 import AudioPostContainer from './audioPostStyles';
 import { PostProps } from '../../../interfaces/Post';
 import Links from './Links';
 import AudioSlider from './Slider';
 
 const AudioPost: React.FC<PostProps> = ({ post }) => {
+  const audioRef = useRef<null | HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [audio, setAudio] = useState<Howl>();
+  const [audioDuration, setAudioDuration] = useState('0:00');
 
   const handlePlaying = () => {
     if (!isPlaying) {
-      audio.play();
+      audioRef.current.play();
       return setIsPlaying(true);
     }
-    audio.pause();
+    audioRef.current.pause();
     return setIsPlaying(false);
-  };
-
-  useEffect(() => {
-    const newAudio = new Howl({
-      src: [process.env.NEXT_PUBLIC_API_HOST + post.body],
-      autoplay: false,
-      html5: true,
-      loop: false,
-    });
-    setAudio(newAudio);
-
-    newAudio.once('end', () => setIsPlaying(false));
-  }, [post.body]);
-
-  const changeCurrentTime = (direction: 'forward' | 'backward') => {
-    const currentSeek = audio.seek() as number;
-    if (direction === 'forward') {
-      const toTime = currentSeek + 10;
-      const duration = audio.duration();
-      if (toTime >= duration) {
-        return;
-      }
-      audio.seek(toTime);
-      audio.play();
-    } else {
-      const toTime = currentSeek - 10;
-      if (toTime <= 0) {
-        return;
-      }
-      audio.seek(toTime);
-      audio.play();
-    }
   };
 
   return (
@@ -85,7 +54,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
             <div className="primary-audio-button">
               <IconButton
                 onClick={() => {
-                  changeCurrentTime('backward');
+                  audioRef.current.currentTime -= 10;
                 }}
                 aria-label="voltar 10 segundos"
               >
@@ -99,7 +68,7 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
               </IconButton>
               <IconButton
                 onClick={() => {
-                  changeCurrentTime('forward');
+                  audioRef.current.currentTime += 10;
                 }}
                 aria-label="avançar 10 segundos"
               >
@@ -110,11 +79,24 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
               <FiRepeat className="secondary-button" />
             </IconButton>
           </div>
-          {audio && (
-            <AudioSlider
-              audio={audio}
-              isPlaying={isPlaying}
-              setIsPlaying={setIsPlaying}
+          <AudioSlider
+            audioRef={audioRef}
+            isPlaying={isPlaying}
+            setIsPlaying={setIsPlaying}
+            audioDuration={audioDuration}
+          />
+          {post.body && (
+            <audio
+              style={{ display: 'none' }}
+              ref={audioRef}
+              src={process.env.NEXT_PUBLIC_API_HOST + post.body}
+              onLoadedMetadata={() => {
+                const { minutes, seconds } = formatTime(
+                  audioRef.current.duration,
+                );
+                setAudioDuration(`${minutes}:${seconds}`);
+              }}
+              controls
             />
           )}
         </div>

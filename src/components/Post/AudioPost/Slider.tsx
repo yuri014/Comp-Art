@@ -1,65 +1,65 @@
-import React, { useCallback, useEffect, useState } from 'react';
 import { Slider } from '@material-ui/core';
-import { Howl } from 'howler';
-import formatTime from '../../../utils/formatTime';
+import formatTime from '@utils/formatTime';
+import React, { useCallback, useEffect, useState } from 'react';
 
 interface AudioSliderProps {
-  audio: Howl;
+  audioDuration: string;
+  audioRef: React.MutableRefObject<HTMLAudioElement>;
   isPlaying: boolean;
   setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const AudioSlider: React.FC<AudioSliderProps> = ({
-  audio,
+  audioDuration,
+  audioRef,
   isPlaying,
   setIsPlaying,
 }) => {
-  const [slider, setSlider] = useState(0);
   const [currentTime, setCurrentTime] = useState('');
-  const [audioDuration, setAudioDuration] = useState<string | number>('0:00');
+  const [slider, setSlider] = useState(0);
 
   const setTime = useCallback(() => {
-    const time = audio.seek();
-    const { minutes, seconds } = formatTime(time as number);
+    const time = audioRef.current.currentTime;
+    const { minutes, seconds } = formatTime(time);
     setCurrentTime(`${minutes}:${Math.floor(seconds)}`);
-  }, [audio]);
+    return time;
+  }, [audioRef]);
 
-  useEffect(() => {
-    const duration = audio.duration();
-    const { minutes, seconds } = formatTime(duration as number);
-    setAudioDuration(`${minutes}:${Math.floor(seconds)}`);
-  }, [audio, isPlaying]);
-
-  useEffect(() => {
+  const handleScroll = (_, newValue: number | number[]) => {
+    // eslint-disable-next-line no-param-reassign
+    audioRef.current.currentTime = newValue as number;
+    setSlider(newValue as number);
     setTime();
-    setSlider(audio.seek() as number);
-  }, [audio, setTime]);
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTime();
-      setSlider(audio.seek() as number);
-    }, 24);
+      const current = setTime();
+      setSlider(audioRef.current.currentTime);
+      if (current === audioRef.current.duration) {
+        setIsPlaying(false);
+      }
+    }, 20);
 
     if (!isPlaying) {
       clearInterval(interval);
     }
 
     return () => clearInterval(interval);
-  }, [audio, isPlaying, setIsPlaying, setTime]);
+  }, [audioRef, isPlaying, setIsPlaying, setTime]);
 
-  const handleScroll = (_, newValue: number | number[]) => {
-    audio.seek(newValue as number);
-    setSlider(newValue as number);
-    setTime();
-  };
+  useEffect(() => {
+    if (audioRef.current.duration) {
+      setTime();
+    }
+  }, [audioRef, setTime]);
 
   return (
     <div className="progress">
       <Slider
         value={slider}
         min={0}
-        max={audio.duration()}
+        max={audioRef.current && audioRef.current.duration}
         onChange={handleScroll}
         aria-label="input-slider"
         step={0.01}
