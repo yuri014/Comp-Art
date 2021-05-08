@@ -22,6 +22,9 @@ export interface Timeline extends IPost, IShare {
   commentsCount: number;
   createdAt: string;
   isLiked?: boolean;
+  darkColor: string;
+  lightColor: string;
+  thumbnail?: string;
 }
 
 export interface PostProps {
