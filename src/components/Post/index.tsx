@@ -1,13 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { IconButton } from '@material-ui/core';
 import Link from 'next/link';
-import {
-  FaHeart,
-  FaRegBookmark,
-  FaCommentAlt,
-  FaRegHeart,
-  FaShareAlt,
-} from 'react-icons/fa';
 import dynamic from 'next/dynamic';
 
 import { PostProps } from '../../interfaces/Post';
@@ -20,6 +12,7 @@ import PostContainer from './styles';
 import formatDate from '../../utils/formatDate';
 import ModalLikesButton from '../Splitter/ModalLikesButton';
 import { GET_LIKES } from '../../graphql/mutations/post';
+import PostInteractionButtons from './Buttons';
 
 const OptionsMenu = dynamic(() => import('./OptionsMenu'));
 const ModalProfile = dynamic(() => import('../ModalProfile'));
@@ -133,44 +126,12 @@ const Post: React.FC<PostProps> = ({ post }) => {
                 <p>{publishDate()}</p>
               </div>
             </div>
-            <div className="post-interaction">
-              <div className="interaction-group">
-                <IconButton
-                  className={isLiked ? 'active' : ''}
-                  type="button"
-                  onClick={() => (isLiked ? dislikePost() : likePost())}
-                  aria-label="Curtir"
-                >
-                  <div className="interactions-button">
-                    {isLiked ? <FaHeart size={20} /> : <FaRegHeart size={20} />}
-                    <p>Curtir</p>
-                  </div>
-                </IconButton>
-                <Link href={`/post/${post._id}`}>
-                  <a>
-                    <IconButton aria-label="Comentar" type="button">
-                      <div className="interactions-button">
-                        <FaCommentAlt size={20} /> <p>Comentar</p>
-                      </div>
-                    </IconButton>
-                  </a>
-                </Link>
-                <IconButton aria-label="Compartilhar" type="button">
-                  <div className="interactions-button">
-                    <FaShareAlt size={20} /> <p>Compartilhar</p>
-                  </div>
-                </IconButton>
-              </div>
-              <IconButton
-                className="bookmark"
-                aria-label="Salvar"
-                type="button"
-              >
-                <div className="interactions-button">
-                  <FaRegBookmark size={20} /> <p>Salvar</p>
-                </div>
-              </IconButton>
-            </div>
+            <PostInteractionButtons
+              dislikePost={dislikePost}
+              isLiked={isLiked}
+              likePost={likePost}
+              postID={post._id}
+            />
           </div>
         </PostContainer>
       )}
