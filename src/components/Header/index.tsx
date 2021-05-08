@@ -79,7 +79,6 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
             <Menu
               id="menu-header"
               anchorEl={anchorEl}
-              keepMounted
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
