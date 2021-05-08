@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import Link from 'next/link';
 import { LinearProgress, ThemeProvider } from '@material-ui/core';
 import {
+  FaBookmark,
   FaPlusCircle,
   FaRegCompass,
   FaUserAlt,
-  FaUserFriends,
   FaUsers,
 } from 'react-icons/fa';
 import Skeleton from '@material-ui/lab/Skeleton';
@@ -80,8 +80,8 @@ const HomeProfile: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
           </Link>
           <Link href="/profile">
             <a>
-              <FaUserFriends />
-              <p>Fandom</p>
+              <FaBookmark />
+              <p>Salvos</p>
             </a>
           </Link>
         </div>
