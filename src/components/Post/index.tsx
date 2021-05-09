@@ -1,11 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
 import { PostProps } from '../../interfaces/Post';
-import AudioPost from './AudioPost';
-import ImagePost from './ImagePost';
-
 import useDeletePost from '../../hooks/posts';
 import LevelContext from '../../context/level';
 import PostContainer from './styles';
@@ -13,11 +9,15 @@ import formatDate from '../../utils/formatDate';
 import ModalLikesButton from '../Splitter/ModalLikesButton';
 import { GET_LIKES } from '../../graphql/mutations/post';
 import PostInteractionButtons from './Buttons';
+import AuthorInfo from './utils/AuthorInfo';
 
-const OptionsMenu = dynamic(() => import('./OptionsMenu'));
 const ModalProfile = dynamic(() => import('../ModalProfile'));
 
-const Post: React.FC<PostProps> = ({ post }) => {
+interface IPostProps extends PostProps {
+  children: React.ReactNode;
+}
+
+const Post: React.FC<IPostProps> = ({ post, children }) => {
   const [isLiked, setIsLiked] = useState<boolean>();
   const [likesCount, setLikesCount] = useState<number>();
   const [isDeleted, setIsDeleted] = useState(false);
@@ -63,44 +63,24 @@ const Post: React.FC<PostProps> = ({ post }) => {
     return `${date} · ${hour}h`;
   };
 
+  const profileData = post.post ? post.profile : post.artist;
+
   return (
     <>
       {!isDeleted && (
         <PostContainer>
           <div className="post-author">
-            <div className="author-info">
-              <img
-                alt={`Imagem de perfil de ${post.artist.name}`}
-                src={process.env.NEXT_PUBLIC_API_HOST + post.artist.avatar}
-              />
-              <Link href={`/profile/${post.artist.owner}`}>
-                <a>
-                  <div>
-                    <p>{post.artist.name}</p>
-                    <span>
-                      <p>@{post.artist.owner}</p>
-                    </span>
-                  </div>
-                </a>
-              </Link>
-            </div>
-            <div>
-              <OptionsMenu
-                deletePost={handleDeletePost}
-                id={post._id}
-                username={post.artist.owner}
-              />
-            </div>
+            <AuthorInfo
+              handleDeletePost={handleDeletePost}
+              postID={post._id}
+              profile={profileData}
+            />
           </div>
           <div className="post">
             <div className="post-description">
               <p>{post.description}</p>
             </div>
-            {post.mediaId === 2 ? (
-              <AudioPost post={post} />
-            ) : (
-              <ImagePost image={post.body} />
-            )}
+            {children}
             <div className="post-info">
               <div className="post-counts">
                 <ModalLikesButton
