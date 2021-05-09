@@ -1,6 +1,8 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 
+import Share from '@components/Share';
+import ArtistPost from '@components/Post/ArtistPost';
 import Post from '../Post';
 import LoadingPost from '../Post/LoadingPost';
 import { GET_POSTS } from '../../graphql/queries/post';
@@ -34,26 +36,38 @@ const Timeline: React.FC = () => {
             if (post.artist) {
               return (
                 <div key={post._id} ref={lastPostRef}>
-                  <Post post={post} />
+                  <Post post={post}>
+                    <ArtistPost post={post} />
+                  </Post>
                 </div>
               );
             }
 
             return (
-              <p key={`${post._id}`} ref={lastPostRef}>
-                shares
-              </p>
+              <div key={`${post._id}`} ref={lastPostRef}>
+                <Post post={post}>
+                  <Share post={post} />
+                </Post>
+              </div>
             );
           }
           if (post.artist) {
             return (
               <div key={post._id}>
-                <Post post={post} />
+                <Post post={post}>
+                  <ArtistPost post={post} />
+                </Post>
               </div>
             );
           }
 
-          return <p key={post._id}>shares</p>;
+          return (
+            <div key={post._id}>
+              <Post post={post}>
+                <Share post={post} />
+              </Post>
+            </div>
+          );
         })
       )}
     </>
