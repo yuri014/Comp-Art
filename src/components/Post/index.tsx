@@ -75,11 +75,13 @@ const Post: React.FC<IPostProps> = ({ post, children }) => {
             {children}
             <div className="post-info">
               <div className="post-counts">
-                <ModalLikesButton
-                  showModal={() => setModalShow(true)}
-                  post={post}
-                  likesCount={likesCount}
-                />
+                {post.commentsCount > 0 && (
+                  <ModalLikesButton
+                    showModal={() => setModalShow(true)}
+                    post={post}
+                    likesCount={likesCount}
+                  />
+                )}
                 {post.commentsCount > 0 && (
                   <p>{post.commentsCount} comentários</p>
                 )}
