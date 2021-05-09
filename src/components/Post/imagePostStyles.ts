@@ -7,8 +7,8 @@ const ImagePostContainer = styled.div`
     border: none;
 
     &.image-button {
-      margin: 2rem 0;
       width: 100%;
+      margin-bottom: 1rem;
     }
 
     .post-image {

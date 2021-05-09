@@ -7,7 +7,7 @@ interface AudioPostContainerProps {
 
 const AudioPostContainer = styled.section<AudioPostContainerProps>`
   margin: 0 auto;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 
   .audio-card {
     display: flex;
