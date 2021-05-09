@@ -7,7 +7,7 @@ export interface IPost {
 }
 
 export interface IShare {
-  post: IPost;
+  post: Timeline;
   profile: IProfile;
 }
 
