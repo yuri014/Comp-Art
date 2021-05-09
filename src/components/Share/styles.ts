@@ -22,10 +22,13 @@ const ShareContainer = styled.div`
     .share-content {
       margin-top: 1rem;
 
+      .description {
+        margin: 1rem 0;
+      }
+
       .date {
         font-size: 1.2rem;
         text-align: right;
-        color: ${({ theme }) => theme.colors.themeColor};
       }
     }
   }
