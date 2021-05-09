@@ -16,46 +16,6 @@ const PostContainer = styled.div`
     align-items: center;
     justify-content: space-between;
 
-    .author-info {
-      display: flex;
-      align-items: center;
-
-      a {
-        p:hover {
-          text-decoration: underline;
-          text-decoration-color: inherit;
-        }
-      }
-
-      div {
-        margin-left: 2rem;
-
-        p {
-          font-size: 2.4rem;
-          letter-spacing: 0.1rem;
-          color: ${({ theme }) => theme.colors.themeColor};
-          white-space: nowrap;
-          max-width: 44rem;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-
-        span {
-          display: flex;
-
-          p {
-            color: ${({ theme }) => theme.colors.darkGray};
-            font-size: 1.4rem;
-            letter-spacing: 0.1rem;
-            white-space: nowrap;
-            max-width: 30rem;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
-        }
-      }
-    }
-
     img {
       width: 6rem;
       height: 6rem;

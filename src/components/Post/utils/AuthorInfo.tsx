@@ -3,6 +3,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
 import { IProfile } from '@interfaces/Profile';
+import { AuthorInfoContainer } from '../utilsStyles';
 
 const OptionsMenu = dynamic(() => import('../OptionsMenu'));
 
@@ -18,7 +19,7 @@ const AuthorInfo: React.FC<AuthorInfoProps> = ({
   postID,
 }) => (
   <>
-    <div className="author-info">
+    <AuthorInfoContainer>
       <img
         alt={`Imagem de perfil de ${profile.name}`}
         src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
@@ -33,7 +34,7 @@ const AuthorInfo: React.FC<AuthorInfoProps> = ({
           </div>
         </a>
       </Link>
-    </div>
+    </AuthorInfoContainer>
     <div>
       <OptionsMenu
         deletePost={handleDeletePost}
