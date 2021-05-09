@@ -16,6 +16,7 @@ const ImagePost: React.FC<{ image: string }> = ({ image }) => {
       >
         <figure className="post-image">
           <img
+            className="not-post-redirect"
             src={process.env.NEXT_PUBLIC_API_HOST + image}
             alt="Publicação"
           />
