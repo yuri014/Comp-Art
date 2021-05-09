@@ -16,6 +16,15 @@ const PostContainer = styled.div`
     align-items: center;
     justify-content: space-between;
 
+    .author-info {
+      display: flex;
+      align-items: center;
+
+      div {
+        margin-left: 2rem;
+      }
+    }
+
     img {
       width: 6rem;
       height: 6rem;
