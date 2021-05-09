@@ -58,6 +58,7 @@ export const GET_POSTS = gql`
         _id
         description
         post {
+          _id
           description
           body
           artist {
