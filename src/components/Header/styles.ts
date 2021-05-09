@@ -7,6 +7,9 @@ export const MenuListIcon = styled.div`
   padding: 0 2rem;
   color: ${({ theme }) => theme.colors.mainColor};
   font-size: 1.2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
 
   p {
     font-weight: bold;

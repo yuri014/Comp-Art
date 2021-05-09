@@ -26,6 +26,12 @@ const SAVE_POST = gql`
   }
 `;
 
+const QUICK_SHARE_POST = gql`
+  mutation CreateSharePost($shareInput: SharePost!) {
+    createSharePost(shareInput: $shareInput)
+  }
+`;
+
 const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
   dislikePost,
   isLiked,
@@ -33,6 +39,7 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
   postID,
 }) => {
   const [savePost] = useMutation(SAVE_POST);
+  const [quickSharePost] = useMutation(QUICK_SHARE_POST);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -85,7 +92,19 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
           onClose={handleClose}
         >
           <MenuItem onClick={handleClose}>
-            <MenuListIcon>
+            <MenuListIcon
+              as="button"
+              onClick={() =>
+                quickSharePost({
+                  variables: {
+                    shareInput: {
+                      description: '',
+                      postID,
+                    },
+                  },
+                })
+              }
+            >
               <FaShare />
               <p>Compartilhar agora</p>
             </MenuListIcon>
