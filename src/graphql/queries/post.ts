@@ -65,6 +65,7 @@ export const GET_POSTS = gql`
             owner
             avatar
           }
+          mediaId
           darkColor
           lightColor
           thumbnail
