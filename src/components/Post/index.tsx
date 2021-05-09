@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 
-import { PostProps } from '../../interfaces/Post';
-import useDeletePost from '../../hooks/posts';
-import LevelContext from '../../context/level';
-import PostContainer from './styles';
-import formatDate from '../../utils/formatDate';
-import ModalLikesButton from '../Splitter/ModalLikesButton';
-import { GET_LIKES } from '../../graphql/mutations/post';
+import ModalLikesButton from '@components/Splitter/ModalLikesButton';
+import LevelContext from '@context/level';
+import { GET_LIKES } from '@graphql/mutations/post';
+import useDeletePost from '@hooks/posts';
+import { PostProps } from '@interfaces/Post';
+import publishDate from '@utils/publishDate';
 import PostInteractionButtons from './Buttons';
+import PostContainer from './styles';
 import AuthorInfo from './utils/AuthorInfo';
 
 const ModalProfile = dynamic(() => import('../ModalProfile'));
@@ -53,16 +53,6 @@ const Post: React.FC<IPostProps> = ({ post, children }) => {
     setIsDeleted(true);
   };
 
-  const publishDate = () => {
-    const date = formatDate(post.createdAt);
-    const hour = new Date(post.createdAt).toLocaleTimeString('en-GB', {
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-
-    return `${date} · ${hour}h`;
-  };
-
   const profileData = post.post ? post.profile : post.artist;
 
   return (
@@ -105,7 +95,7 @@ const Post: React.FC<IPostProps> = ({ post, children }) => {
                     {post.sharedCount} compartilhamentos
                   </p>
                 )}
-                <p>{publishDate()}</p>
+                <p>{publishDate(post.createdAt)}</p>
               </div>
             </div>
             <PostInteractionButtons
