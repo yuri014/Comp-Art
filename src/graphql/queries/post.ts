@@ -84,6 +84,7 @@ export const GET_POSTS = gql`
           owner
           avatar
         }
+        createdAt
         isLiked
       }
     }
