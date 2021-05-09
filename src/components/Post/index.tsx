@@ -77,9 +77,11 @@ const Post: React.FC<IPostProps> = ({ post, children }) => {
             />
           </div>
           <div className="post">
-            <div className="post-description">
-              <p>{post.description}</p>
-            </div>
+            {post.description && (
+              <div className="post-description">
+                <p>{post.description}</p>
+              </div>
+            )}
             {children}
             <div className="post-info">
               <div className="post-counts">
