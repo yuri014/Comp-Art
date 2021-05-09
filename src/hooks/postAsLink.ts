@@ -2,7 +2,11 @@ import { useRouter } from 'next/router';
 
 type UsePostAsLink = (
   postID: string,
-) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+) => (
+  e:
+    | React.MouseEvent<HTMLDivElement, MouseEvent>
+    | React.KeyboardEvent<HTMLDivElement>,
+) => void;
 
 const usePostAsLink: UsePostAsLink = postID => {
   const router = useRouter();

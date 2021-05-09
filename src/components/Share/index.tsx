@@ -11,7 +11,16 @@ const Share: React.FC<PostProps> = ({ post }) => {
   const handlePostLink = usePostAsLink(post.post._id);
 
   return (
-    <ShareContainer role="button" tabIndex={0} onClick={e => handlePostLink(e)}>
+    <ShareContainer
+      role="button"
+      tabIndex={0}
+      onClick={e => handlePostLink(e)}
+      onKeyDown={e => {
+        if (e.key === 'Enter') {
+          handlePostLink(e);
+        }
+      }}
+    >
       <div className="share">
         <div className="share-info">
           <AuthorInfo
