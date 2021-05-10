@@ -5,6 +5,12 @@ interface ImagePreview {
   file: string | File;
 }
 
+/**
+ * Hook para obter o preview e o arquivo de uma imagem.
+ * @returns {Array} [image, setImage].
+ * @returns image retorna um objeto com file e preview.
+ * @returns setImage recebe um evento de um input como param.
+ */
 const useImagePreview = (): [
   ImagePreview,
   (_args0: React.ChangeEvent<HTMLInputElement>) => void,

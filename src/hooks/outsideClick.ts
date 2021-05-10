@@ -1,5 +1,10 @@
 import { useEffect } from 'react';
 
+/**
+ * Executa uma função ao clicar fora de um elemento.
+ * @param ref useRef onde clicar fora dispara um função.
+ * @param callback ao clicar fora do ref, dispara essa função.
+ */
 const useOutsideClick = (
   ref: React.MutableRefObject<HTMLElement | null>,
   callback: () => void,

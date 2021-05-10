@@ -8,6 +8,13 @@ type UsePostAsLink = (
     | React.KeyboardEvent<HTMLDivElement>,
 ) => void;
 
+/**
+ * Use para redirecionar o post.
+ * Caso algum elemento dispara uma função ou é um link, aplique a classe 'not-post-redirect' para
+ * não disparar essa função.
+ * @param postID ID do post
+ * @returns uma função para redirecionar para o post.
+ */
 const usePostAsLink: UsePostAsLink = postID => {
   const router = useRouter();
 

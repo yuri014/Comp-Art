@@ -3,6 +3,12 @@ import { useCallback, useRef, useState } from 'react';
 
 export type UseInfiniteScroll = (args: unknown) => void;
 
+/**
+ * Cria um observer e executa um callback assim que o observer for disparado.
+ * @param data dados iniciais.
+ * @param callback função para ser disparada assim que infinite scroll for chamado.
+ * @returns um Ref para colocar onde o hook deve ser disparado.
+ */
 const useInfiniteScroll = (
   data: unknown,
   callback: () => Promise<boolean | ApolloQueryResult<unknown>>,
