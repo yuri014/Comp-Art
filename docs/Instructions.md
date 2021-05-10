@@ -53,4 +53,4 @@ Siga o padrão abaixo:
 
 **postAsLink.ts:**
 
-Posts e Shares precisam ser um link, porém a tag ```<a>``` não pode ser aninhada. Por isso o hook _usePostAsLink_ foi criado. Coloque a classe `not-post-redirect` para privinir o hook de redirecionar para o local do post.
+Posts e Shares precisam ser um link, porém a tag ```<a>``` não pode ser aninhada. Por isso o hook _usePostAsLink_ foi criado. Coloque a classe `prevent-redirect-post` para privinir o hook de redirecionar para o local do post.
