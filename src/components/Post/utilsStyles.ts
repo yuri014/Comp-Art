@@ -145,7 +145,7 @@ export const EmptyPostContainer = styled.div`
   }
 `;
 
-export const AuthorInfoContainer = styled.a`
+export const AuthorInfoContainer = styled.div`
   a {
     display: flex;
     align-items: center;
