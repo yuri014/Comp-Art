@@ -10,6 +10,7 @@ const PostContainer = styled.div`
   font-family: ${({ theme }) => theme.fonts.primary};
   box-shadow: ${({ theme }) => theme.colors.mainShadow};
   margin-bottom: 4rem;
+  cursor: pointer;
 
   .post-author {
     display: flex;

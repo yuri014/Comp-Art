@@ -37,7 +37,7 @@ const AudioPostContainer = styled.section<AudioPostContainerProps>`
       justify-content: space-between;
 
       a {
-        display: block;
+        display: contents;
       }
 
       .audio-card-info {
@@ -91,6 +91,7 @@ const AudioPostContainer = styled.section<AudioPostContainerProps>`
 
     &.music-name,
     &.artist-name {
+      width: fit-content;
       max-width: 30rem;
       text-overflow: ellipsis;
       overflow: hidden;
@@ -129,6 +130,7 @@ const AudioPostContainer = styled.section<AudioPostContainerProps>`
           a {
             text-align: left;
             padding: 0;
+            display: contents;
           }
         }
 
