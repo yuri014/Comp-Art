@@ -63,6 +63,7 @@ const AudioSlider: React.FC<AudioSliderProps> = ({
         onChange={handleScroll}
         aria-label="input-slider"
         step={0.01}
+        className="prevent-redirect-post"
       />
       <div className="duration">
         <p>{currentTime || '0:00'}</p>
