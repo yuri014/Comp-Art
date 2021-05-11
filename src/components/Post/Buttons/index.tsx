@@ -66,12 +66,10 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
           </div>
         </button>
         <Link href={`/post/${postID}`}>
-          <a>
-            <button aria-label="Comentar" type="button">
-              <div className="interactions-button">
-                <FaCommentAlt size={20} /> <p>Comentar</p>
-              </div>
-            </button>
+          <a aria-label="Comentar">
+            <div className="interactions-button">
+              <FaCommentAlt size={20} /> <p>Comentar</p>
+            </div>
           </a>
         </Link>
         <button
