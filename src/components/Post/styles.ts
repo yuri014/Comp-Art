@@ -123,7 +123,8 @@ const PostContainer = styled.div`
         width: 100%;
       }
 
-      button {
+      button,
+      a {
         color: ${({ theme }) => theme.colors.darkGray};
         border: none;
         background-color: transparent;
@@ -135,7 +136,8 @@ const PostContainer = styled.div`
         align-items: center;
         border-radius: 5px;
 
-        &:hover {
+        &:hover,
+        &:focus {
           background: ${({ theme }) => theme.colors.lighterSecondaryBackground};
         }
 
@@ -156,7 +158,6 @@ const PostContainer = styled.div`
 
         &:focus {
           outline: none;
-          color: ${({ theme }) => theme.colors.mainColor};
         }
 
         &.active {
