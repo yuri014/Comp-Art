@@ -53,14 +53,6 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        {auth.user && auth.user.username === username && (
-          <MenuItem onClick={deletePost}>
-            <MenuListIcon>
-              <span className="danger-icon">Deletar &nbsp;</span>
-              <FiTrash2 className="danger-icon" />
-            </MenuListIcon>
-          </MenuItem>
-        )}
         <MenuItem onClick={copyToClipboard}>
           <MenuListIcon>
             <FaLink />
@@ -79,6 +71,14 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({
             <p>Denunciar</p>
           </MenuListIcon>
         </MenuItem>
+        {auth.user && auth.user.username === username && (
+          <MenuItem onClick={deletePost}>
+            <MenuListIcon>
+              <FiTrash2 className="danger-icon" />
+              <p className="danger-icon">Deletar</p>
+            </MenuListIcon>
+          </MenuItem>
+        )}
       </Menu>
       <Snackbar
         anchorOrigin={{
