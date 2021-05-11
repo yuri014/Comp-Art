@@ -27,10 +27,10 @@ const usePostAsLink: UsePostAsLink = postID => {
     const checkExcludeTags = excludeTags.includes(targetEvent.localName);
     const isNotAClickOut = targetEvent.getAttribute('aria-hidden') === 'true';
     const checkClassName = targetEvent.classList.contains(
-      '.prevent-redirect-post',
+      'prevent-redirect-post',
     );
 
-    if (checkClassName && !checkExcludeTags && !isNotAClickOut) {
+    if (!checkClassName && !checkExcludeTags && !isNotAClickOut) {
       // TODO: `/post/${postID}`
       // É usado apenas o id porque a página está atualmente quebrada.
       // Aguarde o layout e a implementação da página.
