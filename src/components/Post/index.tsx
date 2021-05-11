@@ -7,6 +7,7 @@ import { GET_LIKES } from '@graphql/mutations/post';
 import useDeletePost from '@hooks/posts';
 import { PostProps } from '@interfaces/Post';
 import publishDate from '@utils/publishDate';
+import usePostAsLink from '@hooks/postAsLink';
 import PostInteractionButtons from './Buttons';
 import PostContainer from './styles';
 import AuthorInfo from './utils/AuthorInfo';
@@ -53,12 +54,23 @@ const Post: React.FC<IPostProps> = ({ post, children }) => {
     setIsDeleted(true);
   };
 
+  const handlePostLink = usePostAsLink(post._id);
+
   const profileData = post.post ? post.profile : post.artist;
 
   return (
     <>
       {!isDeleted && (
-        <PostContainer>
+        <PostContainer
+          role="button"
+          tabIndex={0}
+          onClick={e => handlePostLink(e)}
+          onKeyDown={e => {
+            if (e.key === 'Enter') {
+              handlePostLink(e);
+            }
+          }}
+        >
           <div className="post-author">
             <AuthorInfo
               handleDeletePost={handleDeletePost}
