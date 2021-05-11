@@ -19,7 +19,7 @@ const AuthorInfo: React.FC<AuthorInfoProps> = ({
   postID,
 }) => (
   <>
-    <AuthorInfoContainer className="prevent-redirect-post">
+    <AuthorInfoContainer>
       <Link href={`/profile/${profile.owner}`}>
         <a>
           <img
