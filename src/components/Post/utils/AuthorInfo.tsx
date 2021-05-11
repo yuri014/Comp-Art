@@ -20,22 +20,23 @@ const AuthorInfo: React.FC<AuthorInfoProps> = ({
 }) => (
   <>
     <AuthorInfoContainer className="prevent-redirect-post">
-      <img
-        alt={`Imagem de perfil de ${profile.name}`}
-        src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
-      />
       <Link href={`/profile/${profile.owner}`}>
         <a>
+          <img
+            alt={`Imagem de perfil de ${profile.name}`}
+            src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
+            className="prevent-redirect-post"
+          />
           <div>
-            <p>{profile.name}</p>
+            <p className="prevent-redirect-post">{profile.name}</p>
             <span>
-              <p>@{profile.owner}</p>
+              <p className="prevent-redirect-post">@{profile.owner}</p>
             </span>
           </div>
         </a>
       </Link>
     </AuthorInfoContainer>
-    <div className="prevent-redirect-post">
+    <div>
       <OptionsMenu
         deletePost={handleDeletePost}
         id={postID}

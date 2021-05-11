@@ -145,11 +145,10 @@ export const EmptyPostContainer = styled.div`
   }
 `;
 
-export const AuthorInfoContainer = styled.div`
-  display: flex;
-  align-items: center;
-
+export const AuthorInfoContainer = styled.a`
   a {
+    display: flex;
+    align-items: center;
     p:hover {
       text-decoration: underline;
       text-decoration-color: inherit;
