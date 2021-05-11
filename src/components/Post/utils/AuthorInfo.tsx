@@ -19,7 +19,7 @@ const AuthorInfo: React.FC<AuthorInfoProps> = ({
   postID,
 }) => (
   <>
-    <AuthorInfoContainer>
+    <AuthorInfoContainer className="prevent-redirect-post">
       <img
         alt={`Imagem de perfil de ${profile.name}`}
         src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
@@ -35,7 +35,7 @@ const AuthorInfo: React.FC<AuthorInfoProps> = ({
         </a>
       </Link>
     </AuthorInfoContainer>
-    <div>
+    <div className="prevent-redirect-post">
       <OptionsMenu
         deletePost={handleDeletePost}
         id={postID}
