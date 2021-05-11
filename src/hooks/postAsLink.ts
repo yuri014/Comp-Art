@@ -22,12 +22,13 @@ const usePostAsLink: UsePostAsLink = postID => {
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => {
     const targetEvent = e.target as HTMLElement;
-    const excludeTags = ['button', 'a'];
+    const excludeTags = ['button', 'a', 'svg'];
 
     const checkExcludeTags = excludeTags.includes(targetEvent.localName);
     const checkClassName = targetEvent.className !== 'prevent-redirect-post';
+    const isNotAClickOut = targetEvent.getAttribute('aria-hidden') === 'true';
 
-    if (checkClassName || !checkExcludeTags) {
+    if (checkClassName && !checkExcludeTags && !isNotAClickOut) {
       // TODO: `/post/${postID}`
       // É usado apenas o id porque a página está atualmente quebrada.
       // Aguarde o layout e a implementação da página.
