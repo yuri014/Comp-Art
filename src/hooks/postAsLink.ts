@@ -25,12 +25,22 @@ const usePostAsLink: UsePostAsLink = postID => {
     const excludeTags = ['button', 'a', 'svg', 'path'];
 
     const checkExcludeTags = excludeTags.includes(targetEvent.localName);
-    const isNotAClickOut = targetEvent.getAttribute('aria-hidden') === 'true';
+    const isAClickOut = targetEvent.getAttribute('aria-hidden') === 'true';
+    const isASlider = targetEvent.getAttribute('role') === 'slider';
     const checkClassName = targetEvent.classList.contains(
       'prevent-redirect-post',
     );
 
-    if (!checkClassName && !checkExcludeTags && !isNotAClickOut) {
+    const checks = [
+      !checkClassName,
+      !checkExcludeTags,
+      !isAClickOut,
+      !isASlider,
+    ];
+
+    const canRedirect = checks.every(value => value === true);
+
+    if (canRedirect) {
       // TODO: `/post/${postID}`
       // É usado apenas o id porque a página está atualmente quebrada.
       // Aguarde o layout e a implementação da página.
