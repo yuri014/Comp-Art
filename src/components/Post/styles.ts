@@ -27,8 +27,8 @@ const PostContainer = styled.div`
     }
 
     img {
-      width: 6rem;
-      height: 6rem;
+      width: 5rem;
+      height: 5rem;
       border-radius: 50%;
       object-fit: fill;
     }

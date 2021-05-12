@@ -18,8 +18,8 @@ export const HomeProfileContainer = styled.div`
     align-items: center;
 
     figure {
-      height: 6rem;
-      width: 6rem;
+      height: 5rem;
+      width: 5rem;
       box-shadow: ${({ theme }) => theme.colors.mainShadow};
       border-radius: 50%;
       img {
