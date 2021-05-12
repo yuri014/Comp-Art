@@ -10,12 +10,12 @@ import {
 import { FiRepeat } from 'react-icons/fi';
 
 import formatTime from '@utils/formatTime';
+import { ArtistPostProps } from '@interfaces/Post';
 import AudioPostContainer from './audioPostStyles';
-import { PostProps } from '../../../interfaces/Post';
 import Links from './Links';
 import AudioSlider from './Slider';
 
-const AudioPost: React.FC<PostProps> = ({ post }) => {
+const AudioPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
   const audioRef = useRef<null | HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioDuration, setAudioDuration] = useState('0:00');
@@ -30,7 +30,11 @@ const AudioPost: React.FC<PostProps> = ({ post }) => {
   };
 
   return (
-    <AudioPostContainer darkColor={post.darkColor} lightColor={post.lightColor}>
+    <AudioPostContainer
+      isShare={isShare}
+      darkColor={post.darkColor}
+      lightColor={post.lightColor}
+    >
       <div className="audio-card">
         <div className="thumbnail">
           <img

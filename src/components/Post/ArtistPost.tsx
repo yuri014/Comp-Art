@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { PostProps } from '@interfaces/Post';
+import { ArtistPostProps } from '@interfaces/Post';
 import AudioPost from './AudioPost';
 import ImagePost from './ImagePost';
 
-const ArtistPost: React.FC<PostProps> = ({ post }) => (
+const ArtistPost: React.FC<ArtistPostProps> = ({ isShare, post }) => (
   <>
     {post.mediaId === 2 ? (
-      <AudioPost post={post} />
+      <AudioPost isShare={isShare} post={post} />
     ) : (
       <ImagePost image={post.body} />
     )}
