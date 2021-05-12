@@ -54,3 +54,4 @@ Siga o padrão abaixo:
 **postAsLink.ts:**
 
 Posts e Shares precisam ser um link, porém a tag ```<a>``` não pode ser aninhada. Por isso o hook _usePostAsLink_ foi criado. Coloque a classe `prevent-redirect-post` para privinir o hook de redirecionar para o local do post.
+Use apenas esse hook no event `onMouseDown`, não utilize no `onClick`. `onClick` é disparado no `onMouseDown` e `onMouseUp`, se for disparado no `onMouseUp` irá redirecionar quando estiver alterando algum slider.
