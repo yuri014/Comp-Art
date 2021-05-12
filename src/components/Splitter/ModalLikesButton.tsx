@@ -14,7 +14,7 @@ const ModalLikesButton: React.FC<ModalLikesButtonProps> = ({
 }) => (
   <>
     <button onClick={showModal} type="button" aria-label="Abrir modal de likes">
-      <div className="likes-images">
+      <div className="likes-images prevent-redirect-post">
         {post.likes &&
           post.likes.map(({ profile }) => (
             <img
