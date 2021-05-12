@@ -31,7 +31,7 @@ const theme = {
   },
   fonts: {
     display: '"Audiowide", sans-serif',
-    primary: '"Jura", sans-serif',
+    primary: '"Saira", sans-serif',
   },
 };
 
