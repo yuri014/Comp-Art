@@ -16,6 +16,7 @@ const theme = {
     lighterSecondaryBackground: '#38383C',
     inputBackground: '#44444E',
     lightGreen: '#5DD083',
+    hashtag: '#4BF1E3',
     mainGradient: `linear-gradient(
       310deg,
       #050211 0%,
