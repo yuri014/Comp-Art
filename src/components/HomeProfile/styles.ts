@@ -8,7 +8,7 @@ export const HashtagsProfileContainer = styled.div<HashtagsProfileContainerProps
   border-radius: 5px;
   width: 20%;
   max-width: 33rem;
-  margin-top: ${props => (props.isArtist ? '36rem' : '31rem')};
+  margin-top: ${props => (props.isArtist ? '42rem' : '36rem')};
 
   h3 {
     font-size: 1.8rem;
