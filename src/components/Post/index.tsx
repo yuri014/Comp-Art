@@ -64,7 +64,7 @@ const Post: React.FC<IPostProps> = ({ post, children }) => {
         <PostContainer
           role="button"
           tabIndex={0}
-          onClick={e => handlePostLink(e)}
+          onMouseDown={e => handlePostLink(e)}
           onKeyDown={e => {
             if (e.key === 'Enter') {
               handlePostLink(e);

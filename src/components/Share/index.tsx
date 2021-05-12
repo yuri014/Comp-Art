@@ -14,7 +14,7 @@ const Share: React.FC<PostProps> = ({ post }) => {
     <ShareContainer
       role="button"
       tabIndex={0}
-      onClick={e => handlePostLink(e)}
+      onMouseDown={e => handlePostLink(e)}
       onKeyDown={e => {
         if (e.key === 'Enter') {
           handlePostLink(e);
