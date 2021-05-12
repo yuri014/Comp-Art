@@ -1,5 +1,6 @@
 import React from 'react';
 
+import CreatePost from '@components/CreatePost';
 import HomeProfile from '../HomeProfile';
 import { IProfile } from '../../interfaces/Profile';
 import SuggestedProfiles from '../SuggestedProfiles';
@@ -21,7 +22,10 @@ const Home: React.FC<HomeProps> = ({ getLoggedProfile, children }) => (
             isArtist={getLoggedProfile.isArtist}
           />
         </aside>
-        <div className="timeline">{children}</div>
+        <div className="timeline">
+          <CreatePost getLoggedProfile={getLoggedProfile} />
+          {children}
+        </div>
         <aside>
           <SuggestedProfiles />
         </aside>
