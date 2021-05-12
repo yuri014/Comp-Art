@@ -23,7 +23,7 @@ const usePostAsLink: UsePostAsLink = postID => {
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => {
     const targetEvent = e.target as HTMLElement;
-    const excludeTags = ['button', 'a', 'svg', 'path'];
+    const excludeTags = ['button', 'a', 'svg', 'path', 'img', 'p'];
 
     const checkExcludeTags = excludeTags.includes(targetEvent.localName);
     const isAClickOut = targetEvent.getAttribute('aria-hidden') === 'true';
