@@ -12,6 +12,7 @@ import Link from 'next/link';
 import { gql, useMutation } from '@apollo/client';
 import { Menu, MenuItem } from '@material-ui/core';
 import { MenuListIcon } from '@components/Header/styles';
+import InteractionButtonsContainer from './styles';
 
 interface PostInteractionButtonsProps {
   isLiked: boolean;
@@ -52,7 +53,7 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
   };
 
   return (
-    <div className="post-interaction">
+    <InteractionButtonsContainer>
       <div className="interaction-group prevent-redirect-post">
         <button
           className={`prevent-redirect-post ${isLiked ? 'active' : ''}`}
@@ -131,7 +132,7 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
           <FaRegBookmark size={20} /> <p>Salvar</p>
         </div>
       </button>
-    </div>
+    </InteractionButtonsContainer>
   );
 };
 

@@ -1,5 +1,38 @@
 import styled from 'styled-components';
 
+export const HashtagsProfileContainer = styled.div<HashtagsProfileContainerProps>`
+  background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
+  color: ${({ theme }) => theme.colors.themeColor};
+  box-shadow: ${({ theme }) => theme.colors.mainShadow};
+  padding: 2rem;
+  border-radius: 5px;
+  width: 20%;
+  max-width: 33rem;
+  margin-top: ${props => (props.isArtist ? '36rem' : '31rem')};
+
+  h3 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .hashtag-container {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    a {
+      color: ${({ theme }) => theme.colors.themeColor};
+      background-color: ${({ theme }) => theme.colors.pink};
+      padding: 1rem;
+      border-radius: 5px;
+      font-size: 1.2rem;
+    }
+  }
+`;
+
 interface HashtagsProfileContainerProps {
   isArtist: boolean;
 }
@@ -12,6 +45,40 @@ export const HomeProfileContainer = styled.div`
   width: 100%;
   height: 100vh;
   max-width: 33rem;
+
+  .profile-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1.6rem;
+
+    a {
+      display: flex;
+      align-items: center;
+      color: ${({ theme }) => theme.colors.themeColor};
+      padding: 1rem;
+      padding-left: 0;
+      border-radius: 5px;
+      transition: padding-left 0.125s ease-in, text-shadow 0.2s ease-in;
+
+      &:first-child {
+        margin-top: 1rem;
+      }
+
+      &:hover {
+        padding-left: 1rem;
+        background: ${({ theme }) => theme.colors.lighterSecondaryBackground};
+      }
+
+      p {
+        margin-left: 1rem;
+      }
+
+      .post-icon {
+        color: ${({ theme }) => theme.colors.themeColor};
+      }
+    }
+  }
 
   .profile {
     display: flex;
@@ -72,41 +139,6 @@ export const HomeProfileContainer = styled.div`
     }
   }
 
-  .profile-buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-size: 1.6rem;
-
-    a {
-      display: flex;
-      align-items: center;
-      color: ${({ theme }) => theme.colors.themeColor};
-      transition: text-shadow 0.2s ease-in;
-      padding: 1rem;
-      padding-left: 0;
-      border-radius: 5px;
-      transition: padding-left 0.125s ease-in;
-
-      &:first-child {
-        margin-top: 1rem;
-      }
-
-      &:hover {
-        padding-left: 1rem;
-        background: ${({ theme }) => theme.colors.lighterSecondaryBackground};
-      }
-
-      p {
-        margin-left: 1rem;
-      }
-
-      .post-icon {
-        color: ${({ theme }) => theme.colors.themeColor};
-      }
-    }
-  }
-
   .post-button {
     background-color: ${({ theme }) => theme.colors.mainColor};
     width: 80%;
@@ -143,39 +175,6 @@ export const HomeProfileContainer = styled.div`
           max-width: 10vw;
         }
       }
-    }
-  }
-`;
-
-export const HashtagsProfileContainer = styled.div<HashtagsProfileContainerProps>`
-  background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
-  color: ${({ theme }) => theme.colors.themeColor};
-  box-shadow: ${({ theme }) => theme.colors.mainShadow};
-  padding: 2rem;
-  border-radius: 5px;
-  width: 20%;
-  max-width: 33rem;
-  margin-top: ${props => (props.isArtist ? '36rem' : '31rem')};
-
-  h3 {
-    font-size: 1.8rem;
-    text-align: center;
-  }
-
-  .hashtag-container {
-    margin-top: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-
-    a {
-      color: ${({ theme }) => theme.colors.themeColor};
-      background-color: ${({ theme }) => theme.colors.pink};
-      padding: 1rem;
-      border-radius: 5px;
-      font-size: 1.2rem;
     }
   }
 `;

@@ -31,6 +31,28 @@ export const HeaderContainer = styled.header`
   align-items: center;
   justify-content: space-between;
 
+  .header-icons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+      color: ${({ theme }) => theme.colors.gray};
+    }
+
+    button {
+      padding: 0.2rem;
+
+      img {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        cursor: pointer;
+        object-fit: fill;
+      }
+    }
+  }
+
   .search-input {
     position: relative;
     display: flex;
@@ -101,28 +123,6 @@ export const HeaderContainer = styled.header`
         & + .profile-info {
           margin-top: 1rem;
         }
-      }
-    }
-  }
-
-  .header-icons {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    a {
-      color: ${({ theme }) => theme.colors.gray};
-    }
-
-    button {
-      padding: 0.2rem;
-
-      img {
-        width: 3rem;
-        height: 3rem;
-        border-radius: 50%;
-        cursor: pointer;
-        object-fit: fill;
       }
     }
   }

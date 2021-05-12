@@ -10,6 +10,12 @@ export const LabelInputContainer = styled.label`
     margin-bottom: 1rem;
   }
 
+  span {
+    color: ${({ theme }) => theme.colors.darkGray};
+    font-size: 1.2rem;
+    margin-top: 0.2rem;
+  }
+
   &.error {
     input {
       &:focus {
@@ -22,12 +28,6 @@ export const LabelInputContainer = styled.label`
       margin-top: 0.2rem;
       max-width: 30rem;
     }
-  }
-
-  span {
-    color: ${({ theme }) => theme.colors.darkGray};
-    font-size: 1.2rem;
-    margin-top: 0.2rem;
   }
 `;
 

@@ -3,22 +3,6 @@ import styled from 'styled-components';
 const ProfileContainer = styled.div`
   color: ${({ theme }) => theme.colors.themeColor};
 
-  .cover-profile {
-    width: 100%;
-    height: 12rem;
-    border-bottom: 1px solid ${({ theme }) => theme.colors.mainColor};
-
-    button {
-      width: 100%;
-      height: 12rem;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-  }
   .avatar-profile {
     width: 8rem;
     height: 8rem;
@@ -33,6 +17,23 @@ const ProfileContainer = styled.div`
       height: 100%;
       border-radius: 50%;
       object-fit: cover;
+    }
+  }
+
+  .cover-profile {
+    width: 100%;
+    height: 12rem;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.mainColor};
+
+    button {
+      width: 100%;
+      height: 12rem;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
   }
 
@@ -98,26 +99,26 @@ const ProfileContainer = styled.div`
             border-radius: 4px;
           }
         }
-      }
 
-      .profile-follows {
-        grid-area: follow;
-        margin-top: 2rem;
-        display: flex;
-        justify-content: flex-start;
-        gap: 1rem;
+        .profile-follows {
+          grid-area: follow;
+          margin-top: 2rem;
+          display: flex;
+          justify-content: flex-start;
+          gap: 1rem;
 
-        p:first-child {
-          margin-bottom: 0.4rem;
-          font-size: 1.8rem;
-        }
+          p {
+            font-size: 1.8rem;
+            color: ${({ theme }) => theme.colors.themeColor};
 
-        p {
-          font-size: 1.8rem;
-          color: ${({ theme }) => theme.colors.themeColor};
+            span {
+              font-weight: bold;
+            }
+          }
 
-          span {
-            font-weight: bold;
+          p:first-child {
+            margin-bottom: 0.4rem;
+            font-size: 1.8rem;
           }
         }
       }
@@ -209,37 +210,38 @@ const ProfileContainer = styled.div`
             margin-top: 0.4rem;
           }
 
-          p:first-child {
-            font-size: 2.4rem;
-            margin-top: 0;
-            text-align: left;
-          }
-
           p {
             font-size: 1.6rem;
             margin-left: 6rem;
             margin-top: 0.4rem;
             font-weight: 700;
           }
-        }
 
-        .profile-follows {
-          margin-top: 2rem;
-          display: block;
-          font-size: 1.8rem;
           p:first-child {
-            margin-bottom: 0.4rem;
-            font-size: 1.8rem;
-            color: ${({ theme }) => theme.colors.lightText};
+            font-size: 2.4rem;
+            margin-top: 0;
+            text-align: left;
           }
 
-          p {
+          .profile-follows {
+            margin-top: 2rem;
+            display: block;
             font-size: 1.8rem;
-            color: ${({ theme }) => theme.colors.lightText};
-            font-weight: 600;
 
-            span {
-              color: ${({ theme }) => theme.colors.themeColor};
+            p {
+              font-size: 1.8rem;
+              color: ${({ theme }) => theme.colors.lightText};
+              font-weight: 600;
+
+              span {
+                color: ${({ theme }) => theme.colors.themeColor};
+              }
+            }
+
+            p:first-child {
+              margin-bottom: 0.4rem;
+              font-size: 1.8rem;
+              color: ${({ theme }) => theme.colors.lightText};
             }
           }
         }

@@ -97,6 +97,12 @@ const AudioPostContainer = styled.section<AudioPostContainerProps>`
       font-size: 2rem;
     }
 
+    &.artist-name {
+      font-weight: 400;
+      font-size: 1.4rem;
+      color: ${props => props.darkColor};
+    }
+
     &.music-name,
     &.artist-name {
       width: fit-content;
@@ -108,12 +114,6 @@ const AudioPostContainer = styled.section<AudioPostContainerProps>`
         text-decoration: underline;
         text-decoration-color: inherit;
       }
-    }
-
-    &.artist-name {
-      font-weight: 400;
-      font-size: 1.4rem;
-      color: ${props => props.darkColor};
     }
   }
 

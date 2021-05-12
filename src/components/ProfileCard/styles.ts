@@ -9,31 +9,6 @@ const ProfileSimpleCardContainer = styled.div`
   justify-content: space-between;
   margin-bottom: 2rem;
 
-  a,
-  .loading {
-    display: flex;
-    align-items: flex-start;
-  }
-
-  .loading {
-    .profile-content {
-      .first-row,
-      .second-row {
-        max-width: unset;
-      }
-    }
-  }
-
-  &:hover {
-    filter: brightness(1.2);
-  }
-
-  img {
-    height: 5rem;
-    width: 5rem;
-    border-radius: 50%;
-  }
-
   .profile-content {
     .first-row {
       font-size: 1.4rem;
@@ -83,6 +58,31 @@ const ProfileSimpleCardContainer = styled.div`
         max-width: 25rem;
       }
     }
+  }
+
+  a,
+  .loading {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .loading {
+    .profile-content {
+      .first-row,
+      .second-row {
+        max-width: unset;
+      }
+    }
+  }
+
+  &:hover {
+    filter: brightness(1.2);
+  }
+
+  img {
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
   }
 `;
 

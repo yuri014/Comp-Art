@@ -1,8 +1,25 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.lightContrast};
+    border-radius: 4px;
+  }
+
   :root {
-  font-size: 60%;
+    font-size: 60%;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: ${({ theme }) => theme.colors.mainColor};
   }
 
   * {
@@ -99,23 +116,6 @@ export default createGlobalStyle`
   #nprogress .spinner-icon {
     border-top-color: ${({ theme }) => theme.colors.mainColor};
     border-left-color: ${({ theme }) => theme.colors.mainColor};
-  }
-
-  ::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme.colors.lightContrast};
-    border-radius: 4px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: ${({ theme }) => theme.colors.mainColor};
   }
 
   @media (min-width: 768px) {
