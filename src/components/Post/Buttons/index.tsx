@@ -53,22 +53,23 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
 
   return (
     <div className="post-interaction">
-      <div className="interaction-group">
+      <div className="interaction-group prevent-redirect-post">
         <button
-          className={`prevent-post-redirect ${isLiked ? 'active' : ''}`}
+          className={`prevent-redirect-post ${isLiked ? 'active' : ''}`}
           type="button"
           onClick={() => (isLiked ? dislikePost() : likePost())}
           aria-label="Curtir"
         >
           <div className="interactions-button">
             {isLiked ? <FaHeart size={20} /> : <FaRegHeart size={20} />}
-            <p>Curtir</p>
+            <p className="prevent-redirect-post">Curtir</p>
           </div>
         </button>
         <Link href={`/post/${postID}`}>
-          <a aria-label="Comentar" className="prevent-post-redirect">
+          <a aria-label="Comentar" className="prevent-redirect-post">
             <div className="interactions-button">
-              <FaCommentAlt size={20} /> <p>Comentar</p>
+              <FaCommentAlt size={20} />{' '}
+              <p className="prevent-redirect-post">Comentar</p>
             </div>
           </a>
         </Link>
@@ -77,10 +78,11 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
           type="button"
           aria-haspopup="true"
           onClick={handleClick}
-          className="prevent-post-redirect"
+          className="prevent-redirect-post"
         >
           <div className="interactions-button">
-            <FaShareAlt size={20} /> <p>Compartilhar</p>
+            <FaShareAlt size={20} />{' '}
+            <p className="prevent-redirect-post">Compartilhar</p>
           </div>
         </button>
         <Menu
@@ -89,7 +91,7 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
           keepMounted
           open={Boolean(anchorEl)}
           onClose={handleClose}
-          className="prevent-post-redirect"
+          className="prevent-redirect-post"
         >
           <MenuItem onClick={handleClose}>
             <MenuListIcon
@@ -106,19 +108,21 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
               }
             >
               <FaShare />
-              <p>Compartilhar agora</p>
+              <p className="prevent-redirect-post">Compartilhar agora</p>
             </MenuListIcon>
           </MenuItem>
           <MenuItem onClick={handleClose}>
             <MenuListIcon>
               <FaEdit />
-              <p>Compartilhar com comentário</p>
+              <p className="prevent-redirect-post">
+                Compartilhar com comentário
+              </p>
             </MenuListIcon>
           </MenuItem>
         </Menu>
       </div>
       <button
-        className="bookmark prevent-post-redirect"
+        className="bookmark prevent-redirect-post"
         aria-label="Salvar"
         type="button"
         onClick={() => savePost({ variables: { id: postID } })}
