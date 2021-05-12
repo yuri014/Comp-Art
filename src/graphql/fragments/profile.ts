@@ -24,3 +24,14 @@ export const LINKS_PROFILE = gql`
     }
   }
 `;
+
+export const MODAL_PROFILE = gql`
+  fragment ModalProfile on Profile {
+    _id
+    name
+    avatar
+    bio
+    owner
+    level
+  }
+`;
