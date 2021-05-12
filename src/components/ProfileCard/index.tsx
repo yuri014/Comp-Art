@@ -10,11 +10,8 @@ interface ProfileSimpleCardProps {
   ref?: UseInfiniteScroll;
 }
 
-const ProfileSimpleCard: React.FC<ProfileSimpleCardProps> = ({
-  ref,
-  profile,
-}) => (
-  <ProfileSimpleCardContainer ref={ref}>
+const ProfileSimpleCard: React.FC<ProfileSimpleCardProps> = ({ profile }) => (
+  <ProfileSimpleCardContainer>
     <Link href={`/profile/${profile.owner}`} key={profile.owner}>
       <a>
         <img
