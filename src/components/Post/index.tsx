@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 
 import ModalLikesButton from '@components/Splitter/ModalLikesButton';
 import LevelContext from '@context/level';
-import { GET_LIKES } from '@graphql/mutations/post';
+import { GET_LIKES, GET_WHO_SHARE_POST } from '@graphql/mutations/post';
 import useDeletePost from '@hooks/posts';
 import { PostProps } from '@interfaces/Post';
 import publishDate from '@utils/publishDate';
@@ -18,11 +18,17 @@ interface IPostProps extends PostProps {
   children: React.ReactNode;
 }
 
+const initialQuery = {
+  queryResult: 'getLikes',
+  query: GET_LIKES,
+};
+
 const Post: React.FC<IPostProps> = ({ post, children }) => {
   const [isLiked, setIsLiked] = useState<boolean>();
   const [likesCount, setLikesCount] = useState<number>();
   const [isDeleted, setIsDeleted] = useState(false);
   const [modalShow, setModalShow] = useState(false);
+  const [modalPayload, setModalPayload] = useState(initialQuery);
 
   useEffect(() => {
     setIsLiked(post.isLiked);
@@ -58,6 +64,31 @@ const Post: React.FC<IPostProps> = ({ post, children }) => {
 
   const profileData = post.post ? post.profile : post.artist;
 
+  const ShareButton = ({ className }: { className?: string }) => (
+    <>
+      {post.sharedCount > 0 && (
+        <button
+          type="button"
+          onClick={() => {
+            setModalShow(true);
+            setModalPayload({
+              queryResult: 'getWhoSharesPost',
+              query: GET_WHO_SHARE_POST,
+            });
+          }}
+          aria-label="Abrir modal de compartilhamentos"
+          className={className}
+        >
+          <p>{post.sharedCount} compartilhamentos</p>
+        </button>
+      )}
+    </>
+  );
+
+  ShareButton.defaultProps = {
+    className: 'share-count',
+  };
+
   return (
     <>
       {!isDeleted && (
@@ -89,7 +120,10 @@ const Post: React.FC<IPostProps> = ({ post, children }) => {
               <div className="post-counts">
                 {post.likesCount > 0 && (
                   <ModalLikesButton
-                    showModal={() => setModalShow(true)}
+                    showModal={() => {
+                      setModalShow(true);
+                      setModalPayload(initialQuery);
+                    }}
                     post={post}
                     likesCount={likesCount}
                   />
@@ -97,18 +131,10 @@ const Post: React.FC<IPostProps> = ({ post, children }) => {
                 {post.commentsCount > 0 && (
                   <p>{post.commentsCount} comentários</p>
                 )}
-                {post.sharedCount > 0 && (
-                  <p className="share-count">
-                    {post.sharedCount} compartilhamentos
-                  </p>
-                )}
+                <ShareButton />
               </div>
               <div className="publish-date">
-                {post.sharedCount > 0 && (
-                  <p className="share-count-mobile">
-                    {post.sharedCount} compartilhamentos
-                  </p>
-                )}
+                <ShareButton className="share-count-mobile" />
                 <p>{publishDate(post.createdAt)}</p>
               </div>
             </div>
@@ -124,8 +150,8 @@ const Post: React.FC<IPostProps> = ({ post, children }) => {
       {modalShow && (
         <ModalProfile
           onHide={() => setModalShow(false)}
-          queryResult="getLikes"
-          query={GET_LIKES}
+          queryResult={modalPayload.queryResult}
+          query={modalPayload.query}
           id={post._id}
         />
       )}
