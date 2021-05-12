@@ -59,14 +59,15 @@ const ModalProfile: React.FC<ModalProps> = ({
                   (profile: IProfile, index: number) => {
                     if (data[`${queryResult}`].length === index + 1) {
                       return (
-                        <ProfileSimpleCard
-                          ref={lastPostRefLikes}
-                          profile={profile}
-                        />
+                        <div key={profile._id} ref={lastPostRefLikes}>
+                          <ProfileSimpleCard profile={profile} />
+                        </div>
                       );
                     }
 
-                    return <ProfileSimpleCard profile={profile} />;
+                    return (
+                      <ProfileSimpleCard key={profile._id} profile={profile} />
+                    );
                   },
                 )}
               </>
