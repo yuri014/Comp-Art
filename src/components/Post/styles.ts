@@ -47,10 +47,6 @@ const PostContainer = styled.div`
     }
 
     .post-info {
-      .share-count {
-        display: none;
-      }
-
       .post-counts {
         width: 100%;
         display: flex;
@@ -69,6 +65,10 @@ const PostContainer = styled.div`
 
           &:focus {
             outline: 1px solid ${({ theme }) => theme.colors.mainColor};
+          }
+
+          &.share-count {
+            display: none;
           }
 
           .likes-images {
@@ -106,6 +106,20 @@ const PostContainer = styled.div`
       display: flex;
       align-items: center;
       justify-content: space-between;
+
+      button {
+        color: ${({ theme }) => theme.colors.themeColor};
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        width: unset;
+
+        &:focus {
+          outline: 1px solid ${({ theme }) => theme.colors.mainColor};
+        }
+      }
     }
 
     .post-interaction {
