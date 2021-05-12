@@ -3,7 +3,15 @@ import styled from 'styled-components';
 interface AudioPostContainerProps {
   darkColor: string;
   lightColor: string;
+  isShare: boolean;
 }
+
+const handleBackgroundColor = props => {
+  if (props.isShare) {
+    return props.theme.colors.secondaryBackgroundColor;
+  }
+  return props.theme.colors.lightSecondaryBackground;
+};
 
 const AudioPostContainer = styled.section<AudioPostContainerProps>`
   margin: 0 auto;
@@ -14,7 +22,7 @@ const AudioPostContainer = styled.section<AudioPostContainerProps>`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    background: ${({ theme }) => theme.colors.lightSecondaryBackground};
+    background: ${props => handleBackgroundColor(props)};
     border-radius: 5px;
     height: 40rem;
     border-top: 1rem solid ${props => props.darkColor};
