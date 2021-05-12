@@ -61,7 +61,7 @@ const AudioSlider: React.FC<AudioSliderProps> = ({
         min={0}
         max={audioRef.current && audioRef.current.duration}
         onChange={handleScroll}
-        aria-label="input-slider"
+        aria-label="Slider"
         step={0.01}
         className="prevent-redirect-post"
       />
