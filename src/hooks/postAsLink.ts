@@ -10,6 +10,7 @@ type UsePostAsLink = (
 
 /**
  * Use para redirecionar o post.
+ * Use apenas em `onMouseDown` (Veja a doc).
  * Caso algum elemento dispara uma função ou é um link,
  * aplique a classe 'prevent-redirect-post' para não disparar essa função.
  * @param postID ID do post
