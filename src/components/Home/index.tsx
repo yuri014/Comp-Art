@@ -17,10 +17,7 @@ const Home: React.FC<HomeProps> = ({ getLoggedProfile, children }) => (
       <>
         <aside>
           <HomeProfile getLoggedProfile={getLoggedProfile} />
-          <HashtagsProfile
-            hashtags={getLoggedProfile.hashtags}
-            isArtist={getLoggedProfile.isArtist}
-          />
+          <HashtagsProfile hashtags={getLoggedProfile.hashtags} />
         </aside>
         <div className="timeline">
           <CreatePost getLoggedProfile={getLoggedProfile} />
