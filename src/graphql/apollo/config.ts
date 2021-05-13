@@ -10,6 +10,7 @@ import merge from 'deepmerge';
 import { createUploadLink } from 'apollo-upload-client';
 import { setContext } from 'apollo-link-context';
 import Cookie from 'js-cookie';
+import mergeCache from './mergeCache';
 
 let apolloClient: ApolloClient<NormalizedCacheObject>;
 
@@ -43,41 +44,25 @@ function createApolloClient(cookie?: string) {
             getPosts: {
               keyArgs: false,
               merge(existing, incoming, { args: { offset = 0 } }) {
-                const merged = existing ? existing.slice(0) : [];
-                for (let i = 0; i < incoming.length; ++i) {
-                  merged[offset + i] = incoming[i];
-                }
-                return merged;
+                return mergeCache(existing, incoming, offset);
               },
             },
             getProfilePosts: {
               keyArgs: false,
               merge(existing, incoming, { args: { offset = 0 } }) {
-                const merged = existing ? existing.slice(0) : [];
-                for (let i = 0; i < incoming.length; ++i) {
-                  merged[offset + i] = incoming[i];
-                }
-                return merged;
+                return mergeCache(existing, incoming, offset);
               },
             },
             getComments: {
               keyArgs: false,
               merge(existing, incoming, { args: { offset = 0 } }) {
-                const merged = existing ? existing.slice(0) : [];
-                for (let i = 0; i < incoming.length; ++i) {
-                  merged[offset + i] = incoming[i];
-                }
-                return merged;
+                return mergeCache(existing, incoming, offset);
               },
             },
             getLikes: {
               keyArgs: false,
               merge(existing, incoming, { args: { offset = 0 } }) {
-                const merged = existing ? existing.slice(0) : [];
-                for (let i = 0; i < incoming.length; ++i) {
-                  merged[offset + i] = incoming[i];
-                }
-                return merged;
+                return mergeCache(existing, incoming, offset);
               },
             },
           },
