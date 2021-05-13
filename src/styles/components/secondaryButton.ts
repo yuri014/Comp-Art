@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const CASecondaryButton = styled.button`
   color: ${({ theme }) => theme.colors.pink};
   font-weight: bold;
-  width: 9rem;
+  width: 8rem;
   margin: auto 0;
   cursor: pointer;
   border: 1px solid ${({ theme }) => theme.colors.pink};
