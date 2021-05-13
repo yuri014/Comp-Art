@@ -19,15 +19,55 @@ const CreatePostContainer = styled.div`
     width: 100%;
     padding-right: 1rem;
 
-    .hashtag {
-      color: ${({ theme }) => theme.colors.hashtag};
-    }
+    .editor {
+      .hashtag {
+        color: ${({ theme }) => theme.colors.hashtag};
+      }
 
-    .DraftEditor-root {
-      width: 100%;
-      font-size: 1.6rem;
-      margin-top: 1rem;
-      padding-bottom: 0.4rem;
+      .DraftEditor-root {
+        width: 100%;
+        font-size: 1.6rem;
+        margin-top: 1rem;
+        padding-bottom: 0.4rem;
+      }
+
+      .media {
+        position: relative;
+        width: 100%;
+        height: 14rem;
+        margin: 2rem auto;
+
+        button {
+          top: 4px;
+          right: 4px;
+          position: absolute;
+          background-color: rgba(0, 0, 0, 0.9);
+          color: white;
+          border-radius: 50%;
+          padding: 0.6rem;
+          display: grid;
+          place-content: center;
+          border: none;
+          font-size: 1.8rem;
+
+          &:focus,
+          &:hover {
+            background-color: rgb(35, 40, 43, 0.9);
+            outline: none;
+          }
+
+          &:focus {
+            border: 2px solid ${({ theme }) => theme.colors.darkGray};
+            padding: calc(0.6rem - 2px);
+          }
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 5px;
+        }
+      }
     }
 
     .buttons {
@@ -57,7 +97,7 @@ const CreatePostContainer = styled.div`
       div {
         display: flex;
 
-        button {
+        label {
           background: transparent;
           color: ${({ theme }) => theme.colors.mainColor};
           font-size: 2rem;
@@ -67,9 +107,12 @@ const CreatePostContainer = styled.div`
           display: flex;
           align-items: center;
           justify-content: center;
-          border: none;
           cursor: pointer;
           transition: background-color 0.225s ease-out;
+
+          input {
+            display: none;
+          }
 
           &:focus,
           &:hover {
