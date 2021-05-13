@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { convertToRaw, EditorState } from 'draft-js';
+import { FaRegFileImage } from 'react-icons/fa';
+import { IoMdMusicalNote } from 'react-icons/io';
 import Editor from '@draft-js-plugins/editor';
 
 import { IProfile } from '@interfaces/Profile';
@@ -22,19 +24,32 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
 
   return (
     <CreatePostContainer>
-      <div className="editor">
-        <img
-          src={process.env.NEXT_PUBLIC_API_HOST + getLoggedProfile.avatar}
-          alt={`${getLoggedProfile.name} avatar`}
-        />
+      <img
+        src={process.env.NEXT_PUBLIC_API_HOST + getLoggedProfile.avatar}
+        alt={`${getLoggedProfile.name} avatar`}
+      />
+      <form>
         <Editor
           editorState={editorState}
           placeholder="Digite aqui seu post..."
           onChange={setEditorState}
           plugins={plugins}
         />
-      </div>
-      <div className="buttons">blank</div>
+
+        <div className="buttons">
+          <div>
+            <button type="button">
+              <FaRegFileImage />
+            </button>
+            <button type="button">
+              <IoMdMusicalNote />
+            </button>
+          </div>
+          <button type="button" className="publish">
+            Publicar
+          </button>
+        </div>
+      </form>
     </CreatePostContainer>
   );
 };
