@@ -1,13 +1,7 @@
 import React, { useContext } from 'react';
 import Link from 'next/link';
 import { LinearProgress, ThemeProvider } from '@material-ui/core';
-import {
-  FaBookmark,
-  FaPlusCircle,
-  FaRegCompass,
-  FaUserAlt,
-  FaUsers,
-} from 'react-icons/fa';
+import { FaBookmark, FaRegCompass, FaUserAlt, FaUsers } from 'react-icons/fa';
 import Skeleton from '@material-ui/lab/Skeleton';
 
 import { HomeProfileContainer } from './styles';
@@ -85,15 +79,6 @@ const HomeProfile: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
             </a>
           </Link>
         </div>
-        {getLoggedProfile.isArtist && (
-          <Link href="/new-post">
-            <a className="post-button">
-              <p>PUBLICAR</p>
-
-              <FaPlusCircle className="post-icon" />
-            </a>
-          </Link>
-        )}
       </ThemeProvider>
     </HomeProfileContainer>
   );

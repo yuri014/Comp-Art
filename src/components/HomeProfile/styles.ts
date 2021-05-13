@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const HashtagsProfileContainer = styled.div<HashtagsProfileContainerProps>`
+export const HashtagsProfileContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
   color: ${({ theme }) => theme.colors.themeColor};
   box-shadow: ${({ theme }) => theme.colors.mainShadow};
@@ -8,7 +8,7 @@ export const HashtagsProfileContainer = styled.div<HashtagsProfileContainerProps
   border-radius: 5px;
   width: 20%;
   max-width: 33rem;
-  margin-top: ${props => (props.isArtist ? '42rem' : '36rem')};
+  margin-top: 31rem;
 
   h3 {
     font-size: 1.8rem;
@@ -32,10 +32,6 @@ export const HashtagsProfileContainer = styled.div<HashtagsProfileContainerProps
     }
   }
 `;
-
-interface HashtagsProfileContainerProps {
-  isArtist: boolean;
-}
 
 export const HomeProfileContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
@@ -149,7 +145,6 @@ export const HomeProfileContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
     gap: 0.4rem;
     font-size: 1.4rem;
     color: ${({ theme }) => theme.colors.namesakeText};
