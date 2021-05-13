@@ -6,6 +6,7 @@ const PostContainer = styled.div`
   color: ${({ theme }) => theme.colors.themeColor};
   background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
   padding: 1rem;
+  padding-top: 2rem;
   font-size: 1.8rem;
   font-family: ${({ theme }) => theme.fonts.primary};
   box-shadow: ${({ theme }) => theme.colors.mainShadow};
