@@ -1,10 +1,10 @@
 /**
  * Função para previnir Generic Object Injection Sink
  */
-const handleInjectionSink = (index: number, array: unknown[]): boolean => {
+const handleInjectionSink = (index: number, array: unknown[]): unknown => {
   const newIndex = index as unknown | string | number;
-  const boolValue = !!array[parseInt(newIndex as string, 10)];
-  return boolValue;
+  const arrayValue = array[parseInt(newIndex as string, 10)];
+  return arrayValue;
 };
 
 export default handleInjectionSink;
