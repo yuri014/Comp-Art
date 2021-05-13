@@ -4,6 +4,7 @@ import { FaCog } from 'react-icons/fa';
 import Image from 'next/image';
 import { SwipeableDrawer, ThemeProvider } from '@material-ui/core';
 
+import usePreventMemoryLeak from '@hooks/preventMemoryLeak';
 import MobileHeaderContainer from './styles';
 import { ILoggedProfile } from '../../interfaces/Profile';
 import mainTheme from '../../styles/themes/MainTheme';
@@ -13,7 +14,7 @@ const MobileHeader: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
-  const [isMount, setIsMount] = useState(false);
+  const isMount = usePreventMemoryLeak();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,14 +27,6 @@ const MobileHeader: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, [prevScrollPos]);
-
-  // Este useEffect é para prevenir vazamento de memória
-  useEffect(() => {
-    setIsMount(true);
-    return () => {
-      setIsMount(false);
-    };
-  }, []);
 
   return (
     <MobileHeaderContainer>
