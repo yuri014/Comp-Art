@@ -169,6 +169,7 @@ const PostContainer = styled.div`
 
   @media (min-width: 1100px) {
     padding: 2rem;
+    padding-bottom: 1rem;
     width: 100%;
   }
 `;
