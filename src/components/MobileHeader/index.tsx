@@ -13,6 +13,7 @@ const MobileHeader: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
+  const [isMount, setIsMount] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +26,14 @@ const MobileHeader: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, [prevScrollPos]);
+
+  // Este useEffect é para prevenir vazamento de memória
+  useEffect(() => {
+    setIsMount(true);
+    return () => {
+      setIsMount(false);
+    };
+  }, []);
 
   return (
     <MobileHeaderContainer>
@@ -49,14 +58,16 @@ const MobileHeader: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
               <FaCog />
             </a>
           </Link>
-          <SwipeableDrawer
-            anchor="left"
-            onClose={() => setIsDrawerOpen(false)}
-            onOpen={() => setIsDrawerOpen(true)}
-            open={isDrawerOpen}
-          >
-            <HomeProfile getLoggedProfile={getLoggedProfile} />
-          </SwipeableDrawer>
+          {isMount && (
+            <SwipeableDrawer
+              anchor="left"
+              onClose={() => setIsDrawerOpen(false)}
+              onOpen={() => setIsDrawerOpen(true)}
+              open={isDrawerOpen}
+            >
+              <HomeProfile getLoggedProfile={getLoggedProfile} />
+            </SwipeableDrawer>
+          )}
         </ThemeProvider>
       </nav>
     </MobileHeaderContainer>
