@@ -9,7 +9,8 @@
     "airbnb",
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
-    "prettier/react"
+    "prettier/react",
+    "plugin:security/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -19,7 +20,7 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint", "prettier", "react-hooks"],
+  "plugins": ["react", "@typescript-eslint", "prettier", "react-hooks", "security"],
   "settings": {
     "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
     "import/parsers": {
