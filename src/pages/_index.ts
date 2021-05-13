@@ -21,6 +21,7 @@ const LandingContainer = styled.div`
     h2 {
       font-size: 2rem;
       text-align: center;
+      font-weight: 500;
     }
 
     section {

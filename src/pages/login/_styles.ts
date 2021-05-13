@@ -29,7 +29,6 @@ const LoginContainer = styled.div`
       a {
         margin-bottom: 1rem;
         font-size: 1.4rem;
-        font-weight: bold;
       }
 
       a {
@@ -38,6 +37,7 @@ const LoginContainer = styled.div`
         color: ${({ theme }) => theme.colors.mainColor};
         font-size: 1.4rem;
         text-decoration: underline;
+        font-weight: 700;
       }
 
       .register {

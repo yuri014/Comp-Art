@@ -37,10 +37,11 @@ const SuggestedProfilesContainer = styled.div`
         p {
           max-width: 6vw;
           font-size: 1.4rem;
-          font-weight: bold;
+          font-weight: 600;
 
           & + p {
             font-size: 1.2rem;
+            font-weight: 400;
             color: ${({ theme }) => theme.colors.gray};
           }
         }

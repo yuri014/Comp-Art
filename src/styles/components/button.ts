@@ -10,7 +10,7 @@ const CAButton = styled.button`
   margin-bottom: 2rem;
   cursor: pointer;
   transition: 0.2s ease-in-out;
-  font-weight: 500;
+  font-weight: 700;
 
   &:hover {
     border-radius: 10px;
