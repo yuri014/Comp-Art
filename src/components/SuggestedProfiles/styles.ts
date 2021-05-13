@@ -35,7 +35,7 @@ const SuggestedProfilesContainer = styled.div`
 
       .suggested-profile-info {
         p {
-          max-width: 6vw;
+          max-width: 7.4vw;
           font-size: 1.4rem;
           font-weight: 600;
 
