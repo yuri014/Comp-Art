@@ -24,6 +24,10 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
   );
 
   const onSubmit = () => {
+    if (description.length >= 1200) {
+      console.log('error');
+    }
+
     console.log({
       description,
       body: audioResult || imagePreview.file,
