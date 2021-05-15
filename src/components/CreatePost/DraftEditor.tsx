@@ -32,7 +32,7 @@ const DraftEditor: React.FC<DraftEditorProps> = ({ setDescription }) => {
     .join('\n');
 
   useEffect(() => {
-    setDescription(description);
+    setDescription(description.trim());
   }, [description, setDescription]);
 
   return (
@@ -51,7 +51,7 @@ const DraftEditor: React.FC<DraftEditorProps> = ({ setDescription }) => {
           className="background-circle"
           variant="determinate"
           size="2rem"
-          style={{ color: '#ccc' }}
+          style={{ color: '#ababab' }}
           value={100}
         />
         <CircularProgress
