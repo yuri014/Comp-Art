@@ -45,7 +45,7 @@ const DraftEditor: React.FC<DraftEditorProps> = ({ setDescription }) => {
       />
 
       <div className="counter-container">
-        <CharCounter limit={12} />
+        <CharCounter limit={1200} />
 
         <CircularProgress
           className="background-circle"
