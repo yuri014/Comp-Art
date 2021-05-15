@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FaRegFileImage } from 'react-icons/fa';
 import { IoMdClose, IoMdMusicalNote } from 'react-icons/io';
 
 import usePreventMemoryLeak from '@hooks/preventMemoryLeak';
+import useImageDimension from '@hooks/imageDimension';
 import { IProfile } from '@interfaces/Profile';
 import useImagePreview from '@hooks/imagePreview';
 import CreatePostContainer from './styles';
@@ -19,9 +20,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
 
   const [imagePreview, setImagePreview] = useImagePreview();
   const [audioResult, setAudioResult] = useState<File>();
-  const [imageDimension, setImageDimenstion] = useState<'cover' | 'contain'>(
-    'cover',
-  );
+  const imageDimension = useImageDimension(imagePreview.preview);
 
   const onSubmit = () => {
     if (description.length >= 1200) {
@@ -35,18 +34,6 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
       thumbnail: audioResult ? imagePreview.file : '',
     });
   };
-
-  useEffect(() => {
-    const img = new Image();
-    img.src = imagePreview.preview as string;
-    img.onload = () => {
-      if (img.naturalWidth / 2 > img.naturalHeight) {
-        setImageDimenstion('contain');
-      } else {
-        setImageDimenstion('cover');
-      }
-    };
-  }, [imagePreview]);
 
   return (
     <CreatePostContainer>
