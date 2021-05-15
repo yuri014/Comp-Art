@@ -17,7 +17,7 @@ const CreatePostContainer = styled.div`
 
   form {
     width: 100%;
-    padding-right: 1rem;
+    padding-right: 1.2rem;
 
     .editor {
       .hashtag {
