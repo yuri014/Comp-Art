@@ -19,6 +19,68 @@ const CreatePostContainer = styled.div`
     width: 100%;
     padding-right: 1.2rem;
 
+    .buttons {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid ${({ theme }) => theme.colors.darkGray};
+
+      button {
+        background: ${({ theme }) => theme.colors.pink};
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        padding: 1rem;
+        border-radius: 5px;
+        font-weight: 600;
+        transition: filter 0.225s ease-out;
+
+        &:focus,
+        &:hover {
+          filter: brightness(0.75);
+        }
+
+        &.disabled {
+          opacity: 0.6;
+        }
+      }
+
+      div {
+        display: flex;
+
+        label {
+          background: transparent;
+          color: ${({ theme }) => theme.colors.mainColor};
+          font-size: 2rem;
+          margin-right: 1rem;
+          padding: 1rem;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: background-color 0.225s ease-out;
+
+          input {
+            display: none;
+          }
+
+          &:focus,
+          &:hover {
+            background-color: ${({ theme }) => theme.colors.mainColor}20;
+          }
+
+          &:focus {
+            border: 2px solid ${({ theme }) => theme.colors.mainColor};
+            padding: calc(1rem - 2px);
+            outline: none;
+          }
+        }
+      }
+    }
+
     .editor {
       .hashtag {
         color: ${({ theme }) => theme.colors.hashtag};
@@ -89,64 +151,6 @@ const CreatePostContainer = styled.div`
           width: 100%;
           height: 100%;
           border-radius: 5px;
-        }
-      }
-    }
-
-    .buttons {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 1rem;
-      padding-top: 1rem;
-      border-top: 1px solid ${({ theme }) => theme.colors.darkGray};
-
-      .publish {
-        background: ${({ theme }) => theme.colors.pink};
-        color: #fff;
-        border: none;
-        cursor: pointer;
-        padding: 1rem;
-        border-radius: 5px;
-        font-weight: 600;
-        transition: filter 0.225s ease-out;
-
-        &:focus,
-        &:hover {
-          filter: brightness(0.75);
-        }
-      }
-
-      div {
-        display: flex;
-
-        label {
-          background: transparent;
-          color: ${({ theme }) => theme.colors.mainColor};
-          font-size: 2rem;
-          margin-right: 1rem;
-          padding: 1rem;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          transition: background-color 0.225s ease-out;
-
-          input {
-            display: none;
-          }
-
-          &:focus,
-          &:hover {
-            background-color: ${({ theme }) => theme.colors.mainColor}20;
-          }
-
-          &:focus {
-            border: 2px solid ${({ theme }) => theme.colors.mainColor};
-            padding: calc(1rem - 2px);
-            outline: none;
-          }
         }
       }
     }
