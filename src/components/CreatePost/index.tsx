@@ -15,6 +15,7 @@ interface CreatePostProps {
 
 const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
   const isMount = usePreventMemoryLeak();
+  const [description, setDescription] = useState('');
 
   const [imagePreview, setImagePreview] = useImagePreview();
   const [audioResult, setAudioResult] = useState<File>();
@@ -24,7 +25,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
 
   const onSubmit = () => {
     console.log({
-      description: '',
+      description,
       body: audioResult || imagePreview.file,
       alt: '',
       thumbnail: audioResult ? imagePreview.file : '',
@@ -56,7 +57,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
         }}
       >
         <div className="editor">
-          {isMount && <DraftEditor />}
+          {isMount && <DraftEditor setDescription={setDescription} />}
           {imagePreview.preview && (
             <div className="media">
               <button type="button" onClick={() => setImagePreview('')}>

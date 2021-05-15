@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Editor from '@draft-js-plugins/editor';
 import { convertToRaw, EditorState } from 'draft-js';
 import { CircularProgress } from '@material-ui/core';
@@ -8,7 +8,11 @@ import { CharCounter, plugins } from './utils/plugins';
 
 type Answer = string | number;
 
-const DraftEditor: React.FC = () => {
+interface DraftEditorProps {
+  setDescription: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const DraftEditor: React.FC<DraftEditorProps> = ({ setDescription }) => {
   const emptyEditor = () => EditorState.createEmpty();
   const [editorState, setEditorState] = useState(emptyEditor());
   const currentEditorState = editorState.getCurrentContent();
@@ -26,6 +30,10 @@ const DraftEditor: React.FC = () => {
   const description = blocks
     .map(block => (!block.text.trim() && '\n') || block.text)
     .join('\n');
+
+  useEffect(() => {
+    setDescription(description);
+  }, [description, setDescription]);
 
   return (
     <>
