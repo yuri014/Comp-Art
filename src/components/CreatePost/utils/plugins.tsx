@@ -1,5 +1,6 @@
 import React from 'react';
 import createHashtagPlugin from '@draft-js-plugins/hashtag';
+import createCounterPlugin from '@draft-js-plugins/counter';
 
 const hashtagPlugin = createHashtagPlugin({
   hashtagComponent: ({ children }) => (
@@ -7,6 +8,13 @@ const hashtagPlugin = createHashtagPlugin({
   ),
 });
 
-const plugins = [hashtagPlugin];
+const counterTheme = {
+  counter: 'counter',
+  counterOverLimit: 'counter-limit',
+};
 
-export default plugins;
+const counterPlugin = createCounterPlugin({ theme: counterTheme });
+
+export const plugins = [hashtagPlugin, counterPlugin];
+
+export const { CharCounter } = counterPlugin;
