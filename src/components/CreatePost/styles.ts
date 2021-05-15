@@ -24,6 +24,14 @@ const CreatePostContainer = styled.div`
         color: ${({ theme }) => theme.colors.hashtag};
       }
 
+      .counter {
+        color: ${({ theme }) => theme.colors.themeColor};
+
+        &-limit {
+          color: ${({ theme }) => theme.colors.error};
+        }
+      }
+
       .DraftEditor-root {
         width: 100%;
         font-size: 1.6rem;
@@ -38,6 +46,7 @@ const CreatePostContainer = styled.div`
         margin: 2rem auto;
 
         button {
+          cursor: pointer;
           top: 4px;
           right: 4px;
           position: absolute;
