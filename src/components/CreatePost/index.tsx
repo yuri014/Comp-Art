@@ -6,9 +6,11 @@ import Editor from '@draft-js-plugins/editor';
 
 import { IProfile } from '@interfaces/Profile';
 import useImagePreview from '@hooks/imagePreview';
-import plugins from './utils/plugins';
+import { CircularProgress } from '@material-ui/core';
+import { plugins, CharCounter } from './utils/plugins';
 import CreatePostContainer from './styles';
 import 'draft-js/dist/Draft.css';
+import getValueForProgress from './utils/counter';
 
 interface CreatePostProps {
   getLoggedProfile: IProfile;
@@ -17,6 +19,8 @@ interface CreatePostProps {
 const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
   const emptyEditor = () => EditorState.createEmpty();
   const [editorState, setEditorState] = useState(emptyEditor());
+  const currentEditorState = editorState.getCurrentContent();
+  const editorCharactersCount = currentEditorState.getPlainText().length;
 
   const { blocks } = convertToRaw(editorState.getCurrentContent());
   const description = blocks
@@ -24,6 +28,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
     .join('\n');
 
   const [imagePreview, setImagePreview] = useImagePreview();
+  const [audioResult, setAudioResult] = useState<File>();
   const [imageDimension, setImageDimenstion] = useState<'cover' | 'contain'>(
     'cover',
   );
@@ -31,9 +36,9 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
   const onSubmit = () => {
     console.log({
       description,
-      body: imagePreview.file,
+      body: audioResult || imagePreview.file,
       alt: '',
-      thumbnail: '',
+      thumbnail: audioResult ? imagePreview.file : '',
     });
   };
 
@@ -68,6 +73,13 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
             onChange={setEditorState}
             plugins={plugins}
           />
+          <div className="counter-container">
+            <CircularProgress
+              variant="determinate"
+              value={getValueForProgress(editorCharactersCount)}
+            />
+            <CharCounter limit={12} />
+          </div>
           {imagePreview.preview && (
             <div className="media">
               <button type="button" onClick={() => setImagePreview('')}>
@@ -98,7 +110,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
                 accept="audio/*"
                 id="uploadAudio"
                 type="file"
-                onChange={e => console.log(e.target.files[0])}
+                onChange={e => setAudioResult(e.target.files[0])}
               />
               <IoMdMusicalNote />
             </label>
