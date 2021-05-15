@@ -24,11 +24,25 @@ const CreatePostContainer = styled.div`
         color: ${({ theme }) => theme.colors.hashtag};
       }
 
-      .counter {
-        color: ${({ theme }) => theme.colors.themeColor};
+      .counter-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        font-size: 1.4rem;
 
-        &-limit {
-          color: ${({ theme }) => theme.colors.error};
+        .counter {
+          color: ${({ theme }) => theme.colors.themeColor};
+          margin-right: 1rem;
+
+          &-limit {
+            margin-right: 1rem;
+            color: ${({ theme }) => theme.colors.error};
+          }
+        }
+
+        .background-circle {
+          position: absolute;
         }
       }
 
