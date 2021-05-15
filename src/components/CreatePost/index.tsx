@@ -1,31 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { convertToRaw, EditorState } from 'draft-js';
 import { FaRegFileImage } from 'react-icons/fa';
 import { IoMdClose, IoMdMusicalNote } from 'react-icons/io';
-import Editor from '@draft-js-plugins/editor';
 
+import usePreventMemoryLeak from '@hooks/preventMemoryLeak';
 import { IProfile } from '@interfaces/Profile';
 import useImagePreview from '@hooks/imagePreview';
-import { CircularProgress } from '@material-ui/core';
-import { plugins, CharCounter } from './utils/plugins';
 import CreatePostContainer from './styles';
+import DraftEditor from './DraftEditor';
 import 'draft-js/dist/Draft.css';
-import getValueForProgress from './utils/counter';
 
 interface CreatePostProps {
   getLoggedProfile: IProfile;
 }
 
 const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
-  const emptyEditor = () => EditorState.createEmpty();
-  const [editorState, setEditorState] = useState(emptyEditor());
-  const currentEditorState = editorState.getCurrentContent();
-  const editorCharactersCount = currentEditorState.getPlainText().length;
-
-  const { blocks } = convertToRaw(editorState.getCurrentContent());
-  const description = blocks
-    .map(block => (!block.text.trim() && '\n') || block.text)
-    .join('\n');
+  const isMount = usePreventMemoryLeak();
 
   const [imagePreview, setImagePreview] = useImagePreview();
   const [audioResult, setAudioResult] = useState<File>();
@@ -35,7 +24,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
 
   const onSubmit = () => {
     console.log({
-      description,
+      description: '',
       body: audioResult || imagePreview.file,
       alt: '',
       thumbnail: audioResult ? imagePreview.file : '',
@@ -67,19 +56,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
         }}
       >
         <div className="editor">
-          <Editor
-            editorState={editorState}
-            placeholder="Digite aqui seu post..."
-            onChange={setEditorState}
-            plugins={plugins}
-          />
-          <div className="counter-container">
-            <CircularProgress
-              variant="determinate"
-              value={getValueForProgress(editorCharactersCount)}
-            />
-            <CharCounter limit={12} />
-          </div>
+          {isMount && <DraftEditor />}
           {imagePreview.preview && (
             <div className="media">
               <button type="button" onClick={() => setImagePreview('')}>
