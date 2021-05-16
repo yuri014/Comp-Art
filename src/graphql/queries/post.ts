@@ -53,6 +53,7 @@ export const GET_POSTS = gql`
         darkColor
         lightColor
         thumbnail
+        imageHeight
       }
       ... on Share {
         _id

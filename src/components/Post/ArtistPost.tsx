@@ -9,7 +9,7 @@ const ArtistPost: React.FC<ArtistPostProps> = ({ isShare, post }) => (
     {post.mediaId === 2 ? (
       <AudioPost isShare={isShare} post={post} />
     ) : (
-      <ImagePost image={post.body} />
+      <ImagePost image={post.body} imageHeight={post.imageHeight} />
     )}
   </>
 );

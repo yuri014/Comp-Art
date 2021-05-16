@@ -4,7 +4,12 @@ import ImagePostContainer from './imagePostStyles';
 
 const FullScreenImage = dynamic(() => import('../FullScreenImage'));
 
-const ImagePost: React.FC<{ image: string }> = ({ image }) => {
+interface ImagePostProps {
+  image: string;
+  imageHeight: string;
+}
+
+const ImagePost: React.FC<ImagePostProps> = ({ image, imageHeight }) => {
   const [isImageFullScreen, setIsImageFullScreen] = useState(false);
   return (
     <ImagePostContainer>
@@ -14,13 +19,12 @@ const ImagePost: React.FC<{ image: string }> = ({ image }) => {
         type="button"
         className="image-button"
       >
-        <figure className="post-image">
-          <img
-            className="prevent-redirect-post"
-            src={process.env.NEXT_PUBLIC_API_HOST + image}
-            alt="Publicação"
-          />
-        </figure>
+        <img
+          className="prevent-redirect-post post-image"
+          src={process.env.NEXT_PUBLIC_API_HOST + image}
+          alt="Publicação"
+          height={imageHeight}
+        />
       </button>
       {isImageFullScreen && (
         <FullScreenImage
