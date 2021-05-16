@@ -108,6 +108,7 @@ const ProfileContainer = styled.div`
           display: block;
           width: 12rem;
           margin: 0 auto;
+          font-size: 1.2rem;
         }
       }
     }
