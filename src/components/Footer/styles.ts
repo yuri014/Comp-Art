@@ -11,7 +11,7 @@ const FooterContainer = styled.footer`
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
 
     a {
       color: ${({ theme }) => theme.colors.themeColor};

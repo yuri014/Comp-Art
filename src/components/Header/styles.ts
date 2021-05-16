@@ -6,7 +6,7 @@ export const MenuListIcon = styled.div`
   gap: 0.6rem;
   padding: 0 2rem;
   color: ${({ theme }) => theme.colors.mainColor};
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -109,7 +109,7 @@ export const HeaderContainer = styled.header`
           }
 
           p {
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             color: ${({ theme }) => theme.colors.gray};
           }
         }

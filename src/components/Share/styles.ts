@@ -27,7 +27,7 @@ const ShareContainer = styled.div`
       }
 
       .date {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         text-align: right;
       }
     }

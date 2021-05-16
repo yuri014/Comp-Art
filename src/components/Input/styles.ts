@@ -12,7 +12,7 @@ export const LabelInputContainer = styled.label`
 
   span {
     color: ${({ theme }) => theme.colors.darkGray};
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-top: 0.2rem;
   }
 

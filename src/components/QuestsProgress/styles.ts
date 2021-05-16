@@ -19,7 +19,7 @@ const QuestsProgressContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: bold;
     background-color: ${({ theme }) => theme.colors.lightSecondaryBackground};
     padding: 1rem;

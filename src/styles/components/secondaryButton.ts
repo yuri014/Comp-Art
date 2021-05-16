@@ -10,7 +10,7 @@ const CASecondaryButton = styled.button`
   background-color: transparent;
   border-radius: 30px;
   padding: 0.4rem 1rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   transition: 0.2s ease-out;
 
   &.main-color {

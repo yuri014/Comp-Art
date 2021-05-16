@@ -28,7 +28,7 @@ export const HashtagsProfileContainer = styled.div`
       background-color: ${({ theme }) => theme.colors.pink};
       padding: 1rem;
       border-radius: 5px;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
     }
   }
 `;
@@ -113,14 +113,14 @@ export const HomeProfileContainer = styled.div`
 
       p,
       h2 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
       }
     }
   }
 
   .profile-reputation {
     margin-top: 1rem;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 600;
 
     .xp,

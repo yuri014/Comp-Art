@@ -39,7 +39,7 @@ const PostContainer = styled.div`
     margin: 1rem 0 1rem 0;
 
     .publish-date {
-      font-size: 1.1rem;
+      font-size: 1.3rem;
       padding-top: 1rem;
       margin-top: 1rem;
       border-top: 1px solid #3e3e3e;
@@ -120,7 +120,7 @@ const PostContainer = styled.div`
       }
 
       p {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
       }
     }
   }
@@ -139,7 +139,7 @@ const PostContainer = styled.div`
         justify-content: space-between;
 
         p {
-          font-size: 1.2rem;
+          font-size: 1.3rem;
         }
 
         .share-count {
