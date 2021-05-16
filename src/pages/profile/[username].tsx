@@ -92,11 +92,14 @@ const Profile: React.FC<ProfileProps> = ({
       <ProfileContainer>
         <main>
           <div className="cover-profile">
-            {getProfile.coverImage !== '' ? (
-              <CAImage image={getProfile.coverImage} />
-            ) : (
-              <div className="holder" />
-            )}
+            <div>
+              {getProfile.coverImage !== '' ? (
+                <CAImage image={getProfile.coverImage} />
+              ) : (
+                <div className="holder" />
+              )}
+            </div>
+            <ProfileLinks links={getProfile.links} />
           </div>
           <div className="container">
             <CAImage className="avatar-profile" image={getProfile.avatar} />
@@ -178,7 +181,6 @@ const Profile: React.FC<ProfileProps> = ({
                   <p>{getProfile.bio}</p>
                 </div>
               )}
-              <ProfileLinks links={getProfile.links} />
             </section>
           </div>
         </main>
