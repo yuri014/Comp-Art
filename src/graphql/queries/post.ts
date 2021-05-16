@@ -147,6 +147,11 @@ export const GET_PROFILE_POSTS = gql`
       }
       mediaId
       isLiked
+      darkColor
+      lightColor
+      thumbnail
+      imageHeight
+      title
     }
   }
 `;
