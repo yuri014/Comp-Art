@@ -32,7 +32,7 @@ const Timeline: React.FC = () => {
       ) : (
         data.getPosts.map((post, index) => {
           const postsLenght = data.getPosts.length;
-          if (postsLenght === index + 1 && postsLenght >= 6) {
+          if (postsLenght === index + 1 && postsLenght) {
             if (post.artist) {
               return (
                 <div key={post._id} ref={lastPostRef}>
