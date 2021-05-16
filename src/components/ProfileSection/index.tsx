@@ -36,7 +36,7 @@ const ProfileSection: React.FC<ProfileProps> = ({ getProfile }) => {
     <ProfileSectionContainer>
       <div className="avatar-profile">
         <CAImage image={getProfile.avatar} />
-        <p>Level {getProfile.level}</p>
+        <p>LEVEL {getProfile.level}</p>
       </div>
       <div className="profile">
         <div>
