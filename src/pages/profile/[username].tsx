@@ -28,6 +28,7 @@ import CASecondaryButton from '@styles/components/secondaryButton';
 import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
 import formatMetaHashtags from '@utils/formatHashtags';
+import ArtistPost from '@components/Post/ArtistPost';
 import ProfileContainer from './_styles';
 
 const CAImage = dynamic(() => import('@components/CAImage'));
@@ -207,13 +208,17 @@ const Profile: React.FC<ProfileProps> = ({
                     key={`${post.artist}_${post.createdAt}`}
                     ref={lastPostRef}
                   >
-                    <Post post={post} />
+                    <Post post={post}>
+                      <ArtistPost post={post} />
+                    </Post>
                   </div>
                 );
               }
               return (
                 <div key={`${post.artist}_${post.createdAt}`}>
-                  <Post post={post} />
+                  <Post post={post}>
+                    <ArtistPost post={post} />
+                  </Post>
                 </div>
               );
             })
