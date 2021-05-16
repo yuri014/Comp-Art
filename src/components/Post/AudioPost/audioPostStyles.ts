@@ -4,6 +4,7 @@ interface AudioPostContainerProps {
   darkColor: string;
   lightColor: string;
   isShare: boolean;
+  isLightTheme: boolean;
 }
 
 const handleBackgroundColor = props => {
@@ -11,6 +12,13 @@ const handleBackgroundColor = props => {
     return props.theme.colors.secondaryBackgroundColor;
   }
   return props.theme.colors.lightSecondaryBackground;
+};
+
+const getThemedColor = (props: AudioPostContainerProps) => {
+  if (props.isLightTheme) {
+    return props.lightColor;
+  }
+  return props.darkColor;
 };
 
 const AudioPostContainer = styled.section<AudioPostContainerProps>`
@@ -25,7 +33,7 @@ const AudioPostContainer = styled.section<AudioPostContainerProps>`
     background: ${props => handleBackgroundColor(props)};
     border-radius: 5px;
     height: 40rem;
-    border-top: 1rem solid ${props => props.darkColor};
+    border-top: 1rem solid ${props => getThemedColor(props)};
 
     .thumbnail {
       img {
@@ -87,7 +95,7 @@ const AudioPostContainer = styled.section<AudioPostContainerProps>`
   }
 
   span {
-    color: ${props => props.darkColor};
+    color: ${props => getThemedColor(props)};
   }
 
   p {
@@ -100,7 +108,7 @@ const AudioPostContainer = styled.section<AudioPostContainerProps>`
     &.artist-name {
       font-weight: 400;
       font-size: 1.4rem;
-      color: ${props => props.darkColor};
+      color: ${props => getThemedColor(props)};
     }
 
     &.music-name,

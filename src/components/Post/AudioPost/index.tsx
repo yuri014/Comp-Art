@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import {
   FaBackward,
@@ -11,6 +11,7 @@ import { FiRepeat } from 'react-icons/fi';
 
 import formatTime from '@utils/formatTime';
 import { ArtistPostProps } from '@interfaces/Post';
+import ThemeContext from '@context/theme';
 import AudioPostContainer from './audioPostStyles';
 import Links from './Links';
 import AudioSlider from './Slider';
@@ -19,6 +20,7 @@ const AudioPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
   const audioRef = useRef<null | HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioDuration, setAudioDuration] = useState('0:00');
+  const { theme } = useContext(ThemeContext);
 
   const handlePlaying = () => {
     if (!isPlaying) {
@@ -34,6 +36,7 @@ const AudioPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
       isShare={isShare}
       darkColor={post.darkColor}
       lightColor={post.lightColor}
+      isLightTheme={theme === 'light'}
     >
       <div className="audio-card">
         <div className="thumbnail">
