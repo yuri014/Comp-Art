@@ -21,6 +21,7 @@ export const HeaderContainer = styled.header`
   background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
   position: fixed;
   width: 100%;
+  top: 0;
   padding: 1rem 4rem;
   font-size: 1.8rem;
   z-index: 2;

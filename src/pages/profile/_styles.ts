@@ -6,6 +6,8 @@ const ProfileContainer = styled.div`
   .cover-profile {
     width: 100%;
     height: 14rem;
+    position: absolute;
+    top: 0;
 
     &.cover-placeholder {
       background-color: ${({ theme }) => theme.colors.mainColor};
@@ -51,18 +53,22 @@ const ProfileContainer = styled.div`
     }
   }
 
-  .profile-posts {
-    margin-top: 2rem;
-    padding-bottom: 8rem;
+  main {
+    margin-top: 14rem;
+
+    .profile-posts {
+      margin-top: 2rem;
+      padding-bottom: 8rem;
+    }
   }
 
   @media (min-width: 1100px) {
     .cover-profile {
-      padding-top: 6rem;
-      height: 25rem;
+      height: 24rem;
+      top: 6rem;
 
       .profile-links {
-        top: 25rem;
+        top: 19rem;
         flex-direction: row;
         gap: 0;
         right: 3rem;
@@ -85,12 +91,13 @@ const ProfileContainer = styled.div`
 
     main {
       max-width: 1378px;
-      padding: 11rem 4rem;
+      padding: 0 4rem;
       padding-bottom: 4rem;
       display: grid;
       grid-template-columns: 24% 48% 24%;
       justify-content: space-between;
       margin: auto;
+      margin-top: 36rem;
 
       .profile-posts {
         margin-top: 0;

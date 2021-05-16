@@ -8,6 +8,7 @@ const ProfileSectionContainer = styled.section`
   background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
   box-shadow: ${({ theme }) => theme.colors.mainShadow};
   height: fit-content;
+  z-index: 2;
 
   .buttons-profile {
     width: 100%;
@@ -120,7 +121,7 @@ const ProfileSectionContainer = styled.section`
 
   @media (min-width: 1100px) {
     border-radius: 5px;
-    margin-top: -11rem;
+    margin-top: -12rem;
   }
 `;
 
