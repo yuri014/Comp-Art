@@ -9,7 +9,6 @@ import Header from '@components/Header';
 import MobileFooter from '@components/MobileFooter';
 import Post from '@components/Post';
 import SkeletonPost from '@components/Post/SkeletonPost';
-import Meta from '@components/SEO/Meta';
 import ProfileLinks from '@components/Splitter/ProfileLinks';
 import { AuthContext } from '@context/auth';
 import ThemeContext from '@context/theme';
@@ -27,8 +26,8 @@ import { ILoggedProfile, IProfile } from '@interfaces/Profile';
 import CASecondaryButton from '@styles/components/secondaryButton';
 import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
-import formatMetaHashtags from '@utils/formatHashtags';
 import ArtistPost from '@components/Post/ArtistPost';
+import ProfileSEO from '@components/SEO/ProfileSEO';
 import ProfileContainer from './_styles';
 
 const CAImage = dynamic(() => import('@components/CAImage'));
@@ -86,23 +85,9 @@ const Profile: React.FC<ProfileProps> = ({
   const checkFollowButton = () =>
     hasAuth && getProfile.owner !== auth.user.username;
 
-  const hashtags = formatMetaHashtags(getProfile.hashtags);
-
   return (
     <ThemeProvider theme={theme === 'light' ? mainLightTheme : mainDarkTheme}>
-      <Meta
-        title={`${getProfile.owner} - Perfil`}
-        description={`${getProfile.owner} é um ${
-          getProfile.isArtist
-            ? `artista que produz e/ou se interessa por ${hashtags}`
-            : `fã de ${hashtags}`
-        }`}
-        keywords={`${getProfile.owner}, ${getProfile.name}, ${hashtags}, ${
-          getProfile.bio
-        }, ${getProfile.isArtist ? 'artista' : 'fã'}`}
-        uri={`profile/${getProfile.owner}`}
-        seoImage={getProfile.avatar}
-      />
+      <ProfileSEO getProfile={getProfile} />
       <Header getLoggedProfile={getLoggedProfile} />
       <ProfileContainer>
         <main>
