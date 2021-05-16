@@ -30,6 +30,7 @@ export interface IProfile {
   };
   sharedPostCount?: number;
   postCount?: number;
+  createdAt: string;
 }
 
 export interface ILoggedProfile {

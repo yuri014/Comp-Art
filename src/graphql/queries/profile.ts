@@ -32,6 +32,7 @@ export const GET_PROFILE = gql`
       isArtist
       postCount
       sharedPostCount
+      createdAt
     }
   }
 `;
