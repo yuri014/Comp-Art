@@ -15,7 +15,6 @@ const ImagePostContainer = styled.div`
       cursor: pointer;
       width: 100%;
       border-radius: 4px;
-      object-fit: cover;
     }
   }
 `;
