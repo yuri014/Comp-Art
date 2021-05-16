@@ -6,7 +6,6 @@ const ProfileContainer = styled.div`
   .cover-profile {
     width: 100%;
     height: 14rem;
-    border-bottom: 1px solid ${({ theme }) => theme.colors.mainColor};
 
     &.cover-placeholder {
       background-color: ${({ theme }) => theme.colors.mainColor};
@@ -52,33 +51,52 @@ const ProfileContainer = styled.div`
     }
   }
 
-  .buttons-profile {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 4rem;
-
-    button {
-      width: 12rem;
-      border: none;
-      color: #fff;
-      padding: 1.1rem 1rem;
-      border-radius: 5px;
-      background-color: ${({ theme }) => theme.colors.mainColor};
-
-      &.sponsorship {
-        background-color: ${({ theme }) => theme.colors.purple};
-      }
-
-      &.edit-profile {
-        background-color: #38383c;
-      }
-    }
-  }
-
   .profile-posts {
     margin-top: 2rem;
     padding-bottom: 8rem;
+  }
+
+  @media (min-width: 1100px) {
+    .cover-profile {
+      padding-top: 6rem;
+      height: 25rem;
+
+      .profile-links {
+        top: 25rem;
+        flex-direction: row;
+        gap: 0;
+        right: 3rem;
+
+        a {
+          font-size: 2rem;
+          width: 4rem;
+          height: 4rem;
+          padding: 1rem;
+          display: inline-flex;
+          border-radius: 50%;
+          transform: scale(0.8);
+        }
+
+        div > * {
+          margin-left: 0.6rem;
+        }
+      }
+    }
+
+    main {
+      max-width: 1378px;
+      padding: 11rem 4rem;
+      padding-bottom: 4rem;
+      display: grid;
+      grid-template-columns: 24% 48% 24%;
+      justify-content: space-between;
+      margin: auto;
+
+      .profile-posts {
+        margin-top: 0;
+        padding-bottom: 4rem;
+      }
+    }
   }
 `;
 

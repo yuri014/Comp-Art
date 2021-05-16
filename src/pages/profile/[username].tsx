@@ -76,35 +76,39 @@ const Profile: React.FC<ProfileProps> = ({
 
           <ProfileLinks links={getProfile.links} />
         </div>
-        <ProfileSection getProfile={getProfile} />
-        <section className="profile-posts">
-          {loadingPost || error ? (
-            <SkeletonPost />
-          ) : (
-            data.getProfilePosts.map((post, index) => {
-              if (data.getProfilePosts.length === index + 1) {
+        <main>
+          <ProfileSection getProfile={getProfile} />
+          <section className="profile-posts">
+            {loadingPost || error ? (
+              <SkeletonPost />
+            ) : (
+              data.getProfilePosts.map((post, index) => {
+                if (data.getProfilePosts.length === index + 1) {
+                  return (
+                    <div
+                      key={`${post.artist}_${post.createdAt}`}
+                      ref={lastPostRef}
+                    >
+                      <Post post={post}>
+                        <ArtistPost post={post} />
+                      </Post>
+                    </div>
+                  );
+                }
                 return (
-                  <div
-                    key={`${post.artist}_${post.createdAt}`}
-                    ref={lastPostRef}
-                  >
+                  <div key={`${post.artist}_${post.createdAt}`}>
                     <Post post={post}>
                       <ArtistPost post={post} />
                     </Post>
                   </div>
                 );
-              }
-              return (
-                <div key={`${post.artist}_${post.createdAt}`}>
-                  <Post post={post}>
-                    <ArtistPost post={post} />
-                  </Post>
-                </div>
-              );
-            })
-          )}
-        </section>
-
+              })
+            )}
+          </section>
+          <section className="no-logged">
+            <div>Novo na Comp-Art?</div>
+          </section>
+        </main>
         <MobileFooter />
       </ProfileContainer>
     </ThemeProvider>

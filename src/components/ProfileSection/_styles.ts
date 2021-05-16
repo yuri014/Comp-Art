@@ -7,6 +7,37 @@ const ProfileSectionContainer = styled.section`
   padding: 3rem 3rem;
   background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
   box-shadow: ${({ theme }) => theme.colors.mainShadow};
+  height: fit-content;
+
+  .buttons-profile {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4rem;
+
+    button {
+      width: 12rem;
+      border: none;
+      color: #fff;
+      padding: 1.1rem 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      background-color: ${({ theme }) => theme.colors.mainColor};
+      transition: filter 0.225s ease;
+
+      &.sponsorship {
+        background-color: ${({ theme }) => theme.colors.purple};
+      }
+
+      &.edit-profile {
+        background-color: #38383c;
+      }
+
+      &:hover {
+        filter: brightness(0.75);
+      }
+    }
+  }
 
   .avatar-profile {
     position: relative;
@@ -85,6 +116,11 @@ const ProfileSectionContainer = styled.section`
     text-align: center;
     text-transform: uppercase;
     color: #949494;
+  }
+
+  @media (min-width: 1100px) {
+    border-radius: 5px;
+    margin-top: -11rem;
   }
 `;
 
