@@ -12,6 +12,7 @@ const theme = {
     lightContrast: '#cbcaeb',
     darkGray: '#38383C',
     gray: '#38383C',
+    purple: '#6C63FF',
     lightSecondaryBackground: '#e5e5e5',
     lighterSecondaryBackground: '#e5e5e5',
     inputBackground: '#dddddd',
