@@ -60,9 +60,58 @@ const ProfileContainer = styled.div`
       margin-top: 2rem;
       padding-bottom: 8rem;
     }
+
+    .no-logged {
+      display: none;
+    }
   }
 
   @media (min-width: 1100px) {
+    main {
+      max-width: 1378px;
+      padding: 0 4rem;
+      padding-bottom: 4rem;
+      display: grid;
+      grid-template-columns: 24% 48% 24%;
+      justify-content: space-between;
+      margin: auto;
+      margin-top: 36rem;
+
+      .profile-posts {
+        margin-top: 0;
+        padding-bottom: 4rem;
+      }
+
+      .no-logged {
+        display: block;
+        background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
+        height: fit-content;
+        border-radius: 5px;
+        padding: 2rem 1rem;
+        text-align: center;
+        box-shadow: ${({ theme }) => theme.colors.mainShadow};
+
+        h4 {
+          font-size: 1.8rem;
+        }
+
+        p {
+          font-size: 1.4rem;
+        }
+
+        h4,
+        p {
+          margin-bottom: 2rem;
+        }
+
+        a {
+          display: block;
+          width: 12rem;
+          margin: 0 auto;
+        }
+      }
+    }
+
     .cover-profile {
       height: 24rem;
       top: 6rem;
@@ -86,22 +135,6 @@ const ProfileContainer = styled.div`
         div > * {
           margin-left: 0.6rem;
         }
-      }
-    }
-
-    main {
-      max-width: 1378px;
-      padding: 0 4rem;
-      padding-bottom: 4rem;
-      display: grid;
-      grid-template-columns: 24% 48% 24%;
-      justify-content: space-between;
-      margin: auto;
-      margin-top: 36rem;
-
-      .profile-posts {
-        margin-top: 0;
-        padding-bottom: 4rem;
       }
     }
   }

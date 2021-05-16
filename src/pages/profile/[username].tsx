@@ -21,6 +21,8 @@ import mainLightTheme from '@styles/themes/MainLightTheme';
 import ArtistPost from '@components/Post/ArtistPost';
 import ProfileSEO from '@components/SEO/ProfileSEO';
 import ProfileSection from '@components/ProfileSection';
+import Link from 'next/link';
+import CAButton from '@styles/components/button';
 import ProfileContainer from './_styles';
 
 const CAImage = dynamic(() => import('@components/CAImage'));
@@ -106,7 +108,13 @@ const Profile: React.FC<ProfileProps> = ({
             )}
           </section>
           <section className="no-logged">
-            <div>Novo na Comp-Art?</div>
+            <div>
+              <h4>Novo na Comp-Art?</h4>
+              <p>Inscreva-se para explorar o mundo da arte!</p>
+              <Link href="/register">
+                <CAButton as="a">CRIAR CONTA</CAButton>
+              </Link>
+            </div>
           </section>
         </main>
         <MobileFooter />
