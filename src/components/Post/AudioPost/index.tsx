@@ -46,7 +46,7 @@ const AudioPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
           <div className="audio-card-info">
             <Links
               username={post.artist.owner}
-              description={post.description}
+              title={post.title}
               name={post.artist.name}
               id={post._id}
             />

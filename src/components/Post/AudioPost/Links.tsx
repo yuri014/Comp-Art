@@ -3,17 +3,17 @@ import Link from 'next/link';
 
 interface LinksProps {
   username: string;
-  description: string;
+  title: string;
   name: string;
   id: string;
 }
 
-const Links = React.memo<LinksProps>(({ username, description, name, id }) => (
+const Links = React.memo<LinksProps>(({ username, title, name, id }) => (
   <div>
     <Link href={`/post/${id}`}>
       <a>
-        <p className="music-name" title={description}>
-          {description}
+        <p className="music-name" title={title}>
+          {title}
         </p>
       </a>
     </Link>

@@ -23,6 +23,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
   const [description, setDescription] = useState('');
   const [canSubmit, setCanSubmit] = useState(true);
   const [showError, setShowError] = useState('');
+  const [title, setTitle] = useState('');
 
   const [imagePreview, setImagePreview] = useImagePreview();
   const [audioResult, setAudioResult] = useState<File>();
@@ -40,6 +41,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
           body: audioResult || imagePreview.file,
           alt: '',
           thumbnail: audioResult ? imagePreview.file : '',
+          title,
         },
       },
     });
@@ -75,6 +77,20 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
                 alt="Imagem do perfil"
                 style={{ objectFit: imageDimension }}
               />
+            </div>
+          )}
+          {audioResult && (
+            <div className="audio-result">
+              <label htmlFor="title">
+                Título
+                <input
+                  type="text"
+                  value={title}
+                  onChange={e => setTitle(e.target.value)}
+                  id="title"
+                  name="title"
+                />
+              </label>
             </div>
           )}
         </div>

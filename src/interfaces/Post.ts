@@ -5,6 +5,7 @@ export interface IPost {
   artist: IProfile;
   mediaId: number;
   imageHeight: string;
+  title: string;
 }
 
 export interface IShare {

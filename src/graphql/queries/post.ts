@@ -54,6 +54,7 @@ export const GET_POSTS = gql`
         lightColor
         thumbnail
         imageHeight
+        title
       }
       ... on Share {
         _id
@@ -72,6 +73,7 @@ export const GET_POSTS = gql`
           darkColor
           lightColor
           thumbnail
+          title
         }
         likes {
           profile {
