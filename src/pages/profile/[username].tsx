@@ -23,11 +23,11 @@ import {
 import useInfiniteScroll from '@hooks/infiniteScroll';
 import { Timeline } from '@interfaces/Post';
 import { ILoggedProfile, IProfile } from '@interfaces/Profile';
-import CASecondaryButton from '@styles/components/secondaryButton';
 import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
 import ArtistPost from '@components/Post/ArtistPost';
 import ProfileSEO from '@components/SEO/ProfileSEO';
+import formatDate from '@utils/formatDate';
 import ProfileContainer from './_styles';
 
 const CAImage = dynamic(() => import('@components/CAImage'));
@@ -85,38 +85,74 @@ const Profile: React.FC<ProfileProps> = ({
   const checkFollowButton = () =>
     hasAuth && getProfile.owner !== auth.user.username;
 
+  const hasCoverProfile = getProfile.coverImage !== '';
+
   return (
     <ThemeProvider theme={theme === 'light' ? mainLightTheme : mainDarkTheme}>
       <ProfileSEO getProfile={getProfile} />
       <Header getLoggedProfile={getLoggedProfile} />
       <ProfileContainer>
         <main>
-          <div className="cover-profile">
-            <div>
-              {getProfile.coverImage !== '' ? (
-                <CAImage image={getProfile.coverImage} />
-              ) : (
-                <div className="holder" />
-              )}
-            </div>
+          <div
+            className={`cover-profile ${
+              hasCoverProfile ? '' : 'cover-placeholder'
+            }`}
+          >
+            {hasCoverProfile && <CAImage image={getProfile.coverImage} />}
+
             <ProfileLinks links={getProfile.links} />
           </div>
-          <div className="container">
-            <CAImage className="avatar-profile" image={getProfile.avatar} />
+          <section>
+            <div className="avatar-profile">
+              <CAImage image={getProfile.avatar} />
+              <p>Level {getProfile.level}</p>
+            </div>
+            <div className="profile">
+              <div>
+                <h1 title={getProfile.name}>{getProfile.name}</h1>
+                <h2>@{getProfile.owner}</h2>
+              </div>
+              <div className="profile-numbers">
+                <div>
+                  {getProfile.sharedPostCount !== null && (
+                    <p>{getProfile.sharedPostCount}</p>
+                  )}
+                  {getProfile.postCount !== null && (
+                    <p>{getProfile.postCount}</p>
+                  )}
+                  <p>Publicações </p>
+                </div>
+                <div>
+                  <p>{getProfile.following}</p>
+                  <p>Seguindo</p>
+                </div>
+                <div>
+                  <p>{followersCount}</p>
+                  <p>Seguidores</p>
+                </div>
+              </div>
+            </div>
+            {getProfile.bio && (
+              <div className="bio">
+                <p>{getProfile.bio}</p>
+              </div>
+            )}
             <div className="buttons-profile">
-              <CASecondaryButton type="button">Patrocinar</CASecondaryButton>
+              <button type="button" className="sponsorship">
+                PATROCINAR
+              </button>
               {hasAuth && getProfile.owner === auth.user.username && (
                 <Link href="/profile/edit">
                   <a>
-                    <CASecondaryButton className="main-color" type="button">
-                      Editar perfil
-                    </CASecondaryButton>
+                    <button className="edit-profile" type="button">
+                      EDITAR PERFIL
+                    </button>
                   </a>
                 </Link>
               )}
 
               {checkFollowButton() && isFollowing && !loading && (
-                <CASecondaryButton
+                <button
                   className="main-color"
                   type="button"
                   onClick={() => {
@@ -127,12 +163,12 @@ const Profile: React.FC<ProfileProps> = ({
                     setFollowersCount(followersCount - 1);
                   }}
                 >
-                  Seguindo
-                </CASecondaryButton>
+                  SEGUINDO
+                </button>
               )}
               {checkFollowButton() && !isFollowing && !loading && (
-                <CASecondaryButton
-                  className="main-color"
+                <button
+                  type="button"
                   onClick={() => {
                     follow({
                       variables: { username: getProfile.owner },
@@ -141,48 +177,26 @@ const Profile: React.FC<ProfileProps> = ({
                     setFollowersCount(followersCount + 1);
                   }}
                 >
-                  Seguir
-                </CASecondaryButton>
+                  SEGUIR
+                </button>
               )}
               {!hasAuth && (
-                <CASecondaryButton className="main-color" type="button">
-                  Seguir
-                </CASecondaryButton>
+                <button className="main-color" type="button">
+                  SEGUIR
+                </button>
               )}
             </div>
-            <section>
-              <div className="profile">
-                <div>
-                  <h1 title={getProfile.name}>{getProfile.name}</h1>
-                  <h2>@{getProfile.owner}</h2>
-                </div>
-                <div>
-                  <p>
-                    Level <span className="level">{getProfile.level}</span>
-                  </p>
-                  {getProfile.sharedPostCount !== null && (
-                    <p>Publicações: {getProfile.sharedPostCount}</p>
-                  )}
-                  {getProfile.postCount !== null && (
-                    <p>Publicações: {getProfile.postCount}</p>
-                  )}
-                </div>
-                <div className="profile-follows">
-                  <p>
-                    Seguindo: <span>{getProfile.following}</span>
-                  </p>
-                  <p>
-                    Seguidores: <span>{followersCount}</span>
-                  </p>
-                </div>
-              </div>
-              {getProfile.bio && (
-                <div className="bio">
-                  <p>{getProfile.bio}</p>
-                </div>
-              )}
-            </section>
-          </div>
+            <div className="bio">
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit
+                dicta deserunt incidunt esse deleniti eius perspiciatis illum
+                adipisci dolores. Adipisci.
+              </p>
+            </div>
+            <div className="joined">
+              <p>Ingressou em {formatDate(getProfile.createdAt)}</p>
+            </div>
+          </section>
         </main>
         <section className="profile-posts">
           {loadingPost || error ? (
