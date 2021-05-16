@@ -89,6 +89,7 @@ export const GET_POSTS = gql`
         }
         createdAt
         isLiked
+        imageHeight
       }
     }
   }

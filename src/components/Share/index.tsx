@@ -33,7 +33,10 @@ const Share: React.FC<PostProps> = ({ post }) => {
           {post.post.description && (
             <div className="description">{post.post.description}</div>
           )}
-          <ArtistPost isShare post={post.post} />
+          <ArtistPost
+            isShare
+            post={{ ...post.post, imageHeight: post.imageHeight }}
+          />
           <div className="date">
             <p>{publishDate(post.post.createdAt)}</p>
           </div>
