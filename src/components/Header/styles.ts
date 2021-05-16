@@ -24,7 +24,7 @@ export const HeaderContainer = styled.header`
   top: 0;
   padding: 1rem 4rem;
   font-size: 1.8rem;
-  z-index: 2;
+  z-index: 3;
   box-shadow: ${({ theme }) => theme.colors.mainShadow};
 
   display: grid;
