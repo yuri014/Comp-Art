@@ -12,7 +12,7 @@ export const MenuListIcon = styled.div`
   cursor: pointer;
 
   p {
-    font-weight: bold;
+    font-weight: 500;
     color: ${({ theme }) => theme.colors.themeColor};
   }
 `;
