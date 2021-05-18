@@ -29,7 +29,7 @@ const SkeletonPost: React.FC = () => (
         </div>
       </div>
       <div className="post">
-        <div className="post-description">
+        <div className="post-description-loading">
           <Skeleton animation="wave" width="100%" height={60} />
         </div>
         <Skeleton animation="wave" variant="rect" width="100%" height={378} />

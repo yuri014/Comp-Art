@@ -66,6 +66,11 @@ const PostContainer = styled.div`
       margin: 1rem 0 1rem 0;
       max-width: 100%;
       cursor: text;
+      width: fit-content;
+
+      &-loading {
+        width: unset;
+      }
 
       p {
         overflow: hidden;
