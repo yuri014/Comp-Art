@@ -65,6 +65,7 @@ const PostContainer = styled.div`
     .post-description {
       margin: 1rem 0 1rem 0;
       max-width: 100%;
+      cursor: text;
 
       p {
         overflow: hidden;
