@@ -18,6 +18,7 @@ const theme = {
     inputBackground: '#dddddd',
     lightGreen: '#5DD083',
     hashtag: '#6C63FF',
+    link: '#13418B',
     mainGradient: `linear-gradient(
       310deg,
       #050211 0%,
