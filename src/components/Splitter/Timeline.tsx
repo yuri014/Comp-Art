@@ -20,7 +20,7 @@ const Timeline: React.FC = () => {
       !!data.getPosts &&
       fetchMore({
         variables: { offset: data.getPosts.length },
-      }).then(newPosts => newPosts.data.getPosts.length < 6),
+      }).then(newPosts => newPosts.data.getPosts.length === 6),
   );
 
   return (

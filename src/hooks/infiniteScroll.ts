@@ -13,7 +13,7 @@ const useInfiniteScroll = (
   data: unknown,
   callback: () => Promise<boolean | ApolloQueryResult<unknown>>,
 ): UseInfiniteScroll => {
-  const [hasMore, setHasMore] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
   const observer = useRef(null);
 
   const lastPostRef = useCallback(
@@ -21,7 +21,7 @@ const useInfiniteScroll = (
       if (!data) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver(async entries => {
-        if (entries[0].isIntersecting && !hasMore) {
+        if (entries[0].isIntersecting && hasMore) {
           const lenght = await callback();
           setHasMore(lenght as boolean);
         }
@@ -29,8 +29,7 @@ const useInfiniteScroll = (
 
       if (node) observer.current.observe(node);
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [data],
+    [callback, data, hasMore],
   );
 
   return lastPostRef;
