@@ -8,6 +8,7 @@ import useDeletePost from '@hooks/posts';
 import { PostProps } from '@interfaces/Post';
 import publishDate from '@utils/publishDate';
 import usePostAsLink from '@hooks/postAsLink';
+import TextBox from '@components/TextBox';
 import PostInteractionButtons from './Buttons';
 import PostContainer from './styles';
 import AuthorInfo from './utils/AuthorInfo';
@@ -112,7 +113,9 @@ const Post: React.FC<IPostProps> = ({ post, children }) => {
           <div className="post">
             {post.description && (
               <div className="post-description">
-                <p>{post.description}</p>
+                <p>
+                  <TextBox text={post.description} />
+                </p>
               </div>
             )}
             {children}
