@@ -71,11 +71,6 @@ const PostContainer = styled.div`
       &-loading {
         width: unset;
       }
-
-      p {
-        overflow: hidden;
-        max-width: 700px;
-      }
     }
 
     .post-info {
