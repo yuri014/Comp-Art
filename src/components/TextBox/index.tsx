@@ -1,11 +1,15 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import React, { SyntheticEvent } from 'react';
+import React from 'react';
 import * as linkify from 'linkifyjs';
 import Linkify from 'linkifyjs/react';
 import hashtag from 'linkifyjs/plugins/hashtag';
+import mention from 'linkifyjs/plugins/mention';
 import { useRouter } from 'next/router';
 
+import TextBoxContainer from './styles';
+
 hashtag(linkify);
+mention(linkify);
 
 interface TextBoxProps {
   text: string;
@@ -15,32 +19,43 @@ const TextBox: React.FC<TextBoxProps> = ({ text }) => {
   const router = useRouter();
 
   return (
-    <Linkify
-      options={{
-        attributes: {
-          // @ts-ignore
-          onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
-            console.log(e);
-
+    <TextBoxContainer>
+      <Linkify
+        tagName="p"
+        options={{
+          attributes: {
             // @ts-ignore
-            const path = e.target.outerText as string;
+            onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
+              // @ts-ignore
+              const path = e.target.outerText as string;
 
-            router.push(`/${path.substring(1)}`);
+              if (path[0] === '#') {
+                router.push(`/${path.substring(1)}`);
+              }
+
+              if (path[0] === '@') {
+                router.push(`/profile/${path.substring(1)}`);
+              }
+            },
           },
-        },
-        formatHref(href, type) {
-          if (type === 'hashtag') {
-            return '';
-          }
-
-          href = `${href.substring(1)}`;
-          return href;
-        },
-      }}
-    >
-      #bahh
-      https://www.google.com/search?q=linkify+with+react+link&oq=linkify+with+react+link&aqs=chrome..69i57.5458j0j1&sourceid=chrome&ie=UTF-8
-    </Linkify>
+          tagName: {
+            url: 'a',
+            hashtag: 'span',
+            mention: 'span',
+          },
+          rel: 'noopener noreferrer',
+          target: {
+            url: '_blank',
+          },
+          className: {
+            hashtag: 'hashtag',
+            mention: 'mention',
+          },
+        }}
+      >
+        {text}
+      </Linkify>
+    </TextBoxContainer>
   );
 };
 
