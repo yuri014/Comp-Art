@@ -4,14 +4,17 @@ import { ArtistPostProps } from '@interfaces/Post';
 import AudioPost from './AudioPost';
 import ImagePost from './ImagePost';
 
-const ArtistPost: React.FC<ArtistPostProps> = ({ isShare, post }) => (
-  <>
-    {post.mediaId === 2 ? (
-      <AudioPost isShare={isShare} post={post} />
-    ) : (
-      <ImagePost image={post.body} imageHeight={post.imageHeight} />
-    )}
-  </>
-);
+const ArtistPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
+  switch (post.mediaId) {
+    case 1:
+      return <ImagePost image={post.body} imageHeight={post.imageHeight} />;
+    case 2:
+      return <AudioPost isShare={isShare} post={post} />;
+    case 4:
+      return <></>;
+    default:
+      return <></>;
+  }
+};
 
 export default ArtistPost;
