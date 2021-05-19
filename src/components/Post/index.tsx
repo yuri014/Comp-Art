@@ -113,9 +113,7 @@ const Post: React.FC<IPostProps> = ({ post, children }) => {
           <div className="post">
             {post.description && (
               <div className="post-description">
-                <p>
-                  <TextBox text={post.description} />
-                </p>
+                <TextBox text={post.description} />
               </div>
             )}
             {children}
