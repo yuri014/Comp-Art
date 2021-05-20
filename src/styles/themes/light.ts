@@ -6,6 +6,7 @@ const theme = {
     secondaryBackgroundColor: '#fff',
     alternativeBackground: '#f5f5f5',
     modalBackrgound: '#fff',
+    shareBackground: '#e5e5e5',
     lightText: '#414145',
     blueContrast: '#8184C1',
     namesakeText: '#08162f',
@@ -26,7 +27,7 @@ const theme = {
     )`,
     danger: '#f50057',
     error: '#FF3838',
-    pink: '#FF4F6D',
+    pink: '#DC143C',
     themeColor: '#202024',
     mainShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
     secondaryShadow:

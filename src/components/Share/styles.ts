@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const ShareContainer = styled.div`
-  background-color: #26262f;
+  background-color: ${({ theme }) => theme.colors.shareBackground};
   border-radius: 5px;
   cursor: pointer;
 

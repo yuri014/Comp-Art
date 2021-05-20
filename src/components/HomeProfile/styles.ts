@@ -24,7 +24,7 @@ export const HashtagsProfileContainer = styled.div`
     gap: 1rem;
 
     a {
-      color: ${({ theme }) => theme.colors.themeColor};
+      color: #fff;
       background-color: ${({ theme }) => theme.colors.pink};
       padding: 1rem;
       border-radius: 5px;
