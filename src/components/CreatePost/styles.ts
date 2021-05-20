@@ -50,7 +50,11 @@ const CreatePostContainer = styled.div`
       div {
         display: flex;
 
-        label {
+        input {
+          display: none;
+        }
+
+        .icon-button {
           background: transparent;
           color: ${({ theme }) => theme.colors.mainColor};
           font-size: 2rem;
@@ -62,10 +66,6 @@ const CreatePostContainer = styled.div`
           justify-content: center;
           cursor: pointer;
           transition: background-color 0.225s ease-out;
-
-          input {
-            display: none;
-          }
 
           &:focus,
           &:hover {

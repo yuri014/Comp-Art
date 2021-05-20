@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FaRegFileImage, FaTimes } from 'react-icons/fa';
 import { IoMdClose, IoMdMusicalNote } from 'react-icons/io';
 import { IconButton, Snackbar, ThemeProvider } from '@material-ui/core';
@@ -24,6 +24,8 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
   const [canSubmit, setCanSubmit] = useState(true);
   const [showError, setShowError] = useState('');
   const [title, setTitle] = useState('');
+  const audioInput = useRef<HTMLInputElement | null>(null);
+  const imageInput = useRef<HTMLInputElement | null>(null);
 
   const [imagePreview, setImagePreview] = useImagePreview();
   const [audioResult, setAudioResult] = useState<File>();
@@ -97,24 +99,37 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
 
         <div className="buttons">
           <div>
-            <label htmlFor="uploadImage">
+            <button
+              className="icon-button"
+              type="button"
+              onClick={() => imageInput.current.click()}
+              aria-label="Adicionar imagens"
+            >
               <FaRegFileImage />
-              <input
-                accept="image/*"
-                id="uploadImage"
-                type="file"
-                onChange={e => setImagePreview(e)}
-              />
-            </label>
-            <label htmlFor="uploadAudio">
-              <input
-                accept="audio/*"
-                id="uploadAudio"
-                type="file"
-                onChange={e => setAudioResult(e.target.files[0])}
-              />
+            </button>
+            <input
+              accept="image/*"
+              id="uploadImage"
+              type="file"
+              onChange={e => setImagePreview(e)}
+              ref={imageInput}
+            />
+
+            <button
+              className="icon-button"
+              type="button"
+              onClick={() => audioInput.current.click()}
+              aria-label="Adicionar vídeos"
+            >
               <IoMdMusicalNote />
-            </label>
+            </button>
+            <input
+              accept="audio/*"
+              id="uploadAudio"
+              type="file"
+              onChange={e => setAudioResult(e.target.files[0])}
+              ref={audioInput}
+            />
           </div>
           <button
             type="submit"
