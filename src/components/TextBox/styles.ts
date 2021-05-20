@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
 const TextBoxContainer = styled.div`
-  font-size: 1.6rem;
-  overflow: hidden;
-  max-width: 700px;
-  word-break: break-all;
+  p {
+    font-size: 1.6rem;
+    overflow: hidden;
+    max-width: 700px;
+    word-break: break-all;
+  }
 
   span {
     cursor: pointer;

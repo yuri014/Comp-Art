@@ -21,7 +21,6 @@ const TextBox: React.FC<TextBoxProps> = ({ text }) => {
   return (
     <TextBoxContainer>
       <Linkify
-        tagName="p"
         options={{
           attributes: {
             // @ts-ignore
@@ -53,7 +52,10 @@ const TextBox: React.FC<TextBoxProps> = ({ text }) => {
           },
         }}
       >
-        {text}
+        {text.split('\n').map((str, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <p key={index}>{str}</p>
+        ))}
       </Linkify>
     </TextBoxContainer>
   );
