@@ -29,7 +29,7 @@ const TextBox: React.FC<TextBoxProps> = ({ text }) => {
               const path = e.target.outerText as string;
 
               if (path[0] === '#') {
-                router.push(`/${path.substring(1)}`);
+                router.push(`/tag/${path.substring(1)}`);
               }
 
               if (path[0] === '@') {
