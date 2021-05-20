@@ -14,14 +14,16 @@ const Timeline: React.FC = () => {
     variables: { offset: 0 },
   });
 
-  const lastPostRef = useInfiniteScroll(
-    data,
-    () =>
-      !!data.getPosts &&
-      fetchMore({
+  const lastPostRef = useInfiniteScroll(data, async () => {
+    if (data.getPosts.length === 6) {
+      const newPosts = await fetchMore({
         variables: { offset: data.getPosts.length },
-      }).then(newPosts => newPosts.data.getPosts.length === 6),
-  );
+      });
+      return newPosts.data.getPosts.length === 6;
+    }
+
+    return false;
+  });
 
   return (
     <>
