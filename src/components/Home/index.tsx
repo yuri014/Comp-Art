@@ -13,7 +13,7 @@ interface HomeProps {
 }
 
 const Home: React.FC<HomeProps> = ({ getLoggedProfile, children }) => {
-  const { user } = useContext(AuthContext);
+  const auth = useContext(AuthContext);
 
   return (
     <div className="home-desktop-content">
@@ -24,7 +24,7 @@ const Home: React.FC<HomeProps> = ({ getLoggedProfile, children }) => {
             <HashtagsProfile hashtags={getLoggedProfile.hashtags} />
           </aside>
           <div className="timeline">
-            {user.isArtist && (
+            {auth.user && auth.user.isArtist && (
               <CreatePost getLoggedProfile={getLoggedProfile} />
             )}
             {children}

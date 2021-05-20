@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-/* eslint-disable no-unused-vars */
 import React, { createContext, useReducer } from 'react';
 import jwtDecode, { JwtPayload } from 'jwt-decode';
 import Cookie from 'js-cookie';
