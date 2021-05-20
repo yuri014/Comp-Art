@@ -62,6 +62,7 @@ const ProfileSectionContainer = styled.section`
       border-radius: 5px;
       bottom: 0;
       background-color: ${({ theme }) => theme.colors.pink};
+      color: #fff;
     }
   }
 
