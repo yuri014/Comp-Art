@@ -54,7 +54,7 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({
         onClose={handleClose}
       >
         <MenuItem onClick={copyToClipboard}>
-          <MenuListIcon>
+          <MenuListIcon className="prevent-redirect-post">
             <FaLink />
             <p>Copiar Link</p>
             <textarea
@@ -66,14 +66,14 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({
           </MenuListIcon>
         </MenuItem>
         <MenuItem>
-          <MenuListIcon>
+          <MenuListIcon className="prevent-redirect-post">
             <FaRegFlag className="danger-icon" />
             <p>Denunciar</p>
           </MenuListIcon>
         </MenuItem>
         {auth.user && auth.user.username === username && (
           <MenuItem onClick={deletePost}>
-            <MenuListIcon>
+            <MenuListIcon className="prevent-redirect-post">
               <FiTrash2 className="danger-icon" />
               <p className="danger-icon">Deletar</p>
             </MenuListIcon>
