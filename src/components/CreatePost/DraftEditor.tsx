@@ -43,24 +43,24 @@ const DraftEditor: React.FC<DraftEditorProps> = ({ setDescription }) => {
         onChange={setEditorState}
         plugins={plugins}
       />
-
-      <div className="counter-container">
-        <CharCounter limit={1200} />
-
-        <CircularProgress
-          className="background-circle"
-          variant="determinate"
-          size="2rem"
-          style={{ color: '#ababab' }}
-          value={100}
-        />
-        <CircularProgress
-          variant="determinate"
-          size="2rem"
-          style={{ color: `${checkProgress('#FF3838', '#1cc5b7')}` }}
-          value={checkProgress(100, progress) as number}
-        />
-      </div>
+      {description.trim().length > 0 && (
+        <div className="counter-container">
+          <CharCounter limit={1200} />
+          <CircularProgress
+            className="background-circle"
+            variant="determinate"
+            size="2rem"
+            style={{ color: '#ababab' }}
+            value={100}
+          />
+          <CircularProgress
+            variant="determinate"
+            size="2rem"
+            style={{ color: `${checkProgress('#FF3838', '#1cc5b7')}` }}
+            value={checkProgress(100, progress) as number}
+          />
+        </div>
+      )}
     </>
   );
 };
