@@ -5,6 +5,7 @@ import AuthorInfo from '@components/Post/utils/AuthorInfo';
 import ArtistPost from '@components/Post/ArtistPost';
 import usePostAsLink from '@hooks/postAsLink';
 import publishDate from '@utils/publishDate';
+import TextBox from '@components/TextBox';
 import ShareContainer from './styles';
 
 const Share: React.FC<PostProps> = ({ post }) => {
@@ -31,7 +32,9 @@ const Share: React.FC<PostProps> = ({ post }) => {
         </div>
         <div className="share-content">
           {post.post.description && (
-            <div className="description">{post.post.description}</div>
+            <div className="description">
+              <TextBox text={post.post.description} />
+            </div>
           )}
           <ArtistPost
             isShare
