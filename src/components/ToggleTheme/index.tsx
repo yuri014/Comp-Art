@@ -1,26 +1,21 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 
 import ThemeContext from '../../context/theme';
 import LightIcon from '../../assets/light-toggle.svg';
 import DarkIcon from '../../assets/dark-toggle.svg';
 import ToggleThemeContainer from './_styles';
-import toggleTheme from '../../utils/toggleTheme';
 
 const ToggleThemeButton: React.FC = () => {
-  const { theme, setTheme } = useContext(ThemeContext);
-
-  useEffect(() => {
-    setTheme(window.localStorage.getItem('theme'));
-  }, [setTheme]);
+  const { isDarkMode, toggleTheme } = useContext(ThemeContext);
 
   return (
     <ToggleThemeContainer>
       <button
-        aria-label={`mudar para tema ${theme === 'light' ? 'claro' : 'escuro'}`}
-        onClick={() => toggleTheme(theme, setTheme)}
+        aria-label={`mudar para tema ${!isDarkMode ? 'claro' : 'escuro'}`}
+        onClick={() => toggleTheme()}
         type="button"
       >
-        {theme === 'light' ? <LightIcon /> : <DarkIcon />}
+        {isDarkMode ? <DarkIcon /> : <LightIcon />}
       </button>
     </ToggleThemeContainer>
   );

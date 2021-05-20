@@ -23,7 +23,7 @@ const EditProfile: React.FC = () => {
   const { data: profile, loading } = useQuery(GET_FULL_LOGGED_PROFILE, {
     fetchPolicy: 'no-cache',
   });
-  const { theme } = useContext(ThemeContext);
+  const { isDarkMode } = useContext(ThemeContext);
 
   return (
     <>
@@ -33,7 +33,7 @@ const EditProfile: React.FC = () => {
         uri="/edit"
         keywords="editar, perfil, comp art"
       />
-      <ThemeProvider theme={theme === 'light' ? mainLightTheme : mainDarkTheme}>
+      <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
         {!loading && (
           <>
             <Header getLoggedProfile={profile.getLoggedProfile} />

@@ -7,10 +7,10 @@ import ThemeContext from '../../context/theme';
 import mainDarkTheme from '../../styles/themes/MainDarkTheme';
 
 const LoadingSuggestedProfile: React.FC = () => {
-  const { theme } = useContext(ThemeContext);
+  const { isDarkMode } = useContext(ThemeContext);
 
   return (
-    <ThemeProvider theme={theme === 'light' ? mainLightTheme : mainDarkTheme}>
+    <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
       <div className="suggested-profile-container">
         <div className="suggested-profile">
           <Skeleton variant="circle" animation="wave" width={40} height={40} />

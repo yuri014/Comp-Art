@@ -21,7 +21,7 @@ const MobileHeader = dynamic(() => import('@components/MobileHeader'));
 const MobileFooter = dynamic(() => import('@components/MobileFooter'));
 
 const HomePage: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
-  const { theme } = useContext(ThemeContext);
+  const { isDarkMode } = useContext(ThemeContext);
   const [getLevel, { data: profileLevel }] = useLazyQuery(GET_LEVEL_XP, {
     fetchPolicy: 'no-cache',
   });
@@ -31,7 +31,7 @@ const HomePage: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
   }, [getLevel]);
 
   return (
-    <ThemeProvider theme={theme === 'light' ? mainLightTheme : mainDarkTheme}>
+    <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
       <HomeContainer>
         <Head>
           <title>Comp-Art</title>

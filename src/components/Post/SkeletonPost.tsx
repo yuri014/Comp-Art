@@ -9,11 +9,11 @@ import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import PostContainer from './styles';
 
 const SkeletonPost: React.FC = () => {
-  const { theme } = useContext(ThemeContext);
+  const { isDarkMode } = useContext(ThemeContext);
 
   return (
     <PostContainer>
-      <ThemeProvider theme={theme === 'light' ? mainLightTheme : mainDarkTheme}>
+      <ThemeProvider theme={isDarkMode ? mainLightTheme : mainDarkTheme}>
         <div className="post-author">
           <div className="author-info">
             <Skeleton

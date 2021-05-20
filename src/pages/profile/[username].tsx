@@ -37,7 +37,7 @@ const Profile: React.FC<ProfileProps> = ({
   getProfile,
   getLoggedProfile,
 }) => {
-  const { theme } = useContext(ThemeContext);
+  const { isDarkMode } = useContext(ThemeContext);
 
   const { client, data, error, loading: loadingPost, fetchMore } = useQuery<{
     getProfilePosts: Array<Timeline>;
@@ -65,7 +65,7 @@ const Profile: React.FC<ProfileProps> = ({
   const hasCoverProfile = getProfile.coverImage !== '';
 
   return (
-    <ThemeProvider theme={theme === 'light' ? mainLightTheme : mainDarkTheme}>
+    <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
       <ProfileSEO getProfile={getProfile} />
       <Header getLoggedProfile={getLoggedProfile} />
       <ProfileContainer>

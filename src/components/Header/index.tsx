@@ -16,7 +16,6 @@ import {
 import { HeaderContainer, MenuListIcon } from './styles';
 import { AuthContext } from '../../context/auth';
 import ThemeContext from '../../context/theme';
-import toggleTheme from '../../utils/toggleTheme';
 import { ILoggedProfile } from '../../interfaces/Profile';
 import mainLightTheme from '../../styles/themes/MainLightTheme';
 import mainDarkTheme from '../../styles/themes/MainDarkTheme';
@@ -25,7 +24,7 @@ import Logo from '../../assets/logo.svg';
 
 const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
   const auth = useContext(AuthContext);
-  const { theme, setTheme } = useContext(ThemeContext);
+  const { isDarkMode, toggleTheme } = useContext(ThemeContext);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -61,9 +60,7 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
               <FaBookmark />
             </a>
           </Link>
-          <ThemeProvider
-            theme={theme === 'light' ? mainLightTheme : mainDarkTheme}
-          >
+          <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
             <IconButton
               aria-controls="menu-header"
               aria-haspopup="true"
@@ -91,9 +88,9 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
                 </Link>
               </MenuItem>
               <MenuItem>
-                <MenuListIcon onClick={() => toggleTheme(theme, setTheme)}>
+                <MenuListIcon onClick={() => toggleTheme()}>
                   <FaMoon />
-                  <p>Modo {theme === 'light' ? 'Escuro' : 'Claro'}</p>
+                  <p>Modo {!isDarkMode ? 'Escuro' : 'Claro'}</p>
                 </MenuListIcon>
               </MenuItem>
               <MenuItem>
