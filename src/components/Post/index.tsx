@@ -4,11 +4,11 @@ import dynamic from 'next/dynamic';
 import ModalLikesButton from '@components/Splitter/ModalLikesButton';
 import LevelContext from '@context/level';
 import { GET_LIKES, GET_WHO_SHARE_POST } from '@graphql/queries/post';
-import { UsePostsMutations } from '@hooks/postMutations';
 import { PostProps } from '@interfaces/Post';
 import publishDate from '@utils/publishDate';
 import usePostAsLink from '@hooks/postAsLink';
 import TextBox from '@components/TextBox';
+import { UseInteractionsMutation } from '@interfaces/Hooks';
 import PostInteractionButtons from './Buttons';
 import PostContainer from './styles';
 import AuthorInfo from './utils/AuthorInfo';
@@ -17,11 +17,7 @@ const ModalProfile = dynamic(() => import('../ModalProfile'));
 
 interface IPostProps extends PostProps {
   children: React.ReactNode;
-  useDeletePosts: (
-    id: string,
-    dislikeCallback?: () => void,
-    likeCallback?: () => void,
-  ) => UsePostsMutations;
+  useInteractions: UseInteractionsMutation;
 }
 
 const initialQuery = {
@@ -29,7 +25,7 @@ const initialQuery = {
   query: GET_LIKES,
 };
 
-const Post: React.FC<IPostProps> = ({ post, children, useDeletePosts }) => {
+const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
   const [isLiked, setIsLiked] = useState<boolean>();
   const [likesCount, setLikesCount] = useState<number>();
   const [isDeleted, setIsDeleted] = useState(false);
@@ -43,7 +39,7 @@ const Post: React.FC<IPostProps> = ({ post, children, useDeletePosts }) => {
 
   const levelContext = useContext(LevelContext);
 
-  const [deletePost, dislikePost, likePost] = useDeletePosts(
+  const [deletePost, dislikePost, likePost] = useInteractions(
     post._id,
     () => {
       setIsLiked(false);
