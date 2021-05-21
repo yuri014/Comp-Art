@@ -6,6 +6,7 @@ import Post from '@components/Post';
 import ArtistPost from '@components/Post/ArtistPost';
 import Share from '@components/Share';
 import usePostsMutations from '@hooks/postMutations';
+import useSharesMutations from '@hooks/shareMutations';
 
 interface TimelineManagerProps {
   posts: Timeline[];
@@ -19,11 +20,12 @@ const TimelineManager: React.FC<TimelineManagerProps> = ({
   <>
     {posts.map((post, index) => {
       const postsLenght = posts.length;
+
       if (postsLenght === index + 1 && postsLenght) {
         if (post.artist) {
           return (
             <div key={post._id} ref={lastPostRef}>
-              <Post useDeletePosts={usePostsMutations} post={post}>
+              <Post useInteractions={usePostsMutations} post={post}>
                 <ArtistPost post={post} />
               </Post>
             </div>
@@ -32,7 +34,7 @@ const TimelineManager: React.FC<TimelineManagerProps> = ({
 
         return (
           <div key={`${post._id}`} ref={lastPostRef}>
-            <Post useDeletePosts={usePostsMutations} post={post}>
+            <Post useInteractions={useSharesMutations} post={post}>
               <Share post={post} />
             </Post>
           </div>
@@ -41,7 +43,7 @@ const TimelineManager: React.FC<TimelineManagerProps> = ({
       if (post.artist) {
         return (
           <div key={post._id}>
-            <Post useDeletePosts={usePostsMutations} post={post}>
+            <Post useInteractions={usePostsMutations} post={post}>
               <ArtistPost post={post} />
             </Post>
           </div>
@@ -50,7 +52,7 @@ const TimelineManager: React.FC<TimelineManagerProps> = ({
 
       return (
         <div key={post._id}>
-          <Post useDeletePosts={usePostsMutations} post={post}>
+          <Post useInteractions={useSharesMutations} post={post}>
             <Share post={post} />
           </Post>
         </div>
