@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import { CORE_POST_VIEW, CORE_SHARE_VIEW } from '@graphql/fragments/posts';
 import { MODAL_PROFILE } from '@graphql/fragments/profile';
 
 export const GET_POST = gql`
@@ -28,71 +29,15 @@ export const GET_POST = gql`
 `;
 
 export const GET_POSTS = gql`
+  ${CORE_POST_VIEW}
+  ${CORE_SHARE_VIEW}
   query GetPosts($offset: Int!) {
     getPosts(offset: $offset) {
       ... on Post {
-        _id
-        description
-        body
-        likes {
-          profile {
-            owner
-            avatar
-          }
-        }
-        likesCount
-        sharedCount
-        commentsCount
-        createdAt
-        mediaId
-        artist {
-          name
-          owner
-          avatar
-        }
-        isLiked
-        darkColor
-        lightColor
-        thumbnail
-        imageHeight
-        title
+        ...CorePostView
       }
       ... on Share {
-        _id
-        description
-        post {
-          _id
-          description
-          body
-          artist {
-            name
-            owner
-            avatar
-          }
-          createdAt
-          mediaId
-          darkColor
-          lightColor
-          thumbnail
-          title
-        }
-        likes {
-          profile {
-            name
-            avatar
-            owner
-          }
-        }
-        likesCount
-        sharedCount
-        profile {
-          name
-          owner
-          avatar
-        }
-        createdAt
-        isLiked
-        imageHeight
+        ...CoreShareView
       }
     }
   }
@@ -126,33 +71,16 @@ export const GET_EXPLORE_POSTS = gql`
 `;
 
 export const GET_PROFILE_POSTS = gql`
+  ${CORE_POST_VIEW}
+  ${CORE_SHARE_VIEW}
   query GetProfilePosts($offset: Int!, $username: String!) {
     getProfilePosts(offset: $offset, username: $username) {
-      _id
-      description
-      body
-      likesCount
-      sharedCount
-      commentsCount
-      createdAt
-      artist {
-        name
-        owner
-        avatar
+      ... on Post {
+        ...CorePostView
       }
-      likes {
-        profile {
-          owner
-          avatar
-        }
+      ... on Share {
+        ...CoreShareView
       }
-      mediaId
-      isLiked
-      darkColor
-      lightColor
-      thumbnail
-      imageHeight
-      title
     }
   }
 `;
