@@ -19,6 +19,7 @@ interface PostInteractionButtonsProps {
   dislikePost: () => void;
   likePost: () => void;
   postID: string;
+  updateLevel: () => void;
 }
 
 const SAVE_POST = gql`
@@ -38,9 +39,14 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
   isLiked,
   likePost,
   postID,
+  updateLevel,
 }) => {
-  const [savePost] = useMutation(SAVE_POST);
-  const [quickSharePost] = useMutation(QUICK_SHARE_POST);
+  const [savePost] = useMutation(SAVE_POST, {
+    onCompleted: () => updateLevel(),
+  });
+  const [quickSharePost] = useMutation(QUICK_SHARE_POST, {
+    onCompleted: () => updateLevel(),
+  });
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
