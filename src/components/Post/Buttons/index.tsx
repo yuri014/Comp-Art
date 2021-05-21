@@ -61,14 +61,14 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
           onClick={() => (isLiked ? dislikePost() : likePost())}
           aria-label="Curtir"
         >
-          <div className="interactions-button">
+          <div className="interactions-button prevent-redirect-post">
             {isLiked ? <FaHeart size={20} /> : <FaRegHeart size={20} />}
             <p className="prevent-redirect-post">Curtir</p>
           </div>
         </button>
         <Link href={`/post/${postID}`}>
           <a aria-label="Comentar" className="prevent-redirect-post">
-            <div className="interactions-button">
+            <div className="interactions-button prevent-redirect-post">
               <FaCommentAlt size={20} />{' '}
               <p className="prevent-redirect-post">Comentar</p>
             </div>
@@ -81,7 +81,7 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
           onClick={handleClick}
           className="prevent-redirect-post"
         >
-          <div className="interactions-button">
+          <div className="interactions-button prevent-redirect-post">
             <FaShareAlt size={20} />{' '}
             <p className="prevent-redirect-post">Compartilhar</p>
           </div>
@@ -128,7 +128,7 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
         type="button"
         onClick={() => savePost({ variables: { id: postID } })}
       >
-        <div className="interactions-button">
+        <div className="interactions-button prevent-redirect-post">
           <FaRegBookmark size={20} /> <p>Salvar</p>
         </div>
       </button>
