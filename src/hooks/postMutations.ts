@@ -1,16 +1,30 @@
-import { useMutation } from '@apollo/client';
+import {
+  FetchResult,
+  MutationFunctionOptions,
+  useMutation,
+} from '@apollo/client';
 import {
   DELETE_POST,
   DISLIKE_POST,
   LIKE_POST,
 } from '../graphql/mutations/post';
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export type UsePostsMutations = ((
+  options?: MutationFunctionOptions<
+    unknown,
+    {
+      id: string;
+    }
+  >,
+) => Promise<
+  FetchResult<unknown, Record<string, unknown>, Record<string, unknown>>
+>)[];
+
 const usePostsMutations = (
   id: string,
   dislikeCallback?: () => void,
   likeCallback?: () => void,
-) => {
+): UsePostsMutations => {
   const [deletePost] = useMutation(DELETE_POST, {
     variables: { id },
     update(cache) {
