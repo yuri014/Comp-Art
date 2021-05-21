@@ -25,9 +25,8 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   const apolloClient = useApollo(pageProps.initialApolloState);
   const [isMounted, setIsMounted] = useState(false);
   const darkmode = useDarkMode(
-    typeof window !== 'undefined'
-      ? window.matchMedia('(prefers-color-scheme: dark)').matches
-      : true,
+    typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches,
   );
   const newTheme = darkmode.value ? dark : light;
 
