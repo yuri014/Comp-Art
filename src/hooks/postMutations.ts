@@ -1,30 +1,16 @@
-import {
-  FetchResult,
-  MutationFunctionOptions,
-  useMutation,
-} from '@apollo/client';
+import { useMutation } from '@apollo/client';
+import { UseInteractionsMutation } from '@interfaces/Hooks';
 import {
   DELETE_POST,
   DISLIKE_POST,
   LIKE_POST,
 } from '../graphql/mutations/post';
 
-export type UsePostsMutations = ((
-  options?: MutationFunctionOptions<
-    unknown,
-    {
-      id: string;
-    }
-  >,
-) => Promise<
-  FetchResult<unknown, Record<string, unknown>, Record<string, unknown>>
->)[];
-
-const usePostsMutations = (
-  id: string,
-  dislikeCallback?: () => void,
-  likeCallback?: () => void,
-): UsePostsMutations => {
+const usePostsMutations: UseInteractionsMutation = (
+  id,
+  dislikeCallback,
+  likeCallback,
+) => {
   const [deletePost] = useMutation(DELETE_POST, {
     variables: { id },
     update(cache) {
