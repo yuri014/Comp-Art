@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import { MODAL_PROFILE } from '@graphql/fragments/profile';
 
 export const GET_POST = gql`
   query GetPost($id: ID!) {
@@ -152,6 +153,24 @@ export const GET_PROFILE_POSTS = gql`
       thumbnail
       imageHeight
       title
+    }
+  }
+`;
+
+export const GET_LIKES = gql`
+  ${MODAL_PROFILE}
+  query GetLikes($id: ID!, $offset: Int!) {
+    getLikes(postID: $id, offset: $offset) {
+      ...ModalProfile
+    }
+  }
+`;
+
+export const GET_WHO_SHARE_POST = gql`
+  ${MODAL_PROFILE}
+  query GetWhoSharesPost($id: ID!, $offset: Int!) {
+    getWhoSharesPost(postID: $id, offset: $offset) {
+      ...ModalProfile
     }
   }
 `;

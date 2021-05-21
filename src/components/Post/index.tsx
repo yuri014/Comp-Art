@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 
 import ModalLikesButton from '@components/Splitter/ModalLikesButton';
 import LevelContext from '@context/level';
-import { GET_LIKES, GET_WHO_SHARE_POST } from '@graphql/mutations/post';
+import { GET_LIKES, GET_WHO_SHARE_POST } from '@graphql/queries/post';
 import { UsePostsMutations } from '@hooks/postMutations';
 import { PostProps } from '@interfaces/Post';
 import publishDate from '@utils/publishDate';
