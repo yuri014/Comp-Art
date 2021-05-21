@@ -60,7 +60,7 @@ const HomeProfile: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
               <p>Meu Perfil</p>
             </a>
           </Link>
-          <Link href="/profile">
+          <Link href="/explore">
             <a>
               <FaRegCompass />
               <p>Explorar</p>
