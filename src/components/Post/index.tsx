@@ -145,7 +145,7 @@ const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
               isLiked={isLiked}
               likePost={likePost}
               postID={post._id}
-              updateLevel={levelContext.updateLevel}
+              updateLevel={levelContext && levelContext.updateLevel}
             />
           </div>
         </PostContainer>

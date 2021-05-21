@@ -19,7 +19,7 @@ interface PostInteractionButtonsProps {
   dislikePost: () => void;
   likePost: () => void;
   postID: string;
-  updateLevel: () => void;
+  updateLevel?: () => void;
 }
 
 const SAVE_POST = gql`
