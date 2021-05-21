@@ -24,7 +24,11 @@ Router.events.on('routeChangeError', () => NProgress.done());
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   const apolloClient = useApollo(pageProps.initialApolloState);
   const [isMounted, setIsMounted] = useState(false);
-  const darkmode = useDarkMode(true);
+  const darkmode = useDarkMode(
+    typeof window !== 'undefined'
+      ? window.matchMedia('(prefers-color-scheme: dark)').matches
+      : true,
+  );
   const newTheme = darkmode.value ? dark : light;
 
   useEffect(() => {
