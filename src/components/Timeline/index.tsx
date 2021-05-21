@@ -19,7 +19,7 @@ const Timeline: React.FC<TimelineProps> = ({
   const { client, data, loading, error, fetchMore } = useQuery(query, {
     variables: { offset: 0, ...otherVariables },
     onCompleted: () => {
-      if (data.getProfilePosts.length === 0) {
+      if (data.getProfilePosts && data.getProfilePosts.length === 0) {
         client.cache.evict({ fieldName: 'getProfilePosts' });
       }
     },
