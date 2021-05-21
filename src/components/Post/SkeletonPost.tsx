@@ -13,7 +13,7 @@ const SkeletonPost: React.FC = () => {
 
   return (
     <PostContainer>
-      <ThemeProvider theme={isDarkMode ? mainLightTheme : mainDarkTheme}>
+      <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
         <div className="post-author">
           <div className="author-info">
             <Skeleton
