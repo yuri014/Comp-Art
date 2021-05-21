@@ -12,7 +12,10 @@ import { GET_LEVEL_XP, GET_LOGGED_PROFILE } from '@graphql/queries/profile';
 import { ILoggedProfile } from '@interfaces/Profile';
 import Header from '@components/Header';
 import Home from '@components/Home';
-import Timeline from '@components/Splitter/Timeline';
+import Timeline from '@components/Timeline';
+import CreatePost from '@components/CreatePost';
+import { AuthContext } from '@context/auth';
+import { GET_POSTS } from '@graphql/queries/post';
 import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
 import HomeContainer from './_styles';
@@ -22,6 +25,7 @@ const MobileFooter = dynamic(() => import('@components/MobileFooter'));
 
 const HomePage: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
   const { isDarkMode } = useContext(ThemeContext);
+  const auth = useContext(AuthContext);
   const [getLevel, { data: profileLevel }] = useLazyQuery(GET_LEVEL_XP, {
     fetchPolicy: 'no-cache',
   });
@@ -41,7 +45,12 @@ const HomePage: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
           value={{ updateLevel: getLevel, level: profileLevel }}
         >
           <Home getLoggedProfile={getLoggedProfile}>
-            <Timeline />
+            <>
+              {auth.user && auth.user.isArtist && (
+                <CreatePost getLoggedProfile={getLoggedProfile} />
+              )}
+              <Timeline query={GET_POSTS} queryName="getPosts" />
+            </>
           </Home>
           <MobileHeader getLoggedProfile={getLoggedProfile} />
         </LevelContext.Provider>
