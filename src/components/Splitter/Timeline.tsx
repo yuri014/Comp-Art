@@ -1,9 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 
-import Share from '@components/Share';
-import ArtistPost from '@components/Post/ArtistPost';
-import Post from '../Post';
+import TimelineManager from '@components/Timeline/TimelineManager';
 import LoadingPost from '../Post/LoadingPost';
 import { GET_POSTS } from '../../graphql/queries/post';
 import { IGetPosts } from '../../interfaces/Post';
@@ -32,45 +30,7 @@ const Timeline: React.FC = () => {
           <LoadingPost loading={loading} />
         </>
       ) : (
-        data.getPosts.map((post, index) => {
-          const postsLenght = data.getPosts.length;
-          if (postsLenght === index + 1 && postsLenght) {
-            if (post.artist) {
-              return (
-                <div key={post._id} ref={lastPostRef}>
-                  <Post post={post}>
-                    <ArtistPost post={post} />
-                  </Post>
-                </div>
-              );
-            }
-
-            return (
-              <div key={`${post._id}`} ref={lastPostRef}>
-                <Post post={post}>
-                  <Share post={post} />
-                </Post>
-              </div>
-            );
-          }
-          if (post.artist) {
-            return (
-              <div key={post._id}>
-                <Post post={post}>
-                  <ArtistPost post={post} />
-                </Post>
-              </div>
-            );
-          }
-
-          return (
-            <div key={post._id}>
-              <Post post={post}>
-                <Share post={post} />
-              </Post>
-            </div>
-          );
-        })
+        <TimelineManager lastPostRef={lastPostRef} posts={data.getPosts} />
       )}
     </>
   );
