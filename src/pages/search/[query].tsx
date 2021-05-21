@@ -10,6 +10,8 @@ import MobileFooter from '@components/MobileFooter';
 import MobileHeader from '@components/MobileHeader';
 import Post from '@components/Post';
 import ProfileSimpleCard from '@components/ProfileCard';
+import ArtistPost from '@components/Post/ArtistPost';
+import usePostsMutations from '@hooks/postMutations';
 import LevelContext from '@context/level';
 import { initializeApollo } from '@graphql/apollo/config';
 import { CORE_PROFILE_VIEW } from '@graphql/fragments/profile';
@@ -105,12 +107,14 @@ const SearchPage: React.FC<SearchPageProps> = ({
                 </section>
                 <section className="posts-results">
                   {posts.map(post => (
-                    <Post post={post} />
+                    <Post useInteractions={usePostsMutations} post={post}>
+                      <ArtistPost post={post} />
+                    </Post>
                   ))}
                 </section>
               </SearchContainer>
             </Home>
-            <MobileHeader loading={false} getLoggedProfile={getLoggedProfile} />
+            <MobileHeader getLoggedProfile={getLoggedProfile} />
           </LevelContext.Provider>
         </>
       ) : (
