@@ -8,11 +8,21 @@ import useInfiniteScroll from '../../hooks/infiniteScroll';
 interface TimelineProps {
   query: DocumentNode;
   queryName: string;
+  otherVariables?: { [key: string]: string };
 }
 
-const Timeline: React.FC<TimelineProps> = ({ query, queryName }) => {
-  const { data, loading, error, fetchMore } = useQuery(query, {
-    variables: { offset: 0 },
+const Timeline: React.FC<TimelineProps> = ({
+  query,
+  queryName,
+  otherVariables,
+}) => {
+  const { client, data, loading, error, fetchMore } = useQuery(query, {
+    variables: { offset: 0, ...otherVariables },
+    onCompleted: () => {
+      if (data.getProfilePosts.length === 0) {
+        client.cache.evict({ fieldName: 'getProfilePosts' });
+      }
+    },
   });
 
   const lastPostRef = useInfiniteScroll(data, async () => {
