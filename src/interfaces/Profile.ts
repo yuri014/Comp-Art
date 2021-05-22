@@ -36,3 +36,7 @@ export interface IProfile {
 export interface ILoggedProfile {
   getLoggedProfile?: IProfile;
 }
+
+export interface ISearchProfile {
+  searchProfiles: Array<IProfile>;
+}

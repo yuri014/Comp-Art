@@ -68,3 +68,12 @@ export const GET_FULL_LOGGED_PROFILE = gql`
     }
   }
 `;
+
+export const GET_PROFILE_PREVIEW_SEARCH = gql`
+  ${CORE_PROFILE_VIEW}
+  query GetProfilePreviewSearch($query: String!, $offset: Int!, $limit: Int!) {
+    searchProfiles(query: $query, offset: $offset, limit: $limit) {
+      ...CoreProfileView
+    }
+  }
+`;

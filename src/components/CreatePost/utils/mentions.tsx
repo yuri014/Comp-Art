@@ -1,13 +1,12 @@
 import { useCallback, useState } from 'react';
 import {
-  GET_PROFILE_PREVIEW_SEARCH,
-  ISearchProfile,
-} from '@components/Splitter/SearchProfileHeader';
-import {
   defaultSuggestionsFilter,
   MentionData,
 } from '@draft-js-plugins/mention';
+
+import { ISearchProfile } from '@interfaces/Profile';
 import { initializeApollo } from '@graphql/apollo/config';
+import { GET_PROFILE_PREVIEW_SEARCH } from '@graphql/queries/profile';
 
 type UseMentions = {
   mentionsStates: {

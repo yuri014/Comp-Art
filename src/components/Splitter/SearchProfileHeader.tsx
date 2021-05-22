@@ -1,26 +1,13 @@
 import React, { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { gql, useLazyQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
 import { IconButton } from '@material-ui/core';
 import { FaSearch } from 'react-icons/fa';
 
-import { IProfile } from '../../interfaces/Profile';
+import { GET_PROFILE_PREVIEW_SEARCH } from '@graphql/queries/profile';
+import { ISearchProfile } from '../../interfaces/Profile';
 import useOutsideClick from '../../hooks/outsideClick';
-import { CORE_PROFILE_VIEW } from '../../graphql/fragments/profile';
-
-const GET_PROFILE_PREVIEW_SEARCH = gql`
-  ${CORE_PROFILE_VIEW}
-  query GetProfilePreviewSearch($query: String!, $offset: Int!, $limit: Int!) {
-    searchProfiles(query: $query, offset: $offset, limit: $limit) {
-      ...CoreProfileView
-    }
-  }
-`;
-
-interface ISearchProfile {
-  searchProfiles: Array<IProfile>;
-}
 
 const SearchProfileHeader: React.FC = () => {
   const router = useRouter();
