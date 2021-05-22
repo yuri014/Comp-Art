@@ -4,7 +4,8 @@ import { convertToRaw, EditorState } from 'draft-js';
 import { CircularProgress } from '@material-ui/core';
 
 import getValueForProgress from './utils/counter';
-import { CharCounter, plugins } from './utils/plugins';
+import { CharCounter, usePlugins } from './utils/plugins';
+import useMentions from './utils/mentions';
 
 type Answer = string | number;
 
@@ -35,6 +36,9 @@ const DraftEditor: React.FC<DraftEditorProps> = ({ setDescription }) => {
     setDescription(description.trim());
   }, [description, setDescription]);
 
+  const { plugins, MentionSuggestions } = usePlugins();
+  const { mentionsCallbacks, mentionsStates } = useMentions();
+
   return (
     <>
       <Editor
@@ -42,6 +46,15 @@ const DraftEditor: React.FC<DraftEditorProps> = ({ setDescription }) => {
         placeholder="Digite aqui seu post..."
         onChange={setEditorState}
         plugins={plugins}
+      />
+      <MentionSuggestions
+        open={mentionsStates.open}
+        onOpenChange={mentionsCallbacks.onOpenChange}
+        suggestions={mentionsStates.suggestions}
+        onSearchChange={mentionsCallbacks.onSearchChange}
+        onAddMention={() => {
+          // get the mention object selected
+        }}
       />
       {description.trim().length > 0 && (
         <div className="counter-container">
