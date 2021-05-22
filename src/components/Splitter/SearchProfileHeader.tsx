@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { gql, useLazyQuery } from '@apollo/client';
 import { IconButton } from '@material-ui/core';
@@ -22,6 +23,7 @@ interface ISearchProfile {
 }
 
 const SearchProfileHeader: React.FC = () => {
+  const router = useRouter();
   const [searchProfile, setSearchProfile] = useState('');
   const [showSearch, setShowSearch] = useState(false);
 
@@ -52,7 +54,11 @@ const SearchProfileHeader: React.FC = () => {
         onFocus={() => setShowSearch(true)}
       />
       <div className="search-button">
-        <IconButton type="button" aria-label="Buscar">
+        <IconButton
+          type="button"
+          aria-label="Buscar"
+          onClick={() => router.push(`/search/${searchProfile}`)}
+        >
           <FaSearch />
         </IconButton>
       </div>
