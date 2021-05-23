@@ -7,6 +7,7 @@ const theme = {
     alternativeBackground: '#111112',
     modalBackrgound: '#202024',
     shareBackground: '#26262f',
+    popoverBackground: '#0E0B21',
     lightText: '#cbcaeb',
     blueContrast: '#8184C1',
     namesakeText: '#08162f',
