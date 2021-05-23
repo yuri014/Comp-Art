@@ -5,11 +5,15 @@ import {
   ApolloLink,
   InMemoryCache,
   NormalizedCacheObject,
+  split,
 } from '@apollo/client';
+import { WebSocketLink } from '@apollo/client/link/ws';
+import { getMainDefinition } from '@apollo/client/utilities';
 import merge from 'deepmerge';
 import { createUploadLink } from 'apollo-upload-client';
 import { setContext } from 'apollo-link-context';
 import Cookie from 'js-cookie';
+
 import mergeCache from './mergeCache';
 
 let apolloClient: ApolloClient<NormalizedCacheObject>;
@@ -33,10 +37,43 @@ const authLink = (cookie?: string) =>
     };
   });
 
+const authHttpLink = (cookie: string) =>
+  (authLink(cookie).concat(httpLink as never) as unknown) as ApolloLink;
+
+const wsLink = () => {
+  if (process.browser) {
+    return new WebSocketLink({
+      uri: 'ws://localhost:3333/subscriptions',
+      options: {
+        reconnect: true,
+      },
+    });
+  }
+
+  return null;
+};
+
+const splitLink = (cookie: string) => {
+  if (process.browser) {
+    return split(
+      ({ query }) => {
+        const definition = getMainDefinition(query);
+        return (
+          definition.kind === 'OperationDefinition' &&
+          definition.operation === 'subscription'
+        );
+      },
+      wsLink(),
+      authHttpLink(cookie),
+    );
+  }
+  return authHttpLink(cookie);
+};
+
 function createApolloClient(cookie?: string) {
   return new ApolloClient({
     ssrMode: true,
-    link: (authLink(cookie).concat(httpLink as never) as unknown) as ApolloLink,
+    link: splitLink(cookie),
     cache: new InMemoryCache({
       typePolicies: {
         Query: {
