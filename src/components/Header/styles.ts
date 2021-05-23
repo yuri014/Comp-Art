@@ -87,9 +87,9 @@ export const HeaderContainer = styled.header`
 
     .search-results {
       position: absolute;
-      background-color: #0e0b21;
+      background-color: ${({ theme }) => theme.colors.popoverBackground};
       width: 100%;
-      padding: 1rem 2rem;
+      padding: 0.5rem 0;
       color: ${({ theme }) => theme.colors.themeColor};
       border-radius: 5px;
       top: 4.6rem;
@@ -98,6 +98,13 @@ export const HeaderContainer = styled.header`
         display: flex;
         align-items: center;
         color: ${({ theme }) => theme.colors.themeColor};
+        width: 100%;
+        padding: 1rem 2rem;
+
+        &:hover {
+          background-color: ${({ theme }) => theme.colors.popoverBackground};
+          filter: brightness(1.25);
+        }
 
         div {
           display: flex;
@@ -110,8 +117,9 @@ export const HeaderContainer = styled.header`
           }
 
           p {
+            font-weight: 300;
             font-size: 1.3rem;
-            color: ${({ theme }) => theme.colors.gray};
+            color: ${({ theme }) => theme.colors.darkGray};
           }
         }
 
@@ -119,10 +127,6 @@ export const HeaderContainer = styled.header`
           width: 3.2rem;
           height: 3.2rem;
           border-radius: 50%;
-        }
-
-        & + .profile-info {
-          margin-top: 1rem;
         }
       }
     }
