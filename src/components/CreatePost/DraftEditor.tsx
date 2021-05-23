@@ -6,6 +6,8 @@ import { CircularProgress } from '@material-ui/core';
 import getValueForProgress from './utils/counter';
 import { CharCounter, usePlugins } from './utils/plugins';
 import useMentions from './utils/mentions';
+import MentionEntry from './utils/MentionEntry';
+import '@draft-js-plugins/mention/lib/plugin.css';
 
 type Answer = string | number;
 
@@ -47,32 +49,35 @@ const DraftEditor: React.FC<DraftEditorProps> = ({ setDescription }) => {
         onChange={setEditorState}
         plugins={plugins}
       />
-      <MentionSuggestions
-        open={mentionsStates.open}
-        onOpenChange={mentionsCallbacks.onOpenChange}
-        suggestions={mentionsStates.suggestions}
-        onSearchChange={mentionsCallbacks.onSearchChange}
-        onAddMention={() => {
-          // get the mention object selected
-        }}
-      />
       {description.trim().length > 0 && (
-        <div className="counter-container">
-          <CharCounter limit={1200} />
-          <CircularProgress
-            className="background-circle"
-            variant="determinate"
-            size="2rem"
-            style={{ color: '#ababab' }}
-            value={100}
+        <>
+          <MentionSuggestions
+            open={mentionsStates.open}
+            onOpenChange={mentionsCallbacks.onOpenChange}
+            suggestions={mentionsStates.suggestions}
+            onSearchChange={mentionsCallbacks.onSearchChange}
+            entryComponent={MentionEntry}
+            onAddMention={() => {
+              // get the mention object selected
+            }}
           />
-          <CircularProgress
-            variant="determinate"
-            size="2rem"
-            style={{ color: `${checkProgress('#FF3838', '#1cc5b7')}` }}
-            value={checkProgress(100, progress) as number}
-          />
-        </div>
+          <div className="counter-container">
+            <CharCounter limit={1200} />
+            <CircularProgress
+              className="background-circle"
+              variant="determinate"
+              size="2rem"
+              style={{ color: '#ababab' }}
+              value={100}
+            />
+            <CircularProgress
+              variant="determinate"
+              size="2rem"
+              style={{ color: `${checkProgress('#FF3838', '#1cc5b7')}` }}
+              value={checkProgress(100, progress) as number}
+            />
+          </div>
+        </>
       )}
     </>
   );
