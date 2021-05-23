@@ -4,8 +4,8 @@ import { FaHeart, FaRegHeart, FaRegShareSquare } from 'react-icons/fa';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
+import useDeletePost from '@hooks/postMutations';
 import { PostProps } from '../../interfaces/Post';
-import useDeletePost from '../../hooks/posts';
 import PostContainer from './imagePostStyles';
 
 const FullScreenImage = dynamic(() => import('../FullScreenImage'));
