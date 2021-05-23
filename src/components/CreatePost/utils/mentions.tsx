@@ -37,8 +37,8 @@ const useMentions = (): UseMentions => {
       })
       .then(result => {
         const searchProfiles = result.data.searchProfiles.map(profile => ({
-          name: profile.name,
-          title: `@${profile.owner}`,
+          title: profile.name,
+          name: `${profile.owner}`,
           avatar: process.env.NEXT_PUBLIC_API_HOST + profile.avatar,
         }));
         setSuggestions(defaultSuggestionsFilter(value, searchProfiles));
