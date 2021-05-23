@@ -17,7 +17,11 @@ const counterTheme = {
 };
 
 const counterPlugin = createCounterPlugin({ theme: counterTheme });
-const mentionPlugin = createMentionPlugin();
+const mentionPlugin = createMentionPlugin({
+  entityMutability: 'IMMUTABLE',
+  mentionPrefix: '@',
+  supportWhitespace: true,
+});
 
 const plugins = [mentionPlugin, hashtagPlugin, counterPlugin];
 
