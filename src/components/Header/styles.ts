@@ -36,13 +36,16 @@ export const HeaderContainer = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-size: 2rem;
 
     a {
       color: ${({ theme }) => theme.colors.gray};
     }
 
     button {
+      color: ${({ theme }) => theme.colors.gray};
       padding: 0.2rem;
+      font-size: 2rem;
 
       img {
         width: 3rem;
