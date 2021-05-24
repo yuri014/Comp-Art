@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import Link from 'next/link';
 import { IconButton, Menu, MenuItem, ThemeProvider } from '@material-ui/core';
 import {
-  FaBell,
   FaBookmark,
   FaCog,
   FaExchangeAlt,
@@ -13,6 +12,7 @@ import {
   FaUserAlt,
 } from 'react-icons/fa';
 
+import Notification from '@components/Notification';
 import { HeaderContainer, MenuListIcon } from './styles';
 import { AuthContext } from '../../context/auth';
 import ThemeContext from '../../context/theme';
@@ -44,23 +44,19 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
       </Link>
       <SearchProfileHeader />
       {auth.user ? (
-        <div className="header-icons">
-          <Link href="/market">
-            <a title="Ir para o marketplace">
-              <FaShoppingCart />
-            </a>
-          </Link>
-          <Link href="/market">
-            <a title="Ir para o marketplace">
-              <FaBell />
-            </a>
-          </Link>
-          <Link href="/market">
-            <a title="Ir para os salvos">
-              <FaBookmark />
-            </a>
-          </Link>
-          <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
+        <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
+          <div className="header-icons">
+            <Link href="/market">
+              <a title="Ir para o marketplace">
+                <FaShoppingCart />
+              </a>
+            </Link>
+            <Notification />
+            <Link href="/market">
+              <a title="Ir para os salvos">
+                <FaBookmark />
+              </a>
+            </Link>
             <IconButton
               aria-controls="menu-header"
               aria-haspopup="true"
@@ -116,8 +112,8 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
                 </MenuListIcon>
               </MenuItem>
             </Menu>
-          </ThemeProvider>
-        </div>
+          </div>
+        </ThemeProvider>
       ) : (
         <div className="header-icons">
           <span />
