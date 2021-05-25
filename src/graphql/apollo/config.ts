@@ -102,6 +102,12 @@ function createApolloClient(cookie?: string) {
                 return mergeCache(existing, incoming, offset);
               },
             },
+            getNotifications: {
+              keyArgs: false,
+              merge(existing, incoming, { args: { offset = 0 } }) {
+                return mergeCache(existing, incoming, offset);
+              },
+            },
           },
         },
       },
