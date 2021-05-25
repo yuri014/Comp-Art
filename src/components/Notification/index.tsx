@@ -7,27 +7,13 @@ import { ptBR } from 'date-fns/locale';
 import Link from 'next/link';
 
 import { NOTIFICATIONS_SUBSCRIPTION } from '@graphql/subscriptions/notifications';
+import {
+  NotificationQuery,
+  NotificationSubscription,
+} from '@interfaces/Notifications';
 import CORE_NOTIFICATION_VIEW from '@graphql/fragments/notifications';
 import useInfiniteScroll from '@hooks/infiniteScroll';
 import NotificationContainer from './styles';
-
-interface INotification {
-  _id: string;
-  from: string;
-  body: string;
-  read: boolean;
-  createdAt: string;
-  link: string;
-  avatar: string;
-}
-
-interface NotificationQuery {
-  getNotifications: INotification[];
-}
-
-interface NotificationSubscription {
-  notification: INotification;
-}
 
 const NOTIFICATIONS_QUERY = gql`
   ${CORE_NOTIFICATION_VIEW}
@@ -58,6 +44,12 @@ const Notification: React.FC = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const formatHour = (date: string) =>
+    formatDistance(new Date(), new Date(date), {
+      locale: ptBR,
+      addSuffix: true,
+    });
 
   const lastNotificationRef = useInfiniteScroll(data, async () => {
     if (data.getNotifications.length === 4) {
@@ -136,16 +128,7 @@ const Notification: React.FC = () => {
                             <strong>{notification.from}</strong>
                             <p>&nbsp;{notification.body}</p>
                           </div>
-                          <span>
-                            {formatDistance(
-                              new Date(),
-                              new Date(notification.createdAt),
-                              {
-                                locale: ptBR,
-                                addSuffix: true,
-                              },
-                            )}
-                          </span>
+                          <span>{formatHour(notification.createdAt)}</span>
                         </div>
                         {!notification.read && <div className="new" />}
                       </a>
@@ -164,7 +147,7 @@ const Notification: React.FC = () => {
                         src={
                           process.env.NEXT_PUBLIC_API_HOST + notification.avatar
                         }
-                        alt="Teste"
+                        alt={notification.from}
                       />
                       <div>
                         <div className="head">
