@@ -113,14 +113,14 @@ const Notification: React.FC = () => {
           onClose={handleClose}
           PaperProps={{
             style: {
-              maxHeight: '40rem',
+              maxHeight: '24.5rem',
             },
           }}
         >
           {data.getNotifications.map((notification, index) => {
             if (data.getNotifications.length === index + 1) {
               return (
-                <MenuItem>
+                <MenuItem key={notification._id}>
                   <NotificationContainer ref={lastNotificationRef}>
                     <Link href={`/profile/${notification.link}`}>
                       <a>
@@ -156,7 +156,7 @@ const Notification: React.FC = () => {
             }
 
             return (
-              <MenuItem>
+              <MenuItem key={notification._id}>
                 <NotificationContainer>
                   <Link href={`/profile/${notification.link}`}>
                     <a>
