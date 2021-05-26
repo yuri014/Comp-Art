@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const NotificationContainer = styled.div`
+export const NotificationContainer = styled.div`
   padding: 0 1.6rem;
   width: 35rem;
 
@@ -66,4 +66,17 @@ const NotificationContainer = styled.div`
   }
 `;
 
-export default NotificationContainer;
+export const NotificationMenuContainer = styled.div`
+  position: absolute;
+  background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
+  z-index: 5;
+  top: 6rem;
+  padding: 1rem 0;
+  right: 4.5rem;
+  height: 22rem;
+  overflow: auto;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+`;
