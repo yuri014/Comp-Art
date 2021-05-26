@@ -14,7 +14,6 @@ interface NotificationMenuProps {
   loading: boolean;
   openMenu: boolean;
   setOpenMenu: (value: React.SetStateAction<boolean>) => void;
-  refetch: () => void;
 }
 
 const NotificationMenu: React.FC<NotificationMenuProps> = ({
@@ -23,7 +22,6 @@ const NotificationMenu: React.FC<NotificationMenuProps> = ({
   openMenu,
   fetchMore,
   setOpenMenu,
-  refetch,
 }) => {
   const lastNotificationRef = useInfiniteScroll(data, async () => {
     if (data.getNotifications.length === 4) {
@@ -39,7 +37,6 @@ const NotificationMenu: React.FC<NotificationMenuProps> = ({
   const notificationMenuRef = useRef(null);
   useOutsideClick(notificationMenuRef, () => {
     setOpenMenu(false);
-    refetch();
   });
 
   return (
