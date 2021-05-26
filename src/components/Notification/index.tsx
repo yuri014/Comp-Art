@@ -11,6 +11,7 @@ import {
 import CORE_NOTIFICATION_VIEW from '@graphql/fragments/notifications';
 import useInfiniteScroll from '@hooks/infiniteScroll';
 import NotificationItem from './NotificationItem';
+import sendNotification from './sendNotification';
 
 const NOTIFICATIONS_QUERY = gql`
   ${CORE_NOTIFICATION_VIEW}
@@ -69,6 +70,14 @@ const Notification: React.FC = () => {
         ) => {
           if (!subscriptionData.data) return prev;
           const newFeedItem = subscriptionData.data.notification;
+
+          sendNotification(
+            'Nova interação!',
+            newFeedItem.body,
+            // eslint-disable-next-line security/detect-non-literal-fs-filename
+            newFeedItem.link,
+          );
+
           return {
             ...prev,
             getNotifications: [newFeedItem, ...prev.getNotifications],
