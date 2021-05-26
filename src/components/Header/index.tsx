@@ -13,6 +13,7 @@ import {
 } from 'react-icons/fa';
 
 import Notification from '@components/Notification';
+import { NewNotificationsProvider } from '@context/notification';
 import { HeaderContainer, MenuListIcon } from './styles';
 import { AuthContext } from '../../context/auth';
 import ThemeContext from '../../context/theme';
@@ -51,7 +52,9 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
                 <FaShoppingCart />
               </a>
             </Link>
-            <Notification />
+            <NewNotificationsProvider>
+              <Notification />
+            </NewNotificationsProvider>
             <Link href="/market">
               <a title="Ir para os salvos">
                 <FaBookmark />

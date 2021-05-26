@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Badge, IconButton } from '@material-ui/core';
 import { FaBell } from 'react-icons/fa';
 import { useQuery, gql, QueryResult } from '@apollo/client';
 import { useRouter } from 'next/router';
 
+import { NewNotificationsContext } from '@context/notification';
 import { NOTIFICATIONS_SUBSCRIPTION } from '@graphql/subscriptions/notifications';
 import {
   NotificationQuery,
@@ -24,8 +25,10 @@ const NOTIFICATIONS_QUERY = gql`
 
 const Notification: React.FC = () => {
   const router = useRouter();
+  const { hasNewNotifications, setHasNewNotifications } = useContext(
+    NewNotificationsContext,
+  );
   const [openMenu, setOpenMenu] = useState(false);
-  const [hasNewNotifications, setHasNewNotifications] = useState(false);
   const {
     data,
     loading,
@@ -54,11 +57,13 @@ const Notification: React.FC = () => {
 
   useEffect(() => {
     if (!loading && data) {
-      setHasNewNotifications(
-        data.getNotifications.every(notification => notification.read === true),
+      const newNotifications = data.getNotifications.filter(
+        notification => notification.read !== true,
       );
+
+      setHasNewNotifications(newNotifications.length);
     }
-  }, [data, loading]);
+  }, [data, loading, setHasNewNotifications]);
 
   return (
     <>
@@ -69,7 +74,11 @@ const Notification: React.FC = () => {
         color="secondary"
         onClick={() => setOpenMenu(true)}
       >
-        <Badge color="primary" variant="dot" invisible={hasNewNotifications}>
+        <Badge
+          color="primary"
+          variant="dot"
+          invisible={hasNewNotifications === 0}
+        >
           <FaBell />
         </Badge>
       </IconButton>
@@ -84,4 +93,4 @@ const Notification: React.FC = () => {
   );
 };
 
-export default Notification;
+export default React.memo(Notification);

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
 
+import { NewNotificationsContext } from '@context/notification';
 import { INotification } from '@interfaces/Notifications';
 import formatDistanceTimePass from '@utils/formatDistanceTimePass';
 import { NotificationContainer } from './styles';
@@ -19,9 +20,16 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
   notification,
 }) => {
   const [read, setRead] = useState(null);
+  const { hasNewNotifications, setHasNewNotifications } = useContext(
+    NewNotificationsContext,
+  );
   const [readNotification] = useMutation(READ_NOTIFICATION, {
     onCompleted: () => {
       setRead(true);
+
+      if (read !== true && hasNewNotifications !== 0) {
+        setHasNewNotifications(hasNewNotifications - 1);
+      }
     },
     variables: {
       id: notification._id,
