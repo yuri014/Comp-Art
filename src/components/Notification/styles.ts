@@ -4,12 +4,16 @@ const NotificationContainer = styled.div`
   padding: 0 1.6rem;
   width: 35rem;
 
-  a {
+  button {
     display: grid;
     grid-template-columns: 13% 78% 5%;
     color: ${({ theme }) => theme.colors.themeColor};
     width: 100%;
     justify-content: space-between;
+    border: none;
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
 
     img {
       width: 4rem;
