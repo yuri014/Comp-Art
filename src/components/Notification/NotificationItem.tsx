@@ -3,7 +3,7 @@ import { gql, useMutation } from '@apollo/client';
 
 import { INotification } from '@interfaces/Notifications';
 import formatDistanceTimePass from '@utils/formatDistanceTimePass';
-import NotificationContainer from './styles';
+import { NotificationContainer } from './styles';
 
 interface NotificationItemProps {
   notification: INotification;
