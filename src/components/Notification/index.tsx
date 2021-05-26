@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Badge, IconButton, Menu } from '@material-ui/core';
+import { Badge, IconButton, Menu, MenuItem } from '@material-ui/core';
 import { FaBell } from 'react-icons/fa';
 import { useQuery, gql, QueryResult } from '@apollo/client';
 
@@ -112,19 +112,19 @@ const Notification: React.FC = () => {
           {data.getNotifications.map((notification, index) => {
             if (data.getNotifications.length === index + 1) {
               return (
-                <NotificationItem
-                  key={notification._id}
-                  notification={notification}
-                  lastNotificationRef={lastNotificationRef}
-                />
+                <MenuItem key={notification._id} ref={lastNotificationRef}>
+                  <NotificationItem notification={notification} />
+                </MenuItem>
               );
             }
 
             return (
-              <NotificationItem
-                key={notification._id}
-                notification={notification}
-              />
+              <MenuItem key={notification._id}>
+                <NotificationItem
+                  key={notification._id}
+                  notification={notification}
+                />
+              </MenuItem>
             );
           })}
         </Menu>
