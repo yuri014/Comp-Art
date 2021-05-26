@@ -37,7 +37,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
   }, [notification.read]);
 
   return (
-    <MenuItem key={notification._id}>
+    <MenuItem>
       <NotificationContainer ref={lastNotificationRef}>
         <button type="button" onClick={() => readNotification()}>
           <img

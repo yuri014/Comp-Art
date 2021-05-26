@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Badge, IconButton, Menu } from '@material-ui/core';
 import { FaBell } from 'react-icons/fa';
 import { useQuery, gql, QueryResult } from '@apollo/client';
@@ -22,7 +22,8 @@ const NOTIFICATIONS_QUERY = gql`
 `;
 
 const Notification: React.FC = () => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [hasNewNotifications, setHasNewNotifications] = useState(false);
   const {
     data,
     loading,
@@ -45,7 +46,7 @@ const Notification: React.FC = () => {
   const lastNotificationRef = useInfiniteScroll(data, async () => {
     if (data.getNotifications.length === 4) {
       const newPosts = await fetchMore({
-        variables: { offset: data.getNotifications.length },
+        variables: { offset: data.getNotifications.length + 1 },
       });
       return newPosts.data.getNotifications.length === 4;
     }
@@ -75,6 +76,14 @@ const Notification: React.FC = () => {
     }
   }, [data, loading, subscribeToMore]);
 
+  useEffect(() => {
+    if (!loading && data) {
+      setHasNewNotifications(
+        data.getNotifications.every(notification => notification.read === true),
+      );
+    }
+  }, [data, loading]);
+
   return (
     <>
       <IconButton
@@ -84,7 +93,7 @@ const Notification: React.FC = () => {
         onClick={handleClick}
         color="secondary"
       >
-        <Badge color="primary" variant="dot" invisible={!data}>
+        <Badge color="primary" variant="dot" invisible={hasNewNotifications}>
           <FaBell />
         </Badge>
       </IconButton>
@@ -104,13 +113,19 @@ const Notification: React.FC = () => {
             if (data.getNotifications.length === index + 1) {
               return (
                 <NotificationItem
+                  key={notification._id}
                   notification={notification}
                   lastNotificationRef={lastNotificationRef}
                 />
               );
             }
 
-            return <NotificationItem notification={notification} />;
+            return (
+              <NotificationItem
+                key={notification._id}
+                notification={notification}
+              />
+            );
           })}
         </Menu>
       )}
