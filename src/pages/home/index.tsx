@@ -34,6 +34,16 @@ const HomePage: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
     getLevel();
   }, [getLevel]);
 
+  useEffect(() => {
+    const getNotificationPermission = async () => {
+      if (Notification.permission !== 'denied') {
+        await Notification.requestPermission();
+      }
+    };
+
+    getNotificationPermission();
+  }, []);
+
   return (
     <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
       <HomeContainer>
