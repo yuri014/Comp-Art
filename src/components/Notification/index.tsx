@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react';
-import { Badge, IconButton, Menu, MenuItem } from '@material-ui/core';
+import { Badge, IconButton, Menu } from '@material-ui/core';
 import { FaBell } from 'react-icons/fa';
 import { useQuery, gql, QueryResult } from '@apollo/client';
-import { formatDistance } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
-import Link from 'next/link';
 
 import { NOTIFICATIONS_SUBSCRIPTION } from '@graphql/subscriptions/notifications';
 import {
@@ -13,7 +10,7 @@ import {
 } from '@interfaces/Notifications';
 import CORE_NOTIFICATION_VIEW from '@graphql/fragments/notifications';
 import useInfiniteScroll from '@hooks/infiniteScroll';
-import NotificationContainer from './styles';
+import NotificationItem from './NotificationItem';
 
 const NOTIFICATIONS_QUERY = gql`
   ${CORE_NOTIFICATION_VIEW}
@@ -44,12 +41,6 @@ const Notification: React.FC = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const formatHour = (date: string) =>
-    formatDistance(new Date(), new Date(date), {
-      locale: ptBR,
-      addSuffix: true,
-    });
 
   const lastNotificationRef = useInfiniteScroll(data, async () => {
     if (data.getNotifications.length === 4) {
@@ -112,65 +103,14 @@ const Notification: React.FC = () => {
           {data.getNotifications.map((notification, index) => {
             if (data.getNotifications.length === index + 1) {
               return (
-                <MenuItem key={notification._id}>
-                  <NotificationContainer ref={lastNotificationRef}>
-                    <Link href={`/profile/${notification.link}`}>
-                      <a>
-                        <img
-                          src={
-                            process.env.NEXT_PUBLIC_API_HOST +
-                            notification.avatar
-                          }
-                          alt="Teste"
-                        />
-                        <div>
-                          <div className="head">
-                            <strong>{notification.from}</strong>
-                            <p>&nbsp;{notification.body}</p>
-                          </div>
-                          <span>{formatHour(notification.createdAt)}</span>
-                        </div>
-                        {!notification.read && <div className="new" />}
-                      </a>
-                    </Link>
-                  </NotificationContainer>
-                </MenuItem>
+                <NotificationItem
+                  notification={notification}
+                  lastNotificationRef={lastNotificationRef}
+                />
               );
             }
 
-            return (
-              <MenuItem key={notification._id}>
-                <NotificationContainer>
-                  <Link href={`/profile/${notification.link}`}>
-                    <a>
-                      <img
-                        src={
-                          process.env.NEXT_PUBLIC_API_HOST + notification.avatar
-                        }
-                        alt={notification.from}
-                      />
-                      <div>
-                        <div className="head">
-                          <strong>{notification.from}</strong>
-                          <p>&nbsp;{notification.body}</p>
-                        </div>
-                        <span>
-                          {formatDistance(
-                            new Date(),
-                            new Date(notification.createdAt),
-                            {
-                              locale: ptBR,
-                              addSuffix: true,
-                            },
-                          )}
-                        </span>
-                      </div>
-                      {!notification.read && <div className="new" />}
-                    </a>
-                  </Link>
-                </NotificationContainer>
-              </MenuItem>
-            );
+            return <NotificationItem notification={notification} />;
           })}
         </Menu>
       )}
