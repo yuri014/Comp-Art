@@ -29,6 +29,7 @@ const Notification: React.FC = () => {
     loading,
     subscribeToMore,
     fetchMore,
+    refetch,
   } = useQuery<NotificationQuery>(NOTIFICATIONS_QUERY, {
     variables: {
       offset: 0,
@@ -41,6 +42,7 @@ const Notification: React.FC = () => {
 
   const handleClose = () => {
     setAnchorEl(null);
+    refetch();
   };
 
   const lastNotificationRef = useInfiniteScroll(data, async () => {
