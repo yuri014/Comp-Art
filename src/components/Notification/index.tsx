@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Badge, IconButton, Menu, MenuItem } from '@material-ui/core';
+import { Badge, IconButton } from '@material-ui/core';
 import { FaBell } from 'react-icons/fa';
 import { useQuery, gql, QueryResult } from '@apollo/client';
+import { useRouter } from 'next/router';
 
 import { NOTIFICATIONS_SUBSCRIPTION } from '@graphql/subscriptions/notifications';
 import {
@@ -9,9 +10,8 @@ import {
   NotificationSubscription,
 } from '@interfaces/Notifications';
 import CORE_NOTIFICATION_VIEW from '@graphql/fragments/notifications';
-import useInfiniteScroll from '@hooks/infiniteScroll';
-import NotificationItem from './NotificationItem';
-import sendNotification from './sendNotification';
+import NotificationMenu from './NotificationMenu';
+import updateNotificationQuery from './updateNotificationQuery';
 
 const NOTIFICATIONS_QUERY = gql`
   ${CORE_NOTIFICATION_VIEW}
@@ -23,38 +23,18 @@ const NOTIFICATIONS_QUERY = gql`
 `;
 
 const Notification: React.FC = () => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const router = useRouter();
+  const [openMenu, setOpenMenu] = useState(false);
   const [hasNewNotifications, setHasNewNotifications] = useState(false);
   const {
     data,
     loading,
     subscribeToMore,
     fetchMore,
-    refetch,
   } = useQuery<NotificationQuery>(NOTIFICATIONS_QUERY, {
     variables: {
       offset: 0,
     },
-  });
-
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-    refetch();
-  };
-
-  const lastNotificationRef = useInfiniteScroll(data, async () => {
-    if (data.getNotifications.length === 4) {
-      const newPosts = await fetchMore({
-        variables: { offset: data.getNotifications.length + 1 },
-      });
-      return newPosts.data.getNotifications.length === 4;
-    }
-
-    return false;
   });
 
   useEffect(() => {
@@ -67,25 +47,10 @@ const Notification: React.FC = () => {
           {
             subscriptionData,
           }: { subscriptionData: QueryResult<NotificationSubscription> },
-        ) => {
-          if (!subscriptionData.data) return prev;
-          const newFeedItem = subscriptionData.data.notification;
-
-          sendNotification(
-            'Nova interação!',
-            newFeedItem.body,
-            // eslint-disable-next-line security/detect-non-literal-fs-filename
-            newFeedItem.link,
-          );
-
-          return {
-            ...prev,
-            getNotifications: [newFeedItem, ...prev.getNotifications],
-          };
-        },
+        ) => updateNotificationQuery(prev, subscriptionData, router.push),
       });
     }
-  }, [data, loading, subscribeToMore]);
+  }, [data, loading, router.push, subscribeToMore]);
 
   useEffect(() => {
     if (!loading && data) {
@@ -101,45 +66,20 @@ const Notification: React.FC = () => {
         aria-controls="menu-notification"
         aria-haspopup="true"
         aria-label="Abrir menu de notificações"
-        onClick={handleClick}
         color="secondary"
+        onClick={() => setOpenMenu(true)}
       >
         <Badge color="primary" variant="dot" invisible={hasNewNotifications}>
           <FaBell />
         </Badge>
       </IconButton>
-      {!loading && data && (
-        <Menu
-          id="menu-header"
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-          PaperProps={{
-            style: {
-              maxHeight: '24.5rem',
-            },
-          }}
-        >
-          {data.getNotifications.map((notification, index) => {
-            if (data.getNotifications.length === index + 1) {
-              return (
-                <MenuItem key={notification._id} ref={lastNotificationRef}>
-                  <NotificationItem notification={notification} />
-                </MenuItem>
-              );
-            }
-
-            return (
-              <MenuItem key={notification._id}>
-                <NotificationItem
-                  key={notification._id}
-                  notification={notification}
-                />
-              </MenuItem>
-            );
-          })}
-        </Menu>
-      )}
+      <NotificationMenu
+        data={data}
+        fetchMore={fetchMore}
+        loading={loading}
+        openMenu={openMenu}
+        setOpenMenu={setOpenMenu}
+      />
     </>
   );
 };
