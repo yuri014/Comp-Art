@@ -24,6 +24,7 @@ const ImagePost: React.FC<ImagePostProps> = ({ image, imageHeight }) => {
           src={process.env.NEXT_PUBLIC_API_HOST + image}
           alt="Publicação"
           height={imageHeight}
+          loading="lazy"
         />
       </button>
       {isImageFullScreen && (

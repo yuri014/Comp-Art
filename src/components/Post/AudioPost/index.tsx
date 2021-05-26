@@ -43,6 +43,9 @@ const AudioPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
           <img
             src={process.env.NEXT_PUBLIC_API_HOST + post.thumbnail}
             alt={post.description}
+            loading="lazy"
+            width="200px"
+            height="200px"
           />
         </div>
         <div className="audio-card-content">
