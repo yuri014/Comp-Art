@@ -32,6 +32,15 @@ const ShareContainer = styled.div`
       }
     }
   }
+  @media (min-width: 1100px) {
+    margin-bottom: 0.6rem;
+
+    .share-content {
+      .date {
+        text-align: left;
+      }
+    }
+  }
 `;
 
 export default ShareContainer;

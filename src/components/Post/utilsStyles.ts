@@ -5,13 +5,14 @@ export const AuthorInfoContainer = styled.div`
     margin-left: 2rem;
 
     p {
-      font-size: 2.4rem;
+      font-size: 1.6rem;
       letter-spacing: 0.1rem;
       color: ${({ theme }) => theme.colors.themeColor};
       white-space: nowrap;
       max-width: 44rem;
       overflow: hidden;
       text-overflow: ellipsis;
+      font-weight: 600;
     }
 
     span {
@@ -19,12 +20,13 @@ export const AuthorInfoContainer = styled.div`
 
       p {
         color: ${({ theme }) => theme.colors.darkGray};
-        font-size: 1.4rem;
+        font-size: 1.3rem;
         letter-spacing: 0.1rem;
         white-space: nowrap;
         max-width: 30rem;
         overflow: hidden;
         text-overflow: ellipsis;
+        font-weight: 400;
       }
     }
   }
