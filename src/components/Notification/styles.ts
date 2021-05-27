@@ -1,31 +1,40 @@
 import styled from 'styled-components';
 
 export const NotificationContainer = styled.div`
-  padding: 0 1.6rem;
+  padding: 0 0.5rem;
   width: 35rem;
+  position: relative;
 
   button {
-    display: grid;
-    grid-template-columns: 13% 78% 5%;
+    display: flex;
     color: ${({ theme }) => theme.colors.themeColor};
     width: 100%;
-    justify-content: space-between;
     border: none;
     background: transparent;
     text-align: left;
     cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.125s ease;
+
+    &:hover {
+      background: ${({ theme }) => theme.colors.lighterSecondaryBackground};
+    }
 
     img {
       width: 4rem;
       height: 4rem;
       border-radius: 50%;
+      margin-right: 1rem;
     }
 
     div {
+      width: 79%;
+
       .head {
         p,
         strong {
           display: inline;
+          font-size: 1.4rem;
         }
 
         p {
@@ -41,6 +50,8 @@ export const NotificationContainer = styled.div`
     }
 
     .new {
+      position: absolute;
+      right: 2rem;
       width: 0.8rem;
       height: 0.8rem;
       background-color: ${({ theme }) => theme.colors.mainColor};
@@ -68,10 +79,10 @@ export const NotificationContainer = styled.div`
 
 export const NotificationMenuContainer = styled.div`
   position: absolute;
-  background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
+  background-color: ${({ theme }) => theme.colors.lightSecondaryBackground};
   z-index: 5;
-  top: 6rem;
-  padding: 1rem 0;
+  top: 5rem;
+  padding: 0.5rem 0;
   right: 4.5rem;
   height: 22rem;
   overflow: auto;

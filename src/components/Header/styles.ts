@@ -44,7 +44,7 @@ export const HeaderContainer = styled.header`
 
     button {
       color: ${({ theme }) => theme.colors.gray};
-      padding: 0.2rem;
+      padding: 0.5rem;
       font-size: 2rem;
 
       img {
