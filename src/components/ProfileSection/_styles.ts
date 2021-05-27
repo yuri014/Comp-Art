@@ -50,7 +50,6 @@ const ProfileSectionContainer = styled.section`
       width: 11rem;
       border-radius: 50%;
       height: 11rem;
-      box-shadow: 0 0 4px ${({ theme }) => theme.colors.namesakeText};
       cursor: pointer;
       border: 3px solid ${({ theme }) => theme.colors.pink};
       object-fit: cover;
