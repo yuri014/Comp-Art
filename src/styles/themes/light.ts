@@ -28,7 +28,7 @@ const theme = {
     )`,
     danger: '#f50057',
     error: '#FF3838',
-    pink: '#DC143C',
+    pink: '#FF4F6D',
     themeColor: '#111112',
     mainShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
     secondaryShadow:
