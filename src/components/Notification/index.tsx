@@ -12,7 +12,7 @@ import {
 } from '@interfaces/Notifications';
 import CORE_NOTIFICATION_VIEW from '@graphql/fragments/notifications';
 import NotificationMenu from './NotificationMenu';
-import updateNotificationQuery from './updateNotificationQuery';
+import sendNotification from './sendNotification';
 
 const NOTIFICATIONS_QUERY = gql`
   ${CORE_NOTIFICATION_VIEW}
@@ -44,13 +44,29 @@ const Notification: React.FC = () => {
     if (!loading && data) {
       subscribeToMore({
         document: NOTIFICATIONS_SUBSCRIPTION,
-        variables: { offset: data.getNotifications.length },
         updateQuery: (
-          prev,
+          prev: NotificationQuery,
           {
             subscriptionData,
           }: { subscriptionData: QueryResult<NotificationSubscription> },
-        ) => updateNotificationQuery(prev, subscriptionData, router.push),
+        ): NotificationQuery => {
+          if (!subscriptionData.data) return prev;
+          const newFeedItem = subscriptionData.data.notification;
+
+          sendNotification(
+            {
+              body: newFeedItem.body,
+              link: newFeedItem.link,
+              title: 'Nova interação!',
+            },
+            router.push,
+          );
+
+          return {
+            ...prev,
+            getNotifications: [newFeedItem, ...prev.getNotifications],
+          };
+        },
       });
     }
   }, [data, loading, router.push, subscribeToMore]);

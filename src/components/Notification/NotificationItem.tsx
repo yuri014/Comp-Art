@@ -54,7 +54,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
           </div>
           <span>{formatDistanceTimePass(notification.createdAt)}</span>
         </div>
-        {!read && <div className="new" />}
+        {!read && hasNewNotifications !== 0 && <div className="new" />}
       </button>
     </NotificationContainer>
   );
