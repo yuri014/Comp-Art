@@ -15,6 +15,7 @@ const ProfileSectionContainer = styled.section`
     display: flex;
     justify-content: space-between;
     margin-top: 4rem;
+    max-width: 48rem;
 
     button {
       width: 12rem;
@@ -69,6 +70,7 @@ const ProfileSectionContainer = styled.section`
   .profile {
     margin-top: 2rem;
     width: 100%;
+    max-width: 48rem;
 
     h1 {
       font-size: 2rem;
@@ -105,6 +107,7 @@ const ProfileSectionContainer = styled.section`
 
   .bio,
   .joined {
+    max-width: 48rem;
     margin-top: 3rem;
     width: 100%;
     font-size: 1.4rem;
