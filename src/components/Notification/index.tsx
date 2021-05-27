@@ -53,18 +53,31 @@ const Notification: React.FC = () => {
           if (!subscriptionData.data) return prev;
           const newFeedItem = subscriptionData.data.notification;
 
-          sendNotification(
-            {
-              body: newFeedItem.body,
-              link: newFeedItem.link,
-              title: 'Nova interação!',
-            },
-            router.push,
+          const hasDuplicateNotification = prev.getNotifications.some(
+            not => not._id === newFeedItem._id,
           );
+
+          if (!hasDuplicateNotification) {
+            sendNotification(
+              {
+                body: newFeedItem.body,
+                link: newFeedItem.link,
+                title: 'Nova interação!',
+              },
+              router.push,
+            );
+          }
+
+          const newNotifications = [
+            newFeedItem,
+            ...prev.getNotifications.filter(
+              value => value._id !== newFeedItem._id,
+            ),
+          ];
 
           return {
             ...prev,
-            getNotifications: [newFeedItem, ...prev.getNotifications],
+            getNotifications: newNotifications,
           };
         },
       });
