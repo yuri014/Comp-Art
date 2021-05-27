@@ -18,6 +18,7 @@ import ProfileSEO from '@components/SEO/ProfileSEO';
 import ProfileSection from '@components/ProfileSection';
 import Link from 'next/link';
 import CAButton from '@styles/components/button';
+import withPublicRoute from '@hocs/withPublicRoute';
 import ProfileContainer from './_styles';
 
 const CAImage = dynamic(() => import('@components/CAImage'));
@@ -119,4 +120,4 @@ export const getServerSideProps: GetServerSideProps = async context => {
   };
 };
 
-export default Profile;
+export default withPublicRoute(Profile);
