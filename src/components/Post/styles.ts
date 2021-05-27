@@ -143,16 +143,18 @@ const PostContainer = styled.div`
           font-size: 1.3rem;
         }
 
-        .share-count {
-          display: unset;
-
-          &-mobile {
-            display: none;
-          }
+        .share-count-mobile {
+          display: none;
         }
 
         .post-counts {
           width: 43rem;
+
+          button {
+            &.share-count {
+              display: block;
+            }
+          }
 
           @media (min-width: 1100px) {
             width: 39rem;
