@@ -7,7 +7,7 @@ const NotLoggedInvite: React.FC = () => (
   <NotLoggedInviteContainer>
     <div className="container">
       <div className="texts">
-        <p>Não perca tempo, crie agora mesmo sua conta</p>
+        <p>Não perca tempo, crie agora mesmo sua conta!</p>
         <p>Fique por dentro das novidades do mundo da arte.</p>
       </div>
       <div className="buttons">
