@@ -19,16 +19,16 @@ const SkeletonPost: React.FC = () => {
             <Skeleton
               animation="wave"
               variant="circle"
-              width={60}
-              height={60}
+              width={40}
+              height={40}
             />
             <div>
-              <Skeleton animation="wave" width={150} height={24} />
+              <Skeleton animation="wave" width={150} height={22} />
               <span>
                 <Skeleton
                   animation="wave"
                   width={120}
-                  height={24}
+                  height={18}
                   component="p"
                 />
               </span>
@@ -40,9 +40,9 @@ const SkeletonPost: React.FC = () => {
         </div>
         <div className="post">
           <div className="post-description-loading">
-            <Skeleton animation="wave" width="100%" height={60} />
+            <Skeleton animation="wave" width="100%" height={40} />
           </div>
-          <Skeleton animation="wave" variant="rect" width="100%" height={378} />
+          <Skeleton animation="wave" variant="rect" width="100%" height={300} />
         </div>
       </ThemeProvider>
     </PostContainer>
