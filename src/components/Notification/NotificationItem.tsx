@@ -27,7 +27,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
     onCompleted: () => {
       setRead(true);
 
-      if (read !== true && hasNewNotifications !== 0) {
+      if (read !== true && hasNewNotifications > 0) {
         setHasNewNotifications(hasNewNotifications - 1);
       }
     },
