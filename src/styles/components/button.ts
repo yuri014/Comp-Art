@@ -6,7 +6,7 @@ const CAButton = styled.button`
   border-radius: 5px;
   border: none;
   background-color: ${({ theme }) => theme.colors.mainColor};
-  color: ${({ theme }) => theme.colors.themeColor};
+  color: white;
   margin-bottom: 2rem;
   cursor: pointer;
   transition: 0.2s ease-in-out;
