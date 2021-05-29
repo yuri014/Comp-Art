@@ -21,7 +21,7 @@ const AudioSlider: React.FC<AudioSliderProps> = ({
   const setTime = useCallback(() => {
     const time = audioRef.current.currentTime;
     const { minutes, seconds } = formatTime(time);
-    setCurrentTime(`${minutes}:${Math.floor(seconds)}`);
+    setCurrentTime(`${minutes}:${seconds}`);
     return time;
   }, [audioRef]);
 
@@ -66,8 +66,8 @@ const AudioSlider: React.FC<AudioSliderProps> = ({
         className="prevent-redirect-post"
       />
       <div className="duration">
-        <p>{currentTime || '0:00'}</p>
-        <p>{audioDuration || '0:00'}</p>
+        <p>{currentTime || '00:00'}</p>
+        <p>{audioDuration || '00:00'}</p>
       </div>
     </div>
   );

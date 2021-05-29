@@ -19,7 +19,7 @@ import AudioSlider from './Slider';
 const AudioPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
   const audioRef = useRef<null | HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [audioDuration, setAudioDuration] = useState('0:00');
+  const [audioDuration, setAudioDuration] = useState('00:00');
   const { isDarkMode } = useContext(ThemeContext);
 
   const handlePlaying = () => {

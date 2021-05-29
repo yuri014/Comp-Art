@@ -87,7 +87,7 @@ const AudioPostContainer = styled.section<AudioPostContainerProps>`
         .duration {
           display: flex;
           justify-content: space-between;
-          font-size: 1.4rem;
+          font-size: 1.3rem;
           transform: translateY(-1.6rem);
         }
       }
