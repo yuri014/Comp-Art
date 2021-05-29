@@ -55,7 +55,7 @@ const AudioSlider: React.FC<AudioSliderProps> = ({
   }, [audioRef, setTime]);
 
   return (
-    <div className="progress">
+    <div className="progress prevent-redirect-post">
       <Slider
         value={slider}
         min={0}
@@ -65,7 +65,7 @@ const AudioSlider: React.FC<AudioSliderProps> = ({
         step={0.01}
         className="prevent-redirect-post"
       />
-      <div className="duration">
+      <div className="duration prevent-redirect-post">
         <p>{currentTime || '00:00'}</p>
         <p>{audioDuration || '00:00'}</p>
       </div>
