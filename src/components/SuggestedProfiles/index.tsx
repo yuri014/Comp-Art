@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { gql, useMutation, useQuery } from '@apollo/client';
 
 import SuggestedProfilesContainer from './styles';
@@ -89,17 +90,21 @@ const SuggestedProfiles: React.FC = () => {
               {data.getSuggestedProfiles.map(profile => (
                 <React.Fragment key={profile.owner}>
                   <div className="suggested-profile-container">
-                    <div className="suggested-profile">
-                      <img
-                        src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
-                        alt={profile.name}
-                      />
+                    <Link href={`/profile/${profile.owner}`}>
+                      <a className="suggested-profile">
+                        <img
+                          src={
+                            process.env.NEXT_PUBLIC_API_HOST + profile.avatar
+                          }
+                          alt={profile.name}
+                        />
 
-                      <div className="suggested-profile-info">
-                        <p className="limited-text">{profile.name}</p>
-                        <p className="limited-text">@{profile.owner}</p>
-                      </div>
-                    </div>
+                        <div className="suggested-profile-info">
+                          <p className="limited-text">{profile.name}</p>
+                          <p className="limited-text">@{profile.owner}</p>
+                        </div>
+                      </a>
+                    </Link>
                     <FollowButton username={profile.owner} />
                   </div>
                 </React.Fragment>

@@ -38,11 +38,16 @@ const SuggestedProfilesContainer = styled.div`
           max-width: 7.4vw;
           font-size: 1.4rem;
           font-weight: 600;
+          color: ${({ theme }) => theme.colors.themeColor};
 
           & + p {
             font-size: 1.3rem;
             font-weight: 400;
             color: ${({ theme }) => theme.colors.gray};
+          }
+
+          &:hover {
+            text-decoration: underline;
           }
         }
       }
