@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { IconButton, Menu, MenuItem, ThemeProvider } from '@material-ui/core';
 import {
   FaBookmark,
   FaCog,
-  FaExchangeAlt,
   FaMoon,
   FaShoppingCart,
   FaSignInAlt,
@@ -25,6 +25,7 @@ import Logo from '../../assets/logo.svg';
 
 const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
   const auth = useContext(AuthContext);
+  const { push } = useRouter();
   const { isDarkMode, toggleTheme } = useContext(ThemeContext);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -78,35 +79,25 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem>
-                <Link href={`/profile/${getLoggedProfile.owner}`}>
-                  <MenuListIcon as="a">
-                    <FaUserAlt />
-                    <p>Meu Perfil</p>
-                  </MenuListIcon>
-                </Link>
+              <MenuItem
+                onClick={() => push(`/profile/${getLoggedProfile.owner}`)}
+              >
+                <MenuListIcon>
+                  <FaUserAlt />
+                  <p>Meu Perfil</p>
+                </MenuListIcon>
               </MenuItem>
-              <MenuItem>
-                <MenuListIcon onClick={() => toggleTheme()}>
+              <MenuItem onClick={() => toggleTheme()}>
+                <MenuListIcon>
                   <FaMoon />
                   <p>Modo {!isDarkMode ? 'Escuro' : 'Claro'}</p>
                 </MenuListIcon>
               </MenuItem>
-              <MenuItem>
-                <Link href="/changelog">
-                  <MenuListIcon as="a">
-                    <FaExchangeAlt />
-                    <p>Changelog</p>
-                  </MenuListIcon>
-                </Link>
-              </MenuItem>
-              <MenuItem>
-                <Link href="/config">
-                  <MenuListIcon as="a">
-                    <FaCog />
-                    <p>Configurações</p>
-                  </MenuListIcon>
-                </Link>
+              <MenuItem onClick={() => push('/config')}>
+                <MenuListIcon>
+                  <FaCog />
+                  <p>Configurações</p>
+                </MenuListIcon>
               </MenuItem>
               <MenuItem onClick={() => auth.logout()}>
                 <MenuListIcon>
