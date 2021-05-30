@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { gql, useLazyQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
 import { GetServerSideProps } from 'next';
 
 import Header from '@components/Header';
@@ -14,53 +14,12 @@ import ArtistPost from '@components/Post/ArtistPost';
 import usePostsMutations from '@hooks/postMutations';
 import LevelContext from '@context/level';
 import { initializeApollo } from '@graphql/apollo/config';
-import { CORE_PROFILE_VIEW } from '@graphql/fragments/profile';
 import { GET_LEVEL_XP, GET_LOGGED_PROFILE } from '@graphql/queries/profile';
+import { GET_SEARCH_PROFILE, GET_SEARCH_POSTS } from '@graphql/queries/search';
 import { Timeline } from '@interfaces/Post';
 import { ILoggedProfile, IProfile } from '@interfaces/Profile';
 import HomeContainer from '../home/_styles';
 import SearchContainer from './_styles';
-
-const GET_SEARCH_PROFILE = gql`
-  ${CORE_PROFILE_VIEW}
-  query SearchProfiles($query: String!, $offset: Int!, $limit: Int!) {
-    searchProfiles(query: $query, offset: $offset, limit: $limit) {
-      ...CoreProfileView
-      bio
-    }
-  }
-`;
-
-const GET_SEARCH_POSTS = gql`
-  query SearchPost($query: String!, $offset: Int!) {
-    searchPost(query: $query, offset: $offset) {
-      _id
-      description
-      body
-      likes {
-        profile {
-          name
-          avatar
-          _id
-          owner
-          bio
-        }
-      }
-      likesCount
-      sharedCount
-      commentsCount
-      createdAt
-      artist {
-        name
-        owner
-        avatar
-      }
-      mediaId
-      isLiked
-      alt
-    }
-  }
-`;
 
 interface SearchPageProps extends ILoggedProfile {
   profiles: Array<IProfile>;
