@@ -12,7 +12,7 @@ const HashtagsProfile: React.FC<HashtagsProfileProps> = ({ hashtags }) => (
     <h3># Hashtags seguidas</h3>
     <div className="hashtag-container">
       {hashtags.map(hashtag => (
-        <Link key={hashtag} href="/">
+        <Link key={hashtag} href={`/tag/${hashtag.substring(1)}`}>
           <a>{hashtag}</a>
         </Link>
       ))}
