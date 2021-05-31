@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useLazyQuery } from '@apollo/client';
 import { GetServerSideProps } from 'next';
 
 import Header from '@components/Header';
@@ -14,8 +13,9 @@ import ArtistPost from '@components/Post/ArtistPost';
 import usePostsMutations from '@hooks/postMutations';
 import LevelContext from '@context/level';
 import { initializeApollo } from '@graphql/apollo/config';
-import { GET_LEVEL_XP, GET_LOGGED_PROFILE } from '@graphql/queries/profile';
+import { GET_LOGGED_PROFILE } from '@graphql/queries/profile';
 import { GET_SEARCH_PROFILE, GET_SEARCH_POSTS } from '@graphql/queries/search';
+import useGetLevel from '@hooks/getLevel';
 import { Timeline } from '@interfaces/Post';
 import { ILoggedProfile, IProfile } from '@interfaces/Profile';
 import HomeContainer from '../home/_styles';
@@ -35,13 +35,7 @@ const SearchPage: React.FC<SearchPageProps> = ({
     query: { query },
   } = useRouter();
 
-  const [getLevel, { data: profileLevel }] = useLazyQuery(GET_LEVEL_XP, {
-    fetchPolicy: 'no-cache',
-  });
-
-  useEffect(() => {
-    getLevel();
-  }, [getLevel]);
+  const { getLevel, profileLevel } = useGetLevel();
 
   return (
     <HomeContainer>
