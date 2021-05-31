@@ -1,14 +1,13 @@
 import React, { useContext, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { GetServerSideProps } from 'next';
-import { useLazyQuery } from '@apollo/client';
 import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core';
 
 import LevelContext from '@context/level';
 import ThemeContext from '@context/theme';
 import { initializeApollo } from '@graphql/apollo/config';
-import { GET_LEVEL_XP, GET_LOGGED_PROFILE } from '@graphql/queries/profile';
+import { GET_LOGGED_PROFILE } from '@graphql/queries/profile';
 import { ILoggedProfile } from '@interfaces/Profile';
 import Header from '@components/Header';
 import Home from '@components/Home';
@@ -16,6 +15,7 @@ import Timeline from '@components/Timeline';
 import CreatePost from '@components/CreatePost';
 import { AuthContext } from '@context/auth';
 import { GET_POSTS } from '@graphql/queries/post';
+import useGetLevel from '@hooks/getLevel';
 import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
 import HomeContainer from './_styles';
@@ -26,13 +26,7 @@ const MobileFooter = dynamic(() => import('@components/MobileFooter'));
 const HomePage: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
   const { isDarkMode } = useContext(ThemeContext);
   const auth = useContext(AuthContext);
-  const [getLevel, { data: profileLevel }] = useLazyQuery(GET_LEVEL_XP, {
-    fetchPolicy: 'no-cache',
-  });
-
-  useEffect(() => {
-    getLevel();
-  }, [getLevel]);
+  const { getLevel, profileLevel } = useGetLevel();
 
   useEffect(() => {
     const getNotificationPermission = async () => {
