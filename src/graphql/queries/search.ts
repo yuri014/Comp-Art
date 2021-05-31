@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import { CORE_POST_VIEW } from '@graphql/fragments/posts';
 
 import { CORE_PROFILE_VIEW } from '@graphql/fragments/profile';
 
@@ -13,33 +14,11 @@ export const GET_SEARCH_PROFILE = gql`
 `;
 
 export const GET_SEARCH_POSTS = gql`
+  ${CORE_POST_VIEW}
   query SearchPost($query: String!, $offset: Int!) {
     searchPost(query: $query, offset: $offset) {
       ... on Post {
-        _id
-        description
-        body
-        likes {
-          profile {
-            name
-            avatar
-            _id
-            owner
-            bio
-          }
-        }
-        likesCount
-        sharedCount
-        commentsCount
-        createdAt
-        artist {
-          name
-          owner
-          avatar
-        }
-        mediaId
-        isLiked
-        alt
+        ...CorePostView
       }
     }
   }
