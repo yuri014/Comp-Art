@@ -25,22 +25,25 @@ const usePostAsLink: UsePostAsLink = postID => {
     const targetEvent = e.target as HTMLElement;
     const excludeTags = ['button', 'a', 'svg', 'path', 'img', 'p'];
 
-    const checkContainClass = (className: string) =>
-      targetEvent.classList.contains(className);
+    const checkContainClass = (classNames: string[]) =>
+      classNames.map(className => targetEvent.classList.contains(className));
 
     const checkExcludeTags = excludeTags.includes(targetEvent.localName);
     const isAClickOut = targetEvent.getAttribute('aria-hidden') === 'true';
     const isASlider = targetEvent.getAttribute('role') === 'slider';
     const isAMenu = targetEvent.getAttribute('role') === 'menu';
-    const checkClassName = checkContainClass('prevent-redirect-post');
-    const excludeMuiButton = checkContainClass('MuiButtonBase-root');
+    const checkClassName = checkContainClass([
+      'prevent-redirect-post',
+      'MuiButtonBase-root',
+      'hashtag',
+      'mention',
+    ]).includes(true);
 
     const checks = [
       !checkClassName,
       !checkExcludeTags,
       !isAClickOut,
       !isASlider,
-      !excludeMuiButton,
       !isAMenu,
     ];
 
