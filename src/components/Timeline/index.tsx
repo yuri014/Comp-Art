@@ -1,9 +1,14 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { DocumentNode, useQuery } from '@apollo/client';
 
-import TimelineManager from '@components/Timeline/TimelineManager';
 import LoadingPost from '../Post/LoadingPost';
 import useInfiniteScroll from '../../hooks/infiniteScroll';
+
+const TimelineManager = dynamic(
+  () => import('@components/Timeline/TimelineManager'),
+  { loading: () => <LoadingPost loading /> },
+);
 
 interface TimelineProps {
   query: DocumentNode;
