@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from 'react';
-import dynamic from 'next/dynamic';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core';
@@ -13,15 +12,14 @@ import Header from '@components/Header';
 import Home from '@components/Home';
 import Timeline from '@components/Timeline';
 import CreatePost from '@components/CreatePost';
+import MobileFooter from '@components/MobileFooter';
+import MobileHeader from '@components/MobileHeader';
 import { AuthContext } from '@context/auth';
 import { GET_POSTS } from '@graphql/queries/post';
 import useGetLevel from '@hooks/getLevel';
 import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
 import HomeContainer from './_styles';
-
-const MobileHeader = dynamic(() => import('@components/MobileHeader'));
-const MobileFooter = dynamic(() => import('@components/MobileFooter'));
 
 const HomePage: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
   const { isDarkMode } = useContext(ThemeContext);
