@@ -75,6 +75,8 @@ const ProfileSection: React.FC<ProfileProps> = ({ getProfile }) => {
             className="profile-image"
             type="button"
             onClick={() => setIsImageFullScreen(true)}
+            onKeyDown={() => setIsImageFullScreen(true)}
+            onBlur={() => setIsImageFullScreen(false)}
           >
             <img
               src={process.env.NEXT_PUBLIC_API_HOST + getProfile.avatar}
