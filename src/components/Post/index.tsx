@@ -155,7 +155,7 @@ const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
           onHide={() => setModalShow(false)}
           queryResult={modalPayload.queryResult}
           query={modalPayload.query}
-          id={post._id}
+          variable={{ id: post._id }}
         />
       )}
     </>
