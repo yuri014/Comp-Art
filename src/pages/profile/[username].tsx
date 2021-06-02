@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { GetServerSideProps } from 'next';
-import dynamic from 'next/dynamic';
 import { ThemeProvider } from '@material-ui/core';
 
+import CAImage from '@components/CAImage';
 import Header from '@components/Header';
 import MobileFooter from '@components/MobileFooter';
 import ProfileLinks from '@components/Splitter/ProfileLinks';
@@ -20,8 +20,6 @@ import Link from 'next/link';
 import CAButton from '@styles/components/button';
 import withPublicRoute from '@hocs/withPublicRoute';
 import ProfileContainer from './_styles';
-
-const CAImage = dynamic(() => import('@components/CAImage'));
 
 interface ProfileProps extends ILoggedProfile {
   username: string;
