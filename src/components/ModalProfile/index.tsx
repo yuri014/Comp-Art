@@ -12,19 +12,19 @@ import ProfileSimpleCard from '../ProfileCard';
 
 interface ModalProps {
   onHide: () => void;
-  id: string;
+  variable: { [key: string]: string };
   query: DocumentNode;
   queryResult: string;
 }
 
 const ModalProfile: React.FC<ModalProps> = ({
   onHide,
-  id,
+  variable,
   query,
   queryResult,
 }) => {
   const { data, loading, fetchMore, client } = useQuery(query, {
-    variables: { id, offset: 0 },
+    variables: { offset: 0, ...variable },
   });
 
   useEffect(
@@ -37,7 +37,7 @@ const ModalProfile: React.FC<ModalProps> = ({
   const lastPostRefLikes = useInfiniteScroll(
     data,
     () =>
-      !!data.getLikes &&
+      !!data[`${queryResult}`] &&
       fetchMore({
         variables: { offset: data[`${queryResult}`].length },
       }).then(newProfiles => newProfiles.data[`${queryResult}`].length < 3),
@@ -48,9 +48,8 @@ const ModalProfile: React.FC<ModalProps> = ({
       <Modal onHide={onHide} show title="Ver curtidas" fontSize="2.4rem">
         <ModalProfileContainer>
           <div className="modal-content">
-            {loading ? (
+            {loading && !data ? (
               <>
-                <LoadingProfileLikes />
                 <LoadingProfileLikes />
               </>
             ) : (
