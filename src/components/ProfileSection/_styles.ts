@@ -46,13 +46,15 @@ const ProfileSectionContainer = styled.section`
     display: flex;
     justify-content: center;
 
-    img {
-      width: 11rem;
-      border-radius: 50%;
-      height: 11rem;
-      cursor: pointer;
-      border: 3px solid ${({ theme }) => theme.colors.pink};
-      object-fit: cover;
+    .profile-image {
+      img {
+        width: 11rem;
+        border-radius: 50%;
+        height: 11rem;
+        cursor: pointer;
+        border: 3px solid ${({ theme }) => theme.colors.pink};
+        object-fit: cover;
+      }
     }
 
     p {
@@ -125,6 +127,7 @@ const ProfileSectionContainer = styled.section`
   @media (min-width: 1100px) {
     border-radius: 5px;
     margin-top: -12rem;
+    z-index: 4;
   }
 `;
 
