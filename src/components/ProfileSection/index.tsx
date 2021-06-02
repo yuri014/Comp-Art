@@ -6,13 +6,13 @@ import Link from 'next/link';
 import { AuthContext } from '@context/auth';
 import { FOLLOW_PROFILE, UNFOLLOW_PROFILE } from '@graphql/mutations/profile';
 import { IProfile } from '@interfaces/Profile';
-import CAImage from '@components/CAImage';
 import { GET_IS_FOLLOWING } from '@graphql/queries/profile';
 import { MODAL_PROFILE } from '@graphql/fragments/profile';
 import formatDate from '@utils/formatDate';
 import ProfileSectionContainer from './_styles';
 
 const ModalProfile = dynamic(() => import('@components/ModalProfile'));
+const FullScreenImage = dynamic(() => import('@components/FullScreenImage'));
 
 interface ProfileProps {
   getProfile: IProfile;
@@ -48,6 +48,7 @@ const followingQuery = {
 
 const ProfileSection: React.FC<ProfileProps> = ({ getProfile }) => {
   const auth = useContext(AuthContext);
+  const [isImageFullScreen, setIsImageFullScreen] = useState(false);
   const [modalShow, setModalShow] = useState(false);
   const [followersCount, setFollowersCount] = useState(getProfile.followers);
   const [follow] = useMutation(FOLLOW_PROFILE);
@@ -70,7 +71,16 @@ const ProfileSection: React.FC<ProfileProps> = ({ getProfile }) => {
     <>
       <ProfileSectionContainer>
         <div className="avatar-profile">
-          <CAImage className="profile-image" image={getProfile.avatar} />
+          <button
+            className="profile-image"
+            type="button"
+            onClick={() => setIsImageFullScreen(true)}
+          >
+            <img
+              src={process.env.NEXT_PUBLIC_API_HOST + getProfile.avatar}
+              alt={getProfile.name}
+            />
+          </button>
           <p>LEVEL {getProfile.level}</p>
         </div>
         <div className="profile">
@@ -172,6 +182,12 @@ const ProfileSection: React.FC<ProfileProps> = ({ getProfile }) => {
           queryResult={modalPayload.queryResult}
           query={modalPayload.query}
           variable={{ username: getProfile.owner }}
+        />
+      )}
+      {isImageFullScreen && (
+        <FullScreenImage
+          img={process.env.NEXT_PUBLIC_API_HOST + getProfile.avatar}
+          onClose={() => setIsImageFullScreen(false)}
         />
       )}
     </>
