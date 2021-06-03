@@ -77,7 +77,10 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
               audioResult={audioResult}
               imageDimension={imageDimension}
               preview={imagePreview.preview as string}
-              setImagePreview={setImagePreview}
+              cleaner={() => {
+                setImagePreview('');
+                setAudioResult(null);
+              }}
               setTitle={setTitle}
             />
           )}

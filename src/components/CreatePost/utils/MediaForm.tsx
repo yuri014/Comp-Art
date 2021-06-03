@@ -9,19 +9,19 @@ interface MediaFormProps {
   imageDimension: 'contain' | 'cover';
   audioResult: File;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
-  setImagePreview: (_args0: string) => void;
+  cleaner: () => void;
 }
 
 const MediaForm: React.FC<MediaFormProps> = ({
   audioResult,
   imageDimension,
   preview,
-  setImagePreview,
+  cleaner,
   setTitle,
 }) => (
   <MediaFormContainer>
     <div className="media">
-      <button type="button" onClick={() => setImagePreview('')}>
+      <button type="button" onClick={() => cleaner()}>
         <IoMdClose />
       </button>
       <img
