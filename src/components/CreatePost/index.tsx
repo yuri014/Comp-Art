@@ -16,6 +16,7 @@ import DraftEditor from './DraftEditor';
 import 'draft-js/dist/Draft.css';
 
 const MediaForm = dynamic(() => import('./utils/MediaForm'));
+const DescriptionCounter = dynamic(() => import('./utils/DescriptionCounter'));
 
 interface CreatePostProps {
   getLoggedProfile: IProfile;
@@ -24,6 +25,7 @@ interface CreatePostProps {
 const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
   const isMount = usePreventMemoryLeak();
   const [description, setDescription] = useState('');
+  const [progress, setProgress] = useState(0);
   const [canSubmit, setCanSubmit] = useState(true);
   const [showError, setShowError] = useState('');
   const [title, setTitle] = useState('');
@@ -72,7 +74,12 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
         }}
       >
         <div className="editor">
-          {isMount && <DraftEditor setDescription={setDescription} />}
+          {isMount && (
+            <DraftEditor
+              setDescription={setDescription}
+              setProgress={setProgress}
+            />
+          )}
           {(imagePreview.preview || audioResult) && (
             <MediaForm
               audioResult={audioResult}
@@ -122,13 +129,18 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
               ref={audioInput}
             />
           </div>
-          <button
-            type="submit"
-            disabled={!canSubmit}
-            className={`${canSubmit ? '' : 'disabled'}`}
-          >
-            Publicar
-          </button>
+          <div>
+            {description.trim().length > 0 && (
+              <DescriptionCounter progress={progress} />
+            )}
+            <button
+              type="submit"
+              disabled={!canSubmit}
+              className={`${canSubmit ? '' : 'disabled'}`}
+            >
+              Publicar
+            </button>
+          </div>
         </div>
       </form>
       <ThemeProvider theme={formTheme}>

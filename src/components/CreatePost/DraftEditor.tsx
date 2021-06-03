@@ -1,33 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import Editor from '@draft-js-plugins/editor';
 import { convertToRaw, EditorState } from 'draft-js';
-import { CircularProgress } from '@material-ui/core';
 
 import getValueForProgress from './utils/counter';
-import { CharCounter, usePlugins } from './utils/plugins';
-import useMentions from './utils/mentions';
-import MentionEntry from './utils/MentionEntry';
+import { usePlugins } from './utils/plugins';
 import '@draft-js-plugins/mention/lib/plugin.css';
-
-type Answer = string | number;
 
 interface DraftEditorProps {
   setDescription: React.Dispatch<React.SetStateAction<string>>;
+  setProgress: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const DraftEditor: React.FC<DraftEditorProps> = ({ setDescription }) => {
+const DraftEditor: React.FC<DraftEditorProps> = ({
+  setDescription,
+  setProgress,
+}) => {
   const emptyEditor = () => EditorState.createEmpty();
   const [editorState, setEditorState] = useState(emptyEditor());
   const currentEditorState = editorState.getCurrentContent();
   const editorCharactersCount = currentEditorState.getPlainText().length;
 
   const progress = getValueForProgress(editorCharactersCount);
-  const checkProgress = (answerOne: Answer, anwserTwo: Answer) => {
-    if (progress >= 100) {
-      return answerOne;
-    }
-    return anwserTwo;
-  };
+
+  useEffect(() => {
+    setProgress(progress);
+  }, [progress, setProgress]);
 
   const { blocks } = convertToRaw(editorState.getCurrentContent());
   const description = blocks
@@ -38,8 +35,7 @@ const DraftEditor: React.FC<DraftEditorProps> = ({ setDescription }) => {
     setDescription(description.trim());
   }, [description, setDescription]);
 
-  const { plugins, MentionSuggestions } = usePlugins();
-  const { mentionsCallbacks, mentionsStates } = useMentions();
+  const { plugins } = usePlugins();
 
   return (
     <>
@@ -49,36 +45,6 @@ const DraftEditor: React.FC<DraftEditorProps> = ({ setDescription }) => {
         onChange={setEditorState}
         plugins={plugins}
       />
-      {description.trim().length > 0 && (
-        <>
-          <MentionSuggestions
-            open={mentionsStates.open}
-            onOpenChange={mentionsCallbacks.onOpenChange}
-            suggestions={mentionsStates.suggestions}
-            onSearchChange={mentionsCallbacks.onSearchChange}
-            entryComponent={MentionEntry}
-            onAddMention={() => {
-              // get the mention object selected
-            }}
-          />
-          <div className="counter-container">
-            <CharCounter limit={1200} />
-            <CircularProgress
-              className="background-circle"
-              variant="determinate"
-              size="2rem"
-              style={{ color: '#ababab' }}
-              value={100}
-            />
-            <CircularProgress
-              variant="determinate"
-              size="2rem"
-              style={{ color: `${checkProgress('#FF3838', '#1cc5b7')}` }}
-              value={checkProgress(100, progress) as number}
-            />
-          </div>
-        </>
-      )}
     </>
   );
 };
