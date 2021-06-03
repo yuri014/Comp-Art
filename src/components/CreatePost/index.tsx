@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { FaRegFileImage, FaTimes } from 'react-icons/fa';
-import { IoMdClose, IoMdMusicalNote } from 'react-icons/io';
+import { IoMdMusicalNote } from 'react-icons/io';
 import { IconButton, Snackbar, ThemeProvider } from '@material-ui/core';
 
 import usePreventMemoryLeak from '@hooks/preventMemoryLeak';
@@ -13,6 +14,8 @@ import formTheme from '@styles/themes/FormTheme';
 import CreatePostContainer from './styles';
 import DraftEditor from './DraftEditor';
 import 'draft-js/dist/Draft.css';
+
+const MediaForm = dynamic(() => import('./utils/MediaForm'));
 
 interface CreatePostProps {
   getLoggedProfile: IProfile;
@@ -69,31 +72,14 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
       >
         <div className="editor">
           {isMount && <DraftEditor setDescription={setDescription} />}
-          {imagePreview.preview && (
-            <div className="media">
-              <button type="button" onClick={() => setImagePreview('')}>
-                <IoMdClose />
-              </button>
-              <img
-                src={imagePreview.preview as string}
-                alt="Imagem do perfil"
-                style={{ objectFit: imageDimension }}
-              />
-            </div>
-          )}
-          {audioResult && (
-            <div className="audio-result">
-              <label htmlFor="title">
-                Título
-                <input
-                  type="text"
-                  value={title}
-                  onChange={e => setTitle(e.target.value)}
-                  id="title"
-                  name="title"
-                />
-              </label>
-            </div>
+          {(imagePreview.preview || audioResult) && (
+            <MediaForm
+              audioResult={audioResult}
+              imageDimension={imageDimension}
+              preview={imagePreview.preview as string}
+              setImagePreview={setImagePreview}
+              setTitle={setTitle}
+            />
           )}
         </div>
 
