@@ -2,6 +2,7 @@ import React from 'react';
 import { IoMdClose } from 'react-icons/io';
 
 import Input from '@components/Input';
+import MediaFormContainer from './styles';
 
 interface MediaFormProps {
   preview: string;
@@ -18,7 +19,7 @@ const MediaForm: React.FC<MediaFormProps> = ({
   setImagePreview,
   setTitle,
 }) => (
-  <div className="form-media">
+  <MediaFormContainer>
     <div className="media">
       <button type="button" onClick={() => setImagePreview('')}>
         <IoMdClose />
@@ -39,7 +40,7 @@ const MediaForm: React.FC<MediaFormProps> = ({
     >
       {audioResult ? 'Título' : 'Alt'}
     </Input>
-  </div>
+  </MediaFormContainer>
 );
 
 export default MediaForm;
