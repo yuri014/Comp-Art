@@ -11,7 +11,7 @@ export const CONFIRMATION_EMAIL = gql`
     confirmationEmail(token: $token) {
       id
       username
-      email
+      isArtist
     }
   }
 `;
@@ -21,7 +21,7 @@ export const LOGIN_USER = gql`
     login(email: $email, password: $password) {
       id
       username
-      email
+      isArtist
       token
     }
   }
