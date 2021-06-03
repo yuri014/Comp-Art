@@ -9,7 +9,6 @@ const CreatePostContainer = styled.div`
   padding: 2rem 1rem;
 
   /* Custom mention popover */
-
   .mnw6qvm {
     color: ${({ theme }) => theme.colors.themeColor};
     text-decoration: none;
@@ -172,45 +171,6 @@ const CreatePostContainer = styled.div`
         font-size: 1.6rem;
         margin-top: 1rem;
         padding-bottom: 0.4rem;
-      }
-
-      .media {
-        position: relative;
-        width: 100%;
-        height: 14rem;
-        margin: 2rem auto;
-
-        button {
-          cursor: pointer;
-          top: 4px;
-          right: 4px;
-          position: absolute;
-          background-color: rgba(0, 0, 0, 0.9);
-          color: white;
-          border-radius: 50%;
-          padding: 0.6rem;
-          display: grid;
-          place-content: center;
-          border: none;
-          font-size: 1.8rem;
-
-          &:focus,
-          &:hover {
-            background-color: rgb(35, 40, 43, 0.9);
-            outline: none;
-          }
-
-          &:focus {
-            border: 2px solid ${({ theme }) => theme.colors.darkGray};
-            padding: calc(0.6rem - 2px);
-          }
-        }
-
-        img {
-          width: 100%;
-          height: 100%;
-          border-radius: 5px;
-        }
       }
     }
   }
