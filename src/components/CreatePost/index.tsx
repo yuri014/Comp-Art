@@ -27,6 +27,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
   const [canSubmit, setCanSubmit] = useState(true);
   const [showError, setShowError] = useState('');
   const [title, setTitle] = useState('');
+  const [alt, setAlt] = useState('');
   const audioInput = useRef<HTMLInputElement | null>(null);
   const imageInput = useRef<HTMLInputElement | null>(null);
 
@@ -44,7 +45,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
         post: {
           description,
           body: audioResult || imagePreview.file,
-          alt: '',
+          alt,
           thumbnail: audioResult ? imagePreview.file : '',
           title,
         },
@@ -75,12 +76,13 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
           {(imagePreview.preview || audioResult) && (
             <MediaForm
               audioResult={audioResult}
-              imageDimension={imageDimension}
-              preview={imagePreview.preview as string}
               cleaner={() => {
                 setImagePreview('');
                 setAudioResult(null);
               }}
+              imageDimension={imageDimension}
+              preview={imagePreview.preview as string}
+              setAlt={setAlt}
               setTitle={setTitle}
             />
           )}

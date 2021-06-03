@@ -5,18 +5,20 @@ import Input from '@components/Input';
 import MediaFormContainer from './styles';
 
 interface MediaFormProps {
-  preview: string;
-  imageDimension: 'contain' | 'cover';
   audioResult: File;
-  setTitle: React.Dispatch<React.SetStateAction<string>>;
   cleaner: () => void;
+  imageDimension: 'contain' | 'cover';
+  preview: string;
+  setTitle: React.Dispatch<React.SetStateAction<string>>;
+  setAlt: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const MediaForm: React.FC<MediaFormProps> = ({
   audioResult,
+  cleaner,
   imageDimension,
   preview,
-  cleaner,
+  setAlt,
   setTitle,
 }) => (
   <MediaFormContainer>
@@ -25,21 +27,40 @@ const MediaForm: React.FC<MediaFormProps> = ({
         <IoMdClose />
       </button>
       <img
-        src={preview as string}
-        alt="Imagem do perfil"
+        src={(preview as string) || '/assets/audio-placeholder.svg'}
+        alt="Capa do áudio"
         style={{ objectFit: imageDimension }}
       />
     </div>
-    <Input
-      name="title"
-      placeholder={
-        audioResult ? 'Digite o título da música' : 'Digite uma descrição'
-      }
-      required
-      onChange={e => setTitle(e.target.value)}
-    >
-      {audioResult ? 'Título' : 'Alt'}
-    </Input>
+    {audioResult ? (
+      <div>
+        <Input
+          name="title"
+          placeholder="Digite o título da música"
+          required
+          onChange={e => setTitle(e.target.value)}
+        >
+          Título
+        </Input>
+        <Input
+          name="alt"
+          placeholder="Digite uma descrição"
+          required
+          onChange={e => setAlt(e.target.value)}
+        >
+          Alt
+        </Input>
+      </div>
+    ) : (
+      <Input
+        name="alt"
+        placeholder="Digite uma descrição"
+        required
+        onChange={e => setAlt(e.target.value)}
+      >
+        Alt
+      </Input>
+    )}
   </MediaFormContainer>
 );
 
