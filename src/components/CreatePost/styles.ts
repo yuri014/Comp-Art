@@ -85,6 +85,28 @@ const CreatePostContainer = styled.div`
       padding-top: 1rem;
       border-top: 1px solid ${({ theme }) => theme.colors.darkGray};
 
+      .counter-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        font-size: 1.4rem;
+
+        .counter {
+          color: ${({ theme }) => theme.colors.themeColor};
+          margin-right: 1rem;
+
+          &-limit {
+            margin-right: 1rem;
+            color: ${({ theme }) => theme.colors.error};
+          }
+        }
+
+        .background-circle {
+          position: absolute;
+        }
+      }
+
       button {
         background: ${({ theme }) => theme.colors.pink};
         color: #fff;
@@ -102,6 +124,10 @@ const CreatePostContainer = styled.div`
 
         &.disabled {
           opacity: 0.6;
+        }
+
+        &[type='submit'] {
+          margin-left: 1rem;
         }
       }
 
@@ -142,28 +168,6 @@ const CreatePostContainer = styled.div`
     .editor {
       .hashtag {
         color: ${({ theme }) => theme.colors.hashtag};
-      }
-
-      .counter-container {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        font-size: 1.4rem;
-
-        .counter {
-          color: ${({ theme }) => theme.colors.themeColor};
-          margin-right: 1rem;
-
-          &-limit {
-            margin-right: 1rem;
-            color: ${({ theme }) => theme.colors.error};
-          }
-        }
-
-        .background-circle {
-          position: absolute;
-        }
       }
 
       .DraftEditor-root {
