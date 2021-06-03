@@ -26,7 +26,7 @@ const theme = {
       #050211 0%,
       #141432 100%
     )`,
-    danger: '#f50057',
+    danger: '#D20450',
     error: '#FF3838',
     pink: '#FF4F6D',
     themeColor: '#111112',
