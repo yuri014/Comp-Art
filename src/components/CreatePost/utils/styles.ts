@@ -28,7 +28,7 @@ const MediaFormContainer = styled.div`
       background-color: rgba(0, 0, 0, 0.9);
       color: white;
       border-radius: 50%;
-      padding: 0.6rem;
+      padding: 0.7rem;
       display: grid;
       place-content: center;
       border: none;
@@ -50,6 +50,17 @@ const MediaFormContainer = styled.div`
       width: 12rem;
       height: 12rem;
       border-radius: 5px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    padding: 2rem;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    label {
+      width: 34rem;
     }
   }
 `;
