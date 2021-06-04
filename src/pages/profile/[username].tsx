@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import Link from 'next/link';
 import { GetServerSideProps } from 'next';
 import { ThemeProvider } from '@material-ui/core';
 
@@ -16,7 +17,7 @@ import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
 import ProfileSEO from '@components/SEO/ProfileSEO';
 import ProfileSection from '@components/ProfileSection';
-import Link from 'next/link';
+import ProfileSchema from '@schemas/Profile';
 import CAButton from '@styles/components/button';
 import withPublicRoute from '@hocs/withPublicRoute';
 import ProfileContainer from './_styles';
@@ -70,6 +71,7 @@ const Profile: React.FC<ProfileProps> = ({
         </main>
         <MobileFooter />
       </ProfileContainer>
+      <ProfileSchema profile={getProfile} />
     </ThemeProvider>
   );
 };
