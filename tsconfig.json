@@ -24,6 +24,7 @@
       "@interfaces/*": ["src/interfaces/*"],
       "@styles/*": ["src/styles/*"],
       "@hocs/*": ["src/hocs/*"],
+      "@schemas/*": ["src/schemas/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
