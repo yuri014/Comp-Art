@@ -31,11 +31,7 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
       </Link>
       <ShareButton postID={postProps._id} updateLevel={updateLevel} />
     </div>
-    <SavedButton
-      initialSaveState={postProps.isSaved}
-      updateLevel={updateLevel}
-      postID={postProps._id}
-    />
+    <SavedButton initialSaveState={postProps.isSaved} postID={postProps._id} />
   </InteractionButtonsContainer>
 );
 

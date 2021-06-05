@@ -11,8 +11,9 @@ export interface ShareButtonProps extends IUpdateLevel {
   postID: string;
 }
 
-export interface SavedButtonProps extends ShareButtonProps {
+export interface SavedButtonProps {
   initialSaveState: boolean;
+  postID: string;
 }
 export interface PostInteractionButtonsProps
   extends LikeButtonProps,

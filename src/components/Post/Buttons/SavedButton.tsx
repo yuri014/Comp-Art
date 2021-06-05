@@ -10,15 +10,19 @@ const SAVE_POST = gql`
   }
 `;
 
+const DELETE_POST = gql`
+  mutation DeleteSavedPost($id: ID!) {
+    deleteSavedPost(postID: $id)
+  }
+`;
+
 const SavedButton: React.FC<SavedButtonProps> = ({
   initialSaveState,
   postID,
-  updateLevel,
 }) => {
   const [isSaved, setIsSaved] = useState<boolean>();
-  const [savePost] = useMutation(SAVE_POST, {
-    onCompleted: () => updateLevel(),
-  });
+  const [savePost] = useMutation(SAVE_POST);
+  const [deletePost] = useMutation(DELETE_POST);
 
   useEffect(() => {
     setIsSaved(initialSaveState);
@@ -30,17 +34,22 @@ const SavedButton: React.FC<SavedButtonProps> = ({
       aria-label="Salvar"
       type="button"
       onClick={() => {
-        setIsSaved(!isSaved);
-        savePost({ variables: { id: postID } });
+        if (isSaved) {
+          setIsSaved(false);
+          deletePost({ variables: { id: postID } });
+        } else {
+          setIsSaved(true);
+          savePost({ variables: { id: postID } });
+        }
       }}
     >
       {isSaved ? (
         <div className="interactions-button prevent-redirect-post">
-          <FaRegBookmark size={20} /> <p>Salvar</p>
+          <FaBookmark size={20} /> <p>Salvo</p>
         </div>
       ) : (
         <div className="interactions-button prevent-redirect-post">
-          <FaBookmark size={20} /> <p>Salvo</p>
+          <FaRegBookmark size={20} /> <p>Salvar</p>
         </div>
       )}
     </button>

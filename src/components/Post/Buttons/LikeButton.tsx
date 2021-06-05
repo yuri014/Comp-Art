@@ -23,11 +23,11 @@ const LikeButton: React.FC<LikeProps> = ({
       className={`prevent-redirect-post ${isLiked ? 'active' : ''}`}
       type="button"
       onClick={() => {
-        setIsLiked(!isLiked);
-
         if (isLiked) {
+          setIsLiked(false);
           dislikePost();
         } else {
+          setIsLiked(true);
           likePost();
         }
       }}
