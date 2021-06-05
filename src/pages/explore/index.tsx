@@ -9,7 +9,7 @@ import MobileHeader from '@components/MobileHeader';
 import LevelContext from '@context/level';
 import Timeline from '@components/Timeline';
 import { GET_EXPLORE_POSTS } from '@graphql/queries/post';
-import { GET_LOGGED_PROFILE, GET_LEVEL_XP } from '@graphql/queries/profile';
+import { GET_LEVEL_XP } from '@graphql/queries/profile';
 import { initializeApollo } from '@graphql/apollo/config';
 import { ILoggedProfile } from '@interfaces/Profile';
 import Home from '@components/Home';
@@ -17,6 +17,7 @@ import Header from '@components/Header';
 import ThemeContext from '@context/theme';
 import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
+import getLoggedUserWithNoAuth from '@ssr-functions/getLoggedUserWithNoAuth';
 import HomeContainer from '../home/_styles';
 
 const Explore: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
@@ -53,32 +54,10 @@ const Explore: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const { jwtToken } = req.cookies;
 
-  if (!jwtToken) {
-    return {
-      redirect: {
-        destination: '/login',
-        permanent: false,
-      },
-    };
-  }
-
   const client = initializeApollo(null, jwtToken);
 
-  const getProfile = await client.query({
-    query: GET_LOGGED_PROFILE,
-    errorPolicy: 'ignore',
-  });
+  const getLoggedProfile = await getLoggedUserWithNoAuth(jwtToken, client);
 
-  if (jwtToken && !getProfile.data) {
-    return {
-      redirect: {
-        destination: '/register-profile',
-        permanent: false,
-      },
-    };
-  }
-
-  const { getLoggedProfile } = getProfile.data;
   return {
     props: {
       getLoggedProfile,

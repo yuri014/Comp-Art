@@ -11,7 +11,7 @@ import ThemeContext from '@context/theme';
 import Timeline from '@components/Timeline';
 import { initializeApollo } from '@graphql/apollo/config';
 import { GET_PROFILE_POSTS } from '@graphql/queries/post';
-import { GET_PROFILE, GET_LOGGED_PROFILE } from '@graphql/queries/profile';
+import { GET_PROFILE } from '@graphql/queries/profile';
 import { ILoggedProfile, IProfile } from '@interfaces/Profile';
 import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
@@ -20,6 +20,7 @@ import ProfileSection from '@components/ProfileSection';
 import ProfileSchema from '@schemas/Profile';
 import CAButton from '@styles/components/button';
 import withPublicRoute from '@hocs/withPublicRoute';
+import getLoggedUserWithNoAuth from '@ssr-functions/getLoggedUserWithNoAuth';
 import ProfileContainer from './_styles';
 
 interface ProfileProps extends ILoggedProfile {
@@ -88,11 +89,6 @@ export const getServerSideProps: GetServerSideProps = async context => {
     errorPolicy: 'ignore',
   });
 
-  const loggedProfile = await client.query({
-    query: GET_LOGGED_PROFILE,
-    errorPolicy: 'ignore',
-  });
-
   if (!profile.data.getProfile) {
     return {
       notFound: true,
@@ -101,21 +97,13 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
   const { getProfile } = profile.data;
 
-  if (jwtToken && !loggedProfile.data) {
-    return {
-      redirect: {
-        destination: '/register-profile',
-        permanent: false,
-      },
-    };
-  }
+  const getLoggedProfile = await getLoggedUserWithNoAuth(jwtToken, client);
 
   return {
     props: {
       username,
       getProfile,
-      getLoggedProfile:
-        loggedProfile.data && loggedProfile.data.getLoggedProfile,
+      getLoggedProfile,
     },
   };
 };

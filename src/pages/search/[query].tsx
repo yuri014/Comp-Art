@@ -13,11 +13,11 @@ import ArtistPost from '@components/Post/ArtistPost';
 import usePostsMutations from '@hooks/postMutations';
 import LevelContext from '@context/level';
 import { initializeApollo } from '@graphql/apollo/config';
-import { GET_LOGGED_PROFILE } from '@graphql/queries/profile';
 import { GET_SEARCH_PROFILE, GET_SEARCH_POSTS } from '@graphql/queries/search';
 import useGetLevel from '@hooks/getLevel';
 import { Timeline } from '@interfaces/Post';
 import { ILoggedProfile, IProfile } from '@interfaces/Profile';
+import getLoggedUserWithNoAuth from '@ssr-functions/getLoggedUserWithNoAuth';
 import HomeContainer from '../home/_styles';
 import SearchContainer from './_styles';
 
@@ -101,23 +101,9 @@ export const getServerSideProps: GetServerSideProps = async context => {
     errorPolicy: 'ignore',
   });
 
-  const getProfile = await client.query({
-    query: GET_LOGGED_PROFILE,
-    errorPolicy: 'ignore',
-  });
-
   const profiles = getProfiles.data.searchProfiles;
   const posts = getPosts.data.searchPost;
-  const { getLoggedProfile } = getProfile.data;
-
-  if (jwtToken && !getLoggedProfile) {
-    return {
-      redirect: {
-        destination: '/register-profile',
-        permanent: false,
-      },
-    };
-  }
+  const getLoggedProfile = await getLoggedUserWithNoAuth(jwtToken, client);
 
   return {
     props: {
