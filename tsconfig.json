@@ -25,6 +25,7 @@
       "@styles/*": ["src/styles/*"],
       "@hocs/*": ["src/hocs/*"],
       "@schemas/*": ["src/schemas/*"],
+      "@ssr-functions/*": ["src/functions/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
