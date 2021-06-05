@@ -1,30 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import {
-  FaRegBookmark,
-  FaCommentAlt,
-  FaShareAlt,
-  FaShare,
-  FaEdit,
-  FaBookmark,
-} from 'react-icons/fa';
+import { FaRegBookmark, FaCommentAlt, FaBookmark } from 'react-icons/fa';
 import Link from 'next/link';
 import { gql, useMutation } from '@apollo/client';
-import { Menu, MenuItem } from '@material-ui/core';
 
 import { PostInteractionButtonsProps } from '@interfaces/InteractionButtons';
-import { MenuListIcon } from '@components/Header/styles';
 import InteractionButtonsContainer from './styles';
 import LikeButton from './LikeButton';
+import ShareButton from './ShareButton';
 
 const SAVE_POST = gql`
   mutation AddSavedPost($id: ID!) {
     addSavedPost(postID: $id)
-  }
-`;
-
-const QUICK_SHARE_POST = gql`
-  mutation CreateSharePost($shareInput: SharePost!) {
-    createSharePost(shareInput: $shareInput)
   }
 `;
 
@@ -38,19 +24,6 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
   const [savePost] = useMutation(SAVE_POST, {
     onCompleted: () => updateLevel(),
   });
-  const [quickSharePost] = useMutation(QUICK_SHARE_POST, {
-    onCompleted: () => updateLevel(),
-  });
-
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   useEffect(() => {
     setIsSaved(postProps.isSaved);
@@ -72,53 +45,7 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
             </div>
           </a>
         </Link>
-        <button
-          aria-label="Compartilhar"
-          type="button"
-          aria-haspopup="true"
-          onClick={handleClick}
-          className="prevent-redirect-post"
-        >
-          <div className="interactions-button prevent-redirect-post">
-            <FaShareAlt size={20} />{' '}
-            <p className="prevent-redirect-post">Compartilhar</p>
-          </div>
-        </button>
-        <Menu
-          id="simple-menu"
-          anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-          className="prevent-redirect-post"
-        >
-          <MenuItem onClick={handleClose}>
-            <MenuListIcon
-              as="button"
-              onClick={() =>
-                quickSharePost({
-                  variables: {
-                    shareInput: {
-                      description: '',
-                      postID: postProps._id,
-                    },
-                  },
-                })
-              }
-            >
-              <FaShare />
-              <p className="prevent-redirect-post">Compartilhar agora</p>
-            </MenuListIcon>
-          </MenuItem>
-          <MenuItem onClick={handleClose}>
-            <MenuListIcon>
-              <FaEdit />
-              <p className="prevent-redirect-post">
-                Compartilhar com comentário
-              </p>
-            </MenuListIcon>
-          </MenuItem>
-        </Menu>
+        <ShareButton postID={postProps._id} updateLevel={updateLevel} />
       </div>
       <button
         className="bookmark prevent-redirect-post"
