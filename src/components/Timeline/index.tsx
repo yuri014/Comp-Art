@@ -44,9 +44,7 @@ const Timeline: React.FC<TimelineProps> = ({
   return (
     <>
       {loading || error || data[`${queryName}`].length === 0 ? (
-        <>
-          <LoadingPost loading={loading} />
-        </>
+        <LoadingPost loading={loading} />
       ) : (
         <TimelineManager
           lastPostRef={lastPostRef}
