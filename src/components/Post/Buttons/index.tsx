@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
-  FaHeart,
   FaRegBookmark,
   FaCommentAlt,
-  FaRegHeart,
   FaShareAlt,
   FaShare,
   FaEdit,
@@ -12,15 +10,11 @@ import {
 import Link from 'next/link';
 import { gql, useMutation } from '@apollo/client';
 import { Menu, MenuItem } from '@material-ui/core';
+
+import { PostInteractionButtonsProps } from '@interfaces/InteractionButtons';
 import { MenuListIcon } from '@components/Header/styles';
 import InteractionButtonsContainer from './styles';
-
-interface PostInteractionButtonsProps {
-  dislikePost: () => void;
-  likePost: () => void;
-  postProps: { _id: string; isSaved: boolean; isLiked: boolean };
-  updateLevel?: () => void;
-}
+import LikeButton from './LikeButton';
 
 const SAVE_POST = gql`
   mutation AddSavedPost($id: ID!) {
@@ -40,7 +34,6 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
   postProps,
   updateLevel,
 }) => {
-  const [isLiked, setIsLiked] = useState<boolean>();
   const [isSaved, setIsSaved] = useState<boolean>();
   const [savePost] = useMutation(SAVE_POST, {
     onCompleted: () => updateLevel(),
@@ -60,32 +53,17 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
   };
 
   useEffect(() => {
-    setIsLiked(postProps.isLiked);
     setIsSaved(postProps.isSaved);
-  }, [postProps.isLiked, postProps.isSaved]);
+  }, [postProps.isSaved]);
 
   return (
     <InteractionButtonsContainer>
       <div className="interaction-group prevent-redirect-post">
-        <button
-          className={`prevent-redirect-post ${isLiked ? 'active' : ''}`}
-          type="button"
-          onClick={() => {
-            setIsLiked(!isLiked);
-
-            if (isLiked) {
-              dislikePost();
-            } else {
-              likePost();
-            }
-          }}
-          aria-label="Curtir"
-        >
-          <div className="interactions-button prevent-redirect-post">
-            {isLiked ? <FaHeart size={20} /> : <FaRegHeart size={20} />}
-            <p className="prevent-redirect-post">Curtir</p>
-          </div>
-        </button>
+        <LikeButton
+          dislikePost={dislikePost}
+          likePost={likePost}
+          initialLikeState={postProps.isLiked}
+        />
         <Link href={`/post/${postProps._id}`}>
           <a aria-label="Comentar" className="prevent-redirect-post">
             <div className="interactions-button prevent-redirect-post">
