@@ -137,10 +137,13 @@ const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
               </div>
             </div>
             <PostInteractionButtons
-              initialLikeState={post.isLiked}
               dislikePost={dislikePost}
               likePost={likePost}
-              postID={post._id}
+              postProps={{
+                _id: post._id,
+                isLiked: post.isLiked,
+                isSaved: post.isSaved,
+              }}
               updateLevel={levelContext && levelContext.updateLevel}
             />
           </div>

@@ -27,6 +27,7 @@ export const CORE_POST_VIEW = gql`
     thumbnail
     imageHeight
     title
+    isSaved
   }
 `;
 
@@ -67,5 +68,6 @@ export const CORE_SHARE_VIEW = gql`
     createdAt
     isLiked
     imageHeight
+    isSaved
   }
 `;

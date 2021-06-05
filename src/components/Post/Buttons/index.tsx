@@ -7,6 +7,7 @@ import {
   FaShareAlt,
   FaShare,
   FaEdit,
+  FaBookmark,
 } from 'react-icons/fa';
 import Link from 'next/link';
 import { gql, useMutation } from '@apollo/client';
@@ -15,10 +16,9 @@ import { MenuListIcon } from '@components/Header/styles';
 import InteractionButtonsContainer from './styles';
 
 interface PostInteractionButtonsProps {
-  initialLikeState: boolean;
   dislikePost: () => void;
   likePost: () => void;
-  postID: string;
+  postProps: { _id: string; isSaved: boolean; isLiked: boolean };
   updateLevel?: () => void;
 }
 
@@ -36,12 +36,12 @@ const QUICK_SHARE_POST = gql`
 
 const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
   dislikePost,
-  initialLikeState,
   likePost,
-  postID,
+  postProps,
   updateLevel,
 }) => {
   const [isLiked, setIsLiked] = useState<boolean>();
+  const [isSaved, setIsSaved] = useState<boolean>();
   const [savePost] = useMutation(SAVE_POST, {
     onCompleted: () => updateLevel(),
   });
@@ -60,8 +60,9 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
   };
 
   useEffect(() => {
-    setIsLiked(initialLikeState);
-  }, [initialLikeState]);
+    setIsLiked(postProps.isLiked);
+    setIsSaved(postProps.isSaved);
+  }, [postProps.isLiked, postProps.isSaved]);
 
   return (
     <InteractionButtonsContainer>
@@ -85,7 +86,7 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
             <p className="prevent-redirect-post">Curtir</p>
           </div>
         </button>
-        <Link href={`/post/${postID}`}>
+        <Link href={`/post/${postProps._id}`}>
           <a aria-label="Comentar" className="prevent-redirect-post">
             <div className="interactions-button prevent-redirect-post">
               <FaCommentAlt size={20} />{' '}
@@ -121,7 +122,7 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
                   variables: {
                     shareInput: {
                       description: '',
-                      postID,
+                      postID: postProps._id,
                     },
                   },
                 })
@@ -145,11 +146,19 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
         className="bookmark prevent-redirect-post"
         aria-label="Salvar"
         type="button"
-        onClick={() => savePost({ variables: { id: postID } })}
+        onClick={() => {
+          savePost({ variables: { id: postProps._id } });
+        }}
       >
-        <div className="interactions-button prevent-redirect-post">
-          <FaRegBookmark size={20} /> <p>Salvar</p>
-        </div>
+        {isSaved ? (
+          <div className="interactions-button prevent-redirect-post">
+            <FaRegBookmark size={20} /> <p>Salvar</p>
+          </div>
+        ) : (
+          <div className="interactions-button prevent-redirect-post">
+            <FaBookmark size={20} /> <p>Salvo</p>
+          </div>
+        )}
       </button>
     </InteractionButtonsContainer>
   );

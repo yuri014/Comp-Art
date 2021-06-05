@@ -27,6 +27,7 @@ export interface Timeline extends IPost, IShare {
   darkColor: string;
   lightColor: string;
   thumbnail?: string;
+  isSaved: boolean;
 }
 
 export interface PostProps {
