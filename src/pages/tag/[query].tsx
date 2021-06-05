@@ -10,6 +10,7 @@ import MobileFooter from '@components/MobileFooter';
 import MobileHeader from '@components/MobileHeader';
 import Post from '@components/Post';
 import ArtistPost from '@components/Post/ArtistPost';
+import LoadingPost from '@components/Post/LoadingPost';
 import LevelContext from '@context/level';
 import { initializeApollo } from '@graphql/apollo/config';
 import { GET_SEARCH_POSTS } from '@graphql/queries/search';
@@ -42,18 +43,22 @@ const TagPage: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
       <Head>
         <title>Comp-Art</title>
       </Head>
-      {getLoggedProfile && !loading && data && (
+      {getLoggedProfile && (
         <>
           <Header getLoggedProfile={getLoggedProfile} />
           <LevelContext.Provider
             value={{ updateLevel: getLevel, level: profileLevel }}
           >
             <Home getLoggedProfile={getLoggedProfile}>
-              {data.searchPost.map(post => (
-                <Post useInteractions={usePostsMutations} post={post}>
-                  <ArtistPost post={post} />
-                </Post>
-              ))}
+              {loading || data.searchPost.length === 0 ? (
+                <LoadingPost loading={loading} />
+              ) : (
+                data.searchPost.map(post => (
+                  <Post useInteractions={usePostsMutations} post={post}>
+                    <ArtistPost post={post} />
+                  </Post>
+                ))
+              )}
             </Home>
             <MobileHeader getLoggedProfile={getLoggedProfile} />
           </LevelContext.Provider>
