@@ -72,7 +72,7 @@ const HomeProfile: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
               <p>Grupos</p>
             </a>
           </Link>
-          <Link href="/profile">
+          <Link href="/saved-posts">
             <a>
               <FaBookmark />
               <p>Salvos</p>
