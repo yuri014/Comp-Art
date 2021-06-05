@@ -147,6 +147,7 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
         aria-label="Salvar"
         type="button"
         onClick={() => {
+          setIsSaved(!isSaved);
           savePost({ variables: { id: postProps._id } });
         }}
       >
