@@ -41,7 +41,7 @@ const TagPage: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
   return (
     <HomeContainer>
       <Head>
-        <title>Comp-Art</title>
+        <title>#{query} - Comp-Art</title>
       </Head>
       {getLoggedProfile && (
         <>

@@ -34,7 +34,7 @@ const Explore: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
     <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
       <HomeContainer>
         <Head>
-          <title>Comp-Art</title>
+          <title>Explorar - Comp-Art</title>
         </Head>
         <Header getLoggedProfile={getLoggedProfile} />
         <LevelContext.Provider

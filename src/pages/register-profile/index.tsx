@@ -15,7 +15,7 @@ const RegisterProfile: React.FC = () => {
   return (
     <RegisterProfileContainer>
       <Head>
-        <title>Comp-Art</title>
+        <title>Cadastro - Comp-Art</title>
       </Head>
       <div className="container">
         <div className="message">

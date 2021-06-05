@@ -40,7 +40,7 @@ const SearchPage: React.FC<SearchPageProps> = ({
   return (
     <HomeContainer>
       <Head>
-        <title>Comp-Art</title>
+        <title>{query} - Comp-Art</title>
       </Head>
       {getLoggedProfile ? (
         <>

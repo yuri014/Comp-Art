@@ -58,7 +58,7 @@ const Login: React.FC = () => {
     <LoginContainer className="container">
       <Meta
         uri="login"
-        title="Comp-Art - Login"
+        title="Login - Comp-Art"
         description="Faça seu login e divulgue sua arte ou ajude a divulgar e apreciar a arte de outros artistas."
         keywords="Comp-Art, comp-art, comp art, divulgação, arte, música, ilustrações, artistas, login, entrar"
       />

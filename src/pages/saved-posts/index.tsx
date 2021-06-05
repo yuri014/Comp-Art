@@ -44,7 +44,7 @@ const SavedPosts: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
     <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
       <HomeContainer>
         <Head>
-          <title>Comp-Art</title>
+          <title>Posts Salvos - Comp-Art</title>
         </Head>
         <Header getLoggedProfile={getLoggedProfile} />
         <LevelContext.Provider
