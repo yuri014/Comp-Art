@@ -23,7 +23,7 @@ const usePostAsLink: UsePostAsLink = postID => {
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => {
     const targetEvent = e.target as HTMLElement;
-    const excludeTags = ['button', 'a', 'svg', 'path', 'img', 'p'];
+    const excludeTags = ['button', 'a', 'svg', 'path', 'img', 'p', 'circle'];
 
     const checkContainClass = (classNames: string[]) =>
       classNames.map(className => targetEvent.classList.contains(className));
