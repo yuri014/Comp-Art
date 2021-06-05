@@ -26,30 +26,26 @@ const initialQuery = {
 };
 
 const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
-  const [isLiked, setIsLiked] = useState<boolean>();
   const [likesCount, setLikesCount] = useState<number>();
   const [isDeleted, setIsDeleted] = useState(false);
   const [modalShow, setModalShow] = useState(false);
   const [modalPayload, setModalPayload] = useState(initialQuery);
 
   useEffect(() => {
-    setIsLiked(post.isLiked);
     setLikesCount(post.likesCount);
-  }, [post.isLiked, post.likesCount]);
+  }, [post.likesCount]);
 
   const levelContext = useContext(LevelContext);
 
   const [deletePost, dislikePost, likePost] = useInteractions(
     post._id,
     () => {
-      setIsLiked(false);
       setLikesCount(likesCount - 1);
       if (levelContext) {
         levelContext.updateLevel();
       }
     },
     () => {
-      setIsLiked(true);
       setLikesCount(likesCount + 1);
       if (levelContext) {
         levelContext.updateLevel();
@@ -141,8 +137,8 @@ const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
               </div>
             </div>
             <PostInteractionButtons
+              initialLikeState={post.isLiked}
               dislikePost={dislikePost}
-              isLiked={isLiked}
               likePost={likePost}
               postID={post._id}
               updateLevel={levelContext && levelContext.updateLevel}

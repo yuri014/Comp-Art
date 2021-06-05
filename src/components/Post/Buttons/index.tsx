@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   FaHeart,
   FaRegBookmark,
@@ -15,7 +15,7 @@ import { MenuListIcon } from '@components/Header/styles';
 import InteractionButtonsContainer from './styles';
 
 interface PostInteractionButtonsProps {
-  isLiked: boolean;
+  initialLikeState: boolean;
   dislikePost: () => void;
   likePost: () => void;
   postID: string;
@@ -36,11 +36,12 @@ const QUICK_SHARE_POST = gql`
 
 const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
   dislikePost,
-  isLiked,
+  initialLikeState,
   likePost,
   postID,
   updateLevel,
 }) => {
+  const [isLiked, setIsLiked] = useState<boolean>();
   const [savePost] = useMutation(SAVE_POST, {
     onCompleted: () => updateLevel(),
   });
@@ -58,13 +59,25 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
     setAnchorEl(null);
   };
 
+  useEffect(() => {
+    setIsLiked(initialLikeState);
+  }, [initialLikeState]);
+
   return (
     <InteractionButtonsContainer>
       <div className="interaction-group prevent-redirect-post">
         <button
           className={`prevent-redirect-post ${isLiked ? 'active' : ''}`}
           type="button"
-          onClick={() => (isLiked ? dislikePost() : likePost())}
+          onClick={() => {
+            setIsLiked(!isLiked);
+
+            if (isLiked) {
+              dislikePost();
+            } else {
+              likePost();
+            }
+          }}
           aria-label="Curtir"
         >
           <div className="interactions-button prevent-redirect-post">
