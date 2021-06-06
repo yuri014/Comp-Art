@@ -11,9 +11,8 @@ import useImagePreview from '@hooks/imagePreview';
 import { CREATE_POST } from '@graphql/mutations/post';
 import { useMutation } from '@apollo/client';
 import formTheme from '@styles/themes/FormTheme';
+import DraftEditor from '@components/DraftEditor';
 import CreatePostContainer from './styles';
-import DraftEditor from './DraftEditor';
-import 'draft-js/dist/Draft.css';
 
 const MediaForm = dynamic(() => import('./utils/MediaForm'));
 const DescriptionCounter = dynamic(() => import('./utils/DescriptionCounter'));
@@ -76,8 +75,10 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
         <div className="editor">
           {isMount && (
             <DraftEditor
-              setDescription={setDescription}
+              setText={setDescription}
               setProgress={setProgress}
+              limit={1200}
+              placeholder="Digite aqui o seu post..."
             />
           )}
           {(imagePreview.preview || audioResult) && (

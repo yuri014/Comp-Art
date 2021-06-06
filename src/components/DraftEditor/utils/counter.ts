@@ -1,6 +1,4 @@
-const getValueForProgress = (value: number): number => {
-  const limit = 1200;
-
+const getValueForProgress = (value: number, limit: number): number => {
   const formattedValue = Math.floor((value / limit) * 100);
 
   return formattedValue;

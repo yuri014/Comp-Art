@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import Editor from '@draft-js-plugins/editor';
 import { convertToRaw, EditorState } from 'draft-js';
+import 'draft-js/dist/Draft.css';
 
 import getValueForProgress from './utils/counter';
 import { usePlugins } from './utils/plugins';
 import '@draft-js-plugins/mention/lib/plugin.css';
 
 interface DraftEditorProps {
-  setDescription: React.Dispatch<React.SetStateAction<string>>;
+  setText: React.Dispatch<React.SetStateAction<string>>;
   setProgress: React.Dispatch<React.SetStateAction<number>>;
+  placeholder: string;
+  limit: number;
 }
 
 const DraftEditor: React.FC<DraftEditorProps> = ({
-  setDescription,
+  limit,
+  placeholder,
+  setText,
   setProgress,
 }) => {
   const emptyEditor = () => EditorState.createEmpty();
@@ -20,32 +25,30 @@ const DraftEditor: React.FC<DraftEditorProps> = ({
   const currentEditorState = editorState.getCurrentContent();
   const editorCharactersCount = currentEditorState.getPlainText().length;
 
-  const progress = getValueForProgress(editorCharactersCount);
+  const progress = getValueForProgress(editorCharactersCount, limit);
 
   useEffect(() => {
     setProgress(progress);
   }, [progress, setProgress]);
 
   const { blocks } = convertToRaw(editorState.getCurrentContent());
-  const description = blocks
+  const text = blocks
     .map(block => (!block.text.trim() && '\n') || block.text)
     .join('\n');
 
   useEffect(() => {
-    setDescription(description.trim());
-  }, [description, setDescription]);
+    setText(text.trim());
+  }, [text, setText]);
 
   const { plugins } = usePlugins();
 
   return (
-    <>
-      <Editor
-        editorState={editorState}
-        placeholder="Digite aqui seu post..."
-        onChange={setEditorState}
-        plugins={plugins}
-      />
-    </>
+    <Editor
+      editorState={editorState}
+      placeholder={placeholder}
+      onChange={setEditorState}
+      plugins={plugins}
+    />
   );
 };
 
