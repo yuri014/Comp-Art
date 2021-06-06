@@ -42,7 +42,7 @@ const PostContainer = styled.div`
       font-size: 1.3rem;
       padding-top: 1rem;
       margin-top: 1rem;
-      border-top: 1px solid #3e3e3e;
+      border-top: 1px solid ${({ theme }) => theme.colors.borderColor};
       display: flex;
       align-items: center;
       justify-content: space-between;
