@@ -50,11 +50,7 @@ const usePostAsLink: UsePostAsLink = postID => {
     const canRedirect = checks.every(value => value === true);
 
     if (canRedirect) {
-      // TODO: `/post/${postID}`
-      // É usado apenas o id porque a página está atualmente quebrada.
-      // Aguarde o layout e a implementação da página.
-
-      router.push(`/${postID}`);
+      router.push(`/post/${postID}`);
     }
   };
 
