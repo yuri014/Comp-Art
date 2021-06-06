@@ -46,6 +46,9 @@ export const HeaderContainer = styled.header`
       color: ${({ theme }) => theme.colors.gray};
       padding: 0.5rem;
       font-size: 2rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
 
       img {
         width: 3rem;

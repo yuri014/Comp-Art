@@ -8,6 +8,7 @@ import {
   FaMoon,
   FaSignInAlt,
   FaSignOutAlt,
+  FaSun,
   FaUserAlt,
 } from 'react-icons/fa';
 
@@ -112,6 +113,9 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
         <div className="header-icons">
           <span />
           <span />
+          <button type="button" onClick={() => toggleTheme()}>
+            {!isDarkMode ? <FaMoon /> : <FaSun />}
+          </button>
           <Link href="/login">
             <a title="Ir para o login">
               <FaSignInAlt />
