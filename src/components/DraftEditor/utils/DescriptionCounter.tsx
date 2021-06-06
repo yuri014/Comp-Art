@@ -1,9 +1,7 @@
 import React from 'react';
 import { CircularProgress } from '@material-ui/core';
 
-import MentionEntry from './MentionEntry';
-import useMentions from './mentions';
-import { usePlugins, CharCounter } from './plugins';
+import { CharCounter } from './plugins';
 
 type Answer = string | number;
 
@@ -14,9 +12,6 @@ interface DescriptionCounterProps {
 const DescriptionCounter: React.FC<DescriptionCounterProps> = ({
   progress,
 }) => {
-  const { MentionSuggestions } = usePlugins();
-  const { mentionsCallbacks, mentionsStates } = useMentions();
-
   const checkProgress = (answerOne: Answer, anwserTwo: Answer) => {
     if (progress >= 100) {
       return answerOne;
@@ -26,13 +21,6 @@ const DescriptionCounter: React.FC<DescriptionCounterProps> = ({
 
   return (
     <>
-      <MentionSuggestions
-        open={mentionsStates.open}
-        onOpenChange={mentionsCallbacks.onOpenChange}
-        suggestions={mentionsStates.suggestions}
-        onSearchChange={mentionsCallbacks.onSearchChange}
-        entryComponent={MentionEntry}
-      />
       <div className="counter-container">
         <CharCounter limit={1200} />
         <CircularProgress

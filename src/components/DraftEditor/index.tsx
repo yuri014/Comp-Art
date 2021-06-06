@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Editor from '@draft-js-plugins/editor';
 import { convertToRaw, EditorState } from 'draft-js';
-import 'draft-js/dist/Draft.css';
 
 import getValueForProgress from './utils/counter';
+import DraftEditorComponent from './_styles';
 import { usePlugins } from './utils/plugins';
+import Mention from './utils/MentionSuggestions';
+import 'draft-js/dist/Draft.css';
 import '@draft-js-plugins/mention/lib/plugin.css';
 
 interface DraftEditorProps {
@@ -43,12 +45,15 @@ const DraftEditor: React.FC<DraftEditorProps> = ({
   const { plugins } = usePlugins();
 
   return (
-    <Editor
-      editorState={editorState}
-      placeholder={placeholder}
-      onChange={setEditorState}
-      plugins={plugins}
-    />
+    <DraftEditorComponent>
+      <Editor
+        editorState={editorState}
+        placeholder={placeholder}
+        onChange={setEditorState}
+        plugins={plugins}
+      />
+      <Mention />
+    </DraftEditorComponent>
   );
 };
 
