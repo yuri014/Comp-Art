@@ -113,7 +113,11 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
         <div className="header-icons">
           <span />
           <span />
-          <button type="button" onClick={() => toggleTheme()}>
+          <button
+            type="button"
+            aria-label={`Mudar para modo ${!isDarkMode ? 'Escuro' : 'Claro'}`}
+            onClick={() => toggleTheme()}
+          >
             {!isDarkMode ? <FaMoon /> : <FaSun />}
           </button>
           <Link href="/login">
