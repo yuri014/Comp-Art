@@ -30,7 +30,7 @@ export const CommentsSectionContainer = styled.section`
 
     button {
       background: transparent;
-      color: ${({ theme }) => theme.colors.darkGray};
+      color: ${({ theme }) => theme.colors.gray};
       border: none;
       font-size: 2.6rem;
       display: flex;
