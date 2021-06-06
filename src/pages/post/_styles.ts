@@ -8,7 +8,7 @@ const PostPageContainer = styled.div`
       align-items: center;
       justify-content: space-between;
       color: ${({ theme }) => theme.colors.mainColor};
-      padding: 0 1rem;
+      padding: 0 calc(1rem - 6px);
       width: 100%;
       background: ${({ theme }) => theme.colors.alternativeBackground};
       border-bottom: 1px solid ${({ theme }) => theme.colors.inputBackground};
