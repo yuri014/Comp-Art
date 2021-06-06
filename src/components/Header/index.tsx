@@ -6,7 +6,6 @@ import {
   FaBookmark,
   FaCog,
   FaMoon,
-  FaShoppingCart,
   FaSignInAlt,
   FaSignOutAlt,
   FaUserAlt,
@@ -48,15 +47,11 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
       {auth.user ? (
         <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
           <div className="header-icons">
-            <Link href="/market">
-              <a title="Ir para o marketplace">
-                <FaShoppingCart />
-              </a>
-            </Link>
+            <span />
             <NewNotificationsProvider>
               <Notification />
             </NewNotificationsProvider>
-            <Link href="/market">
+            <Link href="/saved-posts">
               <a title="Ir para os salvos">
                 <FaBookmark />
               </a>
@@ -99,7 +94,12 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
                   <p>Configurações</p>
                 </MenuListIcon>
               </MenuItem>
-              <MenuItem onClick={() => auth.logout()}>
+              <MenuItem
+                onClick={() => {
+                  auth.logout();
+                  push('/login');
+                }}
+              >
                 <MenuListIcon>
                   <FaSignOutAlt />
                   <p>Sair</p>
