@@ -3,27 +3,10 @@ import { CORE_POST_VIEW, CORE_SHARE_VIEW } from '@graphql/fragments/posts';
 import { MODAL_PROFILE } from '@graphql/fragments/profile';
 
 export const GET_POST = gql`
+  ${CORE_POST_VIEW}
   query GetPost($id: ID!) {
     getPost(id: $id) {
-      description
-      body
-      likesCount
-      sharedCount
-      commentsCount
-      createdAt
-      artist {
-        name
-        owner
-        avatar
-      }
-      likes {
-        profile {
-          owner
-          avatar
-        }
-      }
-      mediaId
-      isLiked
+      ...CorePostView
     }
   }
 `;
