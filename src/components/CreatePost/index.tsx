@@ -15,7 +15,9 @@ import DraftEditor from '@components/DraftEditor';
 import CreatePostContainer from './styles';
 
 const MediaForm = dynamic(() => import('./utils/MediaForm'));
-const DescriptionCounter = dynamic(() => import('./utils/DescriptionCounter'));
+const DescriptionCounter = dynamic(
+  () => import('@components/DraftEditor/utils/DescriptionCounter'),
+);
 
 interface CreatePostProps {
   getLoggedProfile: IProfile;
