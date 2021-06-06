@@ -4,19 +4,14 @@ export const CommentsSectionContainer = styled.section`
   padding-bottom: 8rem;
 
   form {
-    background: rgba(119, 166, 230, 0.3);
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
     width: 100%;
-    border-top: 1px solid ${({ theme }) => theme.colors.mainColor};
-    position: fixed;
     bottom: 0;
-    display: grid;
-    grid-template-columns: 10% 65% 10%;
+    display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 2rem;
+    padding: 1rem 2rem;
     font-size: 2rem;
+    background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
 
     img {
       width: 3rem;
@@ -25,8 +20,20 @@ export const CommentsSectionContainer = styled.section`
       border-radius: 50%;
     }
 
-    .send-button {
-      color: ${({ theme }) => theme.colors.mainColor};
+    .DraftEditor-root {
+      width: 70%;
+      font-size: 1.3rem;
+      background: ${({ theme }) => theme.colors.lighterSecondaryBackground};
+      padding: 1rem;
+      border-radius: 3rem;
+    }
+
+    button {
+      background: transparent;
+      color: ${({ theme }) => theme.colors.darkGray};
+      border: none;
+      font-size: 2.6rem;
+      display: flex;
     }
   }
 
