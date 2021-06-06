@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { GetServerSideProps } from 'next';
-import { gql, useQuery } from '@apollo/client';
 import { IconButton, ThemeProvider } from '@material-ui/core';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useRouter } from 'next/router';
@@ -9,46 +8,24 @@ import CommentsSections from '@components/Comment/CommentsSections';
 import Meta from '@components/SEO/Meta';
 import { initializeApollo } from '@graphql/apollo/config';
 import { GET_POST } from '@graphql/queries/post';
-import { Timeline, PostProps } from '@interfaces/Post';
+import { PostProps } from '@interfaces/Post';
 import PostPageContainer from '@styles/pages/post/styles';
 import mainTheme from '@styles/themes/MainTheme';
+import Post from '@components/Post';
+import usePostsMutations from '@hooks/postMutations';
+import ArtistPost from '@components/Post/ArtistPost';
 
-interface PostQuery {
-  getPost: Timeline;
-}
-
-const GET_IS_LIKED = gql`
-  query GetPost($id: ID!) {
-    getPost(id: $id) {
-      isLiked
-    }
-  }
-`;
-
-const Post: React.FC<PostProps> = ({ post }) => {
+const PostPage: React.FC<PostProps> = ({ post }) => {
   const router = useRouter();
-
-  const [postData, setPostData] = useState<Timeline>(post);
-  const { data } = useQuery<PostQuery>(GET_IS_LIKED, {
-    variables: { id: post._id },
-  });
-
-  useEffect(() => {
-    if (data) {
-      const newPost = post;
-      newPost.isLiked = data.getPost.isLiked;
-      setPostData({ ...newPost });
-    }
-  }, [data, post]);
 
   return (
     <ThemeProvider theme={mainTheme}>
       <PostPageContainer>
         <Meta
-          description={`Post de ${postData.artist.name}`}
-          keywords={`comp-art, post, artista, divulgação, ${postData.artist.name}`}
-          title={`Post - ${postData.artist.name}`}
-          uri={`/post/${postData._id}`}
+          description={`Post de ${post.artist.name}`}
+          keywords={`comp-art, post, artista, divulgação, ${post.artist.name}`}
+          title={`Post - ${post.artist.name}`}
+          uri={`/post/${post._id}`}
         />
         <main>
           <nav>
@@ -60,9 +37,11 @@ const Post: React.FC<PostProps> = ({ post }) => {
               <FaArrowLeft />
             </IconButton>
           </nav>
-          <Post post={postData} />
+          <Post useInteractions={usePostsMutations} post={post}>
+            <ArtistPost post={post} />
+          </Post>
         </main>
-        <CommentsSections postId={postData._id} />
+        <CommentsSections postId={post._id} />
       </PostPageContainer>
     </ThemeProvider>
   );
@@ -87,9 +66,9 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
   return {
     props: {
-      post: { ...post.data.getPost, _id: id },
+      post: post.data.getPost,
     },
   };
 };
 
-export default Post;
+export default PostPage;
