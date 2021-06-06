@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Link from 'next/link';
 import { LinearProgress, ThemeProvider } from '@material-ui/core';
-import { FaBookmark, FaRegCompass, FaUserAlt, FaUsers } from 'react-icons/fa';
+import { FaBookmark, FaHome, FaRegCompass, FaUserAlt } from 'react-icons/fa';
 import Skeleton from '@material-ui/lab/Skeleton';
 
 import { HomeProfileContainer } from './styles';
@@ -54,6 +54,12 @@ const HomeProfile: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
           )}
         </div>
         <div className="profile-buttons">
+          <Link href="/home">
+            <a>
+              <FaHome />
+              <p>Página Inicial</p>
+            </a>
+          </Link>
           <Link href={`/profile/${getLoggedProfile.owner}`}>
             <a>
               <FaUserAlt />
@@ -64,12 +70,6 @@ const HomeProfile: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
             <a>
               <FaRegCompass />
               <p>Explorar</p>
-            </a>
-          </Link>
-          <Link href="/profile">
-            <a>
-              <FaUsers />
-              <p>Grupos</p>
             </a>
           </Link>
           <Link href="/saved-posts">
