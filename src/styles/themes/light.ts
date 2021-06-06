@@ -17,6 +17,7 @@ const theme = {
     purple: '#6C63FF',
     lightSecondaryBackground: '#e5e5e5',
     lighterSecondaryBackground: '#e5e5e5',
+    borderColor: '#adadad',
     inputBackground: '#dddddd',
     lightGreen: '#5DD083',
     hashtag: '#6C63FF',
