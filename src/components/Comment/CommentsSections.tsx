@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { AiOutlineSend } from 'react-icons/ai';
-import { IconButton, TextField } from '@material-ui/core';
-import { useForm } from 'react-hook-form';
+import { IoMdSend } from 'react-icons/io';
 import { gql, useMutation, useQuery } from '@apollo/client';
 
+import DraftEditor from '@components/DraftEditor';
+import usePreventMemoryLeak from '@hooks/preventMemoryLeak';
 import Comment, { CommentProps } from '.';
 import { CommentsSectionContainer } from './styles';
 import { AuthContext } from '../../context/auth';
@@ -40,18 +40,18 @@ const GET_COMMENTS = gql`
   }
 `;
 
-interface CommentForm {
-  comment: string;
-}
-
 interface CommentsSectionsProps {
   postId: string;
 }
 
 const CommentsSections: React.FC<CommentsSectionsProps> = ({ postId }) => {
+  const [profile, setProfile] = useState<IProfile>();
+  const [commentField, setCommentField] = useState('');
+  const [progress, setProgress] = useState(0);
+
+  const isMount = usePreventMemoryLeak();
   const auth = useContext(AuthContext);
   const [newComment, setNewComment] = useState<Array<CommentProps>>([]);
-  const [profile, setProfile] = useState<IProfile>();
 
   const {
     data: commentsData,
@@ -89,9 +89,7 @@ const CommentsSections: React.FC<CommentsSectionsProps> = ({ postId }) => {
 
   const [createComment] = useMutation(CREATE_COMMENT);
 
-  const { handleSubmit, register } = useForm<CommentForm>();
-
-  const onSubmit = (commentInput: CommentForm) => {
+  const onSubmit = () => {
     setNewComment([
       ...newComment,
       {
@@ -100,14 +98,38 @@ const CommentsSections: React.FC<CommentsSectionsProps> = ({ postId }) => {
           name: profile.name,
           username: profile.owner,
         },
-        text: commentInput.comment,
+        text: commentField,
       },
     ]);
-    createComment({ variables: { id: postId, body: commentInput.comment } });
+    createComment({ variables: { id: postId, body: commentField } });
   };
 
   return (
     <CommentsSectionContainer>
+      {profile && (
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            onSubmit();
+          }}
+        >
+          <img
+            src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
+            alt="Profile name"
+          />
+          {isMount && (
+            <DraftEditor
+              setText={setCommentField}
+              setProgress={setProgress}
+              limit={255}
+              placeholder="Digite aqui o seu comentário..."
+            />
+          )}
+          <button aria-label="enviar comentário" type="submit">
+            <IoMdSend />
+          </button>
+        </form>
+      )}
       <div className="comment-content">
         {newComment &&
           newComment.map(comment => (
@@ -153,34 +175,6 @@ const CommentsSections: React.FC<CommentsSectionsProps> = ({ postId }) => {
             </span>
           );
         })
-      )}
-      {profile && (
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <img
-            src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
-            alt="Profile name"
-          />
-          <TextField
-            id="send-comment"
-            label="Enviar um comentário"
-            fullWidth
-            multiline
-            name="comment"
-            inputRef={register({
-              required: true,
-            })}
-            required
-          />
-          <IconButton
-            aria-label="enviar comentário"
-            color="primary"
-            type="submit"
-          >
-            <div className="send-button">
-              <AiOutlineSend />
-            </div>
-          </IconButton>
-        </form>
       )}
     </CommentsSectionContainer>
   );
