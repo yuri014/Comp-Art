@@ -1,25 +1,26 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic';
 import { IconButton, ThemeProvider } from '@material-ui/core';
 import { FaArrowLeft, FaMoon, FaSun } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 
+import LikeButton from '@components/Post/Buttons/LikeButton';
+import SavedButton from '@components/Post/Buttons/SavedButton';
+import ShareButton from '@components/Post/Buttons/ShareButton';
+import InteractionButtonsContainer from '@components/Post/Buttons/styles';
 import CommentsSections from '@components/Comment/CommentsSections';
 import Meta from '@components/SEO/Meta';
+import ThemeContext from '@context/theme';
 import { initializeApollo } from '@graphql/apollo/config';
+import usePostsMutations from '@hooks/postMutations';
 import { GET_POST } from '@graphql/queries/post';
 import { PostProps } from '@interfaces/Post';
-import ThemeContext from '@context/theme';
 import { ILoggedProfile } from '@interfaces/Profile';
 import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
 import getLoggedUserWithNoAuth from '@ssr-functions/getLoggedUserWithNoAuth';
 import formatDistanceTimePass from '@utils/formatDistanceTimePass';
-import LikeButton from '@components/Post/Buttons/LikeButton';
-import SavedButton from '@components/Post/Buttons/SavedButton';
-import ShareButton from '@components/Post/Buttons/ShareButton';
-import InteractionButtonsContainer from '@components/Post/Buttons/styles';
 import PostPageContainer from './_styles';
 
 const TextBox = dynamic(() => import('@components/TextBox'));
@@ -29,6 +30,17 @@ interface PostPageProps extends ILoggedProfile, PostProps {}
 const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
   const router = useRouter();
   const { isDarkMode, toggleTheme } = useContext(ThemeContext);
+  const [likesCount, setLikesCount] = useState<number>();
+
+  const [, dislikePost, likePost] = usePostsMutations(
+    post._id,
+    () => {
+      setLikesCount(likesCount - 1);
+    },
+    () => {
+      setLikesCount(likesCount + 1);
+    },
+  );
 
   return (
     <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
@@ -85,6 +97,11 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
               />
             </div>
             <InteractionButtonsContainer className="interactions">
+              <LikeButton
+                dislikePost={dislikePost}
+                likePost={likePost}
+                initialLikeState={post.isLiked}
+              />
               <SavedButton initialSaveState={post.isSaved} postID={post._id} />
               <ShareButton postID={post._id} />
             </InteractionButtonsContainer>
