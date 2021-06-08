@@ -10,7 +10,6 @@ export const CommentsSectionContainer = styled.section`
     justify-content: space-between;
     padding: 1rem 2rem;
     font-size: 2rem;
-    background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
     border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
 
     img {

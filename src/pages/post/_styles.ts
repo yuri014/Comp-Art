@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 const PostPageContainer = styled.div`
+  background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
+
   header {
     nav {
       font-size: 2rem;
@@ -24,7 +26,6 @@ const PostPageContainer = styled.div`
       display: flex;
       justify-content: center;
       width: 100%;
-      background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
       padding: 2rem 1rem;
       border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
     }
