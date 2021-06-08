@@ -19,6 +19,7 @@ import formatDistanceTimePass from '@utils/formatDistanceTimePass';
 import LikeButton from '@components/Post/Buttons/LikeButton';
 import SavedButton from '@components/Post/Buttons/SavedButton';
 import ShareButton from '@components/Post/Buttons/ShareButton';
+import InteractionButtonsContainer from '@components/Post/Buttons/styles';
 import PostPageContainer from './_styles';
 
 const TextBox = dynamic(() => import('@components/TextBox'));
@@ -83,10 +84,10 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
                 alt=""
               />
             </div>
-            <div className="interactions">
+            <InteractionButtonsContainer className="interactions">
               <SavedButton initialSaveState={post.isSaved} postID={post._id} />
               <ShareButton postID={post._id} />
-            </div>
+            </InteractionButtonsContainer>
           </div>
           <CommentsSections profile={getLoggedProfile} postId={post._id} />
         </main>

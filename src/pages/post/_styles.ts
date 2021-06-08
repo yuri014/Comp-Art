@@ -55,16 +55,24 @@ const PostPageContainer = styled.div`
 
     .description {
       padding: 0 calc(2rem - 6px);
+      padding-bottom: 1rem;
     }
 
     .post-container {
       width: 100%;
-      padding: 2rem calc(2rem - 6px);
       border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
 
       .post {
         display: flex;
         justify-content: center;
+        padding: 0 calc(2rem - 6px);
+      }
+
+      .interactions {
+        padding: 0 calc(2rem - 6px);
+        .bookmark {
+          display: flex;
+        }
       }
     }
   }
