@@ -11,6 +11,7 @@ import { ILoggedProfile, IProfile } from '../../interfaces/Profile';
 import useInfiniteScroll from '../../hooks/infiniteScroll';
 import { IGetComment } from '../../interfaces/Post';
 import { CORE_PROFILE_VIEW } from '../../graphql/fragments/profile';
+import CommentSkeleton from './CommentSkeleton';
 
 const GET_LOGGED_PROFILE = gql`
   ${CORE_PROFILE_VIEW}
@@ -147,7 +148,7 @@ const CommentsSections: React.FC<CommentsSectionsProps> = ({ postId }) => {
           ))}
       </div>
       {loading || error ? (
-        <p>loading</p>
+        <CommentSkeleton />
       ) : (
         commentsData.getComments.map((comment, index) => {
           if (commentsData.getComments.length === index + 1) {
