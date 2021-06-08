@@ -93,6 +93,14 @@ export const CommentContainer = styled.div`
       align-items: center;
     }
 
+    .like {
+      color: ${({ theme }) => theme.colors.darkGray};
+      display: flex;
+      align-items: center;
+      background: none;
+      border: none;
+    }
+
     p {
       margin-left: 0.5rem;
       font-weight: 700;
