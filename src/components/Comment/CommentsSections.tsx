@@ -125,7 +125,11 @@ const CommentsSections: React.FC<CommentsSectionsProps> = ({ postId }) => {
               placeholder="Digite aqui o seu comentário..."
             />
           )}
-          <button aria-label="enviar comentário" type="submit">
+          <button
+            disabled={progress >= 100 || commentField.length === 0}
+            aria-label="enviar comentário"
+            type="submit"
+          >
             <IoMdSend />
           </button>
         </form>

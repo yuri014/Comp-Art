@@ -7,11 +7,11 @@ export const CommentsSectionContainer = styled.section`
     width: 100%;
     bottom: 0;
     display: flex;
-    align-items: center;
     justify-content: space-between;
     padding: 1rem 2rem;
     font-size: 2rem;
     background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
 
     img {
       width: 3rem;
@@ -24,16 +24,20 @@ export const CommentsSectionContainer = styled.section`
       width: 70%;
       font-size: 1.3rem;
       background: ${({ theme }) => theme.colors.lighterSecondaryBackground};
-      padding: 1rem;
+      padding: 0.8rem 1rem;
       border-radius: 3rem;
     }
 
     button {
       background: transparent;
-      color: ${({ theme }) => theme.colors.gray};
+      color: ${({ theme }) => theme.colors.mainColor};
       border: none;
-      font-size: 2.6rem;
-      display: flex;
+      font-size: 3rem;
+      height: 3rem;
+
+      &:disabled {
+        color: ${({ theme }) => theme.colors.gray};
+      }
     }
   }
 
@@ -64,7 +68,7 @@ export const CommentContainer = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   padding: 0 2rem;
-  margin-bottom: 2rem;
+  margin: 2rem 0;
 
   .author-image {
     img {
