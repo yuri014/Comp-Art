@@ -58,11 +58,14 @@ const PostPageContainer = styled.div`
     }
 
     .post-container {
-      display: flex;
-      justify-content: center;
       width: 100%;
-      padding: 2rem 1rem;
+      padding: 2rem calc(2rem - 6px);
       border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
+
+      .post {
+        display: flex;
+        justify-content: center;
+      }
     }
   }
 `;

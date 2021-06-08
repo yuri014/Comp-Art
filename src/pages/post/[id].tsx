@@ -16,6 +16,9 @@ import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
 import getLoggedUserWithNoAuth from '@ssr-functions/getLoggedUserWithNoAuth';
 import formatDistanceTimePass from '@utils/formatDistanceTimePass';
+import LikeButton from '@components/Post/Buttons/LikeButton';
+import SavedButton from '@components/Post/Buttons/SavedButton';
+import ShareButton from '@components/Post/Buttons/ShareButton';
 import PostPageContainer from './_styles';
 
 const TextBox = dynamic(() => import('@components/TextBox'));
@@ -74,10 +77,16 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
             </div>
           )}
           <div className="post-container">
-            <img
-              src="https://img.ibxk.com.br/2015/07/23/23170425700729.jpg?w=328"
-              alt=""
-            />
+            <div className="post">
+              <img
+                src="https://img.ibxk.com.br/2015/07/23/23170425700729.jpg?w=328"
+                alt=""
+              />
+            </div>
+            <div className="interactions">
+              <SavedButton initialSaveState={post.isSaved} postID={post._id} />
+              <ShareButton postID={post._id} />
+            </div>
           </div>
           <CommentsSections profile={getLoggedProfile} postId={post._id} />
         </main>
