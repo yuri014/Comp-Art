@@ -52,6 +52,11 @@ export interface IComment {
   createdAt: string;
 }
 
+export interface CommentsSectionsProps {
+  postId: string;
+  profile: IProfile;
+}
+
 export interface IGetComment {
   getComments: [IComment];
 }
