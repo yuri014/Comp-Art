@@ -1,26 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoMdSend } from 'react-icons/io';
 import { gql, useMutation, useQuery } from '@apollo/client';
 
 import DraftEditor from '@components/DraftEditor';
 import usePreventMemoryLeak from '@hooks/preventMemoryLeak';
+import { IProfile } from '@interfaces/Profile';
 import Comment, { CommentProps } from '.';
 import { CommentsSectionContainer } from './styles';
-import { AuthContext } from '../../context/auth';
-import { ILoggedProfile, IProfile } from '../../interfaces/Profile';
 import useInfiniteScroll from '../../hooks/infiniteScroll';
 import { IGetComment } from '../../interfaces/Post';
 import { CORE_PROFILE_VIEW } from '../../graphql/fragments/profile';
 import CommentSkeleton from './CommentSkeleton';
-
-const GET_LOGGED_PROFILE = gql`
-  ${CORE_PROFILE_VIEW}
-  query GetCommentProfile {
-    getLoggedProfile {
-      ...CoreProfileView
-    }
-  }
-`;
 
 const CREATE_COMMENT = gql`
   mutation CreateComment($id: ID!, $body: String!) {
@@ -43,15 +33,17 @@ const GET_COMMENTS = gql`
 
 interface CommentsSectionsProps {
   postId: string;
+  profile: IProfile;
 }
 
-const CommentsSections: React.FC<CommentsSectionsProps> = ({ postId }) => {
-  const [profile, setProfile] = useState<IProfile>();
+const CommentsSections: React.FC<CommentsSectionsProps> = ({
+  postId,
+  profile,
+}) => {
   const [commentField, setCommentField] = useState('');
   const [progress, setProgress] = useState(0);
 
   const isMount = usePreventMemoryLeak();
-  const auth = useContext(AuthContext);
   const [newComment, setNewComment] = useState<Array<CommentProps>>([]);
 
   const {
@@ -80,14 +72,6 @@ const CommentsSections: React.FC<CommentsSectionsProps> = ({ postId }) => {
       }).then(newComments => newComments.data.getComments.length < 3),
   );
 
-  const { data: getProfile } = useQuery<ILoggedProfile>(GET_LOGGED_PROFILE, {
-    onCompleted: () => {
-      if (auth) {
-        setProfile(getProfile.getLoggedProfile);
-      }
-    },
-  });
-
   const [createComment] = useMutation(CREATE_COMMENT);
 
   const onSubmit = () => {
@@ -108,34 +92,32 @@ const CommentsSections: React.FC<CommentsSectionsProps> = ({ postId }) => {
 
   return (
     <CommentsSectionContainer>
-      {profile && (
-        <form
-          onSubmit={e => {
-            e.preventDefault();
-            onSubmit();
-          }}
-        >
-          <img
-            src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
-            alt="Profile name"
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          onSubmit();
+        }}
+      >
+        <img
+          src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
+          alt="Profile name"
+        />
+        {isMount && (
+          <DraftEditor
+            setText={setCommentField}
+            setProgress={setProgress}
+            limit={255}
+            placeholder="Digite aqui o seu comentário..."
           />
-          {isMount && (
-            <DraftEditor
-              setText={setCommentField}
-              setProgress={setProgress}
-              limit={255}
-              placeholder="Digite aqui o seu comentário..."
-            />
-          )}
-          <button
-            disabled={progress >= 100 || commentField.length === 0}
-            aria-label="enviar comentário"
-            type="submit"
-          >
-            <IoMdSend />
-          </button>
-        </form>
-      )}
+        )}
+        <button
+          disabled={progress >= 100 || commentField.length === 0}
+          aria-label="enviar comentário"
+          type="submit"
+        >
+          <IoMdSend />
+        </button>
+      </form>
       <div className="comment-content">
         {newComment &&
           newComment.map(comment => (

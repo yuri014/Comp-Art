@@ -13,11 +13,15 @@ import Post from '@components/Post';
 import usePostsMutations from '@hooks/postMutations';
 import ArtistPost from '@components/Post/ArtistPost';
 import ThemeContext from '@context/theme';
+import { ILoggedProfile } from '@interfaces/Profile';
 import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
+import getLoggedUserWithNoAuth from '@ssr-functions/getLoggedUserWithNoAuth';
 import PostPageContainer from './_styles';
 
-const PostPage: React.FC<PostProps> = ({ post }) => {
+interface PostPageProps extends ILoggedProfile, PostProps {}
+
+const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
   const router = useRouter();
   const { isDarkMode, toggleTheme } = useContext(ThemeContext);
 
@@ -56,7 +60,7 @@ const PostPage: React.FC<PostProps> = ({ post }) => {
               alt=""
             />
           </div>
-          <CommentsSections postId={post._id} />
+          <CommentsSections profile={getLoggedProfile} postId={post._id} />
         </main>
       </PostPageContainer>
     </ThemeProvider>
@@ -81,9 +85,12 @@ export const getServerSideProps: GetServerSideProps = async context => {
     };
   }
 
+  const getLoggedProfile = await getLoggedUserWithNoAuth(jwtToken, client);
+
   return {
     props: {
       post: post.data.getPost,
+      getLoggedProfile,
     },
   };
 };
