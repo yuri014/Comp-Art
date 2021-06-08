@@ -64,6 +64,10 @@ const DraftEditorComponent = styled.div`
   .hashtag {
     color: ${({ theme }) => theme.colors.hashtag};
   }
+
+  .public-DraftEditorPlaceholder-inner {
+    color: ${({ theme }) => theme.colors.gray};
+  }
 `;
 
 export default DraftEditorComponent;
