@@ -100,7 +100,7 @@ const CommentsSections: React.FC<CommentsSectionsProps> = ({
       >
         <img
           src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
-          alt="Profile name"
+          alt={profile.owner}
         />
         {isMount && (
           <DraftEditor
