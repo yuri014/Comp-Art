@@ -15,7 +15,6 @@ export const CommentsSectionContainer = styled.section`
     img {
       width: 3rem;
       height: 3rem;
-      object-fit: cover;
       border-radius: 50%;
     }
 
@@ -74,7 +73,6 @@ export const CommentContainer = styled.div`
       width: 3rem;
       height: 3rem;
       border-radius: 50%;
-      object-fit: cover;
       box-shadow: ${({ theme }) => theme.colors.mainShadow};
     }
   }
