@@ -2,7 +2,7 @@ import { formatDistance } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
 const formatDistanceTimePass = (date: string): string =>
-  formatDistance(new Date(), new Date(date), {
+  formatDistance(new Date(date), new Date(), {
     locale: ptBR,
     addSuffix: true,
   });
