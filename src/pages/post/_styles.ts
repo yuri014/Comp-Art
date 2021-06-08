@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const PostPageContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
+  min-height: 100vh;
 
   header {
     nav {
