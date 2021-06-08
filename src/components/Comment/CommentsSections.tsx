@@ -43,7 +43,7 @@ const CommentsSections: React.FC<CommentsSectionsProps> = ({
     [client.cache],
   );
 
-  const lastPostRef = useInfiniteScroll(
+  const lastCommentRef = useInfiniteScroll(
     commentsData,
     () =>
       !!commentsData.getComments &&
@@ -63,7 +63,7 @@ const CommentsSections: React.FC<CommentsSectionsProps> = ({
             return (
               <span
                 key={`${comment.author.owner}_${comment.createdAt}`}
-                ref={lastPostRef}
+                ref={lastCommentRef}
               >
                 <Comment
                   createdAt={comment.createdAt}
