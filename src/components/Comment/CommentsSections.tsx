@@ -93,12 +93,13 @@ const CommentsSections: React.FC<CommentsSectionsProps> = ({ postId }) => {
     setNewComment([
       ...newComment,
       {
-        avatar: profile.avatar,
         owner: {
+          avatar: profile.avatar,
           name: profile.name,
           username: profile.owner,
         },
         text: commentField,
+        createdAt: new Date().toISOString(),
       },
     ]);
     createComment({ variables: { id: postId, body: commentField } });
@@ -138,7 +139,8 @@ const CommentsSections: React.FC<CommentsSectionsProps> = ({ postId }) => {
         {newComment &&
           newComment.map(comment => (
             <Comment
-              avatar={comment.avatar}
+              key={`${comment.owner}__${comment.createdAt}`}
+              createdAt={comment.createdAt}
               owner={comment.owner}
               text={comment.text}
             />
@@ -155,9 +157,10 @@ const CommentsSections: React.FC<CommentsSectionsProps> = ({ postId }) => {
                 ref={lastPostRef}
               >
                 <Comment
-                  avatar={comment.author.avatar}
+                  createdAt={comment.createdAt}
                   text={comment.body}
                   owner={{
+                    avatar: comment.author.avatar,
                     name: comment.author.name,
                     username: comment.author.owner,
                   }}
@@ -169,9 +172,10 @@ const CommentsSections: React.FC<CommentsSectionsProps> = ({ postId }) => {
           return (
             <span key={`${comment.author.owner}_${comment.createdAt}`}>
               <Comment
-                avatar={comment.author.avatar}
+                createdAt={comment.createdAt}
                 text={comment.body}
                 owner={{
+                  avatar: comment.author.avatar,
                   name: comment.author.name,
                   username: comment.author.owner,
                 }}

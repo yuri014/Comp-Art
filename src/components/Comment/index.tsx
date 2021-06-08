@@ -1,22 +1,24 @@
+import formatDistanceTimePass from '@utils/formatDistanceTimePass';
 import Link from 'next/link';
 import React from 'react';
 import { FaRegHeart } from 'react-icons/fa';
 import { CommentContainer } from './styles';
 
 export interface CommentProps {
-  avatar: string;
+  text: string;
+  createdAt: string;
   owner: {
+    avatar: string;
     name: string;
     username: string;
   };
-  text: string;
 }
 
-const Comment: React.FC<CommentProps> = ({ avatar, owner, text }) => (
+const Comment: React.FC<CommentProps> = ({ owner, text, createdAt }) => (
   <CommentContainer>
     <div className="author-image">
       <img
-        src={process.env.NEXT_PUBLIC_API_HOST + avatar}
+        src={process.env.NEXT_PUBLIC_API_HOST + owner.avatar}
         alt={`${owner.name}`}
       />
     </div>
@@ -31,7 +33,10 @@ const Comment: React.FC<CommentProps> = ({ avatar, owner, text }) => (
         <p className="comment-text">{text}</p>
       </div>
       <div className="comment-interations">
-        <FaRegHeart /> <p>Curtir</p>
+        <div className="like">
+          <FaRegHeart /> <p>Curtir</p>
+        </div>
+        <div className="created-at">{formatDistanceTimePass(createdAt)}</div>
       </div>
     </div>
   </CommentContainer>

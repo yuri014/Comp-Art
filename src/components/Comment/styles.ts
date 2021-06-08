@@ -75,7 +75,7 @@ export const CommentContainer = styled.div`
       height: 3rem;
       border-radius: 50%;
       object-fit: cover;
-      box-shadow: 1px 2px 4px ${({ theme }) => theme.colors.backgroundColor};
+      box-shadow: ${({ theme }) => theme.colors.mainShadow};
     }
   }
 
@@ -84,8 +84,14 @@ export const CommentContainer = styled.div`
     align-items: center;
     margin-top: 1rem;
     font-size: 1.3rem;
-    color: ${({ theme }) => theme.colors.lightContrast};
+    color: ${({ theme }) => theme.colors.darkGray};
     margin-left: 1rem;
+    gap: 1rem;
+
+    div {
+      display: flex;
+      align-items: center;
+    }
 
     p {
       margin-left: 0.5rem;
@@ -94,21 +100,21 @@ export const CommentContainer = styled.div`
   }
 
   .comment-body {
-    background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
-    color: ${({ theme }) => theme.colors.lightContrast};
+    background: ${({ theme }) => theme.colors.commentBackground};
+    color: ${({ theme }) => theme.colors.themeColor};
     border-radius: 4px;
     padding: 1rem;
-    box-shadow: 1px 2px 4px ${({ theme }) => theme.colors.backgroundColor};
+    box-shadow: ${({ theme }) => theme.colors.mainShadow};
 
     a {
-      color: ${({ theme }) => theme.colors.lightContrast};
+      color: ${({ theme }) => theme.colors.themeColor};
       font-size: 1.5rem;
       display: flex;
       align-items: center;
       font-weight: 700;
 
       p:last-child {
-        color: ${({ theme }) => theme.colors.blueContrast};
+        color: ${({ theme }) => theme.colors.darkGray};
         font-weight: 400;
         margin-left: 0.5rem;
       }
