@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { GetServerSideProps } from 'next';
+import dynamic from 'next/dynamic';
 import { IconButton, ThemeProvider } from '@material-ui/core';
 import { FaArrowLeft, FaMoon, FaSun } from 'react-icons/fa';
 import { useRouter } from 'next/router';
@@ -9,15 +10,15 @@ import Meta from '@components/SEO/Meta';
 import { initializeApollo } from '@graphql/apollo/config';
 import { GET_POST } from '@graphql/queries/post';
 import { PostProps } from '@interfaces/Post';
-import Post from '@components/Post';
-import usePostsMutations from '@hooks/postMutations';
-import ArtistPost from '@components/Post/ArtistPost';
 import ThemeContext from '@context/theme';
 import { ILoggedProfile } from '@interfaces/Profile';
 import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
 import getLoggedUserWithNoAuth from '@ssr-functions/getLoggedUserWithNoAuth';
+import formatDistanceTimePass from '@utils/formatDistanceTimePass';
 import PostPageContainer from './_styles';
+
+const TextBox = dynamic(() => import('@components/TextBox'));
 
 interface PostPageProps extends ILoggedProfile, PostProps {}
 
@@ -54,6 +55,24 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
           </nav>
         </header>
         <main>
+          <div className="profile">
+            <img
+              src={process.env.NEXT_PUBLIC_API_HOST + post.artist.avatar}
+              alt={post.artist.owner}
+            />
+            <a>
+              <div>
+                <strong>{post.artist.name}</strong>
+                <p>@{post.artist.owner}</p>
+              </div>
+              <p>{formatDistanceTimePass(post.createdAt)}</p>
+            </a>
+          </div>
+          {post.description && (
+            <div className="description">
+              <TextBox text={post.description} />
+            </div>
+          )}
           <div className="post-container">
             <img
               src="https://img.ibxk.com.br/2015/07/23/23170425700729.jpg?w=328"
