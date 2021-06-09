@@ -23,6 +23,9 @@ import getLoggedUserWithNoAuth from '@ssr-functions/getLoggedUserWithNoAuth';
 import formatDistanceTimePass from '@utils/formatDistanceTimePass';
 import PostPageContainer from './_styles';
 
+const AudioPlayer = dynamic(() => import('@components/AudioPlayer'), {
+  ssr: false,
+});
 const TextBox = dynamic(() => import('@components/TextBox'));
 
 interface PostPageProps extends ILoggedProfile, PostProps {}
@@ -91,9 +94,11 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
           )}
           <div className="post-container">
             <div className="post">
-              <img
-                src="https://img.ibxk.com.br/2015/07/23/23170425700729.jpg?w=328"
-                alt=""
+              <AudioPlayer
+                audio={post.body}
+                darkColor={post.darkColor}
+                lightColor={post.lightColor}
+                thumbnail={post.thumbnail}
               />
             </div>
             <InteractionButtonsContainer className="interactions">
