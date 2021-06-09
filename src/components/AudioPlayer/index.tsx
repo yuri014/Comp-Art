@@ -1,39 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FaBackward, FaForward, FaPause, FaPlay } from 'react-icons/fa';
 import WaveSurfer from 'wavesurfer.js';
-import { WaveSurferParams } from 'wavesurfer.js/types/params';
-import AudioPlayerContainer from './styles';
 
-interface Colors {
-  lightColor: string;
-  darkColor: string;
-}
+import formWaveSurferOptions, { Colors } from './options';
+import AudioPlayerContainer from './styles';
 
 interface AudioPlayerProps extends Colors {
   audio: string;
   thumbnail: string;
 }
-
-const formWaveSurferOptions = (
-  ref: React.MutableRefObject<HTMLDivElement>,
-  colors: Colors,
-): WaveSurferParams => ({
-  container: (ref as unknown) as HTMLDivElement,
-  waveColor: colors.lightColor,
-  progressColor: colors.darkColor,
-  cursorColor: colors.darkColor,
-  barWidth: 3,
-  barRadius: 3,
-  responsive: true,
-  height: 40,
-  normalize: true,
-  partialRender: true,
-  xhr: {
-    credentials: 'same-origin',
-    withCredentials: true,
-    mode: 'cors',
-  },
-});
 
 const AudioPlayer: React.FC<AudioPlayerProps> = ({
   audio,
@@ -44,7 +19,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
   const waveformRef = useRef(null);
   const wavesurfer = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [volume, setVolume] = useState(0.5);
 
   useEffect(() => {
     const options = formWaveSurferOptions(waveformRef.current, {
@@ -69,16 +43,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     wavesurfer.current.playPause();
   };
 
-  const onVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { target } = e;
-    const newVolume = +target.value;
-
-    if (newVolume) {
-      setVolume(newVolume);
-      wavesurfer.current.setVolume(newVolume || 1);
-    }
-  };
-
   return (
     <AudioPlayerContainer>
       <img src={process.env.NEXT_PUBLIC_API_HOST + thumbnail} alt="" />
@@ -100,17 +64,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
             <FaForward />
           </button>
         </div>
-        <input
-          type="range"
-          id="volume"
-          name="volume"
-          min="0.01"
-          max="1"
-          step=".025"
-          onChange={e => onVolumeChange(e)}
-          defaultValue={volume}
-          className="slider"
-        />
       </div>
     </AudioPlayerContainer>
   );
