@@ -72,7 +72,7 @@ const AudioPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
               </IconButton>
               <IconButton
                 onClick={() => handlePlaying()}
-                aria-label="play/pause"
+                aria-label={!isPlaying ? 'Play' : 'Pause'}
               >
                 {!isPlaying ? <FaPlay /> : <FaPause />}
               </IconButton>
