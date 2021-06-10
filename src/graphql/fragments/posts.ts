@@ -28,6 +28,7 @@ export const CORE_POST_VIEW = gql`
     imageHeight
     title
     isSaved
+    alt
   }
 `;
 
