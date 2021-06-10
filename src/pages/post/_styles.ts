@@ -66,6 +66,12 @@ const PostPageContainer = styled.div`
         display: flex;
         justify-content: center;
         padding: 0 calc(2rem - 6px);
+
+        .post-image {
+          img {
+            width: 100%;
+          }
+        }
       }
 
       .interactions {
