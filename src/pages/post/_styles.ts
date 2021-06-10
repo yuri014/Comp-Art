@@ -70,6 +70,7 @@ const PostPageContainer = styled.div`
         .post-image {
           img {
             width: 100%;
+            border-radius: 5px;
           }
         }
       }
