@@ -133,13 +133,11 @@ export const CommentContainer = styled.div`
   }
 
   @media (min-width: 768px) {
-    display: flex;
-    justify-content: space-between;
-
-    max-width: 350px;
+    display: grid;
+    grid-template-columns: 5% 92%;
 
     .comment-body {
-      max-width: 250px;
+      width: 100%;
     }
 
     .author-image {
@@ -147,17 +145,6 @@ export const CommentContainer = styled.div`
         width: 4rem;
         height: 4rem;
       }
-    }
-  }
-
-  @media (min-width: 1100px) {
-    max-width: 100%;
-    display: grid;
-    grid-template-columns: 5% 92%;
-
-    .comment-body {
-      max-width: unset;
-      width: 100%;
     }
   }
 `;

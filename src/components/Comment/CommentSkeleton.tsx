@@ -4,7 +4,7 @@ import Skeleton from '@material-ui/lab/Skeleton';
 import { CommentContainer } from './styles';
 
 const CommentSkeleton: React.FC = () => (
-  <CommentContainer>
+  <CommentContainer className="skeleton">
     <div className="author-image">
       <Skeleton animation="wave" variant="circle" width={30} height={30} />
     </div>
