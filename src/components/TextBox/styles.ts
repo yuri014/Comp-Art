@@ -18,6 +18,13 @@ const TextBoxContainer = styled.div`
     &.mention {
       color: ${({ theme }) => theme.colors.pink};
     }
+
+    &.hashtag,
+    &.mention {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
   a {
