@@ -68,8 +68,10 @@ const PostPageContainer = styled.div`
         padding: 0 calc(2rem - 6px);
 
         .post-image {
+          width: 100%;
+
           img {
-            width: 100%;
+            width: inherit;
             border-radius: 5px;
           }
         }
