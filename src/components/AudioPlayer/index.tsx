@@ -8,6 +8,7 @@ import AudioPlayerContainer from './styles';
 interface AudioPlayerProps extends Colors {
   audio: string;
   thumbnail: string;
+  title: string;
 }
 
 const AudioPlayer: React.FC<AudioPlayerProps> = ({
@@ -15,6 +16,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
   darkColor,
   lightColor,
   thumbnail,
+  title,
 }) => {
   const waveformRef = useRef(null);
   const wavesurfer = useRef(null);
@@ -46,6 +48,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
   return (
     <AudioPlayerContainer>
       <img src={process.env.NEXT_PUBLIC_API_HOST + thumbnail} alt="" />
+      <strong>{title}</strong>
       <div id="waveform" ref={waveformRef} />
       <div className="controls">
         <div className="buttons">

@@ -71,6 +71,7 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
       return (
         <AudioPlayer
           audio={post.body}
+          title={post.title}
           darkColor={post.darkColor}
           lightColor={post.lightColor}
           thumbnail={post.thumbnail}
@@ -110,30 +111,32 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
           </nav>
         </header>
         <main>
-          <div className="profile">
-            <img
-              src={process.env.NEXT_PUBLIC_API_HOST + post.artist.avatar}
-              alt={post.artist.owner}
-            />
-            <a>
-              <div>
-                <strong>{post.artist.name}</strong>
-                <p>@{post.artist.owner}</p>
-              </div>
-              <p>{formatDistanceTimePass(post.createdAt)}</p>
-            </a>
-          </div>
-          {post.description && (
-            <div className="description">
-              <TextBox text={post.description} />
+          <div id="author">
+            <div className="profile">
+              <img
+                src={process.env.NEXT_PUBLIC_API_HOST + post.artist.avatar}
+                alt={post.artist.owner}
+              />
+              <a>
+                <div>
+                  <strong>{post.artist.name}</strong>
+                  <p>@{post.artist.owner}</p>
+                </div>
+                <p>{formatDistanceTimePass(post.createdAt)}</p>
+              </a>
             </div>
-          )}
-          <div className="post-container">
-            {post.body && (
-              <div className="post">
-                <HandlePost mediaId={post.mediaId} />
+            {post.description && (
+              <div className="description">
+                <TextBox text={post.description} />
               </div>
             )}
+          </div>
+          {post.body && (
+            <div className="post">
+              <HandlePost mediaId={post.mediaId} />
+            </div>
+          )}
+          <div id="comments">
             <InteractionButtonsContainer className="interactions">
               <LikeButton
                 dislikePost={dislikePost}
@@ -143,8 +146,8 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
               <SavedButton initialSaveState={post.isSaved} postID={post._id} />
               <ShareButton postID={post._id} />
             </InteractionButtonsContainer>
+            <CommentsSections profile={getLoggedProfile} postId={post._id} />
           </div>
-          <CommentsSections profile={getLoggedProfile} postId={post._id} />
         </main>
       </PostPageContainer>
     </ThemeProvider>

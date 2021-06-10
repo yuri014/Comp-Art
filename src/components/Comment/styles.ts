@@ -42,21 +42,10 @@ export const CommentsSectionContainer = styled.section`
   @media (min-width: 1100px) {
     width: 100%;
     margin: 0 auto;
-    margin-top: 4rem;
     max-height: 100%;
-    max-height: 65vh;
+    max-height: 40vh;
     overflow-y: scroll;
     padding-bottom: 0;
-
-    form {
-      border-top: 0;
-      background: rgba(119, 166, 230, 0.3);
-      backdrop-filter: blur(4px);
-      border-radius: 4px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      position: sticky;
-      width: 100%;
-    }
   }
 `;
 
@@ -146,5 +135,9 @@ export const CommentContainer = styled.div`
         height: 4rem;
       }
     }
+  }
+
+  @media (min-width: 992px) {
+    grid-template-columns: 5% 85%;
   }
 `;
