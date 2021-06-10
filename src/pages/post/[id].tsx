@@ -56,7 +56,14 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
 
     if (mediaId === medias.image) {
       return (
-        <CAImage image={post.body} alt={post.alt} className="post-image" />
+        <CAImage
+          image={post.body}
+          options={{
+            alt: post.alt,
+            className: 'post-image',
+            loading: 'lazy',
+          }}
+        />
       );
     }
 

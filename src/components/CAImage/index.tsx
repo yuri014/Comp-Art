@@ -5,16 +5,21 @@ import CAImageContainer from './styles';
 const FullScreenImage = dynamic(() => import('../FullScreenImage'));
 
 interface CAImageProps {
-  className?: string;
   image: string;
+  options?: {
+    alt?: string;
+    loading?: 'lazy' | 'eager';
+    className?: string;
+    height?: string | number;
+  };
 }
 
-const CAImage: React.FC<CAImageProps> = ({ className, image }) => {
+const CAImage: React.FC<CAImageProps> = ({ image, options }) => {
   const [isImageFullScreen, setIsImageFullScreen] = useState(false);
   return (
     <>
       <CAImageContainer
-        className={className}
+        className={options.className}
         onClick={() => setIsImageFullScreen(true)}
         onKeyDown={() => setIsImageFullScreen(true)}
         onBlur={() => setIsImageFullScreen(false)}
@@ -22,7 +27,9 @@ const CAImage: React.FC<CAImageProps> = ({ className, image }) => {
       >
         <img
           src={process.env.NEXT_PUBLIC_API_HOST + image}
-          alt="Imagem do perfil"
+          alt={options.alt}
+          loading={options.loading}
+          height={options.height}
         />
       </CAImageContainer>
       {isImageFullScreen && (
@@ -36,7 +43,12 @@ const CAImage: React.FC<CAImageProps> = ({ className, image }) => {
 };
 
 CAImage.defaultProps = {
-  className: '',
+  options: {
+    alt: '',
+    loading: 'eager',
+    className: '',
+    height: '',
+  },
 };
 
 export default CAImage;
