@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import LikeButton from '@components/Post/Buttons/LikeButton';
 import SavedButton from '@components/Post/Buttons/SavedButton';
 import ShareButton from '@components/Post/Buttons/ShareButton';
+import CAImage from '@components/CAImage';
 import InteractionButtonsContainer from '@components/Post/Buttons/styles';
 import CommentsSections from '@components/Comment/CommentsSections';
 import Meta from '@components/SEO/Meta';
@@ -44,6 +45,34 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
       setLikesCount(likesCount + 1);
     },
   );
+
+  const HandlePost = ({ mediaId }: { mediaId: number }) => {
+    const medias = {
+      image: 1,
+      audio: 2,
+      video: 3,
+      text: 4,
+    };
+
+    if (mediaId === medias.image) {
+      return (
+        <CAImage image={post.body} alt={post.alt} className="post-image" />
+      );
+    }
+
+    if (mediaId === medias.audio) {
+      return (
+        <AudioPlayer
+          audio={post.body}
+          darkColor={post.darkColor}
+          lightColor={post.lightColor}
+          thumbnail={post.thumbnail}
+        />
+      );
+    }
+
+    return <p>erro</p>;
+  };
 
   return (
     <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
@@ -93,14 +122,11 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
             </div>
           )}
           <div className="post-container">
-            <div className="post">
-              <AudioPlayer
-                audio={post.body}
-                darkColor={post.darkColor}
-                lightColor={post.lightColor}
-                thumbnail={post.thumbnail}
-              />
-            </div>
+            {post.body && (
+              <div className="post">
+                <HandlePost mediaId={post.mediaId} />
+              </div>
+            )}
             <InteractionButtonsContainer className="interactions">
               <LikeButton
                 dislikePost={dislikePost}
