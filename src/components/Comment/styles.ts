@@ -42,8 +42,7 @@ export const CommentsSectionContainer = styled.section`
   @media (min-width: 1100px) {
     width: 100%;
     margin: 0 auto;
-    max-height: 100%;
-    max-height: 40vh;
+    max-height: 72vh;
     overflow-y: scroll;
     padding-bottom: 0;
   }
