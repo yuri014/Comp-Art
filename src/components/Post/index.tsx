@@ -23,6 +23,7 @@ interface IPostProps extends PostProps {
 const initialQuery = {
   queryResult: 'getLikes',
   query: GET_LIKES,
+  title: 'Quem Curtiu',
 };
 
 const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
@@ -72,6 +73,7 @@ const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
             setModalPayload({
               queryResult: 'getWhoSharesPost',
               query: GET_WHO_SHARE_POST,
+              title: 'Quem Compartilhou',
             });
           }}
           aria-label="Abrir modal de compartilhamentos"
@@ -152,9 +154,8 @@ const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
       {modalShow && (
         <ModalProfile
           onHide={() => setModalShow(false)}
-          queryResult={modalPayload.queryResult}
-          query={modalPayload.query}
           variable={{ id: post._id }}
+          payload={modalPayload}
         />
       )}
     </>

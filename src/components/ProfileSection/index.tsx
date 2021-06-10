@@ -39,11 +39,13 @@ const GET_FOLLOWING = gql`
 const followerQuery = {
   queryResult: 'getFollowers',
   query: GET_FOLLOWERS,
+  title: 'Seguidores',
 };
 
 const followingQuery = {
   queryResult: 'getFollowing',
   query: GET_FOLLOWING,
+  title: 'Seguindo',
 };
 
 const ProfileSection: React.FC<ProfileProps> = ({ getProfile }) => {
@@ -181,9 +183,8 @@ const ProfileSection: React.FC<ProfileProps> = ({ getProfile }) => {
       {modalShow && (
         <ModalProfile
           onHide={() => setModalShow(false)}
-          queryResult={modalPayload.queryResult}
-          query={modalPayload.query}
           variable={{ username: getProfile.owner }}
+          payload={modalPayload}
         />
       )}
       {isImageFullScreen && (

@@ -13,39 +13,39 @@ import ProfileSimpleCard from '../ProfileCard';
 interface ModalProps {
   onHide: () => void;
   variable: { [key: string]: string };
-  query: DocumentNode;
-  queryResult: string;
+  payload: {
+    query: DocumentNode;
+    queryResult: string;
+    title: string;
+  };
 }
 
-const ModalProfile: React.FC<ModalProps> = ({
-  onHide,
-  variable,
-  query,
-  queryResult,
-}) => {
-  const { data, loading, fetchMore, client } = useQuery(query, {
+const ModalProfile: React.FC<ModalProps> = ({ onHide, variable, payload }) => {
+  const { data, loading, fetchMore, client } = useQuery(payload.query, {
     variables: { offset: 0, ...variable },
   });
 
   useEffect(
     () => () => {
-      client.cache.evict({ fieldName: queryResult });
+      client.cache.evict({ fieldName: payload.queryResult });
     },
-    [client.cache, queryResult],
+    [client.cache, payload.queryResult],
   );
 
   const lastPostRefLikes = useInfiniteScroll(
     data,
     () =>
-      !!data[`${queryResult}`] &&
+      !!data[`${payload.queryResult}`] &&
       fetchMore({
-        variables: { offset: data[`${queryResult}`].length },
-      }).then(newProfiles => newProfiles.data[`${queryResult}`].length < 3),
+        variables: { offset: data[`${payload.queryResult}`].length },
+      }).then(
+        newProfiles => newProfiles.data[`${payload.queryResult}`].length < 3,
+      ),
   );
 
   return (
     <ThemeProvider theme={mainTheme}>
-      <Modal onHide={onHide} show title="Ver curtidas" fontSize="2.4rem">
+      <Modal onHide={onHide} show title={payload.title} fontSize="2.4rem">
         <ModalProfileContainer>
           <div className="modal-content">
             {loading && !data ? (
@@ -54,9 +54,9 @@ const ModalProfile: React.FC<ModalProps> = ({
               </>
             ) : (
               <>
-                {data[`${queryResult}`].map(
+                {data[`${payload.queryResult}`].map(
                   (profile: IProfile, index: number) => {
-                    if (data[`${queryResult}`].length === index + 1) {
+                    if (data[`${payload.queryResult}`].length === index + 1) {
                       return (
                         <div key={profile._id} ref={lastPostRefLikes}>
                           <ProfileSimpleCard profile={profile} />
