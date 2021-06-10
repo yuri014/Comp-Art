@@ -13,6 +13,8 @@ const AudioPlayerContainer = styled.div`
   }
 
   .controls {
+    margin-bottom: 3rem;
+
     .buttons {
       display: flex;
       align-items: center;
