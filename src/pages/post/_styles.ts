@@ -100,6 +100,7 @@ const PostPageContainer = styled.div`
 
       .description {
         padding-top: 1rem;
+        padding-bottom: 0;
       }
 
       .post {
