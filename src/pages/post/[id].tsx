@@ -18,6 +18,7 @@ import usePostsMutations from '@hooks/postMutations';
 import { GET_POST } from '@graphql/queries/post';
 import { PostProps } from '@interfaces/Post';
 import { ILoggedProfile } from '@interfaces/Profile';
+import PostSchema from '@schemas/Post';
 import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
 import getLoggedUserWithNoAuth from '@ssr-functions/getLoggedUserWithNoAuth';
@@ -150,6 +151,7 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
           </div>
         </main>
       </PostPageContainer>
+      <PostSchema post={post} />
     </ThemeProvider>
   );
 };
