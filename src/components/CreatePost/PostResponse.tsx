@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Lottie, { LottieRef } from 'lottie-react';
 import { FaTimes } from 'react-icons/fa';
 import { IconButton, Snackbar, ThemeProvider } from '@material-ui/core';
@@ -18,6 +18,13 @@ export const SendSuccess: React.FC<SendSuccessProps> = ({
 }) => {
   const lottieRef: LottieRef = useRef();
 
+  // Espera a animação do modal
+  useEffect(() => {
+    setTimeout(() => {
+      lottieRef.current.play();
+    }, 7000);
+  }, [lottieRef]);
+
   return (
     <Modal
       show={showModal}
@@ -26,6 +33,7 @@ export const SendSuccess: React.FC<SendSuccessProps> = ({
     >
       <div className="modal-content">
         <Lottie
+          autoPlay={false}
           loop={false}
           animationData={animationData}
           onEnterFrame={() => {

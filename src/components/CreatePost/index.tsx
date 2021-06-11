@@ -156,8 +156,12 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
           </div>
         </div>
       </form>
-      <SendSuccess setShowModal={setShowModal} showModal={showModal} />
-      <SendError setShowError={setShowError} showError={showError} />
+      {showModal && (
+        <SendSuccess setShowModal={setShowModal} showModal={showModal} />
+      )}
+      {showError && (
+        <SendError setShowError={setShowError} showError={showError} />
+      )}
     </CreatePostContainer>
   );
 };
