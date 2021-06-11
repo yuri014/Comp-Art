@@ -64,7 +64,7 @@ const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
   const profileData = post.post ? post.profile : post.artist;
 
   const ShareButton = ({ className }: { className?: string }) => (
-    <>
+    <div>
       {post.sharedCount > 0 && (
         <button
           type="button"
@@ -82,7 +82,7 @@ const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
           <p>{post.sharedCount} compartilhamentos</p>
         </button>
       )}
-    </>
+    </div>
   );
 
   ShareButton.defaultProps = {
