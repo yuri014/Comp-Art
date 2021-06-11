@@ -2,7 +2,7 @@ import React, { useContext, useRef, useState } from 'react';
 import { IconButton, Menu, MenuItem, Snackbar } from '@material-ui/core';
 import { FiMoreHorizontal, FiTrash2 } from 'react-icons/fi';
 
-import { FaLink, FaRegFlag, FaTimes } from 'react-icons/fa';
+import { FaLink, FaTimes } from 'react-icons/fa';
 import { AuthContext } from '../../context/auth';
 import { MenuListIcon } from '../Header/styles';
 
@@ -63,12 +63,6 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({
               style={{ position: 'absolute', left: '-999em' }}
               value={`${process.env.NEXT_PUBLIC_HOST}/post/${id}`}
             />
-          </MenuListIcon>
-        </MenuItem>
-        <MenuItem>
-          <MenuListIcon className="prevent-redirect-post">
-            <FaRegFlag className="danger-icon" />
-            <p>Denunciar</p>
           </MenuListIcon>
         </MenuItem>
         {auth.user && auth.user.username === username && (
