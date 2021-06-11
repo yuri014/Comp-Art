@@ -1,22 +1,28 @@
 import React, { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
-import { FaRegFileImage, FaTimes } from 'react-icons/fa';
+import { FaRegFileImage } from 'react-icons/fa';
 import { IoMdMusicalNote } from 'react-icons/io';
-import { IconButton, Snackbar, ThemeProvider } from '@material-ui/core';
-
-import usePreventMemoryLeak from '@hooks/preventMemoryLeak';
-import useImageDimension from '@hooks/imageDimension';
-import { IProfile } from '@interfaces/Profile';
-import useImagePreview from '@hooks/imagePreview';
-import { CREATE_POST } from '@graphql/mutations/post';
 import { useMutation } from '@apollo/client';
-import formTheme from '@styles/themes/FormTheme';
+
 import DraftEditor from '@components/DraftEditor';
+import { CREATE_POST } from '@graphql/mutations/post';
+import useImagePreview from '@hooks/imagePreview';
+import useImageDimension from '@hooks/imageDimension';
+import usePreventMemoryLeak from '@hooks/preventMemoryLeak';
+import { IProfile } from '@interfaces/Profile';
 import CreatePostContainer from './styles';
 
 const MediaForm = dynamic(() => import('./utils/MediaForm'));
 const DescriptionCounter = dynamic(
   () => import('@components/DraftEditor/utils/DescriptionCounter'),
+);
+
+const SendSuccess = dynamic(() =>
+  import('./PostResponse').then(mod => mod.SendSuccess),
+);
+
+const SendError = dynamic(() =>
+  import('./PostResponse').then(mod => mod.SendError),
 );
 
 interface CreatePostProps {
@@ -25,12 +31,15 @@ interface CreatePostProps {
 
 const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
   const isMount = usePreventMemoryLeak();
+
   const [description, setDescription] = useState('');
   const [progress, setProgress] = useState(0);
   const [canSubmit, setCanSubmit] = useState(true);
   const [showError, setShowError] = useState('');
   const [title, setTitle] = useState('');
   const [alt, setAlt] = useState('');
+  const [showModal, setShowModal] = useState(true);
+
   const audioInput = useRef<HTMLInputElement | null>(null);
   const imageInput = useRef<HTMLInputElement | null>(null);
 
@@ -40,6 +49,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
 
   const [createPost] = useMutation(CREATE_POST, {
     onError: ({ graphQLErrors }) => setShowError(graphQLErrors[0].message),
+    onCompleted: () => setShowModal(true),
   });
 
   const onSubmit = () => {
@@ -146,27 +156,8 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
           </div>
         </div>
       </form>
-      <ThemeProvider theme={formTheme}>
-        <Snackbar
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'right',
-          }}
-          open={!!showError}
-          autoHideDuration={3000}
-          onClose={() => setShowError('')}
-          message={showError}
-          action={
-            <IconButton
-              size="small"
-              aria-label="fechar menu erro"
-              onClick={() => setShowError('')}
-            >
-              <FaTimes />
-            </IconButton>
-          }
-        />
-      </ThemeProvider>
+      <SendSuccess setShowModal={setShowModal} showModal={showModal} />
+      <SendError setShowError={setShowError} showError={showError} />
     </CreatePostContainer>
   );
 };
