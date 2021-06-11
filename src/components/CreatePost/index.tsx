@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { FaRegFileImage } from 'react-icons/fa';
 import { IoMdMusicalNote } from 'react-icons/io';
@@ -34,7 +34,6 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
 
   const [description, setDescription] = useState('');
   const [progress, setProgress] = useState(0);
-  const [canSubmit, setCanSubmit] = useState(true);
   const [showError, setShowError] = useState('');
   const [title, setTitle] = useState('');
   const [alt, setAlt] = useState('');
@@ -66,11 +65,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
     });
   };
 
-  useEffect(() => {
-    if (description.length >= 1200) {
-      setCanSubmit(false);
-    }
-  }, [description]);
+  const cannotSubmit = description.length >= 1200 || description.length === 0;
 
   return (
     <CreatePostContainer>
@@ -148,8 +143,8 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
             )}
             <button
               type="submit"
-              disabled={!canSubmit}
-              className={`${canSubmit ? '' : 'disabled'}`}
+              disabled={cannotSubmit}
+              className={`${!cannotSubmit ? '' : 'disabled'}`}
             >
               Publicar
             </button>
