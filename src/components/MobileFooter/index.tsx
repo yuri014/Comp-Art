@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaBell, FaHome, FaScroll, FaSearch } from 'react-icons/fa';
 import { useRouter } from 'next/dist/client/router';
 import {
@@ -7,11 +7,14 @@ import {
   ThemeProvider,
 } from '@material-ui/core';
 
+import ThemeContext from '@context/theme';
+import mainDarkTheme from '@styles/themes/MainDarkTheme';
+import mainLightTheme from '@styles/themes/MainLightTheme';
 import MobileFooterContainer from './styles';
-import mainTheme from '../../styles/themes/MainTheme';
 
 const MobileFooter: React.FC = () => {
   const routes = useRouter();
+  const { isDarkMode } = useContext(ThemeContext);
 
   const [value, setValue] = useState(routes.pathname);
 
@@ -24,7 +27,7 @@ const MobileFooter: React.FC = () => {
 
   return (
     <MobileFooterContainer>
-      <ThemeProvider theme={mainTheme}>
+      <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
         <BottomNavigation value={value} onChange={handleChange}>
           <BottomNavigationAction
             label="Home"
