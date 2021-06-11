@@ -38,7 +38,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
   const [showError, setShowError] = useState('');
   const [title, setTitle] = useState('');
   const [alt, setAlt] = useState('');
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   const audioInput = useRef<HTMLInputElement | null>(null);
   const imageInput = useRef<HTMLInputElement | null>(null);
