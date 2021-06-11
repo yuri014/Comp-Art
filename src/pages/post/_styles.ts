@@ -111,6 +111,17 @@ const PostPageContainer = styled.div`
         border-right: 1px solid ${({ theme }) => theme.colors.borderColor};
         display: flex;
         place-items: center;
+
+        .post-image {
+          width: auto;
+          height: 95%;
+
+          img {
+            width: inherit;
+            height: inherit;
+            border-radius: 5px;
+          }
+        }
       }
 
       #author {
