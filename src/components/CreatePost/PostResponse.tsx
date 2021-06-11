@@ -37,7 +37,7 @@ export const SendSuccess: React.FC<SendSuccessProps> = ({
           loop={false}
           animationData={animationData}
           onEnterFrame={() => {
-            lottieRef.current.setSpeed(1.5);
+            lottieRef.current.setSpeed(2);
           }}
           onComplete={() => setShowModal(false)}
           rendererSettings={{ preserveAspectRatio: 'xMidYMid slice' }}
