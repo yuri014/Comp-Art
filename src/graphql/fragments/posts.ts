@@ -60,7 +60,7 @@ export const CORE_SHARE_VIEW = gql`
       }
     }
     likesCount
-    sharedCount
+    commentsCount
     profile {
       name
       owner
