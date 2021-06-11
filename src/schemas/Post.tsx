@@ -6,10 +6,9 @@ import { Timeline } from '@interfaces/Post';
 
 interface PostSchemaProps {
   post: Timeline;
-  additionalSchema: { [key: string]: unknown };
 }
 
-const PostSchema: React.FC<PostSchemaProps> = ({ post, additionalSchema }) => (
+const PostSchema: React.FC<PostSchemaProps> = ({ post }) => (
   <JsonLd<SocialMediaPosting>
     item={{
       '@context': 'https://schema.org',
@@ -29,7 +28,6 @@ const PostSchema: React.FC<PostSchemaProps> = ({ post, additionalSchema }) => (
       disambiguatingDescription: 'Post',
       dateCreated: post.createdAt,
       datePublished: post.createdAt,
-      ...additionalSchema,
     }}
   />
 );
