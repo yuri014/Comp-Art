@@ -21,13 +21,9 @@ const Timeline: React.FC<TimelineProps> = ({
   queryName,
   otherVariables,
 }) => {
-  const { client, data, loading, error, fetchMore } = useQuery(query, {
+  const { data, loading, error, fetchMore } = useQuery(query, {
     variables: { offset: 0, ...otherVariables },
-    onCompleted: () => {
-      if (data.getProfilePosts && data.getProfilePosts.length === 0) {
-        client.cache.evict({ fieldName: 'getProfilePosts' });
-      }
-    },
+    fetchPolicy: 'cache-and-network',
   });
 
   const lastPostRef = useInfiniteScroll(data, async () => {
