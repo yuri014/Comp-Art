@@ -3,14 +3,15 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { IconButton, Menu, MenuItem, ThemeProvider } from '@material-ui/core';
 import {
-  FaBookmark,
   FaCog,
+  FaEnvelopeOpenText,
   FaMoon,
   FaSignInAlt,
   FaSignOutAlt,
   FaSun,
   FaUserAlt,
 } from 'react-icons/fa';
+import { BiDonateHeart } from 'react-icons/bi';
 
 import Notification from '@components/Notification';
 import { NewNotificationsProvider } from '@context/notification';
@@ -48,15 +49,20 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
       {auth.user ? (
         <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
           <div className="header-icons">
-            <span />
+            <button type="button">
+              <FaEnvelopeOpenText />
+            </button>
+            <a
+              href="https://www.catarse.me/compart_6d8c?ref=project_link"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Apoiar Comp-Art"
+            >
+              <BiDonateHeart />
+            </a>
             <NewNotificationsProvider>
               <Notification />
             </NewNotificationsProvider>
-            <Link href="/saved-posts">
-              <a title="Ir para os salvos">
-                <FaBookmark />
-              </a>
-            </Link>
             <IconButton
               aria-controls="menu-header"
               aria-haspopup="true"
