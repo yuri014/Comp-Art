@@ -43,14 +43,16 @@ const CommentsSections: React.FC<CommentsSectionsProps> = ({
     [client.cache],
   );
 
-  const lastCommentRef = useInfiniteScroll(
-    commentsData,
-    () =>
-      !!commentsData.getComments &&
-      fetchMore({
+  const lastCommentRef = useInfiniteScroll(commentsData, async () => {
+    if (commentsData.getComments.length === 6) {
+      const newComments = await fetchMore({
         variables: { offset: commentsData.getComments.length },
-      }).then(newComments => newComments.data.getComments.length < 3),
-  );
+      });
+      return newComments.data.getComments.length === 6;
+    }
+
+    return false;
+  });
 
   return (
     <CommentsSectionContainer>

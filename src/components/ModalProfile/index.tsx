@@ -32,16 +32,16 @@ const ModalProfile: React.FC<ModalProps> = ({ onHide, variable, payload }) => {
     [client.cache, payload.queryResult],
   );
 
-  const lastPostRefLikes = useInfiniteScroll(
-    data,
-    () =>
-      !!data[`${payload.queryResult}`] &&
-      fetchMore({
+  const lastProfileRefLikes = useInfiniteScroll(data, async () => {
+    if (data[`${payload.queryResult}`].length === 6) {
+      const newProfiles = await fetchMore({
         variables: { offset: data[`${payload.queryResult}`].length },
-      }).then(
-        newProfiles => newProfiles.data[`${payload.queryResult}`].length < 3,
-      ),
-  );
+      });
+      return newProfiles.data[`${payload.queryResult}`].length === 6;
+    }
+
+    return false;
+  });
 
   return (
     <ThemeProvider theme={mainTheme}>
@@ -58,7 +58,7 @@ const ModalProfile: React.FC<ModalProps> = ({ onHide, variable, payload }) => {
                   (profile: IProfile, index: number) => {
                     if (data[`${payload.queryResult}`].length === index + 1) {
                       return (
-                        <div key={profile._id} ref={lastPostRefLikes}>
+                        <div key={profile._id} ref={lastProfileRefLikes}>
                           <ProfileSimpleCard profile={profile} />
                         </div>
                       );

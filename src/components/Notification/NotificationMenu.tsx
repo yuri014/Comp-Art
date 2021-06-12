@@ -25,10 +25,10 @@ const NotificationMenu: React.FC<NotificationMenuProps> = ({
 }) => {
   const lastNotificationRef = useInfiniteScroll(data, async () => {
     if (data.getNotifications.length === 4) {
-      const newPosts = await fetchMore({
+      const newNotifications = await fetchMore({
         variables: { offset: data.getNotifications.length + 1 },
       });
-      return newPosts.data.getNotifications.length === 4;
+      return newNotifications.data.getNotifications.length === 4;
     }
 
     return false;
