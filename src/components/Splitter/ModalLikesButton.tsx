@@ -1,5 +1,7 @@
 import React from 'react';
 
+import InteractionCount from '@components/Post/utils/InteractionCount';
+
 import { PostProps } from '../../interfaces/Post';
 
 interface ModalLikesButtonProps extends PostProps {
@@ -25,11 +27,7 @@ const ModalLikesButton: React.FC<ModalLikesButtonProps> = ({
             />
           ))}
       </div>
-      {likesCount > 0 && (
-        <p>
-          {likesCount} {likesCount > 1 ? 'curtidas' : 'curtida'}
-        </p>
-      )}
+      <InteractionCount count={likesCount} message="curtida" />
     </button>
   </>
 );

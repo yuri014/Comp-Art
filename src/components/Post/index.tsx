@@ -12,6 +12,7 @@ import { UseInteractionsMutation } from '@interfaces/Hooks';
 import PostInteractionButtons from './Buttons';
 import PostContainer from './styles';
 import AuthorInfo from './utils/AuthorInfo';
+import InteractionCount from './utils/InteractionCount';
 
 const ModalProfile = dynamic(() => import('../ModalProfile'));
 
@@ -79,7 +80,10 @@ const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
           aria-label="Abrir modal de compartilhamentos"
           className={className}
         >
-          <p>{post.sharedCount} compartilhamentos</p>
+          <InteractionCount
+            count={post.sharedCount}
+            message="compartilhamento"
+          />
         </button>
       )}
     </div>
@@ -128,9 +132,10 @@ const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
                     likesCount={likesCount}
                   />
                 )}
-                {post.commentsCount > 0 && (
-                  <p>{post.commentsCount} comentários</p>
-                )}
+                <InteractionCount
+                  count={post.commentsCount}
+                  message="comentário"
+                />
                 <ShareButton />
               </div>
               <div className="publish-date">
