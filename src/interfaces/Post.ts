@@ -59,5 +59,5 @@ export interface CommentsSectionsProps {
 }
 
 export interface IGetComment {
-  getComments: [IComment];
+  getComments: Array<IComment>;
 }
