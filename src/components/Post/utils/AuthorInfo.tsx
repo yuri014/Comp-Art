@@ -3,6 +3,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
 import { IProfile } from '@interfaces/Profile';
+import formatDistanceTimePass from '@utils/formatDistanceTimePass';
 import { AuthorInfoContainer } from '../utilsStyles';
 
 const OptionsMenu = dynamic(() => import('../OptionsMenu'));
@@ -11,9 +12,11 @@ interface AuthorInfoProps {
   profile: IProfile;
   handleDeletePost: () => void;
   postID: string;
+  createdAt: string;
 }
 
 const AuthorInfo: React.FC<AuthorInfoProps> = ({
+  createdAt,
   handleDeletePost,
   profile,
   postID,
@@ -28,10 +31,11 @@ const AuthorInfo: React.FC<AuthorInfoProps> = ({
             className="prevent-redirect-post"
           />
           <div>
-            <p className="prevent-redirect-post">{profile.name}</p>
-            <span>
+            <div className="author">
+              <strong className="prevent-redirect-post">{profile.name}</strong>
               <p className="prevent-redirect-post">@{profile.owner}</p>
-            </span>
+            </div>
+            <p>{formatDistanceTimePass(createdAt)}</p>
           </div>
         </a>
       </Link>
