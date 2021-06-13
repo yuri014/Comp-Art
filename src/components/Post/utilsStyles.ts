@@ -1,11 +1,19 @@
 import styled from 'styled-components';
 
 export const AuthorInfoContainer = styled.div`
-  div {
-    margin-left: 2rem;
+  p {
+    color: ${({ theme }) => theme.colors.darkGray};
+    font-size: 1.3rem;
+    margin-left: 1rem;
+  }
 
-    p {
-      font-size: 1.6rem;
+  .author {
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+
+    strong {
       letter-spacing: 0.1rem;
       color: ${({ theme }) => theme.colors.themeColor};
       white-space: nowrap;
@@ -15,18 +23,22 @@ export const AuthorInfoContainer = styled.div`
       font-weight: 600;
     }
 
-    span {
-      display: flex;
+    p {
+      color: ${({ theme }) => theme.colors.darkGray};
+      letter-spacing: 0.1rem;
+      white-space: nowrap;
+      max-width: 30rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: 400;
+      margin-left: 0.5rem;
+    }
 
-      p {
-        color: ${({ theme }) => theme.colors.darkGray};
-        font-size: 1.3rem;
-        letter-spacing: 0.1rem;
-        white-space: nowrap;
-        max-width: 30rem;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        font-weight: 400;
+    strong,
+    p {
+      &:hover {
+        text-decoration: underline;
+        text-decoration-color: inherit;
       }
     }
   }
@@ -34,10 +46,6 @@ export const AuthorInfoContainer = styled.div`
   a {
     display: flex;
     align-items: center;
-    p:hover {
-      text-decoration: underline;
-      text-decoration-color: inherit;
-    }
   }
 `;
 
