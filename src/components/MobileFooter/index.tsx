@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { FaBell, FaHome, FaScroll, FaSearch } from 'react-icons/fa';
+import { FaBell, FaCog, FaHome, FaSearch } from 'react-icons/fa';
 import { useRouter } from 'next/dist/client/router';
 import {
   BottomNavigation,
@@ -51,8 +51,8 @@ const MobileFooter: React.FC = () => {
           <BottomNavigationAction
             label="Quest"
             value="/quest"
-            icon={<FaScroll />}
-            onClick={() => routes.push('/quest')}
+            icon={<FaCog />}
+            onClick={() => routes.push('/config')}
           />
         </BottomNavigation>
       </ThemeProvider>
