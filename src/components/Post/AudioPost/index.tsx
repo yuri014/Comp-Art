@@ -1,13 +1,6 @@
 import React, { useContext, useRef, useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
-import {
-  FaBackward,
-  FaForward,
-  FaPause,
-  FaPlay,
-  FaVolumeUp,
-} from 'react-icons/fa';
-import { FiRepeat } from 'react-icons/fi';
+import { FaBackward, FaForward, FaPause, FaPlay } from 'react-icons/fa';
 
 import formatTime from '@utils/formatTime';
 import { ArtistPostProps } from '@interfaces/Post';
@@ -58,35 +51,27 @@ const AudioPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
             />
           </div>
           <div className="audio-buttons">
-            <IconButton aria-label="volume">
-              <FaVolumeUp />
+            <IconButton
+              onClick={() => {
+                audioRef.current.currentTime -= 10;
+              }}
+              aria-label="voltar 10 segundos"
+            >
+              <FaBackward />
             </IconButton>
-            <div className="primary-audio-button">
-              <IconButton
-                onClick={() => {
-                  audioRef.current.currentTime -= 10;
-                }}
-                aria-label="voltar 10 segundos"
-              >
-                <FaBackward />
-              </IconButton>
-              <IconButton
-                onClick={() => handlePlaying()}
-                aria-label={!isPlaying ? 'Play' : 'Pause'}
-              >
-                {!isPlaying ? <FaPlay /> : <FaPause />}
-              </IconButton>
-              <IconButton
-                onClick={() => {
-                  audioRef.current.currentTime += 10;
-                }}
-                aria-label="avançar 10 segundos"
-              >
-                <FaForward />
-              </IconButton>
-            </div>
-            <IconButton aria-label="repetir">
-              <FiRepeat className="secondary-button" />
+            <IconButton
+              onClick={() => handlePlaying()}
+              aria-label={!isPlaying ? 'Play' : 'Pause'}
+            >
+              {!isPlaying ? <FaPlay /> : <FaPause />}
+            </IconButton>
+            <IconButton
+              onClick={() => {
+                audioRef.current.currentTime += 10;
+              }}
+              aria-label="avançar 10 segundos"
+            >
+              <FaForward />
             </IconButton>
           </div>
           <AudioSlider

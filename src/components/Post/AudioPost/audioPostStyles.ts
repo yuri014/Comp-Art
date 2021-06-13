@@ -67,14 +67,7 @@ const AudioPostContainer = styled.section<AudioPostContainerProps>`
         margin-top: 1rem;
         display: flex;
         align-items: center;
-        justify-content: space-between;
-
-        .primary-audio-button {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          width: 50%;
-        }
+        justify-content: space-evenly;
 
         .secondary-button {
           filter: brightness(0.4);
