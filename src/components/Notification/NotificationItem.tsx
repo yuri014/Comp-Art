@@ -42,7 +42,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
 
   return (
     <NotificationContainer>
-      <button type="button" onClick={() => readNotification()}>
+      <button type="button" onMouseEnter={() => readNotification()}>
         <img
           src={process.env.NEXT_PUBLIC_API_HOST + notification.avatar}
           alt="Teste"
