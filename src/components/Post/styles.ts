@@ -94,10 +94,6 @@ const PostContainer = styled.div`
             outline: 1px solid ${({ theme }) => theme.colors.mainColor};
           }
 
-          &.share-count {
-            display: none;
-          }
-
           .likes-images {
             display: flex;
             align-items: center;
@@ -143,18 +139,8 @@ const PostContainer = styled.div`
           font-size: 1.3rem;
         }
 
-        .share-count-mobile {
-          display: none;
-        }
-
         .post-counts {
           width: 43rem;
-
-          button {
-            &.share-count {
-              display: block;
-            }
-          }
 
           @media (min-width: 1100px) {
             width: 39rem;
