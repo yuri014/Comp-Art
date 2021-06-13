@@ -12,7 +12,7 @@ const MobileHeaderContainer = styled.header`
     z-index: 9;
     align-items: center;
     justify-content: space-between;
-    background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
+    background-color: ${({ theme }) => theme.colors.alternativeBackground};
     height: 5rem;
     transition: top 0.4s ease-in-out;
     border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
