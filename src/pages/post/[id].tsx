@@ -131,23 +131,20 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
               <HandlePost mediaId={post.mediaId} />
             </div>
           )}
-          {getLoggedProfile && (
-            <div id="comments">
-              <InteractionButtonsContainer className="interactions">
-                <LikeButton
-                  dislikePost={dislikePost}
-                  likePost={likePost}
-                  initialLikeState={post.isLiked}
-                />
-                <SavedButton
-                  initialSaveState={post.isSaved}
-                  postID={post._id}
-                />
-                <ShareButton postID={post._id} />
-              </InteractionButtonsContainer>
+          <div id="comments">
+            <InteractionButtonsContainer className="interactions">
+              <LikeButton
+                dislikePost={dislikePost}
+                likePost={likePost}
+                initialLikeState={post.isLiked}
+              />
+              <SavedButton initialSaveState={post.isSaved} postID={post._id} />
+              <ShareButton postID={post._id} />
+            </InteractionButtonsContainer>
+            {getLoggedProfile && (
               <CommentsSections profile={getLoggedProfile} postId={post._id} />
-            </div>
-          )}
+            )}
+          </div>
         </main>
       </PostPageContainer>
       <PostSchema post={post} />
