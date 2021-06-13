@@ -32,6 +32,7 @@ export const CommentsSectionContainer = styled.section`
       border: none;
       font-size: 3rem;
       height: 3rem;
+      cursor: pointer;
 
       &:disabled {
         color: ${({ theme }) => theme.colors.gray};
