@@ -23,6 +23,7 @@ import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
 import getLoggedUserWithNoAuth from '@ssr-functions/getLoggedUserWithNoAuth';
 import formatDistanceTimePass from '@utils/formatDistanceTimePass';
+import mediaIds from '@utils/mediaIds';
 import PostPageContainer from './_styles';
 
 const AudioPlayer = dynamic(() => import('@components/AudioPlayer'), {
@@ -48,14 +49,7 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
   );
 
   const HandlePost = ({ mediaId }: { mediaId: number }) => {
-    const medias = {
-      image: 1,
-      audio: 2,
-      video: 3,
-      text: 4,
-    };
-
-    if (mediaId === medias.image) {
+    if (mediaId === mediaIds.image) {
       return (
         <CAImage
           image={post.body}
@@ -68,7 +62,7 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
       );
     }
 
-    if (mediaId === medias.audio) {
+    if (mediaId === mediaIds.audio) {
       return (
         <AudioPlayer
           audio={post.body}
@@ -83,6 +77,17 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
     return <p>erro</p>;
   };
 
+  const handleSEOImage = () => {
+    switch (post.mediaId) {
+      case mediaIds.audio:
+        return process.env.NEXT_PUBLIC_API_HOST + post.thumbnail;
+      case mediaIds.image:
+        return process.env.NEXT_PUBLIC_API_HOST + post.body;
+      default:
+        return `${process.env.NEXT_PUBLIC_HOST}/CardSEO.png`;
+    }
+  };
+
   return (
     <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
       <PostPageContainer>
@@ -90,7 +95,8 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
           description={`Post de ${post.artist.name}`}
           keywords={`comp-art, post, artista, divulgação, ${post.artist.name}`}
           title={`Post - ${post.artist.name}`}
-          uri={`/post/${post._id}`}
+          uri={`post/${post._id}`}
+          seoImage={handleSEOImage()}
         />
         <header>
           <nav>
@@ -137,18 +143,23 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
               <HandlePost mediaId={post.mediaId} />
             </div>
           )}
-          <div id="comments">
-            <InteractionButtonsContainer className="interactions">
-              <LikeButton
-                dislikePost={dislikePost}
-                likePost={likePost}
-                initialLikeState={post.isLiked}
-              />
-              <SavedButton initialSaveState={post.isSaved} postID={post._id} />
-              <ShareButton postID={post._id} />
-            </InteractionButtonsContainer>
-            <CommentsSections profile={getLoggedProfile} postId={post._id} />
-          </div>
+          {getLoggedProfile && (
+            <div id="comments">
+              <InteractionButtonsContainer className="interactions">
+                <LikeButton
+                  dislikePost={dislikePost}
+                  likePost={likePost}
+                  initialLikeState={post.isLiked}
+                />
+                <SavedButton
+                  initialSaveState={post.isSaved}
+                  postID={post._id}
+                />
+                <ShareButton postID={post._id} />
+              </InteractionButtonsContainer>
+              <CommentsSections profile={getLoggedProfile} postId={post._id} />
+            </div>
+          )}
         </main>
       </PostPageContainer>
       <PostSchema post={post} />

@@ -30,7 +30,7 @@ const EditProfile: React.FC = () => {
       <Meta
         title="Editar Perfil"
         description="Edite seu perfil"
-        uri="/edit"
+        uri="edit"
         keywords="editar, perfil, comp art"
       />
       <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
