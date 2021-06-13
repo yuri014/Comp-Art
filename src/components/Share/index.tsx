@@ -4,7 +4,6 @@ import { PostProps } from '@interfaces/Post';
 import AuthorInfo from '@components/Post/utils/AuthorInfo';
 import ArtistPost from '@components/Post/ArtistPost';
 import usePostAsLink from '@hooks/postAsLink';
-import publishDate from '@utils/publishDate';
 import TextBox from '@components/TextBox';
 import ShareContainer from './styles';
 
@@ -25,6 +24,7 @@ const Share: React.FC<PostProps> = ({ post }) => {
       <div className="share">
         <div className="share-info">
           <AuthorInfo
+            createdAt={post.createdAt}
             postID={post._id}
             profile={post.post.artist}
             handleDeletePost={() => console.log('a')}
@@ -40,9 +40,6 @@ const Share: React.FC<PostProps> = ({ post }) => {
             isShare
             post={{ ...post.post, imageHeight: post.imageHeight }}
           />
-          <div className="date">
-            <p>{publishDate(post.post.createdAt)}</p>
-          </div>
         </div>
       </div>
     </ShareContainer>
