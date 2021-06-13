@@ -1,44 +1,42 @@
-import formatDistanceTimePass from '@utils/formatDistanceTimePass';
-import Link from 'next/link';
 import React from 'react';
+import Link from 'next/link';
 import { FaRegHeart } from 'react-icons/fa';
+
+import { IComment } from '@interfaces/Post';
+import formatDistanceTimePass from '@utils/formatDistanceTimePass';
 import { CommentContainer } from './styles';
 
 export interface CommentProps {
-  text: string;
-  createdAt: string;
-  owner: {
-    avatar: string;
-    name: string;
-    username: string;
-  };
+  comment: IComment;
 }
 
-const Comment: React.FC<CommentProps> = ({ owner, text, createdAt }) => (
+const Comment: React.FC<CommentProps> = ({ comment }) => (
   <CommentContainer>
-    <Link href={`/profile/${owner.username}`}>
+    <Link href={`/profile/${comment.author.owner}`}>
       <a className="author-image">
         <img
-          src={process.env.NEXT_PUBLIC_API_HOST + owner.avatar}
-          alt={`${owner.name}`}
+          src={process.env.NEXT_PUBLIC_API_HOST + comment.author.avatar}
+          alt={`${comment.author.name}`}
         />
       </a>
     </Link>
     <div className="comment">
       <div className="comment-body">
-        <Link href={`/profile/${owner.username}`}>
+        <Link href={`/profile/${comment.author.owner}`}>
           <a className="author-info">
-            <p className="name">{owner.name}</p>
-            <p className="username">@{owner.username}</p>
+            <p className="name">{comment.author.name}</p>
+            <p className="username">@{comment.author.owner}</p>
           </a>
         </Link>
-        <p className="comment-text">{text}</p>
+        <p className="comment-text">{comment.body}</p>
       </div>
       <div className="comment-interations">
         <button type="button" className="like">
           <FaRegHeart /> <p>Curtir</p>
         </button>
-        <div className="created-at">{formatDistanceTimePass(createdAt)}</div>
+        <div className="created-at">
+          {formatDistanceTimePass(comment.createdAt)}
+        </div>
       </div>
     </div>
   </CommentContainer>

@@ -28,13 +28,17 @@ const CreateComment: React.FC<CommentsSectionsProps> = ({
     setNewComment([
       ...newComment,
       {
-        owner: {
-          avatar: profile.avatar,
-          name: profile.name,
-          username: profile.owner,
+        comment: {
+          _id: '',
+          author: {
+            avatar: profile.avatar,
+            name: profile.name,
+            owner: profile.owner,
+          },
+          body: commentField,
+          createdAt: new Date().toISOString(),
+          likesCount: 0,
         },
-        text: commentField,
-        createdAt: new Date().toISOString(),
       },
     ]);
     createComment({ variables: { id: postId, body: commentField } });
@@ -70,14 +74,7 @@ const CreateComment: React.FC<CommentsSectionsProps> = ({
       </form>
       <div className="comment-content">
         {newComment &&
-          newComment.map(comment => (
-            <Comment
-              key={`${comment.owner}__${comment.createdAt}`}
-              createdAt={comment.createdAt}
-              owner={comment.owner}
-              text={comment.text}
-            />
-          ))}
+          newComment.map(comment => <Comment comment={comment.comment} />)}
       </div>
     </>
   );
