@@ -21,6 +21,10 @@ const SuggestedProfilesContainer = styled.div`
     justify-content: space-between;
     margin-top: 2rem;
 
+    button {
+      width: auto;
+    }
+
     .suggested-profile {
       display: flex;
       align-items: center;
