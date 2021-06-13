@@ -1,37 +1,23 @@
 import React, { useContext, useEffect, useState } from 'react';
-import dynamic from 'next/dynamic';
 
-import ModalLikesButton from '@components/Splitter/ModalLikesButton';
 import LevelContext from '@context/level';
-import { GET_LIKES, GET_WHO_SHARE_POST } from '@graphql/queries/post';
 import { PostProps } from '@interfaces/Post';
-import publishDate from '@utils/publishDate';
 import usePostAsLink from '@hooks/postAsLink';
 import TextBox from '@components/TextBox';
 import { UseInteractionsMutation } from '@interfaces/Hooks';
 import PostInteractionButtons from './Buttons';
 import PostContainer from './styles';
 import AuthorInfo from './utils/AuthorInfo';
-import InteractionCount from './utils/InteractionCount';
-
-const ModalProfile = dynamic(() => import('../ModalProfile'));
+import InteractionsNumbers from './utils/InteractionsNumbers';
 
 interface IPostProps extends PostProps {
   children: React.ReactNode;
   useInteractions: UseInteractionsMutation;
 }
 
-const initialQuery = {
-  queryResult: 'getLikes',
-  query: GET_LIKES,
-  title: 'Quem Curtiu',
-};
-
 const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
   const [likesCount, setLikesCount] = useState<number>();
   const [isDeleted, setIsDeleted] = useState(false);
-  const [modalShow, setModalShow] = useState(false);
-  const [modalPayload, setModalPayload] = useState(initialQuery);
 
   useEffect(() => {
     setLikesCount(post.likesCount);
@@ -64,35 +50,6 @@ const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
 
   const profileData = post.post ? post.profile : post.artist;
 
-  const ShareButton = ({ className }: { className?: string }) => (
-    <div>
-      {post.sharedCount > 0 && (
-        <button
-          type="button"
-          onClick={() => {
-            setModalShow(true);
-            setModalPayload({
-              queryResult: 'getWhoSharesPost',
-              query: GET_WHO_SHARE_POST,
-              title: 'Quem Compartilhou',
-            });
-          }}
-          aria-label="Abrir modal de compartilhamentos"
-          className={className}
-        >
-          <InteractionCount
-            count={post.sharedCount}
-            message="compartilhamento"
-          />
-        </button>
-      )}
-    </div>
-  );
-
-  ShareButton.defaultProps = {
-    className: 'share-count',
-  };
-
   return (
     <>
       {!isDeleted && (
@@ -108,6 +65,7 @@ const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
         >
           <div className="post-author">
             <AuthorInfo
+              createdAt={post.createdAt}
               handleDeletePost={handleDeletePost}
               postID={post._id}
               profile={profileData}
@@ -121,27 +79,7 @@ const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
             )}
             {children}
             <div className="post-info">
-              <div className="post-counts">
-                {post.likesCount > 0 && (
-                  <ModalLikesButton
-                    showModal={() => {
-                      setModalShow(true);
-                      setModalPayload(initialQuery);
-                    }}
-                    post={post}
-                    likesCount={likesCount}
-                  />
-                )}
-                <InteractionCount
-                  count={post.commentsCount}
-                  message="comentário"
-                />
-                <ShareButton />
-              </div>
-              <div className="publish-date">
-                <ShareButton className="share-count-mobile" />
-                <p>{publishDate(post.createdAt)}</p>
-              </div>
+              <InteractionsNumbers post={post} likesCount={likesCount} />
             </div>
             <PostInteractionButtons
               dislikePost={dislikePost}
@@ -155,13 +93,6 @@ const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
             />
           </div>
         </PostContainer>
-      )}
-      {modalShow && (
-        <ModalProfile
-          onHide={() => setModalShow(false)}
-          variable={{ id: post._id }}
-          payload={modalPayload}
-        />
       )}
     </>
   );
