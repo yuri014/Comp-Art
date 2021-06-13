@@ -29,6 +29,7 @@ const AudioPlayer = dynamic(() => import('@components/AudioPlayer'), {
   ssr: false,
 });
 const TextBox = dynamic(() => import('@components/TextBox'));
+const OptionsMenu = dynamic(() => import('@components/Post/OptionsMenu'));
 
 interface PostPageProps extends ILoggedProfile, PostProps {}
 
@@ -36,7 +37,7 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
   const { isDarkMode, toggleTheme } = useContext(ThemeContext);
   const [likesCount, setLikesCount] = useState<number>();
 
-  const [, dislikePost, likePost] = usePostsMutations(
+  const [handleDeletePost, dislikePost, likePost] = usePostsMutations(
     post._id,
     () => {
       setLikesCount(likesCount - 1);
@@ -100,17 +101,24 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
         <main>
           <div id="author">
             <div className="profile">
-              <img
-                src={process.env.NEXT_PUBLIC_API_HOST + post.artist.avatar}
-                alt={post.artist.owner}
+              <div className="author-info">
+                <img
+                  src={process.env.NEXT_PUBLIC_API_HOST + post.artist.avatar}
+                  alt={post.artist.owner}
+                />
+                <a>
+                  <div>
+                    <strong>{post.artist.name}</strong>
+                    <p>@{post.artist.owner}</p>
+                  </div>
+                  <p>{formatDistanceTimePass(post.createdAt)}</p>
+                </a>
+              </div>
+              <OptionsMenu
+                deletePost={handleDeletePost}
+                id={post._id}
+                username={post.artist.owner}
               />
-              <a>
-                <div>
-                  <strong>{post.artist.name}</strong>
-                  <p>@{post.artist.owner}</p>
-                </div>
-                <p>{formatDistanceTimePass(post.createdAt)}</p>
-              </a>
             </div>
             {post.description && (
               <div className="description">

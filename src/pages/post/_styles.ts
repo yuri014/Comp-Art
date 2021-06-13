@@ -8,28 +8,34 @@ const PostPageContainer = styled.div`
     .profile {
       padding: 1rem calc(2rem - 6px);
       display: flex;
-      gap: 1rem;
 
-      img {
-        width: 4rem;
-        height: 4rem;
-        border-radius: 50%;
-      }
+      .author-info {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        gap: 1rem;
 
-      a {
-        font-size: 1.5rem;
-
-        p {
-          color: ${({ theme }) => theme.colors.darkGray};
-          font-size: 1.3rem;
+        img {
+          width: 4rem;
+          height: 4rem;
+          border-radius: 50%;
         }
 
-        div {
-          display: flex;
-          gap: 0.5rem;
+        a {
+          font-size: 1.5rem;
 
           p {
-            font-size: 1.5rem;
+            color: ${({ theme }) => theme.colors.darkGray};
+            font-size: 1.3rem;
+          }
+
+          div {
+            display: flex;
+            gap: 0.5rem;
+
+            p {
+              font-size: 1.5rem;
+            }
           }
         }
       }
