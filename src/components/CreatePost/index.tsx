@@ -117,7 +117,10 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
               accept="image/*"
               id="uploadImage"
               type="file"
-              onChange={e => setImagePreview(e)}
+              onChange={e => {
+                setImagePreview(e);
+                e.target.value = '';
+              }}
               ref={imageInput}
             />
 
@@ -133,7 +136,10 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
               accept="audio/*"
               id="uploadAudio"
               type="file"
-              onChange={e => setAudioResult(e.target.files[0])}
+              onChange={e => {
+                setAudioResult(e.target.files[0]);
+                e.target.value = '';
+              }}
               ref={audioInput}
             />
           </div>
