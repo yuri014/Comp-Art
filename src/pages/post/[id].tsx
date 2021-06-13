@@ -1,9 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic';
-import { IconButton, ThemeProvider } from '@material-ui/core';
-import { FaArrowLeft, FaMoon, FaSun } from 'react-icons/fa';
-import { useRouter } from 'next/router';
+import { ThemeProvider } from '@material-ui/core';
 
 import LikeButton from '@components/Post/Buttons/LikeButton';
 import SavedButton from '@components/Post/Buttons/SavedButton';
@@ -11,6 +9,7 @@ import ShareButton from '@components/Post/Buttons/ShareButton';
 import CAImage from '@components/CAImage';
 import InteractionButtonsContainer from '@components/Post/Buttons/styles';
 import CommentsSections from '@components/Comment/CommentsSections';
+import NonAuthAltHeader from '@components/NonAuthAltHeader';
 import Meta from '@components/SEO/Meta';
 import ThemeContext from '@context/theme';
 import { initializeApollo } from '@graphql/apollo/config';
@@ -34,7 +33,6 @@ const TextBox = dynamic(() => import('@components/TextBox'));
 interface PostPageProps extends ILoggedProfile, PostProps {}
 
 const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
-  const router = useRouter();
   const { isDarkMode, toggleTheme } = useContext(ThemeContext);
   const [likesCount, setLikesCount] = useState<number>();
 
@@ -98,25 +96,7 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
           uri={`post/${post._id}`}
           seoImage={handleSEOImage()}
         />
-        <header>
-          <nav>
-            <IconButton
-              onClick={() => router.back()}
-              aria-label="Voltar"
-              color="secondary"
-            >
-              <FaArrowLeft />
-            </IconButton>
-            <IconButton
-              color="secondary"
-              type="button"
-              aria-label={`Mudar para modo ${!isDarkMode ? 'Escuro' : 'Claro'}`}
-              onClick={() => toggleTheme()}
-            >
-              {!isDarkMode ? <FaMoon /> : <FaSun />}
-            </IconButton>
-          </nav>
-        </header>
+        <NonAuthAltHeader isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
         <main>
           <div id="author">
             <div className="profile">
