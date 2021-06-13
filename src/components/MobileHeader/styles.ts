@@ -1,19 +1,21 @@
 import styled from 'styled-components';
 
-const size = '2.4rem';
+const size = '3rem';
 
 const MobileHeaderContainer = styled.header`
   nav {
     position: fixed;
-    top: 0;
+    top: -1px;
     font-size: ${size};
     width: 100%;
     display: flex;
+    z-index: 9;
     align-items: center;
     justify-content: space-between;
     background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
-    padding: 1rem 2rem;
-    transition: all 0.4s ease-in-out;
+    height: 5rem;
+    transition: top 0.4s ease-in-out;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
 
     &.hide {
       top: -6rem;
@@ -28,6 +30,10 @@ const MobileHeaderContainer = styled.header`
     text-shadow: 3px 3px 2px ${({ theme }) => theme.colors.titleColor};
   }
   .profile {
+    border: none;
+    background: transparent;
+    padding: 12px;
+
     img {
       height: ${size};
       width: ${size};

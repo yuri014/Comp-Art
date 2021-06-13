@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { FaCog } from 'react-icons/fa';
-import Image from 'next/image';
-import { SwipeableDrawer, ThemeProvider } from '@material-ui/core';
+import { FaMoon, FaSun } from 'react-icons/fa';
+import { IconButton, SwipeableDrawer, ThemeProvider } from '@material-ui/core';
 
+import ThemeContext from '@context/theme';
 import usePreventMemoryLeak from '@hooks/preventMemoryLeak';
-import MobileHeaderContainer from './styles';
-import { ILoggedProfile } from '../../interfaces/Profile';
-import mainTheme from '../../styles/themes/MainTheme';
+import { ILoggedProfile } from '@interfaces/Profile';
+import mainDarkTheme from '@styles/themes/MainDarkTheme';
+import mainLightTheme from '@styles/themes/MainLightTheme';
+import Logo from '../../assets/logo.svg';
 import HomeProfile from '../HomeProfile';
+import MobileHeaderContainer from './styles';
 
 const MobileHeader: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const { isDarkMode, toggleTheme } = useContext(ThemeContext);
   const [visible, setVisible] = useState(true);
   const isMount = usePreventMemoryLeak();
 
@@ -31,26 +34,28 @@ const MobileHeader: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
   return (
     <MobileHeaderContainer>
       <nav className={visible ? '' : 'hide'}>
-        <ThemeProvider theme={mainTheme}>
-          <div className="profile">
-            <Image
+        <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
+          <button
+            className="profile"
+            onClick={() => setIsDrawerOpen(true)}
+            type="button"
+          >
+            <img
               src={process.env.NEXT_PUBLIC_API_HOST + getLoggedProfile.avatar}
               alt="Imagem do perfil"
-              width={500}
-              height={500}
-              onClick={() => setIsDrawerOpen(true)}
             />
-          </div>
+          </button>
           <Link href="/home">
-            <a>
-              <p>COMP-ART</p>
-            </a>
+            <Logo />
           </Link>
-          <Link href="/config">
-            <a>
-              <FaCog />
-            </a>
-          </Link>
+          <IconButton
+            color="secondary"
+            type="button"
+            aria-label={`Mudar para modo ${!isDarkMode ? 'Escuro' : 'Claro'}`}
+            onClick={() => toggleTheme()}
+          >
+            {!isDarkMode ? <FaMoon /> : <FaSun />}
+          </IconButton>
           {isMount && (
             <SwipeableDrawer
               anchor="left"
