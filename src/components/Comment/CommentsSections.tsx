@@ -13,11 +13,13 @@ const GET_COMMENTS = gql`
   ${CORE_PROFILE_VIEW}
   query GetComments($id: ID!, $offset: Int!) {
     getComments(postID: $id, offset: $offset) {
+      _id
       author {
         ...CoreProfileView
       }
       body
       createdAt
+      likesCount
     }
   }
 `;
@@ -67,30 +69,14 @@ const CommentsSections: React.FC<CommentsSectionsProps> = ({
                 key={`${comment.author.owner}_${comment.createdAt}`}
                 ref={lastCommentRef}
               >
-                <Comment
-                  createdAt={comment.createdAt}
-                  text={comment.body}
-                  owner={{
-                    avatar: comment.author.avatar,
-                    name: comment.author.name,
-                    username: comment.author.owner,
-                  }}
-                />
+                <Comment comment={comment} />
               </span>
             );
           }
 
           return (
             <span key={`${comment.author.owner}_${comment.createdAt}`}>
-              <Comment
-                createdAt={comment.createdAt}
-                text={comment.body}
-                owner={{
-                  avatar: comment.author.avatar,
-                  name: comment.author.name,
-                  username: comment.author.owner,
-                }}
-              />
+              <Comment comment={comment} />
             </span>
           );
         })
