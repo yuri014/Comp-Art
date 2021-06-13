@@ -32,6 +32,12 @@ const mainLightTheme = createMuiTheme({
         padding: '0',
       },
     },
+    MuiBottomNavigation: {
+      root: {
+        backgroundColor: '#eee',
+        borderTop: '1px solid #adadad',
+      },
+    },
   },
 });
 

@@ -38,6 +38,12 @@ const mainDarkTheme = createMuiTheme({
         padding: '0',
       },
     },
+    MuiBottomNavigation: {
+      root: {
+        backgroundColor: '#050211',
+        borderTop: '1px solid #38383C',
+      },
+    },
   },
 });
 
