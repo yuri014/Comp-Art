@@ -44,6 +44,7 @@ export interface IGetPosts {
 }
 
 export interface IComment {
+  _id: string;
   author: {
     name: string;
     owner: string;
@@ -51,6 +52,7 @@ export interface IComment {
   };
   body: string;
   createdAt: string;
+  likesCount: number;
 }
 
 export interface CommentsSectionsProps {
