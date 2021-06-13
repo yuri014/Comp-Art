@@ -19,14 +19,14 @@ import { Timeline } from '@interfaces/Post';
 import { ILoggedProfile, IProfile } from '@interfaces/Profile';
 import getLoggedUserWithNoAuth from '@ssr-functions/getLoggedUserWithNoAuth';
 import HomeContainer from '../home/_styles';
-import SearchContainer from './_styles';
+import { SearchContainer } from './_styles';
 
-interface SearchPageProps extends ILoggedProfile {
+interface SearchProps extends ILoggedProfile {
   profiles: Array<IProfile>;
   posts: Array<Timeline>;
 }
 
-const SearchPage: React.FC<SearchPageProps> = ({
+const Search: React.FC<SearchProps> = ({
   profiles,
   posts,
   getLoggedProfile,
@@ -114,4 +114,4 @@ export const getServerSideProps: GetServerSideProps = async context => {
   };
 };
 
-export default SearchPage;
+export default Search;
