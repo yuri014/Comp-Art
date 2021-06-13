@@ -100,6 +100,7 @@ export const CommentContainer = styled.div`
     border-radius: 4px;
     padding: 1rem;
     box-shadow: ${({ theme }) => theme.colors.mainShadow};
+    position: relative;
 
     a {
       color: ${({ theme }) => theme.colors.themeColor};
@@ -118,6 +119,22 @@ export const CommentContainer = styled.div`
     .comment-text {
       margin-top: 1rem;
       font-size: 1.5rem;
+    }
+
+    .likes {
+      border: none;
+      color: white;
+      cursor: pointer;
+      position: absolute;
+      right: 1rem;
+      bottom: -1rem;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: ${({ theme }) => theme.colors.pink};
+      padding: 0.4rem 0.7rem;
+      border-radius: 5px;
     }
   }
 
