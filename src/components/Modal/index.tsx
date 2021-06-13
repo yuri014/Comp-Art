@@ -18,7 +18,7 @@ const Modal: React.FC<ModalProps> = props => {
   return (
     <ModalContainer
       fontSize={props.fontSize}
-      className={`modal-block-${props.show}`}
+      className={`modal-block-${props.show} prevent-redirect-post`}
     >
       <div className="modal" ref={ref}>
         <button type="button" onClick={props.onHide} className="close-modal">
