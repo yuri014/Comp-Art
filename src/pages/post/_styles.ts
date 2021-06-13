@@ -15,7 +15,7 @@ const PostPageContainer = styled.div`
       padding: 0 calc(1rem - 6px);
       width: 100%;
       background: ${({ theme }) => theme.colors.alternativeBackground};
-      border-bottom: 1px solid ${({ theme }) => theme.colors.inputBackground};
+      border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
 
       a {
         color: ${({ theme }) => theme.colors.mainColor};
@@ -88,6 +88,10 @@ const PostPageContainer = styled.div`
     header {
       position: absolute;
       width: 70%;
+
+      nav {
+        border-right: 1px solid ${({ theme }) => theme.colors.borderColor};
+      }
     }
 
     main {
