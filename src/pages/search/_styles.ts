@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-const SearchContainer = styled.div`
+export const SearchPageContainer = styled.div``;
+
+export const SearchContainer = styled.div`
   .profile-results {
     display: flex;
     flex-direction: column;
@@ -29,5 +31,3 @@ const SearchContainer = styled.div`
     }
   }
 `;
-
-export default SearchContainer;
