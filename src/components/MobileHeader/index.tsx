@@ -46,7 +46,9 @@ const MobileHeader: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
             />
           </button>
           <Link href="/home">
-            <Logo />
+            <a>
+              <Logo />
+            </a>
           </Link>
           <IconButton
             color="secondary"
