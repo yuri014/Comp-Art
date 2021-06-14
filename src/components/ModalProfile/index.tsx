@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ThemeProvider } from '@material-ui/core';
 import { DocumentNode, useQuery } from '@apollo/client';
 
@@ -21,16 +21,9 @@ interface ModalProps {
 }
 
 const ModalProfile: React.FC<ModalProps> = ({ onHide, variable, payload }) => {
-  const { data, loading, fetchMore, client } = useQuery(payload.query, {
+  const { data, loading, fetchMore } = useQuery(payload.query, {
     variables: { offset: 0, ...variable },
   });
-
-  useEffect(
-    () => () => {
-      client.cache.evict({ fieldName: payload.queryResult });
-    },
-    [client.cache, payload.queryResult],
-  );
 
   const lastProfileRefLikes = useInfiniteScroll(data, async () => {
     if (data[`${payload.queryResult}`].length === 6) {
