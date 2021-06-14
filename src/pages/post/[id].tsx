@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic';
 import { ThemeProvider } from '@material-ui/core';
@@ -10,6 +10,7 @@ import CAImage from '@components/CAImage';
 import InteractionButtonsContainer from '@components/Post/Buttons/styles';
 import CommentsSections from '@components/Comment/CommentsSections';
 import NonAuthAltHeader from '@components/NonAuthAltHeader';
+import InteractionsNumbers from '@components/Post/utils/InteractionsNumbers';
 import Meta from '@components/SEO/Meta';
 import ThemeContext from '@context/theme';
 import { initializeApollo } from '@graphql/apollo/config';
@@ -87,6 +88,10 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
     }
   };
 
+  useEffect(() => {
+    setLikesCount(post.likesCount);
+  }, [post.likesCount]);
+
   return (
     <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
       <PostPageContainer>
@@ -132,6 +137,9 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
             </div>
           )}
           <div id="comments">
+            <div className="interactions-numbers">
+              <InteractionsNumbers likesCount={likesCount} post={post} />
+            </div>
             <InteractionButtonsContainer className="interactions">
               <LikeButton
                 dislikePost={dislikePost}
