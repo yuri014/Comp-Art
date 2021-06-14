@@ -61,7 +61,7 @@ const LandingContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    font: 700 1.2rem ${({ theme }) => theme.fonts.primary};
+    font: 700 1.3rem ${({ theme }) => theme.fonts.primary};
     color: #fff;
 
     &:last-child {

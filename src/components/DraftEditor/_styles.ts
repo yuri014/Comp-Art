@@ -48,7 +48,7 @@ const DraftEditorComponent = styled.div`
   }
 
   .mentionSuggestionsEntryTitle {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 300;
     color: ${({ theme }) => theme.colors.darkGray};
   }

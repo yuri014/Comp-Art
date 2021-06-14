@@ -25,7 +25,7 @@ const ProfileContainer = styled.div`
     }
 
     .profile-links {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
@@ -108,7 +108,7 @@ const ProfileContainer = styled.div`
           display: block;
           width: 12rem;
           margin: 0 auto;
-          font-size: 1.2rem;
+          font-size: 1.3rem;
         }
       }
     }
