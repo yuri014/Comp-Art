@@ -15,7 +15,7 @@ export default createGlobalStyle`
   }
 
   :root {
-    font-size: 62.5%;
+    font-size: 60%;
   }
 
   ::-webkit-scrollbar-thumb:hover {
@@ -120,7 +120,7 @@ export default createGlobalStyle`
 
   @media (min-width: 768px) {
     :root {
-      font-size: 60%;
+      font-size: 62.5%;
     }
     body {
       overflow-x: hidden;
