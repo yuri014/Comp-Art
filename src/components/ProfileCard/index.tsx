@@ -21,7 +21,9 @@ const ProfileSimpleCard: React.FC<ProfileSimpleCardProps> = ({ profile }) => (
         <div className="profile-content">
           <div className="first-row">
             <strong>{profile.name}</strong>
-            <div className="level">{profile.level}</div>
+            {profile.followsYou && (
+              <div className="follows-you">Segue você</div>
+            )}
           </div>
           <div className="second-row">
             <p>@{profile.owner}</p>
@@ -30,8 +32,11 @@ const ProfileSimpleCard: React.FC<ProfileSimpleCardProps> = ({ profile }) => (
         </div>
       </a>
     </Link>
-    <CASecondaryButton className="main-color" type="button">
-      SEGUIR
+    <CASecondaryButton
+      className={`main-color ${profile.isFollowing && 'active'}`}
+      type="button"
+    >
+      {profile.isFollowing ? 'SEGUINDO' : 'SEGUIR'}
     </CASecondaryButton>
   </ProfileSimpleCardContainer>
 );
