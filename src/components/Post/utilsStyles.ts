@@ -49,6 +49,58 @@ export const AuthorInfoContainer = styled.div`
   }
 `;
 
+export const InteractionsNumbersContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+
+  /* stylelint-disable-next-line */
+  p {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  button {
+    color: ${({ theme }) => theme.colors.themeColor};
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: unset;
+
+    &:focus {
+      outline: 1px solid ${({ theme }) => theme.colors.mainColor};
+    }
+
+    .likes-images {
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+      img {
+        width: 2.4rem;
+        height: 2.4rem;
+        border-radius: 50%;
+        object-fit: cover;
+
+        & + img {
+          margin-right: -1.6rem;
+        }
+
+        &:first-child {
+          margin-right: 0.4rem;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    justify-content: flex-start;
+  }
+`;
+
 export const EmptyPostContainer = styled.div`
   color: ${({ theme }) => theme.colors.themeColor};
   background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
@@ -76,6 +128,7 @@ export const EmptyPostContainer = styled.div`
     }
   }
 
+  /* stylelint-disable-next-line */
   button {
     margin-top: 2rem;
     background-color: ${({ theme }) => theme.colors.pink};
