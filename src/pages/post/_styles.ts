@@ -62,6 +62,11 @@ const PostPageContainer = styled.div`
       }
     }
 
+    .interactions-numbers {
+      padding: 0 calc(2rem);
+      width: 100%;
+    }
+
     .interactions {
       border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
       padding: 0 calc(2rem - 6px);
