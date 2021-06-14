@@ -31,6 +31,7 @@ export const MODAL_PROFILE = gql`
     avatar
     bio
     owner
-    level
+    followsYou
+    isFollowing
   }
 `;
