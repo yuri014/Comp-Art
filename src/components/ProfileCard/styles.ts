@@ -9,6 +9,10 @@ const ProfileSimpleCardContainer = styled.div`
   justify-content: space-between;
   margin-bottom: 2rem;
 
+  button {
+    width: auto;
+  }
+
   .profile-content {
     .first-row {
       font-size: 1.4rem;
@@ -21,13 +25,14 @@ const ProfileSimpleCardContainer = styled.div`
         margin-left: 1rem;
       }
 
-      .level {
+      .follows-you {
         display: none;
-        background-color: ${({ theme }) => theme.colors.mainColor};
+        background-color: ${({ theme }) => theme.colors.darkGray};
         color: ${({ theme }) => theme.colors.lightSecondaryBackground};
-        padding: 0 0.6rem;
+        padding: 0.2rem 0.6rem;
         border-radius: 4px;
         font-weight: bold;
+        font-size: 1.3rem;
 
         @media (min-width: 768px) {
           display: block;
