@@ -29,6 +29,7 @@ const MobileHeaderContainer = styled.header`
     color: ${({ theme }) => theme.colors.themeColor};
     text-shadow: 3px 3px 2px ${({ theme }) => theme.colors.titleColor};
   }
+
   .profile {
     border: none;
     background: transparent;
@@ -43,8 +44,8 @@ const MobileHeaderContainer = styled.header`
   }
 
   a {
-    size: ${size};
-    color: ${({ theme }) => theme.colors.mainColor};
+    font-size: 0;
+    transform: scale(0.8);
   }
 
   @media (min-width: 1100px) {
