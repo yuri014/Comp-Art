@@ -38,30 +38,6 @@ const PostContainer = styled.div`
   .post {
     margin: 1rem 0 1rem 0;
 
-    .publish-date {
-      font-size: 1.3rem;
-      padding-top: 1rem;
-      margin-top: 1rem;
-      border-top: 1px solid ${({ theme }) => theme.colors.borderColor};
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      button {
-        color: ${({ theme }) => theme.colors.themeColor};
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        width: unset;
-
-        &:focus {
-          outline: 1px solid ${({ theme }) => theme.colors.mainColor};
-        }
-      }
-    }
-
     .post-description {
       margin: 1rem 0 1rem 0;
       max-width: 100%;
@@ -70,54 +46,6 @@ const PostContainer = styled.div`
 
       &-loading {
         width: unset;
-      }
-    }
-
-    .post-info {
-      .post-counts {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 0.8rem;
-
-        button {
-          color: ${({ theme }) => theme.colors.themeColor};
-          background: transparent;
-          border: none;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          width: unset;
-
-          &:focus {
-            outline: 1px solid ${({ theme }) => theme.colors.mainColor};
-          }
-
-          .likes-images {
-            display: flex;
-            align-items: center;
-            flex-direction: row-reverse;
-            img {
-              width: 2.4rem;
-              height: 2.4rem;
-              border-radius: 50%;
-              object-fit: cover;
-
-              & + img {
-                margin-right: -1.6rem;
-              }
-
-              &:first-child {
-                margin-right: 0.4rem;
-              }
-            }
-          }
-        }
-      }
-
-      p {
-        font-size: 1.3rem;
       }
     }
   }
@@ -134,24 +62,6 @@ const PostContainer = styled.div`
         display: flex;
         align-items: center;
         justify-content: space-between;
-
-        p {
-          font-size: 1.3rem;
-        }
-
-        .post-counts {
-          width: 43rem;
-
-          @media (min-width: 1100px) {
-            width: 39rem;
-          }
-        }
-
-        .publish-date {
-          border-top: none;
-          padding: 0;
-          margin-top: 0;
-        }
       }
     }
   }
