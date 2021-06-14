@@ -1,8 +1,11 @@
+import React, { useState } from 'react';
+
 import ModalProfile from '@components/ModalProfile';
 import ModalLikesButton from '@components/Splitter/ModalLikesButton';
 import { GET_LIKES, GET_WHO_SHARE_POST } from '@graphql/queries/post';
 import { PostProps } from '@interfaces/Post';
-import React, { useState } from 'react';
+
+import { InteractionsNumbersContainer } from '../utilsStyles';
 import InteractionCount from './InteractionCount';
 
 const initialQuery = {
@@ -24,7 +27,7 @@ const InteractionsNumbers: React.FC<InteractionsNumbers> = ({
 
   return (
     <>
-      <div className="post-counts">
+      <InteractionsNumbersContainer>
         {likesCount > 0 && (
           <ModalLikesButton
             showModal={() => {
@@ -58,7 +61,7 @@ const InteractionsNumbers: React.FC<InteractionsNumbers> = ({
             </button>
           )}
         </div>
-      </div>
+      </InteractionsNumbersContainer>
       {modalShow && (
         <ModalProfile
           onHide={() => setModalShow(false)}
