@@ -31,6 +31,8 @@ export interface IProfile {
   sharedPostCount?: number;
   postCount?: number;
   createdAt: string;
+  followsYou: boolean;
+  isFollowing: boolean;
 }
 
 export interface ILoggedProfile {
