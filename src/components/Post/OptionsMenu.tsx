@@ -99,4 +99,4 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({
   );
 };
 
-export default React.memo(OptionsMenu);
+export default OptionsMenu;
