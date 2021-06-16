@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useMemo, useState, useCallback } from 'react';
 
 interface ImagePreview {
   preview: string | ArrayBuffer;
   file: string | File;
 }
 
-type TypeSetImagePreview = React.ChangeEvent<HTMLInputElement> | string;
+export type TypeSetImagePreview = React.ChangeEvent<HTMLInputElement> | string;
 
 /**
  * Hook para obter o preview e o arquivo de uma imagem.
@@ -17,10 +17,13 @@ const useImagePreview = (): [
   ImagePreview,
   (_args0: TypeSetImagePreview) => void,
 ] => {
-  const initialState = {
-    preview: '',
-    file: '',
-  };
+  const initialState = useMemo(
+    () => ({
+      preview: '',
+      file: '',
+    }),
+    [],
+  );
 
   const [image, setImage] = useState<ImagePreview>(initialState);
 
@@ -29,25 +32,28 @@ const useImagePreview = (): [
    * @param {string} string para limpar o campo.
    * @param {event} event evento de um HTMLInputElement.
    */
-  const setImagePreview = (event: TypeSetImagePreview) => {
-    if (typeof event === 'string') {
-      setImage(initialState);
+  const setImagePreview = useCallback(
+    (event: TypeSetImagePreview) => {
+      if (typeof event === 'string') {
+        setImage(initialState);
 
-      return;
-    }
+        return;
+      }
 
-    const reader = new FileReader();
+      const reader = new FileReader();
 
-    const file = event.target.files[0];
-    reader.onloadend = () =>
-      setImage({
-        preview: reader.result,
-        file,
-      });
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  };
+      const file = event.target.files[0];
+      reader.onloadend = () =>
+        setImage({
+          preview: reader.result,
+          file,
+        });
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    },
+    [initialState],
+  );
 
   return [image, setImagePreview];
 };
