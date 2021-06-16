@@ -1,12 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 
 import { IProfile } from '@interfaces/Profile';
 import formatDistanceTimePass from '@utils/formatDistanceTimePass';
 import { AuthorInfoContainer } from '../utilsStyles';
-
-const OptionsMenu = dynamic(() => import('../OptionsMenu'));
+import OptionsMenu from '../OptionsMenu';
 
 interface AuthorInfoProps {
   profile: IProfile;
