@@ -7,7 +7,7 @@ import Skeleton from '@material-ui/lab/Skeleton';
 import { HomeProfileContainer } from './styles';
 import formTheme from '../../styles/themes/FormTheme';
 import { ILoggedProfile } from '../../interfaces/Profile';
-import LevelContext from '../../context/level';
+import { LevelContext } from '../../context/level';
 
 const HomeProfile: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
   const context = useContext(LevelContext);

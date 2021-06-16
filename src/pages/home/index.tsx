@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core';
 
-import LevelContext from '@context/level';
+import { LevelProvider } from '@context/level';
 import ThemeContext from '@context/theme';
 import { initializeApollo } from '@graphql/apollo/config';
 import { GET_LOGGED_PROFILE } from '@graphql/queries/profile';
@@ -16,7 +16,6 @@ import MobileFooter from '@components/MobileFooter';
 import MobileHeader from '@components/MobileHeader';
 import { AuthContext } from '@context/auth';
 import { GET_POSTS } from '@graphql/queries/post';
-import useGetLevel from '@hooks/getLevel';
 import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
 import HomeContainer from './_styles';
@@ -24,7 +23,6 @@ import HomeContainer from './_styles';
 const HomePage: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
   const { isDarkMode } = useContext(ThemeContext);
   const auth = useContext(AuthContext);
-  const { getLevel, profileLevel } = useGetLevel();
 
   useEffect(() => {
     const getNotificationPermission = async () => {
@@ -43,9 +41,7 @@ const HomePage: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
           <title>Comp-Art</title>
         </Head>
         <Header getLoggedProfile={getLoggedProfile} />
-        <LevelContext.Provider
-          value={{ updateLevel: getLevel, level: profileLevel }}
-        >
+        <LevelProvider>
           <Home getLoggedProfile={getLoggedProfile}>
             <>
               {auth.user && auth.user.isArtist && (
@@ -55,7 +51,7 @@ const HomePage: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
             </>
           </Home>
           <MobileHeader getLoggedProfile={getLoggedProfile} />
-        </LevelContext.Provider>
+        </LevelProvider>
         <MobileFooter />
       </HomeContainer>
     </ThemeProvider>

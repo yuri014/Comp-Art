@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import LevelContext from '@context/level';
+import { LevelContext } from '@context/level';
 import { PostProps } from '@interfaces/Post';
 import usePostAsLink from '@hooks/postAsLink';
 import TextBox from '@components/TextBox';

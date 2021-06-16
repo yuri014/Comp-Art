@@ -11,13 +11,12 @@ import MobileHeader from '@components/MobileHeader';
 import Post from '@components/Post';
 import ArtistPost from '@components/Post/ArtistPost';
 import LoadingPost from '@components/Post/LoadingPost';
-import LevelContext from '@context/level';
+import { LevelProvider } from '@context/level';
 import { initializeApollo } from '@graphql/apollo/config';
 import { GET_SEARCH_POSTS } from '@graphql/queries/search';
 import { GET_LOGGED_PROFILE } from '@graphql/queries/profile';
 import { Timeline } from '@interfaces/Post';
 import { ILoggedProfile } from '@interfaces/Profile';
-import useGetLevel from '@hooks/getLevel';
 import usePostsMutations from '@hooks/postMutations';
 import HomeContainer from '../home/_styles';
 
@@ -36,8 +35,6 @@ const TagPage: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
     },
   });
 
-  const { getLevel, profileLevel } = useGetLevel();
-
   return (
     <HomeContainer>
       <Head>
@@ -46,9 +43,7 @@ const TagPage: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
       {getLoggedProfile && (
         <>
           <Header getLoggedProfile={getLoggedProfile} />
-          <LevelContext.Provider
-            value={{ updateLevel: getLevel, level: profileLevel }}
-          >
+          <LevelProvider>
             <Home getLoggedProfile={getLoggedProfile}>
               {loading || data.searchPost.length === 0 ? (
                 <LoadingPost loading={loading} />
@@ -61,7 +56,7 @@ const TagPage: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
               )}
             </Home>
             <MobileHeader getLoggedProfile={getLoggedProfile} />
-          </LevelContext.Provider>
+          </LevelProvider>
         </>
       )}
       <MobileFooter />

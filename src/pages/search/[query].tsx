@@ -11,10 +11,9 @@ import Post from '@components/Post';
 import ProfileSimpleCard from '@components/ProfileCard';
 import ArtistPost from '@components/Post/ArtistPost';
 import usePostsMutations from '@hooks/postMutations';
-import LevelContext from '@context/level';
+import { LevelProvider } from '@context/level';
 import { initializeApollo } from '@graphql/apollo/config';
 import { GET_SEARCH_PROFILE, GET_SEARCH_POSTS } from '@graphql/queries/search';
-import useGetLevel from '@hooks/getLevel';
 import { Timeline } from '@interfaces/Post';
 import { ILoggedProfile, IProfile } from '@interfaces/Profile';
 import getLoggedUserWithNoAuth from '@ssr-functions/getLoggedUserWithNoAuth';
@@ -35,8 +34,6 @@ const Search: React.FC<SearchProps> = ({
     query: { query },
   } = useRouter();
 
-  const { getLevel, profileLevel } = useGetLevel();
-
   return (
     <HomeContainer>
       <Head>
@@ -45,9 +42,7 @@ const Search: React.FC<SearchProps> = ({
       {getLoggedProfile ? (
         <>
           <Header getLoggedProfile={getLoggedProfile} />
-          <LevelContext.Provider
-            value={{ updateLevel: getLevel, level: profileLevel }}
-          >
+          <LevelProvider>
             <Home getLoggedProfile={getLoggedProfile}>
               <SearchContainer>
                 <section className="profile-results">
@@ -68,7 +63,7 @@ const Search: React.FC<SearchProps> = ({
               </SearchContainer>
             </Home>
             <MobileHeader getLoggedProfile={getLoggedProfile} />
-          </LevelContext.Provider>
+          </LevelProvider>
         </>
       ) : (
         <>

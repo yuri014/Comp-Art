@@ -41,4 +41,4 @@ const LikeButton: React.FC<LikeProps> = ({
   );
 };
 
-export default LikeButton;
+export default React.memo(LikeButton);

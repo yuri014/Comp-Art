@@ -9,14 +9,13 @@ import Home from '@components/Home';
 import MobileFooter from '@components/MobileFooter';
 import MobileHeader from '@components/MobileHeader';
 import Timeline from '@components/Timeline';
-import LevelContext from '@context/level';
+import { LevelProvider } from '@context/level';
 import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
 import ThemeContext from '@context/theme';
 import { CORE_POST_VIEW, CORE_SHARE_VIEW } from '@graphql/fragments/posts';
 import { GET_LOGGED_PROFILE } from '@graphql/queries/profile';
 import { initializeApollo } from '@graphql/apollo/config';
-import useGetLevel from '@hooks/getLevel';
 import { ILoggedProfile } from '@interfaces/Profile';
 import HomeContainer from '../home/_styles';
 
@@ -38,7 +37,6 @@ const GET_SAVED_POSTS = gql`
 
 const SavedPosts: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
   const { isDarkMode } = useContext(ThemeContext);
-  const { getLevel, profileLevel } = useGetLevel();
 
   return (
     <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
@@ -47,14 +45,12 @@ const SavedPosts: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
           <title>Posts Salvos - Comp-Art</title>
         </Head>
         <Header getLoggedProfile={getLoggedProfile} />
-        <LevelContext.Provider
-          value={{ updateLevel: getLevel, level: profileLevel }}
-        >
+        <LevelProvider>
           <Home getLoggedProfile={getLoggedProfile}>
             <Timeline query={GET_SAVED_POSTS} queryName="getSavedPosts" />
           </Home>
           <MobileHeader getLoggedProfile={getLoggedProfile} />
-        </LevelContext.Provider>
+        </LevelProvider>
         <MobileFooter />
       </HomeContainer>
     </ThemeProvider>
