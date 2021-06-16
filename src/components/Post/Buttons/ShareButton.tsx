@@ -78,4 +78,4 @@ const ShareButton: React.FC<ShareButtonProps> = ({ postID, updateLevel }) => {
   );
 };
 
-export default ShareButton;
+export default React.memo(ShareButton);

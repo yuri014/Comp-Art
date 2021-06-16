@@ -56,4 +56,4 @@ const SavedButton: React.FC<SavedButtonProps> = ({
   );
 };
 
-export default SavedButton;
+export default React.memo(SavedButton);
