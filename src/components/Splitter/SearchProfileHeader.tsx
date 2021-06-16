@@ -24,12 +24,25 @@ const SearchProfileHeader: React.FC = () => {
   );
 
   const handleSearchProfile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setShowSearch(true);
     setSearchProfile(e.target.value);
     getProfile();
   };
 
   const modalSearchRef = useRef(null);
   useOutsideClick(modalSearchRef, () => setShowSearch(false));
+
+  const Search = () => (
+    <div className="search-button">
+      <IconButton
+        type="button"
+        aria-label="Buscar"
+        onClick={() => router.push(`/search/${searchProfile}`)}
+      >
+        <FaSearch />
+      </IconButton>
+    </div>
+  );
 
   return (
     <div ref={modalSearchRef} className="search-input">
@@ -38,17 +51,8 @@ const SearchProfileHeader: React.FC = () => {
         title="Buscar..."
         onChange={e => handleSearchProfile(e)}
         placeholder="Buscar..."
-        onFocus={() => setShowSearch(true)}
       />
-      <div className="search-button">
-        <IconButton
-          type="button"
-          aria-label="Buscar"
-          onClick={() => router.push(`/search/${searchProfile}`)}
-        >
-          <FaSearch />
-        </IconButton>
-      </div>
+      <Search />
       {data && showSearch && (
         <div className="search-results">
           {data.searchProfiles.map(profile => (
