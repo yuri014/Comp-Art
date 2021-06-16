@@ -1,21 +1,12 @@
 import React, { useContext } from 'react';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { IconButton, Menu, MenuItem, ThemeProvider } from '@material-ui/core';
-import {
-  FaCog,
-  FaEnvelopeOpenText,
-  FaMoon,
-  FaSignInAlt,
-  FaSignOutAlt,
-  FaSun,
-  FaUserAlt,
-} from 'react-icons/fa';
+import { ThemeProvider } from '@material-ui/core';
+import { FaEnvelopeOpenText, FaMoon, FaSignInAlt, FaSun } from 'react-icons/fa';
 import { BiDonateHeart } from 'react-icons/bi';
 
 import Notification from '@components/Notification';
 import { NewNotificationsProvider } from '@context/notification';
-import { HeaderContainer, MenuListIcon } from './styles';
+import { HeaderContainer } from './styles';
 import { AuthContext } from '../../context/auth';
 import ThemeContext from '../../context/theme';
 import { ILoggedProfile } from '../../interfaces/Profile';
@@ -23,20 +14,11 @@ import mainLightTheme from '../../styles/themes/MainLightTheme';
 import mainDarkTheme from '../../styles/themes/MainDarkTheme';
 import SearchProfileHeader from '../Splitter/SearchProfileHeader';
 import Logo from '../../assets/logo.svg';
+import ProfileMenu from './ProfileMenu';
 
 const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
   const auth = useContext(AuthContext);
-  const { push } = useRouter();
   const { isDarkMode, toggleTheme } = useContext(ThemeContext);
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   return (
     <HeaderContainer>
@@ -63,56 +45,12 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
             <NewNotificationsProvider>
               <Notification />
             </NewNotificationsProvider>
-            <IconButton
-              aria-controls="menu-header"
-              aria-haspopup="true"
-              aria-label="Abrir menu de configurações"
-              onClick={handleClick}
-              color="secondary"
-            >
-              <img
-                src={process.env.NEXT_PUBLIC_API_HOST + getLoggedProfile.avatar}
-                alt="Foto do perfil"
-              />
-            </IconButton>
-            <Menu
-              id="menu-header"
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              <MenuItem
-                onClick={() => push(`/profile/${getLoggedProfile.owner}`)}
-              >
-                <MenuListIcon>
-                  <FaUserAlt />
-                  <p>Meu Perfil</p>
-                </MenuListIcon>
-              </MenuItem>
-              <MenuItem onClick={() => toggleTheme()}>
-                <MenuListIcon>
-                  <FaMoon />
-                  <p>Modo {!isDarkMode ? 'Escuro' : 'Claro'}</p>
-                </MenuListIcon>
-              </MenuItem>
-              <MenuItem onClick={() => push('/config')}>
-                <MenuListIcon>
-                  <FaCog />
-                  <p>Configurações</p>
-                </MenuListIcon>
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  auth.logout();
-                  push('/login');
-                }}
-              >
-                <MenuListIcon>
-                  <FaSignOutAlt />
-                  <p>Sair</p>
-                </MenuListIcon>
-              </MenuItem>
-            </Menu>
+            <ProfileMenu
+              isDarkMode={isDarkMode}
+              toggleTheme={toggleTheme}
+              getLoggedProfile={getLoggedProfile}
+              logout={auth.logout}
+            />
           </div>
         </ThemeProvider>
       ) : (
