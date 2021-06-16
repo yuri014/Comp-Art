@@ -1,7 +1,5 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
-import { FaRegFileImage } from 'react-icons/fa';
-import { IoMdMusicalNote } from 'react-icons/io';
 import { useMutation } from '@apollo/client';
 
 import DraftEditor from '@components/DraftEditor';
@@ -11,6 +9,7 @@ import useImageDimension from '@hooks/imageDimension';
 import usePreventMemoryLeak from '@hooks/preventMemoryLeak';
 import { IProfile } from '@interfaces/Profile';
 import CreatePostContainer from './styles';
+import InputFileButtons from './utils/InputButton';
 
 const MediaForm = dynamic(() => import('./utils/MediaForm'));
 const DescriptionCounter = dynamic(
@@ -38,9 +37,6 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
   const [title, setTitle] = useState('');
   const [alt, setAlt] = useState('');
   const [showModal, setShowModal] = useState(false);
-
-  const audioInput = useRef<HTMLInputElement | null>(null);
-  const imageInput = useRef<HTMLInputElement | null>(null);
 
   const [imagePreview, setImagePreview] = useImagePreview();
   const [audioResult, setAudioResult] = useState<File>();
@@ -104,45 +100,10 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
         </div>
 
         <div className="buttons">
-          <div>
-            <button
-              className="icon-button"
-              type="button"
-              onClick={() => imageInput.current.click()}
-              aria-label="Adicionar imagens"
-            >
-              <FaRegFileImage />
-            </button>
-            <input
-              accept="image/*"
-              id="uploadImage"
-              type="file"
-              onChange={e => {
-                setImagePreview(e);
-                e.target.value = '';
-              }}
-              ref={imageInput}
-            />
-
-            <button
-              className="icon-button"
-              type="button"
-              onClick={() => audioInput.current.click()}
-              aria-label="Adicionar vídeos"
-            >
-              <IoMdMusicalNote />
-            </button>
-            <input
-              accept="audio/*"
-              id="uploadAudio"
-              type="file"
-              onChange={e => {
-                setAudioResult(e.target.files[0]);
-                e.target.value = '';
-              }}
-              ref={audioInput}
-            />
-          </div>
+          <InputFileButtons
+            setAudioResult={setAudioResult}
+            setImagePreview={setImagePreview}
+          />
           <div>
             {description.trim().length > 0 && (
               <DescriptionCounter progress={progress} />
@@ -167,4 +128,4 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
   );
 };
 
-export default CreatePost;
+export default React.memo(CreatePost);
