@@ -30,4 +30,4 @@ const TextBox: React.FC<TextBoxProps> = ({ text }) => {
   );
 };
 
-export default TextBox;
+export default React.memo(TextBox);

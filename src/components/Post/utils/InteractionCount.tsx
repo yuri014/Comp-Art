@@ -20,4 +20,4 @@ const InteractionCount: React.FC<InteractionCountProps> = ({
   </>
 );
 
-export default InteractionCount;
+export default React.memo(InteractionCount);

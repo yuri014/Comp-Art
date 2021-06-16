@@ -48,4 +48,4 @@ const AuthorInfo: React.FC<AuthorInfoProps> = ({
   </>
 );
 
-export default AuthorInfo;
+export default React.memo(AuthorInfo);
