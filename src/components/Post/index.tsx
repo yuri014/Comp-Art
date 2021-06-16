@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 
 import { LevelContext } from '@context/level';
 import { PostProps } from '@interfaces/Post';
@@ -41,10 +41,10 @@ const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
     },
   );
 
-  const handleDeletePost = () => {
+  const handleDeletePost = useCallback(() => {
     deletePost();
     setIsDeleted(true);
-  };
+  }, [deletePost]);
 
   const handlePostLink = usePostAsLink(post._id);
 
