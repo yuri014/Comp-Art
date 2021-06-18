@@ -46,7 +46,7 @@ const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
     setIsDeleted(true);
   }, [deletePost]);
 
-  const handlePostLink = usePostAsLink(post._id);
+  const handlePostLink = usePostAsLink(post.post ? post.post._id : post._id);
 
   const profileData = post.post ? post.profile : post.artist;
 
@@ -62,6 +62,7 @@ const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
               handlePostLink(e);
             }
           }}
+          arial-label="Clique para ir para página do post"
         >
           <div className="post-author">
             <AuthorInfo
