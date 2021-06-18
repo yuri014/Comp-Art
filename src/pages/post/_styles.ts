@@ -42,7 +42,7 @@ const PostPageContainer = styled.div`
     }
 
     .description {
-      padding: 0 calc(2rem - 6px);
+      padding: 0 2rem;
       padding-bottom: 1rem;
     }
 
