@@ -151,7 +151,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ isArtist }) => {
         </ThemeProvider>
       </form>
       <CodeInputModal
-        email="a"
+        email={watch('email')}
         setShowModal={setSuccessModalShow}
         showModal={successModalShow}
       />
