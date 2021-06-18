@@ -79,6 +79,10 @@ const InteractionButtonsContainer = styled.div`
 
   @media (min-width: 768px) {
     .interaction-group {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      gap: 1rem;
+      justify-content: flex-start;
       width: 43rem;
 
       @media (min-width: 1100px) {
