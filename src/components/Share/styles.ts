@@ -7,6 +7,8 @@ const ShareContainer = styled.div`
 
   .share {
     padding: 1rem;
+    margin-bottom: 1rem;
+
     .share-info {
       display: flex;
       align-items: center;
