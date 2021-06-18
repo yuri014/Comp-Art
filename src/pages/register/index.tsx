@@ -156,7 +156,7 @@ function SignUp(): JSX.Element {
                 action={
                   <IconButton
                     size="small"
-                    aria-label="fechar menu post"
+                    aria-label="fechar menu"
                     onClick={() => setShowError('')}
                   >
                     <FaTimes />
