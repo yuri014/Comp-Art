@@ -32,7 +32,7 @@ const PostInteractionButtons: React.FC<PostInteractionButtonsProps> = ({
         likePost={likePost}
         initialLikeState={postProps.isLiked}
       />
-      <CommentButton id={postProps._id} />
+      {!postProps.isShare && <CommentButton id={postProps._id} />}
       <ShareButton postID={postProps._id} updateLevel={updateLevel} />
     </div>
     <SavedButton initialSaveState={postProps.isSaved} postID={postProps._id} />

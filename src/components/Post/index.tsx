@@ -18,6 +18,7 @@ interface IPostProps extends PostProps {
 const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
   const [likesCount, setLikesCount] = useState<number>();
   const [isDeleted, setIsDeleted] = useState(false);
+  const isShare = !!post.post;
 
   useEffect(() => {
     setLikesCount(post.likesCount);
@@ -46,9 +47,9 @@ const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
     setIsDeleted(true);
   }, [deletePost]);
 
-  const handlePostLink = usePostAsLink(post.post ? post.post._id : post._id);
+  const handlePostLink = usePostAsLink(isShare ? post.post._id : post._id);
 
-  const profileData = post.post ? post.profile : post.artist;
+  const profileData = isShare ? post.profile : post.artist;
 
   return (
     <>
@@ -89,6 +90,7 @@ const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
                 _id: post._id,
                 isLiked: post.isLiked,
                 isSaved: post.isSaved,
+                isShare,
               }}
               updateLevel={levelContext && levelContext.updateLevel}
             />

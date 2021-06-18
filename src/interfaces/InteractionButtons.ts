@@ -18,5 +18,10 @@ export interface SavedButtonProps {
 export interface PostInteractionButtonsProps
   extends LikeButtonProps,
     IUpdateLevel {
-  postProps: { _id: string; isSaved: boolean; isLiked: boolean };
+  postProps: {
+    _id: string;
+    isSaved: boolean;
+    isLiked: boolean;
+    isShare: boolean;
+  };
 }
