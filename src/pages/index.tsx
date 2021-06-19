@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
-import PressStartButton from '@components/PressStartButton';
 import Meta from '@components/SEO/Meta';
 import ToggleThemeButton from '@components/ToggleTheme';
 import Footer from '@components/Footer';
 import Title from '@components/Title';
+import CAButton from '@styles/components/button';
 import LandingContainer from './_index';
 
 const Modal = dynamic(() => import('../components/Modal'));
@@ -37,9 +37,7 @@ const Landing: React.FC = () => {
                 Rede social que visa superar os metódos conhecidos de divulgação
                 artística.
               </p>
-              <PressStartButton changeState={() => setModalShow(true)}>
-                START
-              </PressStartButton>
+              <CAButton onClick={() => setModalShow(true)}>COMEÇAR</CAButton>
             </div>
           </section>
         </main>

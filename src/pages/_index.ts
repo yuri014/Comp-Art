@@ -39,6 +39,8 @@ const LandingContainer = styled.div`
 
       button {
         width: 20rem;
+        display: block;
+        margin: 0 auto;
       }
     }
   }
