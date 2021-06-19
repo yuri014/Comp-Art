@@ -9,9 +9,6 @@ const Footer: React.FC = () => (
     <Logo />
 
     <div>
-      <Link href="/about">
-        <a>Sobre</a>
-      </Link>
       <Link href="/terms">
         <a>Termos de uso</a>
       </Link>
