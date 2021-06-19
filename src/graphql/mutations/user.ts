@@ -12,6 +12,7 @@ export const CONFIRMATION_EMAIL = gql`
       id
       username
       isArtist
+      token
     }
   }
 `;
