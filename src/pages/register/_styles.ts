@@ -6,56 +6,6 @@ const RegisterContainer = styled.div`
   min-height: 100vh;
   display: grid;
 
-  .modal-body {
-    p {
-      text-align: left;
-
-      span {
-        color: ${({ theme }) => theme.colors.mainColor};
-      }
-
-      & + p {
-        margin-top: 1rem;
-      }
-    }
-  }
-
-  .verification-code {
-    .input-group {
-      margin-bottom: 4rem;
-      width: 100% !important; /* Sobrescrever inline css da lib */
-
-      div {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-      }
-
-      input {
-        width: 6rem;
-        height: 6rem;
-        background-color: ${({ theme }) => theme.colors.inputBackground};
-        border: none;
-        border-radius: 5px;
-        font-size: 3rem;
-        text-align: center;
-        color: ${({ theme }) => theme.colors.themeColor};
-
-        &:focus {
-          border: 2px solid ${({ theme }) => theme.colors.danger};
-          outline: none;
-        }
-      }
-    }
-
-    button {
-      display: block;
-      margin: 0 auto;
-      margin-bottom: 2rem;
-    }
-  }
-
   main {
     max-width: 80rem;
     margin: 0 auto;
@@ -205,19 +155,6 @@ const RegisterContainer = styled.div`
           margin-left: auto;
           margin-right: auto;
         }
-      }
-    }
-
-    .verification-code {
-      .input-group {
-        div {
-          gap: 2rem;
-        }
-      }
-
-      button {
-        width: 70%;
-        margin-bottom: 0;
       }
     }
   }
