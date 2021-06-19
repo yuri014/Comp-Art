@@ -13,7 +13,9 @@ const mainDarkTheme = createMuiTheme({
     tonalOffset: 0.2,
   },
   typography: {
-    fontFamily: ['-apple-system', 'BlinkMacSystemFont', '"Exo 2"'].join(','),
+    fontFamily: ['-apple-system', 'BlinkMacSystemFont', '"Montserrat"'].join(
+      ',',
+    ),
     fontSize: 22,
   },
   overrides: {

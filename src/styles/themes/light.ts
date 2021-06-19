@@ -39,7 +39,7 @@ const theme = {
   },
   fonts: {
     display: '"Audiowide", sans-serif',
-    primary: '"Exo 2", sans-serif',
+    primary: '"Montserrat", sans-serif',
   },
 };
 
