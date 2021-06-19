@@ -13,9 +13,7 @@ const formTheme = createMuiTheme({
     tonalOffset: 0.2,
   },
   typography: {
-    fontFamily: ['-apple-system', 'BlinkMacSystemFont', '"Montserrat"'].join(
-      ',',
-    ),
+    fontFamily: ['-apple-system', 'BlinkMacSystemFont', '"Exo 2"'].join(','),
     fontSize: 22,
   },
   overrides: {
