@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@apollo/client';
@@ -8,7 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Input from '@components/Input';
 import { REGISTER_USER } from '@graphql/mutations/user';
 import { IUser } from '@interfaces/User';
-import { Link, Snackbar, IconButton, ThemeProvider } from '@material-ui/core';
+import { Snackbar, IconButton, ThemeProvider } from '@material-ui/core';
 import CAButton from '@styles/components/button';
 import formTheme from '@styles/themes/FormTheme';
 import registerUserSchema from '@validations/register';
