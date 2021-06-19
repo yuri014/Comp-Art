@@ -1,6 +1,6 @@
 const theme = {
   colors: {
-    mainColor: '#1cc5b7',
+    mainColor: '#077E76',
     titleColor: 'rgba(0, 0, 0, 0.2)',
     backgroundColor: '#f5f5f5',
     secondaryBackgroundColor: '#fff',
@@ -13,16 +13,16 @@ const theme = {
     namesakeText: '#08162f',
     lightContrast: '#cbcaeb',
     darkGray: '#38383C',
-    gray: '#787878',
+    gray: '#716F6F',
     lightGray: '#38383C',
-    purple: '#6C63FF',
+    purple: '#625CCC',
     lightSecondaryBackground: '#e5e5e5',
     lighterSecondaryBackground: '#e5e5e5',
     commentBackground: '#dddddd',
     borderColor: '#adadad',
     inputBackground: '#dddddd',
     lightGreen: '#5DD083',
-    hashtag: '#6C63FF',
+    hashtag: '#625CCC',
     link: '#13418B',
     mainGradient: `linear-gradient(
       310deg,
