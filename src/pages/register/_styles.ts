@@ -4,7 +4,6 @@ const RegisterContainer = styled.div`
   padding: 2rem 0;
   color: ${({ theme }) => theme.colors.themeColor};
   min-height: 100vh;
-  display: grid;
 
   main {
     max-width: 80rem;
@@ -78,6 +77,7 @@ const RegisterContainer = styled.div`
         font-size: 2rem;
         text-align: center;
         margin-top: 2rem;
+        font-weight: 600;
       }
 
       .subtitle {
@@ -141,6 +141,8 @@ const RegisterContainer = styled.div`
   }
 
   @media (min-width: 1100px) {
+    display: grid;
+
     main {
       form {
         .input-group {
