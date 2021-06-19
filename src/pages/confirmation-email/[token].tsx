@@ -52,8 +52,8 @@ const ConfirmationEmail: React.FC = () => {
             alt="Mão segurando celular com ícone de email"
           />
           <p>Venha explorar esse novo mundo da arte!</p>
-          <Link href="/home">
-            <a>EXPLORAR</a>
+          <Link href="/register-profile">
+            <a>Criar Perfil</a>
           </Link>
         </main>
         <Footer />
