@@ -23,4 +23,5 @@ module.exports = withPlugins([imagesPlugin, pwaPlugin, {
   future: {
     webpack5: true,
   },
+  reactStrictMode: true,
 }]);
