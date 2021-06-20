@@ -57,7 +57,6 @@ const CodeInputModalContainer = styled.div`
       margin: 0 auto;
       width: 90%;
       margin-bottom: 2rem;
-      color: ${({ theme }) => theme.colors.modalBackrgound};
     }
 
     .buttons {
@@ -92,9 +91,18 @@ const CodeInputModalContainer = styled.div`
         }
       }
 
-      button {
-        width: 70%;
-        margin-bottom: 0;
+      .buttons {
+        flex-direction: row;
+        align-items: center;
+
+        .resend-code-container {
+          margin-bottom: 0;
+        }
+
+        button {
+          margin-bottom: 0;
+          margin-top: 0;
+        }
       }
     }
   }
