@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { nanoid } from 'nanoid';
 import { ThemeProvider } from '@material-ui/core';
 import { DocumentNode, useQuery } from '@apollo/client';
 
@@ -63,14 +64,20 @@ const ModalProfile: React.FC<ModalProps> = ({ onHide, variable, payload }) => {
                   (profile: IProfile, index: number) => {
                     if (data[`${payload.queryResult}`].length === index + 1) {
                       return (
-                        <div key={profile._id} ref={lastProfileRefLikes}>
+                        <div
+                          key={`${profile._id}__${nanoid()}`}
+                          ref={lastProfileRefLikes}
+                        >
                           <ProfileSimpleCard profile={profile} />
                         </div>
                       );
                     }
 
                     return (
-                      <ProfileSimpleCard key={profile._id} profile={profile} />
+                      <ProfileSimpleCard
+                        key={`${profile._id}__${nanoid()}`}
+                        profile={profile}
+                      />
                     );
                   },
                 )}
