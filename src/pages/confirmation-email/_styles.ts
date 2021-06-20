@@ -29,9 +29,11 @@ const ConfirmationEmailContainer = styled.div`
     }
 
     a {
-      background-color: ${({ theme }) => theme.colors.mainColor};
-      border: none;
-      color: ${({ theme }) => theme.colors.namesakeText};
+      width: 20rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0;
       padding: 1rem 4rem;
       border-radius: 5px;
       font-weight: bold;
