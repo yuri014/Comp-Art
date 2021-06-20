@@ -2,19 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { DocumentNode, useMutation } from '@apollo/client';
 import { useForm } from 'react-hook-form';
-import { SiWattpad } from 'react-icons/si';
 import { MdEdit } from 'react-icons/md';
 import { IconButton, ThemeProvider } from '@material-ui/core';
-import {
-  FaBandcamp,
-  FaDeviantart,
-  FaFacebook,
-  FaLink,
-  FaPinterest,
-  FaSoundcloud,
-  FaTimes,
-  FaTwitter,
-} from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
 
 import CAButton from '@styles/components/button';
 import { IProfile, IProfileInput } from '../../interfaces/Profile';
@@ -25,8 +15,8 @@ import FormProfileContainer from './styles';
 import useImagePreview from '../../hooks/imagePreview';
 import ProfileImagePreview from './ProfileImagePreview';
 import { AuthContext } from '../../context/auth';
+import ProfileLinksForm from './utils/ProfileLinksForm';
 import Input from '../Input';
-import SocialInput from '../Splitter/SocialInput';
 
 interface FormProfileProps {
   mutation: DocumentNode;
@@ -204,71 +194,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
             ))}
           </TagsContainer>
 
-          <div className="profile-links">
-            <SocialInput
-              label="Soundcloud"
-              name="links.soundcloud"
-              register={register}
-            >
-              <FaSoundcloud className="soundcloud-icon" />
-              <p>soundcloud.com/</p>
-            </SocialInput>
-            <SocialInput
-              label="Bandcamp"
-              name="links.bandcamp"
-              register={register}
-              endAdornment=".bandcamp.com"
-            >
-              <FaBandcamp className="bandcamp-icon" />
-            </SocialInput>
-            <SocialInput
-              label="Wattpad"
-              name="links.wattpad"
-              register={register}
-            >
-              <SiWattpad className="wattpad-icon" />
-              <p>wattpad.com/user/</p>
-            </SocialInput>
-            <SocialInput
-              name="links.pinterest"
-              label="Pinterest"
-              register={register}
-            >
-              <FaPinterest className="pinterest-icon" />
-              <p>pinterest.com/</p>
-            </SocialInput>
-            <SocialInput
-              name="links.twitter"
-              label="Twitter"
-              register={register}
-            >
-              <FaTwitter className="twitter-icon" />
-              <p>twitter.com/</p>
-            </SocialInput>
-            <SocialInput
-              name="links.facebook"
-              label="Facebook"
-              register={register}
-            >
-              <FaFacebook className="facebook-icon" />
-              <p>facebook.com/</p>
-            </SocialInput>
-            <SocialInput
-              name="links.deviantart"
-              label="Deviantart"
-              register={register}
-            >
-              <FaDeviantart className="deviantart-icon" />
-              <p>deviantart.com/</p>
-            </SocialInput>
-            <SocialInput
-              name="links.customLink"
-              label="Link Adicional"
-              register={register}
-            >
-              <FaLink className="primary-icon" />
-            </SocialInput>
-          </div>
+          <ProfileLinksForm register={register} />
           {showError && <ErrorMessage>{showError}</ErrorMessage>}
           <CAButton type="submit">CRIAR PERFIL</CAButton>
         </div>
