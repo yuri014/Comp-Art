@@ -1,11 +1,13 @@
 import React, { useEffect, useRef } from 'react';
+import dynamic from 'next/dynamic';
 import Lottie, { LottieRef } from 'lottie-react';
 import { FaTimes } from 'react-icons/fa';
 import { IconButton, Snackbar, ThemeProvider } from '@material-ui/core';
 
-import Modal from '@components/Modal';
 import formTheme from '@styles/themes/FormTheme';
 import * as animationData from '../../animations/send-success.json';
+
+const Modal = dynamic(() => import('@components/Modal'), { ssr: false });
 
 interface SendSuccessProps {
   showModal: boolean;

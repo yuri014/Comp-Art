@@ -1,3 +1,4 @@
+import ClientOnlyPortal from '@components/ClientOnlyPortal';
 import React, { useRef } from 'react';
 import { CgClose } from 'react-icons/cg';
 import useOutsideClick from '../../hooks/outsideClick';
@@ -16,24 +17,26 @@ const Modal: React.FC<ModalProps> = props => {
   useOutsideClick(ref, props.onHide);
 
   return (
-    <ModalContainer
-      fontSize={props.fontSize}
-      className={`modal-block-${props.show} prevent-redirect-post`}
-    >
-      <div className="modal" ref={ref}>
-        <button type="button" onClick={props.onHide} className="close-modal">
-          <CgClose />
-        </button>
-        <div className="modal-content">
-          <div className="modal-title">
-            <p>{props.title}</p>
+    <ClientOnlyPortal selector="#modal">
+      <ModalContainer
+        fontSize={props.fontSize}
+        className={`modal-block-${props.show} prevent-redirect-post`}
+      >
+        <div className="modal" ref={ref}>
+          <button type="button" onClick={props.onHide} className="close-modal">
+            <CgClose />
+          </button>
+          <div className="modal-content">
+            <div className="modal-title">
+              <p>{props.title}</p>
+            </div>
+            {props.text && <div className="modal-body">{props.text}</div>}
+            {props.children}
           </div>
-          {props.text && <div className="modal-body">{props.text}</div>}
-          {props.children}
         </div>
-      </div>
-    </ModalContainer>
+      </ModalContainer>
+    </ClientOnlyPortal>
   );
 };
 
-export default Modal;
+export default React.memo(Modal);

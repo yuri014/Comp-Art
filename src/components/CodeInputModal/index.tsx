@@ -1,13 +1,15 @@
 import React, { useContext, useState } from 'react';
+import dynamic from 'next/dynamic';
 import ReactCodeInput from 'react-verification-code-input';
 import { useMutation } from '@apollo/client';
 
-import Modal from '@components/Modal';
 import CAButton from '@styles/components/button';
 import { CONFIRMATION_EMAIL } from '@graphql/mutations/user';
 import { AuthContext } from '@context/auth';
 import { useRouter } from 'next/router';
 import CodeInputModalContainer from './styles';
+
+const Modal = dynamic(() => import('@components/Modal'), { ssr: false });
 
 interface CodeInputModalProps {
   email: string;
