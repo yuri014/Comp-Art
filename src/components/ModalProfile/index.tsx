@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import { nanoid } from 'nanoid';
-import { ThemeProvider } from '@material-ui/core';
 import { DocumentNode, useQuery } from '@apollo/client';
 
-import mainTheme from '../../styles/themes/MainTheme';
 import LoadingProfileLikes from './Loading';
 import useInfiniteScroll from '../../hooks/infiniteScroll';
 import { IProfile } from '../../interfaces/Profile';
@@ -50,43 +48,41 @@ const ModalProfile: React.FC<ModalProps> = ({ onHide, variable, payload }) => {
   });
 
   return (
-    <ThemeProvider theme={mainTheme}>
-      <Modal onHide={onHide} show title={payload.title} fontSize="2.4rem">
-        <ModalProfileContainer>
-          <div className="modal-content">
-            {loading && !data ? (
-              <>
-                <LoadingProfileLikes />
-              </>
-            ) : (
-              <>
-                {data[`${payload.queryResult}`].map(
-                  (profile: IProfile, index: number) => {
-                    if (data[`${payload.queryResult}`].length === index + 1) {
-                      return (
-                        <div
-                          key={`${profile._id}__${nanoid()}`}
-                          ref={lastProfileRefLikes}
-                        >
-                          <ProfileSimpleCard profile={profile} />
-                        </div>
-                      );
-                    }
-
+    <Modal onHide={onHide} show title={payload.title} fontSize="2.4rem">
+      <ModalProfileContainer>
+        <div className="modal-content">
+          {loading && !data ? (
+            <>
+              <LoadingProfileLikes />
+            </>
+          ) : (
+            <>
+              {data[`${payload.queryResult}`].map(
+                (profile: IProfile, index: number) => {
+                  if (data[`${payload.queryResult}`].length === index + 1) {
                     return (
-                      <ProfileSimpleCard
+                      <div
                         key={`${profile._id}__${nanoid()}`}
-                        profile={profile}
-                      />
+                        ref={lastProfileRefLikes}
+                      >
+                        <ProfileSimpleCard profile={profile} />
+                      </div>
                     );
-                  },
-                )}
-              </>
-            )}
-          </div>
-        </ModalProfileContainer>
-      </Modal>
-    </ThemeProvider>
+                  }
+
+                  return (
+                    <ProfileSimpleCard
+                      key={`${profile._id}__${nanoid()}`}
+                      profile={profile}
+                    />
+                  );
+                },
+              )}
+            </>
+          )}
+        </div>
+      </ModalProfileContainer>
+    </Modal>
   );
 };
 
