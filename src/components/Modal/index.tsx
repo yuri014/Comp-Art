@@ -10,6 +10,7 @@ interface ModalProps {
   title: string;
   text?: string | React.ReactNode;
   fontSize?: string;
+  children: React.ReactNode;
 }
 
 const Modal: React.FC<ModalProps> = props => {
