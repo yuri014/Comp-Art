@@ -6,6 +6,7 @@ import Modal from '@components/Modal';
 import CAButton from '@styles/components/button';
 import { CONFIRMATION_EMAIL } from '@graphql/mutations/user';
 import { AuthContext } from '@context/auth';
+import { useRouter } from 'next/router';
 import CodeInputModalContainer from './styles';
 
 interface CodeInputModalProps {
@@ -21,11 +22,14 @@ const CodeInputModal: React.FC<CodeInputModalProps> = ({
   showModal,
   setError,
 }) => {
+  const router = useRouter();
   const [code, setCode] = useState('');
   const authContext = useContext(AuthContext);
   const [sendCode] = useMutation(CONFIRMATION_EMAIL, {
-    onCompleted: response =>
-      authContext.login({ ...response.confirmationEmail }),
+    onCompleted: response => {
+      authContext.login({ ...response.confirmationEmail });
+      router.push('/confirmation-email');
+    },
     onError: ({ graphQLErrors }) => setError(graphQLErrors[0].message),
   });
 
