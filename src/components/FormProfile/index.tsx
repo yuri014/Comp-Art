@@ -16,6 +16,7 @@ import {
   FaTwitter,
 } from 'react-icons/fa';
 
+import CAButton from '@styles/components/button';
 import { IProfile, IProfileInput } from '../../interfaces/Profile';
 import formTheme from '../../styles/themes/FormTheme';
 import TagsContainer from '../../styles/components/tags';
@@ -269,7 +270,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
             </SocialInput>
           </div>
           {showError && <ErrorMessage>{showError}</ErrorMessage>}
-          <button type="submit">CRIAR PERFIL</button>
+          <CAButton type="submit">CRIAR PERFIL</CAButton>
         </div>
       </FormProfileContainer>
     </ThemeProvider>

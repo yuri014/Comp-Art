@@ -108,21 +108,12 @@ const FormProfileContainer = styled.form`
   button[type='submit'] {
     display: block;
     padding: 1rem 4rem;
-    border-radius: 5px;
-    border: none;
-    background: ${({ theme }) => theme.colors.mainColor};
-    color: ${({ theme }) => theme.colors.namesakeText};
     font-weight: bold;
+    width: auto;
     margin: 0 auto;
     margin-top: 1rem;
     margin-bottom: 3rem;
     font-size: 1.6rem;
-    cursor: pointer;
-    transition: filter 0.2s ease-in-out;
-
-    &:hover {
-      filter: brightness(0.8);
-    }
   }
 
   @media (min-width: 1100px) {
