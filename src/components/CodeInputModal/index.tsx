@@ -12,18 +12,21 @@ interface CodeInputModalProps {
   email: string;
   showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setError: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const CodeInputModal: React.FC<CodeInputModalProps> = ({
   email,
   setShowModal,
   showModal,
+  setError,
 }) => {
   const [code, setCode] = useState('');
   const authContext = useContext(AuthContext);
   const [sendCode] = useMutation(CONFIRMATION_EMAIL, {
     onCompleted: response =>
       authContext.login({ ...response.confirmationEmail }),
+    onError: ({ graphQLErrors }) => setError(graphQLErrors[0].message),
   });
 
   const handleSubmit = () => {

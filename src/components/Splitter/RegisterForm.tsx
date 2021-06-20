@@ -155,6 +155,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ isArtist }) => {
         email={watch('email')}
         setShowModal={setSuccessModalShow}
         showModal={successModalShow}
+        setError={setShowError}
       />
     </>
   );
