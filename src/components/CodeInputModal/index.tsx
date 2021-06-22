@@ -43,51 +43,49 @@ const CodeInputModal: React.FC<CodeInputModalProps> = ({
   };
 
   return (
-    <CodeInputModalContainer>
-      <ModalProvider
-        title="Quase lá, vai ser jogo rápido!"
-        text={
-          <CodeInputHeaderContainer>
-            <p>
-              Já enviamos um código para o seu e-mail <span>{email}</span>
-            </p>
-            <p>
-              Verifique sua caixa de entrada e insira o código no campo abaixo
-              para verificar seu e-mail
-            </p>
-          </CodeInputHeaderContainer>
-        }
-        show={showModal}
-        onHide={() => setShowModal(false)}
+    <ModalProvider
+      title="Quase lá, vai ser jogo rápido!"
+      text={
+        <CodeInputHeaderContainer>
+          <p>
+            Já enviamos um código para o seu e-mail <span>{email}</span>
+          </p>
+          <p>
+            Verifique sua caixa de entrada e insira o código no campo abaixo
+            para verificar seu e-mail
+          </p>
+        </CodeInputHeaderContainer>
+      }
+      show={showModal}
+      onHide={() => setShowModal(false)}
+    >
+      <CodeInputModalContainer
+        onSubmit={e => {
+          e.preventDefault();
+          handleSubmit();
+        }}
+        className="verification-code"
+        autoComplete="off"
       >
-        <CodeInputModalContainer
-          onSubmit={e => {
-            e.preventDefault();
-            handleSubmit();
-          }}
-          className="verification-code"
-          autoComplete="off"
-        >
-          <ReactCodeInput
-            fields={4}
-            className="input-group"
-            required
-            onChange={e => setCode(e)}
-          />
+        <ReactCodeInput
+          fields={4}
+          className="input-group"
+          required
+          onChange={e => setCode(e)}
+        />
 
-          <div className="buttons">
-            <div className="resend-code-container">
-              <p>Pode levar um tempo para o código chegar.</p>
-              <div className="resend-code">
-                <p>Caso não receba: </p>{' '}
-                <button type="button">Reenviar código</button>
-              </div>
+        <div className="buttons">
+          <div className="resend-code-container">
+            <p>Pode levar um tempo para o código chegar.</p>
+            <div className="resend-code">
+              <p>Caso não receba: </p>{' '}
+              <button type="button">Reenviar código</button>
             </div>
-            <CAButton type="submit">ENVIAR</CAButton>
           </div>
-        </CodeInputModalContainer>
-      </ModalProvider>
-    </CodeInputModalContainer>
+          <CAButton type="submit">ENVIAR</CAButton>
+        </div>
+      </CodeInputModalContainer>
+    </ModalProvider>
   );
 };
 
