@@ -10,6 +10,7 @@ import CAImage from '@components/CAImage';
 import InteractionButtonsContainer from '@components/Post/Buttons/styles';
 import CommentsSections from '@components/Comment/CommentsSections';
 import NonAuthAltHeader from '@components/NonAuthAltHeader';
+import OptionsMenu from '@components/Post/OptionsMenu';
 import InteractionsNumbers from '@components/Post/utils/InteractionsNumbers';
 import Meta from '@components/SEO/Meta';
 import ThemeContext from '@context/theme';
@@ -30,7 +31,6 @@ const AudioPlayer = dynamic(() => import('@components/AudioPlayer'), {
   ssr: false,
 });
 const TextBox = dynamic(() => import('@components/TextBox'));
-const OptionsMenu = dynamic(() => import('@components/Post/OptionsMenu'));
 
 interface PostPageProps extends ILoggedProfile, PostProps {}
 
