@@ -1,38 +1,42 @@
-import ClientOnlyPortal from '@components/ClientOnlyPortal';
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import { CgClose } from 'react-icons/cg';
-import useOutsideClick from '../../hooks/outsideClick';
+
+import ClientOnlyPortal from '@components/ClientOnlyPortal';
+import ModalContext from '@context/modal';
+import useOutsideClick from '@hooks/outsideClick';
 import ModalContainer from './styles';
 
 interface ModalProps {
-  show: boolean;
-  onHide: () => void;
-  title: string;
-  text?: string | React.ReactNode;
-  fontSize?: string;
   children: React.ReactNode;
 }
 
-const Modal: React.FC<ModalProps> = props => {
+const Modal: React.FC<ModalProps> = ({ children }) => {
+  const modalData = useContext(ModalContext);
   const ref = useRef(null);
-  useOutsideClick(ref, props.onHide);
+  useOutsideClick(ref, modalData.onHide);
 
   return (
     <ClientOnlyPortal selector="#modal">
       <ModalContainer
-        fontSize={props.fontSize}
-        className={`modal-block-${props.show} prevent-redirect-post`}
+        fontSize={modalData.fontSize}
+        className={`modal-block-${modalData.show} prevent-redirect-post`}
       >
         <div className="modal" ref={ref}>
-          <button type="button" onClick={props.onHide} className="close-modal">
+          <button
+            type="button"
+            onClick={modalData.onHide}
+            className="close-modal"
+          >
             <CgClose />
           </button>
           <div className="modal-content">
             <div className="modal-title">
-              <p>{props.title}</p>
+              <p>{modalData.title}</p>
             </div>
-            {props.text && <div className="modal-body">{props.text}</div>}
-            {props.children}
+            {modalData.text && (
+              <div className="modal-body">{modalData.text}</div>
+            )}
+            {children}
           </div>
         </div>
       </ModalContainer>

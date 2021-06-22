@@ -1,13 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-import dynamic from 'next/dynamic';
 import Lottie, { LottieRef } from 'lottie-react';
 import { FaTimes } from 'react-icons/fa';
 import { IconButton, Snackbar, ThemeProvider } from '@material-ui/core';
 
+import { ModalProvider } from '@context/modal';
 import formTheme from '@styles/themes/FormTheme';
 import * as animationData from '../../animations/send-success.json';
-
-const Modal = dynamic(() => import('@components/Modal'), { ssr: false });
 
 interface SendSuccessProps {
   showModal: boolean;
@@ -28,7 +26,7 @@ export const SendSuccess: React.FC<SendSuccessProps> = ({
   }, [lottieRef]);
 
   return (
-    <Modal
+    <ModalProvider
       show={showModal}
       onHide={() => setShowModal(false)}
       title="Publicado!"
@@ -48,7 +46,7 @@ export const SendSuccess: React.FC<SendSuccessProps> = ({
           lottieRef={lottieRef}
         />
       </div>
-    </Modal>
+    </ModalProvider>
   );
 };
 

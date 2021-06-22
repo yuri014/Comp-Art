@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { DocumentNode, useQuery } from '@apollo/client';
 
+import { ModalProvider } from '@context/modal';
 import LoadingProfileLikes from './Loading';
 import useInfiniteScroll from '../../hooks/infiniteScroll';
 import { IProfile } from '../../interfaces/Profile';
-import Modal from '../Modal';
 import ModalProfileContainer from './styles';
 import ProfileSimpleCard from '../ProfileCard';
 
@@ -48,7 +48,7 @@ const ModalProfile: React.FC<ModalProps> = ({ onHide, variable, payload }) => {
   });
 
   return (
-    <Modal onHide={onHide} show title={payload.title} fontSize="2.4rem">
+    <ModalProvider onHide={onHide} show title={payload.title} fontSize="2.4rem">
       <ModalProfileContainer>
         <div className="modal-content">
           {loading && !data ? (
@@ -82,7 +82,7 @@ const ModalProfile: React.FC<ModalProps> = ({ onHide, variable, payload }) => {
           )}
         </div>
       </ModalProfileContainer>
-    </Modal>
+    </ModalProvider>
   );
 };
 

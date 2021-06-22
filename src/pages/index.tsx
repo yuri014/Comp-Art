@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
-
 import Meta from '@components/SEO/Meta';
 import ToggleThemeButton from '@components/ToggleTheme';
 import Footer from '@components/Footer';
 import Title from '@components/Title';
+import { ModalProvider } from '@context/modal';
 import CAButton from '@styles/components/button';
-import LandingContainer from './_index';
-
-const Modal = dynamic(() => import('../components/Modal'));
+import LandingContainer, { LandingModalContainer } from './_index';
 
 const Landing: React.FC = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -43,7 +40,7 @@ const Landing: React.FC = () => {
         </main>
         <Footer />
       </div>
-      <Modal
+      <ModalProvider
         title="Comece sua jornada!"
         text={
           <p>
@@ -54,15 +51,15 @@ const Landing: React.FC = () => {
         show={modalShow}
         onHide={() => setModalShow(false)}
       >
-        <div className="link-buttons-block">
+        <LandingModalContainer>
           <Link href="/login">
             <a>LOGIN</a>
           </Link>
           <Link href="/register">
             <a>CADASTRE-SE</a>
           </Link>
-        </div>
-      </Modal>
+        </LandingModalContainer>
+      </ModalProvider>
     </LandingContainer>
   );
 };
