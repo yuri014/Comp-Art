@@ -1,5 +1,39 @@
 import styled from 'styled-components';
 
+export const LandingModalContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 2rem;
+  margin-top: 2rem;
+
+  a {
+    padding: 1rem 1rem;
+    background: #50505b;
+    border-radius: 4px;
+    width: 48%;
+    transition: filter 1s ease, color 1s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font: 700 1.3rem ${({ theme }) => theme.fonts.primary};
+    color: #fff;
+
+    &:last-child {
+      background: #393b73;
+    }
+  }
+
+  a:hover {
+    filter: brightness(0.7);
+  }
+
+  @media (min-width: 1100px) {
+    padding-bottom: 0;
+  }
+`;
+
 const LandingContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.backgroundColor};
   .container {
@@ -43,36 +77,6 @@ const LandingContainer = styled.div`
         margin: 0 auto;
       }
     }
-  }
-
-  .link-buttons-block {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 2rem;
-    margin-top: 2rem;
-  }
-
-  .link-buttons-block a {
-    padding: 1rem 1rem;
-    background: #50505b;
-    border-radius: 4px;
-    width: 48%;
-    transition: filter 1s ease, color 1s ease;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    font: 700 1.3rem ${({ theme }) => theme.fonts.primary};
-    color: #fff;
-
-    &:last-child {
-      background: #393b73;
-    }
-  }
-
-  .link-buttons-block a:hover {
-    filter: brightness(0.7);
   }
 
   @media (min-width: 768px) {
@@ -124,10 +128,6 @@ const LandingContainer = styled.div`
           margin: unset;
         }
       }
-    }
-
-    .link-buttons-block {
-      padding-bottom: 0;
     }
   }
 

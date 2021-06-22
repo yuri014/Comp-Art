@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import dynamic from 'next/dynamic';
 import ReactCodeInput from 'react-verification-code-input';
 import { useMutation } from '@apollo/client';
 
@@ -7,9 +6,8 @@ import CAButton from '@styles/components/button';
 import { CONFIRMATION_EMAIL } from '@graphql/mutations/user';
 import { AuthContext } from '@context/auth';
 import { useRouter } from 'next/router';
-import CodeInputModalContainer from './styles';
-
-const Modal = dynamic(() => import('@components/Modal'), { ssr: false });
+import { ModalProvider } from '@context/modal';
+import { CodeInputHeaderContainer, CodeInputModalContainer } from './styles';
 
 interface CodeInputModalProps {
   email: string;
@@ -46,10 +44,10 @@ const CodeInputModal: React.FC<CodeInputModalProps> = ({
 
   return (
     <CodeInputModalContainer>
-      <Modal
+      <ModalProvider
         title="Quase lá, vai ser jogo rápido!"
         text={
-          <>
+          <CodeInputHeaderContainer>
             <p>
               Já enviamos um código para o seu e-mail <span>{email}</span>
             </p>
@@ -57,12 +55,12 @@ const CodeInputModal: React.FC<CodeInputModalProps> = ({
               Verifique sua caixa de entrada e insira o código no campo abaixo
               para verificar seu e-mail
             </p>
-          </>
+          </CodeInputHeaderContainer>
         }
         show={showModal}
         onHide={() => setShowModal(false)}
       >
-        <form
+        <CodeInputModalContainer
           onSubmit={e => {
             e.preventDefault();
             handleSubmit();
@@ -87,8 +85,8 @@ const CodeInputModal: React.FC<CodeInputModalProps> = ({
             </div>
             <CAButton type="submit">ENVIAR</CAButton>
           </div>
-        </form>
-      </Modal>
+        </CodeInputModalContainer>
+      </ModalProvider>
     </CodeInputModalContainer>
   );
 };
