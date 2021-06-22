@@ -1,8 +1,8 @@
 import React, { useContext, useRef, useState } from 'react';
-import { IconButton, Menu, MenuItem, Snackbar } from '@material-ui/core';
+import { IconButton, Menu, MenuItem, NoSsr, Snackbar } from '@material-ui/core';
 import { FiMoreHorizontal, FiTrash2 } from 'react-icons/fi';
-
 import { FaLink, FaTimes } from 'react-icons/fa';
+
 import { AuthContext } from '../../context/auth';
 import { MenuListIcon } from '../Header/styles';
 
@@ -37,7 +37,7 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({
   };
 
   return (
-    <>
+    <NoSsr>
       <IconButton
         aria-label="abrir menu post"
         aria-haspopup="true"
@@ -95,7 +95,7 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({
           </IconButton>
         }
       />
-    </>
+    </NoSsr>
   );
 };
 
