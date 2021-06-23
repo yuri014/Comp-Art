@@ -11,7 +11,6 @@ import { CodeInputHeaderContainer, CodeInputModalContainer } from './styles';
 
 interface CodeInputModalProps {
   email: string;
-  showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   setError: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -19,7 +18,6 @@ interface CodeInputModalProps {
 const CodeInputModal: React.FC<CodeInputModalProps> = ({
   email,
   setShowModal,
-  showModal,
   setError,
 }) => {
   const router = useRouter();
@@ -56,7 +54,6 @@ const CodeInputModal: React.FC<CodeInputModalProps> = ({
           </p>
         </CodeInputHeaderContainer>
       }
-      show={showModal}
       onHide={() => setShowModal(false)}
     >
       <CodeInputModalContainer

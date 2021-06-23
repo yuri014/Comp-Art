@@ -8,14 +8,10 @@ import formTheme from '@styles/themes/FormTheme';
 import * as animationData from '../../animations/send-success.json';
 
 interface SendSuccessProps {
-  showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const SendSuccess: React.FC<SendSuccessProps> = ({
-  setShowModal,
-  showModal,
-}) => {
+export const SendSuccess: React.FC<SendSuccessProps> = ({ setShowModal }) => {
   const lottieRef: LottieRef = useRef();
 
   // Espera a animação do modal
@@ -26,11 +22,7 @@ export const SendSuccess: React.FC<SendSuccessProps> = ({
   }, [lottieRef]);
 
   return (
-    <ModalProvider
-      show={showModal}
-      onHide={() => setShowModal(false)}
-      title="Publicado!"
-    >
+    <ModalProvider onHide={() => setShowModal(false)} title="Publicado!">
       <div className="modal-content">
         <Lottie
           autoPlay={false}

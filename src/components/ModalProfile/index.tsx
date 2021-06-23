@@ -48,7 +48,7 @@ const ModalProfile: React.FC<ModalProps> = ({ onHide, variable, payload }) => {
   });
 
   return (
-    <ModalProvider onHide={onHide} show title={payload.title} fontSize="2.4rem">
+    <ModalProvider onHide={onHide} title={payload.title} fontSize="2.4rem">
       <ModalProfileContainer>
         <div className="modal-content">
           {loading && !data ? (

@@ -40,26 +40,27 @@ const Landing: React.FC = () => {
         </main>
         <Footer />
       </div>
-      <ModalProvider
-        title="Comece sua jornada!"
-        text={
-          <p>
-            Faça o login ou se cadastre para conhecer e interagir com novos
-            artistas ou fãs com gostos em comum com você.
-          </p>
-        }
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      >
-        <LandingModalContainer>
-          <Link href="/login">
-            <a>LOGIN</a>
-          </Link>
-          <Link href="/register">
-            <a>CADASTRE-SE</a>
-          </Link>
-        </LandingModalContainer>
-      </ModalProvider>
+      {modalShow && (
+        <ModalProvider
+          title="Comece sua jornada!"
+          text={
+            <p>
+              Faça o login ou se cadastre para conhecer e interagir com novos
+              artistas ou fãs com gostos em comum com você.
+            </p>
+          }
+          onHide={() => setModalShow(false)}
+        >
+          <LandingModalContainer>
+            <Link href="/login">
+              <a>LOGIN</a>
+            </Link>
+            <Link href="/register">
+              <a>CADASTRE-SE</a>
+            </Link>
+          </LandingModalContainer>
+        </ModalProvider>
+      )}
     </LandingContainer>
   );
 };
