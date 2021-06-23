@@ -32,9 +32,9 @@ const usePostAsLink: UsePostAsLink = postID => {
     const isAClickOut = targetEvent.getAttribute('aria-hidden') === 'true';
     const isASlider = targetEvent.getAttribute('role') === 'slider';
     const isAMenu = targetEvent.getAttribute('role') === 'menu';
+    const isInRoot = document.querySelector('#__next').contains(targetEvent);
     const checkClassName = checkContainClass([
       'prevent-redirect-post',
-      'MuiButtonBase-root',
       'hashtag',
       'mention',
     ]).includes(true);
@@ -45,6 +45,7 @@ const usePostAsLink: UsePostAsLink = postID => {
       !isAClickOut,
       !isASlider,
       !isAMenu,
+      isInRoot,
     ];
 
     const canRedirect = checks.every(value => value === true);
