@@ -13,7 +13,7 @@ const QUICK_SHARE_POST = gql`
 `;
 
 const ShareButton: React.FC<ShareButtonProps> = ({ postID, updateLevel }) => {
-  const [quickSharePost] = useMutation(QUICK_SHARE_POST, {
+  const [sharePost] = useMutation(QUICK_SHARE_POST, {
     onCompleted: () => updateLevel(),
   });
 
@@ -25,6 +25,17 @@ const ShareButton: React.FC<ShareButtonProps> = ({ postID, updateLevel }) => {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleSharePost = (description = '') => {
+    sharePost({
+      variables: {
+        shareInput: {
+          description,
+          postID,
+        },
+      },
+    });
   };
 
   return (
@@ -50,19 +61,7 @@ const ShareButton: React.FC<ShareButtonProps> = ({ postID, updateLevel }) => {
         className="prevent-redirect-post"
       >
         <MenuItem onClick={handleClose}>
-          <MenuListIcon
-            as="button"
-            onClick={() =>
-              quickSharePost({
-                variables: {
-                  shareInput: {
-                    description: '',
-                    postID,
-                  },
-                },
-              })
-            }
-          >
+          <MenuListIcon as="button" onClick={() => handleSharePost()}>
             <FaShare />
             <p className="prevent-redirect-post">Compartilhar agora</p>
           </MenuListIcon>
