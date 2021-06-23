@@ -19,7 +19,7 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
     <ClientOnlyPortal selector="#modal">
       <ModalContainer
         fontSize={modalData.fontSize}
-        className={`modal-block-${modalData.show} prevent-redirect-post`}
+        className="modal-block-true prevent-redirect-post"
       >
         <div className="modal" ref={ref}>
           <button
