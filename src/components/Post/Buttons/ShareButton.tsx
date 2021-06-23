@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
 import { Menu, MenuItem } from '@material-ui/core';
 
 import { MenuListIcon } from '@components/Header/styles';
 import { FaShareAlt, FaShare, FaEdit } from 'react-icons/fa';
 import { ShareButtonProps } from '@interfaces/InteractionButtons';
+import { ModalProvider } from '@context/modal';
+import DraftEditor from '@components/DraftEditor';
+import usePreventMemoryLeak from '@hooks/preventMemoryLeak';
 
 const QUICK_SHARE_POST = gql`
   mutation CreateSharePost($shareInput: SharePost!) {
@@ -13,11 +16,15 @@ const QUICK_SHARE_POST = gql`
 `;
 
 const ShareButton: React.FC<ShareButtonProps> = ({ postID, updateLevel }) => {
+  const isMount = usePreventMemoryLeak();
   const [sharePost] = useMutation(QUICK_SHARE_POST, {
     onCompleted: () => updateLevel(),
   });
 
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [showModal, setShowModal] = useState(false);
+  const [commentField, setCommentField] = useState('');
+  const [progress, setProgress] = useState(0);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -60,19 +67,41 @@ const ShareButton: React.FC<ShareButtonProps> = ({ postID, updateLevel }) => {
         onClose={handleClose}
         className="prevent-redirect-post"
       >
-        <MenuItem onClick={handleClose}>
-          <MenuListIcon as="button" onClick={() => handleSharePost()}>
+        <MenuItem
+          onClick={() => {
+            handleSharePost();
+            handleClose();
+          }}
+        >
+          <MenuListIcon>
             <FaShare />
             <p className="prevent-redirect-post">Compartilhar agora</p>
           </MenuListIcon>
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem
+          onClick={() => {
+            setShowModal(true);
+            handleClose();
+          }}
+        >
           <MenuListIcon>
             <FaEdit />
             <p className="prevent-redirect-post">Compartilhar com comentário</p>
           </MenuListIcon>
         </MenuItem>
       </Menu>
+      {showModal && (
+        <ModalProvider onHide={() => setShowModal(false)} title="Compartilhar">
+          {isMount && (
+            <DraftEditor
+              setText={setCommentField}
+              setProgress={setProgress}
+              limit={255}
+              placeholder="Digite aqui o seu comentário..."
+            />
+          )}
+        </ModalProvider>
+      )}
     </>
   );
 };
