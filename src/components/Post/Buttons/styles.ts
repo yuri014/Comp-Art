@@ -1,5 +1,26 @@
 import styled from 'styled-components';
 
+export const ModalShareContainer = styled.div`
+  &.modal-content {
+    padding-bottom: 0rem !important;
+  }
+
+  .draft-container {
+    background: ${({ theme }) => theme.colors.shareBackground};
+    height: 8rem;
+    border-radius: 5px;
+    padding: 1.2rem;
+    font-size: 1.4rem;
+  }
+
+  button {
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 4rem;
+    margin-bottom: 0;
+  }
+`;
+
 const InteractionButtonsContainer = styled.div`
   padding-top: 1rem;
   margin-top: 1rem;
