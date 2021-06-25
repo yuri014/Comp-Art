@@ -9,6 +9,7 @@ import { ModalProvider } from '@context/modal';
 import DraftEditor from '@components/DraftEditor';
 import usePreventMemoryLeak from '@hooks/preventMemoryLeak';
 import CAButton from '@styles/components/button';
+import DescriptionCounter from '@components/DraftEditor/utils/DescriptionCounter';
 import { ModalShareContainer } from './styles';
 
 const QUICK_SHARE_POST = gql`
@@ -96,15 +97,26 @@ const ShareButton: React.FC<ShareButtonProps> = ({ postID, updateLevel }) => {
         <ModalProvider onHide={() => setShowModal(false)} title="Compartilhar">
           {isMount && (
             <ModalShareContainer className="modal-content">
-              <div className="draft-container">
-                <DraftEditor
-                  setText={setCommentField}
-                  setProgress={setProgress}
-                  limit={1200}
-                  placeholder="Digite aqui o seu comentário..."
+              <div className="input-container">
+                <div className="draft-container">
+                  <DraftEditor
+                    setText={setCommentField}
+                    setProgress={setProgress}
+                    limit={1200}
+                    placeholder="Digite aqui o seu comentário..."
+                  />
+                </div>
+                <DescriptionCounter
+                  className="counter-container"
+                  progress={progress}
                 />
               </div>
-              <CAButton type="button">Compartilhar</CAButton>
+              <CAButton
+                onClick={() => handleSharePost(commentField)}
+                type="button"
+              >
+                Compartilhar
+              </CAButton>
             </ModalShareContainer>
           )}
         </ModalProvider>

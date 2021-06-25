@@ -5,12 +5,21 @@ export const ModalShareContainer = styled.div`
     padding-bottom: 0rem !important;
   }
 
-  .draft-container {
-    background: ${({ theme }) => theme.colors.shareBackground};
-    height: 8rem;
-    border-radius: 5px;
-    padding: 1.2rem;
-    font-size: 1.4rem;
+  .input-container {
+    position: relative;
+
+    .draft-container {
+      background: ${({ theme }) => theme.colors.shareBackground};
+      height: auto;
+      border-radius: 5px;
+      padding: 1.2rem;
+      font-size: 1.4rem;
+    }
+
+    .counter-container {
+      right: 0.5rem;
+      top: 0.5rem;
+    }
   }
 
   button {
