@@ -22,6 +22,7 @@ const usePostAsLink: UsePostAsLink = postID => {
   const handlePostRedirect = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => {
+    const openInAnotherTab = e.ctrlKey || e.button === 1;
     const targetEvent = e.target as HTMLElement;
     const excludeTags = ['button', 'a', 'svg', 'path', 'img', 'p', 'circle'];
 
@@ -33,6 +34,7 @@ const usePostAsLink: UsePostAsLink = postID => {
     const isASlider = targetEvent.getAttribute('role') === 'slider';
     const isAMenu = targetEvent.getAttribute('role') === 'menu';
     const isInRoot = document.querySelector('#__next').contains(targetEvent);
+    const isRightButtonClick = e.button === 2;
     const checkClassName = checkContainClass([
       'prevent-redirect-post',
       'hashtag',
@@ -45,12 +47,17 @@ const usePostAsLink: UsePostAsLink = postID => {
       !isAClickOut,
       !isASlider,
       !isAMenu,
+      !isRightButtonClick,
       isInRoot,
     ];
 
     const canRedirect = checks.every(value => value === true);
 
-    if (canRedirect) {
+    if (openInAnotherTab && canRedirect) {
+      // Falso positivo abaixo
+      // eslint-disable-next-line security/detect-non-literal-fs-filename
+      window.open(`${process.env.NEXT_PUBLIC_HOST}/post/${postID}`, '_blank');
+    } else if (canRedirect) {
       router.push(`/post/${postID}`);
     }
   };
