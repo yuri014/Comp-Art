@@ -48,7 +48,7 @@ const AudioPlayerContainer = styled.div`
     flex-direction: column;
     justify-content: space-around;
     padding: 2rem 10rem;
-    max-height: 80rem;
+    max-height: 50rem;
     gap: 4rem;
 
     img {
