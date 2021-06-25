@@ -27,28 +27,6 @@ const CreatePostContainer = styled.div`
       padding-top: 1rem;
       border-top: 1px solid ${({ theme }) => theme.colors.darkGray};
 
-      .counter-container {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        font-size: 1.4rem;
-
-        .counter {
-          color: ${({ theme }) => theme.colors.themeColor};
-          margin-right: 1rem;
-
-          &-limit {
-            margin-right: 1rem;
-            color: ${({ theme }) => theme.colors.error};
-          }
-        }
-
-        .background-circle {
-          position: absolute;
-        }
-      }
-
       button {
         background: ${({ theme }) => theme.colors.pink};
         color: #fff;
