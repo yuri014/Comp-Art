@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { CgClose } from 'react-icons/cg';
 
 import ClientOnlyPortal from '@components/ClientOnlyPortal';
@@ -14,6 +14,17 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
   const modalData = useContext(ModalContext);
   const ref = useRef(null);
   useOutsideClick(ref, modalData.onHide);
+
+  useEffect(() => {
+    const close = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        modalData.onHide();
+      }
+    };
+
+    window.addEventListener('keydown', e => close(e));
+    return () => window.removeEventListener('keydown', e => close(e));
+  }, [modalData]);
 
   return (
     <ClientOnlyPortal selector="#modal">
