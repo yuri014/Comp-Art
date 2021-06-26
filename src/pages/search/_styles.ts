@@ -1,6 +1,31 @@
 import styled from 'styled-components';
 
-export const SearchPageContainer = styled.div``;
+export const SearchPageContainer = styled.div`
+  min-height: 100vh;
+
+  main {
+    margin-top: 4rem;
+
+    label {
+      input {
+        padding: calc(1.4rem - 1px) 2rem;
+        border: 1px solid ${({ theme }) => theme.colors.borderColor};
+      }
+    }
+
+    .animation-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem;
+    }
+
+    .no-data {
+      text-align: center;
+      font-size: 1.4rem;
+    }
+  }
+`;
 
 export const SearchContainer = styled.div`
   .profile-results {
