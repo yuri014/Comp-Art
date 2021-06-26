@@ -86,7 +86,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
   const getProfiles = await client.query({
     query: GET_SEARCH_PROFILE,
-    variables: { query, offset: 0, limit: 0 },
+    variables: { query, offset: 0, limit: 10 },
     errorPolicy: 'ignore',
   });
 
