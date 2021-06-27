@@ -29,7 +29,7 @@ const Timeline: React.FC<TimelineProps> = ({
   const lastPostRef = useInfiniteScroll(data, async () => {
     if (data[`${queryName}`].length === 6) {
       const newPosts = await fetchMore({
-        variables: { offset: data[`${queryName}`].length },
+        variables: { ...otherVariables, offset: data[`${queryName}`].length },
       });
       return newPosts.data[`${queryName}`].length === 6;
     }
