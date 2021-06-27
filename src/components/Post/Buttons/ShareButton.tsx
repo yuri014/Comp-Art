@@ -20,14 +20,18 @@ const QUICK_SHARE_POST = gql`
 
 const ShareButton: React.FC<ShareButtonProps> = ({ postID, updateLevel }) => {
   const isMount = usePreventMemoryLeak();
-  const [sharePost] = useMutation(QUICK_SHARE_POST, {
-    onCompleted: () => updateLevel(),
-  });
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [showModal, setShowModal] = useState(false);
   const [commentField, setCommentField] = useState('');
   const [progress, setProgress] = useState(0);
+
+  const [sharePost] = useMutation(QUICK_SHARE_POST, {
+    onCompleted: () => {
+      setShowModal(false);
+      updateLevel();
+    },
+  });
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
