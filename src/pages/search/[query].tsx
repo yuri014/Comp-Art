@@ -7,14 +7,11 @@ import Header from '@components/Header';
 import Home from '@components/Home';
 import MobileFooter from '@components/MobileFooter';
 import MobileHeader from '@components/MobileHeader';
-import Post from '@components/Post';
 import ProfileSimpleCard from '@components/ProfileCard';
-import ArtistPost from '@components/Post/ArtistPost';
-import usePostsMutations from '@hooks/postMutations';
+import Timeline from '@components/Timeline';
 import { LevelProvider } from '@context/level';
 import { initializeApollo } from '@graphql/apollo/config';
-import { GET_SEARCH_PROFILE, GET_SEARCH_POSTS } from '@graphql/queries/search';
-import { Timeline } from '@interfaces/Post';
+import { GET_SEARCH_POSTS, GET_SEARCH_PROFILE } from '@graphql/queries/search';
 import { ILoggedProfile, IProfile } from '@interfaces/Profile';
 import getLoggedUserWithNoAuth from '@ssr-functions/getLoggedUserWithNoAuth';
 import HomeContainer from '../home/_styles';
@@ -22,14 +19,9 @@ import { SearchContainer } from './_styles';
 
 interface SearchProps extends ILoggedProfile {
   profiles: Array<IProfile>;
-  posts: Array<Timeline>;
 }
 
-const Search: React.FC<SearchProps> = ({
-  profiles,
-  posts,
-  getLoggedProfile,
-}) => {
+const Search: React.FC<SearchProps> = ({ profiles, getLoggedProfile }) => {
   const {
     query: { query },
   } = useRouter();
@@ -54,11 +46,11 @@ const Search: React.FC<SearchProps> = ({
                   </div>
                 </section>
                 <section className="posts-results">
-                  {posts.map(post => (
-                    <Post useInteractions={usePostsMutations} post={post}>
-                      <ArtistPost post={post} />
-                    </Post>
-                  ))}
+                  <Timeline
+                    query={GET_SEARCH_POSTS}
+                    queryName="searchPost"
+                    otherVariables={{ query: `#${query}` }}
+                  />
                 </section>
               </SearchContainer>
             </Home>
@@ -90,20 +82,12 @@ export const getServerSideProps: GetServerSideProps = async context => {
     errorPolicy: 'ignore',
   });
 
-  const getPosts = await client.query({
-    query: GET_SEARCH_POSTS,
-    variables: { query, offset: 0 },
-    errorPolicy: 'ignore',
-  });
-
   const profiles = getProfiles.data.searchProfiles;
-  const posts = getPosts.data.searchPost;
   const getLoggedProfile = await getLoggedUserWithNoAuth(jwtToken, client);
 
   return {
     props: {
       profiles,
-      posts,
       getLoggedProfile,
     },
   };
