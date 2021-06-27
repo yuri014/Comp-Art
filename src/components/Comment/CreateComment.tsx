@@ -37,7 +37,6 @@ const CreateComment: React.FC<CommentsSectionsProps> = ({
           },
           body: commentField,
           createdAt: new Date().toISOString(),
-          likesCount: 0,
         },
       },
     ]);

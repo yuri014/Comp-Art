@@ -19,7 +19,6 @@ const GET_COMMENTS = gql`
       }
       body
       createdAt
-      likesCount
     }
   }
 `;

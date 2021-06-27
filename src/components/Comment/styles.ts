@@ -69,23 +69,15 @@ export const CommentContainer = styled.div`
   .comment-interations {
     display: flex;
     align-items: center;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     font-size: 1.3rem;
+    justify-content: flex-end;
     color: ${({ theme }) => theme.colors.darkGray};
-    margin-left: 1rem;
     gap: 1rem;
 
     div {
       display: flex;
       align-items: center;
-    }
-
-    .like {
-      color: ${({ theme }) => theme.colors.darkGray};
-      display: flex;
-      align-items: center;
-      background: none;
-      border: none;
     }
 
     p {

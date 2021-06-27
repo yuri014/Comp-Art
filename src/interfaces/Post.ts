@@ -52,7 +52,6 @@ export interface IComment {
   };
   body: string;
   createdAt: string;
-  likesCount: number;
 }
 
 export interface CommentsSectionsProps {
