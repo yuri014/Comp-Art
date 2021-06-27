@@ -50,6 +50,11 @@ const SearchProfileHeader: React.FC = () => {
         type="text"
         title="Buscar..."
         onChange={e => handleSearchProfile(e)}
+        onKeyDown={e => {
+          if (e.key === 'Enter') {
+            router.push(`/search/${searchProfile}`);
+          }
+        }}
         placeholder="Buscar..."
       />
       <Search />
