@@ -68,7 +68,7 @@ const InteractionButtonsContainer = styled.div`
 
       p {
         font-size: 1.4rem;
-        margin-left: 1rem;
+        margin-left: 0.5rem;
       }
     }
 
@@ -124,6 +124,7 @@ const InteractionButtonsContainer = styled.div`
       .interactions-button {
         p {
           font-size: 1.4rem;
+          margin-left: 1rem;
         }
       }
 
