@@ -61,7 +61,23 @@ const Search: React.FC<SearchProps> = ({ profiles, getLoggedProfile }) => {
         <>
           <Header />
           <Home>
-            <p>TODO</p>
+            <SearchContainer>
+              <section className="profile-results">
+                <p className="title">Resultados para &quot;{query}&quot;</p>
+                <div className="profiles-container">
+                  {profiles.map(profile => (
+                    <ProfileSimpleCard profile={profile} />
+                  ))}
+                </div>
+              </section>
+              <section className="posts-results">
+                <Timeline
+                  query={GET_SEARCH_POSTS}
+                  queryName="searchPost"
+                  otherVariables={{ query: `#${query}` }}
+                />
+              </section>
+            </SearchContainer>
           </Home>
         </>
       )}
