@@ -22,8 +22,8 @@ const useInfiniteScroll = (
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver(async entries => {
         if (entries[0].isIntersecting && hasMore) {
-          const lenght = await callback();
-          setHasMore(lenght as boolean);
+          const length = await callback();
+          setHasMore(length as boolean);
         }
       });
 

@@ -19,9 +19,9 @@ const TimelineManager: React.FC<TimelineManagerProps> = ({
 }) => (
   <>
     {posts.map((post, index) => {
-      const postsLenght = posts.length;
+      const postsLength = posts.length;
 
-      if (postsLenght === index + 1 && postsLenght) {
+      if (postsLength === index + 1 && postsLength) {
         if (post.artist) {
           return (
             <div key={post._id} ref={lastPostRef}>
