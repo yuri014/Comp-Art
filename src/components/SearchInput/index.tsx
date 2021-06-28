@@ -6,10 +6,11 @@ import { IconButton } from '@material-ui/core';
 import { FaSearch } from 'react-icons/fa';
 
 import { GET_PROFILE_PREVIEW_SEARCH } from '@graphql/queries/profile';
-import { ISearchProfile } from '../../interfaces/Profile';
-import useOutsideClick from '../../hooks/outsideClick';
+import useOutsideClick from '@hooks/outsideClick';
+import { ISearchProfile } from '@interfaces/Profile';
+import SearchInputContainer from './styles';
 
-const SearchProfileHeader: React.FC = () => {
+const SearchInput: React.FC = () => {
   const router = useRouter();
   const [searchProfile, setSearchProfile] = useState('');
   const [showSearch, setShowSearch] = useState(false);
@@ -45,7 +46,7 @@ const SearchProfileHeader: React.FC = () => {
   );
 
   return (
-    <div ref={modalSearchRef} className="search-input">
+    <SearchInputContainer ref={modalSearchRef}>
       <input
         type="text"
         title="Buscar..."
@@ -76,8 +77,8 @@ const SearchProfileHeader: React.FC = () => {
           ))}
         </div>
       )}
-    </div>
+    </SearchInputContainer>
   );
 };
 
-export default SearchProfileHeader;
+export default SearchInput;

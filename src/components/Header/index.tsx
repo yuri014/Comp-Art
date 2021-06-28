@@ -5,6 +5,7 @@ import { FaEnvelopeOpenText, FaMoon, FaSignInAlt, FaSun } from 'react-icons/fa';
 import { BiDonateHeart } from 'react-icons/bi';
 
 import Notification from '@components/Notification';
+import SearchInput from '@components/SearchInput';
 import { NewNotificationsProvider } from '@context/notification';
 import { HeaderContainer } from './styles';
 import { AuthContext } from '../../context/auth';
@@ -12,7 +13,6 @@ import ThemeContext from '../../context/theme';
 import { ILoggedProfile } from '../../interfaces/Profile';
 import mainLightTheme from '../../styles/themes/MainLightTheme';
 import mainDarkTheme from '../../styles/themes/MainDarkTheme';
-import SearchProfileHeader from '../Splitter/SearchProfileHeader';
 import Logo from '../../assets/logo.svg';
 import ProfileMenu from './ProfileMenu';
 
@@ -27,7 +27,7 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
           <Logo />
         </a>
       </Link>
-      <SearchProfileHeader />
+      <SearchInput />
       {auth.user ? (
         <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
           <div className="header-icons">
