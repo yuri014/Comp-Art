@@ -1,7 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
-import { ThemeProvider } from '@material-ui/core';
 import { gql } from '@apollo/client';
 
 import Header from '@components/Header';
@@ -10,9 +9,6 @@ import MobileFooter from '@components/MobileFooter';
 import MobileHeader from '@components/MobileHeader';
 import Timeline from '@components/Timeline';
 import { LevelProvider } from '@context/level';
-import mainDarkTheme from '@styles/themes/MainDarkTheme';
-import mainLightTheme from '@styles/themes/MainLightTheme';
-import ThemeContext from '@context/theme';
 import { CORE_POST_VIEW, CORE_SHARE_VIEW } from '@graphql/fragments/posts';
 import { GET_LOGGED_PROFILE } from '@graphql/queries/profile';
 import { initializeApollo } from '@graphql/apollo/config';
@@ -35,27 +31,21 @@ const GET_SAVED_POSTS = gql`
   }
 `;
 
-const SavedPosts: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
-  const { isDarkMode } = useContext(ThemeContext);
-
-  return (
-    <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
-      <HomeContainer>
-        <Head>
-          <title>Posts Salvos - Comp-Art</title>
-        </Head>
-        <Header getLoggedProfile={getLoggedProfile} />
-        <LevelProvider>
-          <Home getLoggedProfile={getLoggedProfile}>
-            <Timeline query={GET_SAVED_POSTS} queryName="getSavedPosts" />
-          </Home>
-          <MobileHeader getLoggedProfile={getLoggedProfile} />
-        </LevelProvider>
-        <MobileFooter />
-      </HomeContainer>
-    </ThemeProvider>
-  );
-};
+const SavedPosts: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => (
+  <HomeContainer>
+    <Head>
+      <title>Posts Salvos - Comp-Art</title>
+    </Head>
+    <Header getLoggedProfile={getLoggedProfile} />
+    <LevelProvider>
+      <Home getLoggedProfile={getLoggedProfile}>
+        <Timeline query={GET_SAVED_POSTS} queryName="getSavedPosts" />
+      </Home>
+      <MobileHeader getLoggedProfile={getLoggedProfile} />
+    </LevelProvider>
+    <MobileFooter />
+  </HomeContainer>
+);
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const { jwtToken } = req.cookies;

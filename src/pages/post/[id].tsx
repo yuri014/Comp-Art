@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic';
-import { ThemeProvider } from '@material-ui/core';
 
 import LikeButton from '@components/Post/Buttons/LikeButton';
 import SavedButton from '@components/Post/Buttons/SavedButton';
@@ -20,8 +19,6 @@ import { GET_POST } from '@graphql/queries/post';
 import { PostProps } from '@interfaces/Post';
 import { ILoggedProfile } from '@interfaces/Profile';
 import PostSchema from '@schemas/Post';
-import mainDarkTheme from '@styles/themes/MainDarkTheme';
-import mainLightTheme from '@styles/themes/MainLightTheme';
 import getLoggedUserWithNoAuth from '@ssr-functions/getLoggedUserWithNoAuth';
 import formatDistanceTimePass from '@utils/formatDistanceTimePass';
 import mediaIds from '@utils/mediaIds';
@@ -93,7 +90,7 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
   }, [post.likesCount]);
 
   return (
-    <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
+    <>
       <PostPageContainer>
         <Meta
           description={`Post de ${post.artist.name}`}
@@ -156,7 +153,7 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
         </main>
       </PostPageContainer>
       <PostSchema post={post} />
-    </ThemeProvider>
+    </>
   );
 };
 

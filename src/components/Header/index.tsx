@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import Link from 'next/link';
-import { ThemeProvider } from '@material-ui/core';
 import { FaEnvelopeOpenText, FaMoon, FaSignInAlt, FaSun } from 'react-icons/fa';
 import { BiDonateHeart } from 'react-icons/bi';
 
@@ -11,8 +10,6 @@ import { HeaderContainer } from './styles';
 import { AuthContext } from '../../context/auth';
 import ThemeContext from '../../context/theme';
 import { ILoggedProfile } from '../../interfaces/Profile';
-import mainLightTheme from '../../styles/themes/MainLightTheme';
-import mainDarkTheme from '../../styles/themes/MainDarkTheme';
 import Logo from '../../assets/logo.svg';
 import ProfileMenu from './ProfileMenu';
 
@@ -29,7 +26,7 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
       </Link>
       <SearchInput />
       {auth.user ? (
-        <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
+        <>
           <div className="header-icons">
             <button type="button">
               <FaEnvelopeOpenText />
@@ -52,7 +49,7 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
               logout={auth.logout}
             />
           </div>
-        </ThemeProvider>
+        </>
       ) : (
         <div className="header-icons">
           <span />

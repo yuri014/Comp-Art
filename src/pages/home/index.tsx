@@ -1,10 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import { ThemeProvider } from '@material-ui/core';
 
 import { LevelProvider } from '@context/level';
-import ThemeContext from '@context/theme';
 import { initializeApollo } from '@graphql/apollo/config';
 import { GET_LOGGED_PROFILE } from '@graphql/queries/profile';
 import { ILoggedProfile } from '@interfaces/Profile';
@@ -16,12 +14,9 @@ import MobileFooter from '@components/MobileFooter';
 import MobileHeader from '@components/MobileHeader';
 import { AuthContext } from '@context/auth';
 import { GET_POSTS } from '@graphql/queries/post';
-import mainDarkTheme from '@styles/themes/MainDarkTheme';
-import mainLightTheme from '@styles/themes/MainLightTheme';
 import HomeContainer from './_styles';
 
 const HomePage: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
-  const { isDarkMode } = useContext(ThemeContext);
   const auth = useContext(AuthContext);
 
   useEffect(() => {
@@ -35,26 +30,24 @@ const HomePage: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
   }, []);
 
   return (
-    <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
-      <HomeContainer>
-        <Head>
-          <title>Comp-Art</title>
-        </Head>
-        <Header getLoggedProfile={getLoggedProfile} />
-        <LevelProvider>
-          <Home getLoggedProfile={getLoggedProfile}>
-            <>
-              {auth.user && auth.user.isArtist && (
-                <CreatePost getLoggedProfile={getLoggedProfile} />
-              )}
-              <Timeline query={GET_POSTS} queryName="getPosts" />
-            </>
-          </Home>
-          <MobileHeader getLoggedProfile={getLoggedProfile} />
-        </LevelProvider>
-        <MobileFooter />
-      </HomeContainer>
-    </ThemeProvider>
+    <HomeContainer>
+      <Head>
+        <title>Comp-Art</title>
+      </Head>
+      <Header getLoggedProfile={getLoggedProfile} />
+      <LevelProvider>
+        <Home getLoggedProfile={getLoggedProfile}>
+          <>
+            {auth.user && auth.user.isArtist && (
+              <CreatePost getLoggedProfile={getLoggedProfile} />
+            )}
+            <Timeline query={GET_POSTS} queryName="getPosts" />
+          </>
+        </Home>
+        <MobileHeader getLoggedProfile={getLoggedProfile} />
+      </LevelProvider>
+      <MobileFooter />
+    </HomeContainer>
   );
 };
 
