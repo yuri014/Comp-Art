@@ -6,11 +6,9 @@ export const SearchPageContainer = styled.div`
   main {
     margin-top: 4rem;
 
-    label {
-      input {
-        padding: calc(1.4rem - 1px) 2rem;
-        border: 1px solid ${({ theme }) => theme.colors.borderColor};
-      }
+    input {
+      padding: calc(1.4rem - 1px) 2rem;
+      border: 1px solid ${({ theme }) => theme.colors.borderColor};
     }
 
     .animation-container {

@@ -3,11 +3,11 @@ import Lottie, { LottieRef } from 'lottie-react';
 import { ThemeProvider } from '@material-ui/core';
 
 import Meta from '@components/SEO/Meta';
+import SearchInput from '@components/SearchInput';
 import ThemeContext from '@context/theme';
 import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
 import NonAuthAltHeader from '@components/NonAuthAltHeader';
-import Input from '@components/Input';
 import { SearchPageContainer } from './_styles';
 import * as animationData from '../../animations/search-item.json';
 
@@ -26,7 +26,7 @@ const SearchPage: React.FC = () => {
         />
         <NonAuthAltHeader isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
         <main className="container">
-          <Input name="search" type="text" placeholder="Buscar..." />
+          <SearchInput />
           <div className="animation-container">
             <Lottie
               autoPlay={false}
@@ -41,7 +41,7 @@ const SearchPage: React.FC = () => {
               lottieRef={lottieRef}
             />
           </div>
-          <p className="no-data">Sem resultados por enquanto...</p>
+          <p className="no-data">Busque por perfis ou posts</p>
         </main>
       </ThemeProvider>
     </SearchPageContainer>
