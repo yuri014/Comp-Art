@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { FaEnvelopeOpenText, FaMoon, FaSignInAlt, FaSun } from 'react-icons/fa';
 import { BiDonateHeart } from 'react-icons/bi';
 
-import Notification from '@components/Notification';
+import NotificationMenu from '@components/Notification/NotificationMenu';
 import SearchInput from '@components/SearchInput';
 import { NewNotificationsProvider } from '@context/notification';
 import { HeaderContainer } from './styles';
@@ -40,7 +40,7 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
               <BiDonateHeart />
             </a>
             <NewNotificationsProvider>
-              <Notification />
+              <NotificationMenu />
             </NewNotificationsProvider>
             <ProfileMenu
               isDarkMode={isDarkMode}
