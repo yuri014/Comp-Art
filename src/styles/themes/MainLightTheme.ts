@@ -36,6 +36,7 @@ const mainLightTheme = createMuiTheme({
       root: {
         backgroundColor: '#eee',
         borderTop: '1px solid #adadad',
+        height: '48px',
       },
     },
   },

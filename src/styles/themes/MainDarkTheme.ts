@@ -40,8 +40,9 @@ const mainDarkTheme = createMuiTheme({
     },
     MuiBottomNavigation: {
       root: {
-        backgroundColor: '#050211',
+        backgroundColor: '#111112',
         borderTop: '1px solid #38383C',
+        height: '48px',
       },
     },
   },
