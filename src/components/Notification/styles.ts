@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const NotificationContainer = styled.div`
   padding: 0 0.5rem;
-  width: 35rem;
+  width: 30rem;
   position: relative;
 
   .notification-button {
@@ -84,7 +84,7 @@ export const NotificationMenuContainer = styled.div`
   top: 5rem;
   padding: 0.5rem 0;
   right: 4.5rem;
-  height: 22rem;
+  max-height: 22rem;
   overflow: auto;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
