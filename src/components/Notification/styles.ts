@@ -5,7 +5,7 @@ export const NotificationContainer = styled.div`
   width: 35rem;
   position: relative;
 
-  button {
+  .notification-button {
     display: flex;
     color: ${({ theme }) => theme.colors.themeColor};
     width: 100%;
