@@ -5,7 +5,6 @@ import { BiDonateHeart } from 'react-icons/bi';
 
 import NotificationMenu from '@components/Notification/NotificationMenu';
 import SearchInput from '@components/SearchInput';
-import { NewNotificationsProvider } from '@context/notification';
 import { HeaderContainer } from './styles';
 import { AuthContext } from '../../context/auth';
 import ThemeContext from '../../context/theme';
@@ -39,9 +38,7 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
             >
               <BiDonateHeart />
             </a>
-            <NewNotificationsProvider>
-              <NotificationMenu />
-            </NewNotificationsProvider>
+            <NotificationMenu />
             <ProfileMenu
               isDarkMode={isDarkMode}
               toggleTheme={toggleTheme}

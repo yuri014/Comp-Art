@@ -17,6 +17,7 @@ import useDarkMode from 'use-dark-mode';
 import { MuiThemeProvider } from '@material-ui/core';
 import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
+import { NewNotificationsProvider } from '@context/notification';
 
 NProgress.configure({ showSpinner: false });
 
@@ -44,18 +45,23 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
       </Head>
       <ApolloProvider client={apolloClient}>
         <AuthProvider>
-          <ThemeContext.Provider
-            value={{ isDarkMode: darkmode.value, toggleTheme: darkmode.toggle }}
-          >
-            <ThemeProvider theme={newTheme}>
-              <MuiThemeProvider
-                theme={darkmode.value ? mainDarkTheme : mainLightTheme}
-              >
-                {isMounted && <Component {...pageProps} />}
-                <GlobalStyle />
-              </MuiThemeProvider>
-            </ThemeProvider>
-          </ThemeContext.Provider>
+          <NewNotificationsProvider>
+            <ThemeContext.Provider
+              value={{
+                isDarkMode: darkmode.value,
+                toggleTheme: darkmode.toggle,
+              }}
+            >
+              <ThemeProvider theme={newTheme}>
+                <MuiThemeProvider
+                  theme={darkmode.value ? mainDarkTheme : mainLightTheme}
+                >
+                  {isMounted && <Component {...pageProps} />}
+                  <GlobalStyle />
+                </MuiThemeProvider>
+              </ThemeProvider>
+            </ThemeContext.Provider>
+          </NewNotificationsProvider>
         </AuthProvider>
       </ApolloProvider>
     </>
