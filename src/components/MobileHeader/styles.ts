@@ -34,6 +34,7 @@ const MobileHeaderContainer = styled.header`
     border: none;
     background: transparent;
     padding: 12px;
+    display: flex;
 
     img {
       height: ${size};
