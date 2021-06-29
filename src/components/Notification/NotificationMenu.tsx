@@ -36,13 +36,7 @@ const NotificationMenu: React.FC = () => {
       </IconButton>
       {openMenu && (
         <NotificationMenuContainer ref={notificationMenuRef}>
-          <Notification
-            data={data}
-            fetchMore={fetchMore}
-            loading={loading}
-            openMenu={openMenu}
-            setOpenMenu={setOpenMenu}
-          />
+          <Notification data={data} fetchMore={fetchMore} loading={loading} />
         </NotificationMenuContainer>
       )}
     </>

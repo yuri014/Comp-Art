@@ -10,8 +10,6 @@ interface NotificationProps {
     variables: { offset: number },
   }) => Promise<{ data: NotificationQuery }>;
   loading: boolean;
-  openMenu: boolean;
-  setOpenMenu: (value: React.SetStateAction<boolean>) => void;
 }
 
 const Notification: React.FC<NotificationProps> = ({
