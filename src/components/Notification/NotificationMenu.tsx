@@ -1,74 +1,52 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import { Badge, IconButton } from '@material-ui/core';
+import { FaBell } from 'react-icons/fa';
 
-import useInfiniteScroll from '@hooks/infiniteScroll';
-import { NotificationQuery } from '@interfaces/Notifications';
+import useNotifications from '@hooks/useNotifications';
 import useOutsideClick from '@hooks/outsideClick';
+import Notification from '.';
 import { NotificationMenuContainer } from './styles';
-import NotificationItem from './NotificationItem';
 
-interface NotificationMenuProps {
-  data: NotificationQuery;
-  fetchMore: ({
-    variables: { offset: number },
-  }) => Promise<{ data: NotificationQuery }>;
-  loading: boolean;
-  openMenu: boolean;
-  setOpenMenu: (value: React.SetStateAction<boolean>) => void;
-}
-
-const NotificationMenu: React.FC<NotificationMenuProps> = ({
-  data,
-  loading,
-  openMenu,
-  fetchMore,
-  setOpenMenu,
-}) => {
-  const lastNotificationRef = useInfiniteScroll(data, async () => {
-    if (data.getNotifications.length === 4) {
-      const newNotifications = await fetchMore({
-        variables: { offset: data.getNotifications.length + 1 },
-      });
-      return newNotifications.data.getNotifications.length === 4;
-    }
-
-    return false;
-  });
-
+const NotificationMenu: React.FC = () => {
+  const [openMenu, setOpenMenu] = useState(false);
   const notificationMenuRef = useRef(null);
+
+  const { data, fetchMore, hasNewNotifications, loading } = useNotifications();
+
   useOutsideClick(notificationMenuRef, () => {
     setOpenMenu(false);
   });
 
   return (
     <>
-      {!loading && data && openMenu && (
+      <IconButton
+        aria-controls="menu-notification"
+        aria-haspopup="true"
+        aria-label="Abrir menu de notificações"
+        color="secondary"
+        onClick={() => setOpenMenu(true)}
+      >
+        <Badge
+          color="primary"
+          variant="dot"
+          invisible={hasNewNotifications === 0}
+        >
+          <FaBell />
+        </Badge>
+      </IconButton>
+      {openMenu && (
         <NotificationMenuContainer ref={notificationMenuRef}>
-          {data.getNotifications.map((notification, index) => {
-            if (data.getNotifications.length === index + 1) {
-              return (
-                <div
-                  className="notification-item"
-                  key={notification._id}
-                  ref={lastNotificationRef}
-                >
-                  <NotificationItem notification={notification} />
-                </div>
-              );
-            }
-
-            return (
-              <div className="notification-item" key={notification._id}>
-                <NotificationItem
-                  key={notification._id}
-                  notification={notification}
-                />
-              </div>
-            );
-          })}
+          <Notification
+            data={data}
+            fetchMore={fetchMore}
+            loading={loading}
+            openMenu={openMenu}
+            setOpenMenu={setOpenMenu}
+          />
         </NotificationMenuContainer>
       )}
     </>
   );
 };
 
-export default NotificationMenu;
+export default React.memo(NotificationMenu);
