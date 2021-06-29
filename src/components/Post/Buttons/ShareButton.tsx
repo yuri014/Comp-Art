@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
-import { Menu, MenuItem } from '@material-ui/core';
+import { Menu, MenuItem, ThemeProvider } from '@material-ui/core';
+import { FaShareAlt, FaShare, FaEdit } from 'react-icons/fa';
 
 import { MenuListIcon } from '@components/Header/styles';
-import { FaShareAlt, FaShare, FaEdit } from 'react-icons/fa';
 import { ShareButtonProps } from '@interfaces/InteractionButtons';
 import { ModalProvider } from '@context/modal';
+import ThemeContext from '@context/theme';
+import mainDarkTheme from '@styles/themes/MainDarkTheme';
+import mainLightTheme from '@styles/themes/MainLightTheme';
 import DraftEditor from '@components/DraftEditor';
 import usePreventMemoryLeak from '@hooks/preventMemoryLeak';
 import CAButton from '@styles/components/button';
@@ -20,6 +23,7 @@ const QUICK_SHARE_POST = gql`
 
 const ShareButton: React.FC<ShareButtonProps> = ({ postID, updateLevel }) => {
   const isMount = usePreventMemoryLeak();
+  const { isDarkMode } = useContext(ThemeContext);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [showModal, setShowModal] = useState(false);
@@ -53,7 +57,7 @@ const ShareButton: React.FC<ShareButtonProps> = ({ postID, updateLevel }) => {
   };
 
   return (
-    <>
+    <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
       <button
         aria-label="Compartilhar"
         type="button"
@@ -125,7 +129,7 @@ const ShareButton: React.FC<ShareButtonProps> = ({ postID, updateLevel }) => {
           )}
         </ModalProvider>
       )}
-    </>
+    </ThemeProvider>
   );
 };
 

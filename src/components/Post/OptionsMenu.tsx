@@ -1,8 +1,17 @@
 import React, { useContext, useRef, useState } from 'react';
-import { IconButton, Menu, MenuItem, NoSsr, Snackbar } from '@material-ui/core';
+import {
+  IconButton,
+  Menu,
+  MenuItem,
+  Snackbar,
+  ThemeProvider,
+} from '@material-ui/core';
 import { FiMoreHorizontal, FiTrash2 } from 'react-icons/fi';
 import { FaLink, FaTimes } from 'react-icons/fa';
 
+import ThemeContext from '@context/theme';
+import mainDarkTheme from '@styles/themes/MainDarkTheme';
+import mainLightTheme from '@styles/themes/MainLightTheme';
 import { AuthContext } from '../../context/auth';
 import { MenuListIcon } from '../Header/styles';
 
@@ -17,6 +26,7 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({
   id,
   username,
 }) => {
+  const { isDarkMode } = useContext(ThemeContext);
   const auth = useContext(AuthContext);
   const clip = useRef(null);
   const [isClipped, setIsClipped] = useState(false);
@@ -37,7 +47,7 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({
   };
 
   return (
-    <NoSsr>
+    <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
       <IconButton
         aria-label="abrir menu post"
         aria-haspopup="true"
@@ -95,7 +105,7 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({
           </IconButton>
         }
       />
-    </NoSsr>
+    </ThemeProvider>
   );
 };
 
