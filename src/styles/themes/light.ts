@@ -16,7 +16,7 @@ const theme = {
     gray: '#716F6F',
     lightGray: '#38383C',
     purple: '#625CCC',
-    lightSecondaryBackground: '#e5e5e5',
+    lightSecondaryBackground: '#f0f0f0',
     lighterSecondaryBackground: '#e5e5e5',
     commentBackground: '#dddddd',
     borderColor: '#adadad',
