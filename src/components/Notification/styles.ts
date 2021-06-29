@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const NotificationContainer = styled.div`
   padding: 0 0.5rem;
-  width: 30rem;
+  width: 100%;
   position: relative;
 
   .notification-button {
@@ -74,6 +74,10 @@ export const NotificationContainer = styled.div`
         box-shadow: 0 0 0 0 ${({ theme }) => theme.colors.mainColor}00;
       }
     }
+  }
+
+  @media (min-width: 1100px) {
+    width: 30rem;
   }
 `;
 
