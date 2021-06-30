@@ -45,7 +45,6 @@ const MediaForm: React.FC<MediaFormProps> = ({
         <Input
           name="alt"
           placeholder="Digite uma descrição"
-          required
           onChange={e => setAlt(e.target.value)}
         >
           Alt
@@ -55,7 +54,6 @@ const MediaForm: React.FC<MediaFormProps> = ({
       <Input
         name="alt"
         placeholder="Digite uma descrição"
-        required
         onChange={e => setAlt(e.target.value)}
       >
         Alt
