@@ -61,7 +61,9 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
     });
   };
 
-  const cannotSubmit = description.length >= 1200 || description.length === 0;
+  const hasMedia = !!audioResult || !!imagePreview.file;
+  const hasDescription = description.length > 0 && description.length <= 1200;
+  const canSubmit = hasMedia || hasDescription;
 
   return (
     <CreatePostContainer>
@@ -110,8 +112,8 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
             )}
             <button
               type="submit"
-              disabled={cannotSubmit}
-              className={`${!cannotSubmit ? '' : 'disabled'}`}
+              disabled={!canSubmit}
+              className={`${canSubmit ? '' : 'disabled'}`}
             >
               Publicar
             </button>
