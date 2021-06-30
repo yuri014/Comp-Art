@@ -81,7 +81,7 @@ const ProfileSimpleCardContainer = styled.div`
   }
 
   &:hover {
-    filter: brightness(1.2);
+    background-color: ${({ theme }) => theme.colors.lighterSecondaryBackground};
   }
 
   img {
