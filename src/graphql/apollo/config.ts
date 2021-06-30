@@ -102,6 +102,24 @@ function createApolloClient(cookie?: string) {
                 return mergeCache(existing, incoming, offset);
               },
             },
+            getFollowing: {
+              keyArgs: false,
+              merge(existing, incoming, { args: { offset = 0 } }) {
+                return mergeCache(existing, incoming, offset);
+              },
+            },
+            getFollowers: {
+              keyArgs: false,
+              merge(existing, incoming, { args: { offset = 0 } }) {
+                return mergeCache(existing, incoming, offset);
+              },
+            },
+            getWhoSharesPost: {
+              keyArgs: false,
+              merge(existing, incoming, { args: { offset = 0 } }) {
+                return mergeCache(existing, incoming, offset);
+              },
+            },
             getNotifications: {
               keyArgs: false,
               merge(existing, incoming, { args: { offset = 0 } }) {
