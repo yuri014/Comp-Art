@@ -10,10 +10,14 @@ import ThemeContext from '@context/theme';
 import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
 import ModalShareDescription from './ModalShareDescription';
+import UnlockArtist from './UnlockArtist';
 
 const QUICK_SHARE_POST = gql`
   mutation CreateSharePost($shareInput: SharePost!) {
-    createSharePost(shareInput: $shareInput)
+    createSharePost(shareInput: $shareInput) {
+      levelUp
+      isFreeToPost
+    }
   }
 `;
 
@@ -22,9 +26,13 @@ const ShareButton: React.FC<ShareButtonProps> = ({ postID, updateLevel }) => {
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [showModal, setShowModal] = useState(false);
+  const [isFreeToPost, setIsFreeToPost] = useState(false);
 
   const [sharePost] = useMutation(QUICK_SHARE_POST, {
-    onCompleted: () => {
+    onCompleted: data => {
+      if (data.createSharePost) {
+        setIsFreeToPost(data.createSharePost.isFreeToPost);
+      }
       setShowModal(false);
       updateLevel();
     },
@@ -97,6 +105,14 @@ const ShareButton: React.FC<ShareButtonProps> = ({ postID, updateLevel }) => {
       {showModal && (
         <ModalProvider onHide={() => setShowModal(false)} title="Compartilhar">
           <ModalShareDescription sharePost={handleSharePost} />
+        </ModalProvider>
+      )}
+      {isFreeToPost && (
+        <ModalProvider
+          onHide={() => setShowModal(false)}
+          title="Você ajudou outros como você, agora está liberado para postar novamente!"
+        >
+          <UnlockArtist setShowModal={setIsFreeToPost} />
         </ModalProvider>
       )}
     </ThemeProvider>
