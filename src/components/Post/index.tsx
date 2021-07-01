@@ -87,7 +87,7 @@ const Post: React.FC<IPostProps> = ({ post, children, useInteractions }) => {
               dislikePost={dislikePost}
               likePost={likePost}
               postProps={{
-                _id: post._id,
+                _id: isShare ? post.post._id : post._id,
                 isLiked: post.isLiked,
                 isSaved: post.isSaved,
                 isShare,
