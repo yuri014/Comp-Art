@@ -10,18 +10,19 @@ import {
 import { AuthContext } from '@context/auth';
 import { useRouter } from 'next/router';
 import { ModalProvider } from '@context/modal';
+import { ISnackbar } from '@interfaces/Generics';
 import { CodeInputHeaderContainer, CodeInputModalContainer } from './styles';
 
 interface CodeInputModalProps {
   email: string;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-  setError: React.Dispatch<React.SetStateAction<string>>;
+  setMessage: React.Dispatch<React.SetStateAction<ISnackbar>>;
 }
 
 const CodeInputModal: React.FC<CodeInputModalProps> = ({
   email,
   setShowModal,
-  setError,
+  setMessage,
 }) => {
   const router = useRouter();
   const [code, setCode] = useState('');
@@ -31,12 +32,15 @@ const CodeInputModal: React.FC<CodeInputModalProps> = ({
       authContext.login({ ...response.confirmationEmail });
       router.push('/confirmation-email');
     },
-    onError: ({ graphQLErrors }) => setError(graphQLErrors[0].message),
+    onError: ({ graphQLErrors }) =>
+      setMessage({ variant: 'error', message: graphQLErrors[0].message }),
   });
 
   const [resendConfirmationCode] = useMutation(RESEND_CONFIRMATION_CODE, {
-    onCompleted: () => setError('Seu código foi enviado!'),
-    onError: ({ graphQLErrors }) => setError(graphQLErrors[0].message),
+    onCompleted: () =>
+      setMessage({ variant: 'success', message: 'Seu código foi enviado!' }),
+    onError: ({ graphQLErrors }) =>
+      setMessage({ variant: 'error', message: graphQLErrors[0].message }),
   });
 
   const handleSubmit = () => {

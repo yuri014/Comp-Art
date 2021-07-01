@@ -13,6 +13,7 @@ import { Snackbar, IconButton, ThemeProvider } from '@material-ui/core';
 import CAButton from '@styles/components/button';
 import formTheme from '@styles/themes/FormTheme';
 import registerUserSchema from '@validations/register';
+import { ISnackbar } from '@interfaces/Generics';
 
 const CodeInputModal = dynamic(() => import('@components/CodeInputModal'));
 
@@ -34,14 +35,22 @@ const FormHeader = React.memo(() => (
   </>
 ));
 
+const initialSnackbarState: ISnackbar = {
+  variant: 'error',
+  message: '',
+};
+
 const RegisterForm: React.FC<RegisterFormProps> = ({ isArtist }) => {
   const [successModalShow, setSuccessModalShow] = useState(false);
-  const [showError, setShowError] = useState('');
+  const [showSnackbar, setShowSnackbar] = useState<ISnackbar>(
+    initialSnackbarState,
+  );
   const inputRef = useRef(null);
 
   const [registerUser] = useMutation(REGISTER_USER, {
     onCompleted: () => setSuccessModalShow(true),
-    onError: ({ graphQLErrors }) => setShowError(graphQLErrors[0].message),
+    onError: ({ graphQLErrors }) =>
+      setShowSnackbar({ variant: 'error', message: graphQLErrors[0].message }),
   });
 
   const { register, handleSubmit, errors, watch } = useForm<IUser>({
@@ -135,15 +144,22 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ isArtist }) => {
               vertical: 'top',
               horizontal: 'right',
             }}
-            open={!!showError}
-            autoHideDuration={1800}
-            onClose={() => setShowError('')}
-            message={showError}
+            open={!!showSnackbar.message}
+            autoHideDuration={6000}
+            onClose={() => setShowSnackbar(initialSnackbarState)}
+            message={showSnackbar.message}
+            className="success"
+            ContentProps={{
+              style: {
+                background:
+                  showSnackbar.variant === 'success' ? '#077E76' : '#ED4848',
+              },
+            }}
             action={
               <IconButton
                 size="small"
                 aria-label="fechar menu"
-                onClick={() => setShowError('')}
+                onClick={() => setShowSnackbar(initialSnackbarState)}
               >
                 <FaTimes />
               </IconButton>
@@ -155,7 +171,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ isArtist }) => {
         <CodeInputModal
           email={watch('email')}
           setShowModal={setSuccessModalShow}
-          setError={setShowError}
+          setMessage={setShowSnackbar}
         />
       )}
     </>
