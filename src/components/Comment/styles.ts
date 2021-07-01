@@ -71,6 +71,7 @@ export const CommentContainer = styled.div`
     align-items: center;
     margin-top: 0.5rem;
     font-size: 1.3rem;
+    margin-right: 1rem;
     justify-content: flex-end;
     color: ${({ theme }) => theme.colors.darkGray};
     gap: 1rem;
@@ -93,6 +94,25 @@ export const CommentContainer = styled.div`
     padding: 1rem;
     box-shadow: ${({ theme }) => theme.colors.mainShadow};
     position: relative;
+
+    .menu-comment {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+
+      button {
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        padding: 0.2rem 0.4rem;
+        color: ${({ theme }) => theme.colors.darkGray};
+        background: ${({ theme }) => theme.colors.commentBackground};
+
+        &:hover {
+          filter: brightness(1.2);
+        }
+      }
+    }
 
     a {
       color: ${({ theme }) => theme.colors.themeColor};
