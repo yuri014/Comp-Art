@@ -9,11 +9,7 @@ import { ModalProvider } from '@context/modal';
 import ThemeContext from '@context/theme';
 import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
-import DraftEditor from '@components/DraftEditor';
-import usePreventMemoryLeak from '@hooks/preventMemoryLeak';
-import CAButton from '@styles/components/button';
-import DescriptionCounter from '@components/DraftEditor/utils/DescriptionCounter';
-import { ModalShareContainer } from './styles';
+import ModalShareDescription from './ModalShareDescription';
 
 const QUICK_SHARE_POST = gql`
   mutation CreateSharePost($shareInput: SharePost!) {
@@ -22,13 +18,10 @@ const QUICK_SHARE_POST = gql`
 `;
 
 const ShareButton: React.FC<ShareButtonProps> = ({ postID, updateLevel }) => {
-  const isMount = usePreventMemoryLeak();
   const { isDarkMode } = useContext(ThemeContext);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [showModal, setShowModal] = useState(false);
-  const [commentField, setCommentField] = useState('');
-  const [progress, setProgress] = useState(0);
 
   const [sharePost] = useMutation(QUICK_SHARE_POST, {
     onCompleted: () => {
@@ -103,30 +96,7 @@ const ShareButton: React.FC<ShareButtonProps> = ({ postID, updateLevel }) => {
       </Menu>
       {showModal && (
         <ModalProvider onHide={() => setShowModal(false)} title="Compartilhar">
-          {isMount && (
-            <ModalShareContainer className="modal-content">
-              <div className="input-container">
-                <div className="draft-container">
-                  <DraftEditor
-                    setText={setCommentField}
-                    setProgress={setProgress}
-                    limit={1200}
-                    placeholder="Digite aqui o seu comentário..."
-                  />
-                </div>
-                <DescriptionCounter
-                  className="counter-container"
-                  progress={progress}
-                />
-              </div>
-              <CAButton
-                onClick={() => handleSharePost(commentField)}
-                type="button"
-              >
-                Compartilhar
-              </CAButton>
-            </ModalShareContainer>
-          )}
+          <ModalShareDescription sharePost={handleSharePost} />
         </ModalProvider>
       )}
     </ThemeProvider>
