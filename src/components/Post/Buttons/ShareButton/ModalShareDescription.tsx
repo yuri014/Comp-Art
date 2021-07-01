@@ -4,7 +4,7 @@ import DraftEditor from '@components/DraftEditor';
 import DescriptionCounter from '@components/DraftEditor/utils/DescriptionCounter';
 import usePreventMemoryLeak from '@hooks/preventMemoryLeak';
 import CAButton from '@styles/components/button';
-import { ModalShareContainer } from '../styles';
+import { ModalShareContainer } from './styles';
 
 interface ModalShareDescriptionProps {
   sharePost: (description?: string) => void;
