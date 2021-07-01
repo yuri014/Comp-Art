@@ -3,7 +3,10 @@ import ReactCodeInput from 'react-verification-code-input';
 import { useMutation } from '@apollo/client';
 
 import CAButton from '@styles/components/button';
-import { CONFIRMATION_EMAIL } from '@graphql/mutations/user';
+import {
+  CONFIRMATION_EMAIL,
+  RESEND_CONFIRMATION_CODE,
+} from '@graphql/mutations/user';
 import { AuthContext } from '@context/auth';
 import { useRouter } from 'next/router';
 import { ModalProvider } from '@context/modal';
@@ -23,7 +26,7 @@ const CodeInputModal: React.FC<CodeInputModalProps> = ({
   const router = useRouter();
   const [code, setCode] = useState('');
   const authContext = useContext(AuthContext);
-  const [sendCode] = useMutation(CONFIRMATION_EMAIL, {
+  const [confirmEmail] = useMutation(CONFIRMATION_EMAIL, {
     onCompleted: response => {
       authContext.login({ ...response.confirmationEmail });
       router.push('/confirmation-email');
@@ -31,8 +34,13 @@ const CodeInputModal: React.FC<CodeInputModalProps> = ({
     onError: ({ graphQLErrors }) => setError(graphQLErrors[0].message),
   });
 
+  const [resendConfirmationCode] = useMutation(RESEND_CONFIRMATION_CODE, {
+    onCompleted: () => setError('Seu código foi enviado!'),
+    onError: ({ graphQLErrors }) => setError(graphQLErrors[0].message),
+  });
+
   const handleSubmit = () => {
-    sendCode({
+    confirmEmail({
       variables: {
         code,
         email,
@@ -76,7 +84,18 @@ const CodeInputModal: React.FC<CodeInputModalProps> = ({
             <p>Pode levar um tempo para o código chegar.</p>
             <div className="resend-code">
               <p>Caso não receba: </p>{' '}
-              <button type="button">Reenviar código</button>
+              <button
+                type="button"
+                onClick={() =>
+                  resendConfirmationCode({
+                    variables: {
+                      email,
+                    },
+                  })
+                }
+              >
+                Reenviar código
+              </button>
             </div>
           </div>
           <CAButton type="submit">ENVIAR</CAButton>
