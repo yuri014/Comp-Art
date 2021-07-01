@@ -17,6 +17,12 @@ export const CONFIRMATION_EMAIL = gql`
   }
 `;
 
+export const RESEND_CONFIRMATION_CODE = gql`
+  mutation ResendConfirmationCode($email: String!) {
+    resendConfirmationCode(email: $email)
+  }
+`;
+
 export const LOGIN_USER = gql`
   mutation LoginUser($email: String!, $password: String!) {
     login(email: $email, password: $password) {
