@@ -55,9 +55,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
     errorPolicy: 'ignore',
   });
 
-  const { getLoggedProfile } = getProfile.data;
-
-  if (jwtToken && !getLoggedProfile) {
+  if (jwtToken && !getProfile.data) {
     return {
       redirect: {
         destination: '/register-profile',
@@ -65,6 +63,8 @@ export const getServerSideProps: GetServerSideProps = async context => {
       },
     };
   }
+
+  const { getLoggedProfile } = getProfile.data;
 
   return {
     props: {
