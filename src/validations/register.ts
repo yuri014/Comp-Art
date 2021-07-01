@@ -22,8 +22,8 @@ const registerUserSchema = yup.object().shape({
     .string()
     .min(8)
     .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-      'Senha precisa de uma letra maiúscula e uma minúscula, um número e um caracter especial',
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+      'Senha deve conter no mínimo 8 caracteres uma letra, um número e um caracter especial',
     )
     .required(),
   confirmPassword: yup
