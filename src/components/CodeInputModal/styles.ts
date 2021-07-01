@@ -49,7 +49,7 @@ export const CodeInputModalContainer = styled.form`
         outline: none;
       }
 
-      &:last-child {
+      &:last-child:not(:focus) {
         border-right: none;
       }
     }
