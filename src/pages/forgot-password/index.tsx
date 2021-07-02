@@ -1,17 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
+import dynamic from 'next/dynamic';
 import { useMutation } from '@apollo/client';
 import { useForm } from 'react-hook-form';
-import { FaTimes } from 'react-icons/fa';
-import { Snackbar, IconButton, ThemeProvider } from '@material-ui/core';
 
 import Input from '@components/Input';
 import Meta from '@components/SEO/Meta';
 import Title from '@components/Title';
 import ToggleThemeButton from '@components/ToggleTheme';
 import { SEND_FORGOT_PASSWORD_EMAIL } from '@graphql/mutations/user';
+import useSnackbar from '@hooks/useSnackbar';
 import CAButton from '@styles/components/button';
-import formTheme from '@styles/themes/FormTheme';
 import ForgotPasswordContainer from './_styles';
+
+const CASnackbar = dynamic(() => import('@components/CASnackbar'));
 
 interface IForm {
   email: string;
@@ -19,8 +20,17 @@ interface IForm {
 
 const ForgotPassword: React.FC = () => {
   const inputRef = useRef(null);
-  const [sendEmail] = useMutation(SEND_FORGOT_PASSWORD_EMAIL);
-  const [showError, setShowError] = useState('');
+  const { clearSnackbar, setShowSnackbar, showSnackbar } = useSnackbar();
+
+  const [sendEmail] = useMutation(SEND_FORGOT_PASSWORD_EMAIL, {
+    onCompleted: () =>
+      setShowSnackbar({
+        message: 'Enviamos um e-mail para você!',
+        variant: 'success',
+      }),
+    onError: ({ graphQLErrors }) =>
+      setShowSnackbar({ variant: 'error', message: graphQLErrors[0].message }),
+  });
 
   const { handleSubmit, register } = useForm<IForm>({
     mode: 'onChange',
@@ -64,27 +74,10 @@ const ForgotPassword: React.FC = () => {
           >
             E-mail
           </Input>
-          <ThemeProvider theme={formTheme}>
-            <Snackbar
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={!!showError}
-              autoHideDuration={6000}
-              onClose={() => setShowError('')}
-              message={showError}
-              action={
-                <IconButton
-                  size="small"
-                  aria-label="fechar menu erro"
-                  onClick={() => setShowError('')}
-                >
-                  <FaTimes />
-                </IconButton>
-              }
-            />
-          </ThemeProvider>
+          <CASnackbar
+            snackbarState={showSnackbar}
+            clearSnackbar={clearSnackbar}
+          />
           <CAButton type="submit">ENVIAR</CAButton>
         </form>
       </main>

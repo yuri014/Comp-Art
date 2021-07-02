@@ -3,19 +3,18 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@apollo/client';
-import { FaArrowLeft, FaTimes } from 'react-icons/fa';
+import { FaArrowLeft } from 'react-icons/fa';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import Input from '@components/Input';
 import { REGISTER_USER } from '@graphql/mutations/user';
 import { IUser } from '@interfaces/User';
-import { Snackbar, IconButton, ThemeProvider } from '@material-ui/core';
 import CAButton from '@styles/components/button';
-import formTheme from '@styles/themes/FormTheme';
 import registerUserSchema from '@validations/register';
-import { ISnackbar } from '@interfaces/Generics';
+import useSnackbar from '@hooks/useSnackbar';
 
 const CodeInputModal = dynamic(() => import('@components/CodeInputModal'));
+const CASnackbar = dynamic(() => import('@components/CASnackbar'));
 
 interface RegisterFormProps {
   isArtist: boolean;
@@ -35,16 +34,9 @@ const FormHeader = React.memo(() => (
   </>
 ));
 
-const initialSnackbarState: ISnackbar = {
-  variant: 'error',
-  message: '',
-};
-
 const RegisterForm: React.FC<RegisterFormProps> = ({ isArtist }) => {
   const [successModalShow, setSuccessModalShow] = useState(false);
-  const [showSnackbar, setShowSnackbar] = useState<ISnackbar>(
-    initialSnackbarState,
-  );
+  const { clearSnackbar, setShowSnackbar, showSnackbar } = useSnackbar();
   const inputRef = useRef(null);
 
   const [registerUser] = useMutation(REGISTER_USER, {
@@ -138,34 +130,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ isArtist }) => {
             </Link>
           </p>
         </div>
-        <ThemeProvider theme={formTheme}>
-          <Snackbar
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            open={!!showSnackbar.message}
-            autoHideDuration={6000}
-            onClose={() => setShowSnackbar(initialSnackbarState)}
-            message={showSnackbar.message}
-            className="success"
-            ContentProps={{
-              style: {
-                background:
-                  showSnackbar.variant === 'success' ? '#077E76' : '#ED4848',
-              },
-            }}
-            action={
-              <IconButton
-                size="small"
-                aria-label="fechar menu"
-                onClick={() => setShowSnackbar(initialSnackbarState)}
-              >
-                <FaTimes />
-              </IconButton>
-            }
-          />
-        </ThemeProvider>
+        <CASnackbar
+          snackbarState={showSnackbar}
+          clearSnackbar={clearSnackbar}
+        />
       </form>
       {successModalShow && (
         <CodeInputModal
