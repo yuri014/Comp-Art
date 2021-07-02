@@ -56,7 +56,7 @@ const AuthProvider: React.FC = props => {
 
   const login = (data: IUser) => {
     Cookie.set('jwtToken', data.token, {
-      expires: 7,
+      expires: 15,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'Strict',
     });
