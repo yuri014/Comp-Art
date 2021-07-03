@@ -65,7 +65,7 @@ const ForgotPassword: React.FC = () => {
       </header>
       <main>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <h2>Recupere sua senha</h2>
+          <h2>Esqueci minha senha</h2>
           <Input
             name="email"
             placeholder="Digite seu e-mail"
