@@ -2,7 +2,7 @@ const theme = {
   colors: {
     mainColor: '#077E76',
     titleColor: 'rgba(0, 0, 0, 0.2)',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#edf1f2',
     secondaryBackgroundColor: '#fff',
     alternativeBackground: '#f5f5f5',
     modalBackrgound: '#fff',
