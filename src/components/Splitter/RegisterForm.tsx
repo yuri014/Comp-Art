@@ -29,7 +29,7 @@ const FormHeader = React.memo(() => (
     </Link>
     <h2>Crie sua conta</h2>
     <p className="subtitle">
-      Junte-se a milhares de artistas e fãs, venha divulgar seus trabalhos!
+      Junte-se a artistas e fãs, venha divulgar seus trabalhos!
     </p>
   </>
 ));
