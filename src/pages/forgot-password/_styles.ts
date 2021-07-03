@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 const ForgotPasswordContainer = styled.div`
   height: 100vh;
-  padding: 5rem 0;
-  padding-top: 4rem;
+  padding: 4rem 0;
+  padding-bottom: 2rem;
   display: grid;
   color: ${({ theme }) => theme.colors.themeColor};
 
@@ -30,6 +30,10 @@ const ForgotPasswordContainer = styled.div`
         font-size: 1.4rem;
       }
     }
+  }
+
+  footer {
+    margin-top: 0;
   }
 
   @media (min-width: 768px) {

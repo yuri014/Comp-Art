@@ -10,6 +10,7 @@ import ToggleThemeButton from '@components/ToggleTheme';
 import { SEND_FORGOT_PASSWORD_EMAIL } from '@graphql/mutations/user';
 import useSnackbar from '@hooks/useSnackbar';
 import CAButton from '@styles/components/button';
+import Footer from '@components/Footer';
 import ForgotPasswordContainer from './_styles';
 
 const CASnackbar = dynamic(() => import('@components/CASnackbar'));
@@ -81,6 +82,7 @@ const ForgotPassword: React.FC = () => {
           <CAButton type="submit">ENVIAR</CAButton>
         </form>
       </main>
+      <Footer />
     </ForgotPasswordContainer>
   );
 };
