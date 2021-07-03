@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+
 import Meta from '@components/SEO/Meta';
 import ToggleThemeButton from '@components/ToggleTheme';
 import Footer from '@components/Footer';
 import Title from '@components/Title';
 import { ModalProvider } from '@context/modal';
 import CAButton from '@styles/components/button';
+import { GetServerSideProps } from 'next';
 import LandingContainer, { LandingModalContainer } from './_index';
 
 const Landing: React.FC = () => {
   const [modalShow, setModalShow] = useState(false);
+
   return (
     <LandingContainer>
       <Meta
@@ -63,6 +66,23 @@ const Landing: React.FC = () => {
       )}
     </LandingContainer>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async context => {
+  const { jwtToken } = context.req.cookies;
+
+  if (jwtToken) {
+    return {
+      redirect: {
+        destination: '/home',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
 };
 
 export default Landing;
