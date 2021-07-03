@@ -26,7 +26,7 @@ const ForgotPassword: React.FC = () => {
   const [sendEmail] = useMutation(SEND_FORGOT_PASSWORD_EMAIL, {
     onCompleted: () =>
       setShowSnackbar({
-        message: 'Enviamos um e-mail para você!',
+        message: 'Enviamos um e-mail com instruções para você!',
         variant: 'success',
       }),
     onError: ({ graphQLErrors }) =>
@@ -65,7 +65,7 @@ const ForgotPassword: React.FC = () => {
       </header>
       <main>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <h2>Envia seu e-mail para recuperar sua senha</h2>
+          <h2>Recupere sua senha</h2>
           <Input
             name="email"
             placeholder="Digite seu e-mail"
@@ -79,6 +79,9 @@ const ForgotPassword: React.FC = () => {
             snackbarState={showSnackbar}
             clearSnackbar={clearSnackbar}
           />
+          <p>
+            Iremos enviar um e-mail para você com as instruções necessárias.
+          </p>
           <CAButton type="submit">ENVIAR</CAButton>
         </form>
       </main>
