@@ -61,7 +61,7 @@ const RecoverPassword: React.FC = () => {
     <ForgotPasswordContainer className="container">
       <Meta
         uri="forgot-password"
-        title="Esqueci minha senha - Comp-Art"
+        title="Recuperar minha senha - Comp-Art"
         description="Recupere sua senha para continuar na plataforma."
         keywords="Comp-Art, comp-art, comp art, divulgação, arte, música, ilustrações, artistas, login, entrar"
       />
