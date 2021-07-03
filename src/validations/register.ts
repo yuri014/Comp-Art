@@ -1,4 +1,5 @@
 import * as yup from 'yup';
+import { RequiredStringSchema } from 'yup/lib/string';
 
 yup.setLocale({
   mixed: {
@@ -15,21 +16,31 @@ yup.setLocale({
   },
 });
 
-const registerUserSchema = yup.object().shape({
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export const createUserSchema = (otherValidations?: {
+  [key: string]: RequiredStringSchema<string, Record<string, unknown>>;
+}) =>
+  yup.object().shape({
+    ...otherValidations,
+    password: yup
+      .string()
+      .min(8)
+      .matches(
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+        'Senha deve conter no mínimo 8 caracteres uma letra, um número e um caracter especial',
+      )
+      .required(),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref('password'), null], 'Senhas não conferem')
+      .required(),
+  });
+
+const registerField = {
   username: yup.string().min(6).max(24).required(),
   email: yup.string().email().required(),
-  password: yup
-    .string()
-    .min(8)
-    .matches(
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-      'Senha deve conter no mínimo 8 caracteres uma letra, um número e um caracter especial',
-    )
-    .required(),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref('password'), null], 'Senhas não conferem')
-    .required(),
-});
+};
+
+const registerUserSchema = createUserSchema(registerField);
 
 export default registerUserSchema;
