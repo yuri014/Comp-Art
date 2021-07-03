@@ -39,3 +39,22 @@ export const SEND_FORGOT_PASSWORD_EMAIL = gql`
     sendForgotPasswordEmail(email: $email)
   }
 `;
+
+export const RECOVER_PASSWORD = gql`
+  mutation RecoverPassword(
+    $token: String!
+    $newPassword: String!
+    $confirmPassword: String!
+  ) {
+    recoverPassword(
+      token: $token
+      newPassword: $newPassword
+      confirmPassword: $confirmPassword
+    ) {
+      id
+      username
+      isArtist
+      token
+    }
+  }
+`;
