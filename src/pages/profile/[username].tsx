@@ -6,6 +6,7 @@ import CAImage from '@components/CAImage';
 import Header from '@components/Header';
 import MobileFooter from '@components/MobileFooter';
 import ProfileLinks from '@components/Splitter/ProfileLinks';
+import SuggestedProfiles from '@components/SuggestedProfiles';
 import Timeline from '@components/Timeline';
 import { initializeApollo } from '@graphql/apollo/config';
 import { GET_PROFILE_POSTS } from '@graphql/queries/post';
@@ -54,15 +55,21 @@ const Profile: React.FC<ProfileProps> = ({
               otherVariables={{ username }}
             />
           </section>
-          <section className="no-logged">
-            <div>
-              <h4>Novo na Comp-Art?</h4>
-              <p>Inscreva-se para explorar o mundo da arte!</p>
-              <Link href="/register">
-                <CAButton as="a">CRIAR CONTA</CAButton>
-              </Link>
-            </div>
-          </section>
+          {getLoggedProfile ? (
+            <aside>
+              <SuggestedProfiles />
+            </aside>
+          ) : (
+            <section className="no-logged">
+              <div>
+                <h4>Novo na Comp-Art?</h4>
+                <p>Inscreva-se para explorar o mundo da arte!</p>
+                <Link href="/register">
+                  <CAButton as="a">CRIAR CONTA</CAButton>
+                </Link>
+              </div>
+            </section>
+          )}
         </main>
         <MobileFooter />
       </ProfileContainer>
