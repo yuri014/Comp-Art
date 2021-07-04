@@ -8,7 +8,7 @@ export const HashtagsProfileContainer = styled.div`
   border-radius: 5px;
   width: 20%;
   max-width: 33rem;
-  margin-top: 31rem;
+  margin-top: 32rem;
 
   h3 {
     font-size: 1.8rem;

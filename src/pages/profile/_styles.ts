@@ -82,6 +82,12 @@ const ProfileContainer = styled.div`
         padding-bottom: 4rem;
       }
 
+      aside {
+        div {
+          width: unset;
+        }
+      }
+
       .no-logged {
         display: block;
         background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
