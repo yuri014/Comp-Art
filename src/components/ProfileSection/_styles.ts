@@ -12,13 +12,11 @@ const ProfileSectionContainer = styled.section`
 
   .buttons-profile {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
     margin-top: 4rem;
     max-width: 48rem;
 
     button {
-      width: 12rem;
+      width: 100%;
       border: none;
       color: #fff;
       padding: 1.1rem 1rem;
@@ -27,8 +25,8 @@ const ProfileSectionContainer = styled.section`
       background-color: ${({ theme }) => theme.colors.mainColor};
       transition: filter 0.225s ease;
 
-      &.sponsorship {
-        background-color: ${({ theme }) => theme.colors.purple};
+      &.delete-account {
+        background-color: ${({ theme }) => theme.colors.error};
       }
 
       &.edit-profile {
@@ -37,6 +35,15 @@ const ProfileSectionContainer = styled.section`
 
       &:hover {
         filter: brightness(0.75);
+      }
+    }
+
+    .auth-buttons {
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        width: 12rem;
       }
     }
   }

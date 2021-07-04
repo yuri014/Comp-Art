@@ -123,17 +123,19 @@ const ProfileSection: React.FC<ProfileProps> = ({ getProfile }) => {
           </div>
         </div>
         <div className="buttons-profile">
-          <button type="button" className="sponsorship">
-            PATROCINAR
-          </button>
           {hasAuth && getProfile.owner === auth.user.username && (
-            <Link href="/profile/edit">
-              <a>
-                <button className="edit-profile" type="button">
-                  EDITAR PERFIL
-                </button>
-              </a>
-            </Link>
+            <div className="auth-buttons">
+              <button type="button" className="delete-account">
+                DELETAR CONTA
+              </button>
+              <Link href="/profile/edit">
+                <a>
+                  <button className="edit-profile" type="button">
+                    EDITAR PERFIL
+                  </button>
+                </a>
+              </Link>
+            </div>
           )}
 
           {checkFollowButton() && isFollowing && !loading && (
