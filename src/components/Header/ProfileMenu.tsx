@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
-import { FaUserAlt, FaMoon, FaCog, FaSignOutAlt } from 'react-icons/fa';
+import { FaUserAlt, FaMoon, FaSignOutAlt } from 'react-icons/fa';
 
 import { ILoggedProfile } from '@interfaces/Profile';
 import { MenuListIcon } from './styles';
@@ -59,12 +59,6 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
           <MenuListIcon>
             <FaMoon />
             <p>Modo {!isDarkMode ? 'Escuro' : 'Claro'}</p>
-          </MenuListIcon>
-        </MenuItem>
-        <MenuItem onClick={() => push('/config')}>
-          <MenuListIcon>
-            <FaCog />
-            <p>Configurações</p>
           </MenuListIcon>
         </MenuItem>
         <MenuItem
