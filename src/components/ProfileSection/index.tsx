@@ -1,15 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
-import { gql, useMutation, useQuery } from '@apollo/client';
-import Link from 'next/link';
+import { gql } from '@apollo/client';
 
-import { AuthContext } from '@context/auth';
-import { FOLLOW_PROFILE, UNFOLLOW_PROFILE } from '@graphql/mutations/profile';
 import { IProfile } from '@interfaces/Profile';
-import { GET_IS_FOLLOWING } from '@graphql/queries/profile';
 import { MODAL_PROFILE } from '@graphql/fragments/profile';
 import formatDate from '@utils/formatDate';
 import ProfileSectionContainer from './_styles';
+import ProfileButtons from './ProfileButtons';
 
 const ModalProfile = dynamic(() => import('@components/ModalProfile'));
 const FullScreenImage = dynamic(() => import('@components/FullScreenImage'));
@@ -49,25 +46,14 @@ const followingQuery = {
 };
 
 const ProfileSection: React.FC<ProfileProps> = ({ getProfile }) => {
-  const auth = useContext(AuthContext);
   const [isImageFullScreen, setIsImageFullScreen] = useState(false);
   const [modalShow, setModalShow] = useState(false);
-  const [followersCount, setFollowersCount] = useState(getProfile.followers);
-  const [follow] = useMutation(FOLLOW_PROFILE);
-  const [unfollow] = useMutation(UNFOLLOW_PROFILE);
+  const [followersCount, setFollowersCount] = useState(0);
   const [modalPayload, setModalPayload] = useState(followerQuery);
 
-  const [isFollowing, setIsFollowing] = useState(false);
-  const { data: getIsFollowing, loading } = useQuery(GET_IS_FOLLOWING, {
-    variables: {
-      id: getProfile._id,
-    },
-    onCompleted: () => setIsFollowing(getIsFollowing.getIsFollowing),
-  });
-
-  const hasAuth = auth.user;
-  const checkFollowButton = () =>
-    hasAuth && getProfile.owner !== auth.user.username;
+  useEffect(() => {
+    setFollowersCount(getProfile.followers);
+  }, [getProfile.followers]);
 
   return (
     <>
@@ -122,57 +108,10 @@ const ProfileSection: React.FC<ProfileProps> = ({ getProfile }) => {
             </button>
           </div>
         </div>
-        <div className="buttons-profile">
-          {hasAuth && getProfile.owner === auth.user.username && (
-            <div className="auth-buttons">
-              <button type="button" className="delete-account">
-                DELETAR CONTA
-              </button>
-              <Link href="/profile/edit">
-                <a>
-                  <button className="edit-profile" type="button">
-                    EDITAR PERFIL
-                  </button>
-                </a>
-              </Link>
-            </div>
-          )}
-
-          {checkFollowButton() && isFollowing && !loading && (
-            <button
-              className="main-color"
-              type="button"
-              onClick={() => {
-                unfollow({
-                  variables: { username: getProfile.owner },
-                });
-                setIsFollowing(false);
-                setFollowersCount(followersCount - 1);
-              }}
-            >
-              SEGUINDO
-            </button>
-          )}
-          {checkFollowButton() && !isFollowing && !loading && (
-            <button
-              type="button"
-              onClick={() => {
-                follow({
-                  variables: { username: getProfile.owner },
-                });
-                setIsFollowing(true);
-                setFollowersCount(followersCount + 1);
-              }}
-            >
-              SEGUIR
-            </button>
-          )}
-          {!hasAuth && (
-            <button className="main-color" type="button">
-              SEGUIR
-            </button>
-          )}
-        </div>
+        <ProfileButtons
+          getProfile={getProfile}
+          setFollowersCount={setFollowersCount}
+        />
         {getProfile.bio && (
           <div className="bio">
             <p>{getProfile.bio}</p>
