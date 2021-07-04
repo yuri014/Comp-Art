@@ -46,47 +46,47 @@ const useNotifications = (): UseNotifications => {
   });
 
   useEffect(() => {
-    if (!loading && data) {
-      subscribeToMore({
-        document: NOTIFICATIONS_SUBSCRIPTION,
-        updateQuery: (
-          prev: NotificationQuery,
-          {
-            subscriptionData,
-          }: { subscriptionData: QueryResult<NotificationSubscription> },
-        ): NotificationQuery => {
-          if (!subscriptionData.data) return prev;
-          const newFeedItem = subscriptionData.data.notification;
+    const unsubscribe = subscribeToMore({
+      document: NOTIFICATIONS_SUBSCRIPTION,
+      updateQuery: (
+        prev: NotificationQuery,
+        {
+          subscriptionData,
+        }: { subscriptionData: QueryResult<NotificationSubscription> },
+      ): NotificationQuery => {
+        if (!subscriptionData.data) return prev;
+        const newFeedItem = subscriptionData.data.notification;
 
-          const hasDuplicateNotification = prev.getNotifications.some(
-            not => not._id === newFeedItem._id,
+        const hasDuplicateNotification = prev.getNotifications.some(
+          not => not._id === newFeedItem._id,
+        );
+
+        if (!hasDuplicateNotification) {
+          sendNotification(
+            {
+              body: newFeedItem.body,
+              link: newFeedItem.link,
+              title: 'Nova interação!',
+            },
+            router.push,
           );
+        }
 
-          if (!hasDuplicateNotification) {
-            sendNotification(
-              {
-                body: newFeedItem.body,
-                link: newFeedItem.link,
-                title: 'Nova interação!',
-              },
-              router.push,
-            );
-          }
+        const newNotifications = [
+          newFeedItem,
+          ...prev.getNotifications.filter(
+            value => value._id !== newFeedItem._id,
+          ),
+        ];
 
-          const newNotifications = [
-            newFeedItem,
-            ...prev.getNotifications.filter(
-              value => value._id !== newFeedItem._id,
-            ),
-          ];
+        return {
+          ...prev,
+          getNotifications: newNotifications,
+        };
+      },
+    });
 
-          return {
-            ...prev,
-            getNotifications: newNotifications,
-          };
-        },
-      });
-    }
+    return () => unsubscribe();
   }, [data, loading, router.push, subscribeToMore]);
 
   useEffect(() => {
