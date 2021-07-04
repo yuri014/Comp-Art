@@ -90,9 +90,13 @@ const ProfileButtons: React.FC<ProfileButtonsProps> = ({
       <FollowingButton />
       <NotFollowingButton />
       {!hasAuth && (
-        <button className="main-color" type="button">
-          SEGUIR
-        </button>
+        <Link href="/login">
+          <a>
+            <button className="main-color" type="button">
+              SEGUIR
+            </button>
+          </a>
+        </Link>
       )}
     </div>
   );
