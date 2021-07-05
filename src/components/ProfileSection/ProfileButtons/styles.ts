@@ -5,7 +5,8 @@ export const DeleteAccountMessage = styled.div`
     color: ${({ theme }) => theme.colors.error};
   }
 
-  div {
+  .message {
+    display: block;
     color: ${({ theme }) => theme.colors.mainColor};
   }
 `;
