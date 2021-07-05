@@ -21,11 +21,13 @@ import Input from '../Input';
 interface FormProfileProps {
   mutation: DocumentNode;
   defaultValues?: IProfile;
+  buttonMessage: string;
 }
 
 const FormProfile: React.FC<FormProfileProps> = ({
   defaultValues,
   mutation,
+  buttonMessage,
 }) => {
   const { register, handleSubmit, errors, setValue } = useForm<IProfileInput>({
     mode: 'onChange',
@@ -160,6 +162,9 @@ const FormProfile: React.FC<FormProfileProps> = ({
           >
             Nome*
           </Input>
+          <Input name="bio" placeholder="Sua bio">
+            Bio
+          </Input>
           <Input
             name="tags"
             placeholder="Coloque aqui seus 5 gostos preferidos"
@@ -167,6 +172,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
             onChange={e =>
               e.target.value !== ',' && setTagInput(e.target.value)
             }
+            value={tagInput}
             onKeyDown={e => {
               if (e.key === ',') {
                 if (tags.length <= 4 && !tags.includes(`#${tagInput}`)) {
@@ -196,7 +202,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
 
           <ProfileLinksForm register={register} />
           {showError && <ErrorMessage>{showError}</ErrorMessage>}
-          <CAButton type="submit">CRIAR PERFIL</CAButton>
+          <CAButton type="submit">{buttonMessage}</CAButton>
         </div>
       </FormProfileContainer>
     </ThemeProvider>

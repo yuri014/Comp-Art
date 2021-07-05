@@ -25,7 +25,7 @@ const RegisterProfile: React.FC = () => {
             {user.isArtist ? 'artista' : 'fã'}!
           </p>
         </div>
-        <FormProfile mutation={REGISTER_PROFILE} />
+        <FormProfile mutation={REGISTER_PROFILE} buttonMessage="CRIAR PERFIL" />
         <Footer />
       </div>
     </RegisterProfileContainer>

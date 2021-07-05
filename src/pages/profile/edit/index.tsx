@@ -35,6 +35,7 @@ const EditProfile: React.FC = () => {
             <FormProfile
               mutation={UPDATE_PROFILE}
               defaultValues={profile.getLoggedProfile}
+              buttonMessage="ATUALIZAR PERFIL"
             />
           </EditProfileContainer>
         </>
