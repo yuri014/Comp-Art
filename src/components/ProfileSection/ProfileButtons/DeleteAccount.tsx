@@ -41,7 +41,12 @@ const DeleteAccount: React.FC = () => {
                 <span>todos seus dados serão apagados</span>.
               </p>
               <p>
-                Caso deseje realmente continuar, digite a frase:
+                Seus arquivos de mídia poderão levar mais tempo para serem
+                apagados.
+              </p>
+              <br />
+              <p>
+                Caso deseja realmente continuar, digite a frase:
                 <div> &quot;{message}&quot;</div>
               </p>
             </DeleteAccountMessage>
