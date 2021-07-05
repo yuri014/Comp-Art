@@ -27,13 +27,15 @@ const DeleteAccount: React.FC = () => {
 
   const [deleteAccount] = useMutation(DELETE_ACCOUNT, {
     ignoreResults: true,
+    onCompleted: () => {
+      auth.logout();
+      router.push('/');
+    },
   });
 
   const canDelete = () => {
     if (response === message) {
       deleteAccount();
-      auth.logout();
-      router.push('/');
     } else {
       inputRef.current.focus();
       setHasErrors(true);
@@ -64,7 +66,7 @@ const DeleteAccount: React.FC = () => {
               <br />
               <p>
                 Caso deseja realmente continuar, digite a frase:
-                <div> &quot;{message}&quot;</div>
+                <span className="message"> &quot;{message}&quot;</span>
               </p>
             </DeleteAccountMessage>
           }
