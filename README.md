@@ -10,7 +10,7 @@ O Comp-Art é uma rede social criada com o intuito de unir a comunidade artísti
 
 ## Como funciona
 
-Cada pessoa pode se cadastrar como Artista ou Apreciador. O Artista pode ser grupo, banda, solo e afins. Apreciador só pode ser um usuário. Artistas devem se cadastrar dizendo quais são os seus tipos de arte. O Apreciador deve se cadastrar dizendo quais são as suas preferências. Interagir curtindo, comentando ou compartilhando é livre para todos. Todos usuários poderão seguir e ser seguido e terão acesso a mensagens.
+Cada pessoa pode se cadastrar como Artista ou Apreciador. O Artista pode ser grupo, banda, solo e afins. Apreciador só pode ser um usuário. Artistas devem se cadastrar dizendo quais são os seus tipos de arte. O Apreciador deve se cadastrar dizendo quais são as suas preferências. Interagir curtindo, comentando ou compartilhando é livre para todos. Todos usuários poderão seguir e serem seguidos e terão acesso a mensagens.
 
 **Para Artistas:**
 
