@@ -1,22 +1,39 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
+import { useRouter } from 'next/router';
+import { gql, useMutation } from '@apollo/client';
 
 import { InputContainer } from '@components/Input/styles';
+import { AuthContext } from '@context/auth';
 import { ModalProvider } from '@context/modal';
 import CAButton from '@styles/components/button';
 import DeleteAccountModalContainer, { DeleteAccountMessage } from './styles';
+
+const DELETE_ACCOUNT = gql`
+  mutation DeleteAccount {
+    deleteAccount
+  }
+`;
 
 const message = 'Podemos continuar amigos';
 
 const DeleteAccount: React.FC = () => {
   const inputRef = useRef(null);
+  const router = useRouter();
+  const auth = useContext(AuthContext);
 
   const [hasError, setHasErrors] = useState(false);
   const [response, setResponse] = useState('');
   const [showModal, setShowModal] = useState(false);
 
+  const [deleteAccount] = useMutation(DELETE_ACCOUNT, {
+    ignoreResults: true,
+  });
+
   const canDelete = () => {
     if (response === message) {
-      console.log('');
+      deleteAccount();
+      auth.logout();
+      router.push('/');
     } else {
       inputRef.current.focus();
       setHasErrors(true);
