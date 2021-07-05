@@ -43,7 +43,11 @@ const ProfileSectionContainer = styled.section`
       justify-content: space-between;
 
       button {
-        width: 12rem;
+        width: 13rem;
+
+        @media (min-width: 768px) {
+          width: 12rem;
+        }
       }
     }
   }
