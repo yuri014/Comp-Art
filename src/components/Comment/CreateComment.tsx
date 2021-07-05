@@ -31,7 +31,7 @@ const CreateComment: React.FC<CommentsSectionsProps> = ({
         comment: {
           _id: '',
           author: {
-            avatar: profile.avatar,
+            avatar: profile.avatar || '',
             name: profile.name,
             owner: profile.owner,
           },
