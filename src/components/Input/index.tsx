@@ -7,6 +7,7 @@ interface InputProps {
   refInput?: unknown;
   placeholder: string;
   type?: string;
+  value?: string | number | string[];
   required?: boolean;
   error?: string;
   helperText?: string;
@@ -22,6 +23,7 @@ const Input: React.FC<InputProps> = ({
   placeholder,
   refInput,
   required,
+  value,
   type,
   onChange,
   onKeyDown,
@@ -32,6 +34,7 @@ const Input: React.FC<InputProps> = ({
       id={name}
       name={name}
       type={type}
+      value={value}
       placeholder={placeholder}
       ref={refInput as React.Ref<HTMLInputElement>}
       required={required}
