@@ -22,7 +22,7 @@ Cada pessoa pode se cadastrar como Artista ou Apreciador. O Artista pode ser gru
 
 ## Changelog
 
-## Versão 0.1 [Publicada]
+## Versão 0.1 [Publicação em 24/07/2021]
 
 - Criar conta ✅
 - Criar perfil de artista ou fã ✅
