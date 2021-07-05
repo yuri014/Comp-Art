@@ -22,7 +22,7 @@ Cada pessoa pode se cadastrar como Artista ou Apreciador. O Artista pode ser gru
 
 ## Changelog
 
-## Versão 0.1 [Publicação em 24/07/2021]
+## Versão 0.1 [Publicada]
 
 - Criar conta ✅
 - Criar perfil de artista ou fã ✅
@@ -69,24 +69,24 @@ Cada pessoa pode se cadastrar como Artista ou Apreciador. O Artista pode ser gru
 ## Versão 0.6 [Inédito]
 
 - Criação de chat.
-- Newsletter semanal sobre os 3 artistas em ascensão da semana (não pode se repetir e votos de fãs valem por dois).
+- Newsletter semanal sobre os 3 artistas em ascensão da semana (não pode se repetir e votos de apreciadores valem por dois).
 - Botão de votação de artista em ascensão.
 
 ## Versão 0.7 [Inédito]
 
-- Stories mensal para top 3 do mês (somente fãs). Fãs acima de level 10 poderão selecionar 3 artistas e falar sobre eles em um story de um minuto.
+- Stories mensal para top 3 do mês (somente apreciadores). Fãs acima de level 10 poderão selecionar 3 artistas e falar sobre eles em um story de um minuto.
 
 ## Versão 0.8 [Inédito]
 
-- Criação de grupos (somente fãs). Fãs acima do level 15 poderão criar um grupo para qualquer coisa relacionada a arte. No grupo, todos podem postar o quanto quiser de acordo com as regras do grupo.
+- Criação de grupos (somente apreciadores). Fãs acima do level 15 poderão criar um grupo para qualquer coisa relacionada a arte. No grupo, todos podem postar o quanto quiser de acordo com as regras do grupo.
 
 ## Versão 0.9 [Inédito]
 
-- Criação de fandoms (somente artista). Artistas level 40 poderão criar um fandom onde podem postar o quanto quiser para um número limitado de fãs que ele escolher.
+- Criação de fandoms (somente artista). Artistas level 40 poderão criar um fandom onde podem postar o quanto quiser para um número limitado de apreciadores que ele escolher.
 
 ## Versão 1.0 [Inédito]
 
-- Cupons de desconto para compras de artes (fãs recebem cupons com mais facilidade).
+- Cupons de desconto para compras de artes (apreciadores recebem cupons com mais facilidade).
 - Quests para a conquista desses cupons.
 - Badges para levels.
 
