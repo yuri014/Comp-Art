@@ -6,6 +6,7 @@ import { AuthContext } from '@context/auth';
 import { FOLLOW_PROFILE, UNFOLLOW_PROFILE } from '@graphql/mutations/profile';
 import { GET_IS_FOLLOWING } from '@graphql/queries/profile';
 import { IProfile } from '@interfaces/Profile';
+import DeleteAccount from './DeleteAccount';
 
 interface ProfileButtonsProps {
   getProfile: IProfile;
@@ -75,9 +76,7 @@ const ProfileButtons: React.FC<ProfileButtonsProps> = ({
     <div className="buttons-profile">
       {hasAuth && getProfile.owner === auth.user.username && (
         <div className="auth-buttons">
-          <button type="button" className="delete-account">
-            DELETAR CONTA
-          </button>
+          <DeleteAccount />
           <Link href="/profile/edit">
             <a>
               <button className="edit-profile" type="button">
