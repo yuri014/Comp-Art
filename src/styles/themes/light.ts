@@ -37,6 +37,10 @@ const theme = {
     secondaryShadow:
       '#d3d6db 1px 1px 5px 0px inset, #ffffff80 -1px -1px 5px 1px inset',
   },
+  mdxTheme: {
+    background: '#cbcaeb',
+    normalFont: '#15121F',
+  },
   fonts: {
     display: '"Audiowide", sans-serif',
     primary: '"Exo 2", sans-serif',
