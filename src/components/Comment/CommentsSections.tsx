@@ -59,7 +59,7 @@ const CommentsSections: React.FC<CommentsSectionsProps> = ({
     <CommentsSectionContainer>
       <CreateComment profile={profile} postId={postId} />
       {loading || error || !commentsData ? (
-        <CommentSkeleton />
+        <>{loading && <CommentSkeleton />}</>
       ) : (
         commentsData.getComments.map((comment, index) => {
           if (commentsData.getComments.length === index + 1) {
