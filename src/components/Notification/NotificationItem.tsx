@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
 
+import ProfileImage from '@components/ProfileImage';
 import { NewNotificationsContext } from '@context/notification';
 import { INotification } from '@interfaces/Notifications';
 import formatDistanceTimePass from '@utils/formatDistanceTimePass';
@@ -47,11 +48,13 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
         type="button"
         onMouseEnter={() => readNotification()}
       >
-        <img
-          src={process.env.NEXT_PUBLIC_API_HOST + notification.avatar}
-          alt="Teste"
+        <ProfileImage
+          avatar={notification.avatar}
+          alt={`Imagem de perfil de ${notification.from}`}
+          username={notification.from}
+          className="profile-image"
         />
-        <div>
+        <div className="head-container">
           <div className="head">
             <strong>{notification.from}</strong>
             <p>&nbsp;{notification.body}</p>

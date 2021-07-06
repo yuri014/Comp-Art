@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ThemeProvider } from '@material-ui/core';
 import { FaBookmark, FaHome, FaRegCompass, FaUserAlt } from 'react-icons/fa';
 
+import ProfileImage from '@components/ProfileImage';
 import { HomeProfileContainer } from './styles';
 import formTheme from '../../styles/themes/FormTheme';
 import { ILoggedProfile } from '../../interfaces/Profile';
@@ -13,9 +14,11 @@ const HomeProfile: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => (
     <ThemeProvider theme={formTheme}>
       <div className="profile">
         <figure>
-          <img
-            src={process.env.NEXT_PUBLIC_API_HOST + getLoggedProfile.avatar}
+          <ProfileImage
+            avatar={getLoggedProfile.avatar}
             alt="Imagem do perfil"
+            username={getLoggedProfile.owner}
+            className="profile-image"
           />
         </figure>
         <div className="profile-info">

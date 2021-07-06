@@ -20,14 +20,13 @@ export const NotificationContainer = styled.div`
       background: ${({ theme }) => theme.colors.lighterSecondaryBackground};
     }
 
-    img {
+    .profile-image {
       width: 4rem;
       height: 4rem;
-      border-radius: 50%;
       margin-right: 1rem;
     }
 
-    div {
+    .head-container {
       width: 79%;
 
       .head {

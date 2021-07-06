@@ -15,10 +15,9 @@ const PostPageContainer = styled.div`
         width: 100%;
         gap: 1rem;
 
-        img {
+        .author-image {
           width: 4rem;
           height: 4rem;
-          border-radius: 50%;
         }
 
         a {

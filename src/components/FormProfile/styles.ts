@@ -65,27 +65,13 @@ const FormProfileContainer = styled.form`
     }
 
     img {
-      border-radius: 50%;
       width: 10rem;
       height: 10rem;
-      object-fit: cover;
     }
 
     .holder {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 5rem;
-      color: #000;
-      text-transform: uppercase;
-      font-weight: bold;
       width: 10rem;
       height: 10rem;
-      border-radius: 50%;
-
-      p {
-        position: absolute;
-      }
     }
 
     label {

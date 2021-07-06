@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
+import ProfileImage from '@components/ProfileImage';
 import { IProfile } from '@interfaces/Profile';
 import formatDistanceTimePass from '@utils/formatDistanceTimePass';
 import { AuthorInfoContainer } from '../utilsStyles';
@@ -23,10 +24,11 @@ const AuthorInfo: React.FC<AuthorInfoProps> = ({
     <AuthorInfoContainer>
       <Link href={`/profile/${profile.owner}`}>
         <a>
-          <img
+          <ProfileImage
             alt={`Imagem de perfil de ${profile.name}`}
-            src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
-            className="prevent-redirect-post"
+            avatar={profile.avatar}
+            username={profile.owner}
+            className="prevent-redirect-post author-image"
           />
           <div>
             <div className="author">

@@ -62,18 +62,24 @@ const ProfileSectionContainer = styled.section`
       border: none;
       cursor: pointer;
       display: block;
+      width: 11rem;
+      height: 11rem;
 
       img {
-        width: 11rem;
+        width: 100%;
         border-radius: 50%;
-        height: 11rem;
+        height: 100%;
         cursor: pointer;
         border: 3px solid ${({ theme }) => theme.colors.pink};
         object-fit: cover;
       }
+
+      p {
+        font-size: 4rem;
+      }
     }
 
-    p {
+    .level-badge {
       position: absolute;
       font-size: 1.3rem;
       padding: 0.6rem 1.4rem;

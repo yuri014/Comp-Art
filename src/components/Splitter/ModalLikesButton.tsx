@@ -2,6 +2,7 @@ import React from 'react';
 
 import InteractionCount from '@components/Post/utils/InteractionCount';
 
+import ProfileImage from '@components/ProfileImage';
 import { PostProps } from '../../interfaces/Post';
 
 interface ModalLikesButtonProps extends PostProps {
@@ -19,11 +20,12 @@ const ModalLikesButton: React.FC<ModalLikesButtonProps> = ({
       <div className="likes-images prevent-redirect-post">
         {post.likes &&
           post.likes.map(({ profile }) => (
-            <img
+            <ProfileImage
               key={profile.owner}
-              src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
               alt={profile.owner}
-              title={profile.owner}
+              avatar={profile.avatar}
+              username={profile.owner}
+              className="like-profile-image"
             />
           ))}
       </div>

@@ -7,6 +7,17 @@ export const AuthorInfoContainer = styled.div`
     margin-left: 1rem;
   }
 
+  .author-image {
+    width: 5rem;
+    height: 5rem;
+
+    p {
+      color: unset;
+      margin: 0;
+      font-size: 2.2rem;
+    }
+  }
+
   .author {
     margin-left: 1rem;
     display: flex;
@@ -79,11 +90,18 @@ export const InteractionsNumbersContainer = styled.div`
       display: flex;
       align-items: center;
       flex-direction: row-reverse;
-      img {
+      .like-profile-image {
         width: 2.4rem;
         height: 2.4rem;
-        border-radius: 50%;
-        object-fit: cover;
+
+        img {
+          object-fit: cover;
+        }
+
+        p {
+          margin: 0;
+          font-size: 1.3rem;
+        }
 
         & + img {
           margin-right: -1.6rem;

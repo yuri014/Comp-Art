@@ -8,6 +8,7 @@ import useImagePreview from '@hooks/imagePreview';
 import useImageDimension from '@hooks/imageDimension';
 import usePreventMemoryLeak from '@hooks/preventMemoryLeak';
 import { IProfile } from '@interfaces/Profile';
+import ProfileImage from '@components/ProfileImage';
 import CreatePostContainer from './styles';
 import InputFileButtons from './utils/InputButton';
 
@@ -67,10 +68,13 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
 
   return (
     <CreatePostContainer>
-      <img
-        src={process.env.NEXT_PUBLIC_API_HOST + getLoggedProfile.avatar}
+      <ProfileImage
         alt={`${getLoggedProfile.name} avatar`}
+        avatar={getLoggedProfile.avatar}
+        username={getLoggedProfile.owner}
+        className="profile-image"
       />
+
       <form
         onSubmit={e => {
           e.preventDefault();

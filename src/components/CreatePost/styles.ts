@@ -8,11 +8,13 @@ const CreatePostContainer = styled.div`
   justify-content: space-between;
   padding: 2rem 1rem;
 
-  img {
+  .profile-image {
     width: 5rem;
     height: 5rem;
-    border-radius: 50%;
-    object-fit: fill;
+
+    img {
+      object-fit: fill;
+    }
   }
 
   form {

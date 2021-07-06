@@ -22,12 +22,17 @@ const MobileHeaderContainer = styled.header`
     }
   }
 
-  p {
-    font: 400 16px ${({ theme }) => theme.fonts.display}, sans-serif;
-    filter: blur(0.4px);
-    letter-spacing: 4px;
-    color: ${({ theme }) => theme.colors.themeColor};
-    text-shadow: 3px 3px 2px ${({ theme }) => theme.colors.titleColor};
+  a {
+    font-size: 0;
+    transform: scale(0.8);
+
+    p {
+      font: 400 16px ${({ theme }) => theme.fonts.display}, sans-serif;
+      filter: blur(0.4px);
+      letter-spacing: 4px;
+      color: ${({ theme }) => theme.colors.themeColor};
+      text-shadow: 3px 3px 2px ${({ theme }) => theme.colors.titleColor};
+    }
   }
 
   .profile {
@@ -36,17 +41,18 @@ const MobileHeaderContainer = styled.header`
     padding: 12px;
     display: flex;
 
-    img {
+    .profile-image {
       height: ${size};
       width: ${size};
-      border-radius: 50%;
-      object-fit: cover;
-    }
-  }
 
-  a {
-    font-size: 0;
-    transform: scale(0.8);
+      img {
+        object-fit: cover;
+      }
+
+      p {
+        font-size: 1.6rem;
+      }
+    }
   }
 
   @media (min-width: 1100px) {

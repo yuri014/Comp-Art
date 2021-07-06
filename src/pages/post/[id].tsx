@@ -11,6 +11,7 @@ import CommentsSections from '@components/Comment/CommentsSections';
 import NonAuthAltHeader from '@components/NonAuthAltHeader';
 import OptionsMenu from '@components/Post/OptionsMenu';
 import InteractionsNumbers from '@components/Post/utils/InteractionsNumbers';
+import ProfileImage from '@components/ProfileImage';
 import Meta from '@components/SEO/Meta';
 import ThemeContext from '@context/theme';
 import { initializeApollo } from '@graphql/apollo/config';
@@ -104,9 +105,11 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
           <div id="author">
             <div className="profile">
               <div className="author-info">
-                <img
-                  src={process.env.NEXT_PUBLIC_API_HOST + post.artist.avatar}
+                <ProfileImage
                   alt={post.artist.owner}
+                  avatar={post.artist.avatar}
+                  username={post.artist.owner}
+                  className="author-image"
                 />
                 <a>
                   <div>

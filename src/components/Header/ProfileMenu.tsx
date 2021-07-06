@@ -4,6 +4,7 @@ import { IconButton, Menu, MenuItem } from '@material-ui/core';
 import { FaUserAlt, FaMoon, FaSignOutAlt } from 'react-icons/fa';
 
 import { ILoggedProfile } from '@interfaces/Profile';
+import ProfileImage from '@components/ProfileImage';
 import { MenuListIcon } from './styles';
 
 interface ProfileMenuProps extends ILoggedProfile {
@@ -38,9 +39,11 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
         onClick={handleClick}
         color="secondary"
       >
-        <img
-          src={process.env.NEXT_PUBLIC_API_HOST + getLoggedProfile.avatar}
+        <ProfileImage
+          avatar={getLoggedProfile.avatar}
           alt="Foto do perfil"
+          username={getLoggedProfile.owner}
+          className="profile-image"
         />
       </IconButton>
       <Menu

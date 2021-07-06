@@ -80,17 +80,11 @@ export const HomeProfileContainer = styled.div`
     display: flex;
     align-items: center;
 
-    figure {
+    .profile-image {
       height: 5rem;
       width: 5rem;
       box-shadow: ${({ theme }) => theme.colors.mainShadow};
       border-radius: 50%;
-      img {
-        height: 100%;
-        width: 100%;
-        border-radius: 50%;
-        object-fit: cover;
-      }
     }
 
     .profile-info {

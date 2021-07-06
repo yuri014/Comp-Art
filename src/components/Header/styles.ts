@@ -50,12 +50,14 @@ export const HeaderContainer = styled.header`
       border: none;
       cursor: pointer;
 
-      img {
+      .profile-image {
         width: 3rem;
         height: 3rem;
-        border-radius: 50%;
-        cursor: pointer;
         object-fit: fill;
+
+        .holder {
+          font-size: 1.6rem;
+        }
       }
     }
   }

@@ -6,6 +6,7 @@ import { IconButton, SwipeableDrawer } from '@material-ui/core';
 import ThemeContext from '@context/theme';
 import usePreventMemoryLeak from '@hooks/preventMemoryLeak';
 import { ILoggedProfile } from '@interfaces/Profile';
+import ProfileImage from '@components/ProfileImage';
 import Logo from '../../assets/logo.svg';
 import HomeProfile from '../HomeProfile';
 import MobileHeaderContainer from './styles';
@@ -37,9 +38,11 @@ const MobileHeader: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
           onClick={() => setIsDrawerOpen(true)}
           type="button"
         >
-          <img
-            src={process.env.NEXT_PUBLIC_API_HOST + getLoggedProfile.avatar}
+          <ProfileImage
+            avatar={getLoggedProfile.avatar}
             alt="Imagem do perfil"
+            username={getLoggedProfile.owner}
+            className="profile-image"
           />
         </button>
         <Link href="/home">

@@ -5,6 +5,7 @@ import { gql } from '@apollo/client';
 import { IProfile } from '@interfaces/Profile';
 import { MODAL_PROFILE } from '@graphql/fragments/profile';
 import formatDate from '@utils/formatDate';
+import ProfileImage from '@components/ProfileImage';
 import ProfileSectionContainer from './_styles';
 import ProfileButtons from './ProfileButtons';
 
@@ -59,19 +60,28 @@ const ProfileSection: React.FC<ProfileProps> = ({ getProfile }) => {
     <>
       <ProfileSectionContainer>
         <div className="avatar-profile">
-          <button
-            className="profile-image"
-            type="button"
-            onClick={() => setIsImageFullScreen(true)}
-            onKeyDown={() => setIsImageFullScreen(true)}
-            onBlur={() => setIsImageFullScreen(false)}
-          >
-            <img
-              src={process.env.NEXT_PUBLIC_API_HOST + getProfile.avatar}
+          {getProfile.avatar ? (
+            <button
+              className="profile-image"
+              type="button"
+              onClick={() => setIsImageFullScreen(true)}
+              onKeyDown={() => setIsImageFullScreen(true)}
+              onBlur={() => setIsImageFullScreen(false)}
+            >
+              <img
+                src={process.env.NEXT_PUBLIC_API_HOST + getProfile.avatar}
+                alt={getProfile.name}
+              />
+            </button>
+          ) : (
+            <ProfileImage
+              className="profile-image"
               alt={getProfile.name}
+              avatar={getProfile.avatar}
+              username={getProfile.owner}
             />
-          </button>
-          <p>LEVEL {getProfile.level}</p>
+          )}
+          <p className="level-badge">LEVEL {getProfile.level}</p>
         </div>
         <div className="profile">
           <div>
