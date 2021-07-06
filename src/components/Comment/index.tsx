@@ -41,7 +41,7 @@ const Comment: React.FC<CommentProps> = ({ comment }) => {
               <p className="username">@{comment.author.owner}</p>
             </a>
           </Link>
-          {auth.user.username === comment.author.owner && (
+          {auth.user.username === comment.author.owner && comment._id && (
             <CommentMenu setIsDeleted={setIsDeleted} id={comment._id} />
           )}
           <div className="comment-text">
