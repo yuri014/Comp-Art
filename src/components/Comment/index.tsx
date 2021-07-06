@@ -5,6 +5,7 @@ import { IComment } from '@interfaces/Post';
 import formatDistanceTimePass from '@utils/formatDistanceTimePass';
 import TextBox from '@components/TextBox';
 import { AuthContext } from '@context/auth';
+import ProfileImage from '@components/ProfileImage';
 import { CommentContainer } from './styles';
 import CommentMenu from './CommentMenu';
 
@@ -24,9 +25,11 @@ const Comment: React.FC<CommentProps> = ({ comment }) => {
     <CommentContainer>
       <Link href={`/profile/${comment.author.owner}`}>
         <a className="author-image">
-          <img
-            src={process.env.NEXT_PUBLIC_API_HOST + comment.author.avatar}
-            alt={`${comment.author.name}`}
+          <ProfileImage
+            alt={comment.author.name}
+            avatar={comment.author.avatar}
+            username={comment.author.owner}
+            className="author-image"
           />
         </a>
       </Link>

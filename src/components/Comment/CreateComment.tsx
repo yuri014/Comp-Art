@@ -3,6 +3,7 @@ import { IoMdSend } from 'react-icons/io';
 import { gql, useMutation } from '@apollo/client';
 
 import DraftEditor from '@components/DraftEditor';
+import ProfileImage from '@components/ProfileImage';
 import usePreventMemoryLeak from '@hooks/preventMemoryLeak';
 import { CommentsSectionsProps } from '@interfaces/Post';
 import Comment, { CommentProps } from '.';
@@ -51,9 +52,11 @@ const CreateComment: React.FC<CommentsSectionsProps> = ({
           onSubmit();
         }}
       >
-        <img
-          src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
-          alt={profile.owner}
+        <ProfileImage
+          alt={profile.name}
+          avatar={profile.avatar}
+          username={profile.owner}
+          className="profile-image"
         />
         {isMount && (
           <DraftEditor

@@ -48,12 +48,21 @@ const SearchInputContainer = styled.div`
       width: 100%;
       padding: 1rem 2rem;
 
+      .profile-info-image {
+        width: 3.2rem;
+        height: 3.2rem;
+
+        p {
+          font-size: 1.6rem;
+        }
+      }
+
       &:hover {
         background-color: ${({ theme }) => theme.colors.popoverBackground};
         filter: brightness(1.25);
       }
 
-      div {
+      .profile-info-content {
         display: flex;
         margin-left: 1rem;
         align-items: flex-start;
@@ -68,12 +77,6 @@ const SearchInputContainer = styled.div`
           font-size: 1.3rem;
           color: ${({ theme }) => theme.colors.darkGray};
         }
-      }
-
-      img {
-        width: 3.2rem;
-        height: 3.2rem;
-        border-radius: 50%;
       }
     }
   }

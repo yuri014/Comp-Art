@@ -1,5 +1,6 @@
 import React from 'react';
 import { MentionData } from '@draft-js-plugins/mention';
+import ProfileImage from '@components/ProfileImage';
 
 interface EntryComponentProps {
   className?: string;
@@ -21,11 +22,11 @@ const MentionEntry: React.FC<EntryComponentProps> = props => {
     <div {...parentProps} className="mention">
       <div className="mentionSuggestionsEntryContainer">
         <div className="mentionSuggestionsEntryContainerLeft">
-          <img
-            src={mention.avatar}
+          <ProfileImage
+            avatar={mention.avatar}
             className="mentionSuggestionsEntryAvatar"
-            role="presentation"
             alt={mention.name}
+            username={mention.name}
           />
         </div>
         <div className="mentionSuggestionsEntryContainerRight">

@@ -12,10 +12,14 @@ export const CommentsSectionContainer = styled.section`
     font-size: 2rem;
     border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
 
-    img {
+    .profile-image {
       width: 3rem;
       height: 3rem;
       border-radius: 50%;
+
+      .holder {
+        font-size: 1.6rem;
+      }
     }
 
     .DraftEditor-root {
@@ -58,12 +62,10 @@ export const CommentContainer = styled.div`
   margin: 2rem 0;
 
   .author-image {
-    img {
-      width: 3rem;
-      height: 3rem;
-      border-radius: 50%;
-      box-shadow: ${({ theme }) => theme.colors.mainShadow};
-    }
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    box-shadow: ${({ theme }) => theme.colors.mainShadow};
   }
 
   .comment-interations {
@@ -159,10 +161,8 @@ export const CommentContainer = styled.div`
     }
 
     .author-image {
-      img {
-        width: 4rem;
-        height: 4rem;
-      }
+      width: 4rem;
+      height: 4rem;
     }
   }
 

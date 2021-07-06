@@ -1,3 +1,4 @@
+import ProfileImage from '@components/ProfileImage';
 import Link from 'next/link';
 import React from 'react';
 import { UseInfiniteScroll } from '../../hooks/infiniteScroll';
@@ -14,9 +15,11 @@ const ProfileSimpleCard: React.FC<ProfileSimpleCardProps> = ({ profile }) => (
   <ProfileSimpleCardContainer>
     <Link href={`/profile/${profile.owner}`} key={profile.owner}>
       <a>
-        <img
-          src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
-          alt="Perfil"
+        <ProfileImage
+          avatar={profile.avatar}
+          alt={profile.name}
+          username={profile.owner}
+          className="profile-image"
         />
         <div className="profile-content">
           <div className="first-row">

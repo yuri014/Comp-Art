@@ -39,7 +39,7 @@ const useMentions = (): UseMentions => {
         const searchProfiles = result.data.searchProfiles.map(profile => ({
           title: profile.name,
           name: `${profile.owner}`,
-          avatar: process.env.NEXT_PUBLIC_API_HOST + profile.avatar,
+          avatar: profile.avatar,
         }));
         setSuggestions(defaultSuggestionsFilter(value, searchProfiles));
       });

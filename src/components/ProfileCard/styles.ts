@@ -84,10 +84,9 @@ const ProfileSimpleCardContainer = styled.div`
     background-color: ${({ theme }) => theme.colors.lighterSecondaryBackground};
   }
 
-  img {
+  .profile-image {
     height: 5rem;
     width: 5rem;
-    border-radius: 50%;
   }
 `;
 

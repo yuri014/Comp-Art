@@ -8,6 +8,7 @@ import { FaSearch } from 'react-icons/fa';
 import { GET_PROFILE_PREVIEW_SEARCH } from '@graphql/queries/profile';
 import useOutsideClick from '@hooks/outsideClick';
 import { ISearchProfile } from '@interfaces/Profile';
+import ProfileImage from '@components/ProfileImage';
 import SearchInputContainer from './styles';
 
 const SearchInput: React.FC = () => {
@@ -64,11 +65,13 @@ const SearchInput: React.FC = () => {
           {data.searchProfiles.map(profile => (
             <Link href={`/profile/${profile.owner}`}>
               <a className="profile-info" key={profile.owner}>
-                <img
-                  src={process.env.NEXT_PUBLIC_API_HOST + profile.avatar}
+                <ProfileImage
+                  avatar={profile.avatar}
+                  className="profile-info-image"
                   alt={profile.name}
+                  username={profile.name}
                 />
-                <div>
+                <div className="profile-info-content">
                   <strong>{profile.name}</strong>
                   <p>@{profile.owner}</p>
                 </div>

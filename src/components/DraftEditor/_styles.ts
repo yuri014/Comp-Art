@@ -58,6 +58,10 @@ const DraftEditorComponent = styled.div`
     width: 3.2rem;
     height: 3.2rem;
     border-radius: 50%;
+
+    p {
+      font-size: 1.6rem;
+    }
   }
   /* End mention popover */
 
