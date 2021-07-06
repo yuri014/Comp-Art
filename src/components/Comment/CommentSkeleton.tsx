@@ -6,7 +6,7 @@ import { CommentContainer } from './styles';
 const CommentSkeleton: React.FC = () => (
   <CommentContainer className="skeleton">
     <div className="author-image">
-      <Skeleton animation="wave" variant="circle" width={30} height={30} />
+      <Skeleton animation="wave" variant="circle" width="100%" height="100%" />
     </div>
     <Skeleton
       animation="wave"
