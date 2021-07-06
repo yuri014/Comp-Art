@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Link from 'next/link';
 import { ThemeProvider } from '@material-ui/core';
-import { FaEnvelopeOpenText, FaMoon, FaSignInAlt, FaSun } from 'react-icons/fa';
+import { FaMoon, FaSignInAlt, FaSun } from 'react-icons/fa';
 import { BiDonateHeart } from 'react-icons/bi';
 
 import NotificationMenu from '@components/Notification/NotificationMenu';
@@ -31,9 +31,7 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
         {auth.user ? (
           <>
             <div className="header-icons">
-              <button type="button">
-                <FaEnvelopeOpenText />
-              </button>
+              <span />
               <a
                 href="https://www.catarse.me/compart_6d8c?ref=project_link"
                 target="_blank"
