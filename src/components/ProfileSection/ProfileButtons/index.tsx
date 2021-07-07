@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
-import { Link } from '@material-ui/core';
+import Link from 'next/link';
 
 import { AuthContext } from '@context/auth';
 import { FOLLOW_PROFILE, UNFOLLOW_PROFILE } from '@graphql/mutations/profile';
