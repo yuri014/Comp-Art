@@ -64,7 +64,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
 
   const hasMedia = !!audioResult || !!imagePreview.file;
   const counter = description.split(' ').join('').length;
-  const hasDescription = description.length > 0 && counter <= 1200;
+  const hasDescription = description.length > 0 && counter <= 5000;
   const canSubmit = hasMedia || hasDescription;
 
   return (
@@ -87,7 +87,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
             <DraftEditor
               setText={setDescription}
               setProgress={setProgress}
-              limit={1200}
+              limit={5000}
               placeholder="Digite aqui o seu post..."
             />
           )}

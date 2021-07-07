@@ -27,7 +27,7 @@ const DescriptionCounter: React.FC<DescriptionCounterProps> = ({
     <DescriptionCounterContainer className={className}>
       <p
         className={`${
-          charCounterWithoutSpace <= 1200 ? 'counter' : 'counter-limit'
+          charCounterWithoutSpace <= 5000 ? 'counter' : 'counter-limit'
         }`}
       >
         {charCounterWithoutSpace}

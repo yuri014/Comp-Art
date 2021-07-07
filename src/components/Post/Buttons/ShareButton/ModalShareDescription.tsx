@@ -27,13 +27,14 @@ const ModalShareDescription: React.FC<ModalShareDescriptionProps> = ({
               <DraftEditor
                 setText={setCommentField}
                 setProgress={setProgress}
-                limit={1200}
+                limit={255}
                 placeholder="Digite aqui o seu comentário..."
               />
             </div>
             <DescriptionCounter
               className="counter-container"
               progress={progress}
+              charCounterWithoutSpace={commentField.split(' ').join('').length}
             />
           </div>
           <CAButton onClick={() => sharePost(commentField)} type="button">
