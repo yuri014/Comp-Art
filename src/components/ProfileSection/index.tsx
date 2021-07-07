@@ -68,10 +68,7 @@ const ProfileSection: React.FC<ProfileProps> = ({ getProfile }) => {
               onKeyDown={() => setIsImageFullScreen(true)}
               onBlur={() => setIsImageFullScreen(false)}
             >
-              <img
-                src={process.env.NEXT_PUBLIC_API_HOST + getProfile.avatar}
-                alt={getProfile.name}
-              />
+              <img src={getProfile.avatar} alt={getProfile.name} />
             </button>
           ) : (
             <ProfileImage
@@ -140,7 +137,7 @@ const ProfileSection: React.FC<ProfileProps> = ({ getProfile }) => {
       )}
       {isImageFullScreen && (
         <FullScreenImage
-          img={process.env.NEXT_PUBLIC_API_HOST + getProfile.avatar}
+          img={getProfile.avatar}
           onClose={() => setIsImageFullScreen(false)}
         />
       )}

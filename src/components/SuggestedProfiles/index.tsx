@@ -92,12 +92,7 @@ const SuggestedProfiles: React.FC = () => {
                   <div className="suggested-profile-container">
                     <Link href={`/profile/${profile.owner}`}>
                       <a className="suggested-profile">
-                        <img
-                          src={
-                            process.env.NEXT_PUBLIC_API_HOST + profile.avatar
-                          }
-                          alt={profile.name}
-                        />
+                        <img src={profile.avatar} alt={profile.name} />
 
                         <div className="suggested-profile-info">
                           <p className="limited-text">{profile.name}</p>

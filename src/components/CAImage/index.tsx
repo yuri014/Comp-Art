@@ -26,7 +26,7 @@ const CAImage: React.FC<CAImageProps> = ({ image, options }) => {
         type="button"
       >
         <img
-          src={process.env.NEXT_PUBLIC_API_HOST + image}
+          src={image}
           alt={options.alt}
           loading={options.loading}
           height={options.height}
@@ -34,7 +34,7 @@ const CAImage: React.FC<CAImageProps> = ({ image, options }) => {
       </CAImageContainer>
       {isImageFullScreen && (
         <FullScreenImage
-          img={process.env.NEXT_PUBLIC_API_HOST + image}
+          img={image}
           onClose={() => setIsImageFullScreen(false)}
         />
       )}

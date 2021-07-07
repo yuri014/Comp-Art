@@ -78,9 +78,9 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
   const handleSEOImage = () => {
     switch (post.mediaId) {
       case mediaIds.audio:
-        return process.env.NEXT_PUBLIC_API_HOST + post.thumbnail;
+        return post.thumbnail;
       case mediaIds.image:
-        return process.env.NEXT_PUBLIC_API_HOST + post.body;
+        return post.body;
       default:
         return `${process.env.NEXT_PUBLIC_HOST}/CardSEO.png`;
     }

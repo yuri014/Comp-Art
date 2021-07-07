@@ -16,7 +16,7 @@ const ProfileSchema: React.FC<ProfileSchemaProps> = ({ profile }) => (
       alternateName: profile.owner,
       knowsAbout: profile.hashtags,
       description: profile.bio,
-      image: process.env.NEXT_PUBLIC_API_HOST + profile.avatar,
+      image: profile.avatar,
       sameAs: [
         `https://www.facebook.com/${profile.links.facebook}`,
         `https://twitter.com/${profile.links.twitter}`,

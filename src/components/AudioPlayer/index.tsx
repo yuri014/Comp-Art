@@ -29,7 +29,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     });
     wavesurfer.current = WaveSurfer.create(options);
 
-    wavesurfer.current.load(process.env.NEXT_PUBLIC_API_HOST + audio);
+    wavesurfer.current.load(audio);
 
     wavesurfer.current.on('ready', () => {
       if (wavesurfer.current) {
@@ -47,7 +47,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
   return (
     <AudioPlayerContainer>
-      <img src={process.env.NEXT_PUBLIC_API_HOST + thumbnail} alt="" />
+      <img src={thumbnail} alt="" />
       <strong>{title}</strong>
       <div id="waveform" ref={waveformRef} />
       <div className="controls">

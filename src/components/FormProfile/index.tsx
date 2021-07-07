@@ -80,15 +80,11 @@ const FormProfile: React.FC<FormProfileProps> = ({
       setValue('links.wattpad', links.wattpad);
 
       if (defaultValues.coverImage) {
-        setOldCoverImage(
-          process.env.NEXT_PUBLIC_API_HOST + defaultValues.coverImage,
-        );
+        setOldCoverImage(defaultValues.coverImage);
       }
 
       if (defaultValues.avatar) {
-        setOldProfileImage(
-          process.env.NEXT_PUBLIC_API_HOST + defaultValues.avatar,
-        );
+        setOldProfileImage(defaultValues.avatar);
       }
     }
   }, [defaultValues, setTags, setValue]);

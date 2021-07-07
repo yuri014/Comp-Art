@@ -16,7 +16,7 @@ const ProfileImage: React.FC<ProfileImageProps> = ({
 }) => (
   <AvatarPlaceholder className={className}>
     {avatar ? (
-      <img src={process.env.NEXT_PUBLIC_API_HOST + avatar} alt={alt} />
+      <img src={avatar} alt={alt} />
     ) : (
       <div className="holder">
         <p>

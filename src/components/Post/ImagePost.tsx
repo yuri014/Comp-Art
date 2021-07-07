@@ -21,7 +21,7 @@ const ImagePost: React.FC<ImagePostProps> = ({ image, imageHeight }) => {
       >
         <img
           className="prevent-redirect-post post-image"
-          src={process.env.NEXT_PUBLIC_API_HOST + image}
+          src={image}
           alt="Publicação"
           height={imageHeight}
           loading="lazy"
@@ -29,7 +29,7 @@ const ImagePost: React.FC<ImagePostProps> = ({ image, imageHeight }) => {
       </button>
       {isImageFullScreen && (
         <FullScreenImage
-          img={process.env.NEXT_PUBLIC_API_HOST + image}
+          img={image}
           onClose={() => setIsImageFullScreen(false)}
         />
       )}

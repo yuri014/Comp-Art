@@ -34,7 +34,7 @@ const AudioPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
       <div className="audio-card">
         <div className="thumbnail">
           <img
-            src={process.env.NEXT_PUBLIC_API_HOST + post.thumbnail}
+            src={post.thumbnail}
             alt={post.description}
             loading="lazy"
             width="200px"
@@ -84,7 +84,7 @@ const AudioPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
             <audio
               style={{ display: 'none' }}
               ref={audioRef}
-              src={process.env.NEXT_PUBLIC_API_HOST + post.body}
+              src={post.body}
               onLoadedMetadata={() => {
                 const { minutes, seconds } = formatTime(
                   audioRef.current.duration,
