@@ -54,3 +54,6 @@ export const SearchContainer = styled.div`
     }
   }
 `;
+
+// Por alguma razão o nextjs interpreta a falta de um `export default` como um erro.
+export default SearchPageContainer;
