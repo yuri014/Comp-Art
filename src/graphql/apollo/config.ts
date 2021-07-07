@@ -43,7 +43,7 @@ const authHttpLink = (cookie: string) =>
 const wsLink = () => {
   if (process.browser) {
     return new WebSocketLink({
-      uri: 'ws://localhost:3333/subscriptions',
+      uri: process.env.NEXT_PUBLIC_WS_HOST,
       options: {
         reconnect: true,
       },
