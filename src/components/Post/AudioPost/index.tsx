@@ -35,7 +35,7 @@ const AudioPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
         <div className="thumbnail">
           <img
             src={post.thumbnail}
-            alt={post.description}
+            alt={post.alt}
             loading="lazy"
             width="200px"
             height="200px"
