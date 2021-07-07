@@ -24,7 +24,7 @@ const DescriptionCounter: React.FC<DescriptionCounterProps> = ({
 
   return (
     <DescriptionCounterContainer className={className}>
-      <CharCounter limit={1200} />
+      <CharCounter limit={5000} />
       <CircularProgress
         className="background-circle"
         variant="determinate"

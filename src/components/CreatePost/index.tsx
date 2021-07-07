@@ -63,7 +63,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
   };
 
   const hasMedia = !!audioResult || !!imagePreview.file;
-  const hasDescription = description.length > 0 && description.length <= 1200;
+  const hasDescription = description.length > 0 && description.length <= 5000;
   const canSubmit = hasMedia || hasDescription;
 
   return (
