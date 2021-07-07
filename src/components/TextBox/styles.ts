@@ -6,6 +6,16 @@ const TextBoxContainer = styled.div`
     overflow: hidden;
     max-width: 700px;
     word-break: break-all;
+    cursor: text;
+  }
+
+  button {
+    font-size: 1.6rem;
+    background: transparent;
+    border: none;
+    font-weight: bold;
+    color: ${({ theme }) => theme.colors.link};
+    cursor: pointer;
   }
 
   span {

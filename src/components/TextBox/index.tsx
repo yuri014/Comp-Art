@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment, useCallback, useEffect, useState } from 'react';
 import * as linkify from 'linkifyjs';
 import Linkify from 'linkifyjs/react';
 import hashtag from 'linkifyjs/plugins/hashtag';
@@ -16,15 +16,46 @@ interface TextBoxProps {
 }
 
 const TextBox: React.FC<TextBoxProps> = ({ text }) => {
+  const [isShowMore, setIsShowMore] = useState(false);
+  const [clampText, setClampText] = useState('');
   const { push } = useRouter();
+
+  const showMore = () => setClampText(text);
+  const showLess = useCallback(
+    () => setClampText(`${text.substring(0, 150)}...`),
+    [text],
+  );
+
+  useEffect(() => {
+    showLess();
+  }, [showLess, text]);
 
   return (
     <TextBoxContainer>
       <Linkify options={textBoxOptions(push)}>
-        {text.split('\n').map((str, index) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <p key={index}>{str}</p>
-        ))}
+        <div>
+          <p>
+            {clampText.split('\n').map(str => (
+              <Fragment key={str}>
+                {str} <br />
+              </Fragment>
+            ))}
+          </p>
+          <button
+            onClick={() => {
+              if (isShowMore) {
+                showLess();
+              } else {
+                showMore();
+              }
+
+              setIsShowMore(!isShowMore);
+            }}
+            type="button"
+          >
+            Mostrar {isShowMore ? 'menos' : 'mais'}
+          </button>
+        </div>
       </Linkify>
     </TextBoxContainer>
   );
