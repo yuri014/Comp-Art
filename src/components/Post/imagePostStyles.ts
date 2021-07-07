@@ -15,6 +15,13 @@ const ImagePostContainer = styled.div`
       cursor: pointer;
       width: 100%;
       border-radius: 4px;
+      max-height: 350px;
+      height: auto;
+
+      @media (min-width: 768px) {
+        height: unset;
+        max-height: unset;
+      }
     }
   }
 `;
