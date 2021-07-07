@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import createHashtagPlugin from '@draft-js-plugins/hashtag';
+import createCounterPlugin from '@draft-js-plugins/counter';
 import createMentionPlugin from '@draft-js-plugins/mention';
 import { EditorPlugin } from '@draft-js-plugins/editor';
 import { MentionSuggestionsPubProps } from '@draft-js-plugins/mention/lib/MentionSuggestions/MentionSuggestions';
@@ -10,20 +11,26 @@ const hashtagPlugin = createHashtagPlugin({
   ),
 });
 
+const counterTheme = {
+  counter: 'counter',
+  counterOverLimit: 'counter-limit',
+};
+
+const counterPlugin = createCounterPlugin({ theme: counterTheme });
 const mentionPlugin = createMentionPlugin({
   entityMutability: 'IMMUTABLE',
   mentionPrefix: '@',
   supportWhitespace: true,
 });
 
-const plugins = [mentionPlugin, hashtagPlugin];
+const plugins = [mentionPlugin, hashtagPlugin, counterPlugin];
 
 type UsePlugins = {
   plugins: EditorPlugin[];
   MentionSuggestions: React.ComponentType<MentionSuggestionsPubProps>;
 };
 
-const usePlugins = (): UsePlugins => {
+export const usePlugins = (): UsePlugins => {
   const pluginsConfig = useMemo(() => {
     const { MentionSuggestions } = mentionPlugin;
     return { plugins, MentionSuggestions };
@@ -32,4 +39,4 @@ const usePlugins = (): UsePlugins => {
   return pluginsConfig;
 };
 
-export default usePlugins;
+export const { CharCounter } = counterPlugin;

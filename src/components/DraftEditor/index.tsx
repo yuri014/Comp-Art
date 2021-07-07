@@ -4,7 +4,7 @@ import { convertToRaw, EditorState } from 'draft-js';
 
 import getValueForProgress from './utils/counter';
 import DraftEditorComponent from './_styles';
-import usePlugins from './utils/plugins';
+import { usePlugins } from './utils/plugins';
 import Mention from './utils/MentionSuggestions';
 import 'draft-js/dist/Draft.css';
 import '@draft-js-plugins/mention/lib/plugin.css';
@@ -25,10 +25,7 @@ const DraftEditor: React.FC<DraftEditorProps> = ({
   const emptyEditor = () => EditorState.createEmpty();
   const [editorState, setEditorState] = useState(emptyEditor());
   const currentEditorState = editorState.getCurrentContent();
-  const editorCharactersCount = currentEditorState
-    .getPlainText()
-    .split(' ')
-    .join('').length;
+  const editorCharactersCount = currentEditorState.getPlainText().length;
 
   const progress = getValueForProgress(editorCharactersCount, limit);
 

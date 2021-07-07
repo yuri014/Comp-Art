@@ -63,8 +63,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
   };
 
   const hasMedia = !!audioResult || !!imagePreview.file;
-  const counter = description.split(' ').join('').length;
-  const hasDescription = description.length > 0 && counter <= 5000;
+  const hasDescription = description.length > 0 && description.length <= 1200;
   const canSubmit = hasMedia || hasDescription;
 
   return (
@@ -113,10 +112,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
           />
           <div>
             {description.trim().length > 0 && (
-              <DescriptionCounter
-                progress={progress}
-                charCounterWithoutSpace={counter}
-              />
+              <DescriptionCounter progress={progress} />
             )}
             <button
               type="submit"
