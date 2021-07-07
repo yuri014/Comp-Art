@@ -34,7 +34,10 @@ const ShareButton: React.FC<ShareButtonProps> = ({ postID, updateLevel }) => {
         setIsFreeToPost(data.createSharePost.isFreeToPost);
       }
       setShowModal(false);
-      updateLevel();
+
+      if (updateLevel) {
+        updateLevel();
+      }
     },
   });
 
