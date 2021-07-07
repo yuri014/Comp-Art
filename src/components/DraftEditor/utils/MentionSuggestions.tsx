@@ -2,7 +2,7 @@ import React from 'react';
 
 import MentionEntry from './MentionEntry';
 import useMentions from './mentions';
-import { usePlugins } from './plugins';
+import usePlugins from './plugins';
 
 const Mention: React.FC = () => {
   const { MentionSuggestions } = usePlugins();

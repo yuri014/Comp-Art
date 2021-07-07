@@ -1,19 +1,20 @@
 import React from 'react';
 import { CircularProgress } from '@material-ui/core';
 
-import { CharCounter } from './plugins';
 import DescriptionCounterContainer from './styles';
 
 type Answer = string | number;
 
 interface DescriptionCounterProps {
   progress: number;
+  charCounterWithoutSpace: number;
   className?: string;
 }
 
 const DescriptionCounter: React.FC<DescriptionCounterProps> = ({
   progress,
   className,
+  charCounterWithoutSpace,
 }) => {
   const checkProgress = (answerOne: Answer, anwserTwo: Answer) => {
     if (progress >= 100) {
@@ -24,7 +25,13 @@ const DescriptionCounter: React.FC<DescriptionCounterProps> = ({
 
   return (
     <DescriptionCounterContainer className={className}>
-      <CharCounter limit={1200} />
+      <p
+        className={`${
+          charCounterWithoutSpace <= 1200 ? 'counter' : 'counter-limit'
+        }`}
+      >
+        {charCounterWithoutSpace}
+      </p>
       <CircularProgress
         className="background-circle"
         variant="determinate"
