@@ -27,7 +27,11 @@ const TextBox: React.FC<TextBoxProps> = ({ text }) => {
   );
 
   useEffect(() => {
-    showLess();
+    if (text.length > 150) {
+      showLess();
+    } else {
+      setClampText(text);
+    }
   }, [showLess, text]);
 
   return (
@@ -41,20 +45,22 @@ const TextBox: React.FC<TextBoxProps> = ({ text }) => {
               </Fragment>
             ))}
           </p>
-          <button
-            onClick={() => {
-              if (isShowMore) {
-                showLess();
-              } else {
-                showMore();
-              }
+          {text.length > 150 && (
+            <button
+              onClick={() => {
+                if (isShowMore) {
+                  showLess();
+                } else {
+                  showMore();
+                }
 
-              setIsShowMore(!isShowMore);
-            }}
-            type="button"
-          >
-            Mostrar {isShowMore ? 'menos' : 'mais'}
-          </button>
+                setIsShowMore(!isShowMore);
+              }}
+              type="button"
+            >
+              Mostrar {isShowMore ? 'menos' : 'mais'}
+            </button>
+          )}
         </div>
       </Linkify>
     </TextBoxContainer>
