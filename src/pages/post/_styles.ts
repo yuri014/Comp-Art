@@ -78,7 +78,7 @@ const PostPageContainer = styled.div`
   @media (min-width: 992px) {
     header {
       position: absolute;
-      width: 70%;
+      width: 68%;
 
       nav {
         border-right: 1px solid ${({ theme }) => theme.colors.borderColor};
@@ -87,7 +87,7 @@ const PostPageContainer = styled.div`
 
     main {
       display: grid;
-      grid-template-columns: 70% 30%;
+      grid-template-columns: 68% 32%;
       grid-template-rows: max-content;
       grid-template-areas:
         'post author'
@@ -100,12 +100,18 @@ const PostPageContainer = styled.div`
 
       .post {
         height: calc(100vh - 5rem);
-        padding: 0;
+        padding: 0 2rem;
         margin-top: 5rem;
         grid-area: post;
         border-right: 1px solid ${({ theme }) => theme.colors.borderColor};
         display: flex;
         place-items: center;
+
+        .post-text {
+          height: 50rem;
+          padding: 1rem 0;
+          overflow-y: scroll;
+        }
 
         .post-image {
           width: auto;
@@ -127,6 +133,16 @@ const PostPageContainer = styled.div`
       #comments {
         grid-area: comments;
       }
+    }
+  }
+
+  @media (min-width: 1025px) {
+    header {
+      width: 70%;
+    }
+
+    main {
+      grid-template-columns: 70% 30%;
     }
   }
 `;
