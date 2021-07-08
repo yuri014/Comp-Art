@@ -13,12 +13,15 @@ mention(linkify);
 
 interface TextBoxProps {
   text: string;
+  alwaysShowMore?: boolean;
 }
 
-const TextBox: React.FC<TextBoxProps> = ({ text }) => {
+const TextBox: React.FC<TextBoxProps> = ({ text, alwaysShowMore }) => {
   const [isShowMore, setIsShowMore] = useState(false);
   const [clampText, setClampText] = useState('');
   const { push } = useRouter();
+
+  const shouldApplyClampLogic = text.length > 150 && !alwaysShowMore;
 
   const showMore = () => setClampText(text);
   const showLess = useCallback(
@@ -27,12 +30,12 @@ const TextBox: React.FC<TextBoxProps> = ({ text }) => {
   );
 
   useEffect(() => {
-    if (text.length > 150) {
+    if (shouldApplyClampLogic) {
       showLess();
     } else {
       setClampText(text);
     }
-  }, [showLess, text]);
+  }, [alwaysShowMore, shouldApplyClampLogic, showLess, text]);
 
   return (
     <TextBoxContainer>
@@ -45,7 +48,7 @@ const TextBox: React.FC<TextBoxProps> = ({ text }) => {
               </Fragment>
             ))}
           </p>
-          {text.length > 150 && (
+          {shouldApplyClampLogic && (
             <button
               onClick={() => {
                 if (isShowMore) {

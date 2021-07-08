@@ -75,7 +75,7 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
     if (mediaId === mediaIds.text) {
       return (
         <div className="post-text">
-          <TextBox text={post.description} />
+          <TextBox text={post.description} alwaysShowMore />
         </div>
       );
     }
