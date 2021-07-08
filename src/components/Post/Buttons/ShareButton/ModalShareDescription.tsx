@@ -34,7 +34,6 @@ const ModalShareDescription: React.FC<ModalShareDescriptionProps> = ({
             <DescriptionCounter
               className="counter-container"
               progress={progress}
-              charCounterWithoutSpace={commentField.split(' ').join('').length}
             />
           </div>
           <CAButton onClick={() => sharePost(commentField)} type="button">
