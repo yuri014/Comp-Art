@@ -158,7 +158,13 @@ const FormProfile: React.FC<FormProfileProps> = ({
           >
             Nome*
           </Input>
-          <Input name="bio" placeholder="Sua bio">
+          <Input
+            name="bio"
+            refInput={register({
+              required: false,
+            })}
+            placeholder="Sua bio"
+          >
             Bio
           </Input>
           <Input
