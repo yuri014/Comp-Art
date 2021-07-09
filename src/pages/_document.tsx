@@ -43,6 +43,11 @@ export default class MyDocument extends Document {
         <Head>
           <meta charSet="utf-8" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link rel="preconnect" href="https://vm.comp-art.art" />
+          <link
+            rel="preconnect"
+            href="https://comp-art.s3.sa-east-1.amazonaws.com"
+          />
           <link
             href="https://fonts.googleapis.com/css2?family=Audiowide&family=Exo+2:wght@200;300;400;500;600;700;800;900&display=swap"
             rel="stylesheet"
