@@ -2,33 +2,29 @@ const withImages = require('next-images');
 const withPWA = require('next-pwa');
 const runtimeCaching = require('next-pwa/cache');
 const withPlugins = require('next-compose-plugins');
+const withMDX = require('@next/mdx')();
 
-const withMDX = require('@next/mdx')({
-  options: {
-    remarkPlugins: [],
-    rehypePlugins: [],
-  },
-});
-
-const imagesPlugin = withImages({
-  esModule: true,
-});
-
-const pwaPlugin = withPWA({
-  pwa: {
-    disable: process.env.NODE_ENV === 'development',
-    dest: 'public',
-    register: true,
-    runtimeCaching,
-  },
-});
-
-const mdxPlugin = withMDX();
-
-module.exports = withPlugins([
-  imagesPlugin,
-  pwaPlugin,
-  mdxPlugin,
+module.exports = withPlugins(
+  [
+    [
+      withImages,
+      {
+        esModule: true,
+      },
+    ],
+    [withMDX],
+    [
+      withPWA,
+      {
+        pwa: {
+          disable: process.env.NODE_ENV === 'development',
+          dest: 'public',
+          register: true,
+          runtimeCaching,
+        },
+      },
+    ],
+  ],
   {
     images: {
       domains: ['localhost'],
@@ -38,4 +34,4 @@ module.exports = withPlugins([
     },
     reactStrictMode: true,
   },
-]);
+);
