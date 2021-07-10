@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { FaBackward, FaForward, FaPause, FaPlay } from 'react-icons/fa';
 import WaveSurfer from 'wavesurfer.js';
 
+import CAImage from '@components/CAImage';
 import formWaveSurferOptions, { Colors } from './options';
 import AudioPlayerContainer from './styles';
 
@@ -9,10 +10,12 @@ interface AudioPlayerProps extends Colors {
   audio: string;
   thumbnail: string;
   title: string;
+  blurDataUrl: string;
 }
 
 const AudioPlayer: React.FC<AudioPlayerProps> = ({
   audio,
+  blurDataUrl,
   darkColor,
   lightColor,
   thumbnail,
@@ -47,7 +50,17 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
   return (
     <AudioPlayerContainer>
-      <img src={thumbnail} alt="" />
+      <figure>
+        <CAImage
+          alt="Capa da música"
+          width="250px"
+          height="250px"
+          quality={100}
+          blurDataURL={blurDataUrl}
+          placeholder="blur"
+          src={thumbnail}
+        />
+      </figure>
       <strong>{title}</strong>
       <div id="waveform" ref={waveformRef} />
       <div className="controls">

@@ -11,10 +11,15 @@ const AudioPlayerContainer = styled.div`
     margin-top: 3rem;
   }
 
-  img {
-    width: 100%;
+  figure {
+    margin: 0 auto;
+    width: 25rem;
     height: 25rem;
-    border-radius: 5px;
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
+    }
   }
 
   #waveform {
