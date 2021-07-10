@@ -15,7 +15,6 @@ var setInitialTheme = function setInitialTheme() {
   var colorMode = getInitialTheme();
   var root = document.documentElement;
   root.style.setProperty('--initial-color-mode', colorMode);
-  console.log(colorMode)
   document.documentElement.setAttribute('data-theme', colorMode);
 };
 setInitialTheme();
