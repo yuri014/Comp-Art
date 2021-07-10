@@ -22,6 +22,7 @@ const PostPageContainer = styled.div`
 
         a {
           font-size: 1.5rem;
+          color: ${({ theme }) => theme.colors.themeColor};
 
           p {
             color: ${({ theme }) => theme.colors.darkGray};
@@ -34,6 +35,13 @@ const PostPageContainer = styled.div`
 
             p {
               font-size: 1.5rem;
+            }
+
+            strong,
+            p {
+              &:hover {
+                text-decoration: underline;
+              }
             }
           }
         }
