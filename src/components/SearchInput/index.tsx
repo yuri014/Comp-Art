@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useLazyQuery } from '@apollo/client';
-import { IconButton } from '@material-ui/core';
+import { IconButton, NoSsr } from '@material-ui/core';
 import { FaSearch } from 'react-icons/fa';
 
 import { GET_PROFILE_PREVIEW_SEARCH } from '@graphql/queries/profile';
@@ -35,15 +35,17 @@ const SearchInput: React.FC = () => {
   useOutsideClick(modalSearchRef, () => setShowSearch(false));
 
   const Search = () => (
-    <div className="search-button">
-      <IconButton
-        type="button"
-        aria-label="Buscar"
-        onClick={() => router.push(`/search/${searchProfile}`)}
-      >
-        <FaSearch />
-      </IconButton>
-    </div>
+    <NoSsr>
+      <div className="search-button">
+        <IconButton
+          type="button"
+          aria-label="Buscar"
+          onClick={() => router.push(`/search/${searchProfile}`)}
+        >
+          <FaSearch />
+        </IconButton>
+      </div>
+    </NoSsr>
   );
 
   return (
