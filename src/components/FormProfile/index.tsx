@@ -7,6 +7,7 @@ import { IconButton, ThemeProvider } from '@material-ui/core';
 import { FaTimes } from 'react-icons/fa';
 
 import CAButton from '@styles/components/button';
+import { GET_LOGGED_PROFILE } from '@graphql/queries/profile';
 import { IProfile, IProfileInput } from '../../interfaces/Profile';
 import formTheme from '../../styles/themes/FormTheme';
 import TagsContainer from '../../styles/components/tags';
@@ -44,7 +45,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
   const { user } = useContext(AuthContext);
   const [profileImage, setProfileImage] = useImagePreview();
 
-  const [handleProfileMutation] = useMutation(mutation, {
+  const [handleProfileMutation, { client }] = useMutation(mutation, {
     onCompleted: () => router.push('/home'),
     onError: ({ graphQLErrors }) => setShowError(graphQLErrors[0].message),
   });
@@ -59,6 +60,10 @@ const FormProfile: React.FC<FormProfileProps> = ({
           hashtags: tags,
         },
       },
+    });
+
+    client.readQuery({
+      query: GET_LOGGED_PROFILE,
     });
   };
 
