@@ -14,13 +14,15 @@ import { GET_PROFILE } from '@graphql/queries/profile';
 import { ILoggedProfile, IProfile } from '@interfaces/Profile';
 import ProfileSEO from '@components/SEO/ProfileSEO';
 import ProfileSection from '@components/ProfileSection';
+import { BlurImageData } from '@interfaces/Generics';
 import ProfileSchema from '@schemas/Profile';
 import CAButton from '@styles/components/button';
 import withPublicRoute from '@hocs/withPublicRoute';
+import getBase64Image from '@ssr-functions/getBase64Image';
 import getLoggedUserWithNoAuth from '@ssr-functions/getLoggedUserWithNoAuth';
 import ProfileContainer from './_styles';
 
-interface ProfileProps extends ILoggedProfile {
+interface ProfileProps extends ILoggedProfile, BlurImageData {
   username: string;
   getProfile: IProfile;
 }
@@ -29,6 +31,7 @@ const Profile: React.FC<ProfileProps> = ({
   username,
   getProfile,
   getLoggedProfile,
+  blurDataUrl,
 }) => {
   const hasCoverProfile = getProfile.coverImage !== '';
 
@@ -42,7 +45,16 @@ const Profile: React.FC<ProfileProps> = ({
             hasCoverProfile ? '' : 'cover-placeholder'
           }`}
         >
-          {hasCoverProfile && <CAImage image={getProfile.coverImage} />}
+          {hasCoverProfile && (
+            <CAImage
+              layout="fill"
+              placeholder="blur"
+              blurDataURL={blurDataUrl}
+              quality={100}
+              alt="Capa do perfil"
+              src={getProfile.coverImage}
+            />
+          )}
 
           <ProfileLinks links={getProfile.links} />
         </div>
@@ -100,11 +112,20 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
   const getLoggedProfile = await getLoggedUserWithNoAuth(jwtToken, client);
 
+  const coverImageBase64 = await getBase64Image(() => {
+    if (getProfile.coverImage) {
+      return getProfile.coverImage;
+    }
+
+    return '';
+  });
+
   return {
     props: {
       username,
       getProfile,
       getLoggedProfile,
+      blurDataUrl: coverImageBase64,
     },
   };
 };
