@@ -17,10 +17,12 @@ import ThemeContext from '@context/theme';
 import { initializeApollo } from '@graphql/apollo/config';
 import usePostsMutations from '@hooks/postMutations';
 import { GET_POST } from '@graphql/queries/post';
-import { PostProps } from '@interfaces/Post';
+import { BlurImageData } from '@interfaces/Generics';
+import { IGetPost, PostProps } from '@interfaces/Post';
 import { ILoggedProfile } from '@interfaces/Profile';
 import PostSchema from '@schemas/Post';
 import getLoggedUserWithNoAuth from '@ssr-functions/getLoggedUserWithNoAuth';
+import getBase64Image from '@ssr-functions/getBase64Image';
 import formatDistanceTimePass from '@utils/formatDistanceTimePass';
 import mediaIds from '@utils/mediaIds';
 import Link from 'next/link';
@@ -31,9 +33,13 @@ const AudioPlayer = dynamic(() => import('@components/AudioPlayer'), {
 });
 const TextBox = dynamic(() => import('@components/TextBox'));
 
-interface PostPageProps extends ILoggedProfile, PostProps {}
+interface PostPageProps extends ILoggedProfile, PostProps, BlurImageData {}
 
-const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
+const PostPage: React.FC<PostPageProps> = ({
+  post,
+  getLoggedProfile,
+  blurDataUrl,
+}) => {
   const { isDarkMode, toggleTheme } = useContext(ThemeContext);
   const [likesCount, setLikesCount] = useState<number>();
 
@@ -50,14 +56,18 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
   const HandlePost = ({ mediaId }: { mediaId: number }) => {
     if (mediaId === mediaIds.image) {
       return (
-        <CAImage
-          image={post.body}
-          options={{
-            alt: post.alt,
-            className: 'post-image',
-            loading: 'lazy',
-          }}
-        />
+        <figure>
+          <CAImage
+            alt={post.alt}
+            layout="responsive"
+            blurDataURL={blurDataUrl}
+            quality={100}
+            width={1000}
+            height={1000}
+            placeholder="blur"
+            src={post.body}
+          />
+        </figure>
       );
     }
 
@@ -69,6 +79,7 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
           darkColor={post.darkColor}
           lightColor={post.lightColor}
           thumbnail={post.thumbnail}
+          blurDataUrl={blurDataUrl}
         />
       );
     }
@@ -177,7 +188,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
   const client = initializeApollo(null, jwtToken);
 
-  const post = await client.query({
+  const post = await client.query<IGetPost>({
     query: GET_POST,
     variables: { id },
     errorPolicy: 'ignore',
@@ -191,10 +202,26 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
   const getLoggedProfile = await getLoggedUserWithNoAuth(jwtToken, client);
 
+  const postData = post.data.getPost;
+
+  const managePost = () => {
+    switch (postData.mediaId) {
+      case mediaIds.audio:
+        return postData.thumbnail;
+      case mediaIds.image:
+        return postData.body;
+      default:
+        return '';
+    }
+  };
+
+  const base64 = await getBase64Image(managePost);
+
   return {
     props: {
       post: post.data.getPost,
       getLoggedProfile,
+      blurDataUrl: base64,
     },
   };
 };
