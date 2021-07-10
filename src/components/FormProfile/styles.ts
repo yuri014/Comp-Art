@@ -21,7 +21,7 @@ const FormProfileContainer = styled.form`
     justify-content: flex-start;
 
     .upload-cover {
-      background: ${({ theme }) => theme.colors.alternativeBackground}cc;
+      background: #111112dd;
       font-size: 1.4rem;
       padding: 0.4rem 1rem;
       border-radius: 2px;
@@ -32,6 +32,7 @@ const FormProfileContainer = styled.form`
       margin-right: 1rem;
       margin-top: 1rem;
       cursor: pointer;
+      color: #f5f5ff;
     }
 
     img {
