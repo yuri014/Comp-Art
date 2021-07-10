@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AppProps } from 'next/app';
 import { ThemeProvider } from 'styled-components';
 import { ApolloProvider } from '@apollo/client';
@@ -8,12 +8,10 @@ import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 
 import GlobalStyle from '@styles/global';
-import dark from '@styles/themes/dark';
-import light from '@styles/themes/light';
+import theme from '@styles/themes/theme';
 import { AuthProvider } from '@context/auth';
 import { useApollo } from '@graphql/apollo/config';
 import ThemeContext from '@context/theme';
-import useTheme from '@hooks/useTheme';
 import { MuiThemeProvider } from '@material-ui/core';
 import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
@@ -27,9 +25,23 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   const apolloClient = useApollo(pageProps.initialApolloState);
-  const { isDarkMode, toggleTheme } = useTheme();
-  const newTheme = isDarkMode ? dark : light;
 
+  const [isDarkMode, setDarkMode] = useState(
+    typeof window !== 'undefined' &&
+      window.document.documentElement.style.getPropertyValue(
+        '--initial-color-mode',
+      ) === 'dark',
+  );
+
+  const toggleTheme = () => {
+    document.documentElement.setAttribute(
+      'data-theme',
+      isDarkMode ? 'light' : 'dark',
+    );
+    localStorage.setItem('theme', isDarkMode ? 'light' : 'dark');
+
+    setDarkMode(!isDarkMode);
+  };
   return (
     <>
       <Head>
@@ -44,7 +56,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
                 toggleTheme,
               }}
             >
-              <ThemeProvider theme={newTheme}>
+              <ThemeProvider theme={theme}>
                 <MuiThemeProvider
                   theme={isDarkMode ? mainDarkTheme : mainLightTheme}
                 >
