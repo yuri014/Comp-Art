@@ -38,7 +38,7 @@ const ModalContainer = styled.section<ModalContainerProps>`
     margin: auto;
     display: flex;
     flex-direction: column;
-    background-color: ${({ theme }) => theme.colors.modalBackrgound};
+    background-color: ${({ theme }) => theme.colors.modalBackground};
     border-radius: 20px;
     color: ${({ theme }) => theme.colors.themeColor};
     text-align: left;
