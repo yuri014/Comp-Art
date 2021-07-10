@@ -89,10 +89,12 @@ export const InteractionsNumbersContainer = styled.div`
     .likes-images {
       display: flex;
       align-items: center;
-      flex-direction: row-reverse;
+      margin-right: 1.8rem;
+
       .like-profile-image {
         width: 2.4rem;
         height: 2.4rem;
+        margin-right: -1.4rem;
 
         img {
           object-fit: cover;
@@ -101,14 +103,6 @@ export const InteractionsNumbersContainer = styled.div`
         p {
           margin: 0;
           font-size: 1.3rem;
-        }
-
-        & + img {
-          margin-right: -1.6rem;
-        }
-
-        &:first-child {
-          margin-right: 0.4rem;
         }
       }
     }
