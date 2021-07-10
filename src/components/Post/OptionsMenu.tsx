@@ -3,6 +3,7 @@ import {
   IconButton,
   Menu,
   MenuItem,
+  NoSsr,
   Snackbar,
   ThemeProvider,
 } from '@material-ui/core';
@@ -47,65 +48,67 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({
   };
 
   return (
-    <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
-      <IconButton
-        aria-label="abrir menu post"
-        aria-haspopup="true"
-        onClick={handleClick}
-        color="secondary"
-      >
-        <FiMoreHorizontal />
-      </IconButton>
-      <Menu
-        id="menu-post-image"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <MenuItem onClick={copyToClipboard}>
-          <MenuListIcon className="prevent-redirect-post">
-            <FaLink />
-            <p>Copiar Link</p>
-            <textarea
-              ref={clip}
-              readOnly
-              style={{ position: 'absolute', left: '-999em' }}
-              value={`${process.env.NEXT_PUBLIC_HOST}/post/${id}`}
-            />
-          </MenuListIcon>
-        </MenuItem>
-        {auth.user && auth.user.username === username && (
-          <MenuItem onClick={deletePost}>
+    <NoSsr>
+      <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
+        <IconButton
+          aria-label="abrir menu post"
+          aria-haspopup="true"
+          onClick={handleClick}
+          color="secondary"
+        >
+          <FiMoreHorizontal />
+        </IconButton>
+        <Menu
+          id="menu-post-image"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <MenuItem onClick={copyToClipboard}>
             <MenuListIcon className="prevent-redirect-post">
-              <FiTrash2 className="danger-icon" />
-              <p className="danger-icon">Deletar</p>
+              <FaLink />
+              <p>Copiar Link</p>
+              <textarea
+                ref={clip}
+                readOnly
+                style={{ position: 'absolute', left: '-999em' }}
+                value={`${process.env.NEXT_PUBLIC_HOST}/post/${id}`}
+              />
             </MenuListIcon>
           </MenuItem>
-        )}
-      </Menu>
-      <Snackbar
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
-        }}
-        open={isClipped}
-        autoHideDuration={1000}
-        onClose={() => setIsClipped(false)}
-        message="Copiado"
-        color="error"
-        action={
-          <IconButton
-            size="small"
-            aria-label="fechar menu post"
-            onClick={() => setIsClipped(false)}
-            color="primary"
-          >
-            <FaTimes />
-          </IconButton>
-        }
-      />
-    </ThemeProvider>
+          {auth.user && auth.user.username === username && (
+            <MenuItem onClick={deletePost}>
+              <MenuListIcon className="prevent-redirect-post">
+                <FiTrash2 className="danger-icon" />
+                <p className="danger-icon">Deletar</p>
+              </MenuListIcon>
+            </MenuItem>
+          )}
+        </Menu>
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
+          open={isClipped}
+          autoHideDuration={1000}
+          onClose={() => setIsClipped(false)}
+          message="Copiado"
+          color="error"
+          action={
+            <IconButton
+              size="small"
+              aria-label="fechar menu post"
+              onClick={() => setIsClipped(false)}
+              color="primary"
+            >
+              <FaTimes />
+            </IconButton>
+          }
+        />
+      </ThemeProvider>
+    </NoSsr>
   );
 };
 
