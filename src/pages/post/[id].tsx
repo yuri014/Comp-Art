@@ -23,6 +23,7 @@ import PostSchema from '@schemas/Post';
 import getLoggedUserWithNoAuth from '@ssr-functions/getLoggedUserWithNoAuth';
 import formatDistanceTimePass from '@utils/formatDistanceTimePass';
 import mediaIds from '@utils/mediaIds';
+import Link from 'next/link';
 import PostPageContainer from './_styles';
 
 const AudioPlayer = dynamic(() => import('@components/AudioPlayer'), {
@@ -119,13 +120,15 @@ const PostPage: React.FC<PostPageProps> = ({ post, getLoggedProfile }) => {
                   username={post.artist.owner}
                   className="author-image"
                 />
-                <a>
-                  <div>
-                    <strong>{post.artist.name}</strong>
-                    <p>@{post.artist.owner}</p>
-                  </div>
-                  <p>{formatDistanceTimePass(post.createdAt)}</p>
-                </a>
+                <Link href={`/profile/${post.artist.owner}`}>
+                  <a>
+                    <div>
+                      <strong>{post.artist.name}</strong>
+                      <p>@{post.artist.owner}</p>
+                    </div>
+                    <p>{formatDistanceTimePass(post.createdAt)}</p>
+                  </a>
+                </Link>
               </div>
               <OptionsMenu
                 deletePost={handleDeletePost}
