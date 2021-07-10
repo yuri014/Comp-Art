@@ -62,15 +62,19 @@ export const AuthorInfoContainer = styled.div`
 
 export const InteractionsNumbersContainer = styled.div`
   width: 100%;
-  display: flex;
+  display: grid;
   align-items: center;
-  justify-content: space-between;
+  grid-template-columns: 30% 30% 30%;
   gap: 0.8rem;
 
   /* stylelint-disable-next-line */
   p {
     font-size: 1.3rem;
     text-align: center;
+  }
+
+  a {
+    color: ${({ theme }) => theme.colors.themeColor};
   }
 
   button {
@@ -109,6 +113,7 @@ export const InteractionsNumbersContainer = styled.div`
   }
 
   @media (min-width: 768px) {
+    display: flex;
     justify-content: flex-start;
   }
 `;
