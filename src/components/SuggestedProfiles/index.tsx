@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { gql, useMutation, useQuery } from '@apollo/client';
 
+import ProfileImage from '@components/ProfileImage';
 import SuggestedProfilesContainer from './styles';
 import LoadingSuggestedProfile from './loading';
 import { IProfile } from '../../interfaces/Profile';
@@ -92,7 +93,12 @@ const SuggestedProfiles: React.FC = () => {
                   <div className="suggested-profile-container">
                     <Link href={`/profile/${profile.owner}`}>
                       <a className="suggested-profile">
-                        <img src={profile.avatar} alt={profile.name} />
+                        <ProfileImage
+                          avatar={profile.avatar}
+                          alt={profile.name}
+                          username={profile.owner}
+                          className="suggested-profile-image"
+                        />
 
                         <div className="suggested-profile-info">
                           <p className="limited-text">{profile.name}</p>

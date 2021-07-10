@@ -30,11 +30,9 @@ const SuggestedProfilesContainer = styled.div`
       align-items: center;
       gap: 0.8rem;
 
-      img {
+      .suggested-profile-image {
         width: 4rem;
         height: 4rem;
-        border-radius: 50%;
-        object-fit: fill;
       }
 
       .suggested-profile-info {
