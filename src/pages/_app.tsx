@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { AppProps } from 'next/app';
 import { ThemeProvider } from 'styled-components';
 import { ApolloProvider } from '@apollo/client';
@@ -13,7 +13,7 @@ import light from '@styles/themes/light';
 import { AuthProvider } from '@context/auth';
 import { useApollo } from '@graphql/apollo/config';
 import ThemeContext from '@context/theme';
-import useDarkMode from 'use-dark-mode';
+import useTheme from '@hooks/useTheme';
 import { MuiThemeProvider } from '@material-ui/core';
 import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
@@ -27,16 +27,8 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   const apolloClient = useApollo(pageProps.initialApolloState);
-  const [isMounted, setIsMounted] = useState(false);
-  const darkmode = useDarkMode(
-    typeof window !== 'undefined' &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches,
-  );
-  const newTheme = darkmode.value ? dark : light;
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const { isDarkMode, toggleTheme } = useTheme();
+  const newTheme = isDarkMode ? dark : light;
 
   return (
     <>
@@ -48,15 +40,15 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
           <NewNotificationsProvider>
             <ThemeContext.Provider
               value={{
-                isDarkMode: darkmode.value,
-                toggleTheme: darkmode.toggle,
+                isDarkMode,
+                toggleTheme,
               }}
             >
               <ThemeProvider theme={newTheme}>
                 <MuiThemeProvider
-                  theme={darkmode.value ? mainDarkTheme : mainLightTheme}
+                  theme={isDarkMode ? mainDarkTheme : mainLightTheme}
                 >
-                  {isMounted && <Component {...pageProps} />}
+                  <Component {...pageProps} />
                   <GlobalStyle />
                 </MuiThemeProvider>
               </ThemeProvider>
