@@ -130,6 +130,7 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content="#050211" />
         </Head>
         <body>
+          <script src="/set-theme.js" />
           <Main />
           <div id="modal" />
           <NextScript />
