@@ -4,6 +4,7 @@ import { useRouter } from 'next/dist/client/router';
 import {
   BottomNavigation,
   BottomNavigationAction,
+  NoSsr,
   ThemeProvider,
 } from '@material-ui/core';
 
@@ -25,31 +26,33 @@ const MobileFooter: React.FC = () => {
   };
 
   return (
-    <MobileFooterContainer>
-      <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
-        <BottomNavigation value={value} onChange={handleChange}>
-          <BottomNavigationAction
-            label="Home"
-            value="/home"
-            icon={<FaHome />}
-            onClick={() => routes.push('/home')}
-          />
+    <NoSsr>
+      <MobileFooterContainer>
+        <ThemeProvider theme={isDarkMode ? mainDarkTheme : mainLightTheme}>
+          <BottomNavigation value={value} onChange={handleChange}>
+            <BottomNavigationAction
+              label="Home"
+              value="/home"
+              icon={<FaHome />}
+              onClick={() => routes.push('/home')}
+            />
 
-          <BottomNavigationAction
-            label="Search"
-            value="/search"
-            icon={<FaSearch />}
-            onClick={() => routes.push('/search')}
-          />
-          <BottomNavigationAction
-            label="Notifications"
-            value="/notifications"
-            icon={<FaBell />}
-            onClick={() => routes.push('/notifications')}
-          />
-        </BottomNavigation>
-      </ThemeProvider>
-    </MobileFooterContainer>
+            <BottomNavigationAction
+              label="Search"
+              value="/search"
+              icon={<FaSearch />}
+              onClick={() => routes.push('/search')}
+            />
+            <BottomNavigationAction
+              label="Notifications"
+              value="/notifications"
+              icon={<FaBell />}
+              onClick={() => routes.push('/notifications')}
+            />
+          </BottomNavigation>
+        </ThemeProvider>
+      </MobileFooterContainer>
+    </NoSsr>
   );
 };
 
