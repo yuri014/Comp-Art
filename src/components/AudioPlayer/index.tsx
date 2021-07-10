@@ -33,7 +33,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
     wavesurfer.current.on('ready', () => {
       if (wavesurfer.current) {
-        wavesurfer.current.setVolume(0.5);
+        wavesurfer.current.setVolume(1);
       }
     });
 
@@ -52,7 +52,11 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
       <div id="waveform" ref={waveformRef} />
       <div className="controls">
         <div className="buttons">
-          <button aria-label="voltar 10 segundos" type="button">
+          <button
+            aria-label="voltar 10 segundos"
+            type="button"
+            onClick={() => wavesurfer.current.skipBackward()}
+          >
             <FaBackward />
           </button>
           <button
@@ -63,7 +67,11 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
           >
             {!isPlaying ? <FaPlay /> : <FaPause />}
           </button>
-          <button aria-label="avançar 10 segundos" type="button">
+          <button
+            aria-label="avançar 10 segundos"
+            type="button"
+            onClick={() => wavesurfer.current.skipForward()}
+          >
             <FaForward />
           </button>
         </div>
