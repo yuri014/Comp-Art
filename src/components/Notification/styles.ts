@@ -57,20 +57,20 @@ export const NotificationContainer = styled.div`
       align-self: center;
       border-radius: 50%;
       justify-self: flex-end;
-      box-shadow: 0 0 0 ${({ theme }) => theme.colors.mainColor}80;
+      box-shadow: 0 0 0 ${({ theme }) => theme.colors.mainColorMedium};
       will-change: box-shadow;
       animation: pulse 2s infinite;
     }
 
     @keyframes pulse {
       0% {
-        box-shadow: 0 0 0 0 ${({ theme }) => theme.colors.mainColor}80;
+        box-shadow: 0 0 0 0 ${({ theme }) => theme.colors.mainColorMedium};
       }
       70% {
-        box-shadow: 0 0 0 10px ${({ theme }) => theme.colors.mainColor}00;
+        box-shadow: 0 0 0 10px #00000000;
       }
       100% {
-        box-shadow: 0 0 0 0 ${({ theme }) => theme.colors.mainColor}00;
+        box-shadow: 0 0 0 0 #00000000;
       }
     }
   }

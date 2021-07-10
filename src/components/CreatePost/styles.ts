@@ -75,7 +75,7 @@ const CreatePostContainer = styled.div`
 
           &:focus,
           &:hover {
-            background-color: ${({ theme }) => theme.colors.mainColor}20;
+            background-color: ${({ theme }) => theme.colors.mainColorLow};
           }
 
           &:focus {
