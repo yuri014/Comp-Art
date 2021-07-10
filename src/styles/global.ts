@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import cssVars from './themes/css-vars';
 
 export default createGlobalStyle`
   ::-webkit-scrollbar {
@@ -13,6 +14,9 @@ export default createGlobalStyle`
     background: ${({ theme }) => theme.colors.lightContrast};
     border-radius: 4px;
   }
+
+  /* stylelint-disable-next-line */
+  ${cssVars}
 
   :root {
     font-size: 60%;
