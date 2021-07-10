@@ -39,6 +39,10 @@ export interface ArtistPostProps extends PostProps {
   isShare?: boolean;
 }
 
+export interface IGetPost {
+  getPost: Timeline;
+}
+
 export interface IGetPosts {
   getPosts: Array<Timeline>;
 }
