@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useMutation } from '@apollo/client';
+import { NoSsr } from '@material-ui/core';
 
 import DraftEditor from '@components/DraftEditor';
 import { CREATE_POST } from '@graphql/mutations/post';
@@ -67,68 +68,70 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
   const canSubmit = hasMedia || hasDescription;
 
   return (
-    <CreatePostContainer>
-      <ProfileImage
-        alt={`${getLoggedProfile.name} avatar`}
-        avatar={getLoggedProfile.avatar}
-        username={getLoggedProfile.owner}
-        className="profile-image"
-      />
+    <NoSsr>
+      <CreatePostContainer>
+        <ProfileImage
+          alt={`${getLoggedProfile.name} avatar`}
+          avatar={getLoggedProfile.avatar}
+          username={getLoggedProfile.owner}
+          className="profile-image"
+        />
 
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-          onSubmit();
-        }}
-      >
-        <div className="editor">
-          {isMount && (
-            <DraftEditor
-              setText={setDescription}
-              setProgress={setProgress}
-              limit={5000}
-              placeholder="Digite aqui o seu post..."
-            />
-          )}
-          {(imagePreview.preview || audioResult) && (
-            <MediaForm
-              audioResult={audioResult}
-              cleaner={() => {
-                setImagePreview('');
-                setAudioResult(null);
-              }}
-              imageDimension={imageDimension}
-              preview={imagePreview.preview as string}
-              setAlt={setAlt}
-              setTitle={setTitle}
-            />
-          )}
-        </div>
-
-        <div className="buttons">
-          <InputFileButtons
-            setAudioResult={setAudioResult}
-            setImagePreview={setImagePreview}
-          />
-          <div>
-            {description.trim().length > 0 && (
-              <DescriptionCounter progress={progress} />
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            onSubmit();
+          }}
+        >
+          <div className="editor">
+            {isMount && (
+              <DraftEditor
+                setText={setDescription}
+                setProgress={setProgress}
+                limit={5000}
+                placeholder="Digite aqui o seu post..."
+              />
             )}
-            <button
-              type="submit"
-              disabled={!canSubmit}
-              className={`${canSubmit ? '' : 'disabled'}`}
-            >
-              Publicar
-            </button>
+            {(imagePreview.preview || audioResult) && (
+              <MediaForm
+                audioResult={audioResult}
+                cleaner={() => {
+                  setImagePreview('');
+                  setAudioResult(null);
+                }}
+                imageDimension={imageDimension}
+                preview={imagePreview.preview as string}
+                setAlt={setAlt}
+                setTitle={setTitle}
+              />
+            )}
           </div>
-        </div>
-      </form>
-      {showModal && <SendSuccess setShowModal={setShowModal} />}
-      {showError && (
-        <SendError setShowError={setShowError} showError={showError} />
-      )}
-    </CreatePostContainer>
+
+          <div className="buttons">
+            <InputFileButtons
+              setAudioResult={setAudioResult}
+              setImagePreview={setImagePreview}
+            />
+            <div>
+              {description.trim().length > 0 && (
+                <DescriptionCounter progress={progress} />
+              )}
+              <button
+                type="submit"
+                disabled={!canSubmit}
+                className={`${canSubmit ? '' : 'disabled'}`}
+              >
+                Publicar
+              </button>
+            </div>
+          </div>
+        </form>
+        {showModal && <SendSuccess setShowModal={setShowModal} />}
+        {showError && (
+          <SendError setShowError={setShowError} showError={showError} />
+        )}
+      </CreatePostContainer>
+    </NoSsr>
   );
 };
 
