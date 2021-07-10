@@ -26,8 +26,8 @@ export const createUserSchema = (otherValidations?: {
       .string()
       .min(8)
       .matches(
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-        'Senha deve conter no mínimo 8 caracteres uma letra, um número e um caracter especial',
+        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+        'Senha deve conter no mínimo 8 caracteres com letras e números',
       )
       .required(),
     confirmPassword: yup
