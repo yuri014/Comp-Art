@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 import ModalProfile from '@components/ModalProfile';
 import ModalLikesButton from '@components/Splitter/ModalLikesButton';
@@ -38,7 +39,16 @@ const InteractionsNumbers: React.FC<InteractionsNumbers> = ({
             likesCount={likesCount}
           />
         )}
-        <InteractionCount count={post.commentsCount} message="comentário" />
+        {post.commentsCount && (
+          <Link href={`/post/${post._id}`}>
+            <a>
+              <InteractionCount
+                count={post.commentsCount}
+                message="comentário"
+              />
+            </a>
+          </Link>
+        )}
         <div>
           {post.sharedCount > 0 && (
             <button
