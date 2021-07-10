@@ -50,23 +50,25 @@ const MobileHeader: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
             <Logo />
           </a>
         </Link>
-        <IconButton
-          color="secondary"
-          type="button"
-          aria-label={`Mudar para modo ${!isDarkMode ? 'Escuro' : 'Claro'}`}
-          onClick={() => toggleTheme()}
-        >
-          {!isDarkMode ? <FaMoon /> : <FaSun />}
-        </IconButton>
         {isMount && (
-          <SwipeableDrawer
-            anchor="left"
-            onClose={() => setIsDrawerOpen(false)}
-            onOpen={() => setIsDrawerOpen(true)}
-            open={isDrawerOpen}
-          >
-            <HomeProfile getLoggedProfile={getLoggedProfile} />
-          </SwipeableDrawer>
+          <>
+            <IconButton
+              color="secondary"
+              type="button"
+              aria-label={`Mudar para modo ${!isDarkMode ? 'Escuro' : 'Claro'}`}
+              onClick={() => toggleTheme()}
+            >
+              {!isDarkMode ? <FaMoon /> : <FaSun />}
+            </IconButton>
+            <SwipeableDrawer
+              anchor="left"
+              onClose={() => setIsDrawerOpen(false)}
+              onOpen={() => setIsDrawerOpen(true)}
+              open={isDrawerOpen}
+            >
+              <HomeProfile getLoggedProfile={getLoggedProfile} />
+            </SwipeableDrawer>
+          </>
         )}
       </nav>
     </MobileHeaderContainer>
