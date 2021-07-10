@@ -1,6 +1,8 @@
 const theme = {
   colors: {
     mainColor: 'var(--color-main)',
+    mainColorMedium: 'var(--color-main-medium)',
+    mainColorLow: 'var(--color-main-low)',
     titleColor: 'var(--color-title)',
     backgroundColor: 'var(--color-background)',
     secondaryBackgroundColor: 'var(--color-background-secondary)',

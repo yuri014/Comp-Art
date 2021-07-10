@@ -3,6 +3,8 @@ import { css } from 'styled-components';
 const cssVars = css`
   :root {
     --color-main: #1cc5b7;
+    --color-main-medium: #1cc5b780;
+    --color-main-low: #1cc5b720;
     --color-title: #50c878;
     --color-background: #050211;
     --color-background-secondary: #202024;
@@ -39,6 +41,8 @@ const cssVars = css`
 
   [data-theme='light'] {
     --color-main: #077e76;
+    --color-main-medium: #077e7680;
+    --color-main-low: #077e7620;
     --color-title: rgba(0, 0, 0, 0.2);
     --color-background: #edf1f2;
     --color-background-secondary: #fff;
