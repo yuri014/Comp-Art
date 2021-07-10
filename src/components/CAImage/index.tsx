@@ -1,54 +1,37 @@
-import dynamic from 'next/dynamic';
 import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
+import Image, { ImageProps } from 'next/image';
 import CAImageContainer from './styles';
 
 const FullScreenImage = dynamic(() => import('../FullScreenImage'));
 
-interface CAImageProps {
-  image: string;
-  options?: {
-    alt?: string;
-    loading?: 'lazy' | 'eager';
-    className?: string;
-    height?: string | number;
-  };
-}
+type Props = {
+  classNameContainer?: string;
+};
 
-const CAImage: React.FC<CAImageProps> = ({ image, options }) => {
+type CAImageProps = Props & ImageProps;
+
+const CAImage: React.FC<CAImageProps> = props => {
   const [isImageFullScreen, setIsImageFullScreen] = useState(false);
   return (
     <>
       <CAImageContainer
-        className={options.className}
+        className={props.classNameContainer}
         onClick={() => setIsImageFullScreen(true)}
         onKeyDown={() => setIsImageFullScreen(true)}
         onBlur={() => setIsImageFullScreen(false)}
         type="button"
       >
-        <img
-          src={image}
-          alt={options.alt}
-          loading={options.loading}
-          height={options.height}
-        />
+        <Image {...props} />
       </CAImageContainer>
       {isImageFullScreen && (
         <FullScreenImage
-          img={image}
+          img={props.src as string}
           onClose={() => setIsImageFullScreen(false)}
         />
       )}
     </>
   );
-};
-
-CAImage.defaultProps = {
-  options: {
-    alt: '',
-    loading: 'eager',
-    className: '',
-    height: '',
-  },
 };
 
 export default CAImage;
