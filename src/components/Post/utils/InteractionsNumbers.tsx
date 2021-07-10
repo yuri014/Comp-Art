@@ -39,7 +39,7 @@ const InteractionsNumbers: React.FC<InteractionsNumbers> = ({
             likesCount={likesCount}
           />
         )}
-        {post.commentsCount && (
+        {post.commentsCount > 0 && (
           <Link href={`/post/${post._id}`}>
             <a>
               <InteractionCount
