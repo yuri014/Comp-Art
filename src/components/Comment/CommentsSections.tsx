@@ -39,7 +39,12 @@ const CommentsSections: React.FC<CommentsSectionsProps> = ({
 
   useEffect(
     () => () => {
-      client.cache.evict({ fieldName: 'getComments' });
+      client.cache.evict({
+        id: 'ROOT_QUERY',
+        fieldName: 'getComments',
+        broadcast: false,
+      });
+      client.cache.gc();
     },
     [client.cache],
   );

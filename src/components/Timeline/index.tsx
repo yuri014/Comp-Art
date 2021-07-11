@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { DocumentNode, useQuery } from '@apollo/client';
 
@@ -21,7 +21,7 @@ const Timeline: React.FC<TimelineProps> = ({
   queryName,
   otherVariables,
 }) => {
-  const { data, loading, error, fetchMore } = useQuery(query, {
+  const { client, data, loading, error, fetchMore } = useQuery(query, {
     variables: { offset: 0, ...otherVariables },
     fetchPolicy: 'cache-and-network',
   });
@@ -36,6 +36,18 @@ const Timeline: React.FC<TimelineProps> = ({
 
     return false;
   });
+
+  useEffect(
+    () => () => {
+      client.cache.evict({
+        id: 'ROOT_QUERY',
+        fieldName: queryName,
+        broadcast: false,
+      });
+      client.cache.gc();
+    },
+    [client.cache, queryName],
+  );
 
   return (
     <>
