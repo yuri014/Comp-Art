@@ -7,6 +7,7 @@ import Router from 'next/router';
 import { MuiThemeProvider } from '@material-ui/core';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import GlobalStyle from '@styles/global';
 import theme from '@styles/themes/theme';
