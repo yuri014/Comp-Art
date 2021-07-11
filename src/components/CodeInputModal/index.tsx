@@ -61,8 +61,8 @@ const CodeInputModal: React.FC<CodeInputModalProps> = ({
             Já enviamos um código para o seu e-mail <span>{email}</span>
           </p>
           <p>
-            Verifique sua caixa de entrada e insira o código no campo abaixo
-            para verificar seu e-mail
+            Verifique sua caixa de entrada ou <span>spam</span> e insira o
+            código no campo abaixo para verificar seu e-mail
           </p>
         </CodeInputHeaderContainer>
       }
