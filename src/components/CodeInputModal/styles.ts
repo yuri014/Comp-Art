@@ -6,6 +6,10 @@ export const CodeInputHeaderContainer = styled.div`
 
     span {
       color: ${({ theme }) => theme.colors.mainColor};
+
+      &.danger {
+        color: ${({ theme }) => theme.colors.error};
+      }
     }
 
     & + p {
@@ -60,6 +64,7 @@ export const CodeInputModalContainer = styled.form`
     margin: 0 auto;
     width: 90%;
     margin-bottom: 2rem;
+    cursor: pointer;
   }
 
   .buttons {
