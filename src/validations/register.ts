@@ -22,14 +22,7 @@ export const createUserSchema = (otherValidations?: {
 }) =>
   yup.object().shape({
     ...otherValidations,
-    password: yup
-      .string()
-      .min(8)
-      .matches(
-        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-        'Senha deve conter no mínimo 8 caracteres com letras e números',
-      )
-      .required(),
+    password: yup.string().min(8).max(64).required(),
     confirmPassword: yup
       .string()
       .oneOf([yup.ref('password'), null], 'Senhas não conferem')
