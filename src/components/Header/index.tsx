@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Link from 'next/link';
-import { ThemeProvider } from '@material-ui/core';
+import { NoSsr, ThemeProvider } from '@material-ui/core';
 import { FaMoon, FaSignInAlt, FaSun } from 'react-icons/fa';
 import { BiDonateHeart } from 'react-icons/bi';
 
@@ -29,7 +29,7 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
         </Link>
         <SearchInput />
         {auth.user ? (
-          <>
+          <NoSsr>
             <div className="header-icons">
               <span />
               <a
@@ -48,7 +48,7 @@ const Header: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
                 logout={auth.logout}
               />
             </div>
-          </>
+          </NoSsr>
         ) : (
           <div className="header-icons">
             <span />
