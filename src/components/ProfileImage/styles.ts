@@ -10,6 +10,7 @@ const AvatarPlaceholder = styled.div`
 
   .holder {
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: center;
     font-size: 2.2rem;
