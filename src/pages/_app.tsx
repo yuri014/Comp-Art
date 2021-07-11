@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { ApolloProvider } from '@apollo/client';
 import Head from 'next/head';
 import Router from 'next/router';
+import { MuiThemeProvider } from '@material-ui/core';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 
@@ -12,7 +13,6 @@ import theme from '@styles/themes/theme';
 import { AuthProvider } from '@context/auth';
 import { useApollo } from '@graphql/apollo/config';
 import ThemeContext from '@context/theme';
-import { MuiThemeProvider } from '@material-ui/core';
 import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
 import { NewNotificationsProvider } from '@context/notification';
@@ -60,8 +60,8 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
                 <MuiThemeProvider
                   theme={isDarkMode ? mainDarkTheme : mainLightTheme}
                 >
-                  <Component {...pageProps} />
                   <GlobalStyle />
+                  <Component {...pageProps} />
                 </MuiThemeProvider>
               </ThemeProvider>
             </ThemeContext.Provider>
