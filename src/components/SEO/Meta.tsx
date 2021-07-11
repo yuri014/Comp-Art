@@ -30,7 +30,7 @@ const Meta: React.FC<MetaProps> = ({
           : process.env.NEXT_PUBLIC_HOST
       }
     />
-    <meta property="og:title" content="Comp-Art" />
+    <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={seoImage} />
     <meta property="twitter:card" content="summary_large_image" />
@@ -42,7 +42,7 @@ const Meta: React.FC<MetaProps> = ({
           : process.env.NEXT_PUBLIC_HOST
       }
     />
-    <meta property="twitter:title" content="Comp-Art" />
+    <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={seoImage} />
   </Head>
