@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { NextPage } from 'next';
 
 import { AuthContext } from '../context/auth';
@@ -6,12 +6,16 @@ import Login from '../pages/login';
 
 const withAuth = (Component: NextPage): NextPage => {
   const Auth = props => {
-    const { user } = useContext(AuthContext);
-    if (!user) {
-      return <Login />;
-    }
+    const [isAuth, setIsAuth] = useState(false);
+    const user = useContext(AuthContext);
 
-    return <Component {...props} />;
+    useEffect(() => {
+      if (user.user) {
+        setIsAuth(true);
+      }
+    }, [user.user]);
+
+    return <>{isAuth ? <Component {...props} /> : <Login />}</>;
   };
 
   if (Component.getInitialProps) {
