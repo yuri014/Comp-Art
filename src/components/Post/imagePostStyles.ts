@@ -11,7 +11,8 @@ const ImagePostContainer = styled.div`
       margin-bottom: 1rem;
     }
 
-    .post-image {
+    .post-image,
+    span {
       cursor: pointer;
       width: 100%;
       border-radius: 4px;
@@ -19,7 +20,7 @@ const ImagePostContainer = styled.div`
       height: auto;
 
       @media (min-width: 768px) {
-        height: unset;
+        height: 100%;
         max-height: unset;
       }
     }
