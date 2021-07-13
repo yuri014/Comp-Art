@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { IconButton, Snackbar, ThemeProvider } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/core';
+import dynamic from 'next/dynamic';
 import { useForm } from 'react-hook-form';
-import { FaTimes } from 'react-icons/fa';
 import { useMutation } from '@apollo/client';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -13,9 +13,13 @@ import Title from '@components/Title';
 import ToggleThemeButton from '@components/ToggleTheme';
 import { AuthContext } from '@context/auth';
 import { LOGIN_USER } from '@graphql/mutations/user';
+import useSnackbar from '@hooks/useSnackbar';
 import CAButton from '@styles/components/button';
 import formTheme from '@styles/themes/FormTheme';
 import LoginContainer from './_styles';
+
+const CodeInputModal = dynamic(() => import('@components/CodeInputModal'));
+const CASnackbar = dynamic(() => import('@components/CASnackbar'));
 
 interface ILogin {
   email: string;
@@ -25,10 +29,11 @@ interface ILogin {
 const Login: React.FC = () => {
   const inputRef = useRef(null);
   const authContext = useContext(AuthContext);
-  const [showError, setShowError] = useState('');
+  const { clearSnackbar, setShowSnackbar, showSnackbar } = useSnackbar();
+  const [showCodeForm, setShowCodeForm] = useState(false);
   const router = useRouter();
 
-  const { handleSubmit, register } = useForm<ILogin>({
+  const { handleSubmit, register, watch } = useForm<ILogin>({
     mode: 'onChange',
     reValidateMode: 'onChange',
   });
@@ -45,7 +50,10 @@ const Login: React.FC = () => {
       authContext.login(response.login);
       router.push('/home');
     },
-    onError: ({ graphQLErrors }) => setShowError(graphQLErrors[0].message),
+    onError: ({ graphQLErrors }) => {
+      setShowSnackbar({ message: graphQLErrors[0].message, variant: 'error' });
+      setShowCodeForm(graphQLErrors[0].extensions.validateCode);
+    },
   });
 
   const onSubmit = (inputs: ILogin) => {
@@ -92,24 +100,9 @@ const Login: React.FC = () => {
           </Link>
 
           <ThemeProvider theme={formTheme}>
-            <Snackbar
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={!!showError}
-              autoHideDuration={4000}
-              onClose={() => setShowError('')}
-              message={showError}
-              action={
-                <IconButton
-                  size="small"
-                  aria-label="fechar menu erro"
-                  onClick={() => setShowError('')}
-                >
-                  <FaTimes />
-                </IconButton>
-              }
+            <CASnackbar
+              snackbarState={showSnackbar}
+              clearSnackbar={clearSnackbar}
             />
           </ThemeProvider>
           <CAButton type="submit">ENTRAR</CAButton>
@@ -123,6 +116,13 @@ const Login: React.FC = () => {
         </form>
       </main>
       <Footer />
+      {showCodeForm && (
+        <CodeInputModal
+          email={watch('email')}
+          setShowModal={setShowCodeForm}
+          setMessage={setShowSnackbar}
+        />
+      )}
     </LoginContainer>
   );
 };
