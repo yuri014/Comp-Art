@@ -51,9 +51,16 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
     refetchQueries: [
       {
         query: GET_PROFILE_POSTS,
+        variables: {
+          offset: 0,
+          username: getLoggedProfile.owner,
+        },
       },
       {
         query: GET_POSTS,
+        variables: {
+          offset: 0,
+        },
       },
     ],
   });
