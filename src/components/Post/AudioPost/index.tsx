@@ -34,7 +34,7 @@ const AudioPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
       <div className="audio-card">
         <div className="thumbnail">
           <img
-            src={post.thumbnail}
+            src={post.thumbnail || '/assets/audio-placeholder.svg'}
             alt={post.alt}
             loading="lazy"
             width="200px"
