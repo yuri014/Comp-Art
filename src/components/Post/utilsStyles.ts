@@ -153,7 +153,7 @@ export const EmptyPostContainer = styled.div`
     border: none;
     border-radius: 5px;
     font-size: 1.4rem;
-    color: ${({ theme }) => theme.colors.themeColor};
+    color: #fff;
     cursor: pointer;
     font-weight: bold;
     display: flex;
