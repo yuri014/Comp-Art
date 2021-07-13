@@ -17,7 +17,7 @@ const ImagePostContainer = styled.div`
       width: 100%;
       border-radius: 4px;
       max-height: 350px;
-      height: auto;
+      height: auto !important;
 
       @media (min-width: 768px) {
         height: 100%;
