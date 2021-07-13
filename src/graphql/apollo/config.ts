@@ -14,7 +14,7 @@ import { createUploadLink } from 'apollo-upload-client';
 import { setContext } from 'apollo-link-context';
 import Cookie from 'js-cookie';
 
-import mergeCache from './mergeCache';
+import mergeCache, { mergeArrayCache } from './mergeCache';
 
 let apolloClient: ApolloClient<NormalizedCacheObject>;
 
@@ -80,14 +80,26 @@ function createApolloClient(cookie?: string) {
           fields: {
             getPosts: {
               keyArgs: false,
-              merge(existing, incoming, { args: { offset = 0 } }) {
-                return mergeCache(existing, incoming, offset);
+              merge(existing, incoming, { args: { offset = [0, 0] } }) {
+                return mergeArrayCache(existing, incoming, offset);
               },
             },
             getProfilePosts: {
               keyArgs: false,
-              merge(existing, incoming, { args: { offset = 0 } }) {
-                return mergeCache(existing, incoming, offset);
+              merge(existing, incoming, { args: { offset = [0, 0] } }) {
+                return mergeArrayCache(existing, incoming, offset);
+              },
+            },
+            getSavedPosts: {
+              keyArgs: false,
+              merge(existing, incoming, { args: { offset = [0, 0] } }) {
+                return mergeArrayCache(existing, incoming, offset);
+              },
+            },
+            searchPost: {
+              keyArgs: false,
+              merge(existing, incoming, { args: { offset = [0, 0] } }) {
+                return mergeArrayCache(existing, incoming, offset);
               },
             },
             getComments: {
