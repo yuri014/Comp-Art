@@ -16,7 +16,7 @@ export const GET_SEARCH_PROFILE = gql`
 export const GET_SEARCH_POSTS = gql`
   ${CORE_POST_VIEW}
   ${CORE_SHARE_VIEW}
-  query SearchPost($query: String!, $offset: Int!) {
+  query SearchPost($query: String!, $offset: [Int]!) {
     searchPost(query: $query, offset: $offset) {
       ... on Post {
         ...CorePostView

@@ -19,7 +19,7 @@ const GET_SAVED_POSTS = gql`
   ${CORE_POST_VIEW}
   ${CORE_SHARE_VIEW}
 
-  query GetSavedPosts($offset: Int!) {
+  query GetSavedPosts($offset: [Int]!) {
     getSavedPosts(offset: $offset) {
       ... on Post {
         ...CorePostView

@@ -14,7 +14,7 @@ export const GET_POST = gql`
 export const GET_POSTS = gql`
   ${CORE_POST_VIEW}
   ${CORE_SHARE_VIEW}
-  query GetPosts($offset: Int!) {
+  query GetPosts($offset: [Int]!) {
     getPosts(offset: $offset) {
       ... on Post {
         ...CorePostView
@@ -56,7 +56,7 @@ export const GET_EXPLORE_POSTS = gql`
 export const GET_PROFILE_POSTS = gql`
   ${CORE_POST_VIEW}
   ${CORE_SHARE_VIEW}
-  query GetProfilePosts($offset: Int!, $username: String!) {
+  query GetProfilePosts($offset: [Int]!, $username: String!) {
     getProfilePosts(offset: $offset, username: $username) {
       ... on Post {
         ...CorePostView
