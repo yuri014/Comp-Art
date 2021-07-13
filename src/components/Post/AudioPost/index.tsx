@@ -1,4 +1,5 @@
 import React, { useContext, useRef, useState } from 'react';
+import Image from 'next/image';
 import IconButton from '@material-ui/core/IconButton';
 import { FaBackward, FaForward, FaPause, FaPlay } from 'react-icons/fa';
 
@@ -32,15 +33,15 @@ const AudioPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
       isLightTheme={!isDarkMode}
     >
       <div className="audio-card">
-        <div className="thumbnail">
-          <img
+        <figure className="thumbnail">
+          <Image
             src={post.thumbnail || '/assets/audio-placeholder.svg'}
             alt={post.alt}
-            loading="lazy"
             width="200px"
             height="200px"
+            layout="intrinsic"
           />
-        </div>
+        </figure>
         <div className="audio-card-content">
           <div className="audio-card-info">
             <Links

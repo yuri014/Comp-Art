@@ -36,11 +36,14 @@ const AudioPostContainer = styled.section<AudioPostContainerProps>`
     border-top: 1rem solid ${props => getThemedColor(props)};
 
     .thumbnail {
+      width: 20rem;
+      height: 20rem;
+      margin-top: 1rem;
+
       img {
-        width: 20rem;
-        height: 20rem;
+        width: 100%;
+        height: 100%;
         border-radius: 5px;
-        margin-top: 1rem;
       }
     }
 
@@ -124,12 +127,10 @@ const AudioPostContainer = styled.section<AudioPostContainerProps>`
       height: 21rem;
 
       .thumbnail {
-        img {
-          width: 16rem;
-          height: 14rem;
-          margin: 0;
-          margin-left: 2rem;
-        }
+        width: 16rem;
+        height: 14rem;
+        margin: 0;
+        margin-left: 2rem;
       }
 
       .audio-card-content {
