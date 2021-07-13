@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const FormProfileContainer = styled.form`
   max-width: 60rem;
+  box-shadow: ${({ theme }) => theme.colors.mainShadow};
   background: ${({ theme }) => theme.colors.secondaryBackgroundColor};
   border-radius: 4px;
   .profile-image-upload,
@@ -73,11 +74,12 @@ const FormProfileContainer = styled.form`
     }
 
     .holder {
+      background: #1cc5b7;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 5rem;
-      color: #000;
+      color: #050211;
       text-transform: uppercase;
       font-weight: bold;
       width: 10rem;
