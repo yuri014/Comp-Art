@@ -12,7 +12,7 @@ const Footer: React.FC = () => (
       <Link href="/terms">
         <a>Termos de uso</a>
       </Link>
-      <Link href="/about">
+      <Link href="/privacy-policy">
         <a>Políticas de privacidade</a>
       </Link>
     </div>
