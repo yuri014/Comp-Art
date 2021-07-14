@@ -63,7 +63,7 @@ const RecoverPassword: React.FC = () => {
         uri="forgot-password"
         title="Recuperar minha senha - Comp-Art"
         description="Recupere sua senha para continuar na plataforma."
-        keywords="Comp-Art, comp-art, comp art, divulgação, arte, música, ilustrações, artistas, login, entrar"
+        keywords="Comp-Art, comp-art, comp art, recuperar senha, esqueci minha senha, senha"
       />
       <div className="toggle-button">
         <ToggleThemeButton />

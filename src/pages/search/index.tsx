@@ -18,7 +18,7 @@ const SearchPage: React.FC = () => {
         uri="search"
         title="Busca - Comp-Art"
         description="Faça sua busca para encontrar novas artes e artistas."
-        keywords="Comp-Art, comp-art, comp art, divulgação, arte, música, ilustrações, artistas, login, entrar"
+        keywords="Comp-Art, comp-art, comp art, divulgação, arte, música, ilustrações, artistas, buscar, procurar"
       />
       <NonAuthAltHeader isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
       <main className="container">
