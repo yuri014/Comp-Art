@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 
 import FooterContainer from './styles';
 import Logo from '../../assets/logo.svg';
@@ -9,12 +8,12 @@ const Footer: React.FC = () => (
     <Logo />
 
     <div>
-      <Link href="/terms">
-        <a>Termos de uso</a>
-      </Link>
-      <Link href="/privacy-policy">
-        <a>Políticas de privacidade</a>
-      </Link>
+      <a href="/terms" target="_blank">
+        Termos de uso
+      </a>
+      <a href="/privacy-policy" target="_blank">
+        Políticas de privacidade
+      </a>
     </div>
   </FooterContainer>
 );
