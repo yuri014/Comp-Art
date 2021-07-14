@@ -14,7 +14,7 @@ const ProfileSEO: React.FC<ProfileSEOProps> = ({ getProfile }) => {
   return (
     <Meta
       title={`${getProfile.owner} - Perfil`}
-      description={`${getProfile.owner} é um ${
+      description={`${getProfile.owner} é ${
         getProfile.isArtist
           ? `artista que produz e/ou se interessa por ${hashtags}`
           : `fã de ${hashtags}`
