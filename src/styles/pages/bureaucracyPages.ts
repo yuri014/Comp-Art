@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
-const TermsContainer = styled.div`
+const BureaucracyPageContainer = styled.div`
   padding: 4rem 0;
 
   main {
     h1 {
       font-size: 4.8rem;
+      margin-bottom: 1rem;
     }
 
     h2 {
@@ -18,7 +19,7 @@ const TermsContainer = styled.div`
 
     h2,
     h3 {
-      margin: 1rem 0;
+      margin: 2rem 0;
     }
 
     p,
@@ -26,7 +27,12 @@ const TermsContainer = styled.div`
       font-size: 1.6rem;
     }
 
-    ol {
+    p {
+      margin-bottom: 1rem;
+    }
+
+    ol,
+    ul {
       list-style-position: inside;
       margin: 2rem 0;
 
@@ -41,4 +47,4 @@ const TermsContainer = styled.div`
   }
 `;
 
-export default TermsContainer;
+export default BureaucracyPageContainer;
