@@ -3,11 +3,11 @@ import React from 'react';
 import Meta from '@components/SEO/Meta';
 import ToggleThemeButton from '@components/ToggleTheme';
 import Footer from '@components/Footer';
+import BureaucracyPageContainer from '@styles/pages/bureaucracyPages';
 import Terms from './_terms.mdx';
-import TermsContainer from './_styles';
 
 const TermsPage: React.FC = () => (
-  <TermsContainer className="container">
+  <BureaucracyPageContainer className="container">
     <Meta
       uri="terms"
       title="Termos - Comp-Art"
@@ -22,7 +22,7 @@ const TermsPage: React.FC = () => (
     </main>
     <main />
     <Footer />
-  </TermsContainer>
+  </BureaucracyPageContainer>
 );
 
 export default TermsPage;
