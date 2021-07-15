@@ -18,9 +18,6 @@ module.exports = {
     },
   },
   moduleNameMapper: {
-    '@components/(.*)': '<rootDir>/src/$1',
-  },
-  moduleNameMapper: {
     '@components/(.*)': '<rootDir>/src/components/$1',
     '@context/(.*)': '<rootDir>/src/context/$1',
     '@graphql/(.*)': '<rootDir>/src/graphql/$1',
@@ -29,5 +26,6 @@ module.exports = {
     '@validations/(.*)': '<rootDir>/src/validations/$1',
     '@interfaces/(.*)': '<rootDir>/src/interfaces/$1',
     '@ssr-functions/(.*)': '<rootDir>/src/functions/$1',
+    '\\.svg': '<rootDir>/src/__mocks__/svgrMock.tsx',
   },
 };
