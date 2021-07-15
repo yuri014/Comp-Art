@@ -15,6 +15,7 @@ module.exports = {
   globals: {
     'ts-jest': {
       compiler: 'ttypescript',
+      tsconfig: './tsconfig.test.json',
     },
   },
   moduleNameMapper: {

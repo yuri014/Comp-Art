@@ -12,7 +12,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react",
     "baseUrl": "src",
     "paths": {
       "@components/*": ["components/*"],
@@ -25,9 +25,16 @@
       "@styles/*": ["styles/*"],
       "@hocs/*": ["hocs/*"],
       "@schemas/*": ["schemas/*"],
-      "@ssr-functions/*": ["functions/*"],
+      "@ssr-functions/*": ["functions/*"]
     }
   },
-  "include": ["next-env.d.ts", "mdx.d.ts", "**/*.ts", "**/*.tsx", "jest.config.js", "jest.setup.ts"],
-  "exclude": ["node_modules", "scripts"],
+  "include": [
+    "next-env.d.ts",
+    "mdx.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "jest.config.js",
+    "jest.setup.ts"
+  ],
+  "exclude": ["node_modules", "scripts"]
 }
