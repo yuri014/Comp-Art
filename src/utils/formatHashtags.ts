@@ -1,6 +1,6 @@
 const formatMetaHashtags = (hashtags: Array<string>): string => {
   if (hashtags.length === 1) {
-    return hashtags[0];
+    return hashtags[0].replace('#', '');
   }
 
   return `${hashtags
