@@ -1,8 +1,8 @@
 import { formatDistance } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
-const formatDistanceTimePass = (date: string): string =>
-  formatDistance(new Date(date), new Date(), {
+const formatDistanceTimePass = (passDate: string, today = new Date()): string =>
+  formatDistance(new Date(passDate), today, {
     locale: ptBR,
     addSuffix: true,
   });
