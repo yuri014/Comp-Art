@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 
 import usePreventMemoryLeak from '@hooks/preventMemoryLeak';
 import ThemeContext from '../../context/theme';
-import LightIcon from '../../assets/light-toggle.svg';
-import DarkIcon from '../../assets/dark-toggle.svg';
+import DarkIcon from '../../assets/light-toggle.svg';
+import LightIcon from '../../assets/dark-toggle.svg';
 import ToggleThemeContainer from './_styles';
 
 const ToggleThemeButton: React.FC = () => {
@@ -14,11 +14,16 @@ const ToggleThemeButton: React.FC = () => {
     <ToggleThemeContainer>
       {isMount && (
         <button
-          aria-label={`mudar para tema ${!isDarkMode ? 'claro' : 'escuro'}`}
+          aria-label={`mudar para tema ${isDarkMode ? 'claro' : 'escuro'}`}
           onClick={() => toggleTheme()}
           type="button"
+          data-testid="toggle-button"
         >
-          {isDarkMode ? <DarkIcon /> : <LightIcon />}
+          {isDarkMode ? (
+            <LightIcon data-testid="light-icon" />
+          ) : (
+            <DarkIcon data-testid="dark-icon" />
+          )}
         </button>
       )}
     </ToggleThemeContainer>
