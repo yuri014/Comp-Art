@@ -14,12 +14,6 @@
     "isolatedModules": true,
     "jsx": "react",
     "baseUrl": "src",
-    "plugins": [
-      {
-        "transform": "ts-auto-mock/transformer",
-        "cacheBetweenTests": false
-      }
-    ],
     "paths": {
       "@components/*": ["components/*"],
       "@context/*": ["context/*"],
@@ -34,6 +28,6 @@
       "@ssr-functions/*": ["functions/*"],
     }
   },
-  "include": ["next-env.d.ts", "mdx.d.ts", "**/*.ts", "**/*.tsx", "jest.config.js"],
+  "include": ["next-env.d.ts", "mdx.d.ts", "**/*.ts", "**/*.tsx", "jest.config.js", "jest.setup.ts"],
   "exclude": ["node_modules", "scripts"],
 }
