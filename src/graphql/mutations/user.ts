@@ -50,11 +50,6 @@ export const RECOVER_PASSWORD = gql`
       token: $token
       newPassword: $newPassword
       confirmPassword: $confirmPassword
-    ) {
-      id
-      username
-      isArtist
-      token
-    }
+    )
   }
 `;

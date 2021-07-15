@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { FaTimes } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
@@ -9,7 +9,6 @@ import { IconButton, Snackbar, ThemeProvider } from '@material-ui/core';
 import Meta from '@components/SEO/Meta';
 import Title from '@components/Title';
 import ToggleThemeButton from '@components/ToggleTheme';
-import { AuthContext } from '@context/auth';
 import { RECOVER_PASSWORD } from '@graphql/mutations/user';
 import formTheme from '@styles/themes/FormTheme';
 import Footer from '@components/Footer';
@@ -26,7 +25,6 @@ interface IForm {
 const passwordValidationSchema = createUserSchema();
 
 const RecoverPassword: React.FC = () => {
-  const authContext = useContext(AuthContext);
   const [showError, setShowError] = useState('');
   const {
     push,
@@ -34,9 +32,8 @@ const RecoverPassword: React.FC = () => {
   } = useRouter();
 
   const [sendNewPassword] = useMutation(RECOVER_PASSWORD, {
-    onCompleted: response => {
-      authContext.login(response.recoverPassword);
-      push('/home');
+    onCompleted: () => {
+      push('/login');
     },
     onError: ({ graphQLErrors }) => {
       setShowError(graphQLErrors[0].message);
