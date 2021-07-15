@@ -1,6 +1,6 @@
 import handleInjectionSink from './handleInjectionSink';
 
-const abbreviations = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];
+const abbreviations = ['', 'k', 'm'];
 
 const formatLongNumbers = (count: number): string | number => {
   const getIndex = () => {
