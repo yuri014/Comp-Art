@@ -88,7 +88,7 @@ function createApolloClient(cookie?: string) {
               },
             },
             getProfilePosts: {
-              keyArgs: false,
+              keyArgs: ['username'],
               merge(existing, incoming, { args: { offset = [0, 0] } }) {
                 return mergeArrayCache(existing, incoming, offset);
               },
