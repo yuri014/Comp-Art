@@ -191,7 +191,7 @@ const FormProfile: React.FC<FormProfileProps> = ({
               }
             }}
           >
-            Adicionar tags*
+            Adicionar tags
           </Input>
           <TagsContainer>
             {tags.map(tag => (
