@@ -85,7 +85,6 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-security": "^1.4.0",
     "jest": "^27.0.6",
-    "jest-ts-auto-mock": "^2.0.0",
     "next-sitemap": "^1.6.133",
     "prettier": "2.2.1",
     "stylelint": "^13.13.1",
