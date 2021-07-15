@@ -12,22 +12,28 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
-    "baseUrl": ".",
+    "jsx": "react",
+    "baseUrl": "src",
+    "plugins": [
+      {
+        "transform": "ts-auto-mock/transformer",
+        "cacheBetweenTests": false
+      }
+    ],
     "paths": {
-      "@components/*": ["src/components/*"],
-      "@context/*": ["src/context/*"],
-      "@graphql/*": ["src/graphql/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@utils/*": ["src/utils/*"],
-      "@validations/*": ["src/validations/*"],
-      "@interfaces/*": ["src/interfaces/*"],
-      "@styles/*": ["src/styles/*"],
-      "@hocs/*": ["src/hocs/*"],
-      "@schemas/*": ["src/schemas/*"],
-      "@ssr-functions/*": ["src/functions/*"],
+      "@components/*": ["components/*"],
+      "@context/*": ["context/*"],
+      "@graphql/*": ["graphql/*"],
+      "@hooks/*": ["hooks/*"],
+      "@utils/*": ["utils/*"],
+      "@validations/*": ["validations/*"],
+      "@interfaces/*": ["interfaces/*"],
+      "@styles/*": ["styles/*"],
+      "@hocs/*": ["hocs/*"],
+      "@schemas/*": ["schemas/*"],
+      "@ssr-functions/*": ["functions/*"],
     }
   },
-  "include": ["next-env.d.ts", "mdx.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "mdx.d.ts", "**/*.ts", "**/*.tsx", "jest.config.js"],
   "exclude": ["node_modules", "scripts"],
 }

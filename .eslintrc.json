@@ -20,7 +20,13 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint", "prettier", "react-hooks", "security"],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "prettier",
+    "react-hooks",
+    "security"
+  ],
   "settings": {
     "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
     "import/parsers": {
@@ -70,6 +76,10 @@
     "operator-linebreak": "off",
     "@typescript-eslint/no-unused-vars": "error",
     "no-template-curly-in-string": "off",
-    "function-paren-newline": "off"
+    "function-paren-newline": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies": ["**/*.test.ts", "**/*.test.tsx"] }
+    ]
   }
 }
