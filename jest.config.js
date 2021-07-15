@@ -7,7 +7,7 @@ module.exports = {
   bail: 1,
   clearMocks: true,
   collectCoverage: true,
-  collectCoverageFrom: ['components/**/*.tsx', 'pages/**/*.tsx'],
+  collectCoverageFrom: ['**/*.{ts,tsx}'],
   coverageReporters: ['lcov', 'text'],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
