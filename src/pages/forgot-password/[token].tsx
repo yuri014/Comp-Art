@@ -35,10 +35,12 @@ const RecoverPassword: React.FC = () => {
 
   const [sendNewPassword] = useMutation(RECOVER_PASSWORD, {
     onCompleted: response => {
-      authContext.login(response.login);
+      authContext.login(response.recoverPassword);
       push('/home');
     },
-    onError: ({ graphQLErrors }) => setShowError(graphQLErrors[0].message),
+    onError: ({ graphQLErrors }) => {
+      setShowError(graphQLErrors[0].message);
+    },
   });
 
   const { register, handleSubmit, errors, watch } = useForm<IForm>({
