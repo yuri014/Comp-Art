@@ -76,6 +76,9 @@ function createApolloClient(cookie?: string) {
     link: splitLink(cookie),
     cache: new InMemoryCache({
       typePolicies: {
+        Post: {
+          keyFields: ['_id', 'artist', ['owner']],
+        },
         Query: {
           fields: {
             getPosts: {
