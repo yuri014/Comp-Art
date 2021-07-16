@@ -78,7 +78,7 @@ const ProfileContainer = styled.div`
       margin-top: 36rem;
 
       .profile-posts {
-        margin-top: 0;
+        margin-top: -48px;
         padding-bottom: 4rem;
       }
 

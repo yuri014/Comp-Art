@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { GetServerSideProps } from 'next';
+import { Tabs, Tab } from '@material-ui/core';
 
 import CAImage from '@components/CAImage';
 import Header from '@components/Header';
@@ -9,7 +10,7 @@ import ProfileLinks from '@components/Splitter/ProfileLinks';
 import SuggestedProfiles from '@components/SuggestedProfiles';
 import Timeline from '@components/Timeline';
 import { initializeApollo } from '@graphql/apollo/config';
-import { GET_PROFILE_POSTS } from '@graphql/queries/post';
+import { GET_PROFILE_POSTS_AND_SHARES } from '@graphql/queries/post';
 import { GET_PROFILE } from '@graphql/queries/profile';
 import { ILoggedProfile, IProfile } from '@interfaces/Profile';
 import ProfileSEO from '@components/SEO/ProfileSEO';
@@ -34,7 +35,14 @@ const Profile: React.FC<ProfileProps> = ({
   blurDataUrl,
 }) => {
   const hasCoverProfile = getProfile.coverImage !== '';
+  const [value, setValue] = React.useState(0);
 
+  const handleChange = (
+    event: React.ChangeEvent<HTMLElement>,
+    newValue: number,
+  ) => {
+    setValue(newValue);
+  };
   return (
     <>
       <ProfileSEO getProfile={getProfile} />
@@ -61,6 +69,18 @@ const Profile: React.FC<ProfileProps> = ({
         <main>
           <ProfileSection getProfile={getProfile} />
           <section className="profile-posts">
+            {getProfile.isArtist && (
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                indicatorColor="primary"
+                textColor="primary"
+                centered
+              >
+                <Tab label="Posts & Compartilhamentos" />
+                <Tab label="Posts" />
+              </Tabs>
+            )}
             <Timeline
               query={GET_PROFILE_POSTS_AND_SHARES}
               queryName="getProfilePostsAndShares"
