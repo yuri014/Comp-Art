@@ -19,18 +19,15 @@ const ModalLikesButton: React.FC<ModalLikesButtonProps> = ({
     <button onClick={showModal} type="button" aria-label="Abrir modal de likes">
       <div className="likes-images prevent-redirect-post">
         {post.likes &&
-          post.likes.map(
-            ({ profile }) =>
-              !!profile && (
-                <ProfileImage
-                  key={profile.owner}
-                  alt={profile.owner}
-                  avatar={profile.avatar}
-                  username={profile.owner}
-                  className="like-profile-image"
-                />
-              ),
-          )}
+          post.likes.map(({ profile }) => (
+            <ProfileImage
+              key={profile.owner}
+              alt={profile.owner}
+              avatar={profile.avatar}
+              username={profile.owner}
+              className="like-profile-image"
+            />
+          ))}
       </div>
       <InteractionCount count={likesCount} message="curtida" />
     </button>

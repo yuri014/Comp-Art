@@ -61,24 +61,20 @@ const ModalProfile: React.FC<ModalProps> = ({ onHide, variable, payload }) => {
                 (profile: IProfile, index: number) => {
                   if (data[`${payload.queryResult}`].length === index + 1) {
                     return (
-                      !!profile && (
-                        <div
-                          key={`${profile._id}__${nanoid()}`}
-                          ref={lastProfileRefLikes}
-                        >
-                          <ProfileSimpleCard profile={profile} />
-                        </div>
-                      )
+                      <div
+                        key={`${profile._id}__${nanoid()}`}
+                        ref={lastProfileRefLikes}
+                      >
+                        <ProfileSimpleCard profile={profile} />
+                      </div>
                     );
                   }
 
                   return (
-                    !!profile && (
-                      <ProfileSimpleCard
-                        key={`${profile._id}__${nanoid()}`}
-                        profile={profile}
-                      />
-                    )
+                    <ProfileSimpleCard
+                      key={`${profile._id}__${nanoid()}`}
+                      profile={profile}
+                    />
                   );
                 },
               )}
