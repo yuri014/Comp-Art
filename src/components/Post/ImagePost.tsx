@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
@@ -13,6 +13,12 @@ interface ImagePostProps {
 
 const ImagePost: React.FC<ImagePostProps> = ({ image, imageHeight }) => {
   const [isImageFullScreen, setIsImageFullScreen] = useState(false);
+  const [resizeImage, setResizeImage] = useState('');
+
+  useEffect(() => {
+    setResizeImage(imageHeight);
+  }, [imageHeight]);
+
   return (
     <ImagePostContainer>
       <button
@@ -20,6 +26,7 @@ const ImagePost: React.FC<ImagePostProps> = ({ image, imageHeight }) => {
         onBlur={() => setIsImageFullScreen(false)}
         type="button"
         className="image-button"
+        style={{ height: resizeImage }}
       >
         <LazyLoadImage
           className="prevent-redirect-post post-image"
@@ -27,6 +34,7 @@ const ImagePost: React.FC<ImagePostProps> = ({ image, imageHeight }) => {
           alt="Publicação"
           height={imageHeight}
           effect="opacity"
+          afterLoad={() => setResizeImage('auto')}
         />
       </button>
       {isImageFullScreen && (
