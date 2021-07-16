@@ -33,7 +33,7 @@ const ImagePost: React.FC<ImagePostProps> = ({ image, imageHeight }) => {
           src={image}
           alt="Publicação"
           height={imageHeight}
-          effect="opacity"
+          effect="blur"
           afterLoad={() => setResizeImage('auto')}
         />
       </button>
