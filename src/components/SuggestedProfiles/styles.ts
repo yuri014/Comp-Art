@@ -56,6 +56,10 @@ const SuggestedProfilesContainer = styled.div`
     }
   }
 
+  @media (max-width: 769px) {
+    display: none;
+  }
+
   @media (min-width: 1440px) {
     width: 19%;
     margin-left: 0;
