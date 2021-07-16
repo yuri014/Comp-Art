@@ -10,7 +10,10 @@ import ProfileLinks from '@components/Splitter/ProfileLinks';
 import SuggestedProfiles from '@components/SuggestedProfiles';
 import Timeline from '@components/Timeline';
 import { initializeApollo } from '@graphql/apollo/config';
-import { GET_PROFILE_POSTS_AND_SHARES } from '@graphql/queries/post';
+import {
+  GET_PROFILE_POSTS,
+  GET_PROFILE_POSTS_AND_SHARES,
+} from '@graphql/queries/post';
 import { GET_PROFILE } from '@graphql/queries/profile';
 import { ILoggedProfile, IProfile } from '@interfaces/Profile';
 import ProfileSEO from '@components/SEO/ProfileSEO';
@@ -43,6 +46,9 @@ const Profile: React.FC<ProfileProps> = ({
   ) => {
     setValue(newValue);
   };
+
+  const shouldRenderPostAndShares = value === 0;
+
   return (
     <>
       <ProfileSEO getProfile={getProfile} />
@@ -81,11 +87,19 @@ const Profile: React.FC<ProfileProps> = ({
                 <Tab label="Posts" />
               </Tabs>
             )}
-            <Timeline
-              query={GET_PROFILE_POSTS_AND_SHARES}
-              queryName="getProfilePostsAndShares"
-              otherVariables={{ username }}
-            />
+            {shouldRenderPostAndShares ? (
+              <Timeline
+                query={GET_PROFILE_POSTS_AND_SHARES}
+                queryName="getProfilePostsAndShares"
+                otherVariables={{ username }}
+              />
+            ) : (
+              <Timeline
+                query={GET_PROFILE_POSTS}
+                queryName="getProfilePosts"
+                otherVariables={{ username }}
+              />
+            )}
           </section>
           {getLoggedProfile ? (
             <aside>
