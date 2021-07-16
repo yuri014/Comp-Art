@@ -30,16 +30,20 @@ const Timeline: React.FC<TimelineProps> = ({
   queryName,
   otherVariables,
 }) => {
+  const excludedQueries = ['getExplorePosts', 'getProfilePosts'];
+
+  const isAExcludedQuery = excludedQueries.includes(queryName);
+
   const { data, loading, error, fetchMore } = useQuery<GenericTimeline>(query, {
     variables: {
-      offset: queryName !== 'getExplorePosts' ? [0, 0] : 0,
+      offset: isAExcludedQuery ? 0 : [0, 0],
       ...otherVariables,
     },
     fetchPolicy: 'cache-and-network',
   });
 
   const dataLength = () => {
-    if (queryName !== 'getExplorePosts') {
+    if (!isAExcludedQuery) {
       const postLength = data[`${queryName}`].filter(
         item => item.__typename === 'Post',
       ).length;
