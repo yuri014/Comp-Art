@@ -52,14 +52,14 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
       {
         query: GET_PROFILE_POSTS_AND_SHARES,
         variables: {
-          offset: 0,
+          offset: [0, 0],
           username: getLoggedProfile.owner,
         },
       },
       {
         query: GET_POSTS,
         variables: {
-          offset: 0,
+          offset: [0, 0],
         },
       },
     ],
