@@ -21,7 +21,7 @@ const usePostsMutations: UseInteractionsMutation = (
               postRef => id !== readField('_id', postRef),
             );
           },
-          getProfilePosts(existingPosts, { readField }) {
+          getProfilePostsAndShares(existingPosts, { readField }) {
             return existingPosts.filter(
               postRef => id !== readField('_id', postRef),
             );

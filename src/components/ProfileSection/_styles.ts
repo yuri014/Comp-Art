@@ -149,7 +149,7 @@ const ProfileSectionContainer = styled.section`
   .joined {
     text-align: center;
     text-transform: uppercase;
-    color: #949494;
+    color: ${({ theme }) => theme.colors.gray};
   }
 
   @media (min-width: 1100px) {

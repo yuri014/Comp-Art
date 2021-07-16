@@ -53,11 +53,11 @@ export const GET_EXPLORE_POSTS = gql`
   }
 `;
 
-export const GET_PROFILE_POSTS = gql`
+export const GET_PROFILE_POSTS_AND_SHARES = gql`
   ${CORE_POST_VIEW}
   ${CORE_SHARE_VIEW}
-  query GetProfilePosts($offset: [Int]!, $username: String!) {
-    getProfilePosts(offset: $offset, username: $username) {
+  query GetProfilePostsAndShares($offset: [Int]!, $username: String!) {
+    getProfilePostsAndShares(offset: $offset, username: $username) {
       ... on Post {
         ...CorePostView
       }

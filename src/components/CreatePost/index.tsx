@@ -5,7 +5,7 @@ import { NoSsr } from '@material-ui/core';
 
 import DraftEditor from '@components/DraftEditor';
 import { CREATE_POST } from '@graphql/mutations/post';
-import { GET_POSTS, GET_PROFILE_POSTS } from '@graphql/queries/post';
+import { GET_POSTS, GET_PROFILE_POSTS_AND_SHARES } from '@graphql/queries/post';
 import useImagePreview from '@hooks/imagePreview';
 import useImageDimension from '@hooks/imageDimension';
 import usePreventMemoryLeak from '@hooks/preventMemoryLeak';
@@ -50,7 +50,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
     onCompleted: () => setShowModal(true),
     refetchQueries: [
       {
-        query: GET_PROFILE_POSTS,
+        query: GET_PROFILE_POSTS_AND_SHARES,
         variables: {
           offset: 0,
           username: getLoggedProfile.owner,

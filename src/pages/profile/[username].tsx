@@ -62,8 +62,8 @@ const Profile: React.FC<ProfileProps> = ({
           <ProfileSection getProfile={getProfile} />
           <section className="profile-posts">
             <Timeline
-              query={GET_PROFILE_POSTS}
-              queryName="getProfilePosts"
+              query={GET_PROFILE_POSTS_AND_SHARES}
+              queryName="getProfilePostsAndShares"
               otherVariables={{ username }}
             />
           </section>
