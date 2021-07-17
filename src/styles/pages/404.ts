@@ -7,6 +7,7 @@ const Custom404Container = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   h1 {
     position: relative;
     text-align: center;
@@ -20,6 +21,14 @@ const Custom404Container = styled.main`
     text-shadow: 4px 4px 2px ${({ theme }) => theme.colors.titleColor};
   }
 
+  a {
+    font-size: 1.8rem;
+    background-color: #077e76;
+    color: #fff;
+    padding: 1rem 4rem;
+    border-radius: 5px;
+  }
+
   @media (min-width: 1100px) {
     flex-direction: row;
     justify-content: space-around;
@@ -27,6 +36,11 @@ const Custom404Container = styled.main`
     h1 {
       width: 40%;
       font-size: 48px;
+    }
+
+    a {
+      position: absolute;
+      bottom: 8rem;
     }
   }
 `;
