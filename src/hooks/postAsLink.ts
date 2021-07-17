@@ -24,7 +24,18 @@ const usePostAsLink: UsePostAsLink = postID => {
   ) => {
     const openInAnotherTab = e.ctrlKey || e.button === 1;
     const targetEvent = e.target as HTMLElement;
-    const excludeTags = ['button', 'a', 'svg', 'path', 'img', 'p', 'circle'];
+    const excludeTags = [
+      'button',
+      'a',
+      'svg',
+      'path',
+      'img',
+      'g',
+      'rect',
+      'circle',
+      'p',
+      'circle',
+    ];
 
     const checkContainClass = (classNames: string[]) =>
       classNames.map(className => targetEvent.classList.contains(className));
