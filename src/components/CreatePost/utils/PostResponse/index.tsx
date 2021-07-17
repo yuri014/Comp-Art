@@ -40,7 +40,7 @@ const PostResponse: React.FC<PostResponseProps> = ({
     <ModalProvider onHide={() => setShowModal(false)} title={messages.title}>
       <ResponseContainer className="modal-content">
         <p>
-          Compartilhe a arte de outros artistas para poder ajudar eles.
+          Compartilhe a arte de outros artistas para poder ajudá-los.
           <span>
             <FaHeart />
           </span>
