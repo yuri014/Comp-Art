@@ -19,13 +19,9 @@ const DescriptionCounter = dynamic(
   () => import('@components/DraftEditor/utils/DescriptionCounter'),
 );
 
-const SendSuccess = dynamic(() =>
-  import('./PostResponse').then(mod => mod.SendSuccess),
-);
+const PostResponse = dynamic(() => import('./utils/PostResponse'));
 
-const SendError = dynamic(() =>
-  import('./PostResponse').then(mod => mod.SendError),
-);
+const ErrorResponse = dynamic(() => import('./ErrorResponse'));
 
 interface CreatePostProps {
   getLoggedProfile: IProfile;
@@ -39,14 +35,22 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
   const [showError, setShowError] = useState('');
   const [title, setTitle] = useState('');
   const [alt, setAlt] = useState('');
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
+  const [isBlocked, setIsBlocked] = useState(false);
 
   const [imagePreview, setImagePreview] = useImagePreview();
   const [audioResult, setAudioResult] = useState<File>();
   const imageDimension = useImageDimension(imagePreview.preview);
 
   const [createPost] = useMutation(CREATE_POST, {
-    onError: ({ graphQLErrors }) => setShowError(graphQLErrors[0].message),
+    onError: ({ graphQLErrors }) => {
+      if (graphQLErrors[0].extensions.isBlocked) {
+        setShowModal(true);
+        setIsBlocked(true);
+      } else {
+        setShowError(graphQLErrors[0].message);
+      }
+    },
     onCompleted: () => setShowModal(true),
     refetchQueries: [
       {
@@ -142,9 +146,11 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
             </div>
           </div>
         </form>
-        {showModal && <SendSuccess setShowModal={setShowModal} />}
+        {showModal && (
+          <PostResponse setShowModal={setShowModal} isBlocked={isBlocked} />
+        )}
         {showError && (
-          <SendError setShowError={setShowError} showError={showError} />
+          <ErrorResponse setShowError={setShowError} showError={showError} />
         )}
       </CreatePostContainer>
     </NoSsr>

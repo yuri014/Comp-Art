@@ -35,6 +35,7 @@ const ModalContainer = styled.section<ModalContainerProps>`
 
   .modal {
     width: calc(100% - 2rem);
+    max-height: calc(100% - 2rem);
     margin: auto;
     display: flex;
     flex-direction: column;
