@@ -35,7 +35,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
   const [showError, setShowError] = useState('');
   const [title, setTitle] = useState('');
   const [alt, setAlt] = useState('');
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [isBlocked, setIsBlocked] = useState(false);
 
   const [imagePreview, setImagePreview] = useImagePreview();
