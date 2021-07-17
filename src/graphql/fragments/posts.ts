@@ -37,20 +37,26 @@ export const CORE_SHARE_VIEW = gql`
     _id
     description
     post {
-      _id
-      description
-      body
-      artist {
-        name
-        owner
-        avatar
+      ... on NullPost {
+        error
       }
-      createdAt
-      mediaId
-      darkColor
-      lightColor
-      thumbnail
-      title
+
+      ... on Post {
+        _id
+        description
+        body
+        artist {
+          name
+          owner
+          avatar
+        }
+        createdAt
+        mediaId
+        darkColor
+        lightColor
+        thumbnail
+        title
+      }
     }
     likes {
       profile {

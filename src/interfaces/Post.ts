@@ -8,6 +8,10 @@ export interface IPost {
   title: string;
 }
 
+export type ErrorPost = {
+  error: boolean;
+};
+
 export interface IShare {
   post: Timeline;
   profile: IProfile;
