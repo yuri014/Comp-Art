@@ -26,6 +26,7 @@ module.exports = {
     '@utils/(.*)': '<rootDir>/src/utils/$1',
     '@validations/(.*)': '<rootDir>/src/validations/$1',
     '@interfaces/(.*)': '<rootDir>/src/interfaces/$1',
+    '@styles/(.*)': '<rootDir>/src/styles/$1',
     '@ssr-functions/(.*)': '<rootDir>/src/functions/$1',
     '\\.svg': '<rootDir>/src/__mocks__/svgrMock.tsx',
   },
