@@ -1,5 +1,6 @@
 import React from 'react';
 import { IoMdClose } from 'react-icons/io';
+import { FaPalette } from 'react-icons/fa';
 
 import Input from '@components/Input';
 import MediaFormContainer from './styles';
@@ -22,42 +23,61 @@ const MediaForm: React.FC<MediaFormProps> = ({
   setTitle,
 }) => (
   <MediaFormContainer>
-    <div className="media">
-      <button type="button" onClick={() => cleaner()}>
-        <IoMdClose />
-      </button>
-      <img
-        src={(preview as string) || '/assets/audio-placeholder.svg'}
-        alt="Capa do áudio"
-        style={{ objectFit: imageDimension }}
-      />
-    </div>
+    <button type="button" className="cleaner" onClick={() => cleaner()}>
+      <IoMdClose />
+    </button>
     {audioResult ? (
-      <div>
-        <Input
-          name="title"
-          placeholder="Digite o título da música"
-          required
-          onChange={e => setTitle(e.target.value)}
-        >
-          Título
-        </Input>
+      <>
+        <div className="media audio-cover">
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+          <label
+            htmlFor="uploadImage"
+            aria-label="Upload da capa da música"
+            title="Upload da capa da música"
+          >
+            <FaPalette />
+          </label>
+          <img
+            src={(preview as string) || '/assets/audio-placeholder.svg'}
+            alt="Capa do áudio"
+            style={{ objectFit: imageDimension }}
+          />
+        </div>
+        <div>
+          <Input
+            name="title"
+            placeholder="Digite o título da música"
+            required
+            onChange={e => setTitle(e.target.value)}
+          >
+            Título
+          </Input>
+          <Input
+            name="alt"
+            placeholder="Digite uma descrição da capa"
+            onChange={e => setAlt(e.target.value)}
+          >
+            Alt
+          </Input>
+        </div>
+      </>
+    ) : (
+      <>
+        <div className="media">
+          <img
+            src={(preview as string) || '/assets/audio-placeholder.svg'}
+            alt="Capa do áudio"
+            style={{ objectFit: imageDimension }}
+          />
+        </div>
         <Input
           name="alt"
-          placeholder="Digite uma descrição"
+          placeholder="Digite uma descrição da imagem"
           onChange={e => setAlt(e.target.value)}
         >
           Alt
         </Input>
-      </div>
-    ) : (
-      <Input
-        name="alt"
-        placeholder="Digite uma descrição"
-        onChange={e => setAlt(e.target.value)}
-      >
-        Alt
-      </Input>
+      </>
     )}
   </MediaFormContainer>
 );
