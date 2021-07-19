@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import {
   IPlaylist,
@@ -18,12 +18,23 @@ interface IPlaylistContext extends PortalAudioPlayerProps {
 
 export const PlaylistContext = createContext<IPlaylistContext>(null);
 
-export const PlaylistProvier: React.FC = ({ children }) => {
+interface PlaylistProvierProps {
+  initialPlaylist: IPlaylist[];
+}
+
+export const PlaylistProvier: React.FC<PlaylistProvierProps> = ({
+  children,
+  initialPlaylist,
+}) => {
   const [playlist, setPlaylist] = useState<IPlaylist[]>([]);
 
   const addSong = (song: IPlaylist) => {
     setPlaylist([...playlist, song]);
   };
+
+  useEffect(() => {
+    setPlaylist(initialPlaylist);
+  }, [initialPlaylist]);
 
   return (
     <PlaylistContext.Provider value={{ playlist, addSong }}>

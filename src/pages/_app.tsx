@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AppProps } from 'next/app';
 import { ThemeProvider } from 'styled-components';
 import { ApolloProvider } from '@apollo/client';
@@ -19,6 +19,8 @@ import mainLightTheme from '@styles/themes/MainLightTheme';
 import { NewNotificationsProvider } from '@context/notification';
 import { PlaylistProvier } from '@context/playlist';
 
+import fakeSongs from './_fakeSongs.json';
+
 NProgress.configure({ showSpinner: false });
 
 Router.events.on('routeChangeStart', () => NProgress.start());
@@ -27,6 +29,7 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   const apolloClient = useApollo(pageProps.initialApolloState);
+  const [initialPlaylist, setInitialPlaylist] = useState([]);
 
   const [isDarkMode, setDarkMode] = useState(
     typeof window !== 'undefined' &&
@@ -44,6 +47,11 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 
     setDarkMode(!isDarkMode);
   };
+
+  useEffect(() => {
+    setInitialPlaylist(fakeSongs);
+  }, []);
+
   return (
     <>
       <Head>
@@ -62,7 +70,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
                 <MuiThemeProvider
                   theme={isDarkMode ? mainDarkTheme : mainLightTheme}
                 >
-                  <PlaylistProvier>
+                  <PlaylistProvier initialPlaylist={initialPlaylist}>
                     <GlobalStyle />
                     <Component {...pageProps} />
                   </PlaylistProvier>
