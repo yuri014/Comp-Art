@@ -29,7 +29,10 @@ export const PlaylistProvier: React.FC<PlaylistProvierProps> = ({
   const [playlist, setPlaylist] = useState<IPlaylist[]>([]);
 
   const addSong = (song: IPlaylist) => {
-    setPlaylist([...playlist, song]);
+    if (playlist.length <= 50) {
+      setPlaylist([...playlist, song]);
+    }
+  };
   };
 
   useEffect(() => {
