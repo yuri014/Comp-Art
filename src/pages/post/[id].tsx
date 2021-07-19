@@ -78,7 +78,7 @@ const PostPage: React.FC<PostPageProps> = ({
           title={post.title}
           darkColor={post.darkColor}
           lightColor={post.lightColor}
-          thumbnail={post.thumbnail}
+          thumbnail={post.thumbnail || '/assets/audio-placeholder.svg'}
           blurDataUrl={blurDataUrl}
         />
       );
@@ -207,7 +207,10 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const managePost = () => {
     switch (postData.mediaId) {
       case mediaIds.audio:
-        return postData.thumbnail;
+        return (
+          postData.thumbnail ||
+          `${process.env.NEXT_PUBLIC_HOST}/assets/audio-placeholder.svg`
+        );
       case mediaIds.image:
         return postData.body;
       default:
