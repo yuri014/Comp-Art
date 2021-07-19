@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ReactJkMusicPlayer from 'react-jinke-music-player';
+
+import { PlaylistContext } from '@context/playlist';
 import 'react-jinke-music-player/assets/index.css';
+import { FaPause, FaPlay, FaTimes } from 'react-icons/fa';
 import customLocale from './lang';
 
 export interface IPlaylist {
@@ -14,16 +17,19 @@ export interface PortalAudioPlayerProps {
   playlist: Array<IPlaylist>;
 }
 
-const PortalAudioPlayer: React.FC<PortalAudioPlayerProps> = ({ playlist }) => (
-  <ReactJkMusicPlayer
-    audioLists={playlist}
-    showDownload={false}
-    onAudioPlay={audio => {
-      document.title = audio.name;
-    }}
-    locale={customLocale}
-    showMediaSession
-    mode="full"
+const PortalAudioPlayer: React.FC<PortalAudioPlayerProps> = ({ playlist }) => {
+  const { resetPlaylist } = useContext(PlaylistContext);
+
+  return (
+    <ReactJkMusicPlayer
+      audioLists={playlist}
+      showDownload={false}
+      onAudioPlay={audio => {
+        document.title = audio.name;
+      }}
+      locale={customLocale}
+      showMediaSession
+      mode="full"
       remember
       spaceBar
       icon={{
@@ -40,7 +46,7 @@ const PortalAudioPlayer: React.FC<PortalAudioPlayerProps> = ({ playlist }) => (
         }));
         resetPlaylist(newOrderPlaylist);
       }}
-  />
-);
-
+    />
+  );
+};
 export default PortalAudioPlayer;
