@@ -22,7 +22,7 @@ const ProfileSectionContainer = styled.section`
       padding: 1.1rem 1rem;
       cursor: pointer;
       border-radius: 5px;
-      background-color: ${({ theme }) => theme.colors.mainColor};
+      background-color: #077e76;
       transition: filter 0.225s ease;
 
       &.delete-account {
