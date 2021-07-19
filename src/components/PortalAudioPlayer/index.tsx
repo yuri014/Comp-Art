@@ -31,6 +31,15 @@ const PortalAudioPlayer: React.FC<PortalAudioPlayerProps> = ({ playlist }) => (
         pause: <FaPause />,
         close: <FaTimes />,
       }}
+      onAudioListsChange={(_, songs) => {
+        const newOrderPlaylist = songs.map(song => ({
+          cover: song.cover,
+          musicSrc: song.musicSrc as string,
+          name: song.name as string,
+          singer: song.singer as string,
+        }));
+        resetPlaylist(newOrderPlaylist);
+      }}
   />
 );
 
