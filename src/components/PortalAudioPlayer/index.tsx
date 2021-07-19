@@ -3,14 +3,14 @@ import ReactJkMusicPlayer from 'react-jinke-music-player';
 import 'react-jinke-music-player/assets/index.css';
 import customLocale from './lang';
 
-interface IPlaylist {
+export interface IPlaylist {
   musicSrc: string;
   name: string;
   cover: string;
   singer: string;
 }
 
-interface PortalAudioPlayerProps {
+export interface PortalAudioPlayerProps {
   playlist: Array<IPlaylist>;
 }
 
