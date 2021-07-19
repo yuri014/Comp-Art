@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import ReactJkMusicPlayer from 'react-jinke-music-player';
 
 import { PlaylistContext } from '@context/playlist';
+import ThemeContext from '@context/theme';
 import 'react-jinke-music-player/assets/index.css';
 import { FaPause, FaPlay, FaTimes } from 'react-icons/fa';
 import customLocale from './lang';
@@ -19,6 +20,7 @@ export interface PortalAudioPlayerProps {
 
 const PortalAudioPlayer: React.FC<PortalAudioPlayerProps> = ({ playlist }) => {
   const { resetPlaylist } = useContext(PlaylistContext);
+  const { isDarkMode } = useContext(ThemeContext);
 
   return (
     <ReactJkMusicPlayer
@@ -31,6 +33,7 @@ const PortalAudioPlayer: React.FC<PortalAudioPlayerProps> = ({ playlist }) => {
       showMediaSession
       mode="full"
       remember
+      theme={isDarkMode ? 'dark' : 'light'}
       showMiniProcessBar
       spaceBar
       icon={{
