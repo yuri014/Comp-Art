@@ -6,6 +6,7 @@ import { FaBackward, FaForward, FaPause, FaPlay } from 'react-icons/fa';
 import formatTime from '@utils/formatTime';
 import { ArtistPostProps } from '@interfaces/Post';
 import ThemeContext from '@context/theme';
+import { Tooltip } from '@material-ui/core';
 import AudioPostContainer from './audioPostStyles';
 import Links from './Links';
 import AudioSlider from './Slider';
@@ -52,28 +53,38 @@ const AudioPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
             />
           </div>
           <div className="audio-buttons">
-            <IconButton
-              onClick={() => {
-                audioRef.current.currentTime -= 10;
-              }}
-              aria-label="voltar 10 segundos"
+            <Tooltip title="Voltar 10 segundos" placement="top" arrow>
+              <IconButton
+                onClick={() => {
+                  audioRef.current.currentTime -= 10;
+                }}
+                aria-label="voltar 10 segundos"
+              >
+                <FaBackward />
+              </IconButton>
+            </Tooltip>
+            <Tooltip
+              title={!isPlaying ? 'Play' : 'Pause'}
+              placement="top"
+              arrow
             >
-              <FaBackward />
-            </IconButton>
-            <IconButton
-              onClick={() => handlePlaying()}
-              aria-label={!isPlaying ? 'Play' : 'Pause'}
-            >
-              {!isPlaying ? <FaPlay /> : <FaPause />}
-            </IconButton>
-            <IconButton
-              onClick={() => {
-                audioRef.current.currentTime += 10;
-              }}
-              aria-label="avançar 10 segundos"
-            >
-              <FaForward />
-            </IconButton>
+              <IconButton
+                onClick={() => handlePlaying()}
+                aria-label={!isPlaying ? 'Play' : 'Pause'}
+              >
+                {!isPlaying ? <FaPlay /> : <FaPause />}
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Avançar 10 segundos" placement="top" arrow>
+              <IconButton
+                onClick={() => {
+                  audioRef.current.currentTime += 10;
+                }}
+                aria-label="avançar 10 segundos"
+              >
+                <FaForward />
+              </IconButton>
+            </Tooltip>
           </div>
           <AudioSlider
             audioRef={audioRef}

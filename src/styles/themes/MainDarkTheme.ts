@@ -45,6 +45,11 @@ const mainDarkTheme = createMuiTheme({
         height: '48px',
       },
     },
+    MuiTooltip: {
+      tooltip: {
+        fontSize: '12px',
+      },
+    },
   },
 });
 
