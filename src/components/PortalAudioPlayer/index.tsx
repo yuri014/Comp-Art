@@ -24,6 +24,11 @@ const PortalAudioPlayer: React.FC<PortalAudioPlayerProps> = ({ playlist }) => (
     locale={customLocale}
     showMediaSession
     mode="full"
+      icon={{
+        play: <FaPlay />,
+        pause: <FaPause />,
+        close: <FaTimes />,
+      }}
   />
 );
 
