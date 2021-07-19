@@ -14,6 +14,7 @@ const PortalAudioPlayer = dynamic(
 
 interface IPlaylistContext extends PortalAudioPlayerProps {
   addSong: (song: IPlaylist) => void;
+  resetPlaylist: (songs: IPlaylist[]) => void;
 }
 
 export const PlaylistContext = createContext<IPlaylistContext>(null);
@@ -33,6 +34,9 @@ export const PlaylistProvier: React.FC<PlaylistProvierProps> = ({
       setPlaylist([...playlist, song]);
     }
   };
+
+  const resetPlaylist = (songs: IPlaylist[]) => {
+    setPlaylist(songs);
   };
 
   useEffect(() => {
@@ -40,7 +44,7 @@ export const PlaylistProvier: React.FC<PlaylistProvierProps> = ({
   }, [initialPlaylist]);
 
   return (
-    <PlaylistContext.Provider value={{ playlist, addSong }}>
+    <PlaylistContext.Provider value={{ playlist, addSong, resetPlaylist }}>
       {children}
       {playlist.length > 0 && <PortalAudioPlayer playlist={playlist} />}
     </PlaylistContext.Provider>
