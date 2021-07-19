@@ -66,14 +66,22 @@ const AudioPostContainer = styled.section<AudioPostContainerProps>`
         }
       }
 
-      .audio-buttons {
-        margin-top: 1rem;
+      .audio-buttons-container {
         display: flex;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: space-around;
+        margin-top: 1rem;
 
-        .secondary-button {
-          filter: brightness(0.4);
+        .audio-buttons {
+          display: flex;
+          align-items: center;
+          justify-content: space-evenly;
+          width: 100%;
+          transform: scale(1.1);
+
+          .secondary-button {
+            filter: brightness(0.4);
+          }
         }
       }
 
