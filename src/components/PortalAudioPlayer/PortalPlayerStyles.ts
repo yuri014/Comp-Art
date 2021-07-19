@@ -27,6 +27,14 @@ const PortalAudioPlayerStyles = css`
     color: #1cc5b7;
   }
 
+  .react-jinke-music-player .audio-circle-process-bar circle[class='stroke'] {
+    stroke: #1cc5b7;
+  }
+
+  .react-jinke-music-player-main .music-player-panel .panel-content {
+    box-shadow: 2px 2px 4px #000;
+  }
+
   /* Dark theme styles */
   .dark-theme {
     .music-player-panel {

@@ -31,6 +31,7 @@ const PortalAudioPlayer: React.FC<PortalAudioPlayerProps> = ({ playlist }) => {
       showMediaSession
       mode="full"
       remember
+      showMiniProcessBar
       spaceBar
       icon={{
         play: <FaPlay />,
