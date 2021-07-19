@@ -108,8 +108,12 @@ const AudioPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
                 </IconButton>
               </Tooltip>
             </div>
-            <Tooltip title="Tocar em seguida" placement="top" arrow>
-              <IconButton aria-label="tocar em seguida">
+            <Tooltip
+              title="Adicionar à playlist e tocar em seguida"
+              placement="top"
+              arrow
+            >
+              <IconButton aria-label="Adicionar à playlist e tocar em seguida">
                 <MdQueuePlayNext />
               </IconButton>
             </Tooltip>
