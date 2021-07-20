@@ -2,24 +2,22 @@ import React, { useContext, useRef, useState } from 'react';
 import Image from 'next/image';
 import IconButton from '@material-ui/core/IconButton';
 import { FaBackward, FaForward, FaPause, FaPlay } from 'react-icons/fa';
-import { MdPlaylistAdd, MdQueuePlayNext } from 'react-icons/md';
 import { Tooltip } from '@material-ui/core';
 
 import formatTime from '@utils/formatTime';
 import { ArtistPostProps } from '@interfaces/Post';
 import ThemeContext from '@context/theme';
-import { PlaylistContext } from '@context/playlist';
 import { IPlaylist } from '@components/PortalAudioPlayer';
 import AudioPostContainer from './audioPostStyles';
 import Links from './Links';
 import AudioSlider from './Slider';
+import AudioButtons from '../Buttons/AudioButtons';
 
 const AudioPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
   const audioRef = useRef<null | HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioDuration, setAudioDuration] = useState('00:00');
   const { isDarkMode } = useContext(ThemeContext);
-  const { addSong } = useContext(PlaylistContext);
 
   const handlePlaying = () => {
     if (!isPlaying) {
@@ -63,17 +61,7 @@ const AudioPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
               id={post._id}
             />
           </div>
-          <div className="audio-buttons-container">
-            <Tooltip title="Adicionar à playlist" placement="top" arrow>
-              <IconButton
-                onClick={() => {
-                  addSong(song);
-                }}
-                aria-label="adicionar à playlist"
-              >
-                <MdPlaylistAdd />
-              </IconButton>
-            </Tooltip>
+          <AudioButtons song={song}>
             <div className="audio-buttons">
               <Tooltip title="Voltar 10 segundos" placement="top" arrow>
                 <IconButton
@@ -108,16 +96,7 @@ const AudioPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
                 </IconButton>
               </Tooltip>
             </div>
-            <Tooltip
-              title="Adicionar à playlist e tocar em seguida"
-              placement="top"
-              arrow
-            >
-              <IconButton aria-label="Adicionar à playlist e tocar em seguida">
-                <MdQueuePlayNext />
-              </IconButton>
-            </Tooltip>
-          </div>
+          </AudioButtons>
           <AudioSlider
             audioRef={audioRef}
             isPlaying={isPlaying}
