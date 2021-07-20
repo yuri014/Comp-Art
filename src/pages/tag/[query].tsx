@@ -25,7 +25,7 @@ const TagPage: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
       <Head>
         <title>#{query} - Comp-Art</title>
       </Head>
-      {getLoggedProfile && (
+      {getLoggedProfile ? (
         <>
           <Header getLoggedProfile={getLoggedProfile} />
           <LevelProvider>
@@ -38,6 +38,17 @@ const TagPage: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
             </Home>
             <MobileHeader getLoggedProfile={getLoggedProfile} />
           </LevelProvider>
+        </>
+      ) : (
+        <>
+          <Header />
+          <Home>
+            <Timeline
+              query={GET_SEARCH_POSTS}
+              queryName="searchPost"
+              otherVariables={{ query: `#${query}` }}
+            />
+          </Home>
         </>
       )}
       <MobileFooter />
