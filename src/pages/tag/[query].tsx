@@ -11,7 +11,7 @@ import Timeline from '@components/Timeline';
 import { LevelProvider } from '@context/level';
 import { initializeApollo } from '@graphql/apollo/config';
 import { GET_SEARCH_POSTS } from '@graphql/queries/search';
-import { GET_LOGGED_PROFILE } from '@graphql/queries/profile';
+import getLoggedUserWithNoAuth from '@ssr-functions/getLoggedUserWithNoAuth';
 import { ILoggedProfile } from '@interfaces/Profile';
 import HomeContainer from '../home/_styles';
 
@@ -61,21 +61,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
   const client = initializeApollo(null, jwtToken);
 
-  const getProfile = await client.query({
-    query: GET_LOGGED_PROFILE,
-    errorPolicy: 'ignore',
-  });
-
-  if (jwtToken && !getProfile.data) {
-    return {
-      redirect: {
-        destination: '/register-profile',
-        permanent: false,
-      },
-    };
-  }
-
-  const { getLoggedProfile } = getProfile.data;
+  const getLoggedProfile = await getLoggedUserWithNoAuth(jwtToken, client);
 
   return {
     props: {
