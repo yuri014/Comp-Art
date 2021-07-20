@@ -3,17 +3,12 @@ import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 import { gql } from '@apollo/client';
 
-import Header from '@components/Header';
-import Home from '@components/Home';
-import MobileFooter from '@components/MobileFooter';
-import MobileHeader from '@components/MobileHeader';
 import Timeline from '@components/Timeline';
-import { LevelProvider } from '@context/level';
 import { CORE_POST_VIEW, CORE_SHARE_VIEW } from '@graphql/fragments/posts';
 import { GET_LOGGED_PROFILE } from '@graphql/queries/profile';
 import { initializeApollo } from '@graphql/apollo/config';
 import { ILoggedProfile } from '@interfaces/Profile';
-import HomeContainer from '../home/_styles';
+import withHome from '@hocs/withHome';
 
 const GET_SAVED_POSTS = gql`
   ${CORE_POST_VIEW}
@@ -31,20 +26,13 @@ const GET_SAVED_POSTS = gql`
   }
 `;
 
-const SavedPosts: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => (
-  <HomeContainer>
+const SavedPosts: React.FC<ILoggedProfile> = () => (
+  <>
     <Head>
       <title>Posts Salvos - Comp-Art</title>
     </Head>
-    <Header getLoggedProfile={getLoggedProfile} />
-    <LevelProvider>
-      <Home getLoggedProfile={getLoggedProfile}>
-        <Timeline query={GET_SAVED_POSTS} queryName="getSavedPosts" />
-      </Home>
-      <MobileHeader getLoggedProfile={getLoggedProfile} />
-    </LevelProvider>
-    <MobileFooter />
-  </HomeContainer>
+    <Timeline query={GET_SAVED_POSTS} queryName="getSavedPosts" />
+  </>
 );
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
@@ -83,4 +71,4 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   };
 };
 
-export default SavedPosts;
+export default withHome(SavedPosts);

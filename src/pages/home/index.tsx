@@ -2,19 +2,14 @@ import React, { useContext, useEffect } from 'react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 
-import { LevelProvider } from '@context/level';
 import { initializeApollo } from '@graphql/apollo/config';
 import { GET_LOGGED_PROFILE } from '@graphql/queries/profile';
 import { ILoggedProfile } from '@interfaces/Profile';
-import Header from '@components/Header';
-import Home from '@components/Home';
 import Timeline from '@components/Timeline';
 import CreatePost from '@components/CreatePost';
-import MobileFooter from '@components/MobileFooter';
-import MobileHeader from '@components/MobileHeader';
 import { AuthContext } from '@context/auth';
 import { GET_POSTS } from '@graphql/queries/post';
-import HomeContainer from './_styles';
+import withHome from '@hocs/withHome';
 
 const HomePage: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
   const auth = useContext(AuthContext);
@@ -30,24 +25,17 @@ const HomePage: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => {
   }, []);
 
   return (
-    <HomeContainer>
+    <>
       <Head>
         <title>Comp-Art</title>
       </Head>
-      <Header getLoggedProfile={getLoggedProfile} />
-      <LevelProvider>
-        <Home getLoggedProfile={getLoggedProfile}>
-          <>
-            {auth.user && auth.user.isArtist && (
-              <CreatePost getLoggedProfile={getLoggedProfile} />
-            )}
-            <Timeline query={GET_POSTS} queryName="getPosts" />
-          </>
-        </Home>
-        <MobileHeader getLoggedProfile={getLoggedProfile} />
-      </LevelProvider>
-      <MobileFooter />
-    </HomeContainer>
+      <>
+        {auth.user && auth.user.isArtist && (
+          <CreatePost getLoggedProfile={getLoggedProfile} />
+        )}
+        <Timeline query={GET_POSTS} queryName="getPosts" />
+      </>
+    </>
   );
 };
 
@@ -87,4 +75,4 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   };
 };
 
-export default HomePage;
+export default withHome(HomePage);
