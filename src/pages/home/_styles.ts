@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 const HomeContainer = styled.main`
+  min-height: 100vh;
+
   .home-desktop-content {
     padding: 8rem 4rem;
     display: grid;
