@@ -33,6 +33,8 @@ const PortalAudioPlayer: React.FC<PortalAudioPlayerProps> = ({ playlist }) => {
       showMediaSession
       mode="full"
       remember
+      quietUpdate
+      clearPriorAudioLists
       theme={isDarkMode ? 'dark' : 'light'}
       showMiniProcessBar
       spaceBar
