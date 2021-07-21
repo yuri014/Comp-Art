@@ -41,7 +41,7 @@ const Search: React.FC<SearchProps> = ({ profiles, getLoggedProfile }) => {
                   <p className="title">Resultados para &quot;{query}&quot;</p>
                   <div className="profiles-container">
                     {profiles.map(profile => (
-                      <ProfileSimpleCard profile={profile} />
+                      <ProfileSimpleCard key={profile._id} profile={profile} />
                     ))}
                   </div>
                 </section>
@@ -66,7 +66,7 @@ const Search: React.FC<SearchProps> = ({ profiles, getLoggedProfile }) => {
                 <p className="title">Resultados para &quot;{query}&quot;</p>
                 <div className="profiles-container">
                   {profiles.map(profile => (
-                    <ProfileSimpleCard profile={profile} />
+                    <ProfileSimpleCard key={profile._id} profile={profile} />
                   ))}
                 </div>
               </section>
