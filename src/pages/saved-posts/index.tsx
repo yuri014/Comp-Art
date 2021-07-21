@@ -5,10 +5,9 @@ import { gql } from '@apollo/client';
 
 import Timeline from '@components/Timeline';
 import { CORE_POST_VIEW, CORE_SHARE_VIEW } from '@graphql/fragments/posts';
-import { GET_LOGGED_PROFILE } from '@graphql/queries/profile';
-import { initializeApollo } from '@graphql/apollo/config';
 import { ILoggedProfile } from '@interfaces/Profile';
 import withHome from '@hocs/withHome';
+import getLoggedUserWithAuth from '@ssr-functions/getLoggedUserWithAuth';
 
 const GET_SAVED_POSTS = gql`
   ${CORE_POST_VIEW}
@@ -35,40 +34,7 @@ const SavedPosts: React.FC<ILoggedProfile> = () => (
   </>
 );
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const { jwtToken } = req.cookies;
-
-  if (!jwtToken) {
-    return {
-      redirect: {
-        destination: '/login',
-        permanent: false,
-      },
-    };
-  }
-
-  const client = initializeApollo(null, jwtToken);
-
-  const getProfile = await client.query({
-    query: GET_LOGGED_PROFILE,
-    errorPolicy: 'ignore',
-  });
-
-  if (jwtToken && !getProfile.data) {
-    return {
-      redirect: {
-        destination: '/register-profile',
-        permanent: false,
-      },
-    };
-  }
-
-  const { getLoggedProfile } = getProfile.data;
-  return {
-    props: {
-      getLoggedProfile,
-    },
-  };
-};
+export const getServerSideProps: GetServerSideProps = async ({ req }) =>
+  getLoggedUserWithAuth(req);
 
 export default withHome(SavedPosts);
