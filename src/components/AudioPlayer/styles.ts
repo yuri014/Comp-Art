@@ -57,6 +57,14 @@ const AudioPlayerContainer = styled.div`
     max-height: 50rem;
     gap: 4rem;
 
+    strong {
+      margin-top: 0rem;
+    }
+
+    #waveform {
+      margin: 1rem 0;
+    }
+
     img {
       width: 25rem;
       height: 25rem;
