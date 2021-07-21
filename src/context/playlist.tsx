@@ -14,6 +14,7 @@ const PortalAudioPlayer = dynamic(
 
 interface IPlaylistContext extends PortalAudioPlayerProps {
   addSong: (song: IPlaylist) => void;
+  addNextSong: (song: IPlaylist) => void;
   resetPlaylist: (songs: IPlaylist[]) => void;
 }
 
@@ -35,6 +36,20 @@ export const PlaylistProvier: React.FC<PlaylistProvierProps> = ({
     }
   };
 
+  const addNextSong = (song: IPlaylist) => {
+    const { musicSrc } = JSON.parse(
+      window.localStorage.getItem('lastPlayStatus'),
+    ) as IPlaylist;
+
+    const currentIndex = playlist.findIndex(item => item.musicSrc === musicSrc);
+    const insertSong = () =>
+      playlist
+        .slice(0, currentIndex + 1)
+        .concat(song, playlist.slice(currentIndex + 1));
+
+    setPlaylist(insertSong());
+  };
+
   const resetPlaylist = (songs: IPlaylist[]) => {
     setPlaylist(songs);
   };
@@ -44,7 +59,9 @@ export const PlaylistProvier: React.FC<PlaylistProvierProps> = ({
   }, [initialPlaylist]);
 
   return (
-    <PlaylistContext.Provider value={{ playlist, addSong, resetPlaylist }}>
+    <PlaylistContext.Provider
+      value={{ playlist, addSong, addNextSong, resetPlaylist }}
+    >
       {children}
       {playlist.length > 0 && <PortalAudioPlayer playlist={playlist} />}
     </PlaylistContext.Provider>
