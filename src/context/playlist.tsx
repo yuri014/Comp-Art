@@ -48,13 +48,15 @@ export const PlaylistProvier: React.FC<PlaylistProvierProps> = ({
     setPlaylist(insertSong());
   };
 
-  useEffect(() => {
-    localStorage.setItem('flow-playlist', playlist.toString());
-  }, [playlist]);
-
   const resetPlaylist = (songs: IPlaylist[]) => {
     setPlaylist(songs);
   };
+
+  useEffect(() => {
+    if (playlist.length > 0) {
+      localStorage.setItem('flow-playlist', JSON.stringify(playlist));
+    }
+  }, [playlist]);
 
   useEffect(() => {
     setPlaylist(initialPlaylist);

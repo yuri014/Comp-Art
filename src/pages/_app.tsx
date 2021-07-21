@@ -19,8 +19,6 @@ import mainLightTheme from '@styles/themes/MainLightTheme';
 import { NewNotificationsProvider } from '@context/notification';
 import { PlaylistProvier } from '@context/playlist';
 
-import fakeSongs from './_fakeSongs.json';
-
 NProgress.configure({ showSpinner: false });
 
 Router.events.on('routeChangeStart', () => NProgress.start());
@@ -49,7 +47,11 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   };
 
   useEffect(() => {
-    setInitialPlaylist(fakeSongs);
+    const playlist = localStorage.getItem('flow-playlist');
+
+    if (playlist) {
+      setInitialPlaylist(JSON.parse(playlist));
+    }
   }, []);
 
   return (
