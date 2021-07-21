@@ -12,12 +12,18 @@ const withHome = (Component: NextPage): NextPage => {
   const Auth = props => (
     <HomeContainer>
       <Header getLoggedProfile={props.getLoggedProfile} />
-      <LevelProvider>
-        <Home getLoggedProfile={props.getLoggedProfile}>
+      {props.getLoggedProfile ? (
+        <LevelProvider>
+          <Home getLoggedProfile={props.getLoggedProfile}>
+            <Component {...props} />
+          </Home>
+          <MobileHeader getLoggedProfile={props.getLoggedProfile} />
+        </LevelProvider>
+      ) : (
+        <Home>
           <Component {...props} />
         </Home>
-        <MobileHeader getLoggedProfile={props.getLoggedProfile} />
-      </LevelProvider>
+      )}
       <MobileFooter />
     </HomeContainer>
   );
