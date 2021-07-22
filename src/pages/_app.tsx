@@ -17,7 +17,7 @@ import ThemeContext from '@context/theme';
 import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
 import { NewNotificationsProvider } from '@context/notification';
-import { PlaylistProvier } from '@context/playlist';
+import { PlaylistProvider } from '@context/playlist';
 
 NProgress.configure({ showSpinner: false });
 
@@ -72,10 +72,10 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
                 <MuiThemeProvider
                   theme={isDarkMode ? mainDarkTheme : mainLightTheme}
                 >
-                  <PlaylistProvier initialPlaylist={initialPlaylist}>
+                  <PlaylistProvider initialPlaylist={initialPlaylist}>
                     <GlobalStyle />
                     <Component {...pageProps} />
-                  </PlaylistProvier>
+                  </PlaylistProvider>
                 </MuiThemeProvider>
               </ThemeProvider>
             </ThemeContext.Provider>

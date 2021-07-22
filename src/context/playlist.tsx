@@ -20,11 +20,11 @@ interface IPlaylistContext extends PortalAudioPlayerProps {
 
 export const PlaylistContext = createContext<IPlaylistContext>(null);
 
-interface PlaylistProvierProps {
+interface PlaylistProviderProps {
   initialPlaylist: IPlaylist[];
 }
 
-export const PlaylistProvier: React.FC<PlaylistProvierProps> = ({
+export const PlaylistProvider: React.FC<PlaylistProviderProps> = ({
   children,
   initialPlaylist,
 }) => {
