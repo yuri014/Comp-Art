@@ -10,11 +10,12 @@ interface FullScreenImageProps {
 }
 
 const FullScreenImage: React.FC<FullScreenImageProps> = ({ img, onClose }) => (
-  <FullScreenImageContainer>
+  <FullScreenImageContainer data-testid="full-screen-image">
     <div className="close">
       <IconButton
         aria-label="fechar imagem"
         color="secondary"
+        data-testid="close-full-screen-image"
         onClick={onClose}
       >
         <FaTimes size={24} />
