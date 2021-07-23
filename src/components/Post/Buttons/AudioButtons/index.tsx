@@ -13,31 +13,39 @@ interface AudioButtonsProps {
 const AudioButtons: React.FC<AudioButtonsProps> = ({ children, song }) => {
   const { addSong, addNextSong } = useContext(PlaylistContext);
 
+  const AddSongButton = () => (
+    <Tooltip title="Adicionar à playlist" placement="top" arrow>
+      <IconButton
+        onClick={() => {
+          addSong(song);
+        }}
+        aria-label="adicionar à playlist"
+      >
+        <MdPlaylistAdd />
+      </IconButton>
+    </Tooltip>
+  );
+
+  const AddNextSongButton = () => (
+    <Tooltip
+      title="Ouvir em seguida na playlist"
+      placement="top"
+      onClick={() => {
+        addNextSong(song);
+      }}
+      arrow
+    >
+      <IconButton aria-label="Ouvir em seguida na playlist">
+        <MdQueuePlayNext />
+      </IconButton>
+    </Tooltip>
+  );
+
   return (
     <AudioButtonsStyles>
-      <Tooltip title="Adicionar à playlist" placement="top" arrow>
-        <IconButton
-          onClick={() => {
-            addSong(song);
-          }}
-          aria-label="adicionar à playlist"
-        >
-          <MdPlaylistAdd />
-        </IconButton>
-      </Tooltip>
+      <AddSongButton />
       {children}
-      <Tooltip
-        title="Ouvir em seguida na playlist"
-        placement="top"
-        onClick={() => {
-          addNextSong(song);
-        }}
-        arrow
-      >
-        <IconButton aria-label="Ouvir em seguida na playlist">
-          <MdQueuePlayNext />
-        </IconButton>
-      </Tooltip>
+      <AddNextSongButton />
     </AudioButtonsStyles>
   );
 };
