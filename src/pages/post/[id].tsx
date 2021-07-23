@@ -56,7 +56,7 @@ const PostPage: React.FC<PostPageProps> = ({
   const HandlePost = ({ mediaId }: { mediaId: number }) => {
     if (mediaId === mediaIds.image) {
       return (
-        <figure>
+        <figure className="post-image">
           <CAImage
             alt={post.alt}
             blurDataURL={blurDataUrl}

@@ -63,7 +63,6 @@ const PostPageContainer = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-        position: relative;
 
         img {
           border-radius: 5px;
