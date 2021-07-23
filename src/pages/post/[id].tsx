@@ -59,12 +59,12 @@ const PostPage: React.FC<PostPageProps> = ({
         <figure>
           <CAImage
             alt={post.alt}
-            layout="responsive"
             blurDataURL={blurDataUrl}
             quality={100}
-            width={1000}
-            height={1000}
+            width="600px"
+            height={post.imageHeight}
             placeholder="blur"
+            objectFit="contain"
             src={post.body}
           />
         </figure>
