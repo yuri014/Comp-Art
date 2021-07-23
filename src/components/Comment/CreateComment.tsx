@@ -7,6 +7,7 @@ import ProfileImage from '@components/ProfileImage';
 import usePreventMemoryLeak from '@hooks/preventMemoryLeak';
 import { CommentsSectionsProps } from '@interfaces/Post';
 import GET_COMMENTS from '@graphql/queries/comment';
+import CommentSkeleton from './CommentSkeleton';
 
 const CREATE_COMMENT = gql`
   mutation CreateComment($id: ID!, $body: String!) {
@@ -22,7 +23,7 @@ const CreateComment: React.FC<CommentsSectionsProps> = ({
   const [progress, setProgress] = useState(0);
 
   const isMount = usePreventMemoryLeak();
-  const [createComment] = useMutation(CREATE_COMMENT, {
+  const [createComment, { loading }] = useMutation(CREATE_COMMENT, {
     refetchQueries: [
       {
         query: GET_COMMENTS,
@@ -65,6 +66,7 @@ const CreateComment: React.FC<CommentsSectionsProps> = ({
           <IoMdSend />
         </button>
       </form>
+      <div className="comment-content">{loading && <CommentSkeleton />}</div>
     </>
   );
 };
