@@ -64,7 +64,7 @@ export const InteractionsNumbersContainer = styled.div`
   width: 100%;
   display: grid;
   align-items: center;
-  grid-template-columns: 30% 30% 30%;
+  grid-template-columns: 33% 33% 33%;
   gap: 0.8rem;
 
   /* stylelint-disable-next-line */
