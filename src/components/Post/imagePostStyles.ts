@@ -16,12 +16,10 @@ const ImagePostContainer = styled.div`
       cursor: pointer;
       width: 100%;
       border-radius: 4px;
-      max-height: 350px;
       height: auto !important;
 
       @media (min-width: 768px) {
         height: 100%;
-        max-height: unset;
       }
     }
   }
