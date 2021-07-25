@@ -8,6 +8,9 @@ const Footer: React.FC = () => (
     <Logo />
 
     <div>
+      <a href="/about" target="_blank">
+        Sobre
+      </a>
       <a href="/terms" target="_blank">
         Termos de uso
       </a>

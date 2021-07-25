@@ -143,7 +143,7 @@ const ProfileSectionContainer = styled.section`
   }
 
   .bio {
-    word-break: break-all;
+    word-break: break-word;
   }
 
   .joined {

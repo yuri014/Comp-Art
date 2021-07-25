@@ -6,7 +6,8 @@ import DraftEditor from '@components/DraftEditor';
 import ProfileImage from '@components/ProfileImage';
 import usePreventMemoryLeak from '@hooks/preventMemoryLeak';
 import { CommentsSectionsProps } from '@interfaces/Post';
-import Comment, { CommentProps } from '.';
+import GET_COMMENTS from '@graphql/queries/comment';
+import CommentSkeleton from './CommentSkeleton';
 
 const CREATE_COMMENT = gql`
   mutation CreateComment($id: ID!, $body: String!) {
@@ -22,25 +23,16 @@ const CreateComment: React.FC<CommentsSectionsProps> = ({
   const [progress, setProgress] = useState(0);
 
   const isMount = usePreventMemoryLeak();
-  const [newComment, setNewComment] = useState<Array<CommentProps>>([]);
-  const [createComment] = useMutation(CREATE_COMMENT);
+  const [createComment, { loading }] = useMutation(CREATE_COMMENT, {
+    refetchQueries: [
+      {
+        query: GET_COMMENTS,
+        variables: { id: postId, offset: 0 },
+      },
+    ],
+  });
 
   const onSubmit = () => {
-    setNewComment([
-      ...newComment,
-      {
-        comment: {
-          _id: '',
-          author: {
-            avatar: profile.avatar || '',
-            name: profile.name,
-            owner: profile.owner,
-          },
-          body: commentField,
-          createdAt: new Date().toISOString(),
-        },
-      },
-    ]);
     createComment({ variables: { id: postId, body: commentField } });
   };
 
@@ -74,10 +66,7 @@ const CreateComment: React.FC<CommentsSectionsProps> = ({
           <IoMdSend />
         </button>
       </form>
-      <div className="comment-content">
-        {newComment &&
-          newComment.map(comment => <Comment comment={comment.comment} />)}
-      </div>
+      <div className="comment-content">{loading && <CommentSkeleton />}</div>
     </>
   );
 };

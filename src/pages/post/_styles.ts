@@ -60,10 +60,11 @@ const PostPageContainer = styled.div`
       padding: 0 calc(2rem - 6px);
 
       .post-image {
-        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         img {
-          width: inherit;
           border-radius: 5px;
         }
       }

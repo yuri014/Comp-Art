@@ -62,9 +62,8 @@ export const AuthorInfoContainer = styled.div`
 
 export const InteractionsNumbersContainer = styled.div`
   width: 100%;
-  display: grid;
+  display: flex;
   align-items: center;
-  grid-template-columns: 30% 30% 30%;
   gap: 0.8rem;
 
   /* stylelint-disable-next-line */
@@ -110,11 +109,6 @@ export const InteractionsNumbersContainer = styled.div`
         }
       }
     }
-  }
-
-  @media (min-width: 768px) {
-    display: flex;
-    justify-content: flex-start;
   }
 `;
 

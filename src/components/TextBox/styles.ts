@@ -5,8 +5,9 @@ const TextBoxContainer = styled.div`
     font-size: 1.6rem;
     overflow: hidden;
     max-width: 700px;
-    word-break: break-all;
+    word-break: break-word;
     cursor: text;
+    margin-bottom: 1rem;
   }
 
   button {

@@ -1,27 +1,13 @@
 import React, { useEffect } from 'react';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 
 import useInfiniteScroll from '@hooks/infiniteScroll';
 import { CommentsSectionsProps, IGetComment } from '@interfaces/Post';
-import { CORE_PROFILE_VIEW } from '@graphql/fragments/profile';
+import GET_COMMENTS from '@graphql/queries/comment';
 import CommentSkeleton from './CommentSkeleton';
 import CreateComment from './CreateComment';
 import { CommentsSectionContainer } from './styles';
 import Comment from '.';
-
-const GET_COMMENTS = gql`
-  ${CORE_PROFILE_VIEW}
-  query GetComments($id: ID!, $offset: Int!) {
-    getComments(postID: $id, offset: $offset) {
-      _id
-      author {
-        ...CoreProfileView
-      }
-      body
-      createdAt
-    }
-  }
-`;
 
 const CommentsSections: React.FC<CommentsSectionsProps> = ({
   postId,
