@@ -38,13 +38,13 @@ const MobileFooter: React.FC = () => {
             />
 
             <BottomNavigationAction
-              label="Search"
+              label="Busca"
               value="/search"
               icon={<FaSearch />}
               onClick={() => routes.push('/search')}
             />
             <BottomNavigationAction
-              label="Notifications"
+              label="Notificações"
               value="/notifications"
               icon={<FaBell />}
               onClick={() => routes.push('/notifications')}
