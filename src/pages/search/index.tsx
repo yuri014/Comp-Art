@@ -5,6 +5,7 @@ import Meta from '@components/SEO/Meta';
 import SearchInput from '@components/SearchInput';
 import ThemeContext from '@context/theme';
 import NonAuthAltHeader from '@components/NonAuthAltHeader';
+import MobileFooter from '@components/MobileFooter';
 import { SearchPageContainer } from './_styles';
 import * as animationData from '../../animations/search-item.json';
 
@@ -39,6 +40,7 @@ const SearchPage: React.FC = () => {
         </div>
         <p className="no-data">Busque por perfis ou posts</p>
       </main>
+      <MobileFooter />
     </SearchPageContainer>
   );
 };
