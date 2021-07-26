@@ -30,7 +30,16 @@ export const createUserSchema = (otherValidations?: {
   });
 
 const registerField = {
-  username: yup.string().min(6).max(24).required(),
+  username: yup
+    .string()
+    .trim()
+    .min(6)
+    .max(24)
+    .matches(
+      /^[a-zA-Z0-9]+\s*$/,
+      'Não é permitido espaços em branco no username',
+    )
+    .required(),
   email: yup.string().email().required(),
 };
 
