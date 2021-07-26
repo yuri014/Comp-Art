@@ -27,28 +27,10 @@ export const GET_POSTS = gql`
 `;
 
 export const GET_EXPLORE_POSTS = gql`
+  ${CORE_POST_VIEW}
   query GetExplorePosts($offset: Int!) {
     getExplorePosts(offset: $offset) {
-      _id
-      description
-      body
-      likesCount
-      sharedCount
-      commentsCount
-      createdAt
-      artist {
-        name
-        owner
-        avatar
-      }
-      likes {
-        profile {
-          owner
-          avatar
-        }
-      }
-      mediaId
-      isLiked
+      ...CorePostView
     }
   }
 `;
