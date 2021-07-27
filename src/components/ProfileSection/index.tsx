@@ -18,18 +18,20 @@ interface ProfileProps {
 
 const GET_FOLLOWERS = gql`
   ${MODAL_PROFILE}
-  query GetFollowers($offset: Int!, $username: String!) {
+  query GetFollowers($offset: [Int]!, $username: String!) {
     getFollowers(offset: $offset, username: $username) {
       ...ModalProfile
+      isArtist
     }
   }
 `;
 
 const GET_FOLLOWING = gql`
   ${MODAL_PROFILE}
-  query GetFollowing($offset: Int!, $username: String!) {
+  query GetFollowing($offset: [Int]!, $username: String!) {
     getFollowing(offset: $offset, username: $username) {
       ...ModalProfile
+      isArtist
     }
   }
 `;
