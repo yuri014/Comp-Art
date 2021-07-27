@@ -20,12 +20,19 @@ const Explore: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => (
       <title>Explorar - Comp-Art</title>
     </Head>
     <Header getLoggedProfile={getLoggedProfile} />
-    <LevelProvider>
-      <Home getLoggedProfile={getLoggedProfile}>
+
+    {getLoggedProfile ? (
+      <LevelProvider>
+        <Home getLoggedProfile={getLoggedProfile}>
+          <Timeline query={GET_EXPLORE_POSTS} queryName="getExplorePosts" />
+        </Home>
+        <MobileHeader getLoggedProfile={getLoggedProfile} />
+      </LevelProvider>
+    ) : (
+      <Home>
         <Timeline query={GET_EXPLORE_POSTS} queryName="getExplorePosts" />
       </Home>
-      <MobileHeader getLoggedProfile={getLoggedProfile} />
-    </LevelProvider>
+    )}
     <MobileFooter />
   </HomeContainer>
 );
