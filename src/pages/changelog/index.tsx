@@ -19,27 +19,24 @@ const ChangelogPage: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => (
       <title>Comp-Art</title>
     </Head>
     <Header getLoggedProfile={getLoggedProfile} />
-    <LevelProvider>
+    {getLoggedProfile ? (
+      <LevelProvider>
+        <main>
+          <Changelog />
+        </main>
+        <MobileHeader getLoggedProfile={getLoggedProfile} />
+      </LevelProvider>
+    ) : (
       <main>
         <Changelog />
       </main>
-      <MobileHeader getLoggedProfile={getLoggedProfile} />
-    </LevelProvider>
+    )}
     <MobileFooter />
   </ChangelogContainer>
 );
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const { jwtToken } = req.cookies;
-
-  if (!jwtToken) {
-    return {
-      redirect: {
-        destination: '/login',
-        permanent: false,
-      },
-    };
-  }
 
   const client = initializeApollo(null, jwtToken);
 
@@ -57,10 +54,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     };
   }
 
-  const { getLoggedProfile } = getProfile.data;
   return {
     props: {
-      getLoggedProfile,
+      getLoggedProfile: getProfile.data && getProfile.data.getLoggedProfile,
     },
   };
 };
