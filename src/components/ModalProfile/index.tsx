@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { nanoid } from 'nanoid';
 import { DocumentNode, useQuery } from '@apollo/client';
 
@@ -20,31 +20,33 @@ interface ModalProps {
 }
 
 const ModalProfile: React.FC<ModalProps> = ({ onHide, variable, payload }) => {
-  const { client, data, loading, fetchMore } = useQuery(payload.query, {
-    variables: { offset: 0, ...variable },
+  const excludedQueries = ['getFollowers', 'getFollowing'];
+
+  const isAExcludedQuery = excludedQueries.includes(payload.queryResult);
+
+  const { data, loading, fetchMore } = useQuery(payload.query, {
+    variables: { offset: isAExcludedQuery ? [0, 0] : 0, ...variable },
   });
 
-  useEffect(
-    () => () => {
-      client.cache.evict({
-        id: 'ROOT_QUERY',
-        fieldName: payload.queryResult,
-        broadcast: false,
-      });
-      client.cache.gc();
-    },
-    [client.cache, payload.queryResult],
-  );
+  const dataLength = () => {
+    if (isAExcludedQuery) {
+      const artistLength = data[`${payload.queryResult}`].filter(
+        item => item.isArtist,
+      ).length;
+
+      const userLength = data[`${payload.queryResult}`].length - artistLength;
+
+      return [artistLength || 0, userLength || 0];
+    }
+    return data[`${payload.queryResult}`].length;
+  };
 
   const lastProfileRefLikes = useInfiniteScroll(data, async () => {
-    if (data[`${payload.queryResult}`].length === 6) {
-      const newProfiles = await fetchMore({
-        variables: { offset: data[`${payload.queryResult}`].length },
-      });
-      return newProfiles.data[`${payload.queryResult}`].length === 6;
-    }
+    const newProfiles = await fetchMore({
+      variables: { offset: dataLength() },
+    });
 
-    return false;
+    return newProfiles.data[`${payload.queryResult}`].length >= 4;
   });
 
   return (

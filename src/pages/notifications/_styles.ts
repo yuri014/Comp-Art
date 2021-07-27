@@ -5,7 +5,7 @@ const NotificationPageContainer = styled.div`
   min-height: 100vh;
 
   main {
-    padding-top: 5rem;
+    padding: 5rem 0;
 
     .notification-item {
       border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { FaBell, FaHome, FaSearch } from 'react-icons/fa';
+import { FaBell, FaCog, FaHome, FaSearch } from 'react-icons/fa';
 import { useRouter } from 'next/dist/client/router';
 import {
   BottomNavigation,
@@ -38,16 +38,22 @@ const MobileFooter: React.FC = () => {
             />
 
             <BottomNavigationAction
-              label="Search"
+              label="Busca"
               value="/search"
               icon={<FaSearch />}
               onClick={() => routes.push('/search')}
             />
             <BottomNavigationAction
-              label="Notifications"
+              label="Notificações"
               value="/notifications"
               icon={<FaBell />}
               onClick={() => routes.push('/notifications')}
+            />
+            <BottomNavigationAction
+              label="Configuração"
+              value="/config"
+              icon={<FaCog />}
+              onClick={() => routes.push('/config')}
             />
           </BottomNavigation>
         </ThemeProvider>

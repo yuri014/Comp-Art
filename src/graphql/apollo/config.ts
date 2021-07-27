@@ -112,37 +112,37 @@ function createApolloClient(cookie?: string) {
               },
             },
             searchPost: {
-              keyArgs: false,
+              keyArgs: ['query'],
               merge(existing, incoming, { args: { offset = [0, 0] } }) {
                 return mergeArrayCache(existing, incoming, offset);
               },
             },
             getComments: {
-              keyArgs: false,
+              keyArgs: ['postID'],
               merge(existing, incoming, { args: { offset = 0 } }) {
                 return mergeCache(existing, incoming, offset);
               },
             },
             getLikes: {
-              keyArgs: false,
+              keyArgs: ['postID'],
               merge(existing, incoming, { args: { offset = 0 } }) {
                 return mergeCache(existing, incoming, offset);
               },
             },
             getFollowing: {
-              keyArgs: false,
-              merge(existing, incoming, { args: { offset = 0 } }) {
-                return mergeCache(existing, incoming, offset);
+              keyArgs: ['username'],
+              merge(existing, incoming, { args: { offset = [0, 0] } }) {
+                return mergeArrayCache(existing, incoming, offset);
               },
             },
             getFollowers: {
-              keyArgs: false,
-              merge(existing, incoming, { args: { offset = 0 } }) {
-                return mergeCache(existing, incoming, offset);
+              keyArgs: ['username'],
+              merge(existing, incoming, { args: { offset = [0, 0] } }) {
+                return mergeArrayCache(existing, incoming, offset);
               },
             },
             getWhoSharesPost: {
-              keyArgs: false,
+              keyArgs: ['postID'],
               merge(existing, incoming, { args: { offset = 0 } }) {
                 return mergeCache(existing, incoming, offset);
               },

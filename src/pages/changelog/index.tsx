@@ -7,7 +7,8 @@ import MobileFooter from '@components/MobileFooter';
 import MobileHeader from '@components/MobileHeader';
 import { LevelProvider } from '@context/level';
 import { ILoggedProfile } from '@interfaces/Profile';
-import getLoggedUserWithAuth from '@ssr-functions/getLoggedUserWithAuth';
+import { initializeApollo } from '@graphql/apollo/config';
+import { GET_LOGGED_PROFILE } from '@graphql/queries/profile';
 import ChangelogContainer from './_styles';
 import Changelog from './_changelog.mdx';
 
@@ -17,17 +18,46 @@ const ChangelogPage: React.FC<ILoggedProfile> = ({ getLoggedProfile }) => (
       <title>Comp-Art</title>
     </Head>
     <Header getLoggedProfile={getLoggedProfile} />
-    <LevelProvider>
+    {getLoggedProfile ? (
+      <LevelProvider>
+        <main>
+          <Changelog />
+        </main>
+        <MobileHeader getLoggedProfile={getLoggedProfile} />
+      </LevelProvider>
+    ) : (
       <main>
         <Changelog />
       </main>
-      <MobileHeader getLoggedProfile={getLoggedProfile} />
-    </LevelProvider>
+    )}
     <MobileFooter />
   </ChangelogContainer>
 );
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) =>
-  getLoggedUserWithAuth(req);
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const { jwtToken } = req.cookies;
+
+  const client = initializeApollo(null, jwtToken);
+
+  const getProfile = await client.query({
+    query: GET_LOGGED_PROFILE,
+    errorPolicy: 'ignore',
+  });
+
+  if (jwtToken && !getProfile.data) {
+    return {
+      redirect: {
+        destination: '/register-profile',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      getLoggedProfile: getProfile.data && getProfile.data.getLoggedProfile,
+    },
+  };
+};
 
 export default ChangelogPage;

@@ -28,7 +28,7 @@ const InteractionsNumbers: React.FC<InteractionsNumbers> = ({
 
   return (
     <>
-      <InteractionsNumbersContainer>
+      <InteractionsNumbersContainer className="prevent-redirect-post">
         {likesCount > 0 && (
           <ModalLikesButton
             showModal={() => {
