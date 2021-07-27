@@ -28,21 +28,29 @@ export const AuthorInfoContainer = styled.div`
       letter-spacing: 0.1rem;
       color: ${({ theme }) => theme.colors.themeColor};
       white-space: nowrap;
-      max-width: 44rem;
+      max-width: 14rem;
       overflow: hidden;
       text-overflow: ellipsis;
       font-weight: 600;
+
+      @media (min-width: 768px) {
+        max-width: 30rem;
+      }
     }
 
     p {
       color: ${({ theme }) => theme.colors.darkGray};
       letter-spacing: 0.1rem;
       white-space: nowrap;
-      max-width: 30rem;
+      max-width: 10rem;
       overflow: hidden;
       text-overflow: ellipsis;
       font-weight: 400;
       margin-left: 0.5rem;
+
+      @media (min-width: 768px) {
+        max-width: 18rem;
+      }
     }
 
     strong,
@@ -101,6 +109,7 @@ export const InteractionsNumbersContainer = styled.div`
 
         img {
           object-fit: cover;
+          position: relative;
         }
 
         p {

@@ -51,6 +51,7 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleClose}
+        disableScrollLock
       >
         <MenuItem onClick={() => push(`/profile/${getLoggedProfile.owner}`)}>
           <MenuListIcon>
