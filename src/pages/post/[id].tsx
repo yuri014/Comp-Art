@@ -98,11 +98,17 @@ const PostPage: React.FC<PostPageProps> = ({
   const handleSEOImage = () => {
     switch (post.mediaId) {
       case mediaIds.audio:
-        return post.thumbnail;
+        return (
+          post.thumbnail ||
+          post.artist.avatar ||
+          `${process.env.NEXT_PUBLIC_HOST}/CardSEO.png`
+        );
       case mediaIds.image:
         return post.body;
       default:
-        return `${process.env.NEXT_PUBLIC_HOST}/CardSEO.png`;
+        return (
+          post.artist.avatar || `${process.env.NEXT_PUBLIC_HOST}/CardSEO.png`
+        );
     }
   };
 
@@ -114,7 +120,9 @@ const PostPage: React.FC<PostPageProps> = ({
     <>
       <PostPageContainer>
         <Meta
-          description={`Post de ${post.artist.name}`}
+          description={`Post de ${post.artist.name} ${
+            post.description && `- ${post.description.substring(0, 100)}`
+          }`}
           keywords={`comp-art, post, artista, divulgação, ${post.artist.name}`}
           title={`Post - ${post.artist.name}`}
           uri={`post/${post._id}`}
