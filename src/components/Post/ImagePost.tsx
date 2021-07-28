@@ -9,9 +9,10 @@ const FullScreenImage = dynamic(() => import('../FullScreenImage'));
 interface ImagePostProps {
   image: string;
   imageHeight: string;
+  alt: string;
 }
 
-const ImagePost: React.FC<ImagePostProps> = ({ image, imageHeight }) => {
+const ImagePost: React.FC<ImagePostProps> = ({ alt, image, imageHeight }) => {
   const [isImageFullScreen, setIsImageFullScreen] = useState(false);
   const [resizeImage, setResizeImage] = useState('');
 
@@ -31,7 +32,7 @@ const ImagePost: React.FC<ImagePostProps> = ({ image, imageHeight }) => {
         <LazyLoadImage
           className="prevent-redirect-post post-image"
           src={image}
-          alt="Publicação"
+          alt={alt || 'Publicação'}
           height={imageHeight}
           effect="blur"
           afterLoad={() => setResizeImage('auto')}
