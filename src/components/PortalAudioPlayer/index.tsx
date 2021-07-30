@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import ReactJkMusicPlayer from 'react-jinke-music-player';
+import { FaPause, FaPlay, FaTimes } from 'react-icons/fa';
+import 'react-jinke-music-player/assets/index.css';
 
 import { PlaylistContext } from '@context/playlist';
 import ThemeContext from '@context/theme';
-import 'react-jinke-music-player/assets/index.css';
-import { FaPause, FaPlay, FaTimes } from 'react-icons/fa';
+import clearPlaylistStorage from '@utils/playlist/clearPlaylistStorage';
 import customLocale from './lang';
 
 export interface IPlaylist {
@@ -44,8 +45,7 @@ const PortalAudioPlayer: React.FC<PortalAudioPlayerProps> = ({ playlist }) => {
         close: <FaTimes />,
       }}
       onDestroyed={async () => {
-        localStorage.removeItem('lastPlayStatus');
-        localStorage.removeItem('flow-playlist');
+        clearPlaylistStorage();
       }}
       onAudioListsChange={(_, songs) => {
         const newOrderPlaylist = songs.map(song => ({
