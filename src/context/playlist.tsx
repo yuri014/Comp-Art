@@ -35,17 +35,24 @@ export const PlaylistProvider: React.FC<PlaylistProviderProps> = ({
   };
 
   const addNextSong = (song: IPlaylist) => {
-    const { musicSrc } = JSON.parse(
-      window.localStorage.getItem('lastPlayStatus'),
-    ) as IPlaylist;
+    const lastPlay = localStorage.getItem('lastPlayStatus');
 
-    const currentIndex = playlist.findIndex(item => item.musicSrc === musicSrc);
-    const insertSong = () =>
-      playlist
-        .slice(0, currentIndex + 1)
-        .concat(song, playlist.slice(currentIndex + 1));
+    if (!lastPlay) {
+      addSong(song);
+    } else {
+      const { musicSrc } = JSON.parse(lastPlay) as IPlaylist;
 
-    setPlaylist(insertSong());
+      const currentIndex = playlist.findIndex(
+        item => item.musicSrc === musicSrc,
+      );
+
+      const insertSong = () =>
+        playlist
+          .slice(0, currentIndex + 1)
+          .concat(song, playlist.slice(currentIndex + 1));
+
+      setPlaylist(insertSong());
+    }
   };
 
   const resetPlaylist = (songs: IPlaylist[]) => {
