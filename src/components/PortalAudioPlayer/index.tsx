@@ -43,6 +43,10 @@ const PortalAudioPlayer: React.FC<PortalAudioPlayerProps> = ({ playlist }) => {
         pause: <FaPause />,
         close: <FaTimes />,
       }}
+      onDestroyed={async () => {
+        localStorage.removeItem('lastPlayStatus');
+        localStorage.removeItem('flow-playlist');
+      }}
       onAudioListsChange={(_, songs) => {
         const newOrderPlaylist = songs.map(song => ({
           cover: song.cover,
