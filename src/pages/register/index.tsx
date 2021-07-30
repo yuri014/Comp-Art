@@ -23,7 +23,7 @@ const SignUp: React.FC = () => (
   <>
     <Meta
       uri="register"
-      title="Comp-Art - Cadastre-se"
+      title="Cadastre-se - Comp-Art"
       description="Cadastre-se para divulgar sua arte ou para apreciar a divulgar e apreciar a arte de outros artistas."
       keywords="Comp-Art, comp-art, comp art, divulgação, arte, música, ilustrações, artistas, cadastro, entrar"
     />
