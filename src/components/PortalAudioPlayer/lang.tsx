@@ -19,7 +19,7 @@ const customLocale = {
   playListsText: 'Playlist',
   toggleLyricText: 'toggleLyricText',
   toggleMiniModeText: 'Minimizar',
-  destroyText: 'destroyText',
+  destroyText: 'Excluir playlist',
   downloadText: 'downloadText',
   lightThemeText: 'L',
   darkThemeText: 'D',
