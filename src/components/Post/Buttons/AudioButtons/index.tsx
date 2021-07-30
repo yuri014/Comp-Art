@@ -20,6 +20,7 @@ const AudioButtons: React.FC<AudioButtonsProps> = ({ children, song }) => {
           addSong(song);
         }}
         aria-label="adicionar à playlist"
+        data-testid="add-song"
       >
         <MdPlaylistAdd />
       </IconButton>
@@ -35,7 +36,10 @@ const AudioButtons: React.FC<AudioButtonsProps> = ({ children, song }) => {
       }}
       arrow
     >
-      <IconButton aria-label="Ouvir em seguida na playlist">
+      <IconButton
+        aria-label="Ouvir em seguida na playlist"
+        data-testid="add-next-song"
+      >
         <MdQueuePlayNext />
       </IconButton>
     </Tooltip>
