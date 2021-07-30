@@ -9,7 +9,7 @@
     "test": "jest --watch",
     "coverage": "jest --coverage",
     "lint:css": "stylelint './src/**/*.ts'",
-    "generate-sitemap": "next-sitemap"
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@apollo/client": "^3.3.15",
@@ -37,6 +37,7 @@
     "next-compose-plugins": "^2.2.1",
     "next-images": "^1.7.0",
     "next-pwa": "^5.2.9",
+    "next-sitemap": "^1.6.140",
     "nprogress": "^0.2.0",
     "plaiceholder": "^2.0.1",
     "react": "17.0.2",

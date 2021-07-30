@@ -7,7 +7,13 @@ import ImagePost from './ImagePost';
 const ArtistPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
   switch (post.mediaId) {
     case 1:
-      return <ImagePost image={post.body} imageHeight={post.imageHeight} />;
+      return (
+        <ImagePost
+          alt={post.alt}
+          image={post.body}
+          imageHeight={post.imageHeight}
+        />
+      );
     case 2:
       return <AudioPost isShare={isShare} post={post} />;
     case 4:
