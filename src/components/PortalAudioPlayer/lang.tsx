@@ -13,7 +13,7 @@ const customLocale = {
   clickToPlayText: 'Tocar',
   clickToPauseText: 'Pausar',
   nextTrackText: 'Próxima faixa',
-  previousTrackText: 'Faixa Anterior',
+  previousTrackText: 'Faixa anterior',
   reloadText: 'Voltar ao ínicio',
   volumeText: 'Volume',
   playListsText: 'Playlist',
