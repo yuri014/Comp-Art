@@ -3,6 +3,8 @@ import { FaBackward, FaForward, FaPause, FaPlay } from 'react-icons/fa';
 import WaveSurfer from 'wavesurfer.js';
 
 import CAImage from '@components/CAImage';
+import AudioButtons from '@components/Post/Buttons/AudioButtons';
+import { Tooltip } from '@material-ui/core';
 import formWaveSurferOptions, { Colors } from './options';
 import AudioPlayerContainer from './styles';
 
@@ -64,30 +66,45 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
       <strong>{title}</strong>
       <div id="waveform" ref={waveformRef} />
       <div className="controls">
-        <div className="buttons">
-          <button
-            aria-label="voltar 10 segundos"
-            type="button"
-            onClick={() => wavesurfer.current.skipBackward()}
-          >
-            <FaBackward />
-          </button>
-          <button
-            aria-label={!isPlaying ? 'Play' : 'Pause'}
-            type="button"
-            className="play-button"
-            onClick={() => handlePlayPause()}
-          >
-            {!isPlaying ? <FaPlay /> : <FaPause />}
-          </button>
-          <button
-            aria-label="avançar 10 segundos"
-            type="button"
-            onClick={() => wavesurfer.current.skipForward()}
-          >
-            <FaForward />
-          </button>
-        </div>
+        <AudioButtons
+          song={{
+            cover: thumbnail,
+            musicSrc: audio,
+            name: title,
+            singer: title,
+          }}
+        >
+          <div className="audio-buttons">
+            <Tooltip title="Voltar 10 segundos" arrow>
+              <button
+                aria-label="voltar 10 segundos"
+                type="button"
+                onClick={() => wavesurfer.current.skipBackward()}
+              >
+                <FaBackward />
+              </button>
+            </Tooltip>
+            <Tooltip title={!isPlaying ? 'Play' : 'Pause'} arrow>
+              <button
+                aria-label={!isPlaying ? 'Play' : 'Pause'}
+                type="button"
+                className="play-button"
+                onClick={() => handlePlayPause()}
+              >
+                {!isPlaying ? <FaPlay /> : <FaPause />}
+              </button>
+            </Tooltip>
+            <Tooltip title="Avançar 10 segundos" arrow>
+              <button
+                aria-label="avançar 10 segundos"
+                type="button"
+                onClick={() => wavesurfer.current.skipForward()}
+              >
+                <FaForward />
+              </button>
+            </Tooltip>
+          </div>
+        </AudioButtons>
       </div>
     </AudioPlayerContainer>
   );

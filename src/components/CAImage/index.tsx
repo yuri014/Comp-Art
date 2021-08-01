@@ -21,6 +21,7 @@ const CAImage: React.FC<CAImageProps> = props => {
         onKeyDown={() => setIsImageFullScreen(true)}
         onBlur={() => setIsImageFullScreen(false)}
         type="button"
+        data-testid="ca-image-button"
       >
         <Image {...props} />
       </CAImageContainer>

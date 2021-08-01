@@ -3,86 +3,47 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next';
 
-import Header from '@components/Header';
-import Home from '@components/Home';
-import MobileFooter from '@components/MobileFooter';
-import MobileHeader from '@components/MobileHeader';
 import ProfileSimpleCard from '@components/ProfileCard';
 import Timeline from '@components/Timeline';
-import { LevelProvider } from '@context/level';
 import { initializeApollo } from '@graphql/apollo/config';
 import { GET_SEARCH_POSTS, GET_SEARCH_PROFILE } from '@graphql/queries/search';
 import { ILoggedProfile, IProfile } from '@interfaces/Profile';
 import getLoggedUserWithNoAuth from '@ssr-functions/getLoggedUserWithNoAuth';
-import HomeContainer from '../home/_styles';
+import withHome from '@hocs/withHome';
 import { SearchContainer } from './_styles';
 
 interface SearchProps extends ILoggedProfile {
   profiles: Array<IProfile>;
 }
 
-const Search: React.FC<SearchProps> = ({ profiles, getLoggedProfile }) => {
+const Search: React.FC<SearchProps> = ({ profiles }) => {
   const {
     query: { query },
   } = useRouter();
 
   return (
-    <HomeContainer>
+    <>
       <Head>
         <title>{query} - Comp-Art</title>
       </Head>
-      {getLoggedProfile ? (
-        <>
-          <Header getLoggedProfile={getLoggedProfile} />
-          <LevelProvider>
-            <Home getLoggedProfile={getLoggedProfile}>
-              <SearchContainer>
-                <section className="profile-results">
-                  <p className="title">Resultados para &quot;{query}&quot;</p>
-                  <div className="profiles-container">
-                    {profiles.map(profile => (
-                      <ProfileSimpleCard key={profile._id} profile={profile} />
-                    ))}
-                  </div>
-                </section>
-                <section className="posts-results">
-                  <Timeline
-                    query={GET_SEARCH_POSTS}
-                    queryName="searchPost"
-                    otherVariables={{ query: `#${query}` }}
-                  />
-                </section>
-              </SearchContainer>
-            </Home>
-            <MobileHeader getLoggedProfile={getLoggedProfile} />
-          </LevelProvider>
-        </>
-      ) : (
-        <>
-          <Header />
-          <Home>
-            <SearchContainer>
-              <section className="profile-results">
-                <p className="title">Resultados para &quot;{query}&quot;</p>
-                <div className="profiles-container">
-                  {profiles.map(profile => (
-                    <ProfileSimpleCard key={profile._id} profile={profile} />
-                  ))}
-                </div>
-              </section>
-              <section className="posts-results">
-                <Timeline
-                  query={GET_SEARCH_POSTS}
-                  queryName="searchPost"
-                  otherVariables={{ query: `#${query}` }}
-                />
-              </section>
-            </SearchContainer>
-          </Home>
-        </>
-      )}
-      <MobileFooter />
-    </HomeContainer>
+      <SearchContainer>
+        <section className="profile-results">
+          <p className="title">Resultados para &quot;{query}&quot;</p>
+          <div className="profiles-container">
+            {profiles.map(profile => (
+              <ProfileSimpleCard key={profile._id} profile={profile} />
+            ))}
+          </div>
+        </section>
+        <section className="posts-results">
+          <Timeline
+            query={GET_SEARCH_POSTS}
+            queryName="searchPost"
+            otherVariables={{ query: `#${query}` }}
+          />
+        </section>
+      </SearchContainer>
+    </>
   );
 };
 
@@ -109,4 +70,4 @@ export const getServerSideProps: GetServerSideProps = async context => {
   };
 };
 
-export default Search;
+export default withHome(Search);

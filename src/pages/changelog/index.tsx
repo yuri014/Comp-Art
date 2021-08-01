@@ -2,14 +2,13 @@ import React from 'react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 
-import { initializeApollo } from '@graphql/apollo/config';
-import { GET_LOGGED_PROFILE } from '@graphql/queries/profile';
-
 import Header from '@components/Header';
 import MobileFooter from '@components/MobileFooter';
 import MobileHeader from '@components/MobileHeader';
 import { LevelProvider } from '@context/level';
 import { ILoggedProfile } from '@interfaces/Profile';
+import { initializeApollo } from '@graphql/apollo/config';
+import { GET_LOGGED_PROFILE } from '@graphql/queries/profile';
 import ChangelogContainer from './_styles';
 import Changelog from './_changelog.mdx';
 

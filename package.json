@@ -1,6 +1,6 @@
 {
   "name": "comp-art",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -44,6 +44,7 @@
     "react-dom": "17.0.2",
     "react-hook-form": "^6.15.6",
     "react-icons": "^4.2.0",
+    "react-jinke-music-player": "^4.24.1",
     "react-lazy-load-image-component": "^1.5.1",
     "react-schemaorg": "^1.3.3",
     "react-verification-code-input": "^1.2.9",
@@ -75,6 +76,7 @@
     "@typescript-eslint/parser": "^4.11.1",
     "babel-jest": "^27.0.6",
     "babel-plugin-inline-react-svg": "^2.0.1",
+    "babel-plugin-transform-dynamic-import": "^2.1.0",
     "eslint": "^7.16.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-next": "^11.0.1",
@@ -86,6 +88,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-security": "^1.4.0",
     "jest": "^27.0.6",
+    "jest-next-dynamic": "^1.0.1",
     "prettier": "2.2.1",
     "stylelint": "^13.13.1",
     "stylelint-config-recommended": "^5.0.0",

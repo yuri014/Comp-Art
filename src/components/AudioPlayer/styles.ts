@@ -29,20 +29,21 @@ const AudioPlayerContainer = styled.div`
   .controls {
     margin-bottom: 2rem;
 
-    .buttons {
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
+    button {
+      color: ${({ theme }) => theme.colors.gray};
+      background: none;
+      border: none;
+      border-radius: 50%;
+      font-size: 2.5rem;
+      cursor: pointer;
+    }
+
+    .audio-buttons {
       button {
-        color: ${({ theme }) => theme.colors.gray};
-        background: none;
-        border: none;
-        border-radius: 50%;
-        font-size: 3rem;
-        cursor: pointer;
+        font-size: 2rem;
 
         &.play-button {
-          font-size: 4rem;
+          font-size: 3rem;
         }
       }
     }

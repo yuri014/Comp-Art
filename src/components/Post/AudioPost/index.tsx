@@ -1,15 +1,17 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import IconButton from '@material-ui/core/IconButton';
 import { FaBackward, FaForward, FaPause, FaPlay } from 'react-icons/fa';
+import { Tooltip } from '@material-ui/core';
 
 import formatTime from '@utils/formatTime';
 import { ArtistPostProps } from '@interfaces/Post';
 import ThemeContext from '@context/theme';
-import { Tooltip } from '@material-ui/core';
+import { IPlaylist } from '@components/PortalAudioPlayer';
 import AudioPostContainer from './audioPostStyles';
 import Links from './Links';
 import AudioSlider from './Slider';
+import AudioButtons from '../Buttons/AudioButtons';
 
 const AudioPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
   const audioRef = useRef<null | HTMLAudioElement>(null);
@@ -26,6 +28,53 @@ const AudioPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
     return setIsPlaying(false);
   };
 
+  const song: IPlaylist = useMemo(
+    () => ({
+      cover: post.thumbnail || '/assets/audio-placeholder.svg',
+      musicSrc: post.body,
+      name: post.title,
+      singer: post.artist.name,
+    }),
+    [post.artist.name, post.body, post.thumbnail, post.title],
+  );
+
+  const BackwardButton = () => (
+    <Tooltip title="Voltar 10 segundos" placement="top" arrow>
+      <IconButton
+        onClick={() => {
+          audioRef.current.currentTime -= 10;
+        }}
+        aria-label="voltar 10 segundos"
+      >
+        <FaBackward />
+      </IconButton>
+    </Tooltip>
+  );
+
+  const ForwardButton = () => (
+    <Tooltip title="Avançar 10 segundos" placement="top" arrow>
+      <IconButton
+        onClick={() => {
+          audioRef.current.currentTime += 10;
+        }}
+        aria-label="avançar 10 segundos"
+      >
+        <FaForward />
+      </IconButton>
+    </Tooltip>
+  );
+
+  const PlayPauseButton = () => (
+    <Tooltip title={!isPlaying ? 'Play' : 'Pause'} placement="top" arrow>
+      <IconButton
+        onClick={() => handlePlaying()}
+        aria-label={!isPlaying ? 'Play' : 'Pause'}
+      >
+        {!isPlaying ? <FaPlay /> : <FaPause />}
+      </IconButton>
+    </Tooltip>
+  );
+
   return (
     <AudioPostContainer
       isShare={isShare}
@@ -36,7 +85,7 @@ const AudioPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
       <div className="audio-card">
         <figure className="thumbnail">
           <Image
-            src={post.thumbnail || '/assets/audio-placeholder.svg'}
+            src={song.cover}
             alt={post.alt}
             width="200px"
             height="200px"
@@ -47,56 +96,29 @@ const AudioPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
           <div className="audio-card-info">
             <Links
               username={post.artist.owner}
-              title={post.title}
-              name={post.artist.name}
+              title={song.name}
+              name={song.singer}
               id={post._id}
             />
           </div>
-          <div className="audio-buttons">
-            <Tooltip title="Voltar 10 segundos" placement="top" arrow>
-              <IconButton
-                onClick={() => {
-                  audioRef.current.currentTime -= 10;
-                }}
-                aria-label="voltar 10 segundos"
-              >
-                <FaBackward />
-              </IconButton>
-            </Tooltip>
-            <Tooltip
-              title={!isPlaying ? 'Play' : 'Pause'}
-              placement="top"
-              arrow
-            >
-              <IconButton
-                onClick={() => handlePlaying()}
-                aria-label={!isPlaying ? 'Play' : 'Pause'}
-              >
-                {!isPlaying ? <FaPlay /> : <FaPause />}
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Avançar 10 segundos" placement="top" arrow>
-              <IconButton
-                onClick={() => {
-                  audioRef.current.currentTime += 10;
-                }}
-                aria-label="avançar 10 segundos"
-              >
-                <FaForward />
-              </IconButton>
-            </Tooltip>
-          </div>
+          <AudioButtons song={song}>
+            <div className="audio-buttons">
+              <BackwardButton />
+              <PlayPauseButton />
+              <ForwardButton />
+            </div>
+          </AudioButtons>
           <AudioSlider
             audioRef={audioRef}
             isPlaying={isPlaying}
             setIsPlaying={setIsPlaying}
             audioDuration={audioDuration}
           />
-          {post.body && (
+          {song.musicSrc && (
             <audio
               style={{ display: 'none' }}
               ref={audioRef}
-              src={post.body}
+              src={song.musicSrc}
               onLoadedMetadata={() => {
                 const { minutes, seconds } = formatTime(
                   audioRef.current.duration,

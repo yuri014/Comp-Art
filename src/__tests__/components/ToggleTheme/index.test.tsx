@@ -1,26 +1,27 @@
 import React from 'react';
-import { cleanup, screen } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 
 import ToggleThemeButton from '@components/ToggleTheme';
-import ThemeContext from '@context/theme';
-import customRender from 'helpers/contextRender';
+import ThemeContext, { IThemeContext } from '@context/theme';
 
 afterEach(cleanup);
 
 describe('Should toggle themes', () => {
-  const startRender = (providerProps: { value: { [key: string]: unknown } }) =>
-    customRender(ThemeContext, <ToggleThemeButton />, providerProps);
+  const startRender = (providerProps: IThemeContext) =>
+    render(
+      <ThemeContext.Provider value={providerProps}>
+        <ToggleThemeButton />
+      </ThemeContext.Provider>,
+    );
 
   const createProviderProps = ({ isDarkMode }: { isDarkMode: boolean }) => ({
-    value: {
-      isDarkMode,
-      toggleTheme: () => {
-        throw new Error();
-      },
+    isDarkMode,
+    toggleTheme: () => {
+      throw new Error();
     },
   });
 
-  test('When dark theme, should render light icon', () => {
+  it('When dark theme, should render light icon', () => {
     const providerProps = createProviderProps({ isDarkMode: true });
     startRender(providerProps);
 
@@ -30,7 +31,7 @@ describe('Should toggle themes', () => {
     expect(screen.queryByTestId('dark-icon')).not.toBeInTheDocument();
   });
 
-  test('When light theme, should render dark icon', () => {
+  it('When light theme, should render dark icon', () => {
     const providerProps = createProviderProps({ isDarkMode: false });
 
     startRender(providerProps);

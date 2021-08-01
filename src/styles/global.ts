@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import PortalAudioPlayerStyles from '@components/PortalAudioPlayer/PortalPlayerStyles';
 import cssVars from './themes/css-vars';
 
 export default createGlobalStyle`
@@ -17,6 +18,8 @@ export default createGlobalStyle`
 
   /* stylelint-disable-next-line */
   ${cssVars}
+  /* stylelint-disable-next-line */
+  ${PortalAudioPlayerStyles}
 
   :root {
     font-size: 60%;

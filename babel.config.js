@@ -9,5 +9,10 @@ module.exports = {
       },
     ],
   ],
+  env: {
+    test: {
+      plugins: ['transform-dynamic-import'],
+    },
+  },
   plugins: [['styled-components', { ssr: true }], 'inline-react-svg'],
 };

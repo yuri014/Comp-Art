@@ -80,7 +80,7 @@
     "function-paren-newline": "off",
     "import/no-extraneous-dependencies": [
       "error",
-      { "devDependencies": ["**/*.test.ts", "**/*.test.tsx", "**/helpers/**"] }
+      { "devDependencies": ["**/*.test.ts", "**/*.test.tsx", "**/__mocks__/**"] }
     ]
   },
   "overrides": [
