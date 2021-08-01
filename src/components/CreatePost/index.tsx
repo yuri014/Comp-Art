@@ -42,7 +42,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
   const [audioResult, setAudioResult] = useState<File>();
   const imageDimension = useImageDimension(imagePreview.preview);
 
-  const [createPost] = useMutation(CREATE_POST, {
+  const [createPost, { loading }] = useMutation(CREATE_POST, {
     onError: ({ graphQLErrors }) => {
       if (graphQLErrors[0].extensions.isBlocked) {
         setShowModal(true);
@@ -69,6 +69,11 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
     ],
   });
 
+  const cleaner = () => {
+    setImagePreview('');
+    setAudioResult(null);
+  };
+
   const onSubmit = () => {
     createPost({
       variables: {
@@ -81,6 +86,8 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
         },
       },
     });
+
+    cleaner();
   };
 
   const hasMedia = !!audioResult || !!imagePreview.file;
@@ -115,10 +122,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
             {(imagePreview.preview || audioResult) && (
               <MediaForm
                 audioResult={audioResult}
-                cleaner={() => {
-                  setImagePreview('');
-                  setAudioResult(null);
-                }}
+                cleaner={cleaner}
                 imageDimension={imageDimension}
                 preview={imagePreview.preview as string}
                 setAlt={setAlt}
@@ -136,13 +140,19 @@ const CreatePost: React.FC<CreatePostProps> = ({ getLoggedProfile }) => {
               {description.trim().length > 0 && (
                 <DescriptionCounter progress={progress} />
               )}
-              <button
-                type="submit"
-                disabled={!canSubmit}
-                className={`${canSubmit ? '' : 'disabled'}`}
-              >
-                Publicar
-              </button>
+              {!loading ? (
+                <button
+                  type="submit"
+                  disabled={!canSubmit}
+                  className={`${canSubmit ? '' : 'disabled'}`}
+                >
+                  Publicar
+                </button>
+              ) : (
+                <button type="submit" disabled className="disabled">
+                  Publicando...
+                </button>
+              )}
             </div>
           </div>
         </form>
