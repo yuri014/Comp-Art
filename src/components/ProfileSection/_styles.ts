@@ -33,20 +33,32 @@ const ProfileSectionContainer = styled.section`
         background-color: #38383c;
       }
 
+      &.donate {
+        background-color: ${({ theme }) => theme.colors.pink};
+      }
+
       &:hover {
         filter: brightness(0.75);
       }
     }
 
-    .auth-buttons {
-      display: flex;
-      justify-content: space-between;
+    .ca-buttons {
+      display: grid;
+      grid-template-columns: 2fr 2fr;
+      grid-gap: 1rem;
 
-      button {
-        width: 13rem;
+      a {
+        display: contents;
+      }
 
-        @media (min-width: 768px) {
-          width: 12rem;
+      & > * {
+        &:last-child:nth-last-child(odd) {
+          grid-column: auto / span 2;
+        }
+
+        &:first-child:nth-last-child(even),
+        &:first-child:nth-last-child(even) ~ button {
+          grid-column: auto / span 1;
         }
       }
     }
@@ -126,6 +138,7 @@ const ProfileSectionContainer = styled.section`
         font-weight: 600;
       }
 
+      /* stylelint-disable-next-line */
       button {
         background: transparent;
         border: none;
