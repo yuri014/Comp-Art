@@ -33,6 +33,11 @@ export const GET_PROFILE = gql`
       postCount
       sharedPostCount
       createdAt
+      pix {
+        message
+        key
+        city
+      }
     }
   }
 `;
