@@ -8,6 +8,7 @@ interface InputProps {
   placeholder: string;
   type?: string;
   value?: string | number | string[];
+  defaultValue?: string | number | string[];
   required?: boolean;
   error?: string;
   helperText?: string;
@@ -19,6 +20,7 @@ const Input: React.FC<InputProps> = ({
   children,
   error,
   helperText,
+  defaultValue,
   name,
   placeholder,
   refInput,
@@ -35,6 +37,7 @@ const Input: React.FC<InputProps> = ({
       name={name}
       type={type}
       value={value}
+      defaultValue={defaultValue}
       placeholder={placeholder}
       ref={refInput as React.Ref<HTMLInputElement>}
       required={required}
@@ -48,6 +51,7 @@ const Input: React.FC<InputProps> = ({
 Input.defaultProps = {
   required: false,
   type: 'text',
+  defaultValue: '',
 };
 
 export default Input;
