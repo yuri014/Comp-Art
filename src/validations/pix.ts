@@ -16,9 +16,9 @@ yup.setLocale({
 });
 
 const pixSchema = yup.object().shape({
-  key: yup.string().min(2).max(255).required(),
-  message: yup.string().max(72),
-  city: yup.string().min(2).max(255).required(),
+  key: yup.string().max(72),
+  message: yup.string().max(255),
+  city: yup.string().max(255),
 });
 
 export default pixSchema;
