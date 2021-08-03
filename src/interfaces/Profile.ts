@@ -5,6 +5,12 @@ export interface IProfileInput {
   bio: string;
 }
 
+export interface IPixInput {
+  city: string;
+  message: string;
+  key: string;
+}
+
 export interface IProfile {
   _id: string;
   name: string;
@@ -33,6 +39,7 @@ export interface IProfile {
   createdAt: string;
   followsYou: boolean;
   isFollowing: boolean;
+  pix: IPixInput;
 }
 
 export interface ILoggedProfile {

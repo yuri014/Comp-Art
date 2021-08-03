@@ -6,6 +6,8 @@ import { AuthContext } from '@context/auth';
 import { FOLLOW_PROFILE, UNFOLLOW_PROFILE } from '@graphql/mutations/profile';
 import { GET_IS_FOLLOWING } from '@graphql/queries/profile';
 import { IProfile } from '@interfaces/Profile';
+import CreatePix from './pix/CreatePix';
+import RenderPixQrCode from './pix/RenderPixQrCode';
 
 interface ProfileButtonsProps {
   getProfile: IProfile;
@@ -35,18 +37,21 @@ const ProfileButtons: React.FC<ProfileButtonsProps> = ({
   const NotFollowingButton = () => (
     <>
       {checkFollowButton() && !isFollowing && !loading && (
-        <button
-          type="button"
-          onClick={() => {
-            follow({
-              variables: { username: getProfile.owner },
-            });
-            setIsFollowing(true);
-            setFollowersCount(prevState => prevState + 1);
-          }}
-        >
-          SEGUIR
-        </button>
+        <div className="ca-buttons">
+          <button
+            type="button"
+            onClick={() => {
+              follow({
+                variables: { username: getProfile.owner },
+              });
+              setIsFollowing(true);
+              setFollowersCount(prevState => prevState + 1);
+            }}
+          >
+            SEGUIR
+          </button>
+          <RenderPixQrCode name={getProfile.name} pix={getProfile.pix} />
+        </div>
       )}
     </>
   );
@@ -54,19 +59,22 @@ const ProfileButtons: React.FC<ProfileButtonsProps> = ({
   const FollowingButton = () => (
     <>
       {checkFollowButton() && isFollowing && !loading && (
-        <button
-          className="main-color"
-          type="button"
-          onClick={() => {
-            unfollow({
-              variables: { username: getProfile.owner },
-            });
-            setIsFollowing(false);
-            setFollowersCount(prevState => prevState - 1);
-          }}
-        >
-          SEGUINDO
-        </button>
+        <div className="ca-buttons">
+          <button
+            className="main-color"
+            type="button"
+            onClick={() => {
+              unfollow({
+                variables: { username: getProfile.owner },
+              });
+              setIsFollowing(false);
+              setFollowersCount(prevState => prevState - 1);
+            }}
+          >
+            SEGUINDO
+          </button>
+          <RenderPixQrCode name={getProfile.name} pix={getProfile.pix} />
+        </div>
       )}
     </>
   );
@@ -74,24 +82,30 @@ const ProfileButtons: React.FC<ProfileButtonsProps> = ({
   return (
     <div className="buttons-profile">
       {hasAuth && getProfile.owner === auth.user.username && (
-        <Link href="/profile/edit">
-          <a>
-            <button className="edit-profile" type="button">
-              EDITAR PERFIL
-            </button>
-          </a>
-        </Link>
+        <div className="ca-buttons">
+          <Link href="/profile/edit">
+            <a>
+              <button className="edit-profile" type="button">
+                EDITAR PERFIL
+              </button>
+            </a>
+          </Link>
+          <CreatePix pix={getProfile.pix} />
+        </div>
       )}
       <FollowingButton />
       <NotFollowingButton />
       {!hasAuth && (
-        <Link href="/login">
-          <a>
-            <button className="main-color" type="button">
-              SEGUIR
-            </button>
-          </a>
-        </Link>
+        <div className="ca-buttons">
+          <Link href="/login">
+            <a>
+              <button className="main-color" type="button">
+                SEGUIR
+              </button>
+            </a>
+          </Link>
+          <RenderPixQrCode name={getProfile.name} pix={getProfile.pix} />
+        </div>
       )}
     </div>
   );
