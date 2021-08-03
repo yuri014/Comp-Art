@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -16,7 +16,12 @@ const CREATE_PIX = gql`
   }
 `;
 
-const CreatePix: React.FC = () => {
+interface CreatePixProps {
+  pix: IPixInput;
+}
+
+const CreatePix: React.FC<CreatePixProps> = ({ pix }) => {
+  const [pixData, setPixData] = useState({ key: '', message: '', city: '' });
   const [openModal, setOpenModal] = useState(false);
   const [createPix, { loading }] = useMutation(CREATE_PIX);
 
@@ -27,8 +32,17 @@ const CreatePix: React.FC = () => {
   });
 
   const onSubmit = (data: IPixInput) => {
-    createPix({ variables: { pix: data } }).then(() => setOpenModal(false));
+    createPix({ variables: { pix: data } }).then(() => {
+      setOpenModal(false);
+      setPixData(data);
+    });
   };
+
+  useEffect(() => {
+    if (pix.key) {
+      setPixData(pix);
+    }
+  }, [pix]);
 
   return (
     <>
@@ -43,29 +57,26 @@ const CreatePix: React.FC = () => {
         >
           <CreatePixContainer onSubmit={handleSubmit(onSubmit)}>
             <Input
+              defaultValue={pixData.key}
               name="key"
               placeholder="Insira sua chave pix"
-              refInput={register({
-                required: true,
-              })}
+              refInput={register}
               error={!!errors.key && errors.key.message}
-              required
               helperText="Recomendamos o uso de chaves aleatórias para sua própria segurança."
             >
               Chave
             </Input>
             <Input
+              defaultValue={pixData.city}
               name="city"
               placeholder="Insira sua cidade"
-              refInput={register({
-                required: true,
-              })}
+              refInput={register}
               error={!!errors.city && errors.city.message}
-              required
             >
               Cidade
             </Input>
             <Input
+              defaultValue={pixData.message}
               name="message"
               placeholder="Insira sua mensagem"
               refInput={register}
@@ -83,4 +94,4 @@ const CreatePix: React.FC = () => {
   );
 };
 
-export default CreatePix;
+export default React.memo(CreatePix);
