@@ -90,7 +90,7 @@ const ProfileButtons: React.FC<ProfileButtonsProps> = ({
               </button>
             </a>
           </Link>
-          <CreatePix />
+          <CreatePix pix={getProfile.pix} />
         </div>
       )}
       <FollowingButton />
