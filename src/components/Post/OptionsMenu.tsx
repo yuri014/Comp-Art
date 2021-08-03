@@ -1,19 +1,19 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   IconButton,
   Menu,
   MenuItem,
   NoSsr,
-  Snackbar,
   ThemeProvider,
 } from '@material-ui/core';
 import { FiMoreHorizontal, FiTrash2 } from 'react-icons/fi';
-import { FaLink, FaTimes } from 'react-icons/fa';
+import { FaLink } from 'react-icons/fa';
 
 import ThemeContext from '@context/theme';
 import mainDarkTheme from '@styles/themes/MainDarkTheme';
 import mainLightTheme from '@styles/themes/MainLightTheme';
-import { AuthContext } from '../../context/auth';
+import useCopyToClipboard from '@hooks/copyToClipboard';
+import { AuthContext } from '@context/auth';
 import { MenuListIcon } from '../Header/styles';
 
 interface OptionsMenuProps {
@@ -29,8 +29,6 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({
 }) => {
   const { isDarkMode } = useContext(ThemeContext);
   const auth = useContext(AuthContext);
-  const clip = useRef(null);
-  const [isClipped, setIsClipped] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -41,11 +39,9 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({
     setAnchorEl(null);
   };
 
-  const copyToClipboard = () => {
-    clip.current.select();
-    document.execCommand('copy');
-    setIsClipped(true);
-  };
+  const { CopyToClipboard, copyToClipboard } = useCopyToClipboard(
+    `${process.env.NEXT_PUBLIC_HOST}/post/${id}`,
+  );
 
   return (
     <NoSsr>
@@ -69,12 +65,7 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({
             <MenuListIcon className="prevent-redirect-post">
               <FaLink />
               <p>Copiar Link</p>
-              <textarea
-                ref={clip}
-                readOnly
-                style={{ position: 'absolute', left: '-999em' }}
-                value={`${process.env.NEXT_PUBLIC_HOST}/post/${id}`}
-              />
+              <CopyToClipboard />
             </MenuListIcon>
           </MenuItem>
           {auth.user && auth.user.username === username && (
@@ -86,27 +77,6 @@ const OptionsMenu: React.FC<OptionsMenuProps> = ({
             </MenuItem>
           )}
         </Menu>
-        <Snackbar
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'right',
-          }}
-          open={isClipped}
-          autoHideDuration={1000}
-          onClose={() => setIsClipped(false)}
-          message="Copiado"
-          color="error"
-          action={
-            <IconButton
-              size="small"
-              aria-label="fechar menu post"
-              onClick={() => setIsClipped(false)}
-              color="primary"
-            >
-              <FaTimes />
-            </IconButton>
-          }
-        />
       </ThemeProvider>
     </NoSsr>
   );
