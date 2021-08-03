@@ -11,12 +11,19 @@ const useCopyToClipboard = (value: string): UseCopyToClipboard => {
   const [isClipped, setIsClipped] = useState(false);
   const clip = useRef(null);
 
+  /**
+   * Função que copia a string.
+   */
   const copyToClipboard = () => {
     clip.current.select();
     document.execCommand('copy');
     setIsClipped(true);
   };
 
+  /**
+   * Componente necessário para copiar e alertar que foi copiado.
+   * @returns Snackbar e textarea.
+   */
   const CopyToClipboard = () => (
     <>
       <textarea
