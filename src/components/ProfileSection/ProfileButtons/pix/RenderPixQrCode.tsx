@@ -7,7 +7,7 @@ import { RenderPixQrCodeContainer } from './styles';
 
 interface RenderPixQrCodeProps {
   name: string;
-  pix: IPixInput | null;
+  pix: IPixInput;
 }
 
 const RenderPixQrCode: React.FC<RenderPixQrCodeProps> = ({ pix, name }) => {
