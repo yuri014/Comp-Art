@@ -39,7 +39,7 @@ const CreatePix: React.FC<CreatePixProps> = ({ pix }) => {
   };
 
   useEffect(() => {
-    if (pix.key) {
+    if (pix && pix.key) {
       setPixData(pix);
     }
   }, [pix]);

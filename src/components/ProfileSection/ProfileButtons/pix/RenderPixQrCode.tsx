@@ -21,7 +21,7 @@ const RenderPixQrCode: React.FC<RenderPixQrCodeProps> = ({ pix, name }) => {
   const { CopyToClipboard, copyToClipboard } = useCopyToClipboard(copyPastePix);
 
   useEffect(() => {
-    if (pix.key) {
+    if (pix && pix.key) {
       const pixCode = QrCodePix({
         version: '01',
         name,
@@ -33,7 +33,7 @@ const RenderPixQrCode: React.FC<RenderPixQrCodeProps> = ({ pix, name }) => {
     }
   }, [name, pix]);
 
-  if (!pix.key) {
+  if (!pix || !pix.key) {
     return <></>;
   }
 
