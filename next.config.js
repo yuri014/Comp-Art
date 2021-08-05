@@ -31,6 +31,7 @@ module.exports = withPlugins(
         'localhost',
         'comp-art.s3.sa-east-1.amazonaws.com',
         'placekitten.com',
+        'disvvqjpzmorn.cloudfront.net'
       ],
     },
     webpack5: true,
