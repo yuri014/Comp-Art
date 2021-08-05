@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FaBackward, FaForward, FaPause, FaPlay } from 'react-icons/fa';
 import WaveSurfer from 'wavesurfer.js';
+import { Tooltip } from '@material-ui/core';
 
 import CAImage from '@components/CAImage';
 import AudioButtons from '@components/Post/Buttons/AudioButtons';
-import { Tooltip } from '@material-ui/core';
+import createOpmizeUrl from '@utils/createOptimizeUrl';
 import formWaveSurferOptions, { Colors } from './options';
 import AudioPlayerContainer from './styles';
 
@@ -60,7 +61,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
           quality={100}
           blurDataURL={blurDataUrl}
           placeholder="blur"
-          src={thumbnail}
+          src={createOpmizeUrl(thumbnail)}
         />
       </figure>
       <strong>{title}</strong>
@@ -69,7 +70,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
         <AudioButtons
           song={{
             cover: thumbnail,
-            musicSrc: audio,
+            musicSrc: createOpmizeUrl(audio),
             name: title,
             singer: title,
           }}

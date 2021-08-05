@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
+import createOpmizeUrl from '@utils/createOptimizeUrl';
 import ImagePostContainer from './imagePostStyles';
 
 const FullScreenImage = dynamic(() => import('../FullScreenImage'));
@@ -31,7 +32,7 @@ const ImagePost: React.FC<ImagePostProps> = ({ alt, image, imageHeight }) => {
       >
         <LazyLoadImage
           className="prevent-redirect-post post-image"
-          src={image}
+          src={createOpmizeUrl(image)}
           alt={alt || 'Publicação'}
           height={imageHeight}
           effect="blur"

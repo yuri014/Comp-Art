@@ -6,6 +6,7 @@ import { IProfile } from '@interfaces/Profile';
 import { MODAL_PROFILE } from '@graphql/fragments/profile';
 import formatDate from '@utils/formatDate';
 import ProfileImage from '@components/ProfileImage';
+import createOpmizeUrl from '@utils/createOptimizeUrl';
 import ProfileSectionContainer from './_styles';
 import ProfileButtons from './ProfileButtons';
 
@@ -70,13 +71,16 @@ const ProfileSection: React.FC<ProfileProps> = ({ getProfile }) => {
               onKeyDown={() => setIsImageFullScreen(true)}
               onBlur={() => setIsImageFullScreen(false)}
             >
-              <img src={getProfile.avatar} alt={getProfile.name} />
+              <img
+                src={createOpmizeUrl(getProfile.avatar)}
+                alt={getProfile.name}
+              />
             </button>
           ) : (
             <ProfileImage
               className="profile-image"
               alt={getProfile.name}
-              avatar={getProfile.avatar}
+              avatar={createOpmizeUrl(getProfile.avatar)}
               username={getProfile.owner}
             />
           )}
@@ -139,7 +143,7 @@ const ProfileSection: React.FC<ProfileProps> = ({ getProfile }) => {
       )}
       {isImageFullScreen && (
         <FullScreenImage
-          img={getProfile.avatar}
+          img={createOpmizeUrl(getProfile.avatar)}
           onClose={() => setIsImageFullScreen(false)}
         />
       )}

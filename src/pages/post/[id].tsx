@@ -26,6 +26,7 @@ import getBase64Image from '@ssr-functions/getBase64Image';
 import formatDistanceTimePass from '@utils/formatDistanceTimePass';
 import mediaIds from '@utils/mediaIds';
 import Link from 'next/link';
+import createOpmizeUrl from '@utils/createOptimizeUrl';
 import PostPageContainer from './_styles';
 
 const AudioPlayer = dynamic(() => import('@components/AudioPlayer'), {
@@ -65,7 +66,7 @@ const PostPage: React.FC<PostPageProps> = ({
             height={post.imageHeight}
             placeholder="blur"
             objectFit="contain"
-            src={post.body}
+            src={createOpmizeUrl(post.body)}
           />
         </figure>
       );

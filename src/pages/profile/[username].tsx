@@ -24,6 +24,7 @@ import CAButton from '@styles/components/button';
 import withPublicRoute from '@hocs/withPublicRoute';
 import getBase64Image from '@ssr-functions/getBase64Image';
 import getLoggedUserWithNoAuth from '@ssr-functions/getLoggedUserWithNoAuth';
+import createOpmizeUrl from '@utils/createOptimizeUrl';
 import ProfileContainer from './_styles';
 
 interface ProfileProps extends ILoggedProfile, BlurImageData {
@@ -66,7 +67,7 @@ const Profile: React.FC<ProfileProps> = ({
               blurDataURL={blurDataUrl}
               quality={100}
               alt="Capa do perfil"
-              src={getProfile.coverImage}
+              src={createOpmizeUrl(getProfile.coverImage)}
             />
           )}
 
@@ -147,8 +148,8 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const getLoggedProfile = await getLoggedUserWithNoAuth(jwtToken, client);
 
   const coverImageBase64 = await getBase64Image(() => {
-    if (getProfile.coverImage) {
-      return getProfile.coverImage;
+    if (createOpmizeUrl(getProfile.coverImage)) {
+      return createOpmizeUrl(getProfile.coverImage);
     }
 
     return '';

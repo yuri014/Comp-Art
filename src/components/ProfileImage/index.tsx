@@ -1,4 +1,6 @@
 import React from 'react';
+import createOpmizeUrl from '@utils/createOptimizeUrl';
+
 import AvatarPlaceholder from './styles';
 
 interface ProfileImageProps {
@@ -16,7 +18,7 @@ const ProfileImage: React.FC<ProfileImageProps> = ({
 }) => (
   <AvatarPlaceholder className={className}>
     {avatar ? (
-      <img src={avatar} alt={alt} />
+      <img src={createOpmizeUrl(avatar)} alt={alt} />
     ) : (
       <div className="holder">
         <p>

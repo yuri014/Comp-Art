@@ -8,6 +8,7 @@ import formatTime from '@utils/formatTime';
 import { ArtistPostProps } from '@interfaces/Post';
 import ThemeContext from '@context/theme';
 import { IPlaylist } from '@components/PortalAudioPlayer';
+import createOpmizeUrl from '@utils/createOptimizeUrl';
 import AudioPostContainer from './audioPostStyles';
 import Links from './Links';
 import AudioSlider from './Slider';
@@ -118,7 +119,7 @@ const AudioPost: React.FC<ArtistPostProps> = ({ isShare, post }) => {
             <audio
               style={{ display: 'none' }}
               ref={audioRef}
-              src={song.musicSrc}
+              src={createOpmizeUrl(song.musicSrc)}
               onLoadedMetadata={() => {
                 const { minutes, seconds } = formatTime(
                   audioRef.current.duration,
