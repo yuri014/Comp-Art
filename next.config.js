@@ -27,9 +27,16 @@ module.exports = withPlugins(
   ],
   {
     images: {
-      domains: ['localhost', 'comp-art.s3.sa-east-1.amazonaws.com', 'placekitten.com'],
+      domains: [
+        'localhost',
+        'comp-art.s3.sa-east-1.amazonaws.com',
+        'placekitten.com',
+      ],
     },
     webpack5: true,
     reactStrictMode: true,
+    experimental: {
+      scrollRestoration: true,
+    },
   },
 );
