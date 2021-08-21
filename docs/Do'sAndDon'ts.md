@@ -60,7 +60,7 @@ export default function App() {
 
 ```tsx
 function Form() {
-  let [color, setColor] = useState('red');
+  const [color, setColor] = useState('red');
   return (
     <>
       <input value={color} onChange={(e) => setColor(e.target.value)} />
