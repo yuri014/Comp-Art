@@ -1436,13 +1436,13 @@
   dependencies:
     clsx "^1.0.4"
 
-"@draft-js-plugins/mention@^4.5.1":
-  version "4.5.1"
-  resolved "https://registry.yarnpkg.com/@draft-js-plugins/mention/-/mention-4.5.1.tgz#54b92e70117be51c276da2421159ec2089d18f15"
-  integrity sha512-lSYEvsy+o9LpWPMJuJ1EbbrLY1b7J0seyJksvr64nTMhOjNHGPhNnUCEXHl7+7MQ+aOwo5pP158BzgpP8nuWAA==
+"@draft-js-plugins/mention@^4.6.1":
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/@draft-js-plugins/mention/-/mention-4.6.1.tgz#8492dda869b7776700d09e5a3d3ac43140bec59b"
+  integrity sha512-9h1KfTbKW4qw1YqsgHKu5SOMoTNlG5K2uihmfrv2tJ0k6lFIWZDNy4p9N4oPwghfeiplFIZf6kwTBAjFtF7g/g==
   dependencies:
     "@popperjs/core" "^2.9.2"
-    "@types/lodash" "^4.14.168"
+    "@types/lodash" "^4.14.171"
     clsx "^1.0.4"
     immutable "~3.7.4"
     lodash "^4.17.21"
@@ -2241,10 +2241,10 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.168.tgz#fe24632e79b7ade3f132891afff86caa5e5ce008"
   integrity sha512-oVfRvqHV/V6D1yifJbVRU3TMp8OT6o6BG+U9MkwuJ3U8/CsDHvalRpsxBqivn71ztOFZBTfJMvETbqHiaNSj7Q==
 
-"@types/lodash@^4.14.168":
-  version "4.14.170"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.170.tgz#0d67711d4bf7f4ca5147e9091b847479b87925d6"
-  integrity sha512-bpcvu/MKHHeYX+qeEN8GE7DIravODWdACVA1ctevD8CN24RhPZIKMn9ntfAsrvLfSX3cR5RrBKAbYm9bGs0A+Q==
+"@types/lodash@^4.14.171":
+  version "4.14.172"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.172.tgz#aad774c28e7bfd7a67de25408e03ee5a8c3d028a"
+  integrity sha512-/BHF5HAx3em7/KkzVKm3LrsD6HZAXuXO1AJZQ3cRRBZj4oHZDviWPYu0aEplAqDFNHZPW6d3G7KN+ONcCCC7pw==
 
 "@types/mdast@^3.0.0":
   version "3.0.3"
