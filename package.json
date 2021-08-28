@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.4.0",
-    "@draft-js-plugins/counter": "^4.1.0",
+    "@draft-js-plugins/counter": "^4.1.1",
     "@draft-js-plugins/editor": "^4.1.0",
     "@draft-js-plugins/hashtag": "^4.2.0",
     "@draft-js-plugins/mention": "^4.6.1",

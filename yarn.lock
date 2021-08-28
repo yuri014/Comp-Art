@@ -1432,10 +1432,10 @@
   resolved "https://registry.yarnpkg.com/@corex/deepmerge/-/deepmerge-2.6.20.tgz#a72d1cb5a101fd11160815b96f499a588362ba5b"
   integrity sha512-oZZxwDtV0bf8VPcSIhZPvdBFUkVIC8zRblUjrrVAsbGRiqUuZJfoXw2M6NDiIXWcUCfOqbkFND6Yf3b9ej9AjA==
 
-"@draft-js-plugins/counter@^4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@draft-js-plugins/counter/-/counter-4.1.0.tgz#8796167e8bb66ca9c8a7ff924aa25db5cdefb543"
-  integrity sha512-fUhuAGMBspggQrPBcQ5pU4E3TS6ykuqNv4GA5DdFAi5g3liZxt/3iMmsuipJTAqufqUySUbu9SZW1zGkwpOxgA==
+"@draft-js-plugins/counter@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@draft-js-plugins/counter/-/counter-4.1.1.tgz#426873dbd31a80a4d26c1976cdd8f7450f750c8d"
+  integrity sha512-Vx7n2557axMV4waeZE9PGwknd5cAcErGXIWkNmUt45gYyhbDhgELO/nlv8ax6AhcuM+Y51IVKhRNMgWWQMQvzA==
   dependencies:
     clsx "^1.0.4"
     prop-types "^15.5.8"
