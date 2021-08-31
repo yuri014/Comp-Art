@@ -1449,10 +1449,10 @@
     immutable "~3.7.4"
     prop-types "^15.5.8"
 
-"@draft-js-plugins/hashtag@^4.2.0":
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/@draft-js-plugins/hashtag/-/hashtag-4.2.0.tgz#ff21138bc02dc07b72484a597eee1acaf8bea174"
-  integrity sha512-jjrd+nvUBhhQyakvbb5zH0tqHGV4ygKOq2bzwTnG1UDqy3j1aOMcKXuZmZjl9eWTU9pBXH95jD1HTcpQE61MPA==
+"@draft-js-plugins/hashtag@^4.2.1":
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/@draft-js-plugins/hashtag/-/hashtag-4.2.1.tgz#c8cc90587915c049f9c35ab441e6bc64a9476f28"
+  integrity sha512-KDMliO9huEnPR+4oysBQUoVpS4KDv9C/qMolwO3uNrXqPfJQnFFJmYOET+uwwP+bg58a5EnSltDsd4Ir6n6LOg==
   dependencies:
     clsx "^1.0.4"
 
